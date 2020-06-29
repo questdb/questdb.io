@@ -21,6 +21,10 @@ The short query below will return the simple average balance from a list of acco
 select avg(balance) from accounts sample by 1M
 ```
 
+### Timestamp Search
+Timestamp search can be performed with regular operators, e.g `>`, `<=` etc. However, 
+QuestDB provides a [native notation](where.md#timestamp-and-date) which is faster and less verbose.
+
 ## Important differences from standard SQL
 
 ### `SELECT * FROM` Optionality

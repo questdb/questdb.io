@@ -35,3 +35,78 @@ case
 
 Copy
 ::= 'COPY' tableName 'FROM' fileName  (| 'WITH' 'HEADER' (true|false) ) ';'
+
+Create Table timestamp
+::= 'CREATE' someCreateTableStatement 'timestamp' '(' columnName ')'
+
+Dynamic-timestamp
+         ::= 'SELECT' someSelectStatement 'timestamp' '(' columnName ')'
+
+
+sampleBy ::=
+someSelectStatement... 'SAMPLE' 'BY' n ( 's' | 'm' | 'h' | 'd' | 'M' | )
+
+distinct
+  ::= 'SELECT' 'DISTINCT' ( columnName (',' columnName)* ) 'FROM' tableName
+
+latestBy
+::= 'SELECT' ( columnName (',' columnName)* ) 'FROM' tableName 'LATEST' 'BY' columnName
+
+limit
+  ::= 'SELECT' someSelectStatement 'LIMIT' ( numberOfRecords | (upperBound ',' lowerBound) ) ';'
+
+fill     ::= someSampleBySelectQuery 'FILL' ( ( 'NONE' | 'NULL' | 'PREV' | 'LINEAR' | 'x' ) ',' )*
+
+orderBy
+  ::= someSelectQuery 'ORDER' 'BY' ( columnName (asc | desc) ? (',' columnName (asc | desc) ?)* )
+
+timestampSearch
+         ::= 'WHERE' timestampColumn ( '=' | '>' | '<' | '>=' | '<=' ) "'" timestamp "'"
+
+timestampIntervalSearch
+         ::= 'WHERE' timestampColumn '=' "'" timestamp ';' interval (s | m | h | d | M | y) "'"
+
+timestampInSearch
+::= 'WHERE' timestampColumn 'in' '(' "'timestamp1'" ';' "'timestamp2'" ')'
+
+exactStringOrSymbolSearch
+         ::= 'WHERE' column '=' "'" string "'"
+
+regexMatch
+         ::= 'WHERE' '~=' '(' column ';' regex ')'
+
+listMatch
+         ::= 'WHERE' 'NOT'? columnName 'in' '(' string (',' string)* ')'
+
+whereNumericValue
+         ::= 'WHERE' column ('=' | '!=' | '>' | '>=' | '<' | '<=') value
+
+whereEqDoubleProximityPrecision
+         ::= 'WHERE' 'eq' '(' column ',' value ',' precision  ')'
+
+complexWhere
+         ::= 'WHERE' ('('? ( 'AND' | 'OR' | 'NOT' )? boolean ')'?)*
+
+booleanWhere
+         ::= 'WHERE' 'NOT'? columnName
+
+timestampExact
+         ::= 'WHERE' column '=' timestamp
+
+timestampPartial
+         ::= 'WHERE' timestampColumn '=' ( 'yyyy' | 'yyyy-MM' | 'YYYY-MM-dd' | 'yyyy-MM-ddThh' | 'yyyy-MM-ddThh:mm' | 'yyyy-MM-ddThh:mm:ss' )
+
+timestampExplicitRange
+         ::= 'WHERE' timestamp 'in' '(' lower_bound ',' upper_bound ')'
+
+union
+         ::= selectStatement ('UNION' 'ALL'? otherSelectStatement)*
+
+renameTable
+         ::= 'RENAME' 'TABLE' oldName 'TO' newName
+
+cast
+         ::= 'CAST' '(' expression 'AS' type ')'
+
+
+

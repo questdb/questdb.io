@@ -12,18 +12,11 @@ To work properly,
 - Each column should have the same type
 - Columns should be in the same order
 
-### UNION ALL
-By default, `UNION` will return distinct results. 
-`UNION ALL` will return all results including duplicates.
-
 ## Syntax
-`UNION` us used as follows:
+![union syntax](/static/img/union.svg)
 
-```sql
-SELECT . .
-UNION [ALL]
-SELECT . .
-```
+- `UNION` will return distinct results. 
+- `UNION ALL` will return all results including duplicates.
 
 ## Examples
 

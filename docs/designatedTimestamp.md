@@ -15,17 +15,23 @@ will reject out of order inserts.
 - `designated timestamp` can be elected either:
     - during table creation.
     - on the fly on sub-tables created within a query.
+    
+:::tip
+To elect a timestamp column on the fly, please refer to the [dynamic timestamp]() documentation.
+:::
 
-:::note
+
+#### Out of order policy
 Once a column is elected `designated timestamp`, it will enforce an order policy on this column. 
 Inserts in `designated timestamp` need to be incrementing and out of order timestamps inserts will be rejected.
 This does not affect the behaviour of other columns.
-:::
 
-:::note
+:::tip
 Timestamps need NOT be unique. Duplicate timestamps are accepted. 
 New timestamps need only be `superior or equal` to the latest timestamp in the column.
 :::
+
+
 
 #### Advantages
 Electing a `designated timestamp` allows you to:

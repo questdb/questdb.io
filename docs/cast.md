@@ -5,7 +5,9 @@ sidebar_label: CAST
 ---
 
 
-QuestDB implements type conversion explicitly via `cast()` and implicitly when required by the context.
+Type conversion. Can be either 
+- [Explicit](#explicit-conversion) via `cast()`  
+- [Implicit](#implicit-conversion), in which case it will be automatically performed when required by the context.
 
 ## Explicit conversion
 
@@ -13,11 +15,11 @@ Types can be converted from one to another using the `cast()` function.
 
 ### Syntax
 
-`cast(expression as data_type)` - changes type of expression preserving expression value
+![cast sql syntax](/static/img/cast.svg)
 
 where:
 - `expression` can be a constant, a column, or an expression that evaluates to a value.
-- `datatype` refers to the desired **[data type](datatypes.md)**.
+- `type` refers to the desired **[data type](datatypes.md)**.
 
 `cast` can be used a part of arithmetic expression as normal
 

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="631" height="101">
+    <defs>
+        <style type="text/css">
+            @namespace "http://www.w3.org/2000/svg";
+            .line                 {fill: none; stroke: #038cbc;}
+            .bold-line            {stroke: #000E14; shape-rendering: crispEdges; stroke-width: 2; }
+            .thin-line            {stroke: #00141F; shape-rendering: crispEdges}
+            .filled               {fill: #038cbc; stroke: none;}
+            text.terminal         {font-family: Verdana, Sans-serif;
+            font-size: 12px;
+            fill: #000E14;
+            font-weight: bold;
+            }
+            text.nonterminal      {font-family: Verdana, Sans-serif;
+            font-size: 12px;
+            fill: #00111A;
+            font-weight: normal;
+            }
+            text.regexp           {font-family: Verdana, Sans-serif;
+            font-size: 12px;
+            fill: #00141F;
+            font-weight: normal;
+            }
+            rect, circle, polygon {fill: #038cbc; stroke: #038cbc;}
+            rect.terminal         {fill: #4DC3FF; stroke: #038cbc;}
+            rect.nonterminal      {fill: #9EDFFF; stroke: #038cbc;}
+            rect.text             {fill: none; stroke: none;}
+            polygon.regexp        {fill: #C7ECFF; stroke: #038cbc;}
+        </style>
+    </defs>
+    <polygon points="9 33 1 29 1 37"/>
+    <polygon points="17 33 9 29 9 37"/><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#selectStatement" xlink:title="selectStatement">
+    <rect x="31" y="19" width="124" height="32"/>
+    <rect x="29" y="17" width="124" height="32" class="nonterminal"/>
+    <text class="nonterminal" x="39" y="37">selectStatement</text></a><rect x="215" y="19" width="66" height="32" rx="10"/>
+    <rect x="213" y="17" width="66" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="223" y="37">UNION</text>
+    <rect x="321" y="51" width="44" height="32" rx="10"/>
+    <rect x="319" y="49" width="44" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="329" y="69">ALL</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#otherSelectStatement" xlink:title="otherSelectStatement">
+    <rect x="405" y="19" width="158" height="32"/>
+    <rect x="403" y="17" width="158" height="32" class="nonterminal"/>
+    <text class="nonterminal" x="413" y="37">otherSelectStatement</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 33 h2 m0 0 h10 m124 0 h10 m40 0 h10 m66 0 h10 m20 0 h10 m0 0 h54 m-84 0 h20 m64 0 h20 m-104 0 q10 0 10 10 m84 0 q0 -10 10 -10 m-94 10 v12 m84 0 v-12 m-84 12 q0 10 10 10 m64 0 q10 0 10 -10 m-74 10 h10 m44 0 h10 m20 -32 h10 m158 0 h10 m-388 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -12 q0 -10 10 -10 m368 32 l20 0 m-20 0 q10 0 10 -10 l0 -12 q0 -10 -10 -10 m-368 0 h10 m0 0 h358 m-408 32 h20 m408 0 h20 m-448 0 q10 0 10 10 m428 0 q0 -10 10 -10 m-438 10 v46 m428 0 v-46 m-428 46 q0 10 10 10 m408 0 q10 0 10 -10 m-418 10 h10 m0 0 h398 m23 -66 h-3"/>
+    <polygon points="621 33 629 29 629 37"/>
+    <polygon points="621 33 613 29 613 37"/></svg>

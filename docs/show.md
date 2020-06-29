@@ -4,14 +4,13 @@ title: SHOW
 sidebar_label: SHOW
 ---
 
-## SHOW 
-`SHOW` displays tables and columns available in the database.
 
-> These commands return the tables and columns as a table. If you would like to query your tables and columns 
-with filters or to use the results as part of a function, see table_columns() and all_tables() functions.
+Displays tables and columns available in the database.
 
-### Syntax
-![alt-text](assets/show.svg)
+:::info
+These commands return the tables and columns as a table. If you would like to query your tables and columns 
+with filters or to use the results as part of a function, see [table_columns()](functionsMeta.md#table_columns) and  [all_tables()](functionsMeta.md#all_tables) functions.
+:::
 
 ### Examples
 Show all tables:

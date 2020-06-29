@@ -8,10 +8,7 @@ sidebar_label: RENAME TABLE
 `RENAME TABLE` is used to change the name of a table.
 
 ### Syntax
-
-```sql
-RENAME TABLE 'OLD_TABLE_NAME' TO 'NEW_TABLE_NAME';
-```
+![syntax rename table sql](/static/img/renameTable.svg)
 
 ### Example
 ```sql
