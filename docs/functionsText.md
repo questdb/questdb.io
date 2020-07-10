@@ -6,19 +6,19 @@ sidebar_label: Text Functions
 
 ## concat
 
-`concat(str, ...)`  - concatenates a string from one or more input values 
+`concat(str, ...)` - concatenates a string from one or more input values
 
 ```sql title="Example"
 SELECT firstName, lastName, concat(firstName, ' ', lastName) FROM names;
 ```
 
-| firstName     | lastName          | concat                |
-|---------------|-------------------|-----------------------|
-| Tim           | Thompson          | Tim Thompson          |
-| Anna          | Thompson          | Anna Thompson         |
-| Anna          | Mason             | Anna Mason            |
-| Tom           | Johnson           | Tom Johnson           |
-| Tim           | Smith             | Tim Smith             | 
+| firstName | lastName | concat        |
+| --------- | -------- | ------------- |
+| Tim       | Thompson | Tim Thompson  |
+| Anna      | Thompson | Anna Thompson |
+| Anna      | Mason    | Anna Mason    |
+| Tom       | Johnson  | Tom Johnson   |
+| Tim       | Smith    | Tim Smith     |
 
 :::tip
 `concat()` can be used to generate `line protocol`. See example below.
@@ -27,7 +27,7 @@ SELECT firstName, lastName, concat(firstName, ' ', lastName) FROM names;
 ```sql title="Generating line protocol"
 SELECT
 concat(
-    'trades,instrument=', rnd_str(2,2,0), 
+    'trades,instrument=', rnd_str(2,2,0),
     ',side=', rnd_str('B', 'S'),
     ' price=', abs(cast(rnd_double(0)*100000 as int)),
     ',quantity=', abs(cast(rnd_double(0)*10000 as int)),
@@ -37,7 +37,7 @@ concat(
 FROM long_sequence(5) x;
 ```
 
-``` title="Result"
+```title="Result"
 trades,instrument=CR,side=B price=70867,quantity=9192 1571270400000
 trades,instrument=LN,side=S price=37950,quantity=1439 1571270400100
 trades,instrument=ZJ,side=S price=82829,quantity=8871 1571270400200
@@ -53,7 +53,6 @@ trades,instrument=MI,side=B price=99348,quantity=8450 1571270400400
 
 `length(blob)` - reads length of `binary` value type (result is `long`)
 
-
 - a `string`
 - a `symbol`
 - a `binary` blob
@@ -62,13 +61,12 @@ trades,instrument=MI,side=B price=99348,quantity=8450 1571270400400
 SELECT name a, length(name) b FROM names limit 4
 ```
 
-| a         | b         |
-|-----------|-----------|
-| AARON     | 5         |
-| AMELIE    | 6         |
-| TOM       | 3         |
-| null      | -1        |
-
+| a      | b   |
+| ------ | --- |
+| AARON  | 5   |
+| AMELIE | 6   |
+| TOM    | 3   |
+| null   | -1  |
 
 ## ~=
 
@@ -83,4 +81,3 @@ https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
 `!~(string, regex)` - checks if `string` value does not match regex
 
 `!~(symbol, regex)` - checks if `symbol` value does not match regex
-

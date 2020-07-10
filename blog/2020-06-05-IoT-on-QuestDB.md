@@ -7,42 +7,69 @@ author_image_url: https://avatars.githubusercontent.com/davidgs
 tags: [questdb, iot]
 ---
 
-
-As you can well imagine, I've been super busy in my hew job at QuestDB so this has taken me longer than I would have liked, but here we are. If you know me at all, you know that one of the first things I always do with new things is, well, connect things to them! So I immediately went to connect an IoT device to QuestDB to see how it went. Unsurprisingly, it went quite well. So here's how it went, from start to finish.
+As you can well imagine, I've been super busy in my hew job at QuestDB so this
+has taken me longer than I would have liked, but here we are. If you know me at
+all, you know that one of the first things I always do with new things is, well,
+connect things to them! So I immediately went to connect an IoT device to
+QuestDB to see how it went. Unsurprisingly, it went quite well. So here's how it
+went, from start to finish.
 
 <!--truncate-->
 
 ## The Database Part
 
-The first thing I had to do was a to get QuestDB up and running. Luckily, this is very straightforward. I guess I could have gone the Docker route, but as you're probably aware, I'm not a huge fan of Docker (in no small part due to the fact that it will literally suck the life out of a MacOS laptop). There's also (for you MacOS users) `brew install questdb` but since I work here, and I wanted to test out the latest and greatest web console, I decided to build from source:
+The first thing I had to do was a to get QuestDB up and running. Luckily, this
+is very straightforward. I guess I could have gone the Docker route, but as
+you're probably aware, I'm not a huge fan of Docker (in no small part due to the
+fact that it will literally suck the life out of a macOS laptop). There's also
+(for you macOS users) `brew install questdb` but since I work here, and I wanted
+to test out the latest and greatest web console, I decided to build from source:
 
 <a href="https://davidgs.com/wp-content/uploads/2020/06/Build.gif"><img src="https://davidgs.com/wp-content/uploads/2020/06/Build.gif" alt="" /></a>
 
-It builds really quickly due to the lack of external dependencies, so that is great! Then all I have to do is start it:
+It builds really quickly due to the lack of external dependencies, so that is
+great! Then all I have to do is start it:
 
 <a href="https://davidgs.com/wp-content/uploads/2020/06/StartQuest.gif"><img class="wp-image-829" src="https://davidgs.com/wp-content/uploads/2020/06/StartQuest.gif" alt="" /></a>
 
-That is literally all there is to getting QuestDB built and running. But that's just the first part. Now it's time to do something mildly useful with it. First, I'll need to create a table in QuestDB to store my IoT Data (A bit more on this later, so store a pointer to this).
+That is literally all there is to getting QuestDB built and running. But that's
+just the first part. Now it's time to do something mildly useful with it. First,
+I'll need to create a table in QuestDB to store my IoT Data (A bit more on this
+later, so store a pointer to this).
 
 <img title="Screen Shot 2020-06-04 at 9.15.33 AM.png" src="https://davidgs.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-04-at-9.15.33-AM-1.png" alt="Screen Shot 2020 06 04 at 9 15 33 AM" />
 
-Remember, we're doing SQL here, so it there's no new language or syntax to learn. This is a really simple table that I'm building because I'm going to be using an ESP8266 with a (really awful) DHT11 temperature and humidity sensor on it.
+Remember, we're doing SQL here, so it there's no new language or syntax to
+learn. This is a really simple table that I'm building because I'm going to be
+using an ESP8266 with a (really awful) DHT11 temperature and humidity sensor on
+it.
 
 ## The Sensor Part
 
-For this I'm going to use an ESP8266-based WEMOS D1 Mini only because I happen to have a giant pile of them lying around. I buy them in bulk because they are a dollar or 2 each, easy to use, and largely disposable if I blow one up (which I do with alarming regularity.). The circuit is extremely simple to do:
+For this I'm going to use an ESP8266-based WEMOS D1 Mini only because I happen
+to have a giant pile of them lying around. I buy them in bulk because they are a
+dollar or 2 each, easy to use, and largely disposable if I blow one up (which I
+do with alarming regularity.). The circuit is extremely simple to do:
 
 <img title="Screen Shot 2020-06-04 at 9.24.39 AM.png" src="https://davidgs.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-04-at-9.24.39-AM-1.png" alt="Screen Shot 2020 06 04 at 9 24 39 AM" />
 
-I used an actual WEMOS Shield with the DHT11 on it, so I didn't have to breadboard it, but this schematic gives you an idea of how simple the wiring is. It's literally 3 wires.
+I used an actual WEMOS Shield with the DHT11 on it, so I didn't have to
+breadboard it, but this schematic gives you an idea of how simple the wiring is.
+It's literally 3 wires.
 
 ## The Code Part
 
-Here is where the magic happens. How I actually send the sensor data to the database. There is a simple example program included with the Adafruit DHT Unified Sensor Library that I recommend starting with in order to make this a bit easier. It already has all the parts to read from the sensor so you don't have to write those from scratch. Remember: Good developers copy, but great developers paste!
+Here is where the magic happens. How I actually send the sensor data to the
+database. There is a simple example program included with the Adafruit DHT
+Unified Sensor Library that I recommend starting with in order to make this a
+bit easier. It already has all the parts to read from the sensor so you don't
+have to write those from scratch. Remember: Good developers copy, but great
+developers paste!
 
-Since I'm using the 8266, and I'll need internet connectivity, I'll need all the WiFi bits:
+Since I'm using the 8266, and I'll need internet connectivity, I'll need all the
+WiFi bits:
 
-``` java
+```java
 #include <WiFiServerSecure.h>
 #include <WiFiClientSecure.h>
 #include <WiFiClientSecureBearSSL.h>
@@ -63,11 +90,14 @@ Since I'm using the 8266, and I'll need internet connectivity, I'll need all the
 #include <WiFiServerSecureAxTLS.h>
 ```
 
-Really all you have to do is go to the 'Sketch' Menu, Choose 'Include Library' and select the 'ESP8266WiFi' library and you get all this stuff imported for you.
+Really all you have to do is go to the 'Sketch' Menu, Choose 'Include Library'
+and select the 'ESP8266WiFi' library and you get all this stuff imported for
+you.
 
-Here's some boiler-plate code you can always use to get your ESP8266 on your WiFi:
+Here's some boiler-plate code you can always use to get your ESP8266 on your
+WiFi:
 
-``` java
+```java
 #include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
@@ -125,13 +155,20 @@ void setup(){
 }
 ```
 
-That gets the basics set up. Running that should get you a WiFi connection and a fully configured DHT11 sensor. We're almost ready to start sending data to the database
+That gets the basics set up. Running that should get you a WiFi connection and a
+fully configured DHT11 sensor. We're almost ready to start sending data to the
+database
 
-If you were paying attention, and read the code, you'll have noticed the UDP stuff I snuck in there. That's because we're going to make this super easy and use UDP to send our data. And there's a <strong>really</strong> good reason for that: InfluxDB Line Protocol. You see, QuestDB has a built-in InfluxDB Line Protocol listener, but (for now) it's only listening on a UDP port. So we're going to use that.
+If you were paying attention, and read the code, you'll have noticed the UDP
+stuff I snuck in there. That's because we're going to make this super easy and
+use UDP to send our data. And there's a <strong>really</strong> good reason for
+that: InfluxDB Line Protocol. You see, QuestDB has a built-in InfluxDB Line
+Protocol listener, but (for now) it's only listening on a UDP port. So we're
+going to use that.
 
 Now, to send some data:
 
-```  java
+```java
 void loop() {
   // Delay between measurements.
   delay(delayMS);
@@ -175,19 +212,34 @@ void loop() {
 }
 ```
 
-Yeah, there's a lot going on in there. So let's break it down. First, I'm creating a buffer to hold the data I'm going to send, and then I'll do a read of the sensor. I set the `temp` and `hum` variables to values that I know the sensor will never return so that I can check that I got valid readings later, to avoid sending gibberish to the database.
+Yeah, there's a lot going on in there. So let's break it down. First, I'm
+creating a buffer to hold the data I'm going to send, and then I'll do a read of
+the sensor. I set the `temp` and `hum` variables to values that I know the
+sensor will never return so that I can check that I got valid readings later, to
+avoid sending gibberish to the database.
 
-I have to do some shenanigans with the temperature and humidity values in there because one of the shortcomings of Arduinos is that they don't have `sprintf` support for doubles. I know. So I simply turn them into strings and move on. Once they arrive at the database, they are interpreted as doubles and life is good. Not worth fighting about. I can then construct a buffer with straight line protocol and ship it off to QuestDB over UDP.
+I have to do some shenanigans with the temperature and humidity values in there
+because one of the shortcomings of Arduinos is that they don't have `sprintf`
+support for doubles. I know. So I simply turn them into strings and move on.
+Once they arrive at the database, they are interpreted as doubles and life is
+good. Not worth fighting about. I can then construct a buffer with straight line
+protocol and ship it off to QuestDB over UDP.
 
 Don't forget to free the memory!
 
 ## That Pointer
 
-Remember I told you to set a pointer earlier about creating the database? Well, here's where I come back to that. You don't <em>actually</em> have to create the database ahead of time <em>unless</em> you want to do things like set indexes, etc. If all you want to do is have straight values in there, then guess what? Schema-on-write is a thing here. You can just start writing data to the database, and it will happily store them for you. Pretty cool stuff.
+Remember I told you to set a pointer earlier about creating the database? Well,
+here's where I come back to that. You don't <em>actually</em> have to create the
+database ahead of time <em>unless</em> you want to do things like set indexes,
+etc. If all you want to do is have straight values in there, then guess what?
+Schema-on-write is a thing here. You can just start writing data to the
+database, and it will happily store them for you. Pretty cool stuff.
 
 ## Querying the Data
 
-Using the QuestDB Console, you can then query the data to make sure you're getting what you expect:
+Using the QuestDB Console, you can then query the data to make sure you're
+getting what you expect:
 
 <a href="https://davidgs.com/wp-content/uploads/2020/06/queries.gif"><img class="wp-image-830" src="https://davidgs.com/wp-content/uploads/2020/06/queries.gif" alt="" /></a>
 
@@ -195,5 +247,9 @@ That's exactly what I expected!
 
 ## What's Next
 
-Now it's time to start building some dashboards, etc. on top of this. I'm currently working on connecting this all up with Node Red, so that may be my next post. We're also working on support for Grafana, which will be huge, so stay tuned for that. If you like what you see here, pleases go give us a star on <a href="https://github.com/questdb">GitHub</a>, and follow the project if you'd like to get updates!
-
+Now it's time to start building some dashboards, etc. on top of this. I'm
+currently working on connecting this all up with Node Red, so that may be my
+next post. We're also working on support for Grafana, which will be huge, so
+stay tuned for that. If you like what you see here, pleases go give us a star on
+<a href="https://github.com/questdb">GitHub</a>, and follow the project if you'd
+like to get updates!

@@ -10,23 +10,19 @@ tags: [questdb, performance, simd]
 ![banner questdb 4.2](/static/img/blog/simd-1bln/banner-4-2.png)
 <a href="https://en.wikipedia.org/wiki/SIMD" target="_blank">SIMD
 instructions</a> are specific CPU instruction sets for arithmetic calculations
-that use synthetic parallelisation. 
-
+that use synthetic parallelisation.
 
 <!--truncate-->
 
-
-The parallelisation is synthetic because
-instead of spreading the work across CPU cores, SIMD performs vector operations
-on multiple items using a **single** CPU instruction. In practice, if you were
-to add 8 numbers together, SIMD does that in 1 operation instead of 8. We get
-compounded performance improvements by combining SIMD with actual
-parallelisation and spanning the work across CPUs.
+The parallelisation is synthetic because instead of spreading the work across
+CPU cores, SIMD performs vector operations on multiple items using a **single**
+CPU instruction. In practice, if you were to add 8 numbers together, SIMD does
+that in 1 operation instead of 8. We get compounded performance improvements by
+combining SIMD with actual parallelisation and spanning the work across CPUs.
 
 QuestDB 4.2 introduces SIMD instructions, which made our aggregations faster by
-100x! QuestDB is available Open-Source (Apache 2.0)
-. If you like
-what we do, please consider [starring our repo](https://github.com/questdb/questdb)
+100x! QuestDB is available Open-Source (Apache 2.0) . If you like what we do,
+please consider [starring our repo](https://github.com/questdb/questdb)
 following us on Github and starring our project.
 
 As of now, SIMD operations are available for non-keyed aggregation queries, such
@@ -113,7 +109,9 @@ if CPU were fully isolated to run the computations.
 
 We did not get our hands on CPUs with more memory channels for this test, but if
 you have easy access to 8 or 12-channel servers and would like to benchmark
-QuestDB, we'd love to hear the results. You can <a href="https://questdb.io/getstarted">download QuestDB</a> and leave a <a target="_blank" href="https://github.com/questdb/questdb/issues/146">comment
+QuestDB, we'd love to hear the results. You can
+<a href="https://questdb.io/getstarted">download QuestDB</a> and leave a
+<a target="_blank" href="https://github.com/questdb/questdb/issues/146">comment
 on github</a>
 
 ### What is next?
@@ -141,7 +139,7 @@ tuned for more features in the upcoming releases!
 
 Metadata file format has been changed to include a new flag for columns of type
 symbol. It is necessary to convert existing tables to new format. Running the
-following sql: `repair table myTable` will update the table metadata.
+following SQL: `repair table myTable` will update the table metadata.
 
 #### What is new?
 

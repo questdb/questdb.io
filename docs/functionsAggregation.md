@@ -4,7 +4,6 @@ title: Aggregation
 sidebar_label: Aggregation
 ---
 
-
 ## sum
 
 `sum(value)` - adds values.
@@ -27,28 +26,27 @@ Return value type is the same as the type of the argument.
 SELECT sum(quantity) FROM transactions;
 ```
 
-| sum   |
-|-------|
-| 100   |
-
+| sum |
+| --- |
+| 100 |
 
 ```sql title="Sum all quantities in the transactions table, aggregated by item"
 SELECT item, sum(quantity) FROM transactions;
 ```
 
-| item          | count         |
-|---------------|---------------|
-| apple         | 53            |
-| orange        | 47            |
+| item   | count |
+| ------ | ----- |
+| apple  | 53    |
+| orange | 47    |
 
 #### Overflow
-`sum` does not perform overflow check. To avoid overflow, you can cast the argument to wider type.
 
- 
+`sum` does not perform overflow check. To avoid overflow, you can cast the
+argument to wider type.
+
 ```sql title="Cast as long to avoid overflow"
 SELECT sum(cast(a as long)) from table
-```  
-
+```
 
 ## ksum
 
@@ -60,25 +58,31 @@ SELECT sum(cast(a as long)) from table
 
 #### Description
 
-`ksum(value)` adds values ignoring missing data (e.g `null` values). Values are added using the 
-<a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm" target="_blank">Kahan compensated sum algorithm</a>.
-This is only beneficial for floating-point values such as `float` or `double`.
+`ksum(value)` adds values ignoring missing data (e.g `null` values). Values are
+added using the
+
+<a
+  href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm"
+  target="_blank"
+>
+  Kahan compensated sum algorithm
+</a>
+. This is only beneficial for floating-point values such as `float` or `double`.
 
 #### Return value
 
-Return value type is the same as the type of the argument. 
+Return value type is the same as the type of the argument.
 
 #### Examples
+
 ```sql
-select ksum(a) 
+select ksum(a)
 from (select rnd_double() a from long_sequence(100));
 ```
 
-| ksum   |
-|-------|
-| 52.79143968514029   |
-
-
+| ksum              |
+| ----------------- |
+| 52.79143968514029 |
 
 ## nsum
 
@@ -90,77 +94,86 @@ from (select rnd_double() a from long_sequence(100));
 
 #### Description
 
-`nsum(value)` adds values ignoring missing data (e.g `null` values). Values are added using the 
-<a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements" target="_blank">Neumaier sum algorithm</a>.
-This is only beneficial for floating-point values such as `float` or `double`.
+`nsum(value)` adds values ignoring missing data (e.g `null` values). Values are
+added using the
+
+<a
+  href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements"
+  target="_blank"
+>
+  Neumaier sum algorithm
+</a>
+. This is only beneficial for floating-point values such as `float` or `double`.
 
 #### Return value
 
-Return value type is the same as the type of the argument. 
+Return value type is the same as the type of the argument.
 
 #### Examples
+
 ```sql
-select nsum(a) 
+select nsum(a)
 from (select rnd_double() a from long_sequence(100));
 ```
 
-| nsum   |
-|-------|
-| 49.5442334742831   |
-
+| nsum             |
+| ---------------- |
+| 49.5442334742831 |
 
 ## count
 
 `count()` or `count(*)` - counts rows.
 
 #### Arguments
+
 - `count` does not require arguments.
 
 #### Description
-`count()` counts rows, irrespective of underlying data. 
+
+`count()` counts rows, irrespective of underlying data.
 
 #### Return value
+
 Return value type is `long`.
 
 #### Examples
 
 - Count of rows in the transactions table.
+
 ```sql
 SELECT count() FROM transactions;
 ```
 
+| count |
+| ----- |
+| 100   |
 
-| count     |
-|-----------|
-| 100       |
+- Count of rows in the transactions table aggregated by `payment_type` value.
 
-
-- Count of rows in the transactions table aggregated by `payment_type` value. 
 ```sql
 SELECT payment_type, count() FROM transactions;
 ```
 
-
-| cash_or_card  | count         |
-|---------------|---------------|
-| cash          | 25            |
-| card          | 70            |
-| null          | 5             |
+| cash_or_card | count |
+| ------------ | ----- |
+| cash         | 25    |
+| card         | 70    |
+| null         | 5     |
 
 :::note
 `null` values are aggregated with `count()`.
 :::
-
-
 
 ## avg
 
 `avg(value)` calculates simple average of values
 
 #### Arguments
+
 - `value` is any numeric value.
 
 #### Description
+
 `avg(value)` averages values ignoring missing data (e.g `null` values).
 
 #### Return value
@@ -173,73 +186,70 @@ Return value type is `double`.
 SELECT avg(amount) FROM transactions;
 ```
 
-
-| avg       |
-|-----------|
-| 22.4      |
-
+| avg  |
+| ---- |
+| 22.4 |
 
 ```sql title="Average transaction amount by payment_type"
 SELECT payment_type, avg(amount) FROM transactions;
 ```
 
-| cash_or_card  | avg           |
-|---------------|---------------|
-| cash          | 22.1          |
-| card          | 27.4          |
-| null          | 18.02         |
-
+| cash_or_card | avg   |
+| ------------ | ----- |
+| cash         | 22.1  |
+| card         | 27.4  |
+| null         | 18.02 |
 
 ## min
 
 `min(value)` - finds the lowest value.
 
 #### Arguments
-- `value` is any numeric value 
+
+- `value` is any numeric value
 
 #### Description
+
 `min(value)` finds the lowest value ignoring missing data (e.g `null` values).
 
 #### Return value
+
 Return value type is the same as the type of the argument.
 
 #### Examples
-
 
 ```sql title="Lowest transaction amount"
 SELECT min(amount) FROM transactions;
 ```
 
-| min       |
-|-----------|
-| 12.5      |
-
+| min  |
+| ---- |
+| 12.5 |
 
 ```sql title="Lowest transaction amount, by payment_type"
 SELECT payment_type, min(amount) FROM transactions;
 ```
 
-| cash_or_card  | min           |
-|---------------|---------------|
-| cash          | 12.5          |
-| card          | 15.3          |
-| null          | 22.2          |
-
-
-
-
+| cash_or_card | min  |
+| ------------ | ---- |
+| cash         | 12.5 |
+| card         | 15.3 |
+| null         | 22.2 |
 
 ## max
 
 `max(value)` - finds the highest value.
 
 #### Arguments
-- `value` is any numeric value 
+
+- `value` is any numeric value
 
 #### Description
+
 `max(value)` finds the highest value ignoring missing data (e.g `null` values).
 
 #### Return value
+
 Return value type is the same as the type of the argument.
 
 #### Examples
@@ -248,18 +258,16 @@ Return value type is the same as the type of the argument.
 SELECT max(amount) FROM transactions;
 ```
 
-| min       |
-|-----------|
-| 55.3      |
+| min  |
+| ---- |
+| 55.3 |
 
-
- 
 ```sql title="Highest transaction amount by payment_type"
 SELECT payment_type, max(amount) FROM transactions;
 ```
 
-| cash_or_card  | amount        |
-|---------------|---------------|
-| cash          | 31.5          |
-| card          | 55.3          |
-| null          | 29.2          |
+| cash_or_card | amount |
+| ------------ | ------ |
+| cash         | 31.5   |
+| card         | 55.3   |
+| null         | 29.2   |

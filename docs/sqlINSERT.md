@@ -1,11 +1,11 @@
 ---
 id: insert
-title: INSERT 
+title: INSERT
 sidebar_label: INSERT
 ---
 
 ## Synopsis
- 
+
 Inserts data into a database table
 
 ## Syntax
@@ -14,9 +14,8 @@ Inserts data into a database table
 
 ## Examples
 
-
 ```sql title="Inserting all columns"
-INSERT INTO trades 
+INSERT INTO trades
 VALUES(
     to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),
     'AAPL',
@@ -25,9 +24,8 @@ VALUES(
     'B');
 ```
 
-
 ```sql title="Specifying schema"
-INSERT INTO trades (timestamp, symbol, quantity, price, side) 
+INSERT INTO trades (timestamp, symbol, quantity, price, side)
 VALUES(
     to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),
     'AAPL',
@@ -37,17 +35,19 @@ VALUES(
 ```
 
 :::note
-Columns can be omitted during `INSERT` in which case value will be `NULL`
+Columns can be omitted during `INSERT` in which case value will be
+`NULL`
 :::
 
 ```sql title="Inserting only specific columns"
-INSERT INTO trades (timestamp, symbol, price) 
+INSERT INTO trades (timestamp, symbol, price)
 VALUES(to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),'AAPL','B');
 ```
 
 ### Inserting query results
+
 ```sql title="Insert as select"
-INSERT INTO confirmed_trades 
+INSERT INTO confirmed_trades
     SELECT timestamp, instrument, quantity, price, side
     FROM unconfirmed_trades
     WHERE trade_id = '47219345234'
@@ -55,5 +55,6 @@ INSERT INTO confirmed_trades
 ```
 
 :::note
-This method allows you to insert several rows at once (as many as your query returns).
+This method allows you to insert several rows at once (as many as your
+query returns).
 :::

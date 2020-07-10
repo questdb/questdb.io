@@ -1,0 +1,22 @@
+.section {
+  width: 100%;
+}
+
+.section--inner {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  padding: 5.5rem 1rem;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.section--odd {
+  background: var(--palette-rock);
+}
+
+@media (max-width: 996px) {
+  .section--inner {
+    flex-direction: column;
+  }
+}

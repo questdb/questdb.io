@@ -4,47 +4,51 @@ title: Root Directory Structure
 sidebar_label: Root Directory Structure
 ---
 
-
 QuestDB creates the following file structure in it's `root_directory`.
 
 ```filestructure
 questdb
-├── conf 
-├── db 
-├── log 
-└── public 
+├── conf
+├── db
+├── log
+└── public
 ```
 
 ## `conf` directory
+
 Contains configuration files for QuestDB
 
 ```filestructure
-├── conf 
-│   ├── date.formats 
+├── conf
+│   ├── date.formats
 │   ├── mime.types
 │   └── server.conf
 ```
 
-
-|file| description|
-|---|---|
-|`date.formats`| A list of date formats in plain text.|
-|`mime.types`| Mapping file used by the HTTP server to map file extension to response type when an user downloads a file.|
-|`server.conf` |Server configuration file. Find out more in the [server configuration](serverConf.md) section.|
+| file           | description                                                                                                |
+| -------------- | ---------------------------------------------------------------------------------------------------------- |
+| `date.formats` | A list of date formats in plain text.                                                                      |
+| `mime.types`   | Mapping file used by the HTTP server to map file extension to response type when an user downloads a file. |
+| `server.conf`  | Server configuration file. Find out more in the [server configuration](serverConf.md) section.             |
 
 ## `db` directory
 
-This directory contains all the files related to database tables. It is organised as follows:
+This directory contains all the files related to database tables. It is
+organised as follows:
+
 - Each table has its own `table_directory` under `root_directory/db/table_name`
-- Within a `table_directory`, each [partition](partitions.md) has its own `partition_directory`. 
-- Within each `partition directory`, each column has its own `column_file`, for example `mycolumn.d`
-- If a given column has an [index](indexes.md), then there will also be an `index_file`, for example `mycolumn.k`
+- Within a `table_directory`, each [partition](partitions.md) has its own
+  `partition_directory`.
+- Within each `partition directory`, each column has its own `column_file`, for
+  example `mycolumn.d`
+- If a given column has an [index](indexes.md), then there will also be an
+  `index_file`, for example `mycolumn.k`
 
 The table also stores metadata in `_meta` files.
 
 ```filestructure
-├── db 
-│   ├── Table 
+├── db
+│   ├── Table
 │   │   │  
 │   │   ├── Partition 1
 │   │   │   ├── _archive
@@ -67,8 +71,8 @@ The table also stores metadata in `_meta` files.
 If the table is not partitioned, data is stored in a directory called `default`
 
 ```filestructure
-├── db 
-│   ├── Table 
+├── db
+│   ├── Table
 │   │   │  
 │   │   ├── default
 │   │   │   ├── _archive
@@ -82,9 +86,11 @@ If the table is not partitioned, data is stored in a directory called `default`
 ```
 
 :::caution
-As tempting as it may be to delete partitions by manually removing the directories from the file system, we really discourage this. 
-The partitions are organised with metadata and deleting them directly could corrupt the table. 
-We recommend you use [ALTER TABLE DROP PARTITION](alterTableDropPartition.md) for this effect.
+As tempting as it may be to delete partitions by manually removing
+the directories from the file system, we really discourage this. The partitions
+are organised with metadata and deleting them directly could corrupt the table.
+We recommend you use [ALTER TABLE DROP PARTITION](alterTableDropPartition.md)
+for this effect.
 :::
 
 ## `log` directory
@@ -92,12 +98,13 @@ We recommend you use [ALTER TABLE DROP PARTITION](alterTableDropPartition.md) fo
 Contains the log files for QuestDB
 
 ```filestructure
-├── log 
+├── log
 │   ├── stdout-2020-04-15T11-59-59.txt
 │   └── stdout-2020-04-12T13-31-22.txt
 ```
 
 Log files look like this
+
 ```shell script
 2020-04-15T16:42:32.879970Z I i.q.c.TableReader new transaction [txn=2, transientRowCount=1, fixedRowCount=1, maxTimestamp=1585755801000000, attempts=0]
 2020-04-15T16:42:32.880051Z I i.q.g.FunctionParser call to_timestamp('2020-05-01:15:43:21','yyyy-MM-dd:HH:mm:ss') -> to_timestamp(Ss)
@@ -125,10 +132,9 @@ Log files look like this
 2020-04-15T16:44:39.763729Z I i.q.c.h.HttpServer pushed
 ```
 
-
 ## `public` directory
 
-Contains the web files for the web console. 
+Contains the web files for the web console.
 
 ```filestructure
 └── public

@@ -4,10 +4,11 @@ title: Cast
 sidebar_label: CAST
 ---
 
+Type conversion. Can be either
 
-Type conversion. Can be either 
-- [Explicit](#explicit-conversion) via `cast()`  
-- [Implicit](#implicit-conversion), in which case it will be automatically performed when required by the context.
+- [Explicit](#explicit-conversion) via `cast()`
+- [Implicit](#implicit-conversion), in which case it will be automatically
+  performed when required by the context.
 
 ## Explicit conversion
 
@@ -18,7 +19,9 @@ Types can be converted from one to another using the `cast()` function.
 ![cast sql syntax](/static/img/doc/diagrams/cast.svg)
 
 where:
-- `expression` can be a constant, a column, or an expression that evaluates to a value.
+
+- `expression` can be a constant, a column, or an expression that evaluates to a
+  value.
 - `type` refers to the desired **[data type](datatypes.md)**.
 
 `cast` can be used a part of arithmetic expression as normal
@@ -41,15 +44,16 @@ SELECT cast('行' as int) FROM long_sequence(1);
 | 34892                       |
 ```
 
+> Explicit casting of an expression to a smaller **[data type](datatypes.md)**
+> may result in loss of data when the output data type is smaller than the
+> expression.
 
-
-> Explicit casting of an expression to a smaller **[data type](datatypes.md)** may result in loss of data
-> when the output data type is smaller than the expression. 
-
-- Casting a decimal number type (`float` or `double`) to an integer number type (`long`, `int`, `short`) 
-will result in decimals drop. 
-- If the integer part being cast is larger than the resulting data type, it will be resized by truncating bits.
-- Conversions from `char` to a number type will return the corresponding `unicode` number and vice versa.
+- Casting a decimal number type (`float` or `double`) to an integer number type
+  (`long`, `int`, `short`) will result in decimals drop.
+- If the integer part being cast is larger than the resulting data type, it will
+  be resized by truncating bits.
+- Conversions from `char` to a number type will return the corresponding
+  `unicode` number and vice versa.
 
 ### Precision loss examples
 
@@ -67,21 +71,23 @@ SELECT cast(2334444.323 as short) FROM long_sequence(1);
 | -24852                      | -- Loss of decimals and integer part bits are truncated resulting in another number
 ```
 
-When casting numbers into a smaller data type, QuestDB will truncate the higher bits of this number. 
-
+When casting numbers into a smaller data type, QuestDB will truncate the higher
+bits of this number.
 
 ## Implicit conversion
 
 Type casting may be necessary in certain context such as
-- Operations involving various different types
-- Inserting values where the originating type is different from the destination column type.
 
-QuestDB will attempt to convert to the data type required by the context. This is called `implicit cast` 
-and does not require using the `cast()` function. 
+- Operations involving various different types
+- Inserting values where the originating type is different from the destination
+  column type.
+
+QuestDB will attempt to convert to the data type required by the context. This
+is called `implicit cast` and does not require using the `cast()` function.
 
 :::note
-QuestDB will only perform implicit cast
-when they would not result in data being truncated or precision being lost.
+QuestDB will only perform implicit cast when they would not result in
+data being truncated or precision being lost.
 :::
 
 The below chart illustrates the explicit and implicit cast available in QuestDB.
@@ -89,8 +95,9 @@ The below chart illustrates the explicit and implicit cast available in QuestDB.
 ![cast map](/static/img/doc/castmap.jpg)
 
 :::note
-Implicit casting prevents data loss. When an operation involves multiple types, the resulting type will be the smallest possible
-type so that no data is lost. 
+Implicit casting prevents data loss. When an operation involves multiple
+types, the resulting type will be the smallest possible type so that no data is
+lost.
 :::
 
 ```sql title="Queries"
@@ -107,13 +114,14 @@ SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 0.323 FROM l
 | 1571270400000000               | -- Implicit cast to double as timestamp are long integers.
 ```
 
-> When inserting into a table, QuestDB will cast data implicitly to match the type of the destination column.
+> When inserting into a table, QuestDB will cast data implicitly to match the
+> type of the destination column.
 
 ```sql title="Example"
 -- We create a table with one column of type long
 CREATE TABLE my_table(my_number long);
 
--- We then insert a value into this table. Note that the value is of timestamp type 
+-- We then insert a value into this table. Note that the value is of timestamp type
 -- but that we are trying to insert into a long type column:
 INSERT INTO my_table values((to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'));
 
@@ -122,21 +130,20 @@ INSERT INTO my_table values((to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:
 SELECT * FROM my_table;
 ```
 
-
 ```shell script title="Result"
 | 1571270400000000   | -- Returns a long.
-``` 
+```
 
+The above insert would have been equivalent to running with explicit cast, but
+QuestDB took care of this step automatically.
 
-The above insert would have been equivalent to running with explicit cast, but QuestDB took care of this step automatically.
 ```sql title="Example"
 INSERT INTO my_table values
             (cast(
-                to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') 
+                to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss')
                 as long
             ))
 ```
-
 
 ```shell script title="Result"
 | 1571270400000000   |

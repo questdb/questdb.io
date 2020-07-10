@@ -7,7 +7,6 @@ author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [questdb, performance]
 ---
 
-
 ![Road Runner](/static/img/blog/sums/road-runner.png)
 
 In the world of databases, benchmarking performance has always been the hottest
@@ -42,7 +41,7 @@ You can find our repository on [GitHub](https://github.com/questdb/questdb). All
 your
 [issues](https://github.com/questdb/questdb/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc),
 [pull-requests](https://github.com/questdb/questdb/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)
-and [stars](https://github.com/questdb/questdb) are welcome <span class="emoji">🙂</span>.
+and [stars](https://github.com/questdb/questdb) are welcome 🙂.
 
 ### How did we get there? TL;DR
 
@@ -256,9 +255,8 @@ increased the memory limit from the default value from 10GB to 40GB
 #### Test data
 
 We generated two test files using our
-[random generation functions](/docs/functionsRandomValueGenerators) and
-exported the results to CSV. We then imported the CSV individually in the
-databases.
+[random generation functions](/docs/functionsRandomValueGenerators) and exported
+the results to CSV. We then imported the CSV individually in the databases.
 
 ```sql
 SELECT rnd_double() FROM long_sequence(1_000_000_000l); -- non null
@@ -304,9 +302,7 @@ performance drops by ~40%.
 As we include null values, Clickhouse's performance degrades by 28% and 50% for
 naive and Kahan summation, respectively.
 
-
 ![results with null](/static/img/blog/sums/kahan-naive-null.png)
-
 
 ### Concluding remarks
 
@@ -320,5 +316,7 @@ consistent and more accurate.
 It was also both interesting and surprising to be able to quantify the effect of
 prefetch on what is essentially sequential memory read.
 
-Your support means a lot to us! If you like content like this, what we do, and where we're going, 
-please [join our community](https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>) and give us a [star️](https://github.com/questdb/questdb) on GitHub.
+Your support means a lot to us! If you like content like this, what we do, and
+where we're going, please
+[join our community](https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>)
+and give us a [star️](https://github.com/questdb/questdb) on GitHub.

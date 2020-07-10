@@ -7,6 +7,7 @@ sidebar_label: ORDER BY
 Sort the results of a query in ascending or descending order.
 
 ### Syntax
+
 ![order by syntax](/static/img/doc/diagrams/orderBy.svg)
 
 Default order is `ASC`. You can omit to order in ascending order.
@@ -26,7 +27,8 @@ ratings ORDER BY userId, rating DESC;
 ```
 
 ### Ressources management
-:::caution
-Ordering data requires holding it in RAM. For large operations, we suggest you check you have sufficient memory to perform the operation.
-:::
 
+:::caution
+Ordering data requires holding it in RAM. For large operations, we
+suggest you check you have sufficient memory to perform the operation.
+:::

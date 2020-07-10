@@ -1,190 +1,215 @@
+const copyright = `Copyright © ${new Date().getFullYear()} QuestDB`
+const githubUrl = "https://github.com/questdb/questdb"
+
 module.exports = {
-  title: 'Time series data, faster',
-  tagline: 'QuestDB is an open-source database which makes time-series fast and easy',
-  url: 'https://questdb.io',
-  baseUrl: '/',
-  favicon: 'img/favicon.png',
-  organizationName: 'questdb', // Usually your GitHub org/user name.
-  projectName: 'questdb', // Usually your repo name.
+  title: "Time series data, faster",
+  tagline:
+    "QuestDB is an open-source database which makes time-series fast and easy",
+  url: "https://questdb.io",
+  baseUrl: "/",
+  favicon: "img/favicon.png",
+  organizationName: "QuestDB",
+  projectName: "questdb",
   themeConfig: {
-    googleAnalytics: {
-      trackingID: 'UA-145747842-1',
-      // Optional fields.
-      anonymizeIP: true, // Should IPs be anonymized?
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
+    image: "img/questdbOg.png",
+    gtag: {
+      trackingID: "GTM-PVR7M2G",
+      anonymizeIP: true,
     },
     prism: {
-      defaultLanguage: 'sql',
-      theme: require('prism-react-renderer/themes/dracula'),
-    },
-    announcementBar: {
-      id: 'support_us', // Any value that will identify this message.
-      content:
-          '<b> If you like QuestDB <br/> <emoji>⭐ </emoji> <a href="https://github.com/questdb/questdb" target="_blank">  Give us a star on GitHub </a> <emoji>⭐</emoji></b>',
-      backgroundColor: '#0090c2', // Defaults to `#fff`.
-      textColor: '#fefeff', // Defaults to `#000`.
+      defaultLanguage: "sql",
+      theme: require("prism-react-renderer/themes/dracula"),
     },
     algolia: {
-      apiKey: 'b2a69b4869a2a85284a82fb57519dcda',
-      indexName: 'questdb',
-      algoliaOptions: {}, // Optional, if provided by Algolia
+      apiKey: "b2a69b4869a2a85284a82fb57519dcda",
+      indexName: "questdb",
+      algoliaOptions: {},
     },
     navbar: {
-      title: 'QuestDB',
+      title: "",
       logo: {
-        alt: 'questdb Logo',
-        src: 'img/favicon.png',
+        alt: "QuestDB Logo",
+        src: "img/questdbLogo.svg",
       },
       links: [
         {
-          label: 'Install',
-          position: 'left', // or 'right'
+          label: "Install",
+          position: "left",
           items: [
             {
-              label: 'Docker',
-              href: '/docs/guideDocker',
+              label: "Docker",
+              to: "docs/guideDocker",
             },
             {
-              label: 'With the binaries',
-              href: '/docs/guideBinaries',
+              label: "With the binaries",
+              to: "docs/guideBinaries",
             },
             {
-              label: 'Homebrew',
-              href: '/docs/guideHomebrew',
+              label: "Homebrew",
+              to: "docs/guideHomebrew",
             },
-          ]
+          ],
         },
         {
-          label: 'Concepts',
-          position: 'left', // or 'right'
+          label: "Concepts",
+          position: "left",
           items: [
             {
-              label: 'Storage Model',
-              href: '/docs/storageModel',
+              label: "Storage Model",
+              to: "docs/storageModel",
             },
             {
-              label: 'SQL Extensions',
-              href: '/docs/sqlExtensions',
+              label: "SQL Extensions",
+              to: "docs/sqlExtensions",
             },
             {
-              label: 'Designated Timestamp',
-              href: '/docs/designatedTimestamp',
+              label: "Designated Timestamp",
+              to: "docs/designatedTimestamp",
             },
             {
-              label: 'Symbol',
-              href: '/docs/symbol',
+              label: "Symbol",
+              to: "docs/symbol",
             },
             {
-              label: 'Partitions',
-              href: '/docs/partitions',
+              label: "Partitions",
+              to: "docs/partitions",
             },
             {
-              label: 'Indexes',
-              href: '/docs/indexes',
-            }
-          ]
+              label: "Indexes",
+              to: "docs/indexes",
+            },
+          ],
         },
         {
-          label: 'Use',
-          position: 'left', // or 'right'
+          label: "Use",
+          position: "left",
           items: [
             {
-              label: 'Web Console',
-              href: '/docs/consoleGuide',
+              label: "Web Console",
+              to: "docs/consoleGuide",
             },
             {
-              label: 'Postgres Wire protocol (alpha)',
-              href: '/docs/guidePSQL',
+              label: "Postgres Wire protocol (alpha)",
+              to: "docs/guidePSQL",
             },
             {
-              label: 'HTTP REST API',
-              href: '/docs/guideREST',
+              label: "HTTP REST API",
+              to: "docs/guideREST",
             },
             {
-              label: 'Java API',
-              href: '/docs/embeddedJavaAPI',
+              label: "Java API",
+              to: "docs/embeddedJavaAPI",
             },
             {
-              label: 'Influx Line protocol',
-              href: '/docs/influxReference',
+              label: "Influx Line protocol",
+              to: "docs/influxReference",
             },
-          ]
+          ],
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
-        {to: 'docs/documentationOverview', label: 'Docs', position: 'right'},
-        {to: 'https://github.com/questdb/questdb', label: 'Github', position: 'right'},
-        {to: 'https://questdb.slack.com', label: 'Join Slack', position: 'right'},
+        {
+          label: "Blog",
+          to: "blog",
+          position: "left",
+        },
+        {
+          label: "Docs",
+          to: "docs/documentationOverview",
+          position: "right",
+        },
+        {
+          label: "Github",
+          href: githubUrl,
+          position: "right",
+        },
+        {
+          label: "Join Slack",
+          className: "join-slack",
+          href: "https://questdb.slack.com",
+          position: "right",
+        },
       ],
     },
     footer: {
-      style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: "QuestDB",
           items: [
             {
-              label: 'Style Guide',
-              to: 'docs/',
+              label: "Documentation",
+              to: "docs",
+            },
+            // {
+            //   label: "Download",
+            //   to: "getstarted",
+            // },
+            {
+              label: "Roadmap",
+              href: "https://github.com/questdb/questdb/projects/3",
+            },
+            // {
+            //   label: "About",
+            //   to: "about",
+            // },
+          ],
+        },
+        {
+          title: "Community",
+          items: [
+            {
+              label: "Slack",
+              href: "https://questdb.slack.com",
             },
             {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
+              label: "Twitter",
+              href: "https://twitter.com/questdb",
             },
           ],
         },
         {
-          title: 'Community',
+          title: "More",
           items: [
             {
-              label: 'Slack',
-              href: 'https://questdb.slack.com',
+              label: "Blog",
+              to: "blog",
             },
             {
-              label: 'Twitter',
-              href: 'https://twitter.com/questdb',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: 'blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/questdb/questdb',
+              label: "GitHub",
+              href: githubUrl,
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} QuestDB.`,
+      copyright,
     },
   },
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         docs: {
-          // It is recommended to set document id as docs home page (`docs/` path).
-          homePageId: 'doc1',
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/questdb/questdb.io/edit/master/',
+          homePageId: "docs",
+          sidebarPath: require.resolve("./sidebars.js"),
         },
 
         blog: {
           feedOptions: {
-            type: 'all',
-            copyright: `Copyright © ${new Date().getFullYear()} Facebook, Inc.`,
+            type: "all",
+            copyright,
           },
-            showReadingTime: true,
+          showReadingTime: true,
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/global.css"),
         },
       },
     ],
   ],
-};
+  stylesheets: [
+    "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap",
+  ],
+}

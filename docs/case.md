@@ -4,61 +4,62 @@ title: CASE
 sidebar_label: CASE
 ---
 
-
 ### Syntax
+
 ![case syntax](/static/img/doc/diagrams/case-def.svg)
 
 ### Description
-`CASE` goes through a set of conditions and returns a value corresponding to the first condition met.
-Each new condition follows the `WHEN condition THEN value` syntax.
-The user can define a return value when no condition is met using `ELSE`.
-If `ELSE` is not defined and no conditions are met, then case returns `null`.
+
+`CASE` goes through a set of conditions and returns a value corresponding to the
+first condition met. Each new condition follows the `WHEN condition THEN value`
+syntax. The user can define a return value when no condition is met using
+`ELSE`. If `ELSE` is not defined and no conditions are met, then case returns
+`null`.
 
 ### Examples
+
 Assume the following data
 
-| Name | Age |
-|---|---|
-| Tom | 4 |
-| Jerry | 19 |
-| Anna | 25 |
-| Jack | 8 |
+| Name  | Age |
+| ----- | --- |
+| Tom   | 4   |
+| Jerry | 19  |
+| Anna  | 25  |
+| Jack  | 8   |
 
 ```sql title="CASE with ELSE"
-select 
-Name, 
+select
+Name,
 case
     when age > 18 then 'major'
     else 'minor'
-end 
+end
 from table
 ```
 
-Result 
+Result
 
-| Name | case |
-|---|---|
-| Tom | minor |
+| Name  | case  |
+| ----- | ----- |
+| Tom   | minor |
 | Jerry | major |
-| Anna | major |
-| Jack | minor |
-
+| Anna  | major |
+| Jack  | minor |
 
 ```sql title="CASE without ELSE"
-select 
-Name, 
+select
+Name,
 case
     when age > 18 then 'major'
-end 
+end
 from table
 ```
 
+Result
 
-Result 
-
-| Name | case |
-|---|---|
-| Tom | null |
+| Name  | case  |
+| ----- | ----- |
+| Tom   | null  |
 | Jerry | major |
-| Anna | major |
-| Jack | null |
+| Anna  | major |
+| Jack  | null  |

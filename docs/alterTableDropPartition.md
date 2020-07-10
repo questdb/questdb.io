@@ -9,7 +9,8 @@ sidebar_label: ALTER TABLE DROP PARTITION
 Drops a partition from an existing table.
 
 :::caution
-This action irremediably deletes the data contained in the dropped partition
+This action irremediably deletes the data contained in the dropped
+partition
 :::
 
 ## Syntax
@@ -19,22 +20,26 @@ This action irremediably deletes the data contained in the dropped partition
 
 ## Description
 
-Drops one or more table partitions. Partition name must match the name of the directory for the given partition.
+Drops one or more table partitions. Partition name must match the name of the
+directory for the given partition.
 
-Just like with columns dropping of partitions is a non-blocking and non-waiting operation. While being atomic for a single partitions, dropping of
-multiple partitions is in itself non-atomic. Drop partition will bail on the first failure and will not continue with the list.
+Just like with columns dropping of partitions is a non-blocking and non-waiting
+operation. While being atomic for a single partitions, dropping of multiple
+partitions is in itself non-atomic. Drop partition will bail on the first
+failure and will not continue with the list.
 
 :::note
- The last partition (active partition) cannot be removed. This will be implemented in a future release.
+The last partition (active partition) cannot be removed. This will be
+implemented in a future release.
 :::
 
 Naming convention for partition directories is as follows:
 
-| Table Partition                           | Partition format                                  |
-|-------------------------------------------|---------------------------------------------------|
-|`DAY`                                        |`YYYY-MM-DD`                                       |
-|`MONTH`                                      |`YYYY-MM`                                          |
-|`YEAR`                                       |`YYYY`                                             |
+| Table Partition | Partition format |
+| --------------- | ---------------- |
+| `DAY`           | `YYYY-MM-DD`     |
+| `MONTH`         | `YYYY-MM`        |
+| `YEAR`          | `YYYY`           |
 
 ## Examples
 

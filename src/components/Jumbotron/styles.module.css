@@ -1,0 +1,127 @@
+.jumbotron {
+  padding-top: 8.5rem;
+  padding-bottom: 7.5rem;
+}
+
+.jumbotron__title {
+  font-size: var(--font-size-xxxlarge);
+}
+
+.jumbotron__subtitle {
+  color: var(--palette-pale-blue);
+}
+
+.jumbotron__left {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 410px;
+  align-items: self-start;
+}
+
+.jumbotron__cta {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.jumbotron__cta--link:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.jumbotron__right {
+  position: relative;
+  display: flex;
+  margin-left: 4rem;
+  margin-top: 1rem;
+  min-height: 381px;
+  flex-direction: column;
+  align-items: end;
+  flex: 1 1 auto;
+  background-image: url("/static/img/pages/index/topEditor.svg");
+  background-repeat: no-repeat;
+  background-position-x: right;
+}
+
+.jumbotron__docker {
+  position: absolute;
+  bottom: 55px;
+  right: 16px;
+  max-width: 568px;
+  width: 100%;
+  margin: 0;
+  padding: 2rem 3.5rem;
+  font-size: var(--font-size-large);
+  overflow: initial;
+}
+
+.jumbotron__docker-icon {
+  position: absolute;
+  left: -25px;
+  bottom: -25px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transition: border-color 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.jumbotron__docker-icon:hover {
+  border-color: var(--palette-white);
+  cursor: pointer;
+}
+
+@media (max-width: 996px) {
+  .jumbotron {
+    padding-bottom: 5.5rem;
+  }
+
+  .jumbotron__title {
+    font-size: var(--font-size-xxlarge);
+    text-align: center;
+  }
+
+  .jumbotron__subtitle {
+    max-width: 500px;
+    text-align: center;
+  }
+
+  .jumbotron__cta {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .jumbotron,
+  .jumbotron__left,
+  .jumbotron__right {
+    padding-top: 4rem;
+  }
+
+  .jumbotron__left {
+    padding-top: 0;
+    align-items: center;
+    flex-basis: auto;
+  }
+
+  .jumbotron__right {
+    min-height: auto;
+    margin-left: 0;
+    align-items: center;
+    background: none;
+  }
+
+  .jumbotron__docker {
+    position: initial;
+    padding: 1.25rem;
+    font-size: var(--font-size-small);
+  }
+
+  .jumbotron__docker-icon {
+    left: calc(50% - 27px);
+    bottom: -38px;
+    height: 50px;
+    width: 50px;
+  }
+}
+
+@media (max-width: 1026px) {
+  .jumbotron__docker {
+    font-size: var(--font-size-small);
+  }
+}

@@ -4,80 +4,95 @@ title: REST API reference
 sidebar_label: REST API reference
 ---
 
+The QuestDB REST API is based around standard HTTP features and is understood by
+off-the-shelf HTTP clients. It provides a simple way to interact with QuestDB
+and is compatible with most programming languages. API functions are fully keyed
+on the URL and they use query parameters as their arguments.
 
-The QuestDB REST API is based around standard HTTP features and is understood by off-the-shelf HTTP clients. 
-It provides a simple way to interact with QuestDB and is compatible with most programming languages. 
-API functions are fully keyed on the URL and they use query parameters as their arguments. 
+Responses are function specific, for example you can download query results as
+CSV files, directly from the API. You can also get JSON responses.
 
-Responses are function specific, for example you can download query results as CSV files, 
-directly from the API. You can also get JSON responses.
-
-The REST API can be accessed interactively using Web Console that is a part of QuestDB distribution.
-Find out more in the section **[using the web console](consoleGuide.md)**.
+The REST API can be accessed interactively using Web Console that is a part of
+QuestDB distribution. Find out more in the section
+**[using the web console](consoleGuide.md)**.
 
 :::tip
 Other machines on your network can access the console and the HTTP API on
-  `http://IP_OF_THE_HOST_MACHINE:9000`
+`http://IP_OF_THE_HOST_MACHINE:9000`
 :::
 
 :::note
-All strings need to be passed as url-encoded, for example by using `--data-urlencode`
+All strings need to be passed as url-encoded, for example by using
+`--data-urlencode`
 :::
 
-## Available methods 
+## Available methods
+
 - [`/imp` to load data](#imp---loading-data)
 - [`/exec` to query data](#exec---querying-data)
-- [`/exp`  to export data](#exp---export-data)
+- [`/exp` to export data](#exp---export-data)
 - `/chk`
 
 ## /imp - Loading data
-The function `/imp` streams tabular text data directly into a table.
-It supports CSV, TAB and Pipe (`|`) delimited inputs and optional headers. There are no restrictions on
-data size. Data type and structure is detected automatically and usually without additional configuration.
-However in some cases additional configuration can be provided to augment automatic detection results.
+
+The function `/imp` streams tabular text data directly into a table. It supports
+CSV, TAB and Pipe (`|`) delimited inputs and optional headers. There are no
+restrictions on data size. Data type and structure is detected automatically and
+usually without additional configuration. However in some cases additional
+configuration can be provided to augment automatic detection results.
 
 :::note
-The structure detection algorithm analyses the chunk in the beginning and relies on relative uniformity 
-of data. When the first chunk is non-representative of the rest of the data, automatic imports can yield errors.
+The structure detection algorithm analyses the chunk in the beginning
+and relies on relative uniformity of data. When the first chunk is
+non-representative of the rest of the data, automatic imports can yield errors.
 :::
 
-`/imp` column names from header row as table columns. The following characters are removed from column names:
+`/imp` column names from header row as table columns. The following characters
+are removed from column names:
 
-~~~ java
+```java
      [space] _  ?  .  ,  \  \  \\  /  \0  :  )  (  +  -  *  %  ~
-~~~
+```
 
 When a header row is missing, column names are generated automatically.
 
 ### ACID Compliance
-`/imp` is fully ACID compliant, although Atomicity and Durability can be relaxed to meet convenience
-and performance demands.
 
-**Atomicity** is fully insured against any connection problems. If server detects closed socket the entire
-request is rolled back instantly and transparently for any existing readers. The only time data can be partially
-imported is when atomicity is in <code>relaxed</code> mode and data cannot be converted to column type. 
-In this scenario "defective" row of data is discarded and <code>/imp</code> continues to stream request data into table.
+`/imp` is fully ACID compliant, although Atomicity and Durability can be relaxed
+to meet convenience and performance demands.
 
-**Consistency** is guaranteed by consistency of append transactions against QuestDB storage engine.
+**Atomicity** is fully insured against any connection problems. If server
+detects closed socket the entire request is rolled back instantly and
+transparently for any existing readers. The only time data can be partially
+imported is when atomicity is in <code>relaxed</code> mode and data cannot be
+converted to column type. In this scenario "defective" row of data is discarded
+and <code>/imp</code> continues to stream request data into table.
 
-**Isolation** Data is committed to QuestDB storage engine at end of request. Uncommitted transactions are not
-visible to readers.
+**Consistency** is guaranteed by consistency of append transactions against
+QuestDB storage engine.
 
-**Durability** `/imp` streams data from network socket buffer directly into memory mapped files. At this point
-data is handed over to the OS and is resilient against QuestDB internal errors and unlikely but hypothetically possible
-crashes. This is default method of appending data and it is chosen for its performance characteristics. In cases where
-transaction has to be resilient against OS errors or power losses physical durability can be enforced. At a cost of
-append performance QuestDB storage engine will also guarantee that each memory block is flushed to physical device.
+**Isolation** Data is committed to QuestDB storage engine at end of request.
+Uncommitted transactions are not visible to readers.
+
+**Durability** `/imp` streams data from network socket buffer directly into
+memory mapped files. At this point data is handed over to the OS and is
+resilient against QuestDB internal errors and unlikely but hypothetically
+possible crashes. This is default method of appending data and it is chosen for
+its performance characteristics. In cases where transaction has to be resilient
+against OS errors or power losses physical durability can be enforced. At a cost
+of append performance QuestDB storage engine will also guarantee that each
+memory block is flushed to physical device.
 
 ### Examples
-The following examples upload ratings.csv, which can be found [here](https://grouplens.org/datasets/movielens/)
-Response shows table name, columns, types, error count in each column and total rows.
-When column types are correct error count must be zero. 
+
+The following examples upload ratings.csv, which can be found
+[here](https://grouplens.org/datasets/movielens/) Response shows table name,
+columns, types, error count in each column and total rows. When column types are
+correct error count must be zero.
 
 ```shell script title="Import from file, automatic schema detection"
 curl -i -F data=@ratings.csv http://localhost:9000/imp
 ```
-
 
 ```shell script title="Response"
 HTTP/1.1 200 OK
@@ -102,44 +117,45 @@ Content-Type: text/plain; charset=utf-8
 
 JSON response for the same request would be:
 
-~~~ json title="JSON response"
+```json title="JSON response"
 {
-    "status": "OK",
-    "location": "ratings.csv",
-    "rowsRejected": 0,
-    "rowsImported": 22884377,
-    "columns": [
-        {
-            "name": "userId",
-            "type": "INT",
-            "size": 4,
-            "errors": 0
-        },
-        {
-            "name": "movieId",
-            "type": "INT",
-            "size": 4,
-            "errors": 0
-        },
-        {
-            "name": "rating",
-            "type": "DOUBLE",
-            "size": 8,
-            "errors": 0
-        },
-        {
-            "name": "timestamp",
-            "type": "INT",
-            "size": 4,
-            "errors": 0
-        }
-    ]
+  "status": "OK",
+  "location": "ratings.csv",
+  "rowsRejected": 0,
+  "rowsImported": 22884377,
+  "columns": [
+    {
+      "name": "userId",
+      "type": "INT",
+      "size": 4,
+      "errors": 0
+    },
+    {
+      "name": "movieId",
+      "type": "INT",
+      "size": 4,
+      "errors": 0
+    },
+    {
+      "name": "rating",
+      "type": "DOUBLE",
+      "size": 8,
+      "errors": 0
+    },
+    {
+      "name": "timestamp",
+      "type": "INT",
+      "size": 4,
+      "errors": 0
+    }
+  ]
 }
-~~~
-
+```
 
 ### Import with user-defined schema
-This example overrides types of `userId` and `movieId` by including `schema` parameter. Schema is passed as a `JSON object`.
+
+This example overrides types of `userId` and `movieId` by including `schema`
+parameter. Schema is passed as a `JSON object`.
 
 ```shell script title="Import with custom schema"
 curl -i \
@@ -169,9 +185,10 @@ Content-Type: text/plain; charset=utf-8
 +-----------------------------------------------------------------------------------+
 ```
 
-
 ### Import with multiple options
+
 This example shows the concatenation of several import parameters
+
 ```shell script title="Using multiple options"
 curl -i \
 -F data=@ratings.csv \
@@ -180,28 +197,32 @@ curl -i \
 
 ## /exec - Querying Data
 
-`/exec` compiles and executes the SQL query supplied as an argument and returns a JSON object with
-either data or an error. The **error object** contains message and position in query text. Position is a number of 
-characters from beginning of query where error occurred.
+`/exec` compiles and executes the SQL query supplied as an argument and returns
+a JSON object with either data or an error. The **error object** contains
+message and position in query text. Position is a number of characters from
+beginning of query where error occurred.
 
-The result of a successful execution is a **JSON object** containing an array of data rows. Each data row is array of column values. 
-The dataset metadata is returned in `columns` field - list of column names and their types.
+The result of a successful execution is a **JSON object** containing an array of
+data rows. Each data row is array of column values. The dataset metadata is
+returned in `columns` field - list of column names and their types.
 
 Query execution terminates automatically when the socket connection is closed.
 
 ### Syntax
+
 `/exec` is HTTP GET request with following query arguments:
 
-|Argument | Remarks | 
-|---|---|
-|`query` (required) |`URL-encoded` query text. It can be multi-line |
-| `limit` (optional) | Paging argument. For example, `limit=10,20` will return row numbers 10 thru to 20 inclusive.and `limit=20` will return first 20 rows, which is equivalent to `limit=0,20`. `limit=-20` will return the last 20 rows.|
-|`count` (optional, boolean) | Counts the number of rows and returns this value in the message header. Default value is `false`. |
-| `nm` (optional, boolean) | Skips the metadata section of the response when set to `true`. Default value is `false`  |
+| Argument                    | Remarks                                                                                                                                                                                                              |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `query` (required)          | `URL-encoded` query text. It can be multi-line                                                                                                                                                                       |
+| `limit` (optional)          | Paging argument. For example, `limit=10,20` will return row numbers 10 thru to 20 inclusive.and `limit=20` will return first 20 rows, which is equivalent to `limit=0,20`. `limit=-20` will return the last 20 rows. |
+| `count` (optional, boolean) | Counts the number of rows and returns this value in the message header. Default value is `false`.                                                                                                                    |
+| `nm` (optional, boolean)    | Skips the metadata section of the response when set to `true`. Default value is `false`                                                                                                                              |
 
-The following will use `curl` to send a query over http. The result will be sent back over HTTP.
+The following will use `curl` to send a query over http. The result will be sent
+back over HTTP.
 
-:::note 
+:::note
 The `query` text must be URL-encoded.
 :::
 
@@ -212,64 +233,63 @@ curl -v \
 ```
 
 ### Success Response
-This is an example of successful query execution response. HTTP status code `200`.
 
-~~~ json title="JSON response - success"
+This is an example of successful query execution response. HTTP status code
+`200`.
+
+```json title="JSON response - success"
 {
-   "query":"select timestamp, tempF from weather limit 2;",
-   "columns":[
-      {
-         "name":"timestamp",
-         "type":"TIMESTAMP"
-      },
-      {
-         "name":"tempF",
-         "type":"INT"
-      }
-   ],
-   "dataset":[
-      [
-         "2010-01-01T00:00:00.000000Z",
-         34
-      ],
-      [
-         "2010-01-01T00:51:00.000000Z",
-         34
-      ]
-   ],
-   "count":2
+  "query": "select timestamp, tempF from weather limit 2;",
+  "columns": [
+    {
+      "name": "timestamp",
+      "type": "TIMESTAMP"
+    },
+    {
+      "name": "tempF",
+      "type": "INT"
+    }
+  ],
+  "dataset": [
+    ["2010-01-01T00:00:00.000000Z", 34],
+    ["2010-01-01T00:51:00.000000Z", 34]
+  ],
+  "count": 2
 }
-~~~
-
+```
 
 ### Error response
-Example of error response. HTTP status code `400` is used for query errors and `500` for internal server
-errors, which should not normally occur.
 
-~~~ json title="JSON response - error"
+Example of error response. HTTP status code `400` is used for query errors and
+`500` for internal server errors, which should not normally occur.
+
+```json title="JSON response - error"
 {
-    "query": "\nselect AccidentIndex, Date, Time2 from 'Accidents0514.csv' limit 10",
-    "error": "Invalid column: Time2",
-    "position": 29
+  "query": "\nselect AccidentIndex, Date, Time2 from 'Accidents0514.csv' limit 10",
+  "error": "Invalid column: Time2",
+  "position": 29
 }
-~~~
-
+```
 
 ## /exp - Export Data
-Just like `/exec`, `/exp` allows you to pass url-encoded queries.
-Instead of a json, the results are returned in tabular form to be saved into a file such as `.csv`
 
-Server responds with HTTP `200` when query execution is successful and `400` when there is error and returns error text. 
+Just like `/exec`, `/exp` allows you to pass url-encoded queries. Instead of a
+json, the results are returned in tabular form to be saved into a file such as
+`.csv`
+
+Server responds with HTTP `200` when query execution is successful and `400`
+when there is error and returns error text.
 
 ### Syntax
-`/exp` is HTTP GET request with following query arguments:
-|Argument | Remarks | 
-|---|---|
-|`query` (required) |`URL-encoded` query text. It can be multi-line |
-| `limit` (optional) | Paging argument. For example, `limit=10,20` will return row numbers 10 thru to 20 inclusive.and `limit=20` will return first 20 rows, which is equivalent to `limit=0,20`. `limit=-20` will return the last 20 rows.|
 
+`/exp` is HTTP GET request with following query arguments: |Argument | Remarks |
+|---|---| |`query` (required) |`URL-encoded` query text. It can be multi-line |
+| `limit` (optional) | Paging argument. For example, `limit=10,20` will return
+row numbers 10 thru to 20 inclusive.and `limit=20` will return first 20 rows,
+which is equivalent to `limit=0,20`. `limit=-20` will return the last 20 rows.|
 
 ### Success response
+
 Below is example of exporting data from command line using `curl`
 
 ```shell script
@@ -277,8 +297,8 @@ curl -v -G http://localhost:9000/exp \
     --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
     -d limit=5
 ```
-      
-```shell script  title="Success response"    
+
+```shell script  title="Success response"
 *   Trying ::1...
 * connect to ::1 port 9000 failed: Connection refused
 *   Trying 127.0.0.1...
@@ -287,14 +307,14 @@ curl -v -G http://localhost:9000/exp \
 > Host: localhost:9000
 > User-Agent: curl/7.49.1
 > Accept: */*
-> 
+>
 < HTTP/1.1 200 OK
 < Server: questDB/1.0
 < Date: Wed, 9 Nov 2016 17:58:54 GMT
 < Transfer-Encoding: chunked
 < Content-Type: text/csv; charset=utf-8
 < Content-Disposition: attachment; filename="questdb-query-1478714334308.csv"
-< 
+<
 "AccidentIndex","Date","Time"
 200501BS00001,"2005-01-04T00:00:00.000Z",17:42
 200501BS00002,"2005-01-05T00:00:00.000Z",17:36
@@ -305,15 +325,18 @@ curl -v -G http://localhost:9000/exp \
 ```
 
 ### Error response
-When query contains syntax errors `/exp` attempts to return as much diagnostic information as possible.
-Example erroneous request:
+
+When query contains syntax errors `/exp` attempts to return as much diagnostic
+information as possible. Example erroneous request:
 
 ```shell script title="Error response"
 curl -v -G http://localhost:9000/exp \
     --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
     -d limit=5
 ```
+
 Response:
+
 ```shell script
 *   Trying ::1...
 * connect to ::1 port 9000 failed: Connection refused
@@ -323,14 +346,14 @@ Response:
 > Host: localhost:9000
 > User-Agent: curl/7.49.1
 > Accept: */*
-> 
+>
 < HTTP/1.1 400 Bad request
 < Server: questDB/1.0
 < Date: Wed, 9 Nov 2016 18:3:55 GMT
 < Transfer-Encoding: chunked
 < Content-Type: text/csv; charset=utf-8
 < Content-Disposition: attachment; filename="questdb-query-1478714635400.csv"
-< 
+<
 <em>Error at(7): Invalid column: AccidentIndex2</em>
 * Connection #0 to host localhost left intact
 ```
