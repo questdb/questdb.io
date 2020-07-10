@@ -7,7 +7,7 @@ sidebar_label: Web Console
 
 The web-console allows you to quickly interact with your data. In this guide, we will show you how to import data,
 
-![console overview](/static/img/console-overview.png)
+![console overview](/static/img/doc/console/console-overview.png)
 
 :::note
 This guide assumes you have QuestDB running with port `9000` open. You can get QuestDB running by following our quick start 
@@ -24,7 +24,7 @@ If running from binaries or Homebrew, the port is open by default.
 By default, the web console opens on the SQL editor. 
 
 #### Layout
-![console sections](/static/img/console-sections.gif)
+![console sections](/static/img/doc/console/console-sections.gif)
 
 #### Using the editor
 You can run queries directly in the editor. Let's create a simple table using the [row generation](functionsRowGenerator.md) 
@@ -106,7 +106,7 @@ import functionality below.
 Let's now take a look at the import screen. 
 It can be accessed by clicking this icon on the left-side navigation menu. 
 
-![upload button](/static/img/upload-button.png) 
+![upload button](/static/img/doc/console/upload-button.png) 
 
 #### Loading data
 

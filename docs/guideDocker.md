@@ -43,7 +43,7 @@ docker start questdb
 ```
 Here is what it looks like to start QuestDB on docker in just 3 commands
 
-![docker gif](/static/img/dockergif.gif)
+![docker gif](/static/img/doc/dockergif.gif)
 
 You can check the status of your container with **docker ps**. It also lists the ports we have mapped.
 

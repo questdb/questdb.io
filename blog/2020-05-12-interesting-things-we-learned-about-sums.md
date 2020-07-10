@@ -8,7 +8,7 @@ tags: [questdb, performance]
 ---
 
 
-![Road Runner](/static/img/road-runner.png)
+![Road Runner](/static/img/blog/sums/road-runner.png)
 
 In the world of databases, benchmarking performance has always been the hottest
 topic. Who is faster for data ingestion and queries? About a month ago we
@@ -42,8 +42,7 @@ You can find our repository on [GitHub](https://github.com/questdb/questdb). All
 your
 [issues](https://github.com/questdb/questdb/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc),
 [pull-requests](https://github.com/questdb/questdb/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)
-and [stars](https://github.com/questdb/questdb) are welcome
-<span class="emoji">🙂</span>.
+and [stars](https://github.com/questdb/questdb) are welcome <span class="emoji">🙂</span>.
 
 ### How did we get there? TL;DR
 
@@ -137,17 +136,17 @@ different orders of magnitude.
 
 We start with both our numbers expressed in scientific notation.
 
-![sum 1](/static/img/sum-1.png)
+![sum 1](/static/img/blog/sums/sum-1.png)
 
 Let's expand into decimal notation and place them on a similar scale so all
 digits fit.
 
-![sum 2](/static/img/sum-2.png)
+![sum 2](/static/img/blog/sums/sum-2.png)
 
 Now, let us express this sum back as one number in scientific notation. We have
 to `truncate` the result back to 5 significant digits.
 
-![sum 3](/static/img/sum-3.png)
+![sum 3](/static/img/blog/sums/sum-3.png)
 
 The result is incorrect. In fact, it is as if we did not sum anything.
 
@@ -300,13 +299,13 @@ Without null values, both databases sum naively at roughly the same speed. With
 Kahan summation, QuestDB performs at the same speed while Clickhouse's
 performance drops by ~40%.
 
-![results not null](/static/img/kahan-naive-not-null.png)
+![results not null](/static/img/blog/sums/kahan-naive-not-null.png)
 
 As we include null values, Clickhouse's performance degrades by 28% and 50% for
 naive and Kahan summation, respectively.
 
 
-![results with null](/static/img/kahan-naive-null.png)
+![results with null](/static/img/blog/sums/kahan-naive-null.png)
 
 
 ### Concluding remarks

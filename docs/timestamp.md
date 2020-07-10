@@ -12,13 +12,13 @@ sidebar_label: TIMESTAMP
 ## Syntax
 
 #### During a CREATE operation
-![timestamp syntax](/static/img/timestamp.svg)
+![timestamp syntax](/static/img/doc/diagrams/timestamp.svg)
 
 Create a [designated timestamp](designatedTimestamp.md) column during table creation. 
 For more information, refer to the [CREATE TABLE](createTable.md) section.
 
 #### During a SELECT operation
-![dynamic timestamp syntax](/static/img/dynamicTimestamp.svg)
+![dynamic timestamp syntax](/static/img/doc/diagrams/dynamicTimestamp.svg)
 
 Creates a [designated timestamp](designatedTimestamp.md) column in the result of a query.
 

@@ -13,7 +13,7 @@ To work properly,
 - Columns should be in the same order
 
 ## Syntax
-![union syntax](/static/img/union.svg)
+![union syntax](/static/img/doc/diagrams/union.svg)
 
 - `UNION` will return distinct results. 
 - `UNION ALL` will return all results including duplicates.

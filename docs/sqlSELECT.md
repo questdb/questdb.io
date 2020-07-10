@@ -7,7 +7,7 @@ sidebar_label: SELECT
 `SELECT` allows you to specify list of columns and expressions to be selected and evaluated from a table.
 
 ## Syntax
-![select syntax](/static/img/select-statement.svg)
+![select syntax](/static/img/doc/diagrams/select-statement.svg)
 
 :::tip
 The `TABLE` can either be a in your database (in which case you would pass the table's name),
@@ -115,7 +115,7 @@ QuestDB supports the following standard SQL clauses within SELECT statements.
 Conditional results based on expressions.
 
 #### Syntax
-![case sql syntax](/static/img/case-def.svg)
+![case sql syntax](/static/img/doc/diagrams/case-def.svg)
 
 :::info
 For more information, please refer to the [CASE reference](case.md)
@@ -125,7 +125,7 @@ For more information, please refer to the [CASE reference](case.md)
 Convert values and expression between types.
 
 #### Syntax
-![cast sql syntax](/static/img/cast.svg)
+![cast sql syntax](/static/img/doc/diagrams/cast.svg)
 
 :::info
 For more information, please refer to the [CAST reference](cast.md)
@@ -135,7 +135,7 @@ For more information, please refer to the [CAST reference](cast.md)
 Returns distinct values of the specified column(s). 
 
 #### Syntax
-![distinct syntax](/static/img/distinct.svg)
+![distinct syntax](/static/img/doc/diagrams/distinct.svg)
 
 :::info
 For more information, please refer to the [DISTINCT reference](distinct.md).
@@ -146,7 +146,7 @@ Defines filling strategy for missing data in aggregation queries.
 This function complements [SAMPLE BY](sampleBy.md) queries.
 
 #### Syntax
-![fill syntax](/static/img/fill.svg)
+![fill syntax](/static/img/doc/diagrams/fill.svg)
 
 :::info
 For more information, please refer to the [FILL reference](fill.md).
@@ -157,7 +157,7 @@ For more information, please refer to the [FILL reference](fill.md).
 Join tables based on a key or timestamp. 
 
 #### Syntax
-![join syntax](/static/img/joins.svg)
+![join syntax](/static/img/doc/diagrams/joins.svg)
 
 :::info
 For more information, please refer to the [JOIN reference](joins.md)
@@ -167,7 +167,7 @@ For more information, please refer to the [JOIN reference](joins.md)
 Specify the number and position of records returned by a query.
 
 #### Syntax
-![limit syntax](/static/img/limit.svg)
+![limit syntax](/static/img/doc/diagrams/limit.svg)
 
 :::info
 For more information, please refer to the [LIMIT reference](limit.md).
@@ -178,7 +178,7 @@ For more information, please refer to the [LIMIT reference](limit.md).
 Orders the results of a query by one or several columns.
 
 #### Syntax
-![order by syntax](/static/img/orderBy.svg)
+![order by syntax](/static/img/doc/diagrams/orderBy.svg)
 
 :::info
 For more information, please refer to the [ORDER BY reference](orderBy.md)
@@ -188,7 +188,7 @@ For more information, please refer to the [ORDER BY reference](orderBy.md)
 Combine the results of two or more select statements. Can include or ignore duplicates.
 
 #### Syntax
-![union syntax](/static/img/union.svg)
+![union syntax](/static/img/doc/diagrams/union.svg)
 
 :::info
 For more information, please refer to the [UNION reference](sqlUNION.md)
@@ -199,7 +199,7 @@ For more information, please refer to the [UNION reference](sqlUNION.md)
 Filters query results
 
 #### Syntax
-![filter syntax](/static/img/filtered-statement.svg)
+![filter syntax](/static/img/doc/diagrams/filtered-statement.svg)
 
 :::info
 QuestDB supports complex WHERE clauses along with type-specific searches. For more information, please refer to the [WHERE reference](where.md). There are different 
@@ -217,7 +217,7 @@ This function requires a [designated timestamp](designatedTimestamp.md).
 
 
 #### Syntax
-![latest by syntax](/static/img/latestBy.svg)
+![latest by syntax](/static/img/doc/diagrams/latestBy.svg)
 
 :::info
 For more information, please refer to the [LATEST BY reference](latestBy.md).
@@ -228,7 +228,7 @@ Aggregates time-series data into homogeneous time-chunks. For example daily aver
 This function requires a [designated timestamp](designatedTimestamp.md).
 
 #### Syntax
-![sample by syntax](/static/img/sampleBy.svg)
+![sample by syntax](/static/img/doc/diagrams/sampleBy.svg)
 
 :::info
 For more information, please refer to the [SAMPLE BY reference](sampleBy.md).
@@ -246,7 +246,7 @@ produce unexpected results.
 :::
 
 #### Syntax
-![dynamic timestamp syntax](/static/img/dynamicTimestamp.svg)
+![dynamic timestamp syntax](/static/img/doc/diagrams/dynamicTimestamp.svg)
 
 :::info
 For more information, refer to the [TIMESTAMP reference](timestamp.md)

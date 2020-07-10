@@ -13,7 +13,7 @@ Our implementation of `LIMIT` encompasses both in one statement.
 ### Syntax
 
 
-![limit syntax](/static/img/limit.svg)
+![limit syntax](/static/img/doc/diagrams/limit.svg)
 
 
 - `numberOfRecords` is the number of records to return. 

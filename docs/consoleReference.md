@@ -44,7 +44,7 @@ Although the schema is automatically detected, you can amend the type for any co
 - Click on the file you want to amend in the Import screen. The schema will be displayed.
 - Find and click on the column which type you want to change.
 - You will then need to [re-trigger the import](#custom-import).
-![amend type](/static/img/amendtype.jpg) 
+![amend type](/static/img/doc/console/amendtype.jpg) 
 
 ### Custom import
 You can amend the import behaviour with the following options. This will trigger to import the data again.
@@ -59,7 +59,7 @@ You can amend the import behaviour with the following options. This will trigger
 
 **To start the import, click the following button:**
 
-![upload button](/static/img/upload-button.png) 
+![upload button](/static/img/doc/console/upload-button.png) 
 
 ## SQL Editor
 
@@ -85,13 +85,13 @@ then the previous statement will be executed.
 
 - Command highlighted. Note neither the `CREATE TABLE` statement nor the `x*x` column have been executed and evaluated.
 
-![highlight](/static/img/sql-highlight.png)
+![highlight](/static/img/doc/console/sql-highlight.png)
 
 - Cursor within a SQL statement
-![cursor](/static/img/cursor-in-sql.png)
+![cursor](/static/img/doc/console/cursor-in-sql.png)
 
 - Cursor outside of a statement but on the same line
-![cursor2](/static/img/cursor-outside-same-line.png)
+![cursor2](/static/img/doc/console/cursor-outside-same-line.png)
 
 - Cursor on another line
-![cursor other line](/static/img/cursor-outside-different-line.png)
+![cursor other line](/static/img/doc/console/cursor-outside-different-line.png)

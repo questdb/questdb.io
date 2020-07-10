@@ -115,7 +115,7 @@ The TCP receiver uses two types of threads.
 
 The workflow is as follows.
 
-![influx line protocol structure diagram](/static/img/influxLineProtocolTCPStructure.svg)
+![influx line protocol structure diagram](/static/img/doc/diagrams/influxLineProtocolTCPStructure.svg)
 
 The network IO thread receives write requests and sets up a queue for the workers. 
 Workers pick up write requests for their assigned tables and insert the data. 
@@ -130,7 +130,7 @@ Once either is met, QuestDB will calculate a load ratio as the number of writes 
 the number of writes in the least busy thread. If this ratio is above the threshold, the table with the least writes in the busiest worker thread 
 will be reassigned to the least busy worker thread.
 
-![influx line protocol load balancing diagram](/static/img/influxLineProtocolTCPLoadBalancing.svg)
+![influx line protocol load balancing diagram](/static/img/doc/diagrams/influxLineProtocolTCPLoadBalancing.svg)
 
 #### Commit strategy
 Uncommitted rows are committed either 

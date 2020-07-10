@@ -12,12 +12,12 @@ Filter expressions are required to return boolean result.
 The general syntax is as follows. 
 Specific filters have distinct syntaxes detailed thereafter.
 
-![filter syntax](/static/img/filtered-statement.svg)
+![filter syntax](/static/img/doc/diagrams/filtered-statement.svg)
 
 ### Logical Operators
 QuestDB supports `AND`, `OR`, `NOT` as logical operators and can assemble conditions using brackets `()`.
 
-![complex where syntax](/static/img/complexWhere.svg)
+![complex where syntax](/static/img/doc/diagrams/complexWhere.svg)
 
 ```sql title="Example"
 SELECT * FROM table WHERE
@@ -32,7 +32,7 @@ QuestDB can filter strings and symbols based on equality, inequality, and regula
 ### Exact match
 Evaluates match of a string or symbol. 
 
-![where syntax exact string](/static/img/whereExactString.svg)
+![where syntax exact string](/static/img/doc/diagrams/whereExactString.svg)
 
 ```sql title="Example"
 SELECT * FROM tab WHERE name = 'John'
@@ -47,7 +47,7 @@ SELECT * FROM tab WHERE name = 'John'
 ### Does NOT match
 Evaluates mismatch of a string or symbol. 
 
-![where syntax string not match](/static/img/whereStringNotMatch.svg)
+![where syntax string not match](/static/img/doc/diagrams/whereStringNotMatch.svg)
 
 ```sql title="Example"
 SELECT * FROM tab WHERE name != 'John'
@@ -62,7 +62,7 @@ SELECT * FROM tab WHERE name != 'John'
 ### Regular expression match
 Evaluates match against a regular expression defined using [java.util.regex](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) patterns.
 
-![where syntax regex match](/static/img/whereRegexMatch.svg)
+![where syntax regex match](/static/img/doc/diagrams/whereRegexMatch.svg)
 
 ```sql title="Example"
 SELECT * FROM tab WHERE ~=(name, 'Jo')
@@ -77,7 +77,7 @@ SELECT * FROM tab WHERE ~=(name, 'Jo')
 ### Regular expression does NOT match
 Evaluates mismatch against a regular expression defined using [java.util.regex](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) patterns.
 
-![where syntax regex not match](/static/img/whereRegexNotMatch.svg)
+![where syntax regex not match](/static/img/doc/diagrams/whereRegexNotMatch.svg)
 
 ```sql title="Example"
 SELECT * FROM tab WHERE !~(name, 'Jo')
@@ -92,7 +92,7 @@ SELECT * FROM tab WHERE !~(name, 'Jo')
 
 ### List search
 Evaluates match or mismatch against a list of elements.
-![where syntax list match](/static/img/listMatch.svg)
+![where syntax list match](/static/img/doc/diagrams/listMatch.svg)
 
 ```sql title="List match"
 SELECT * FROM tab WHERE name in('Tim', 'Tom')
@@ -124,7 +124,7 @@ For timestamp filters, we recommend the [timestamp search notation](#timestamp-a
 
 ### Equality, Inequality and comparison
 
-![syntax numeric comparison](/static/img/whereNumericValue.svg)
+![syntax numeric comparison](/static/img/doc/diagrams/whereNumericValue.svg)
 
 ```sql title="Superior or equal to 23"
 SELECT * FROM tab WHERE age >= 23
@@ -141,7 +141,7 @@ SELECT * FROM tab WHERE age != 23
 ### Proximity
 Evaluates whether the column value is within a range of the target value. This is useful to simulate equality on `double` and `float` values. 
 
-![syntax eq comparison doulbe](/static/img/whereEqDoublePrecision.svg)
+![syntax eq comparison doulbe](/static/img/doc/diagrams/whereEqDoublePrecision.svg)
 
 ```sql title="Equal to 23 with 0.00001 precision"
 SELECT * FROM tab WHERE eq(age, 23, 0.00001)
@@ -154,7 +154,7 @@ double values as long integers with a scaling factor.
 
 ## Boolean
 
-![syntax boolean where](/static/img/booleanWhere.svg)
+![syntax boolean where](/static/img/doc/diagrams/booleanWhere.svg)
 
 Using the columnName will return `true` values. To return `false` values, precede the column name with the `NOT` operator.
 
@@ -186,7 +186,7 @@ Remember, designated timestamp can be applied [dynamically](timestamp.md#during-
 ### Exact timestamp 
 
 #### Syntax
-![syntax timestamp exacth where](/static/img/timestampExact.svg)
+![syntax timestamp exacth where](/static/img/doc/diagrams/timestampExact.svg)
 
 ``` sql title="Example - Date"
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z'
@@ -213,7 +213,7 @@ SELECT scores WHERE ts = '2010-01-12T00:02:26.000000Z'
 Return results within a defined range
 
 #### Syntax 
-![syntax timestamp partial where](/static/img/timestampPartial.svg)
+![syntax timestamp partial where](/static/img/doc/diagrams/timestampPartial.svg)
 
 ```sql title="Results in a given year"
 SELECT * FROM tab WHERE ts = '2018'
@@ -241,7 +241,7 @@ You can apply a modifier to further customise the range. The algorithm will calc
 modifying the upper bound of the original range by the modifier parameter.
 
 #### Syntax
-![syntax timestamp partial modifier where](/static/img/timestampPartialModifier.svg)
+![syntax timestamp partial modifier where](/static/img/doc/diagrams/timestampPartialModifier.svg)
 
 `multiplier` is a signed integer. 
 - A `positive` value extends the interval.
@@ -277,7 +277,7 @@ The range is Jan 2018. The modifier reduces the upper bound (originally 31 Dec 2
 #### Syntax
 For non-standard ranges, users can explicitly specify the target range using the `in` operator.
 
-![syntax timestamp explicit range where](/static/img/timestampExplicitRange.svg)
+![syntax timestamp explicit range where](/static/img/doc/diagrams/timestampExplicitRange.svg)
 
 `lower_bound` and `upper_bound` must be valid timestamps or dates and are `inclusive`.
 

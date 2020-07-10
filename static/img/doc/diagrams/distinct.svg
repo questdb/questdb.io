@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="585" height="81">
+    <defs>
+        <style type="text/css">
+            @namespace "http://www.w3.org/2000/svg";
+            .line                 {fill: none; stroke: #038cbc;}
+            .bold-line            {stroke: #000E14; shape-rendering: crispEdges; stroke-width: 2; }
+            .thin-line            {stroke: #00141F; shape-rendering: crispEdges}
+            .filled               {fill: #038cbc; stroke: none;}
+            text.terminal         {font-family: Verdana, Sans-serif;
+            font-size: 12px;
+            fill: #000E14;
+            font-weight: bold;
+            }
+            text.nonterminal      {font-family: Verdana, Sans-serif;
+            font-size: 12px;
+            fill: #00111A;
+            font-weight: normal;
+            }
+            text.regexp           {font-family: Verdana, Sans-serif;
+            font-size: 12px;
+            fill: #00141F;
+            font-weight: normal;
+            }
+            rect, circle, polygon {fill: #038cbc; stroke: #038cbc;}
+            rect.terminal         {fill: #4DC3FF; stroke: #038cbc;}
+            rect.nonterminal      {fill: #9EDFFF; stroke: #038cbc;}
+            rect.text             {fill: none; stroke: none;}
+            polygon.regexp        {fill: #C7ECFF; stroke: #038cbc;}
+        </style>
+    </defs>
+    <polygon points="9 61 1 57 1 65"/>
+    <polygon points="17 61 9 57 9 65"/>
+    <rect x="31" y="47" width="70" height="32" rx="10"/>
+    <rect x="29" y="45" width="70" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="39" y="65">SELECT</text>
+    <rect x="121" y="47" width="86" height="32" rx="10"/>
+    <rect x="119" y="45" width="86" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="129" y="65">DISTINCT</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#columnName" xlink:title="columnName">
+    <rect x="247" y="47" width="102" height="32"/>
+    <rect x="245" y="45" width="102" height="32" class="nonterminal"/>
+    <text class="nonterminal" x="255" y="65">columnName</text></a><rect x="247" y="3" width="24" height="32" rx="10"/>
+    <rect x="245" y="1" width="24" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="255" y="21">,</text>
+    <rect x="389" y="47" width="60" height="32" rx="10"/>
+    <rect x="387" y="45" width="60" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="397" y="65">FROM</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#tableName" xlink:title="tableName">
+    <rect x="469" y="47" width="88" height="32"/>
+    <rect x="467" y="45" width="88" height="32" class="nonterminal"/>
+    <text class="nonterminal" x="477" y="65">tableName</text></a><path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 61 h2 m0 0 h10 m70 0 h10 m0 0 h10 m86 0 h10 m20 0 h10 m102 0 h10 m-142 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m122 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-122 0 h10 m24 0 h10 m0 0 h78 m20 44 h10 m60 0 h10 m0 0 h10 m88 0 h10 m3 0 h-3"/>
+    <polygon points="575 61 583 57 583 65"/>
+    <polygon points="575 61 567 57 567 65"/></svg>

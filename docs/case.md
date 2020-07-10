@@ -6,7 +6,7 @@ sidebar_label: CASE
 
 
 ### Syntax
-![case syntax](/static/img/case-def.svg)
+![case syntax](/static/img/doc/diagrams/case-def.svg)
 
 ### Description
 `CASE` goes through a set of conditions and returns a value corresponding to the first condition met.

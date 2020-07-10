@@ -7,7 +7,7 @@ sidebar_label: DISTINCT
 `SELECT DISTINCT` is used to return only distinct (i.e different) values from a column as part of a [SELECT statement](sqlSELECT.md).
 
 ### Syntax
-![distinct syntax](/static/img/distinct.svg)
+![distinct syntax](/static/img/doc/diagrams/distinct.svg)
 
 ### Examples
 The following query will return a list of all unique ratings in the table.

@@ -6,7 +6,7 @@ sidebar_label: BACKUP
 
 
 ## Syntax
-![backup syntax](/static/img/backup.svg)
+![backup syntax](/static/img/doc/diagrams/backup.svg)
 
 ## Description
 Creates a backup for one, several, or all database tables. 

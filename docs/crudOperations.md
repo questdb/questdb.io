@@ -490,7 +490,7 @@ There is another nice advantage. By keeping all change history and leveraging Qu
 travel through time at incredible speed and reproduce the state of the database at any point in time. You can use 
 this to restore a previous state, or simply to produce snapshots. Welcome to the world of fast time travel!
 
-![btff](/static/img/bttf.jpg)
+![btff](/static/img/doc/concepts/bttf.jpg)
 
 For example the below query can be used to know the state of all balances at a `15:00:00` snapshot.
 ```sql

@@ -41,15 +41,15 @@ module.exports = {
           items: [
             {
               label: 'Docker',
-              href: 'docs/guideDocker',
+              href: '/docs/guideDocker',
             },
             {
               label: 'With the binaries',
-              href: 'docs/guideBinaries',
+              href: '/docs/guideBinaries',
             },
             {
               label: 'Homebrew',
-              href: 'docs/guideHomebrew',
+              href: '/docs/guideHomebrew',
             },
           ]
         },
@@ -59,27 +59,27 @@ module.exports = {
           items: [
             {
               label: 'Storage Model',
-              href: 'docs/storageModel',
+              href: '/docs/storageModel',
             },
             {
               label: 'SQL Extensions',
-              href: 'docs/sqlExtensions',
+              href: '/docs/sqlExtensions',
             },
             {
               label: 'Designated Timestamp',
-              href: 'docs/designatedTimestamp',
+              href: '/docs/designatedTimestamp',
             },
             {
               label: 'Symbol',
-              href: 'docs/symbol',
+              href: '/docs/symbol',
             },
             {
               label: 'Partitions',
-              href: 'docs/partitions',
+              href: '/docs/partitions',
             },
             {
               label: 'Indexes',
-              href: 'docs/indexes',
+              href: '/docs/indexes',
             }
           ]
         },
@@ -89,23 +89,23 @@ module.exports = {
           items: [
             {
               label: 'Web Console',
-              href: 'docs/consoleGuide',
+              href: '/docs/consoleGuide',
             },
             {
               label: 'Postgres Wire protocol (alpha)',
-              href: 'docs/guidePSQL',
+              href: '/docs/guidePSQL',
             },
             {
               label: 'HTTP REST API',
-              href: 'docs/guideREST',
+              href: '/docs/guideREST',
             },
             {
               label: 'Java API',
-              href: 'docs/embeddedJavaAPI',
+              href: '/docs/embeddedJavaAPI',
             },
             {
               label: 'Influx Line protocol',
-              href: 'docs/influxSenderLibrary',
+              href: '/docs/influxReference',
             },
           ]
         },

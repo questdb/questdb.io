@@ -9,7 +9,9 @@ tags: [thread model, messaging, disruptor]
 
 ### Introduction
 
-<img src="/blog/assets/threadmessaging.png" alt="drawing" width="480px"/> 
+
+
+![thread messaging image](/static/img/blog/thread-messaging/threadmessaging.png)
 
 Inter-thread messaging is a fundamental part of any asynchronous system. It is the component responsible for transportation of data between threads. Messaging forms the infrastructure, the scaffolding of multi-threaded application and just like real-world transport infrastructure we want it to be inexpensive, fast, reliable and clean.
 

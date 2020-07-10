@@ -14,8 +14,8 @@ This action irremediably deletes the data contained in the dropped partition
 
 ## Syntax
 
-![alter table](/static/img/alter-table.svg)
-![drop partition](/static/img/alter-table-drop-partition.svg)
+![alter table](/static/img/doc/diagrams/alter-table.svg)
+![drop partition](/static/img/doc/diagrams/alter-table-drop-partition.svg)
 
 ## Description
 

@@ -12,7 +12,7 @@ There are no known limitations on size of tables or sub-queries participating in
 
 ## Join Syntax
 
-![joins](/static/img/joins.svg)
+![joins](/static/img/doc/diagrams/joins.svg)
 
 Following data join columns from joined tables are combined in single row. Same name columns originating from different tables will be automatically aliased to create
 unique column namespace of the result set.

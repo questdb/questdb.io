@@ -15,7 +15,7 @@ Types can be converted from one to another using the `cast()` function.
 
 ### Syntax
 
-![cast sql syntax](/static/img/cast.svg)
+![cast sql syntax](/static/img/doc/diagrams/cast.svg)
 
 where:
 - `expression` can be a constant, a column, or an expression that evaluates to a value.
@@ -86,7 +86,7 @@ when they would not result in data being truncated or precision being lost.
 
 The below chart illustrates the explicit and implicit cast available in QuestDB.
 
-![cast map](/static/img/castmap.jpg)
+![cast map](/static/img/doc/castmap.jpg)
 
 :::note
 Implicit casting prevents data loss. When an operation involves multiple types, the resulting type will be the smallest possible
