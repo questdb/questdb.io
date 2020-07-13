@@ -1,21 +1,19 @@
-:global {
-  :root {
-    --ifm-code-padding-horizontal: 1.5rem;
-    --ifm-code-padding-vertical: 1rem;
-    --ifm-pre-padding: 1rem 1.5rem;
+:root {
+  --ifm-code-padding-horizontal: 1.5rem;
+  --ifm-code-padding-vertical: 1rem;
+  --ifm-pre-padding: 1rem 1.5rem;
+}
+
+:global(h2) {
+  font-weight: var(--ifm-font-weight-normal);
+}
+
+@media (max-width: 1026px) {
+  :global(h1) {
+    font-size: var(--font-size-xlarge);
   }
 
-  h2 {
-    font-weight: var(--ifm-font-weight-normal);
-  }
-
-  @media (max-width: 1026px) {
-    h1 {
-      font-size: var(--font-size-xlarge);
-    }
-
-    h2 {
-      font-size: var(--font-size-large);
-    }
+  :global(h2) {
+    font-size: var(--font-size-large);
   }
 }

@@ -100,8 +100,8 @@
   }
 
   .whatis__menu--item {
-    padding: 0;
-    flex: 1;
+    min-width: 28%;
+    flex: 0 1 auto;
     font-size: var(--font-size-small);
   }
 
@@ -109,7 +109,6 @@
     margin: 0;
     margin-right: 1rem;
   }
-
 
   .whatis__list {
     max-height: initial;
