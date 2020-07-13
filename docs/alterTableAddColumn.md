@@ -10,9 +10,9 @@ Adds a new column to an existing table
 
 ## Syntax
 
-![alter table syntax](/static/img/doc/diagrams/alter-table.svg)
+![alter table syntax](/img/doc/diagrams/alter-table.svg)
 
-![add column syntax](/static/img/doc/diagrams/alter-table-add-column.svg)
+![add column syntax](/img/doc/diagrams/alter-table-add-column.svg)
 
 ## Description
 

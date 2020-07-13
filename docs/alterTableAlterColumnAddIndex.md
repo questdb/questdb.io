@@ -10,8 +10,8 @@ Adds an index to an existing column
 
 ## Syntax
 
-![alter table syntax](/static/img/doc/diagrams/alter-table.svg)
-![add index syntax](/static/img/doc/diagrams/alter-table-add-index.svg)
+![alter table syntax](/img/doc/diagrams/alter-table.svg)
+![add index syntax](/img/doc/diagrams/alter-table-add-index.svg)
 
 ## Description
 

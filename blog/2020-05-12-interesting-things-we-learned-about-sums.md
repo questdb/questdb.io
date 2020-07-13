@@ -7,7 +7,7 @@ author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [questdb, performance]
 ---
 
-![Road Runner](/static/img/blog/sums/road-runner.png)
+![Road Runner](/img/blog/sums/road-runner.png)
 
 In the world of databases, benchmarking performance has always been the hottest
 topic. Who is faster for data ingestion and queries? About a month ago we
@@ -135,17 +135,17 @@ different orders of magnitude.
 
 We start with both our numbers expressed in scientific notation.
 
-![sum 1](/static/img/blog/sums/sum-1.png)
+![sum 1](/img/blog/sums/sum-1.png)
 
 Let's expand into decimal notation and place them on a similar scale so all
 digits fit.
 
-![sum 2](/static/img/blog/sums/sum-2.png)
+![sum 2](/img/blog/sums/sum-2.png)
 
 Now, let us express this sum back as one number in scientific notation. We have
 to `truncate` the result back to 5 significant digits.
 
-![sum 3](/static/img/blog/sums/sum-3.png)
+![sum 3](/img/blog/sums/sum-3.png)
 
 The result is incorrect. In fact, it is as if we did not sum anything.
 
@@ -156,8 +156,8 @@ correct the (inaccurate) sum by the total error amount. It does so by trying to
 adjust each new number by the total accumulated error.
 
 The main Compensated summation algorithm is the
-<a href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm" target="_blank">Kahan</a>
-sum. It runs in 4 steps:
+[Kahan](https://en.wikipedia.org/wiki/Kahan_summation_algorithm) sum. It runs in
+4 steps:
 
 - Subtract the `running error` from the new `number` to get the
   `adjusted number`. If this is the first number, then the running error is 0.
@@ -174,8 +174,7 @@ This works because of addition transitivity rules.
 Now, the interesting bit! QuestDB implements the same 4-step algorithm as Kahan.
 However, it uses vectorized instructions to make things a lot faster. The idea
 came from Zach Bjornson who wrote about this on
-<a href="http://blog.zachbjornson.com/2019/08/11/fast-float-summation.html" target="_blank">
-his blog</a>.
+[his blog](https://blog.zachbjornson.com/2019/08/11/fast-float-summation.html).
 
 Here is our implementation in details:
 
@@ -297,12 +296,12 @@ Without null values, both databases sum naively at roughly the same speed. With
 Kahan summation, QuestDB performs at the same speed while Clickhouse's
 performance drops by ~40%.
 
-![results not null](/static/img/blog/sums/kahan-naive-not-null.png)
+![results not null](/img/blog/sums/kahan-naive-not-null.png)
 
 As we include null values, Clickhouse's performance degrades by 28% and 50% for
 naive and Kahan summation, respectively.
 
-![results with null](/static/img/blog/sums/kahan-naive-null.png)
+![results with null](/img/blog/sums/kahan-naive-null.png)
 
 ### Concluding remarks
 

@@ -8,7 +8,7 @@ Sort the results of a query in ascending or descending order.
 
 ### Syntax
 
-![order by syntax](/static/img/doc/diagrams/orderBy.svg)
+![order by syntax](/img/doc/diagrams/orderBy.svg)
 
 Default order is `ASC`. You can omit to order in ascending order.
 

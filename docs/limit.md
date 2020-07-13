@@ -13,7 +13,7 @@ statement.
 
 ### Syntax
 
-![limit syntax](/static/img/doc/diagrams/limit.svg)
+![limit syntax](/img/doc/diagrams/limit.svg)
 
 - `numberOfRecords` is the number of records to return.
 - `upperBound` and `lowerBound` is the return range. `lowerBound` is

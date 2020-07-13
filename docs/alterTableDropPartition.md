@@ -15,8 +15,8 @@ partition
 
 ## Syntax
 
-![alter table](/static/img/doc/diagrams/alter-table.svg)
-![drop partition](/static/img/doc/diagrams/alter-table-drop-partition.svg)
+![alter table](/img/doc/diagrams/alter-table.svg)
+![drop partition](/img/doc/diagrams/alter-table-drop-partition.svg)
 
 ## Description
 

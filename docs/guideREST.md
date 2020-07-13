@@ -145,7 +145,7 @@ curl -G http://localhost:9000/exp --data-urlencode \
 If you are querying from the web console, then you can download the results
 using the `download to csv` button.
 
-![download gif](/static/img/doc/console/downloadgif.gif)
+![download gif](/img/doc/console/downloadgif.gif)
 
 ## Shut down and cleanup
 

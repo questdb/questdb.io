@@ -9,7 +9,7 @@ column as part of a [SELECT statement](sqlSELECT.md).
 
 ### Syntax
 
-![distinct syntax](/static/img/doc/diagrams/distinct.svg)
+![distinct syntax](/img/doc/diagrams/distinct.svg)
 
 ### Examples
 

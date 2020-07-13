@@ -36,7 +36,7 @@
   flex-direction: column;
   align-items: end;
   flex: 1 1 auto;
-  background-image: url("/static/img/pages/index/topEditor.svg");
+  background-image: url("/img/pages/index/topEditor.svg");
   background-repeat: no-repeat;
   background-position-x: right;
 }

@@ -132,7 +132,7 @@ The TCP receiver uses two types of threads.
 
 The workflow is as follows.
 
-![influx line protocol structure diagram](/static/img/doc/diagrams/influxLineProtocolTCPStructure.svg)
+![influx line protocol structure diagram](/img/doc/diagrams/influxLineProtocolTCPStructure.svg)
 
 The network IO thread receives write requests and sets up a queue for the
 workers. Workers pick up write requests for their assigned tables and insert the
@@ -152,7 +152,7 @@ by the busiest thread divided by the number of writes in the least busy thread.
 If this ratio is above the threshold, the table with the least writes in the
 busiest worker thread will be reassigned to the least busy worker thread.
 
-![influx line protocol load balancing diagram](/static/img/doc/diagrams/influxLineProtocolTCPLoadBalancing.svg)
+![influx line protocol load balancing diagram](/img/doc/diagrams/influxLineProtocolTCPLoadBalancing.svg)
 
 #### Commit strategy
 

@@ -6,7 +6,7 @@ sidebar_label: CASE
 
 ### Syntax
 
-![case syntax](/static/img/doc/diagrams/case-def.svg)
+![case syntax](/img/doc/diagrams/case-def.svg)
 
 ### Description
 

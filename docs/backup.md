@@ -6,7 +6,7 @@ sidebar_label: BACKUP
 
 ## Syntax
 
-![backup syntax](/static/img/doc/diagrams/backup.svg)
+![backup syntax](/img/doc/diagrams/backup.svg)
 
 ## Description
 

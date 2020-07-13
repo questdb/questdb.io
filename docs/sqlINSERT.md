@@ -10,7 +10,7 @@ Inserts data into a database table
 
 ## Syntax
 
-![insert data](/static/img/doc/diagrams/insert-into-table.svg)
+![insert data](/img/doc/diagrams/insert-into-table.svg)
 
 ## Examples
 

@@ -9,6 +9,13 @@
   padding: 5.5rem 1rem;
   margin: 0 auto;
   flex-wrap: wrap;
+  --ifm-code-padding-horizontal: 1.5rem;
+  --ifm-code-padding-vertical: 1rem;
+  --ifm-pre-padding: 1rem 1.5rem;
+}
+
+.section--inner h2 {
+  font-weight: var(--ifm-font-weight-normal) !important;
 }
 
 .section--odd {
@@ -18,5 +25,15 @@
 @media (max-width: 996px) {
   .section--inner {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 1026px) {
+  .section--inner h1 {
+    font-size: var(--font-size-xlarge);
+  }
+
+  .section--inner h2 {
+    font-size: var(--font-size-large);
   }
 }

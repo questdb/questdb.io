@@ -10,7 +10,7 @@ Creates new table in the database.
 
 ## Syntax
 
-![create table syntax](/static/img/doc/diagrams/create-table.svg)
+![create table syntax](/img/doc/diagrams/create-table.svg)
 
 ## Description
 
@@ -53,7 +53,7 @@ character
 
 `typeDef` - column [type name](datatypes.md) with additional options.
 
-![column type](/static/img/doc/diagrams/column-type-def.svg)
+![column type](/img/doc/diagrams/column-type-def.svg)
 
 - `distinctValueEstimate` - optionally you can hint QuestDB how many distinct
   values this column is going to have. QuestDB will use this value to size data
@@ -81,11 +81,11 @@ Default option is `CACHE`.
 - `inlineIndexDef` - when present, QuestDB will create and maintain
   [index](indexes.md) for `symbol` column.
 
-  ![index definition](/static/img/doc/diagrams/inline-index-def.svg)
+  ![index definition](/img/doc/diagrams/inline-index-def.svg)
 
 - `indexCapacityDef` - storage options for the index
 
-  ![index capacity](/static/img/doc/diagrams/index-capacity-def.svg)
+  ![index capacity](/img/doc/diagrams/index-capacity-def.svg)
 
 - `valueBlockSize` - index storage parameter. This value is optional and will
   default to the value of [configuration key](serverConf.md)
@@ -102,13 +102,13 @@ Default option is `CACHE`.
 - `castDef` - casts type of cherry-picked column. `columnRef` must reference
   existing column in the `selectSql`
 
-  ![cast definition](/static/img/doc/diagrams/cast-def.svg)
+  ![cast definition](/img/doc/diagrams/cast-def.svg)
 
 - `indexDef` - instructs QuestDB to create an index for one of table's columns.
   This clause references column name to be indexed. The referenced column muse
   be of type `SYMBOL`
 
-  ![index definition](/static/img/doc/diagrams/index-def.svg)
+  ![index definition](/img/doc/diagrams/index-def.svg)
 
 #### timestamp
 

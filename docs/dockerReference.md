@@ -14,7 +14,7 @@ with up to 20% performance penalty.
 
 :::info
 You can find our docker repository
-**<a href="https://hub.docker.com/r/questdb/questdb" target="_blank">here</a>**.
+**[here](https://hub.docker.com/r/questdb/questdb)**.
 :::
 
 #### Supported platforms

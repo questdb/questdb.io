@@ -25,19 +25,31 @@ fact that it will literally suck the life out of a macOS laptop). There's also
 (for you macOS users) `brew install questdb` but since I work here, and I wanted
 to test out the latest and greatest web console, I decided to build from source:
 
-<a href="https://davidgs.com/wp-content/uploads/2020/06/Build.gif"><img src="https://davidgs.com/wp-content/uploads/2020/06/Build.gif" alt="" /></a>
+<a href="https://davidgs.com/wp-content/uploads/2020/06/Build.gif">
+  <img src="https://davidgs.com/wp-content/uploads/2020/06/Build.gif" alt="" />
+</a>
 
 It builds really quickly due to the lack of external dependencies, so that is
 great! Then all I have to do is start it:
 
-<a href="https://davidgs.com/wp-content/uploads/2020/06/StartQuest.gif"><img class="wp-image-829" src="https://davidgs.com/wp-content/uploads/2020/06/StartQuest.gif" alt="" /></a>
+<a href="https://davidgs.com/wp-content/uploads/2020/06/StartQuest.gif">
+  <img
+    class="wp-image-829"
+    src="https://davidgs.com/wp-content/uploads/2020/06/StartQuest.gif"
+    alt=""
+  />
+</a>
 
 That is literally all there is to getting QuestDB built and running. But that's
 just the first part. Now it's time to do something mildly useful with it. First,
 I'll need to create a table in QuestDB to store my IoT Data (A bit more on this
 later, so store a pointer to this).
 
-<img title="Screen Shot 2020-06-04 at 9.15.33 AM.png" src="https://davidgs.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-04-at-9.15.33-AM-1.png" alt="Screen Shot 2020 06 04 at 9 15 33 AM" />
+<img
+  title="Screen Shot 2020-06-04 at 9.15.33 AM.png"
+  src="https://davidgs.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-04-at-9.15.33-AM-1.png"
+  alt="Screen Shot 2020 06 04 at 9 15 33 AM"
+/>
 
 Remember, we're doing SQL here, so it there's no new language or syntax to
 learn. This is a really simple table that I'm building because I'm going to be
@@ -51,7 +63,11 @@ to have a giant pile of them lying around. I buy them in bulk because they are a
 dollar or 2 each, easy to use, and largely disposable if I blow one up (which I
 do with alarming regularity.). The circuit is extremely simple to do:
 
-<img title="Screen Shot 2020-06-04 at 9.24.39 AM.png" src="https://davidgs.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-04-at-9.24.39-AM-1.png" alt="Screen Shot 2020 06 04 at 9 24 39 AM" />
+<img
+  title="Screen Shot 2020-06-04 at 9.24.39 AM.png"
+  src="https://davidgs.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-04-at-9.24.39-AM-1.png"
+  alt="Screen Shot 2020 06 04 at 9 24 39 AM"
+/>
 
 I used an actual WEMOS Shield with the DHT11 on it, so I didn't have to
 breadboard it, but this schematic gives you an idea of how simple the wiring is.
@@ -241,7 +257,13 @@ database, and it will happily store them for you. Pretty cool stuff.
 Using the QuestDB Console, you can then query the data to make sure you're
 getting what you expect:
 
-<a href="https://davidgs.com/wp-content/uploads/2020/06/queries.gif"><img class="wp-image-830" src="https://davidgs.com/wp-content/uploads/2020/06/queries.gif" alt="" /></a>
+<a href="https://davidgs.com/wp-content/uploads/2020/06/queries.gif">
+  <img
+    class="wp-image-830"
+    src="https://davidgs.com/wp-content/uploads/2020/06/queries.gif"
+    alt=""
+  />
+</a>
 
 That's exactly what I expected!
 
@@ -251,5 +273,5 @@ Now it's time to start building some dashboards, etc. on top of this. I'm
 currently working on connecting this all up with Node Red, so that may be my
 next post. We're also working on support for Grafana, which will be huge, so
 stay tuned for that. If you like what you see here, pleases go give us a star on
-<a href="https://github.com/questdb">GitHub</a>, and follow the project if you'd
+[GitHub](https://github.com/questdb/questdb), and follow the project if you'd
 like to get updates!

@@ -3,9 +3,6 @@ id: installFromBinary
 title: Binaries reference
 ---
 
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
-
 QuestDB comes with an executable `questdb.exe` for Windows, and script
 `questdb.sh` for MacOS and Linux which can be used to control QuestDB as a
 service. On Windows, QuestDB can also be

@@ -22,7 +22,7 @@ To use `LATEST BY`, one column needs to be designated as `timestamp`. Find out m
 
 ### Syntax
 
-![latest by syntax](/static/img/doc/diagrams/latestBy.svg)
+![latest by syntax](/img/doc/diagrams/latestBy.svg)
 
 :::note
 By default, QuestDB executes `where` clauses before `latest by`. To

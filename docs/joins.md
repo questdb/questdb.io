@@ -14,7 +14,7 @@ joins and there are no limitations on number of joins either.
 
 ## Join Syntax
 
-![joins](/static/img/doc/diagrams/joins.svg)
+![joins](/img/doc/diagrams/joins.svg)
 
 Following data join columns from joined tables are combined in single row. Same
 name columns originating from different tables will be automatically aliased to

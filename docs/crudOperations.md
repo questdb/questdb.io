@@ -32,9 +32,14 @@ Let's first create table that holds bank balances for customers.
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-<Tabs defaultValue="sql" values={[ { label: 'SQL', value: 'sql', }, { label:
-'REST', value: 'rest', }, { label: 'Java', value: 'java', }, { label: 'JDBC',
-value: 'jdbc', }, ] }> <TabItem value="sql">
+<Tabs defaultValue="sql" values={[
+  { label: "SQL", value: "sql" },
+  { label: "REST", value: "rest" },
+  { label: "Java", value: "java" },
+  { label: "JDBC", value: "jdbc" }
+]}>
+
+<TabItem value="sql">
 
 ```sql
 create table balances (
@@ -119,9 +124,13 @@ connection.close();
 
 Let's now insert a few records:
 
-<Tabs defaultValue="sql" values={[ { label: 'SQL', value: 'sql', }, { label:
-'REST', value: 'rest', }, { label: 'Java', value: 'java', }, { label: 'JDBC',
-value: 'jdbc', }, ] }> <TabItem value="sql">
+<Tabs defaultValue="sql" values={[
+  { label: "SQL", value: "sql" },
+  { label: "REST", value: "rest" },
+  { label: "Java", value: "java", },
+  { label: "JDBC", value: "jdbc", }
+]}>
+<TabItem value="sql">
 
 ```sql
 insert into balances (cust_id, balance_ccy, balance, timestamp)
@@ -231,9 +240,13 @@ the Java API. Reading via the [Java API](embeddedJavaAPI.md) (see tab
 time. If you would like to query various tables via the Java API, you can pass
 SQL to Java and read the resulting table (see tab `Java SQL`).
 
-<Tabs defaultValue="sql" values={[ { label: 'SQL', value: 'sql', }, { label:
-'REST', value: 'rest', }, { label: 'Java with SQL', value: 'javasql', }, {
-label: 'Java RAW', value: 'javaraw', }, { label: 'JDBC', value: 'jdbc', }, ] }>
+<Tabs defaultValue="sql" values={[
+  { label: "SQL", value: "sql" },
+  { label: "REST", value: "rest" },
+  { label: "Java with SQL", value: "javasql" },
+  { label: "Java RAW", value: "javaraw" },
+  { label: "JDBC", value: "jdbc" }
+]}>
 <TabItem value="sql">
 
 ```sql
@@ -491,7 +504,7 @@ and reproduce the state of the database at any point in time. You can use this
 to restore a previous state, or simply to produce snapshots. Welcome to the
 world of fast time travel!
 
-![btff](/static/img/doc/concepts/bttf.jpg)
+![btff](/img/doc/concepts/bttf.jpg)
 
 For example the below query can be used to know the state of all balances at a
 `15:00:00` snapshot.

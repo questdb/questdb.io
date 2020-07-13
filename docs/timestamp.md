@@ -13,7 +13,7 @@ sidebar_label: TIMESTAMP
 
 #### During a CREATE operation
 
-![timestamp syntax](/static/img/doc/diagrams/timestamp.svg)
+![timestamp syntax](/img/doc/diagrams/timestamp.svg)
 
 Create a [designated timestamp](designatedTimestamp.md) column during table
 creation. For more information, refer to the [CREATE TABLE](createTable.md)
@@ -21,7 +21,7 @@ section.
 
 #### During a SELECT operation
 
-![dynamic timestamp syntax](/static/img/doc/diagrams/dynamicTimestamp.svg)
+![dynamic timestamp syntax](/img/doc/diagrams/dynamicTimestamp.svg)
 
 Creates a [designated timestamp](designatedTimestamp.md) column in the result of
 a query.

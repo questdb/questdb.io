@@ -8,7 +8,7 @@ sidebar_label: RENAME TABLE
 
 ### Syntax
 
-![syntax rename table sql](/static/img/doc/diagrams/renameTable.svg)
+![syntax rename table sql](/img/doc/diagrams/renameTable.svg)
 
 ### Example
 

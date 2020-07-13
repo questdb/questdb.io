@@ -9,7 +9,7 @@ Specifies fill behavior for missing data for as part of a
 
 ### Syntax
 
-![fill syntax](/static/img/doc/diagrams/fill.svg)
+![fill syntax](/img/doc/diagrams/fill.svg)
 
 #### Options
 

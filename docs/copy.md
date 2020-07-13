@@ -6,7 +6,7 @@ sidebar_label: COPY
 
 ## Syntax
 
-![copy syntax](/static/img/doc/diagrams/copy.svg)
+![copy syntax](/img/doc/diagrams/copy.svg)
 
 ## Description
 

@@ -15,7 +15,7 @@ work properly,
 
 ## Syntax
 
-![union syntax](/static/img/doc/diagrams/union.svg)
+![union syntax](/img/doc/diagrams/union.svg)
 
 - `UNION` will return distinct results.
 - `UNION ALL` will return all results including duplicates.

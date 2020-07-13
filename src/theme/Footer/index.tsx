@@ -9,28 +9,23 @@ import Button from "../../components/Button"
 import sectionStyles from "../../components/Section/styles.module.css"
 import footerStyles from "./styles.module.css"
 
-const FooterLink = ({ to, href, label, ...props }) => {
-  const toUrl = useBaseUrl(to)
-  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true })
-
-  return (
-    <Link
-      className={footerStyles.footer__link}
-      {...(href
-        ? {
-            target: "_blank",
-            rel: "noopener noreferrer",
-            href: normalizedHref,
-          }
-        : {
-            to: toUrl,
-          })}
-      {...props}
-    >
-      {label}
-    </Link>
-  )
-}
+const FooterLink = ({ to, href, label, ...props }) => (
+  <Link
+    className={footerStyles.footer__link}
+    {...(href
+      ? {
+          target: "_blank",
+          rel: "noopener noreferrer",
+          href: useBaseUrl(href, { forcePrependBaseUrl: false }),
+        }
+      : {
+          to: useBaseUrl(to),
+        })}
+    {...props}
+  >
+    {label}
+  </Link>
+)
 
 const Footer = () => {
   const context = useDocusaurusContext()
@@ -57,7 +52,7 @@ const Footer = () => {
           <img
             alt="QuestDB Logo"
             className={footerStyles.footer__logo}
-            src="img/questdbLogoMono.svg"
+            src="/img/questdbLogoMono.svg"
           />
           <h4 className={footerStyles.footer__tagline}>
             {siteConfig.tagline}.
@@ -69,7 +64,7 @@ const Footer = () => {
             icon={
               <img
                 alt="GitHub icon"
-                src="img/githubIcon.svg"
+                src="/img/githubIcon.svg"
                 height="22"
                 width="22"
               />

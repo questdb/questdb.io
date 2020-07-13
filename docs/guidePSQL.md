@@ -46,15 +46,7 @@ sudo dnf install postgresql.x86_64
 
 #### Windows 10
 
-Install using the
-
-<a
-  href="https://www.enterprisedb.com/downloads/postgres-postgresql-downloads"
-  target="_blank"
->
-  Windows Installer
-</a>
-.
+Install using the [Windows Installer](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
 
 ## How to connect
 

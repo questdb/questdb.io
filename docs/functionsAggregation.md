@@ -61,13 +61,8 @@ SELECT sum(cast(a as long)) from table
 `ksum(value)` adds values ignoring missing data (e.g `null` values). Values are
 added using the
 
-<a
-  href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm"
-  target="_blank"
->
-  Kahan compensated sum algorithm
-</a>
-. This is only beneficial for floating-point values such as `float` or `double`.
+[Kahan compensated sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm).
+This is only beneficial for floating-point values such as `float` or `double`.
 
 #### Return value
 
@@ -97,13 +92,8 @@ from (select rnd_double() a from long_sequence(100));
 `nsum(value)` adds values ignoring missing data (e.g `null` values). Values are
 added using the
 
-<a
-  href="https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements"
-  target="_blank"
->
-  Neumaier sum algorithm
-</a>
-. This is only beneficial for floating-point values such as `float` or `double`.
+[Neumaier sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements).
+This is only beneficial for floating-point values such as `float` or `double`.
 
 #### Return value
 

@@ -15,9 +15,9 @@ column
 
 ## Syntax
 
-![alter table syntax](/static/img/doc/diagrams/alter-table.svg)
+![alter table syntax](/img/doc/diagrams/alter-table.svg)
 
-![drop column syntax](/static/img/doc/diagrams/alter-table-drop-column.svg)
+![drop column syntax](/img/doc/diagrams/alter-table-drop-column.svg)
 
 ## Description
 

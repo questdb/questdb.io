@@ -9,7 +9,7 @@ and evaluated from a table.
 
 ## Syntax
 
-![select syntax](/static/img/doc/diagrams/select-statement.svg)
+![select syntax](/img/doc/diagrams/select-statement.svg)
 
 :::tip
 The `TABLE` can either be a in your database (in which case you would
@@ -125,7 +125,7 @@ Conditional results based on expressions.
 
 #### Syntax
 
-![case sql syntax](/static/img/doc/diagrams/case-def.svg)
+![case sql syntax](/img/doc/diagrams/case-def.svg)
 
 :::info
 For more information, please refer to the [CASE reference](case.md)
@@ -137,7 +137,7 @@ Convert values and expression between types.
 
 #### Syntax
 
-![cast sql syntax](/static/img/doc/diagrams/cast.svg)
+![cast sql syntax](/img/doc/diagrams/cast.svg)
 
 :::info
 For more information, please refer to the [CAST reference](cast.md)
@@ -149,7 +149,7 @@ Returns distinct values of the specified column(s).
 
 #### Syntax
 
-![distinct syntax](/static/img/doc/diagrams/distinct.svg)
+![distinct syntax](/img/doc/diagrams/distinct.svg)
 
 :::info
 For more information, please refer to the
@@ -163,7 +163,7 @@ complements [SAMPLE BY](sampleBy.md) queries.
 
 #### Syntax
 
-![fill syntax](/static/img/doc/diagrams/fill.svg)
+![fill syntax](/img/doc/diagrams/fill.svg)
 
 :::info
 For more information, please refer to the [FILL reference](fill.md).
@@ -175,7 +175,7 @@ Join tables based on a key or timestamp.
 
 #### Syntax
 
-![join syntax](/static/img/doc/diagrams/joins.svg)
+![join syntax](/img/doc/diagrams/joins.svg)
 
 :::info
 For more information, please refer to the [JOIN reference](joins.md)
@@ -187,7 +187,7 @@ Specify the number and position of records returned by a query.
 
 #### Syntax
 
-![limit syntax](/static/img/doc/diagrams/limit.svg)
+![limit syntax](/img/doc/diagrams/limit.svg)
 
 :::info
 For more information, please refer to the [LIMIT reference](limit.md).
@@ -199,7 +199,7 @@ Orders the results of a query by one or several columns.
 
 #### Syntax
 
-![order by syntax](/static/img/doc/diagrams/orderBy.svg)
+![order by syntax](/img/doc/diagrams/orderBy.svg)
 
 :::info
 For more information, please refer to the
@@ -213,7 +213,7 @@ duplicates.
 
 #### Syntax
 
-![union syntax](/static/img/doc/diagrams/union.svg)
+![union syntax](/img/doc/diagrams/union.svg)
 
 :::info
 For more information, please refer to the [UNION reference](sqlUNION.md)
@@ -225,7 +225,7 @@ Filters query results
 
 #### Syntax
 
-![filter syntax](/static/img/doc/diagrams/filtered-statement.svg)
+![filter syntax](/img/doc/diagrams/filtered-statement.svg)
 
 :::info
 QuestDB supports complex WHERE clauses along with type-specific
@@ -246,7 +246,7 @@ This function requires a [designated timestamp](designatedTimestamp.md).
 
 #### Syntax
 
-![latest by syntax](/static/img/doc/diagrams/latestBy.svg)
+![latest by syntax](/img/doc/diagrams/latestBy.svg)
 
 :::info
 For more information, please refer to the
@@ -261,7 +261,7 @@ average, monthly maximum etc. This function requires a
 
 #### Syntax
 
-![sample by syntax](/static/img/doc/diagrams/sampleBy.svg)
+![sample by syntax](/img/doc/diagrams/sampleBy.svg)
 
 :::info
 For more information, please refer to the
@@ -283,7 +283,7 @@ unexpected results.
 
 #### Syntax
 
-![dynamic timestamp syntax](/static/img/doc/diagrams/dynamicTimestamp.svg)
+![dynamic timestamp syntax](/img/doc/diagrams/dynamicTimestamp.svg)
 
 :::info
 For more information, refer to the [TIMESTAMP reference](timestamp.md)

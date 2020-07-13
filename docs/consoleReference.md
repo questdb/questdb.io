@@ -47,7 +47,7 @@ column using the following steps:
   displayed.
 - Find and click on the column which type you want to change.
 - You will then need to [re-trigger the import](#custom-import).
-  ![amend type](/static/img/doc/console/amendtype.jpg)
+  ![amend type](/img/doc/console/amendtype.jpg)
 
 ### Custom import
 
@@ -63,7 +63,7 @@ to import the data again.
 
 **To start the import, click the following button:**
 
-![upload button](/static/img/doc/console/upload-button.png)
+![upload button](/img/doc/console/upload-button.png)
 
 ## SQL Editor
 
@@ -92,13 +92,13 @@ uses the following logic to decide what command to execute.
 - Command highlighted. Note neither the `CREATE TABLE` statement nor the `x*x`
   column have been executed and evaluated.
 
-![highlight](/static/img/doc/console/sql-highlight.png)
+![highlight](/img/doc/console/sql-highlight.png)
 
 - Cursor within a SQL statement
-  ![cursor](/static/img/doc/console/cursor-in-sql.png)
+  ![cursor](/img/doc/console/cursor-in-sql.png)
 
 - Cursor outside of a statement but on the same line
-  ![cursor2](/static/img/doc/console/cursor-outside-same-line.png)
+  ![cursor2](/img/doc/console/cursor-outside-same-line.png)
 
 - Cursor on another line
-  ![cursor other line](/static/img/doc/console/cursor-outside-different-line.png)
+  ![cursor other line](/img/doc/console/cursor-outside-different-line.png)
