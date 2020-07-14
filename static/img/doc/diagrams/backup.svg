@@ -2,30 +2,30 @@
     <defs>
         <style type="text/css">
             @namespace "http://www.w3.org/2000/svg";
-            .line                 {fill: none; stroke: #038cbc; stroke-width: 1;}
-            .bold-line            {stroke: #000E14; shape-rendering: crispEdges; stroke-width: 2;}
-            .thin-line            {stroke: #00141F; shape-rendering: crispEdges}
-            .filled               {fill: #038cbc; stroke: none;}
-            text.terminal         {font-family: Verdana, Sans-serif;
-            font-size: 12px;
-            fill: #000E14;
-            font-weight: bold;
-            }
-            text.nonterminal      {font-family: Verdana, Sans-serif;
-            font-size: 12px;
-            fill: #00111A;
-            font-weight: normal;
-            }
-            text.regexp           {font-family: Verdana, Sans-serif;
-            font-size: 12px;
-            fill: #00141F;
-            font-weight: normal;
-            }
-            rect, circle, polygon {fill: #038cbc; stroke: #038cbc;}
-            rect.terminal         {fill: #4DC3FF; stroke: #038cbc; stroke-width: 1;}
-            rect.nonterminal      {fill: #9EDFFF; stroke: #038cbc; stroke-width: 1;}
-            rect.text             {fill: none; stroke: none;}
-            polygon.regexp        {fill: #C7ECFF; stroke: #038cbc; stroke-width: 1;}
+                .line                 {fill: none; stroke: #636273;}
+                .bold-line            {stroke: #636273; shape-rendering: crispEdges; stroke-width: 2; }
+                .thin-line            {stroke: #636273; shape-rendering: crispEdges}
+                .filled               {fill: #636273; stroke: none;}
+                text.terminal         {font-family: Verdana, Sans-serif;
+                font-size: 12px;
+                fill: #ffffff;
+                font-weight: bold;
+                }
+                text.nonterminal      {font-family: Verdana, Sans-serif;
+                font-size: 12px;
+                fill: #e289a4;
+                font-weight: normal;
+                }
+                text.regexp           {font-family: Verdana, Sans-serif;
+                font-size: 12px;
+                fill: #00141F;
+                font-weight: normal;
+                }
+                rect, circle, polygon {fill: none; stroke: none;}
+                rect.terminal         {fill: none; stroke: #be2f5b;}
+                rect.nonterminal      {fill: rgba(255,255,255,0.1); stroke: none;}
+                rect.text             {fill: none; stroke: none;}
+                polygon.regexp        {fill: #C7ECFF; stroke: #038cbc;}
         </style>
     </defs>
     <polygon points="9 61 1 57 1 65"/>
