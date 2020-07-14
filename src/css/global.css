@@ -104,7 +104,7 @@
   --ifm-navbar-search-input-icon: url('data:image/svg+xml;utf8,<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 12.9999L9.19421 9.19409" stroke="white" stroke-width="1.4" stroke-miterlimit="10" stroke-linejoin="bevel"/><path d="M5.79999 10.6C8.45096 10.6 10.6 8.45096 10.6 5.79999C10.6 3.14903 8.45096 1 5.79999 1C3.14903 1 1 3.14903 1 5.79999C1 8.45096 3.14903 10.6 5.79999 10.6Z" stroke="white" stroke-width="1.4" stroke-miterlimit="10" stroke-linejoin="bevel"/></svg>');
   --ifm-navbar-shadow: 0 1px 0 0 var(--palette-white-10);
   --ifm-pre-background: var(--palette-midnight);
-  --ifm-table-cell-padding:  0.15rem 1rem;
+  --ifm-table-cell-padding: 0.15rem 1rem;
   --ifm-toc-border-color: var(--palette-white-10);
 }
 
@@ -120,6 +120,44 @@ html[data-theme="dark"] {
 
 nav {
   --ifm-font-size-base: var(--font-size-normal);
+}
+
+.markdown {
+  --ifm-h2-vertical-rhythm-top: 3;
+  --ifm-h3-vertical-rhythm-top: 2;
+  --ifm-heading-vertical-rhythm-top: 2; /* h4 */
+  --ifm-heading-vertical-rhythm-bottom: 0.4;
+  --ifm-table-background: var(--palette-white-02);
+  --ifm-table-border-color: var(--palette-black);
+  --ifm-table-border-width: 4px;
+  --ifm-table-head-background: var(--palette-gray);
+  --ifm-table-head-color: var(--palette-white);
+  --ifm-table-stripe-background: var(--palette-white-02);
+}
+
+.admonition {
+  --ifm-heading-color: #000;
+}
+
+.alert--secondary {
+  --ifm-alert-background-color: var(--palette-pale-blue);
+  --ifm-alert-border-color: var(--palette-pale-blue);
+}
+
+.pagination-nav {
+  --ifm-link-color: var(--palette-white);
+  --ifm-link-hover-color: var(--palette-white);
+  --ifm-pagination-nav-color-hover: transparent;
+  --ifm-pagination-nav-border-radius: var(--ifm-global-border-radius);
+  --ifm-color-emphasis-300: transparent;
+}
+
+.pagination-nav__item--next .pagination-nav__link {
+  background: var(--palette-pink);
+}
+
+.pagination-nav__link {
+  background: var(--palette-white-05);
 }
 
 .navbar__link,

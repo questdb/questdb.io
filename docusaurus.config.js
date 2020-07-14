@@ -11,6 +11,9 @@ module.exports = {
   organizationName: "QuestDB",
   projectName: "questdb",
   themeConfig: {
+    announcementBar: {
+      id: "github-star",
+    },
     colorMode: {
       defaultMode: "dark",
       disableSwitch: true,

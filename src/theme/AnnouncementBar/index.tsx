@@ -11,6 +11,10 @@ const AnnouncementBar = () => {
     closeAnnouncementBar,
   } = useUserPreferencesContext()
 
+  if (isAnnouncementBarClosed) {
+    return null
+  }
+
   return (
     <div className={styles.announcement} role="banner">
       <div className={styles.announcement__content}>

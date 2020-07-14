@@ -11,7 +11,6 @@ const Whatis = () => {
     setOpened("is")
   }, [])
   const handleClickGoodFor = useCallback(() => {
-    console.log("lol")
     setOpened("goodFor")
   }, [])
   const handleClickIsNot = useCallback(() => {
