@@ -78,8 +78,8 @@
   --ifm-color-primary-light: #d75c82;
   --ifm-color-primary-lighter: #d9688b;
   --ifm-color-primary-lightest: #e289a4;
-  --ifm-color-info: var(--palette-pale-blue);
-  --ifm-color-success: var(--ifm-color-primary-lightest);
+  --ifm-color-info: var(--palette-sky);
+  --ifm-color-success: var(--palette-green);
   --ifm-color-warning: var(--palette-yellow);
   --ifm-dropdown-background-color: var(--palette-rock);
   --ifm-font-color-base: var(--palette-white);
@@ -136,12 +136,14 @@ nav {
 }
 
 .admonition {
+  --ifm-color-info: var(--palette-pale-blue);
+  --ifm-color-success: var(--ifm-color-primary-lightest);
   --ifm-heading-color: #000;
 }
 
 .alert--secondary {
-  --ifm-alert-background-color: var(--palette-pale-blue);
-  --ifm-alert-border-color: var(--palette-pale-blue);
+  --ifm-alert-background-color: var(--palette-white-darker);
+  --ifm-alert-border-color: var(--palette-white-darker);
 }
 
 .pagination-nav {
