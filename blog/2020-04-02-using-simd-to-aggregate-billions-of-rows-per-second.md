@@ -121,7 +121,7 @@ as keyed aggregations, indexing etc. We will also keep improving QuestDB's
 performance. Through some further work on assembly, we estimate that we can gain
 another 15% speed on these operations. In the meantime, if you want to know
 exactly how we have achieved this, all of our code is
-**[open-source](https://github.com/questdb/questdb)**!
+[open-source](https://github.com/questdb/questdb)!
 
 ### About the release: QuestDB 4.2
 

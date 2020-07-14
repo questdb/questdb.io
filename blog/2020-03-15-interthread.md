@@ -207,7 +207,7 @@ Multi-threaded sequence do not support batches.
 I used Shipilev's project that already had Disruptor benchmark and I added
 QuestDB implementation of the same pipeline.
 
-Benchmark source on **[GitHub](https://github.com/bluestreak01/disrupting-fjp)**
+Benchmark source on [GitHub](https://github.com/bluestreak01/disrupting-fjp)
 
 **2 CPU MBP 2015**
 
@@ -245,5 +245,5 @@ Disruptor and QuestDB perform essentially the same.
 
 Our messaging system is on Maven central as a part of QuestDB. Don't worry about
 package size though, QuestDB jar weighs in at 3.6MB and has no dependencies.
-Jump **[here](https://github.com/questdb/questdb/releases)** for version
+Jump [here](https://github.com/questdb/questdb/releases) for version
 reference.

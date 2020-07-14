@@ -91,7 +91,7 @@ parameter. When the `format` definition does not match the `string` input, the
 result will be `null`.
 
 For more information about recognized timestamp formats, see the
-**[date and timestamp format section](#date-and-timestamp-format)**.
+[date and timestamp format section](#date-and-timestamp-format).
 
 #### Return Value
 
@@ -144,7 +144,7 @@ parameter. When the `format` definition does not match the `string` input, the
 result will be `null`.
 
 For more information about recognized timestamp formats, see the
-**[date and timestamp format section](#date-and-timestamp-format)**.
+[date and timestamp format section](#date-and-timestamp-format).
 
 #### Return Value
 
@@ -196,7 +196,7 @@ passed as a parameter. When elements in the `format` definition are
 unrecognized, they will be passed-through as string.
 
 For more information about recognized timestamp formats, see the
-**[date and timestamp format section](#date-and-timestamp-format)**.
+[date and timestamp format section](#date-and-timestamp-format).
 
 #### Return value
 
@@ -798,6 +798,6 @@ prefix)
 
 #### See also
 
-- **[to_timestamp](#to_timestamp)**
-- **[to_date](#to_date)**
-- **[to_str](#to_str)**
+- [to_timestamp](#to_timestamp)
+- [to_date](#to_date)
+- [to_str](#to_str)

@@ -20,7 +20,7 @@ of sensors.
 
 :::info
 All commands are run through the [Web Console](consoleGuide.md) accessible on
-**[http://localhost:9000/index.html](http://localhost:9000/index.html)**.
+[http://localhost:9000/index.html](http://localhost:9000/index.html).
 
 If you prefer, you could easily run the same SQL using [PSQL](guidePSQL.md) or
 the [HTTP API](guideREST.md).
@@ -39,7 +39,7 @@ CREATE TABLE sensors (ID LONG, make STRING, city STRING);
 
 :::info
 The `CREATE TABLE` command comes with many more functions. For more
-information, please refer to the **[CREATE TABLE](createTable.md)** command
+information, please refer to the [CREATE TABLE](createTable.md) command
 reference.
 :::
 
@@ -101,7 +101,8 @@ While creating this table we did the following:
   time-partitioning.
 - `PARTITION BY MONTH` created a monthly partition strategy. Our data will be
   sharded in monthly files.
-  :::
+
+:::
 
 The generated data will look like the below.
 
@@ -211,8 +212,8 @@ Results should look like the data below.
 | ...                         | ...   | ...   | ...         |
 
 :::info
-Find more about these commands in the **[Select](sqlSELECT.md)** and
-**[Join](joins.md)** sections.
+Find more about these commands in the [Select](sqlSELECT.md) and
+[Join](joins.md) sections.
 :::
 
 ## Deleting tables

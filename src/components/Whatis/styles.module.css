@@ -100,7 +100,8 @@
   }
 
   .whatis__menu--item {
-    min-width: 28%;
+    min-width: 30%;
+    padding: 0 0.5rem;
     flex: 0 1 auto;
     font-size: var(--font-size-small);
   }

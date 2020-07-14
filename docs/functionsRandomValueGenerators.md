@@ -18,20 +18,20 @@ Values can be generated either
 
 QuestDB supports the following random generation functions:
 
-- **[rnd_boolean](#rnd_boolean)**
-- **[rnd_byte](#rnd_byte)**
-- **[rnd_short](#rnd_short)**
-- **[rnd_int](#rnd_int)**
-- **[rnd_long](#rnd_long)**
-- **[rnd_long256](#rnd_long256)**
-- **[rnd_float](#rnd_float)**
-- **[rnd_double](#rnd_double)**
-- **[rnd_date](#rnd_date)**
-- **[rnd_timestamp](#rnd_timestamp)**
-- **[rnd_char](#rnd_char)**
-- **[rnd_symbol](#rnd_symbol)**
-- **[rnd_str](#rnd_str)**
-- **[rnd_bin](#rnd_bin)**
+- [rnd_boolean](#rnd_boolean)
+- [rnd_byte](#rnd_byte)
+- [rnd_short](#rnd_short)
+- [rnd_int](#rnd_int)
+- [rnd_long](#rnd_long)
+- [rnd_long256](#rnd_long256)
+- [rnd_float](#rnd_float)
+- [rnd_double](#rnd_double)
+- [rnd_date](#rnd_date)
+- [rnd_timestamp](#rnd_timestamp)
+- [rnd_char](#rnd_char)
+- [rnd_symbol](#rnd_symbol)
+- [rnd_str](#rnd_str)
+- [rnd_bin](#rnd_bin)
 
 #### Usage
 
@@ -55,7 +55,7 @@ example
 
 This page describes the functions to generate values. To generate sequences of
 values, please refer the page about
-**[row generators](functionsRowGenerator.md)**.
+[row generators](functionsRowGenerator.md).
 
 ## rnd_boolean
 
@@ -438,7 +438,7 @@ FROM long_sequence(5);
 #### Sequences
 
 > If you need to generate increasing timestamps, please refer the page about
-> **[row generators](functionsRowGenerator.md)**.
+> [row generators](functionsRowGenerator.md).
 
 ## rnd_char
 

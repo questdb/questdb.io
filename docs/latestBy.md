@@ -17,7 +17,8 @@ values to the oldest.
   hundreds of millions of records for non-symbol keys.
 
 :::note
-To use `LATEST BY`, one column needs to be designated as `timestamp`. Find out more in the **[designated timestamp](designatedTimestamp.md)** section.
+To use `LATEST BY`, one column needs to be designated as `timestamp`. Find out
+more in the [designated timestamp](designatedTimestamp.md) section.
 :::
 
 ### Syntax

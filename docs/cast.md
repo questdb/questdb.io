@@ -22,7 +22,7 @@ where:
 
 - `expression` can be a constant, a column, or an expression that evaluates to a
   value.
-- `type` refers to the desired **[data type](datatypes.md)**.
+- `type` refers to the desired [data type](datatypes.md).
 
 `cast` can be used a part of arithmetic expression as normal
 
@@ -44,7 +44,7 @@ SELECT cast('行' as int) FROM long_sequence(1);
 | 34892                       |
 ```
 
-> Explicit casting of an expression to a smaller **[data type](datatypes.md)**
+> Explicit casting of an expression to a smaller [data type](datatypes.md)
 > may result in loss of data when the output data type is smaller than the
 > expression.
 

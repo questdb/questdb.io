@@ -73,7 +73,7 @@ const Footer = () => {
             style="secondary"
             uppercase={false}
           >
-            Rate us on GitHub
+            Star us on GitHub
           </Button>
         </div>
 

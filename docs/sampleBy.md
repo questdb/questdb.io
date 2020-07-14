@@ -10,7 +10,7 @@ aggregates of homogeneous time chunks as part of a
 
 :::note
 To use `SAMPLE BY`, one column needs to be designated as `timestamp`.
-Find out more in the **[designated timestamp](designatedTimestamp.md)** section.
+Find out more in the [designated timestamp](designatedTimestamp.md) section.
 :::
 
 ### Syntax

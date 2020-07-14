@@ -27,5 +27,5 @@ DROP TABLE ratings;
 
 :::tip
 To delete the data inside a table but keep the table and its structure,
-use **[TRUNCATE](sqlTRUNCATE.md)**.
+use [TRUNCATE](sqlTRUNCATE.md).
 :::

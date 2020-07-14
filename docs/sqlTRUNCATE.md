@@ -28,5 +28,5 @@ TRUNCATE TABLE ratings;
 
 :::note
 To delete both the data and the table structure, use
-**[DROP](sqlDROP.md)**.
+[DROP](sqlDROP.md).
 :::

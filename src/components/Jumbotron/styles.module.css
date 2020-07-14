@@ -1,5 +1,5 @@
 .jumbotron {
-  padding-top: 8.5rem;
+  padding-top: 5.5rem;
   padding-bottom: 7.5rem;
 }
 
@@ -70,6 +70,7 @@
 @media (max-width: 996px) {
   .jumbotron {
     padding-bottom: 5.5rem;
+    padding-top: 1rem;
   }
 
   .jumbotron__title {
@@ -87,12 +88,6 @@
     margin-bottom: 1.5rem;
   }
 
-  .jumbotron,
-  .jumbotron__left,
-  .jumbotron__right {
-    padding-top: 4rem;
-  }
-
   .jumbotron__left {
     padding-top: 0;
     align-items: center;
@@ -107,8 +102,10 @@
   }
 
   .jumbotron__docker {
+    display: flex;
     position: initial;
-    padding: 1.25rem;
+    padding: 1rem 0;
+    justify-content: center;
     font-size: var(--font-size-small);
   }
 

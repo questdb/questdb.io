@@ -23,7 +23,7 @@ sidebar_label: Timestamp Generator
 - a static value, in which case the growth will be monotonic.
 - a randomized value, in which case the growth will be randomized. This is done
   using
-  **[random value generator functions](functionsRandomValueGenerators.md)**.
+  [random value generator functions](functionsRandomValueGenerators.md).
 
 #### Return value
 
