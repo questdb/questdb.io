@@ -68,7 +68,7 @@
   --font-size-xxxlarge: 64px;
 
   --ifm-background-color: var(--palette-black);
-  --ifm-code-background: var(--palette-midnight);
+  --ifm-code-background: var(--palette-gray);
   --ifm-code-color: var(--palette-white);
   --ifm-code-font-size: var(--font-size-small);
   --ifm-color-primary: var(--palette-pink);
@@ -78,8 +78,8 @@
   --ifm-color-primary-light: #d75c82;
   --ifm-color-primary-lighter: #d9688b;
   --ifm-color-primary-lightest: #e289a4;
-  --ifm-color-info: var(--palette-sky);
-  --ifm-color-success: var(--palette-green);
+  --ifm-color-info: var(--palette-pale-blue);
+  --ifm-color-success: var(--ifm-color-primary-lightest);
   --ifm-color-warning: var(--palette-yellow);
   --ifm-dropdown-background-color: var(--palette-rock);
   --ifm-font-color-base: var(--palette-white);
