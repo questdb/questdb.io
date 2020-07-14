@@ -1,3 +1,39 @@
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local(""), url("/fonts/inter-v2-latin-300.woff2") format("woff2"),
+    url("/fonts/inter-v2-latin-300.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(""), url("/fonts/inter-v2-latin-400.woff2") format("woff2"),
+    url("/fonts/inter-v2-latin-400.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local(""), url("/fonts/inter-v2-latin-500.woff2") format("woff2"),
+    url("/fonts/inter-v2-latin-500.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(""), url("/fonts/inter-v2-latin-700.woff2") format("woff2"),
+    url("/fonts/inter-v2-latin-700.woff") format("woff");
+}
+
 /**
 *
 * Override Infima's variables + set color palette
