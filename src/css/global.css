@@ -3,8 +3,8 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: local(""), url("/fonts/inter-v2-latin-300.woff2") format("woff2"),
-    url("/fonts/inter-v2-latin-300.woff") format("woff");
+  src: local(""), url("/fonts/inter-latin-300.woff2") format("woff2"),
+    url("/fonts/inter-latin-300.woff") format("woff");
 }
 
 @font-face {
@@ -12,8 +12,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local(""), url("/fonts/inter-v2-latin-400.woff2") format("woff2"),
-    url("/fonts/inter-v2-latin-400.woff") format("woff");
+  src: local(""), url("/fonts/inter-latin-400.woff2") format("woff2"),
+    url("/fonts/inter-latin-400.woff") format("woff");
 }
 
 @font-face {
@@ -21,8 +21,8 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: local(""), url("/fonts/inter-v2-latin-500.woff2") format("woff2"),
-    url("/fonts/inter-v2-latin-500.woff") format("woff");
+  src: local(""), url("/fonts/inter-latin-500.woff2") format("woff2"),
+    url("/fonts/inter-latin-500.woff") format("woff");
 }
 
 @font-face {
@@ -30,8 +30,8 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: local(""), url("/fonts/inter-v2-latin-700.woff2") format("woff2"),
-    url("/fonts/inter-v2-latin-700.woff") format("woff");
+  src: local(""), url("/fonts/inter-latin-700.woff2") format("woff2"),
+    url("/fonts/inter-latin-700.woff") format("woff");
 }
 
 /**
@@ -83,11 +83,11 @@
   --ifm-color-warning: var(--palette-yellow);
   --ifm-dropdown-background-color: var(--palette-rock);
   --ifm-font-color-base: var(--palette-white);
-  --ifm-font-family-base: "Inter", system-ui, -apple-system, Segoe UI, Roboto,
-    Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Android Emoji", "EmojiSymbols", "EmojiOne Mozilla", "Twemoji Mozilla",
-    "Segoe UI Symbol", "Noto Color Emoji";
+  --ifm-font-family-base: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, "Noto Sans", BlinkMacSystemFont, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Android Emoji",
+    EmojiSymbols, "EmojiOne Mozilla", "Twemoji Mozilla", "Segoe UI Symbol",
+    "Noto Color Emoji";
   --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   --ifm-font-size-base: var(--font-size-small);

@@ -144,7 +144,7 @@ module.exports = {
           items: [
             {
               label: "Documentation",
-              to: "docs",
+              to: "docs/documentationOverview",
             },
             // {
             //   label: "Download",

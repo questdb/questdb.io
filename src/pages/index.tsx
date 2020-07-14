@@ -34,25 +34,25 @@ const Home = () => {
         <link
           as="font"
           crossorigin
-          href="/fonts/inter-v2-latin-300.woff2"
+          href="/fonts/inter-latin-300.woff2"
           rel="preload"
         />
         <link
           as="font"
           crossorigin
-          href="/fonts/inter-v2-latin-400.woff2"
+          href="/fonts/inter-latin-400.woff2"
           rel="preload"
         />
         <link
           as="font"
           crossorigin
-          href="/fonts/inter-v2-latin-500.woff2"
+          href="/fonts/inter-latin-500.woff2"
           rel="preload"
         />
         <link
           as="font"
           crossorigin
-          href="/fonts/inter-v2-latin-700.woff2"
+          href="/fonts/inter-latin-700.woff2"
           rel="preload"
         />
       </Head>
