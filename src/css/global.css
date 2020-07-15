@@ -60,6 +60,11 @@
   --palette-white-darker: #d9d9d9;
   --palette-yellow: #ffd54f;
 
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, Cantarell, Helvetica, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Android Emoji", EmojiSymbols, "EmojiOne Mozilla",
+    "Twemoji Mozilla", "Segoe UI Symbol", "Noto Color Emoji";
+
   --font-size-small: 14px;
   --font-size-normal: 16px;
   --font-size-large: 18px;
@@ -83,11 +88,7 @@
   --ifm-color-warning: var(--palette-yellow);
   --ifm-dropdown-background-color: var(--palette-rock);
   --ifm-font-color-base: var(--palette-white);
-  --ifm-font-family-base: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
-    Ubuntu, Cantarell, "Noto Sans", BlinkMacSystemFont, Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Android Emoji",
-    EmojiSymbols, "EmojiOne Mozilla", "Twemoji Mozilla", "Segoe UI Symbol",
-    "Noto Color Emoji";
+  --ifm-font-family-base: Inter, var(--font-family-base);
   --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   --ifm-font-size-base: var(--font-size-small);
