@@ -14,15 +14,15 @@ Default order is `ASC`. You can omit to order in ascending order.
 
 ### Examples
 
-```sql title="Omitting ASC will default to ascending order"
+```questdb-sql title="Omitting ASC will default to ascending order"
 ratings ORDER BY userId;
 ```
 
-```sql title="Ordering in descending order"
+```questdb-sql title="Ordering in descending order"
 ratings ORDER BY userId DESC;
 ```
 
-```sql title="Multi-level ordering"
+```questdb-sql title="Multi-level ordering"
 ratings ORDER BY userId, rating DESC;
 ```
 

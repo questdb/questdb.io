@@ -25,7 +25,7 @@ DELETE operations within an append-only framework.
 query below will return the simple average balance from a list of accounts by
 one month buckets.
 
-```sql title="Using SAMPLE BY"
+```questdb-sql title="Using SAMPLE BY"
 select avg(balance) from accounts sample by 1M
 ```
 
@@ -51,7 +51,7 @@ group-by implementation from `SELECT` clause.
 
 In standard SQL, users might write a query like the below.
 
-```sql
+```questdb-sql
 SELECT a, b, c, d, sum(e) FROM tab GROUP BY a, b, c, d;
 ```
 
@@ -59,13 +59,13 @@ However, enumerating subset of `SELECT` columns in the `GROUP BY` clause
 redundant and therefore unnecessary. The same SQL in QuestDB SQL-dialect will
 look like:
 
-```sql
+```questdb-sql
 SELECT a, b, c, d, sum(e) FROM tab;
 ```
 
 Let's look at another more complex example using HAVING in standard SQL.
 
-```sql
+```questdb-sql
 SELECT a, b, c, d, sum(e)
 FROM tab
 GROUP BY a, b, c, d
@@ -76,6 +76,6 @@ In QuestDB's dialect, `select * from` optionality and featherweight sub-queries
 come to the rescue to create a smaller, more readable query, without unnecessary
 repetitive aggregations.
 
-```sql
+```questdb-sql
 (SELECT a, b, c, d, sum(e) s FROM tab) WHERE s > 100;
 ```

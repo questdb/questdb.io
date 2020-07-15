@@ -38,6 +38,6 @@ active readers.
 The following example deletes the column called `comment` from the table
 `ratings`
 
-```sql title="Dropping a column"
+```questdb-sql title="Dropping a column"
 ALTER TABLE ratings DROP COLUMN comment
 ```

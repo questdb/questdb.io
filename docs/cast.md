@@ -28,8 +28,8 @@ where:
 
 ### Examples
 
-```sql title="Queries"
-SELECT cast(3L + 2L as int), cast  FROM long_sequence(1);
+```questdb-sql title="Queries"
+SELECT cast(3L + 2L as int), cast FROM long_sequence(1);
 SELECT cast(1578506142000000 as timestamp) FROM long_sequence(1);
 SELECT cast('10.2' as double) FROM long_sequence(1); --string to double
 SELECT cast('行' as int) FROM long_sequence(1);
@@ -57,8 +57,8 @@ SELECT cast('行' as int) FROM long_sequence(1);
 
 ### Precision loss examples
 
-```sql title="Queries"
-SELECT cast(3.5 + 2 as int), cast  FROM long_sequence(1);
+```questdb-sql title="Queries"
+SELECT cast(3.5 + 2 as int), cast FROM long_sequence(1);
 SELECT cast(7234623 as short) FROM long_sequence(1);
 SELECT cast(2334444.323 as short) FROM long_sequence(1);
 ```
@@ -100,7 +100,7 @@ types, the resulting type will be the smallest possible type so that no data is
 lost.
 :::
 
-```sql title="Queries"
+```questdb-sql title="Queries"
 SELECT 1234L + 567 FROM long_sequence(1);
 SELECT 1234L + 0.567 FROM long_sequence(1);
 SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 323 FROM long_sequence(1);
@@ -117,7 +117,7 @@ SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 0.323 FROM l
 > When inserting into a table, QuestDB will cast data implicitly to match the
 > type of the destination column.
 
-```sql title="Example"
+```questdb-sql title="Example"
 -- We create a table with one column of type long
 CREATE TABLE my_table(my_number long);
 
@@ -137,7 +137,7 @@ SELECT * FROM my_table;
 The above insert would have been equivalent to running with explicit cast, but
 QuestDB took care of this step automatically.
 
-```sql title="Example"
+```questdb-sql title="Example"
 INSERT INTO my_table values
             (cast(
                 to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss')

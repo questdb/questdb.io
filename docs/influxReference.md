@@ -18,7 +18,7 @@ QuestDB can listen for Line protocol packets both over [TCP](#tcp-receiver) and
 #### Syntax
 
 ```shell script title="ILP syntax"
-table_name,tagset valueset  timestamp
+table_name,tagset valueset timestamp
 ```
 
 | Element      | Definition                                                                                                                      |

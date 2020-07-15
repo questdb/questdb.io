@@ -24,7 +24,7 @@ Return value type is `timestamp`.
 
 #### Examples:
 
-```sql title="Insert current system timestamp"
+```questdb-sql title="Insert current system timestamp"
 INSERT INTO readings
 VALUES(systimestamp(), 123.5);
 ```
@@ -33,7 +33,7 @@ VALUES(systimestamp(), 123.5);
 | --------------------------- | ------- |
 | 2020-01-02T19:28:48.727516Z | 123.5   |
 
-```sql title="Query based on last minute"
+```questdb-sql title="Query based on last minute"
 SELECT * FROM readings
 WHERE date_time > systimestamp() - 60000000L;
 ```
@@ -59,7 +59,7 @@ Return value type is `date`.
 
 #### Examples:
 
-```sql title="Insert current system date along with a value"
+```questdb-sql title="Insert current system date along with a value"
 INSERT INTO readings
 VALUES(sysdate(), 123.5);
 ```
@@ -68,7 +68,7 @@ VALUES(sysdate(), 123.5);
 | --------------------------- | ------- |
 | 2020-01-02T19:28:48.727516Z | 123.5   |
 
-```sql title="Query based on last minute"
+```questdb-sql title="Query based on last minute"
 SELECT * FROM readings
 WHERE date_time > sysdate() - 60000000L;
 ```
@@ -99,7 +99,7 @@ Return value type is `timestamp`
 
 #### Examples
 
-```sql title="string matches format"
+```questdb-sql title="string matches format"
 SELECT to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')
 FROM long_sequence(1);
 ```
@@ -108,7 +108,7 @@ FROM long_sequence(1);
 | --------------------------- |
 | 2020-03-01T15:43:21.000000Z |
 
-```sql title="string does not match format"
+```questdb-sql title="string does not match format"
 SELECT to_timestamp('2020-03-01:15:43:21', 'yyyy')
 FROM long_sequence(1);
 ```
@@ -117,7 +117,7 @@ FROM long_sequence(1);
 | ------------ |
 | null         |
 
-```sql title="Using with INSERT"
+```questdb-sql title="Using with INSERT"
 INSERT INTO measurements
 values(to_timestamp('2019-12-12T12:15', 'yyyy-MM-ddTHH:mm'), 123.5);
 ```
@@ -152,7 +152,7 @@ Return value type is `date`
 
 #### Examples
 
-```sql title="string matches format"
+```questdb-sql title="string matches format"
 SELECT to_date('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')
 FROM long_sequence(1);
 ```
@@ -161,7 +161,7 @@ FROM long_sequence(1);
 | ------------------------ |
 | 2020-03-01T15:43:21.000Z |
 
-```sql title="string does not match format"
+```questdb-sql title="string does not match format"
 SELECT to_date('2020-03-01:15:43:21', 'yyyy')
 FROM long_sequence(1);
 ```
@@ -170,7 +170,7 @@ FROM long_sequence(1);
 | ------- |
 | null    |
 
-```sql title="Using with INSERT"
+```questdb-sql title="Using with INSERT"
 INSERT INTO measurements
 values(to_date('2019-12-12T12:15', 'yyyy-MM-ddTHH:mm'), 123.5);
 ```
@@ -206,7 +206,7 @@ Return value type is `string`
 
 - Basic example
 
-```sql
+```questdb-sql
 SELECT to_str(systimestamp(), 'yyyy-MM-dd') FROM long_sequence(1);
 ```
 
@@ -216,7 +216,7 @@ SELECT to_str(systimestamp(), 'yyyy-MM-dd') FROM long_sequence(1);
 
 - With unrecognized timestamp definition
 
-```sql
+```questdb-sql
 SELECT to_str(systimestamp(), 'yyyy-MM-dd gooD DAY 123') FROM long_sequence(1);
 ```
 
@@ -245,7 +245,7 @@ Return value type is `timestamp`
 
 #### Examples
 
-```sql title="Adding hours"
+```questdb-sql title="Adding hours"
 SELECT systimestamp(), dateadd('h', 2, systimestamp())
 FROM long_sequence(1);
 ```
@@ -254,7 +254,7 @@ FROM long_sequence(1);
 | --------------------------- | --------------------------- |
 | 2020-04-17T00:30:51.380499Z | 2020-04-17T02:30:51.380499Z |
 
-```sql title="Adding days"
+```questdb-sql title="Adding days"
 SELECT systimestamp(), dateadd('d', 2, systimestamp())
 FROM long_sequence(1);
 ```
@@ -263,7 +263,7 @@ FROM long_sequence(1);
 | --------------------------- | --------------------------- |
 | 2020-04-17T00:30:51.380499Z | 2020-04-19T00:30:51.380499Z |
 
-```sql title="Adding months"
+```questdb-sql title="Adding months"
 SELECT systimestamp(), dateadd(`M`, 2, systimestamp())
 FROM long_sequence(1);
 ```
@@ -293,7 +293,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Difference in days"
+```questdb-sql title="Difference in days"
 select datediff(
     'd',
     to_timestamp('2020-01-23','yyyy-MM-dd'),
@@ -305,8 +305,8 @@ from long_sequence(1);
 | -------- |
 | 4        |
 
-````sql title="Difference in months"
-```sql
+````questdb-sql title="Difference in months"
+```questdb-sql
 select datediff(
     'M',
     to_timestamp('2020-01-23','yyyy-MM-dd'),
@@ -337,7 +337,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Millis of the second"
+```questdb-sql title="Millis of the second"
 SELECT millis(
     to_timestamp('2020-03-01:15:43:21.123456', 'yyyy-MM-dd:HH:mm:ss.SSSUUU'))
 FROM long_sequence(1);
@@ -347,7 +347,7 @@ FROM long_sequence(1);
 | ------ |
 | 123    |
 
-```sql title="Using in an aggregation"
+```questdb-sql title="Using in an aggregation"
 select millis(ts), count() from transactions;
 ```
 
@@ -378,7 +378,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Micros of the second"
+```questdb-sql title="Micros of the second"
 SELECT micros(to_timestamp('2020-03-01:15:43:21.123456', 'yyyy-MM-dd:HH:mm:ss.SSSUUU'))
 FROM long_sequence(1);
 ```
@@ -387,7 +387,7 @@ FROM long_sequence(1);
 | ------ |
 | 456    |
 
-```sql title="Using in an aggregation"
+```questdb-sql title="Using in an aggregation"
 select micros(ts), count() from transactions;
 ```
 
@@ -418,7 +418,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Second of the minute"
+```questdb-sql title="Second of the minute"
 SELECT second(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
 FROM long_sequence(1);
 ```
@@ -427,7 +427,7 @@ FROM long_sequence(1);
 | ------ |
 | 43     |
 
-```sql title="Using in an aggregation"
+```questdb-sql title="Using in an aggregation"
 select second(ts), count() from transactions;
 ```
 
@@ -458,7 +458,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Minute of the hour"
+```questdb-sql title="Minute of the hour"
 SELECT minute(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
 FROM long_sequence(1);
 ```
@@ -467,7 +467,7 @@ FROM long_sequence(1);
 | ------ |
 | 43     |
 
-```sql title="Using in an aggregation"
+```questdb-sql title="Using in an aggregation"
 select minute(ts), count() from transactions;
 ```
 
@@ -498,7 +498,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Hour of the day"
+```questdb-sql title="Hour of the day"
 SELECT hour(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
 FROM long_sequence(1);
 ```
@@ -507,7 +507,7 @@ FROM long_sequence(1);
 | ---- |
 | 12   |
 
-```sql title="Using in an aggregation"
+```questdb-sql title="Using in an aggregation"
 select hour(ts), count() from transactions;
 ```
 
@@ -538,7 +538,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Day of the month"
+```questdb-sql title="Day of the month"
 SELECT day(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
 FROM long_sequence(1);
 ```
@@ -547,7 +547,7 @@ FROM long_sequence(1);
 | --- |
 | 01  |
 
-```sql title="Using in an aggregation"
+```questdb-sql title="Using in an aggregation"
 select day(ts), count() from transactions;
 ```
 
@@ -578,7 +578,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Month of the year"
+```questdb-sql title="Month of the year"
 SELECT month(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
 FROM long_sequence(1);
 ```
@@ -587,7 +587,7 @@ FROM long_sequence(1);
 | ----- |
 | 03    |
 
-```sql title="Using in an aggregation"
+```questdb-sql title="Using in an aggregation"
 select month(ts), count() from transactions;
 ```
 
@@ -617,7 +617,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql title="Year"
+```questdb-sql title="Year"
 SELECT year(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
 FROM long_sequence(1);
 ```
@@ -626,7 +626,7 @@ FROM long_sequence(1);
 | ---- |
 | 2020 |
 
-```sql title="Using in an aggregation"
+```questdb-sql title="Using in an aggregation"
 select month(ts), count() from transactions;
 ```
 
@@ -655,7 +655,7 @@ Return value type is `boolean`
 
 #### Examples
 
-```sql
+```questdb-sql
 select year(ts), is_leap_year(ts) from myTable;
 ```
 
@@ -686,7 +686,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql
+```questdb-sql
 select month(ts), days_in_month(ts) from myTable;
 ```
 
@@ -717,7 +717,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql
+```questdb-sql
 select to_str(ts,'EE'),day_of_week(ts) from myTable;
 ```
 
@@ -750,7 +750,7 @@ Return value type is `int`
 
 #### Examples
 
-```sql
+```questdb-sql
 select to_str(ts,'EE'),day_of_week_sunday_first(ts) from myTable;
 ```
 

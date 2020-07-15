@@ -43,7 +43,7 @@ Naming convention for partition directories is as follows:
 
 ## Examples
 
-```sql title="Drop a single partition"
+```questdb-sql title="Drop a single partition"
 --DAY
 ALTER TABLE my_table DROP PARTITION '2019-05-18';
 --MONTH
@@ -52,6 +52,6 @@ ALTER TABLE my_table DROP PARTITION '2019-05';
 ALTER TABLE my_table DROP PARTITION '2019';
 ```
 
-```sql title="Drop multiple partitions"
+```questdb-sql title="Drop multiple partitions"
 ALTER TABLE my_table DROP PARTITION '2018','2019';
 ```

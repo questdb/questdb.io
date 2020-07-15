@@ -14,7 +14,7 @@ Inserts data into a database table
 
 ## Examples
 
-```sql title="Inserting all columns"
+```questdb-sql title="Inserting all columns"
 INSERT INTO trades
 VALUES(
     to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),
@@ -24,7 +24,7 @@ VALUES(
     'B');
 ```
 
-```sql title="Specifying schema"
+```questdb-sql title="Specifying schema"
 INSERT INTO trades (timestamp, symbol, quantity, price, side)
 VALUES(
     to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),
@@ -39,14 +39,14 @@ Columns can be omitted during `INSERT` in which case value will be
 `NULL`
 :::
 
-```sql title="Inserting only specific columns"
+```questdb-sql title="Inserting only specific columns"
 INSERT INTO trades (timestamp, symbol, price)
 VALUES(to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),'AAPL','B');
 ```
 
 ### Inserting query results
 
-```sql title="Insert as select"
+```questdb-sql title="Insert as select"
 INSERT INTO confirmed_trades
     SELECT timestamp, instrument, quantity, price, side
     FROM unconfirmed_trades

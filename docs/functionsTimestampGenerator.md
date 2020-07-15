@@ -31,7 +31,7 @@ Return value type is `timestamp`.
 
 #### Examples
 
-```sql title="Monotonic timestamp increase"
+```questdb-sql title="Monotonic timestamp increase"
 SELECT x, timestamp_sequence(
             to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),
             100000L)
@@ -46,7 +46,7 @@ FROM long_sequence(5);
 | 4   | 2019-10-17T00:00:00.300000Z |
 | 5   | 2019-10-17T00:00:00.400000Z |
 
-```sql title="Randomized timestamp increase"
+```questdb-sql title="Randomized timestamp increase"
 SELECT x, timestamp_sequence(
             to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),
             rnd_short(1,5) * 100000L)

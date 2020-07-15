@@ -298,7 +298,7 @@ curl -v -G http://localhost:9000/exp \
     -d limit=5
 ```
 
-```shell script  title="Success response"
+```shell script title="Success response"
 *   Trying ::1...
 * connect to ::1 port 9000 failed: Connection refused
 *   Trying 127.0.0.1...

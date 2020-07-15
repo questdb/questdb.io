@@ -42,7 +42,7 @@ tsn           pn
 We could run the following to get the minimum, maximum and average price per
 hour using the following query:
 
-```sql
+```questdb-sql
 SELECT timestamp, min(price) min, max(price) max, avg(price) avg
 FROM PRICES
 SAMPLE BY 1h;
@@ -79,7 +79,7 @@ Here you can see that the third time chunk is missing. This is because there was
 no price update in the third hour. Let's see what different fill values would
 return:
 
-```sql
+```questdb-sql
 SELECT timestamp, min(price) min, max(price) max, avg(price) avg
 FROM PRICES
 SAMPLE BY 1h
@@ -103,7 +103,7 @@ tsn           minn    maxn    avgn
 
 And the following:
 
-```sql
+```questdb-sql
 SELECT timestamp, min(price) min, avg(price) avg
 FROM PRICES
 SAMPLE BY 1h

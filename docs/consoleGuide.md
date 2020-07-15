@@ -46,7 +46,7 @@ You can also insert data using the Import screen.
 
 Type the following SQL into the editor then click the `RUN` button.
 
-```sql title="Create table"
+```questdb-sql title="Create table"
 CREATE TABLE temp(
     ts timestamp,
     location symbol,
@@ -76,7 +76,7 @@ places chosen at random in a list to simulate 4 sensors sending data. Note we
 have to cast the row generator cursor to `int` as it is of default type `long`
 but `dateadd()` requires an `int`.
 
-```sql title="Insert"
+```questdb-sql title="Insert"
 INSERT INTO temp
     SELECT
         dateadd('s', 30 * cast(x as int), systimestamp()) ts,
@@ -89,7 +89,7 @@ INSERT INTO temp
 
 Let's now run a query. Copy/paste the following into the editor.
 
-```sql title="Query"
+```questdb-sql title="Query"
 SELECT ts, avg(tempC)
 FROM temp
 WHERE location = 'kitchen'

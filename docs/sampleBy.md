@@ -38,7 +38,7 @@ tsn           B           qn            pn
 
 The following will return the number of trades per hour:
 
-```sql title="trades - hourly interval"
+```questdb-sql title="trades - hourly interval"
 SELECT timestamp, count()
 FROM TRADES
 SAMPLE BY 1h;
@@ -46,7 +46,7 @@ SAMPLE BY 1h;
 
 The following will return the trade volume in 30 minute intervals
 
-```sql title="trades - 30 minute interval"
+```questdb-sql title="trades - 30 minute interval"
 SELECT timestamp, sum(quantity*price)
 FROM TRADES
 SAMPLE BY 30m;
@@ -55,7 +55,7 @@ SAMPLE BY 30m;
 The following will return the average trade notional (where notional is = q \*
 p) by day:
 
-```sql title="trades - daily interval"
+```questdb-sql title="trades - daily interval"
 SELECT timestamp, avg(quantity*price)
 FROM TRADES
 SAMPLE BY 1d;

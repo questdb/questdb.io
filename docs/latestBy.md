@@ -38,7 +38,7 @@ You can learn how to do this in the [examples](#execution-order).
 LATEST BY can be used with single columns. When this column is of type SYMBOL,
 the query will end as soon as all distinct symbol values have been found.
 
-```sql title="Latest temperature by city"
+```questdb-sql title="Latest temperature by city"
 SELECT city, temperature
 FROM weather
 LATEST BY city;
@@ -48,7 +48,7 @@ LATEST BY city;
 
 LATEST BY can also reference multiple columns although this can be slower.
 
-```sql title="Latest balance by customer and currency"
+```questdb-sql title="Latest balance by customer and currency"
 SELECT cust_id, balance_ccy, balance
 FROM balances
 LATEST BY cust_id, balance_ccy;
@@ -69,7 +69,7 @@ using brackets. Assume the following table
 
 #### WHERE first
 
-```sql
+```questdb-sql
 SELECT * FROM balances LATEST BY cust_id, balance_ccy
 WHERE balance > 800;
 ```
@@ -92,7 +92,7 @@ latest possible balance above 800.
 
 #### LATEST BY first
 
-```sql
+```questdb-sql
 (SELECT * FROM balances LATEST BY cust_id, balance_ccy) --note the brackets
 WHERE balance > 800;
 ```

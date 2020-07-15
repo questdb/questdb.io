@@ -10,11 +10,11 @@ service. On Windows, QuestDB can also be
 
 ## Available commands
 
-```sql title="Linux & MacOS"
+```questdb-sql title="Linux & MacOS"
 ./questdb.sh [start|stop|status] [-d dir] [-f] [-t tag]
 ```
 
-```sql title="Windows"
+```questdb-sql title="Windows"
 questdb.exe [start|stop|status|install|remove] \
   [-d dir] [-f] [-j JAVA_HOME] [-t tag]
 ```
@@ -31,11 +31,11 @@ questdb.exe [start|stop|status|install|remove] \
 
 `start` - starts the questdb service.
 
-```sql title="Linux & MacOS"
+```questdb-sql title="Linux & MacOS"
 ./questdb.sh start
 ```
 
-```sql title="Windows"
+```questdb-sql title="Windows"
 questdb.exe start
 ```
 
@@ -78,15 +78,15 @@ name.
 
 #### Examples
 
-```sql title="Linux & MacOS - custom root_directory"
+```questdb-sql title="Linux & MacOS - custom root_directory"
 ./questdb.sh start -d '/home/user/my_new_root_directory'
 ```
 
-```sql title="Windows - custom root_directory"
+```questdb-sql title="Windows - custom root_directory"
 questdb.exe start -d 'C:\Users\user\my_new_root_directory'
 ```
 
-```sql title="Windows - custom JAVA_HOME"
+```questdb-sql title="Windows - custom JAVA_HOME"
 questdb.exe start -j 'C:\Program Files\Java\jdk1.8.0_141'
 ```
 
@@ -97,11 +97,11 @@ questdb.exe start -j 'C:\Program Files\Java\jdk1.8.0_141'
 
 #### Examples
 
-```sql title="Windows"
+```questdb-sql title="Windows"
 questdb.exe stop
 ```
 
-```sql title="Linux & MacOS - specific tag"
+```questdb-sql title="Linux & MacOS - specific tag"
 ./questdb.sh stop -t 'my-questdb-service'
 ```
 
@@ -113,11 +113,11 @@ is start or stopped respectively. On Unix systems, it also prints the `PID`
 
 #### Examples
 
-```sql title="Linux & MacOS"
+```questdb-sql title="Linux & MacOS"
 ./questdb.sh status
 ```
 
-```sql title="Windows - specific tag"
+```questdb-sql title="Windows - specific tag"
 questdb.exe status -t 'my-questdb-service'
 ```
 
@@ -132,11 +132,11 @@ startup.
 
 #### Examples
 
-```sql title="Default service"
+```questdb-sql title="Default service"
 questdb.exe install
 ```
 
-```sql title="Specific tag"
+```questdb-sql title="Specific tag"
 questdb.exe install -t 'my-questdb-service'
 ```
 
@@ -151,11 +151,11 @@ startup.
 
 #### Examples
 
-```sql title="Default service"
+```questdb-sql title="Default service"
 questdb.exe remove
 ```
 
-```sql title="Specific tag"
+```questdb-sql title="Specific tag"
 questdb.exe remove -t 'my-questdb-service'
 ```
 
@@ -177,7 +177,7 @@ directory.
 
 To start, run the following.
 
-```sql title="Start"
+```questdb-sql title="Start"
 questdb.exe
 ```
 

@@ -25,7 +25,7 @@ Table name containing spaces or `.` must be enclosed in _single_ quotes,
 for example:
 :::
 
-```sql title="Example"
+```questdb-sql title="Example"
 create table 'example out of.space' (a int)
 ```
 
@@ -138,7 +138,7 @@ Find below example uses of [CREATE TABLE](#create-table) and of
 
 #### Without [designated timestamp](designatedTimestamp.md) and not [partitioned](partitions.md).
 
-```sql
+```questdb-sql
 CREATE TABLE
     my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
 ```
@@ -149,7 +149,7 @@ Such table can accept data in any order.
 
 #### With [designated timestamp](designatedTimestamp.md)
 
-```sql
+```questdb-sql
 CREATE TABLE
     my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
     timestamp(ts)
@@ -161,7 +161,7 @@ With this setting, QuestDB enforce chronological order of `ts` values.
 
 #### With [Partition](partitions.md)
 
-```sql
+```questdb-sql
 CREATE TABLE
     my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
     timestamp(ts)
@@ -170,7 +170,7 @@ CREATE TABLE
 
 #### With [SYMBOL](symbol.md)
 
-```sql
+```questdb-sql
 CREATE TABLE my_table(
     symb SYMBOL capacity 256 nocache index capacity 1048576,
     price DOUBLE,
@@ -185,7 +185,7 @@ CREATE TABLE my_table(
 When SQL is `select * from tab` or any arbitrary SQL result, the table data will
 be copied with the corresponding structure.
 
-```sql title="Create table as select"
+```questdb-sql title="Create table as select"
 create table x as (
     select
         rnd_int() a,
@@ -201,7 +201,7 @@ create table x as (
 notice the `where false` condition.
 :::
 
-```sql title="Clone an existing wide table and change type of cherry-picked columns"
+```questdb-sql title="Clone an existing wide table and change type of cherry-picked columns"
 create table x as (select * from y where false)
     , cast(price as long)
     , cast(sym as symbol index)
@@ -216,7 +216,7 @@ Let's assume we imported a text file into the table `taxi_trips_unordered` and
 now we want to turn this data into time series thru ordering trips by
 `pickup_time`, assign dedicated timestamp and partition by month:
 
-```sql  title="Create table as select with data manipulation"
+```questdb-sql title="Create table as select with data manipulation"
 create table taxi_trips as (
   select * from taxi_trips_unordered order by pickup_time
 ) timestamp(pickup_time) partition by MONTH

@@ -15,13 +15,13 @@ doubt, make sure you have created [backups](backup.md) of your data.
 
 ### Syntax
 
-```sql
+```questdb-sql
 DROP TABLE 'TABLE_NAME';
 ```
 
 ### Example
 
-```sql
+```questdb-sql
 DROP TABLE ratings;
 ```
 

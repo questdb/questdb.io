@@ -46,7 +46,7 @@ same results for all random functions.
 
 #### Examples
 
-```sql title="Generating multiple rows"
+```questdb-sql title="Generating multiple rows"
 SELECT x, rnd_double()
 FROM long_sequence(5);
 ```
@@ -59,7 +59,7 @@ FROM long_sequence(5);
 | 4   | 0.9130602021 |
 | 5   | 0.718276777  |
 
-```sql title="Accessing row_number using the x column"
+```questdb-sql title="Accessing row_number using the x column"
 SELECT x, x*x
 FROM long_sequence(5);
 ```
@@ -72,7 +72,7 @@ FROM long_sequence(5);
 | 4   | 16   |
 | 5   | 25   |
 
-```sql title="Using with a seed"
+```questdb-sql title="Using with a seed"
 SELECT rnd_double()
 FROM long_sequence(2,128349234,4327897);
 ```

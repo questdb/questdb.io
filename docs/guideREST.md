@@ -38,7 +38,7 @@ First, we create the tables using `/exec`, which allows us to pass SQL
 statements. We also specify a designated timestamp column which will be useful
 for time-based queries and time joins across tables.
 
-```sql title="Create trips table"
+```questdb-sql title="Create trips table"
 curl -G http://localhost:9000/exec --data-urlencode \
 "query=CREATE TABLE trips(pickupDatetime timestamp, \
 dropoffDatetime timestamp, passengerCount int, tripDistance double, \
@@ -46,7 +46,7 @@ fareAmount double, tipAmount double, taxesAndTolls double, totalAmount double) \
 timestamp(pickupDatetime);"
 ```
 
-```sql title="Create weather table"
+```questdb-sql title="Create weather table"
 curl -G http://localhost:9000/exec --data-urlencode \
 "query=CREATE TABLE weather(timestamp timestamp, windSpeed int, \
 skyCover symbol, tempF int, rain1H double, snowDepth int) \
@@ -67,13 +67,13 @@ inserted in a new table named after the file, for example `weather.csv`. We also
 set the `timestamp` flag to mark the designated timestamp column in the csv
 file.
 
-```sql title="Populate trips table"
+```questdb-sql title="Populate trips table"
 curl -i -F data=@trips.csv \
 "http://localhost:9000/imp?\
 name=trips&forceHeaders=true&overwrite=false&timestamp=pickupDatetime"
 ```
 
-```sql title="Populate weather table"
+```questdb-sql title="Populate weather table"
 curl -i -F data=@weather.csv \
 "http://localhost:9000/imp?\
 name=weather&forceHeaders=true&overwrite=false&timestamp=timestamp"
@@ -85,7 +85,7 @@ example below. This is useful to send values in a different order from the table
 definition. It is also useful to skip values when they are not relevant. Missing
 values will be inserted as `null`.
 
-```sql title="Insert using SQL"
+```questdb-sql title="Insert using SQL"
 curl -G http://localhost:9000/exec --data-urlencode \
 "query=INSERT INTO weather(timestamp,tempF) values(systimestamp(),45);"
 ```
@@ -95,7 +95,7 @@ curl -G http://localhost:9000/exec --data-urlencode \
 Just like `CREATE TABLE` and `INSERT INTO` statements, we can use `exec` to pass
 SQL queries. `exec` returns results in JSON.
 
-```sql title="Simple query"
+```questdb-sql title="Simple query"
 curl -G http://localhost:9000/exec --data-urlencode \
 "query=select timestamp, tempF from weather limit 2;"
 ```
@@ -137,7 +137,7 @@ Here are a few example queries you could run against the dataset.
 
 You can use the `/exp` endpoint to export query results as follows.
 
-```sql title="Save results as csv"
+```questdb-sql title="Save results as csv"
 curl -G http://localhost:9000/exp --data-urlencode \
 "query=select * from weather limit 100;" > results.csv
 ```
@@ -153,7 +153,7 @@ As QuestDB is a persisted database, the data will remain after you shut down the
 server. If you would like to remove the data, you can run the following
 statements to drop the tables.
 
-```sql title="Cleanup"
+```questdb-sql title="Cleanup"
 DROP TABLE trips;
 DROP TABLE weather;
 ```

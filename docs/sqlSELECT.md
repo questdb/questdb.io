@@ -25,11 +25,11 @@ omit most of the statement and simply pass the table name.
 
 The two examples below are equivalent
 
-```sql title="QuestDB dialect"
+```questdb-sql title="QuestDB dialect"
 ratings;
 ```
 
-```sql title="Traditional SQL equivalent"
+```questdb-sql title="Traditional SQL equivalent"
 SELECT * FROM ratings;
 ```
 
@@ -40,8 +40,8 @@ interested in.
 
 Example:
 
-```sql
-SELECT movieId, rating  FROM ratings;
+```questdb-sql
+SELECT movieId, rating FROM ratings;
 ```
 
 ### Arithmetic Expressions
@@ -50,7 +50,7 @@ SELECT movieId, rating  FROM ratings;
 mix comma separated lists of expressions with the column names you are
 selecting.
 
-```sql
+```questdb-sql
 SELECT movieId, (100 - rating)*2, rating > 3.5 good
 FROM ratings;
 ```
@@ -68,7 +68,7 @@ want after that expression
 Alias names and column names must be unique.
 :::
 
-```sql
+```questdb-sql
 SELECT movieId alias1, rating alias2
 FROM ratings
 ```
@@ -87,12 +87,12 @@ Simply use a mix of column names and aggregation functions in a `SELECT` clause.
 You can have any number of discrete value columns and any number of aggregation
 functions.
 
-```sql title="QuestDB dialect"
+```questdb-sql title="QuestDB dialect"
 SELECT movieId, avg(rating), count()
 FROM ratings;
 ```
 
-```sql title="Traditional SQL equivalent"
+```questdb-sql title="Traditional SQL equivalent"
 SELECT movieId, avg(rating), count()
 FROM ratings
 GROUP BY movieId;
@@ -103,7 +103,7 @@ GROUP BY movieId;
 Aggregation functions can be used in arithmetic expressions. The following
 computes `mid` of rating values for every movie.
 
-```sql
+```questdb-sql
 SELECT movieId, (min(rating) + max(rating))/2 mid, count() count
 FROM ratings;
 ```

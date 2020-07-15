@@ -15,7 +15,7 @@ column as part of a [SELECT statement](sqlSELECT.md).
 
 The following query will return a list of all unique ratings in the table.
 
-```sql title="Simple query"
+```questdb-sql title="Simple query"
 SELECT DISTINCT movieId
 FROM ratings;
 ```
@@ -23,12 +23,12 @@ FROM ratings;
 SELECT DISTINCT can be used in conjunction with more advanced queries and
 filters.
 
-```sql title="With aggregate"
+```questdb-sql title="With aggregate"
 SELECT DISTINCT movieId, count()
 FROM ratings;
 ```
 
-```sql title="With filter"
+```questdb-sql title="With filter"
 SELECT DISTINCT movieId, count()
 FROM ratings
 WHERE score > 3;

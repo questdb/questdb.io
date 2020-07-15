@@ -22,7 +22,7 @@ With Docker installed, you need to pull the QuestDB image. The below command
 will pull the latest image from our repository, which is updated with every
 release.
 
-```sql title="Pull the latest image"
+```questdb-sql title="Pull the latest image"
 docker pull questdb/questdb
 ```
 
@@ -41,7 +41,7 @@ The below will use the image you just pulled to create a container called
 **questdb** with local port 9000 mapped to the container. This will open up the
 HTTP API.
 
-```sql title="Create a container"
+```questdb-sql title="Create a container"
 docker create --name questdb -p 9000:9000 questdb/questdb
 ```
 
@@ -49,7 +49,7 @@ docker create --name questdb -p 9000:9000 questdb/questdb
 
 Now that you have created a container.
 
-```sql title="Start the container"
+```questdb-sql title="Start the container"
 docker start questdb
 ```
 
@@ -60,7 +60,7 @@ Here is what it looks like to start QuestDB on docker in just 3 commands
 You can check the status of your container with **docker ps**. It also lists the
 ports we have mapped.
 
-```sql title="Check existing containers"
+```questdb-sql title="Check existing containers"
 docker ps
 ```
 
@@ -83,7 +83,7 @@ As QuestDB is a persisted database, the data will remain after you shut down the
 container. If you would like to remove the data, you can run the following to
 drop the tables.
 
-```sql title="Remove tables"
+```questdb-sql title="Remove tables"
 DROP TABLE trips;
 DROP TABLE weather;
 ```
@@ -96,7 +96,7 @@ container is stopped. Find out more in our
 
 You can then shut down and remove the container.
 
-```sql title="Stop and remove the container"
+```questdb-sql title="Stop and remove the container"
 docker stop questdb
 docker rm questdb
 ```

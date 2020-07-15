@@ -22,7 +22,7 @@ Return value type is the same as the type of the argument.
 
 #### Examples
 
-```sql title="Sum all quantities in the transactions table"
+```questdb-sql title="Sum all quantities in the transactions table"
 SELECT sum(quantity) FROM transactions;
 ```
 
@@ -30,7 +30,7 @@ SELECT sum(quantity) FROM transactions;
 | --- |
 | 100 |
 
-```sql title="Sum all quantities in the transactions table, aggregated by item"
+```questdb-sql title="Sum all quantities in the transactions table, aggregated by item"
 SELECT item, sum(quantity) FROM transactions;
 ```
 
@@ -44,7 +44,7 @@ SELECT item, sum(quantity) FROM transactions;
 `sum` does not perform overflow check. To avoid overflow, you can cast the
 argument to wider type.
 
-```sql title="Cast as long to avoid overflow"
+```questdb-sql title="Cast as long to avoid overflow"
 SELECT sum(cast(a as long)) from table
 ```
 
@@ -70,7 +70,7 @@ Return value type is the same as the type of the argument.
 
 #### Examples
 
-```sql
+```questdb-sql
 select ksum(a)
 from (select rnd_double() a from long_sequence(100));
 ```
@@ -101,7 +101,7 @@ Return value type is the same as the type of the argument.
 
 #### Examples
 
-```sql
+```questdb-sql
 select nsum(a)
 from (select rnd_double() a from long_sequence(100));
 ```
@@ -130,7 +130,7 @@ Return value type is `long`.
 
 - Count of rows in the transactions table.
 
-```sql
+```questdb-sql
 SELECT count() FROM transactions;
 ```
 
@@ -140,7 +140,7 @@ SELECT count() FROM transactions;
 
 - Count of rows in the transactions table aggregated by `payment_type` value.
 
-```sql
+```questdb-sql
 SELECT payment_type, count() FROM transactions;
 ```
 
@@ -172,7 +172,7 @@ Return value type is `double`.
 
 #### Examples
 
-```sql title="Average transaction amount"
+```questdb-sql title="Average transaction amount"
 SELECT avg(amount) FROM transactions;
 ```
 
@@ -180,7 +180,7 @@ SELECT avg(amount) FROM transactions;
 | ---- |
 | 22.4 |
 
-```sql title="Average transaction amount by payment_type"
+```questdb-sql title="Average transaction amount by payment_type"
 SELECT payment_type, avg(amount) FROM transactions;
 ```
 
@@ -208,7 +208,7 @@ Return value type is the same as the type of the argument.
 
 #### Examples
 
-```sql title="Lowest transaction amount"
+```questdb-sql title="Lowest transaction amount"
 SELECT min(amount) FROM transactions;
 ```
 
@@ -216,7 +216,7 @@ SELECT min(amount) FROM transactions;
 | ---- |
 | 12.5 |
 
-```sql title="Lowest transaction amount, by payment_type"
+```questdb-sql title="Lowest transaction amount, by payment_type"
 SELECT payment_type, min(amount) FROM transactions;
 ```
 
@@ -244,7 +244,7 @@ Return value type is the same as the type of the argument.
 
 #### Examples
 
-```sql title="Highest transaction amount"
+```questdb-sql title="Highest transaction amount"
 SELECT max(amount) FROM transactions;
 ```
 
@@ -252,7 +252,7 @@ SELECT max(amount) FROM transactions;
 | ---- |
 | 55.3 |
 
-```sql title="Highest transaction amount by payment_type"
+```questdb-sql title="Highest transaction amount by payment_type"
 SELECT payment_type, max(amount) FROM transactions;
 ```
 

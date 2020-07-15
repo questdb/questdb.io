@@ -38,7 +38,7 @@ listB
 | Black Pen   | 2   |
 | Green Pen   | 3   |
 
-```sql
+```questdb-sql
 liastA UNION listB
 ```
 
@@ -52,7 +52,7 @@ will return
 | Pink Pen    | 1   |
 | Black Pen   | 2   |
 
-```sql
+```questdb-sql
 liastA UNION ALL listB
 ```
 

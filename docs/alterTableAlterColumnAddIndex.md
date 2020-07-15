@@ -21,7 +21,7 @@ new index for SQL executions.
 
 ## Example
 
-```sql title="Adding an index"
+```questdb-sql title="Adding an index"
 ALTER TABLE trades ALTER COLUMN symbol ADD INDEX
 ```
 

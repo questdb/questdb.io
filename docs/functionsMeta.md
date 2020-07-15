@@ -24,7 +24,7 @@ Returns a `table`.
 
 - Get all tables in the database
 
-```sql
+```questdb-sql
 all_tables();
 ```
 
@@ -36,7 +36,7 @@ all_tables();
 
 - Get all tables in the database that match 'sales'
 
-```sql
+```questdb-sql
 all_tables() WHERE tableName ~= 'sales';
 ```
 
@@ -49,7 +49,7 @@ all_tables() WHERE tableName ~= 'sales';
 
 - Get all tables in reverse alphabetical order
 
-```sql
+```questdb-sql
 all_tables() ORDER BY tableName DESC;
 ```
 
@@ -83,7 +83,7 @@ Returns a `table` with two columns:
 
 - Get all columns in the table
 
-```sql
+```questdb-sql
 table_columns('myTable')
 ```
 
@@ -98,7 +98,7 @@ table_columns('myTable')
 
 - Get all columns in the database that match the name 'sales'
 
-```sql
+```questdb-sql
 SELECT columnName FROM table_columns('myTable') WHERE columnName ~= 'sales';
 ```
 
@@ -111,7 +111,7 @@ SELECT columnName FROM table_columns('myTable') WHERE columnName ~= 'sales';
 
 - Get the count of column types
 
-```sql
+```questdb-sql
 SELECT columnType, count() FROM table_columns('wthr');
 ```
 

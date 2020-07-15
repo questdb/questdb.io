@@ -43,10 +43,10 @@ security feature to disallow random file access by QuestDB.
 
 ## Examples
 
-```sql title="COPY"
+```questdb-sql title="COPY"
 COPY trades20191223 FROM 'C:\archive\trades\20191223.csv'
 ```
 
-```sql title="COPY with headers true"
+```questdb-sql title="COPY with headers true"
 COPY trades20191223 FROM 'C:\archive\trades\20191223.csv' with headers true
 ```

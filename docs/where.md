@@ -21,7 +21,7 @@ conditions using brackets `()`.
 
 ![complex where syntax](/img/doc/diagrams/complexWhere.svg)
 
-```sql title="Example"
+```questdb-sql title="Example"
 SELECT * FROM table WHERE
 a = 1 AND (b = 2 OR c = 3 and not d)
 ```
@@ -37,7 +37,7 @@ Evaluates match of a string or symbol.
 
 ![where syntax exact string](/img/doc/diagrams/whereExactString.svg)
 
-```sql title="Example"
+```questdb-sql title="Example"
 SELECT * FROM tab WHERE name = 'John'
 ```
 
@@ -53,7 +53,7 @@ Evaluates mismatch of a string or symbol.
 
 ![where syntax string not match](/img/doc/diagrams/whereStringNotMatch.svg)
 
-```sql title="Example"
+```questdb-sql title="Example"
 SELECT * FROM tab WHERE name != 'John'
 ```
 
@@ -71,7 +71,7 @@ patterns.
 
 ![where syntax regex match](/img/doc/diagrams/whereRegexMatch.svg)
 
-```sql title="Example"
+```questdb-sql title="Example"
 SELECT * FROM tab WHERE ~=(name, 'Jo')
 ```
 
@@ -89,7 +89,7 @@ patterns.
 
 ![where syntax regex not match](/img/doc/diagrams/whereRegexNotMatch.svg)
 
-```sql title="Example"
+```questdb-sql title="Example"
 SELECT * FROM tab WHERE !~(name, 'Jo')
 ```
 
@@ -104,7 +104,7 @@ SELECT * FROM tab WHERE !~(name, 'Jo')
 Evaluates match or mismatch against a list of elements.
 ![where syntax list match](/img/doc/diagrams/listMatch.svg)
 
-```sql title="List match"
+```questdb-sql title="List match"
 SELECT * FROM tab WHERE name in('Tim', 'Tom')
 ```
 
@@ -114,7 +114,7 @@ SELECT * FROM tab WHERE name in('Tim', 'Tom')
 | Tom  | 45  |
 | ...  | ... |
 
-```sql title="List mismatch"
+```questdb-sql title="List mismatch"
 SELECT * FROM tab WHERE NOT name in('Tim', 'Tom')
 ```
 
@@ -139,15 +139,15 @@ verbose.
 
 ![syntax numeric comparison](/img/doc/diagrams/whereNumericValue.svg)
 
-```sql title="Superior or equal to 23"
+```questdb-sql title="Superior or equal to 23"
 SELECT * FROM tab WHERE age >= 23
 ```
 
-```sql title="Equal to 23"
+```questdb-sql title="Equal to 23"
 SELECT * FROM tab WHERE age = 23
 ```
 
-```sql title="NOT Equal to 23"
+```questdb-sql title="NOT Equal to 23"
 SELECT * FROM tab WHERE age != 23
 ```
 
@@ -158,7 +158,7 @@ is useful to simulate equality on `double` and `float` values.
 
 ![syntax eq comparison doulbe](/img/doc/diagrams/whereEqDoublePrecision.svg)
 
-```sql title="Equal to 23 with 0.00001 precision"
+```questdb-sql title="Equal to 23 with 0.00001 precision"
 SELECT * FROM tab WHERE eq(age, 23, 0.00001)
 ```
 
@@ -175,7 +175,7 @@ scaling factor.
 Using the columnName will return `true` values. To return `false` values,
 precede the column name with the `NOT` operator.
 
-```sql title="Example - true"
+```questdb-sql title="Example - true"
 SELECT * FROM table WHERE isActive
 ```
 
@@ -185,7 +185,7 @@ SELECT * FROM table WHERE isActive
 | 38572      | true     |
 | ...        | ...      |
 
-```sql title="Example - false"
+```questdb-sql title="Example - false"
 SELECT * FROM table WHERE NOT isActive
 ```
 
@@ -209,7 +209,7 @@ can be applied [dynamically](timestamp.md#during-a-select-operation).
 
 ![syntax timestamp exacth where](/img/doc/diagrams/timestampExact.svg)
 
-```sql title="Example - Date"
+```questdb-sql title="Example - Date"
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z'
 ```
 
@@ -219,7 +219,7 @@ SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z'
 | 2010-01-12T00:02:26.000Z | 3.1   |
 | ...                      | ...   |
 
-```sql title="Example - Timestamp"
+```questdb-sql title="Example - Timestamp"
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000000Z'
 ```
 
@@ -237,7 +237,7 @@ Return results within a defined range
 
 ![syntax timestamp partial where](/img/doc/diagrams/timestampPartial.svg)
 
-```sql title="Results in a given year"
+```questdb-sql title="Results in a given year"
 SELECT * FROM tab WHERE ts = '2018'
 ```
 
@@ -247,7 +247,7 @@ SELECT * FROM tab WHERE ts = '2018'
 | ...                         | ...   |
 | 2018-12-31T23:59:59.999999Z | 115.8 |
 
-```sql title="Results in a given minute"
+```questdb-sql title="Results in a given minute"
 SELECT * FROM tab WHERE ts = '2018-05-23T12:15'
 ```
 
@@ -272,7 +272,7 @@ by the modifier parameter.
 - A `positive` value extends the interval.
 - A `negative` value reduces the interval.
 
-```sql title="Results in a given year and the first month of the next year"
+```questdb-sql title="Results in a given year and the first month of the next year"
 SELECT * FROM tab WHERE ts = '2018;1M'
 ```
 
@@ -285,7 +285,7 @@ by one month.
 | ...                         | ...   |
 | 2019-01-31T23:59:59.999999Z | 115.8 |
 
-```sql title="Results in a given month excluding the last 3 days"
+```questdb-sql title="Results in a given month excluding the last 3 days"
 SELECT * FROM tab WHERE ts = '2018-01;-3d'
 ```
 
@@ -310,7 +310,7 @@ For non-standard ranges, users can explicitly specify the target range using the
 `lower_bound` and `upper_bound` must be valid timestamps or dates and are
 `inclusive`.
 
-```sql title="Explicit range"
+```questdb-sql title="Explicit range"
 SELECT * FROM tab
 WHERE ts in('2018-01-01T00:00:23.000000Z' , '2018-01-01T00:00:23.500000Z')
 ```

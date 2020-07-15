@@ -72,7 +72,7 @@ Return value type is `boolean`.
 
 #### Examples
 
-```sql title="Random boolean"
+```questdb-sql title="Random boolean"
 SELECT
     value a,
     count() b
@@ -108,7 +108,7 @@ Return value type is `byte`.
 
 #### Examples
 
-```sql title="Random byte"
+```questdb-sql title="Random byte"
 SELECT rnd_byte() FROM long_sequence(5);
 SELECT rnd_byte(-1,1) FROM long_sequence(5);
 ```
@@ -144,7 +144,7 @@ Return value type is `short`.
 
 #### Examples
 
-```sql title="Random short"
+```questdb-sql title="Random short"
 SELECT rnd_short() FROM long_sequence(5);
 SELECT rnd_short(-1,1) FROM long_sequence(5);
 ```
@@ -185,7 +185,7 @@ Return value type is `int`.
 
 #### Examples
 
-```sql title="Random int"
+```questdb-sql title="Random int"
 SELECT rnd_int() FROM long_sequence(5)
 SELECT rnd_int(1,4,0) FROM long_sequence(5);
 SELECT rnd_int(1,4,1) FROM long_sequence(5);
@@ -230,14 +230,14 @@ Return value type is `long`.
 
 #### Examples
 
-```sql title="Random long"
+```questdb-sql title="Random long"
 SELECT rnd_long() FROM long_sequence(5);
 SELECT rnd_long(1,4,0) FROM long_sequence(5);
 SELECT rnd_long(1,4,1) FROM long_sequence(5);
 SELECT rnd_long(-10000000,10000000,2) FROM long_sequence(5);
 ```
 
-```sql
+```questdb-sql
 1,4,3,1,2
 null,null,null,null,null
 -164567594, -323331140, 26846334, -892982893, -351053301
@@ -270,7 +270,7 @@ Return value type is `long256`.
 
 #### Examples
 
-```sql title="Random long256"
+```questdb-sql title="Random long256"
 SELECT rnd_long256() FROM long_sequence(5);
 ```
 
@@ -306,7 +306,7 @@ Return value type is `float`.
 
 #### Examples
 
-```sql title="Random float"
+```questdb-sql title="Random float"
 SELECT rnd_float() FROM long_sequence(5);
 SELECT rnd_float(2) FROM long_sequence(6);
 ```
@@ -340,7 +340,7 @@ Return value type is `double`.
 
 #### Examples
 
-```sql title="Random double"
+```questdb-sql title="Random double"
 SELECT rnd_double() FROM long_sequence(5);
 SELECT rnd_double(2) FROM long_sequence(5);
 ```
@@ -377,7 +377,7 @@ Return value type is `date`.
 
 #### Examples
 
-```sql title="Random date"
+```questdb-sql title="Random date"
 SELECT rnd_date(
     to_date('2015', 'yyyy'),
     to_date('2016', 'yyyy'),
@@ -385,7 +385,7 @@ SELECT rnd_date(
 FROM long_sequence(5);
 ```
 
-```sql
+```questdb-sql
 2015-01-29T18:00:17.402Z, 2015-11-15T20:22:14.112Z,
 2015-12-08T09:26:04.483Z, 2015-05-28T02:22:47.022Z,
 2015-10-13T19:16:37.034Z
@@ -421,7 +421,7 @@ Return value type is `timestamp`.
 
 #### Examples
 
-```sql title="Random timestamp"
+```questdb-sql title="Random timestamp"
 SELECT rnd_timestamp(
     to_timestamp('2015', 'yyyy'),
     to_timestamp('2016', 'yyyy'),
@@ -429,7 +429,7 @@ SELECT rnd_timestamp(
 FROM long_sequence(5);
 ```
 
-```sql
+```questdb-sql
 2015-01-29T18:00:17.402762Z, 2015-11-15T20:22:14.112744Z,
 2015-12-08T09:26:04.483039Z, 2015-05-28T02:22:47.022680Z,
 2015-10-13T19:16:37.034203Z
@@ -456,7 +456,7 @@ Return value type is `char`.
 
 #### Examples
 
-```sql title="Random char"
+```questdb-sql title="Random char"
 SELECT rnd_char() FROM long_sequence(5);
 ```
 
@@ -506,7 +506,7 @@ Return value type is `symbol`.
 
 #### Examples
 
-```sql title="Random symbol from a list"
+```questdb-sql title="Random symbol from a list"
 SELECT rnd_symbol('ABC','def', '123')
 FROM long_sequence(5);
 ```
@@ -515,7 +515,7 @@ FROM long_sequence(5);
 'ABC', '123', 'def', '123', 'ABC'
 ```
 
-```sql title="Random symbol, randomly generated"
+```questdb-sql title="Random symbol, randomly generated"
 SELECT rnd_symbol(2, 3, 4, 0)
 FROM long_sequence(5);
 ```
@@ -563,7 +563,7 @@ Return value type is `string`.
 
 #### Examples
 
-```sql title="Random string from a list"
+```questdb-sql title="Random string from a list"
 SELECT rnd_str('ABC','def', '123')
 FROM long_sequence(5);
 ```
@@ -572,7 +572,7 @@ FROM long_sequence(5);
 'ABC', '123', 'def', '123', 'ABC'
 ```
 
-```sql title="Random string, randomly generated"
+```questdb-sql title="Random string, randomly generated"
 SELECT rnd_str(3, 2, 2, 4)
 FROM long_sequence(8);
 ```
@@ -611,7 +611,7 @@ Return value type is `binary`.
 
 #### Examples
 
-```sql title="Random binary"
+```questdb-sql title="Random binary"
 SELECT rnd_bin() FROM long_sequence(5);
 SELECT rnd_bin(2, 5, 2) FROM long_sequence(5);
 ```

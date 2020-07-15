@@ -41,7 +41,7 @@ import TabItem from "@theme/TabItem"
 
 <TabItem value="sql">
 
-```sql
+```questdb-sql
 create table balances (
 	cust_id int,
 	balance_ccy symbol,
@@ -132,7 +132,7 @@ Let's now insert a few records:
 ]}>
 <TabItem value="sql">
 
-```sql
+```questdb-sql
 insert into balances (cust_id, balance_ccy, balance, timestamp)
 values (1, 'USD', 1500.00, 1587571882704665);
 
@@ -249,7 +249,7 @@ SQL to Java and read the resulting table (see tab `Java SQL`).
 ]}>
 <TabItem value="sql">
 
-```sql
+```questdb-sql
 balances;
 ```
 
@@ -350,7 +350,7 @@ information like the average balance per currency (note the
 [voluntary omission of redundant GROUP BY](sqlOverview.md#absence-of-group-by)
 below).
 
-```sql
+```questdb-sql
 select balance_ccy, avg(balance) from balances;
 ```
 
@@ -368,7 +368,7 @@ all we need is to add `SAMPLE BY 1h` to the above query!
 
 Lets update balance of customer `1` in the `balances` table:
 
-```sql
+```questdb-sql
 insert into balances (cust_id, balance_ccy, balance, timestamp)
 values (1, 'USD', 330.50, 1587572414404997);
 ```
@@ -388,7 +388,7 @@ change history. In order to select only the latest value, our `SELECT` statement
 will have to change. We use `LATEST BY` to only select last row for the
 `(1,USD)` tuple for customer 1 and find the updated USD balance.
 
-```sql
+```questdb-sql
 balances
 latest by cust_id, balance_ccy
 where cust_id = 1
@@ -405,7 +405,7 @@ sub-queries. To find out more, check out our
 [SQL execution order](sqlExecutionOrder.md) Here is an example of how to select
 the latest account information, only for balances over 800.
 
-```sql
+```questdb-sql
 (balances
 latest by cust_id, balance_ccy)
 where balance > 800
@@ -431,7 +431,7 @@ performance will degrade on hundreds of millions of records.
 Let's assume that `customer 1` closes their `USD` account but keeps their `EUR`
 account. This can be reflected in the database as follows.
 
-```sql
+```questdb-sql
 insert into balances
 (cust_id, balance_ccy, inactive, timestamp)
 values (1, 'USD', true, 1587572423312698));
@@ -452,7 +452,7 @@ this point, the `balances` table looks like the below
 If we now want to look at the active account balances for `customer 1` we can do
 so as follows:
 
-```sql
+```questdb-sql
 (balances
 latest by balance_ccy
 where cust_id=1)
@@ -477,7 +477,7 @@ In other words, the brackets allow us to get "the latest balance excluding
 inactive". If we were to remove the brackets and use the following query, we
 would get "the latest non inactive balance" which is slightly different.
 
-```sql
+```questdb-sql
 balances
 latest by balance_ccy
 where cust_id=1
@@ -509,7 +509,7 @@ world of fast time travel!
 For example the below query can be used to know the state of all balances at a
 `15:00:00` snapshot.
 
-```sql
+```questdb-sql
 balances
 latest by balance_ccy, cust_id
 where timestamp <= '2020-04-22T16:15:00.000Z'

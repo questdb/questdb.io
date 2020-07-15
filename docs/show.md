@@ -17,7 +17,7 @@ of a function, see [table_columns()](functionsMeta.md#table_columns) and
 
 Show all tables:
 
-```sql
+```questdb-sql
 SHOW TABLES;
 ```
 
@@ -29,7 +29,7 @@ SHOW TABLES;
 
 Show all columns for table `weather`
 
-```sql
+```questdb-sql
 SHOW COLUMNS FROM myTable;
 ```
 

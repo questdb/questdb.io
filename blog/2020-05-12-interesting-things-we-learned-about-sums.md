@@ -257,7 +257,7 @@ We generated two test files using our
 [random generation functions](/docs/functionsRandomValueGenerators) and exported
 the results to CSV. We then imported the CSV individually in the databases.
 
-```sql
+```questdb-sql
 SELECT rnd_double() FROM long_sequence(1_000_000_000l); -- non null
 SELECT rnd_double(2) FROM long_sequence(1_000_000_000l); -- with nulls
 ```

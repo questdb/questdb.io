@@ -25,7 +25,7 @@ module.exports = {
       anonymizeIP: true,
     },
     prism: {
-      defaultLanguage: "sql",
+      defaultLanguage: "questdb-sql",
       theme: require("prism-react-renderer/themes/dracula"),
     },
     algolia: {

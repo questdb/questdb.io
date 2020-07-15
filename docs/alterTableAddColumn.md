@@ -32,14 +32,14 @@ wait on any reads to finish.
 
 Add a new column called `comment` of type `STRING` type to the table `ratings`
 
-```sql title="New column"
+```questdb-sql title="New column"
 ALTER TABLE ratings ADD COLUMN comment STRING
 ```
 
 When adding a `symbol` column, you can also specify symbol related options, for
 example:
 
-```sql title="New symbol column"
+```questdb-sql title="New symbol column"
 ALTER TABLE ratings ADD COLUMN comment SYMBOL NOCACHE INDEX
 ```
 

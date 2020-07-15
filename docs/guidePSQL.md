@@ -100,7 +100,7 @@ commands.
 Let's create a simple table with three columns (timestamp, location and a
 temperature reading) with a designated timestamp.
 
-```sql title="Create table"
+```questdb-sql title="Create table"
 CREATE TABLE temp(
     ts timestamp,
     location symbol,
@@ -123,7 +123,7 @@ table with test data.
 
 We can insert data points manually as follows
 
-```sql title="Inserting values"
+```questdb-sql title="Inserting values"
 INSERT INTO temp VALUES(
     systimestamp() ,
     rnd_symbol('kitchen', 'bedroom', 'bathroom', 'garage'),
@@ -144,7 +144,7 @@ use `cast` to convert it to `int`.
 The below will add 1 million readings from a location chosen at random
 approximatively every 30 seconds.
 
-```sql title="Inserting randomly generated values"
+```questdb-sql title="Inserting randomly generated values"
 INSERT INTO temp
     SELECT
         dateadd('s', 30 * cast(x as int), systimestamp()) ts,
@@ -158,7 +158,7 @@ INSERT INTO temp
 Now that we have data, we can run a few queries to start leveraging QuestDB's
 time-series SQL extensions.
 
-```sql title="Weekly average temperature"
+```questdb-sql title="Weekly average temperature"
 SELECT ts, avg(tempC)
 FROM temp
 WHERE location = 'kitchen'
@@ -178,7 +178,7 @@ This query uses [SAMPLE BY](sqlSELECT.md#sample-by) to generate weekly
 time buckets in just 3 words.
 :::
 
-```sql title="Last temperature reading by location"
+```questdb-sql title="Last temperature reading by location"
 SELECT * FROM temp
 LATEST BY location;
 ```
@@ -190,7 +190,7 @@ LATEST BY location;
 | 2020-11-29 06:46:38.793172 | bedroom  | 14.5  |
 | 2020-11-29 06:46:53.793172 | garage   | 14.4  |
 
-```sql title="Last reading of december"
+```questdb-sql title="Last reading of december"
 SELECT * FROM temp
 LATEST BY location
 WHERE ts='2020-12';
@@ -217,7 +217,7 @@ intervals within a select statement.
 
 Before we leave, let's remember to cleanup and delete all the data
 
-```sql title="Drop the table and the data"
+```questdb-sql title="Drop the table and the data"
 DROP TABLE temp;
 ```
 

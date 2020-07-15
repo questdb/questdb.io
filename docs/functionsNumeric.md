@@ -29,7 +29,7 @@ Return value type is `double`.
 
 #### Examples
 
-```sql
+```questdb-sql
 SELECT
     d,
     round(d, -2),
@@ -73,7 +73,7 @@ Return value type is `double`.
 
 #### Examples
 
-```sql
+```questdb-sql
 SELECT
     d,
     round_down(d, -2),
@@ -117,7 +117,7 @@ Return value type is `double`.
 
 #### Examples
 
-```sql
+```questdb-sql
 SELECT
     d,
     round_up(d, -2),
@@ -164,7 +164,7 @@ Return value type is `double`.
 
 #### Examples
 
-```sql title="Tie-breaker behavior"
+```questdb-sql title="Tie-breaker behavior"
 SELECT
     round_half_even(5.55, 1),
     round_half_even(5.65, 1)
@@ -175,7 +175,7 @@ FROM long_sequence(1);
 | --------------- | --------------- |
 | 5.6             | 5.6             |
 
-```sql title="More examples"
+```questdb-sql title="More examples"
 SELECT
     d,
     round_half_even(d, -2),
@@ -219,7 +219,7 @@ Return value type is `double`.
 
 #### Examples
 
-```sql
+```questdb-sql
 SELECT
     x - 2 a,
     abs(x -2)

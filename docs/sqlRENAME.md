@@ -12,6 +12,6 @@ sidebar_label: RENAME TABLE
 
 ### Example
 
-```sql
+```questdb-sql
 RENAME TABLE 'test.csv' TO 'myTable';
 ```

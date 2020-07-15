@@ -33,7 +33,7 @@ sensors, the other will contain the readings from these sensors.
 
 Let's start by creating the `sensors` table.
 
-```sql title="Create a table"
+```questdb-sql title="Create a table"
 CREATE TABLE sensors (ID LONG, make STRING, city STRING);
 ```
 
@@ -47,7 +47,7 @@ reference.
 
 Let's populate our `sensors` table with procedurally-generated data.
 
-```sql title="Insert as select"
+```questdb-sql title="Insert as select"
 INSERT INTO sensors
     SELECT
         x ID, --increasing integer
@@ -80,7 +80,7 @@ makes and in various cities. It should look like the below:
 Let's now create some sensor readings. In this case, we will generate the table
 and the data at the same time.
 
-```sql title="Create table as"
+```questdb-sql title="Create table as"
 CREATE TABLE readings
 AS(
     SELECT
@@ -120,13 +120,13 @@ The generated data will look like the below.
 Let's first select all records from the `readings` table (note the omission of
 `SELECT * FROM`):
 
-```sql title="Select *"
+```questdb-sql title="Select *"
 readings;
 ```
 
 Let's also select the `count` of records from `readings`:
 
-```sql title="Simple aggregation"
+```questdb-sql title="Simple aggregation"
 SELECT count() FROM readings;
 ```
 
@@ -136,7 +136,7 @@ SELECT count() FROM readings;
 
 and the average reading:
 
-```sql title="Simple aggregation"
+```questdb-sql title="Simple aggregation"
 SELECT avg(temp) FROM readings;
 ```
 
@@ -146,7 +146,7 @@ SELECT avg(temp) FROM readings;
 
 We can now leverage our `sensors` table to get more interesting data.
 
-```sql title="Simple JOIN"
+```questdb-sql title="Simple JOIN"
 SELECT *
 FROM readings
 JOIN(
@@ -168,7 +168,7 @@ Results should look like the data below:
 | 7   | 2019-10-17T00:00:02.100000Z | 15.06719566 | 2829     | 2829   | Honeywell         | New York      |
 | ... | ...                         | ...         | ...      | ...    | ...               | ...           |
 
-```sql title="Aggregation keyed by city"
+```questdb-sql title="Aggregation keyed by city"
 SELECT city, max(temp)
 FROM readings
 JOIN(
@@ -187,7 +187,7 @@ Results should look like the data below:
 | San Francisco | 22.99999531 |
 | Chicago       | 22.9999988  |
 
-```sql title="Aggregation by hourly time buckets"
+```questdb-sql title="Aggregation by hourly time buckets"
 SELECT ts, city, make, avg(temp)
 FROM readings
 JOIN (
@@ -220,7 +220,7 @@ Find more about these commands in the [Select](sqlSELECT.md) and
 
 Upon dropping the table, all data is deleted.
 
-```sql
+```questdb-sql
 DROP TABLE readings;
 DROP TABLE sensors;
 ```

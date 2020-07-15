@@ -8,7 +8,7 @@ sidebar_label: Text Functions
 
 `concat(str, ...)` - concatenates a string from one or more input values
 
-```sql title="Example"
+```questdb-sql title="Example"
 SELECT firstName, lastName, concat(firstName, ' ', lastName) FROM names;
 ```
 
@@ -24,7 +24,7 @@ SELECT firstName, lastName, concat(firstName, ' ', lastName) FROM names;
 `concat()` can be used to generate `line protocol`. See example below.
 :::
 
-```sql title="Generating line protocol"
+```questdb-sql title="Generating line protocol"
 SELECT
 concat(
     'trades,instrument=', rnd_str(2,2,0),
@@ -57,7 +57,7 @@ trades,instrument=MI,side=B price=99348,quantity=8450 1571270400400
 - a `symbol`
 - a `binary` blob
 
-```sql title="Example"
+```questdb-sql title="Example"
 SELECT name a, length(name) b FROM names limit 4
 ```
 

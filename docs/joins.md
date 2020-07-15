@@ -43,7 +43,7 @@ The following query will return the movieId and the average rating from table
 corresponding title will be identified based on the `movieId` in the `ratings`
 table matching an `id` in the `movies` table.
 
-```sql title="INNER JOIN ON"
+```questdb-sql title="INNER JOIN ON"
 SELECT movieId a, title, avg(rating)
 FROM ratings
 INNER JOIN (select movieId id, title from movies)
@@ -55,7 +55,7 @@ By default `JOIN` is interpreted as `INNER JOIN`. Therefore `INNER` can
 be dropped.
 :::
 
-```sql title="Dropping INNER"
+```questdb-sql title="Dropping INNER"
 SELECT movieId a, title, avg(rating)
 FROM ratings
 JOIN (select movieId id, title from movies)
@@ -74,7 +74,7 @@ will return `NULL` values in right table fields
 
 General syntax is as follows:
 
-```sql
+```questdb-sql
 SELECT tab1.colA, tab2.colB
 FROM table1 tab1
 OUTER JOIN table2 tab2
@@ -84,7 +84,7 @@ ON tab1.colA = tab2.colB;
 `OUTER JOIN` query can also be used to select all rows in left table that do not
 exist in right table.
 
-```sql
+```questdb-sql
 SELECT tab1.colA, tab2.colB
 FROM table1 tab1
 OUTER JOIN table2 tab2
@@ -107,7 +107,7 @@ It can be used to a table with all possible combinations.
 
 The following will return all possible combinations of starters and deserts
 
-```sql
+```questdb-sql
 SELECT * FROM starters CROSS JOIN deserts;
 ```
 
@@ -157,7 +157,7 @@ BIDS
 
 Therefore the following query:
 
-```sql
+```questdb-sql
 SELECT
  BIDS.ts timebid,
  bid,
@@ -186,7 +186,7 @@ timestamp inferior or equal to the target timestamp.
 In case tables do not have designated timestamp column, but data is in
 chronological order, timestamp columns can be specified at runtime:
 
-```sql
+```questdb-sql
 SELECT
  BIDS.ts timebid,
  bid,
@@ -205,7 +205,7 @@ tables and therefore does not use the optional `ON` clause.
 If both tables store data for multiple instruments `ON` clause will allow you to
 find bids for asks with matching instrument value.
 
-```sql
+```questdb-sql
 SELECT * FROM ASKS ASOF JOIN BIDS ON (instrument);
 ```
 
@@ -244,7 +244,7 @@ BIDS
 
 This query:
 
-```sql
+```questdb-sql
 SELECT ts timebid, bid, ask
 FROM BIDS SPLICE JOIN ASKS
 ```
@@ -268,7 +268,7 @@ Note that the above query does not use the optional `ON` clause. In case you
 need additional filtering on the two tables, you can use the `ON` clause as
 follows:
 
-```sql
+```questdb-sql
 SELECT ts timebid, instrument bidInstrument, bid, ask
 FROM BIDS
 SPLICE JOIN

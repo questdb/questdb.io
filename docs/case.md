@@ -27,7 +27,7 @@ Assume the following data
 | Anna  | 25  |
 | Jack  | 8   |
 
-```sql title="CASE with ELSE"
+```questdb-sql title="CASE with ELSE"
 select
 Name,
 case
@@ -46,7 +46,7 @@ Result
 | Anna  | major |
 | Jack  | minor |
 
-```sql title="CASE without ELSE"
+```questdb-sql title="CASE without ELSE"
 select
 Name,
 case

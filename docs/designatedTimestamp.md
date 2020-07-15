@@ -73,7 +73,7 @@ which supports out of order inserts
 - Use the `database host clock` as `designated timestamp` by using
   `systimestamp()`:
 
-```sql title=""
+```questdb-sql title=""
 CREATE TABLE readings(
     db_ts timestamp,
     device_ts timestamp,
@@ -82,7 +82,7 @@ CREATE TABLE readings(
 timestamp(db_ts);
 ```
 
-```sql
+```questdb-sql
 INSERT INTO readings VALUES(
 systimestamp(),
 to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'),
@@ -99,7 +99,7 @@ the [date & time functions section](functionsDateAndTime.md).
 - Use a temporary table for the latest partition and order data to insert into
   the main table when changing partition.
 
-```sql title="Main table"
+```questdb-sql title="Main table"
 CREATE TABLE readings(
     db_ts timestamp,
     device_ts timestamp,
@@ -109,7 +109,7 @@ CREATE TABLE readings(
 PARTITION BY DAY;
 ```
 
-```sql title="Temporary table"
+```questdb-sql title="Temporary table"
 CREATE TABLE readings_temp(
     db_ts timestamp,
     device_ts timestamp,
@@ -120,7 +120,7 @@ CREATE TABLE readings_temp(
 When switching over to a new day, insert the last day of data in an ordered
 fashion:
 
-```sql title="Insert ordered data"
+```questdb-sql title="Insert ordered data"
 INSERT INTO readings
     SELECT * FROM (readings_temp ORDER BY db_ts) timestamp(db_ts);
 ```
