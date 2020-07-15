@@ -45,7 +45,10 @@
 }
 
 .footer__link {
+  padding: 0.25rem 0;
+  flex: 1;
   color: var(--palette-white);
+  font-size: var(--font-size-normal);
 }
 
 .footer__bottom {
@@ -61,6 +64,7 @@
 }
 
 .footer__item {
+  display: flex;
   list-style: none;
 }
 
