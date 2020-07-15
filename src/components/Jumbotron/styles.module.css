@@ -68,8 +68,8 @@
 
 @media (max-width: 996px) {
   .jumbotron {
-    padding-bottom: 5.5rem;
-    padding-top: 1rem;
+    padding-bottom: 3.5rem;
+    padding-top: 1.5rem;
   }
 
   .jumbotron__title {
@@ -94,25 +94,7 @@
   }
 
   .jumbotron__right {
-    min-height: auto;
-    margin-left: 0;
-    align-items: center;
-    background: none;
-  }
-
-  .jumbotron__docker {
-    display: flex;
-    position: initial;
-    padding: 1rem 0;
-    justify-content: center;
-    font-size: var(--font-size-small);
-  }
-
-  .jumbotron__docker-icon {
-    left: calc(50% - 27px);
-    bottom: -38px;
-    height: 50px;
-    width: 50px;
+      display: none;
   }
 }
 
