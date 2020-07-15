@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import React from "react"
 import { MDXProvider } from "@mdx-js/react"
 
@@ -35,7 +36,10 @@ const DocPage = (props) => {
     <Layout version={version} key={isClient}>
       <div className={styles.doc}>
         {sidebar && (
-          <div className={styles.doc__sidebar} role="complementary">
+          <div
+            className={clsx("docs-sidebar", styles.doc__sidebar)}
+            role="complementary"
+          >
             <DocSidebar
               docsSidebars={docsSidebars}
               path={currentRoute.path}
