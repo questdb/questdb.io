@@ -191,3 +191,9 @@ nav {
   background-position-y: center;
   background-repeat: no-repeat;
 }
+
+@media (max-width: 1052px) and (min-width: 996px) {
+  :root {
+    --ifm-navbar-item-padding-horizontal: 15px;
+  }
+}
