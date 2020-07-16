@@ -30,7 +30,7 @@ is automatic.
 [configuration key](serverConf.md) `cairo.sql.copy.root` in the
 [server.conf](rootDirectoryStructure.md#serverconf) file.
 
-```shell script title="Example"
+```script title="Example"
 cairo.sql.copy.root=/Users/UserName/Desktop
 ```
 

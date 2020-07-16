@@ -20,7 +20,7 @@ Creates a backup for one, several, or all database tables.
 [server.conf](rootDirectoryStructure.md#serverconf) file.
 :::
 
-```shell script title="Example configuration key"
+```script title="Example configuration key"
 cairo.sql.backup.root=/Users/UserName/Desktop
 ```
 
@@ -38,7 +38,7 @@ You can define a custom format using the
 the example below
 :::
 
-```shell script title="Example user-defined directory format"
+```script title="Example user-defined directory format"
 cairo.sql.backup.dir.datetime.format=yyyy-dd-MM
 ```
 

@@ -64,7 +64,7 @@ ports we have mapped.
 docker ps
 ```
 
-```shell script
+```script
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                              NAMES
 2cc042a64a73        questdb/questdb     "/app/jre/bin/java -…"   14 seconds ago      Up 3 seconds        8892/tcp, 0.0.0.0:9000->9000/tcp   questdb
 ```

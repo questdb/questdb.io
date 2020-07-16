@@ -17,7 +17,7 @@ QuestDB can listen for Line protocol packets both over [TCP](#tcp-receiver) and
 
 #### Syntax
 
-```shell script title="ILP syntax"
+```script title="ILP syntax"
 table_name,tagset valueset timestamp
 ```
 
@@ -51,7 +51,7 @@ Let's assume the following data:
 
 Line protocol to insert this data in the `readings` table would look like this:
 
-```shell script
+```script
 readings,city=London,make=Omron temperature=23.5,humidity=0.343 1465839830100400000
 readings,city=Bristol,make=Honeywell temperature=23.2,humidity=0.443 1465839830100600000
 readings,city=London,make=Omron temperature=23.6,humidity=0.348 1465839830100700000
@@ -75,7 +75,7 @@ new entry may contain certain metadata tags or readings, and others not. Whilst
 the example just above highlights structured data, it is possible for Influx
 line protocol users to send data as follows.
 
-```shell script
+```script
 readings,city=London temperature=23.2 1465839830100400000
 readings,city=London temperature=23.6 1465839830100700000
 readings,make=Honeywell temperature=23.2,humidity=0.443 1465839830100800000

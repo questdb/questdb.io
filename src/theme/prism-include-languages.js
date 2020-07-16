@@ -8,6 +8,7 @@ const prismIncludeLanguages = (Prism) => {
         pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
         lookbehind: true,
       },
+      dataType: new RegExp(`\\b(?:${dataTypes.join("|")})\\b`, "i"),
       variable: [
         {
           pattern: /@(["'`])(?:\\[\s\S]|(?!\1)[^\\])+\1/,
@@ -21,13 +22,11 @@ const prismIncludeLanguages = (Prism) => {
         lookbehind: true,
       },
       function: new RegExp(`\\b(?:${functions.join("|")})(?=\\s*\\()`, "i"),
-      keyword: new RegExp(
-        `\\b(?:${keywords.concat(dataTypes).join("|")})\\b`,
-        "i",
-      ),
+      keyword: new RegExp(`\\b(?:${keywords.join("|")})\\b`, "i"),
       boolean: new RegExp(`\\b(?:${constants.join("|")})\\b`, "i"),
       number: /\b0x[\da-f]+\b|\b\d+\.?\d*|\B\.\d+\b/i,
-      operator: /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:)\b/i,
+      number: /[+-]?\b\d+(?:(?:\.\d*)?(?:[eE][+-]?\d+)?)?\b/i,
+      operator: /[\+|\-|\/|\/\/|%|<@>|@>|<@|&|\^|~|<|>|<=|=>|==|!=|<>|=|!~]/i,
       punctuation: /[;[\]()`,.]/,
     }
   }

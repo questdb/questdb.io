@@ -16,7 +16,7 @@ the [Binaries reference](binariesReference.md)
 
 You need Java 11 or above. You can check your installation as follows
 
-```shell script title="Check Java version"
+```script title="Check Java version"
 java -version
 ```
 
@@ -30,7 +30,7 @@ your architecture. You will also need to download QuestDB binaries.
 
 The QuestDB binaries come as a tarball which needs to be extracted
 
-```shell script title="Extract the tarball"
+```script title="Extract the tarball"
 tar -xvf questdb-5.0.0-bin.tar.gz
 ```
 
@@ -38,31 +38,31 @@ tar -xvf questdb-5.0.0-bin.tar.gz
 
 Navigate to the directory created in the previous step
 
-```shell script
+```script
 cd questdb-5.0.0-bin.tar.gz
 ```
 
 To start the QuestDB server service, simply run the below
 
-```shell script title="Linux & MacOS"
+```script title="Linux & MacOS"
 ./questdb.sh start
 ```
 
-```shell script title="Windows"
+```script title="Windows"
 questdb.exe start
 ```
 
 This will use the following [root directories](rootDirectoryStructure.md)
 
-```shell script title="Linux"
+```script title="Linux"
 $HOME/.questdb
 ```
 
-```shell script title="MacOS"
+```script title="MacOS"
 /usr/local/var/questdb/
 ```
 
-```shell script title="Windows"
+```script title="Windows"
 C:\Windows\System32\questdb
 ```
 
@@ -72,7 +72,7 @@ C:\Windows\System32\questdb
 
 You can use the following to get the status of the QuestDB service.
 
-```shell script title="Check status"
+```script title="Check status"
 questdb status
 ```
 
@@ -88,10 +88,10 @@ you how to import data and run queries
 
 Stop the QuestDB service as follows
 
-```shell script title="Linux & MacOS"
+```script title="Linux & MacOS"
 ./questdb.sh stop
 ```
 
-```shell script title="Windows"
+```script title="Windows"
 questdb.exe stop
 ```

@@ -13,11 +13,11 @@ requires a 64-bit MacOS machine.
 Follow the steps below to install and uninstall the QuestDB service using
 Homebrew.
 
-```shell script title="Installing the service"
+```script title="Installing the service"
 brew install questdb
 ```
 
-```shell script title="Uninstalling the service"
+```script title="Uninstalling the service"
 brew uninstall questdb
 ```
 
@@ -25,13 +25,13 @@ brew uninstall questdb
 
 By default, QuestDB `root_directory` will be the following
 
-```shell script
+```script
 /usr/local/var/questdb/
 ```
 
 ## Using QuestDB
 
-```shell script
+```script
 questdb [start|stop|status] [-d dir] [-f] [-t tag]
 ```
 
@@ -45,7 +45,7 @@ questdb [start|stop|status] [-d dir] [-f] [-t tag]
 
 `start` - starts the questdb service.
 
-```shell script
+```script
 questdb start
 ```
 
@@ -59,7 +59,7 @@ close the session. You will need to actively [stop it](#stop).
 By default, QuestDB [root directory](rootDirectoryStructure.md) will be the
 following
 
-```shell script
+```script
 /usr/local/var/questdb/
 ```
 
@@ -71,7 +71,7 @@ following
 - `-t` - specify a service tag. You can use this option to run several services
   and administer them separately.
 
-```shell script title="Example with -d and -t"
+```script title="Example with -d and -t"
 questdb start -d '/home/user/my_new_root_directory' -t 'mytag'
 ```
 
@@ -82,11 +82,11 @@ questdb start -d '/home/user/my_new_root_directory' -t 'mytag'
 
 #### Examples
 
-```shell script title="Stop the default service"
+```script title="Stop the default service"
 questdb stop
 ```
 
-```shell script title="Stop a specific service"
+```script title="Stop a specific service"
 questdb stop -t 'my-questdb-service'
 ```
 
@@ -98,10 +98,10 @@ is start or stopped respectively. On Unix systems, it also prints the `PID`
 
 #### Examples
 
-```shell script title="Default service"
+```script title="Default service"
 questdb status
 ```
 
-```shell script title="Specific service"
+```script title="Specific service"
 questdb status -t 'my-questdb-service'
 ```

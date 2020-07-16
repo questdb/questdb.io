@@ -24,7 +24,7 @@ results, and `n` is the number of time-chunks that will be summarised together.
 
 Assume the following table
 
-```shell script
+```script
 TRADES
 ===============================================
 timestamp,    buysell,    quantity,     price

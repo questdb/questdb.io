@@ -26,13 +26,13 @@ You can find our docker repository
 
 #### Latest
 
-```shell script
+```script
 docker pull questdb/questdb
 ```
 
 #### Specific tag
 
-```shell script
+```script
 docker pull questdb/questdb:5.0.0
 ```
 
@@ -59,14 +59,14 @@ interaction with QuestDB.
 
 #### Create a container
 
-```shell script
+```script
 docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb
 ```
 
 If you would like to use a specific release tag, you can specify it as follows
 when creating the container:
 
-```shell script
+```script
 docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb:5.0.0
 ```
 
@@ -97,25 +97,25 @@ locations.
 
 #### Start the container
 
-```shell script
+```script
 docker start questdb
 ```
 
 #### Stop the container
 
-```shell script
+```script
 docker stop questdb
 ```
 
 #### Display logs
 
-```shell script
+```script
 docker logs questdb
 ```
 
 #### Remove a container
 
-```shell script
+```script
 docker rm questdb
 ```
 
@@ -132,7 +132,7 @@ You can run the container as an interactive sandbox with the `-it` option.
 
 #### Start the sandbox
 
-```shell script
+```script
 docker run --rm -it -p 9000:9000 -p 8812:8812 questdb/questdb
 ```
 
@@ -150,13 +150,13 @@ you are running.
 
 **On Linux containers**
 
-```shell script
+```script
 docker exec -i questdb bash
 ```
 
 **On Windows containers**
 
-```shell script
+```script
 docker exec -i questdb cmd
 ```
 

@@ -35,7 +35,7 @@ SELECT cast('10.2' as double) FROM long_sequence(1); --string to double
 SELECT cast('行' as int) FROM long_sequence(1);
 ```
 
-```shell script title="Results"
+```script title="Results"
 | cast                        |
 |-----------------------------|
 | 5                           |
@@ -63,7 +63,7 @@ SELECT cast(7234623 as short) FROM long_sequence(1);
 SELECT cast(2334444.323 as short) FROM long_sequence(1);
 ```
 
-```shell script title="Results"
+```script title="Results"
 | cast                        |
 |-----------------------------|
 | 5                           | -- Loss of the decimals
@@ -107,7 +107,7 @@ SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 323 FROM lon
 SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 0.323 FROM long_sequence(1);
 ```
 
-```shell script title="Results"
+```script title="Results"
 | 1801                           | -- Returns a long.
 | 1234.567                       | -- Implicit cast to double.
 | 2019-10-17T00:00:00.000323Z    | -- Returns a timestamp with an extra 323 microseconds.
@@ -130,7 +130,7 @@ INSERT INTO my_table values((to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:
 SELECT * FROM my_table;
 ```
 
-```shell script title="Result"
+```script title="Result"
 | 1571270400000000   | -- Returns a long.
 ```
 
@@ -145,6 +145,6 @@ INSERT INTO my_table values
             ))
 ```
 
-```shell script title="Result"
+```script title="Result"
 | 1571270400000000   |
 ```

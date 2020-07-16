@@ -19,7 +19,7 @@ This guide assumes you have installed QuestDB and have it running.
 
 You can check if you already have psql installed with
 
-```shell script title="Check psql version"
+```script title="Check psql version"
 psql --version
 ```
 
@@ -27,20 +27,20 @@ Here are installation instructions for the major platforms:
 
 #### Homebrew (MacOS)
 
-```shell script
+```script
 brew install libpq
 brew link --force libpq
 ```
 
 #### Ubuntu
 
-```shell script
+```script
 sudo apt-get install postgresql-client
 ```
 
 #### Fedora
 
-```shell script
+```script
 sudo dnf install postgresql.x86_64
 ```
 
@@ -55,7 +55,7 @@ using the default configuration.
 
 ### Syntax
 
-```shell script
+```script
 psql -h [host] -p [port] -U [user] -W -d [database]
 ```
 
@@ -74,14 +74,14 @@ psql -h [host] -p [port] -U [user] -W -d [database]
 The following will use the default parameters to connect to a QuestDB instance
 running locally listening on port 8812.
 
-```shell script
+```script
 psql -h localhost -p 8812 -U admin -W -d qdb
 ```
 
 This will prompt you for a password. Enter the default password `quest`. A
 successful connection will return the following
 
-```shell script title="Successful connection"
+```script title="Successful connection"
 psql -h localhost -p 8812 -U admin -W -d qdb
 Password:
 psql (12.2, server 11.3)

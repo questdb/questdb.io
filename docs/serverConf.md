@@ -12,13 +12,13 @@ When a key is absent from the configuration file, the default value is used.
 To override a default value with a custom value, add the key in the
 configuration file as follows
 
-```shell script
+```script
 aaa.bbb.ccc.ddd=myValue
 ```
 
 For example
 
-```shell script
+```script
 shared.worker.count=5
 ```
 

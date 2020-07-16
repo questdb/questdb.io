@@ -27,7 +27,7 @@ There are as many `fillOption` as there are `aggreate` columns in your query.
 
 Consider the following table
 
-```shell script
+```script
 PRICES
 ======================
 timestamp,    price
@@ -50,7 +50,7 @@ SAMPLE BY 1h;
 
 It would generally return result like this:
 
-```shell script
+```script
 RESULTS
 ======================================
 timestamp,    min,    max,    average
@@ -63,7 +63,7 @@ tsn           minn    maxn    avgn
 However, in case there was no `PRICES` data for a given hour, your table would
 have time-chunks missing. For example
 
-```shell script
+```script
 RESULTS
 ======================================
 timestamp,    min,    max,    average
@@ -88,7 +88,7 @@ FILL(null, 0, prev);
 
 would return:
 
-```shell script
+```script
 RESULTS
 ======================================
 timestamp,    min,    max,    average
@@ -112,7 +112,7 @@ FILL(25.5, linear);
 
 Would return:
 
-```shell script
+```script
 RESULTS
 ======================================
 timestamp,    min,    average

@@ -55,7 +55,7 @@ create table balances (
 </TabItem>
 <TabItem value="rest">
 
-```shell script
+```script
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
 create table balances (
     cust_id int,
@@ -150,7 +150,7 @@ values (2, 'EUR', 880.20, 1587572314404665);
 </TabItem>
 <TabItem value="rest">
 
-```shell script
+```script
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
 insert into balances (cust_id, balance_ccy, balance, timestamp)
 	values (1, 'USD', 1500.00, 1587571882704665)
@@ -256,7 +256,7 @@ balances;
 </TabItem>
 <TabItem value="rest">
 
-```shell script
+```script
 curl -G "http://localhost:9000/exec" \
 --data-urlencode "query=select * from balances"
 ```

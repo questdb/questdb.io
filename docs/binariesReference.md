@@ -49,15 +49,15 @@ if you close the session. You will need to actively [stop it](#stop).
 By default, QuestDB [root directory](rootDirectoryStructure.md) will be the
 following
 
-```shell script title="Linux"
+```script title="Linux"
 $HOME/.questdb
 ```
 
-```shell script title="MacOS"
+```script title="MacOS"
 /usr/local/var/questdb/
 ```
 
-```shell script title="Windows"
+```script title="Windows"
 C:\Windows\System32\questdb
 ```
 

@@ -26,7 +26,7 @@ module.exports = {
     },
     prism: {
       defaultLanguage: "questdb-sql",
-      theme: require("prism-react-renderer/themes/dracula"),
+      theme: require("./src/prismDracula"),
     },
     algolia: {
       apiKey: "b2a69b4869a2a85284a82fb57519dcda",

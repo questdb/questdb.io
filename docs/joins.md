@@ -135,7 +135,7 @@ metadata.
 
 Consider the following tables.
 
-```shell script
+```script
 ASKS
 ===================================
 ts,                          ask
@@ -145,7 +145,7 @@ ts,                          ask
 2019-10-17T00:00:00.400000Z, 102
 ```
 
-```shell script
+```script
 BIDS
 =================================
  ts,                          bid
@@ -167,7 +167,7 @@ FROM BIDS ASOF JOIN ASKS
 
 Will return the following results
 
-```shell script
+```script
 RESULTS
 =================================================
 timebid                      bid        ask
@@ -222,7 +222,7 @@ left table.
 
 Considering the following tables.
 
-```shell script
+```script
 ASKS
 ===================================
 ts,                          ask
@@ -232,7 +232,7 @@ ts,                          ask
 2019-10-17T00:00:00.400000Z, 102
 ```
 
-```shell script
+```script
 BIDS
 =================================
  ts,                          bid
@@ -251,7 +251,7 @@ FROM BIDS SPLICE JOIN ASKS
 
 Will return the following results
 
-```shell script
+```script
 RESULTS
 =================================================
 ts,                          bid        ask

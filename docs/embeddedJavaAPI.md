@@ -9,7 +9,7 @@ it is a single JAR with no additional dependencies.
 
 To include QuestDB in your project, use the latest Maven coordinates:
 
-```shell script title="gradle"
+```script title="gradle"
     implementation 'org.questdb:core:5.0.0'
 ```
 

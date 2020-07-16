@@ -14,7 +14,7 @@ If you already have homebrew installed, you can skip this part.
 
 To install Homebrew, run the following.
 
-```shell script title="Install Homebrew"
+```script title="Install Homebrew"
 /bin/bash -c \
 "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
@@ -23,7 +23,7 @@ To install Homebrew, run the following.
 
 The below will install the `questdb` service.
 
-```shell script title="Install QuestDB"
+```script title="Install QuestDB"
 brew install questdb
 ```
 
@@ -32,7 +32,7 @@ brew install questdb
 Run the below to start the QuestDB service. The service will run in the
 background.
 
-```shell script title="Start QuestDB"
+```script title="Start QuestDB"
 questdb start
 ```
 
@@ -48,7 +48,7 @@ QuestDB will start and run in the background and continue running even if you cl
 
 You can use the following to get the status of the QuestDB service.
 
-```shell script title="Get status"
+```script title="Get status"
 questdb status
 ```
 
@@ -64,7 +64,7 @@ you how to import data and run queries
 
 To stop the QuestDB service, simply run the following.
 
-```shell script title="Stop QuestDB"
+```script title="Stop QuestDB"
 questdb stop
 ```
 
@@ -72,6 +72,6 @@ questdb stop
 
 To Uninstall the QuestDB service, run
 
-```shell script title="Uninstall QuestDB"
+```script title="Uninstall QuestDB"
 questdb uninstall
 ```

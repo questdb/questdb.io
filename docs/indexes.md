@@ -26,7 +26,7 @@ avoiding unnecessary table scans.
 
 Here is an example of a table and its index table.
 
-```shell script
+```script
 Table                                       Index
 |Row ID | Symbol    | Value |             | Symbol     | Row IDs       |
 | 1     | A         | 1     |             | A          | 1, 2, 4       |
@@ -39,7 +39,7 @@ Table                                       Index
 `INSERT INTO Table values(B, 1);` would trigger two updates: one for the Table,
 and one for the Index.
 
-```shell script
+```script
 Table                                       Index
 |Row ID | Symbol    | Value |             | Symbol     | Row IDs       |
 | 1     | A         | 1     |             | A          | 1, 2, 4       |
