@@ -1,6 +1,6 @@
 ---
 id: guidePSQL
-title: How to connect QuestDB to PSQL (aplha)
+title: How to connect QuestDB to PSQL (alpha)
 sidebar_label: Postgres Wire (alpha)
 ---
 
