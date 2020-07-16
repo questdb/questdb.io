@@ -45,7 +45,7 @@ SELECT item, sum(quantity) FROM transactions;
 argument to wider type.
 
 ```questdb-sql title="Cast as long to avoid overflow"
-SELECT sum(cast(a as long)) FROM table;
+SELECT sum(cast(a as LONG)) FROM table;
 ```
 
 ## ksum

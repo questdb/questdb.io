@@ -35,7 +35,7 @@ VALUES(systimestamp(), 123.5);
 
 ```questdb-sql title="Query based on last minute"
 SELECT * FROM readings
-WHERE date_time > systimestamp() - 60000000L;
+WHERE datetime > systimestamp() - 60000000L;
 ```
 
 ## sysdate

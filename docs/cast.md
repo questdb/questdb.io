@@ -29,10 +29,10 @@ where:
 ### Examples
 
 ```questdb-sql title="Queries"
-SELECT cast(3L + 2L as int), cast FROM long_sequence(1);
-SELECT cast(1578506142000000 as timestamp) FROM long_sequence(1);
-SELECT cast('10.2' as double) FROM long_sequence(1); --string to double
-SELECT cast('行' as int) FROM long_sequence(1);
+SELECT cast(3L + 2L as INT), cast FROM long_sequence(1);
+SELECT cast(1578506142000000 as TIMESTAMP) FROM long_sequence(1);
+SELECT cast('10.2' as DOUBLE) FROM long_sequence(1); --string to double
+SELECT cast('行' as INT) FROM long_sequence(1);
 ```
 
 ```script title="Results"
@@ -58,9 +58,9 @@ SELECT cast('行' as int) FROM long_sequence(1);
 ### Precision loss examples
 
 ```questdb-sql title="Queries"
-SELECT cast(3.5 + 2 as int), cast FROM long_sequence(1);
-SELECT cast(7234623 as short) FROM long_sequence(1);
-SELECT cast(2334444.323 as short) FROM long_sequence(1);
+SELECT cast(3.5 + 2 as INT), cast FROM long_sequence(1);
+SELECT cast(7234623 as SHORT) FROM long_sequence(1);
+SELECT cast(2334444.323 as SHORT) FROM long_sequence(1);
 ```
 
 ```script title="Results"
@@ -141,8 +141,8 @@ QuestDB took care of this step automatically.
 INSERT INTO my_table values
             (cast(
                 to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss')
-                as long
-            ))
+                as LONG
+            ));
 ```
 
 ```script title="Result"
