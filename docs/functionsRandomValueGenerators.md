@@ -437,8 +437,8 @@ FROM long_sequence(5);
 
 #### Sequences
 
-> If you need to generate increasing timestamps, please refer the page about
-> [row generators](functionsRowGenerator.md).
+To generate increasing timestamps, please refer the page about
+[row generators](functionsRowGenerator.md).
 
 ## rnd_char
 

@@ -29,10 +29,11 @@ where:
 ### Examples
 
 ```questdb-sql title="Queries"
-SELECT cast(3L + 2L as INT), cast FROM long_sequence(1);
-SELECT cast(1578506142000000 as TIMESTAMP) FROM long_sequence(1);
-SELECT cast('10.2' as DOUBLE) FROM long_sequence(1); --string to double
-SELECT cast('行' as INT) FROM long_sequence(1);
+SELECT 
+cast(3L + 2L as INT),
+cast(1578506142000000 as TIMESTAMP),
+cast('10.2' as DOUBLE),
+cast('行' as INT);
 ```
 
 ```script title="Results"
@@ -44,9 +45,9 @@ SELECT cast('行' as INT) FROM long_sequence(1);
 | 34892                       |
 ```
 
-> Explicit casting of an expression to a smaller [data type](datatypes.md)
-> may result in loss of data when the output data type is smaller than the
-> expression.
+Explicit casting of an expression to a smaller [data type](datatypes.md)
+may result in loss of data when the output data type is smaller than the
+expression.
 
 - Casting a decimal number type (`float` or `double`) to an integer number type
   (`long`, `int`, `short`) will result in decimals drop.
@@ -114,8 +115,8 @@ SELECT to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 0.323 FROM l
 | 1571270400000000               | -- Implicit cast to double as timestamp are long integers.
 ```
 
-> When inserting into a table, QuestDB will cast data implicitly to match the
-> type of the destination column.
+When inserting into a table, QuestDB will cast data implicitly to match the
+type of the destination column.
 
 ```questdb-sql title="Example"
 -- We create a table with one column of type long
