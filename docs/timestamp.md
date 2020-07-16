@@ -59,7 +59,7 @@ brackets to ensure the timestamp clause is applied to the result of the query
 instead of the whole `readings` table.
 
 ```questdb-sql title="Dynamic timestamp"
-(SELECT cast(dateTime as TIMESTAMP) ts, device, value FROM readings) timestamp(ts);
+(SELECT cast(dateTime AS TIMESTAMP) ts, device, value FROM readings) timestamp(ts);
 ```
 
 Although the `readings` table does not have a designated timestamp, we are able
@@ -68,7 +68,7 @@ timestamp operations.
 
 ```questdb-sql title="Dynamic timestamp subquery"
 SELECT ts, avg(value) FROM
-(SELECT cast(dateTime as TIMESTAMP) ts, value FROM readings) timestamp(ts)
+(SELECT cast(dateTime AS TIMESTAMP) ts, value FROM readings) timestamp(ts)
 SAMPLE BY 1d;
 ```
 

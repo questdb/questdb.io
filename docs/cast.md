@@ -30,10 +30,10 @@ where:
 
 ```questdb-sql title="Queries"
 SELECT 
-cast(3L + 2L as INT),
-cast(1578506142000000 as TIMESTAMP),
-cast('10.2' as DOUBLE),
-cast('行' as INT);
+cast(3L + 2L AS INT),
+cast(1578506142000000 AS TIMESTAMP),
+cast('10.2' AS DOUBLE),
+cast('行' AS INT);
 ```
 
 | cast |cast1 |cast2 |cast3 |
@@ -56,9 +56,9 @@ expression.
 
 ```questdb-sql title="Queries"
 SELECT 
-cast(3.5 + 2 as INT),
-cast(7234623 as SHORT),
-cast(2334444.323 as SHORT);
+cast(3.5 + 2 AS INT),
+cast(7234623 AS SHORT),
+cast(2334444.323 AS SHORT);
 ```
 
 
@@ -137,7 +137,7 @@ QuestDB took care of this step automatically.
 INSERT INTO my_table values
             (cast(
                 to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss')
-                as LONG
+                AS LONG
             ));
 ```
 

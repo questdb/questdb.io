@@ -201,7 +201,7 @@ notice the `where false` condition.
 
 ```questdb-sql title="Clone an existing wide table and change type of cherry-picked columns"
 CREATE TABLE x AS(SELECT * FROM table WHERE false)
-    , cast(price as LONG)
+    , cast(price AS LONG)
     , cast(instrument as SYMBOL INDEX);
 ```
 

@@ -29,8 +29,8 @@ SELECT
 concat(
     'trades,instrument=', rnd_str(2,2,0),
     ',side=', rnd_str('B', 'S'),
-    ' price=', abs(cast(rnd_double(0)*100000 as INT)),
-    ',quantity=', abs(cast(rnd_double(0)*10000 as INT)),
+    ' price=', abs(cast(rnd_double(0)*100000 AS INT)),
+    ',quantity=', abs(cast(rnd_double(0)*10000 AS INT)),
     ' ',
     1571270400000 + (x-1) * 100
 )

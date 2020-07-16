@@ -79,7 +79,7 @@ but `dateadd()` requires an `int`.
 ```questdb-sql title="Insert"
 INSERT INTO temp
     SELECT
-        dateadd('s', 30 * cast(x as INT), systimestamp()) ts,
+        dateadd('s', 30 * cast(x AS INT), systimestamp()) ts,
         rnd_symbol('kitchen', 'bedroom', 'bathroom', 'garage') location,
         round(rnd_int(10,15,0) + rnd_double(),1) tempC
     FROM long_sequence(1000000);
