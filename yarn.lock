@@ -1300,10 +1300,10 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@questdb/sql-grammar@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@questdb/sql-grammar/-/sql-grammar-1.0.3.tgz#57c9a4ea685e73d0bd47fe4271c3f328711b7f43"
-  integrity sha512-RDkp4E7qT1aSNfhgE+7peAVfF4FEFTVtfxjCFHPFBveJ+jDYO4s7YfhkIrLrquG8QyPaf60nspyOP5cYevWPVw==
+"@questdb/sql-grammar@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@questdb/sql-grammar/-/sql-grammar-1.0.4.tgz#99916d97383274cfaecbd268bf4999a95efb6a68"
+  integrity sha512-vFULeIrl+ZnnA9WPXHJOR65uQFtCfzfp6R71QwODwIskDbLzH7xfErl2b6aew3TsU9ol6cXIxEBY5QH57e96Uw==
 
 "@svgr/babel-plugin-add-jsx-attribute@^5.4.0":
   version "5.4.0"
