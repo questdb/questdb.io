@@ -1,4 +1,4 @@
-import { constants, dataTypes, functions, keywords } from "@questdb/sql-syntax"
+import { constants, dataTypes, functions, keywords } from "@questdb/sql-grammar"
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment"
 
 const prismIncludeLanguages = (Prism) => {
@@ -31,7 +31,6 @@ const prismIncludeLanguages = (Prism) => {
       punctuation: /[;[\]()`,.]/,
     }
   }
-  console.log(Prism.languages["questdb-sql"].function)
 }
 
 export default prismIncludeLanguages
