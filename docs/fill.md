@@ -25,19 +25,17 @@ There are as many `fillOption` as there are `aggreate` columns in your query.
 
 ### Examples
 
-Consider the following table
+Consider the following `prices` table
 
-```script
-PRICES
-======================
-timestamp,    price
-----------------------
-ts1           p1
-ts2           p2
-ts3           p3
-...           ...
-tsn           pn
-```
+
+|timestamp|price|
+|---|---|
+|ts1|  p1|
+|ts2|  p2|
+|ts3|  p3|
+|...|  ...|
+|tsn|  pn|
+
 
 We could run the following to get the minimum, maximum and average price per
 hour using the following query:
@@ -50,30 +48,26 @@ SAMPLE BY 1h;
 
 It would generally return result like this:
 
-```script
-RESULTS
-======================================
-timestamp,    min,    max,    average
---------------------------------------
-ts1           min1    max1    avg1
-...           ...     ...     ...
-tsn           minn    maxn    avgn
-```
+
+|timestamp|    min|    max|    average|
+|---|---|---|---|
+|ts1|           min1|    max1|    avg1|
+|...|           ...|     ...|     ...|
+|tsn|           minn|    maxn|    avgn|
+
 
 However, in case there was no `PRICES` data for a given hour, your table would
-have time-chunks missing. For example
+have time-chunks missing. In the below example, there is no data to generate aggregates for `ts3`
 
-```script
-RESULTS
-======================================
-timestamp,    min,    max,    average
---------------------------------------
-ts1           min1    max1    avg1
-ts2           min2    max2    avg2
-ts4           min4    max4    avg4
-...           ...     ...     ...
-tsn           minn    maxn    avgn
-```
+
+|timestamp|    min|    max|    average|
+|---|---|---|---|
+|ts1|           min1|    max1|    avg1|
+|ts2|           min2|    max2|    avg2|
+|`ts3`|         `null`|  `null`|  `null`|
+|ts4|           min4|    max4|    avg4|
+|...|           ...|     ...|     ...|
+|tsn|           minn|    maxn|    avgn|
 
 Here you can see that the third time chunk is missing. This is because there was
 no price update in the third hour. Let's see what different fill values would
@@ -86,20 +80,18 @@ SAMPLE BY 1h
 FILL(null, 0, prev);
 ```
 
-would return:
+would return the following
 
-```script
-RESULTS
-======================================
-timestamp,    min,    max,    average
---------------------------------------
-ts1           min1    max1    avg1
-ts2           min2    max2    avg2
-ts3           NULL    0       avg2   <<< FILL VALUES
-ts4           min4    max4    avg4
-...           ...     ...     ...
-tsn           minn    maxn    avgn
-```
+
+|timestamp|    min|    max|    average|
+|---|---|---|---|
+|ts1|           min1|    max1|    avg1|
+|ts2|           min2|    max2|    avg2|
+|`ts3`|         `NULL`|    `0`|   `avg2`|  
+|ts4|           min4|    max4|    avg4|
+|...|           ...|     ... |    ...|
+|tsn|           minn|    maxn|   avgn|
+
 
 And the following:
 
@@ -112,15 +104,13 @@ FILL(25.5, linear);
 
 Would return:
 
-```script
-RESULTS
-======================================
-timestamp,    min,    average
---------------------------------------
-ts1           min1    avg1
-ts2           min2    avg2
-ts3           25.5    (avg2+avg4)/2       <<< FILL VALUES
-ts4           min4    avg4
-...           ...     ...
-tsn           minn    avgn
-```
+
+|timestamp    |min    |average|
+|---|---|---|
+|ts1           |min1    |avg1|
+|ts2           |min2    |avg2|
+|`ts3`           |`25.5`    |`(avg2+avg4)/2`|    
+|ts4           |min4    |avg4|
+|...           |...     |...|
+|tsn           |minn    |avgn|
+

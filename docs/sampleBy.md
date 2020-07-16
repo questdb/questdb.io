@@ -24,17 +24,16 @@ results, and `n` is the number of time-chunks that will be summarised together.
 
 Assume the following table
 
-```script
-TRADES
-===============================================
-timestamp,    buysell,    quantity,     price
------------------------------------------------
-ts1           B           q1            p1
-ts2           S           q2            p2
-ts3           S           q3            p3
-...           ...         ...           ...
-tsn           B           qn            pn
-```
+
+
+|timestamp| buysell| quantity|  price|
+|---|---|---|---|
+|ts1|  B|  q1|   p1|
+|ts2|  S|  q2|   p2|
+|ts3|  S|  q3|   p3|
+|...|  ...|...|  ...|
+|tsn|  B|  qn|   pn|
+
 
 The following will return the number of trades per hour:
 
