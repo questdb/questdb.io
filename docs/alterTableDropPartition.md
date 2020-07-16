@@ -4,8 +4,6 @@ title: ALTER TABLE DROP PARTITION
 sidebar_label: ALTER TABLE DROP PARTITION
 ---
 
-## Synopsis
-
 Drops a partition from an existing table.
 
 :::caution

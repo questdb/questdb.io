@@ -4,8 +4,6 @@ title: ALTER TABLE ADD COLUMN
 sidebar_label: ALTER TABLE ADD COLUMN
 ---
 
-## Synopsis
-
 Adds a new column to an existing table
 
 ## Syntax

@@ -4,8 +4,6 @@ title: ALTER TABLE COLUMN ADD INDEX
 sidebar_label: ALTER TABLE COLUMN ADD INDEX
 ---
 
-## Synopsis
-
 Adds an index to an existing column
 
 ## Syntax

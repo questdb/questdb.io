@@ -4,8 +4,6 @@ title: CREATE TABLE
 sidebar_label: CREATE TABLE
 ---
 
-## Synopsis
-
 Creates new table in the database.
 
 ## Syntax

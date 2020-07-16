@@ -4,8 +4,6 @@ title: INSERT
 sidebar_label: INSERT
 ---
 
-## Synopsis
-
 Inserts data into a database table
 
 ## Syntax

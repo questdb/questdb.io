@@ -4,8 +4,6 @@ title: ALTER TABLE DROP COLUMN
 sidebar_label: ALTER TABLE DROP COLUMN
 ---
 
-## Synopsis
-
 Drops a column from an existing table.
 
 :::caution
