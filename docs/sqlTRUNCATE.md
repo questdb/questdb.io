@@ -17,7 +17,7 @@ doubt, make sure you have created [backups](backup.md) of your data.
 ### Syntax
 
 ```questdb-sql
-TRUNCATE TABLE 'TABLE_NAME';
+TRUNCATE TABLE 'table_name';
 ```
 
 ### Examples

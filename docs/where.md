@@ -22,8 +22,9 @@ conditions using brackets `()`.
 ![complex where syntax](/img/doc/diagrams/complexWhere.svg)
 
 ```questdb-sql title="Example"
-SELECT * FROM table WHERE
-a = 1 AND (b = 2 OR c = 3 and not d)
+SELECT * FROM table 
+WHERE
+a = 1 AND (b = 2 OR c = 3 AND NOT d);
 ```
 
 ## Symbol and string
@@ -38,7 +39,8 @@ Evaluates match of a string or symbol.
 ![where syntax exact string](/img/doc/diagrams/whereExactString.svg)
 
 ```questdb-sql title="Example"
-SELECT * FROM tab WHERE name = 'John'
+SELECT * FROM users 
+WHERE name = 'John';
 ```
 
 | name | age |
@@ -54,7 +56,8 @@ Evaluates mismatch of a string or symbol.
 ![where syntax string not match](/img/doc/diagrams/whereStringNotMatch.svg)
 
 ```questdb-sql title="Example"
-SELECT * FROM tab WHERE name != 'John'
+SELECT * FROM users 
+WHERE name != 'John';
 ```
 
 | name | age |
@@ -72,7 +75,7 @@ patterns.
 ![where syntax regex match](/img/doc/diagrams/whereRegexMatch.svg)
 
 ```questdb-sql title="Example"
-SELECT * FROM tab WHERE ~=(name, 'Jo')
+SELECT * FROM users WHERE ~=(name, 'Jo');
 ```
 
 | name     | age |
@@ -90,7 +93,7 @@ patterns.
 ![where syntax regex not match](/img/doc/diagrams/whereRegexNotMatch.svg)
 
 ```questdb-sql title="Example"
-SELECT * FROM tab WHERE !~(name, 'Jo')
+SELECT * FROM users WHERE !~(name, 'Jo');
 ```
 
 | name | age |
@@ -105,7 +108,7 @@ Evaluates match or mismatch against a list of elements.
 ![where syntax list match](/img/doc/diagrams/listMatch.svg)
 
 ```questdb-sql title="List match"
-SELECT * FROM tab WHERE name in('Tim', 'Tom')
+SELECT * FROM users WHERE name in('Tim', 'Tom');
 ```
 
 | name | age |
@@ -115,7 +118,7 @@ SELECT * FROM tab WHERE name in('Tim', 'Tom')
 | ...  | ... |
 
 ```questdb-sql title="List mismatch"
-SELECT * FROM tab WHERE NOT name in('Tim', 'Tom')
+SELECT * FROM users WHERE NOT name in('Tim', 'Tom');
 ```
 
 | name   | age |
@@ -140,15 +143,15 @@ verbose.
 ![syntax numeric comparison](/img/doc/diagrams/whereNumericValue.svg)
 
 ```questdb-sql title="Superior or equal to 23"
-SELECT * FROM tab WHERE age >= 23
+SELECT * FROM users WHERE age >= 23;
 ```
 
 ```questdb-sql title="Equal to 23"
-SELECT * FROM tab WHERE age = 23
+SELECT * FROM users WHERE age = 23;
 ```
 
 ```questdb-sql title="NOT Equal to 23"
-SELECT * FROM tab WHERE age != 23
+SELECT * FROM users WHERE age != 23;
 ```
 
 ### Proximity
@@ -159,7 +162,7 @@ is useful to simulate equality on `double` and `float` values.
 ![syntax eq comparison doulbe](/img/doc/diagrams/whereEqDoublePrecision.svg)
 
 ```questdb-sql title="Equal to 23 with 0.00001 precision"
-SELECT * FROM tab WHERE eq(age, 23, 0.00001)
+SELECT * FROM users WHERE eq(age, 23, 0.00001);
 ```
 
 :::tip
@@ -176,20 +179,20 @@ Using the columnName will return `true` values. To return `false` values,
 precede the column name with the `NOT` operator.
 
 ```questdb-sql title="Example - true"
-SELECT * FROM table WHERE isActive
+SELECT * FROM users WHERE isActive;
 ```
 
-| customerId | isActive |
+| userId | isActive |
 | ---------- | -------- |
 | 12532      | true     |
 | 38572      | true     |
 | ...        | ...      |
 
 ```questdb-sql title="Example - false"
-SELECT * FROM table WHERE NOT isActive
+SELECT * FROM users WHERE NOT isActive;
 ```
 
-| customerId | isActive |
+| userId | isActive |
 | ---------- | -------- |
 | 876534     | false    |
 | 43234      | false    |
@@ -210,7 +213,7 @@ can be applied [dynamically](timestamp.md#during-a-select-operation).
 ![syntax timestamp exacth where](/img/doc/diagrams/timestampExact.svg)
 
 ```questdb-sql title="Example - Date"
-SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z'
+SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z';
 ```
 
 | timestamp                | score |
@@ -220,7 +223,7 @@ SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z'
 | ...                      | ...   |
 
 ```questdb-sql title="Example - Timestamp"
-SELECT scores WHERE ts = '2010-01-12T00:02:26.000000Z'
+SELECT scores WHERE ts = '2010-01-12T00:02:26.000000Z';
 ```
 
 | timestamp                   | score |
@@ -238,20 +241,20 @@ Return results within a defined range
 ![syntax timestamp partial where](/img/doc/diagrams/timestampPartial.svg)
 
 ```questdb-sql title="Results in a given year"
-SELECT * FROM tab WHERE ts = '2018'
+SELECT * FROM scores WHERE ts = '2018';
 ```
 
-| timestamp                   | value |
+| timestamp                   | score |
 | --------------------------- | ----- |
 | 2018-01-01T00:0000.000000Z  | 123.4 |
 | ...                         | ...   |
 | 2018-12-31T23:59:59.999999Z | 115.8 |
 
 ```questdb-sql title="Results in a given minute"
-SELECT * FROM tab WHERE ts = '2018-05-23T12:15'
+SELECT * FROM scores WHERE ts = '2018-05-23T12:15';
 ```
 
-| timestamp                   | value |
+| timestamp                   | score |
 | --------------------------- | ----- |
 | 2018-05-23T12:15:00.000000Z | 123.4 |
 | ...                         | ...   |
@@ -273,26 +276,26 @@ by the modifier parameter.
 - A `negative` value reduces the interval.
 
 ```questdb-sql title="Results in a given year and the first month of the next year"
-SELECT * FROM tab WHERE ts = '2018;1M'
+SELECT * FROM scores WHERE ts = '2018;1M';
 ```
 
 The range is 2018. The modifier extends the upper bound (originally 31 Dec 2018)
 by one month.
 
-| timestamp                   | value |
+| timestamp                   | score |
 | --------------------------- | ----- |
 | 2018-01-01T00:00:00.000000Z | 123.4 |
 | ...                         | ...   |
 | 2019-01-31T23:59:59.999999Z | 115.8 |
 
 ```questdb-sql title="Results in a given month excluding the last 3 days"
-SELECT * FROM tab WHERE ts = '2018-01;-3d'
+SELECT * FROM scores WHERE ts = '2018-01;-3d';
 ```
 
 The range is Jan 2018. The modifier reduces the upper bound (originally 31
 Dec 2018) by 3 days.
 
-| timestamp                   | value |
+| timestamp                   | score |
 | --------------------------- | ----- |
 | 2018-01-01T00:00:00.000000Z | 123.4 |
 | ...                         | ...   |
@@ -311,11 +314,11 @@ For non-standard ranges, users can explicitly specify the target range using the
 `inclusive`.
 
 ```questdb-sql title="Explicit range"
-SELECT * FROM tab
-WHERE ts in('2018-01-01T00:00:23.000000Z' , '2018-01-01T00:00:23.500000Z')
+SELECT * FROM scores
+WHERE ts in('2018-01-01T00:00:23.000000Z' , '2018-01-01T00:00:23.500000Z');
 ```
 
-| timestamp                   | value |
+| timestamp                   | score |
 | --------------------------- | ----- |
 | 2018-01-01T00:00:23.000000Z | 123.4 |
 | ...                         | ...   |

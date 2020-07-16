@@ -39,5 +39,5 @@ The following example deletes the column called `comment` from the table
 `ratings`
 
 ```questdb-sql title="Dropping a column"
-ALTER TABLE ratings DROP COLUMN comment
+ALTER TABLE ratings DROP COLUMN movieId;
 ```

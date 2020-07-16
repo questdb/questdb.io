@@ -26,7 +26,7 @@ for example:
 :::
 
 ```questdb-sql title="Example"
-create table 'example out of.space' (a int)
+CREATE TABLE 'example out of.space' (a INT);
 ```
 
 :::note
@@ -140,7 +140,7 @@ Find below example uses of [CREATE TABLE](#create-table) and of
 
 ```questdb-sql
 CREATE TABLE
-    my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
+my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING);
 ```
 
 :::info
@@ -152,7 +152,7 @@ Such table can accept data in any order.
 ```questdb-sql
 CREATE TABLE
     my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
-    timestamp(ts)
+    timestamp(ts);
 ```
 
 :::info
@@ -165,7 +165,7 @@ With this setting, QuestDB enforce chronological order of `ts` values.
 CREATE TABLE
     my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
     timestamp(ts)
-    partition by DAY
+    PARTITION BY DAY;
 ```
 
 #### With [SYMBOL](symbol.md)
@@ -175,7 +175,7 @@ CREATE TABLE my_table(
     symb SYMBOL capacity 256 nocache index capacity 1048576,
     price DOUBLE,
     ts TIMESTAMP, s STRING
-) timestamp(ts)  partition by DAY
+) timestamp(ts)  PARTITION BY DAY;
 ```
 
 ### CREATE TABLE AS
@@ -186,14 +186,14 @@ When SQL is `select * from tab` or any arbitrary SQL result, the table data will
 be copied with the corresponding structure.
 
 ```questdb-sql title="Create table as select"
-create table x as (
-    select
+CREATE TABLE x AS(
+    SELECT
         rnd_int() a,
         rnd_double() b,
         rnd_symbol('ABB', 'CDD') c
-    from
+    FROM
         long_sequence(100)
-    where false
+    WHERE false;
 )
 ```
 
@@ -202,9 +202,9 @@ notice the `where false` condition.
 :::
 
 ```questdb-sql title="Clone an existing wide table and change type of cherry-picked columns"
-create table x as (select * from y where false)
+CREATE TABLE x AS(SELECT * FROM table WHERE false)
     , cast(price as long)
-    , cast(sym as symbol index)
+    , cast(sym as symbol index);
 ```
 
 Here we changed type of `price` (assuming it was `INT`) to `LONG` and changed
@@ -217,7 +217,7 @@ now we want to turn this data into time series thru ordering trips by
 `pickup_time`, assign dedicated timestamp and partition by month:
 
 ```questdb-sql title="Create table as select with data manipulation"
-create table taxi_trips as (
-  select * from taxi_trips_unordered order by pickup_time
-) timestamp(pickup_time) partition by MONTH
+CREATE TABLE taxi_trips AS(
+  SELECT * FROM taxi_trips_unordered ORDER BY pickup_time
+) timestamp(pickup_time) PARTITION BY MONTH;
 ```

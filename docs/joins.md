@@ -136,7 +136,7 @@ metadata.
 Consider the following tables.
 
 ```script
-ASKS
+asks
 ===================================
 ts,                          ask
 -----------------------------------
@@ -146,7 +146,7 @@ ts,                          ask
 ```
 
 ```script
-BIDS
+bids
 =================================
  ts,                          bid
 ---------------------------------
@@ -159,10 +159,10 @@ Therefore the following query:
 
 ```questdb-sql
 SELECT
- BIDS.ts timebid,
+ bids.ts timebid,
  bid,
  ask
-FROM BIDS ASOF JOIN ASKS
+FROM bids ASOF JOIN asks
 ```
 
 Will return the following results
@@ -188,10 +188,10 @@ chronological order, timestamp columns can be specified at runtime:
 
 ```questdb-sql
 SELECT
- BIDS.ts timebid,
+ bids.ts timebid,
  bid,
  ask
-FROM (BIDS timestamp(ts)) ASOF JOIN (ASKS timestamp (ts))
+FROM (bids timestamp(ts)) ASOF JOIN (asks timestamp (ts))
 ```
 
 :::caution
@@ -206,7 +206,7 @@ If both tables store data for multiple instruments `ON` clause will allow you to
 find bids for asks with matching instrument value.
 
 ```questdb-sql
-SELECT * FROM ASKS ASOF JOIN BIDS ON (instrument);
+SELECT * FROM asks ASOF JOIN bids ON (instrument);
 ```
 
 ## SPLICE JOIN
@@ -246,7 +246,7 @@ This query:
 
 ```questdb-sql
 SELECT ts timebid, bid, ask
-FROM BIDS SPLICE JOIN ASKS
+FROM bids SPLICE JOIN asks
 ```
 
 Will return the following results
@@ -270,11 +270,11 @@ follows:
 
 ```questdb-sql
 SELECT ts timebid, instrument bidInstrument, bid, ask
-FROM BIDS
+FROM bids
 SPLICE JOIN
     (
     SELECT ts timesask, instrument askInstrument, ask ask
-    FROM ASKS
+    FROM asks
     )
     ON bidInstrument=askInstrument;
 ```

@@ -69,7 +69,7 @@ a new directory. Subsequent backups on the same date will look as follows:
 ## Examples
 
 ```questdb-sql title="Single table"
-BACKUP TABLE myTable;
+BACKUP TABLE table1;
 ```
 
 ```questdb-sql title="Multiple tables"

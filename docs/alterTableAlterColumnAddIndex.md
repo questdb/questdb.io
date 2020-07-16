@@ -22,7 +22,7 @@ new index for SQL executions.
 ## Example
 
 ```questdb-sql title="Adding an index"
-ALTER TABLE trades ALTER COLUMN symbol ADD INDEX
+ALTER TABLE trades ALTER COLUMN instrument ADD INDEX;
 ```
 
 :::info

@@ -42,12 +42,12 @@ import TabItem from "@theme/TabItem"
 <TabItem value="sql">
 
 ```questdb-sql
-create table balances (
-	cust_id int,
-	balance_ccy symbol,
-	balance double,
-	inactive boolean,
-	timestamp timestamp
+CREATE TABLE balances (
+	cust_id INT,
+	balance_ccy SYMBOL,
+	balance DOUBLE,
+	inactive BOOLEAN,
+	ts TIMESTAMP
 );
 }
 ```
@@ -133,17 +133,17 @@ Let's now insert a few records:
 <TabItem value="sql">
 
 ```questdb-sql
-insert into balances (cust_id, balance_ccy, balance, timestamp)
-values (1, 'USD', 1500.00, 1587571882704665);
+INSERT INTO balances (cust_id, balance_ccy, balance, timestamp)
+VALUES (1, 'USD', 1500.00, 1587571882704665);
 
-insert into balances (cust_id, balance_ccy, balance, timestamp)
-values (1, 'EUR', 650.50, 1587571892904234);
+INSERT INTO balances (cust_id, balance_ccy, balance, timestamp)
+VALUES (1, 'EUR', 650.50, 1587571892904234);
 
-insert into balances (cust_id, balance_ccy, balance, timestamp)
-values (2, 'USD', 900.75, 1587571963504432);
+INSERT INTO balances (cust_id, balance_ccy, balance, timestamp)
+VALUES (2, 'USD', 900.75, 1587571963504432);
 
-insert into balances (cust_id, balance_ccy, balance, timestamp)
-values (2, 'EUR', 880.20, 1587572314404665);
+INSERT INTO balances (cust_id, balance_ccy, balance, timestamp)
+VALUES (2, 'EUR', 880.20, 1587572314404665);
 }
 ```
 
@@ -351,7 +351,7 @@ information like the average balance per currency (note the
 below).
 
 ```questdb-sql
-select balance_ccy, avg(balance) from balances;
+SELECT balance_ccy, avg(balance) FROM balances;
 ```
 
 | balance_ccy | avg      |
@@ -369,8 +369,8 @@ all we need is to add `SAMPLE BY 1h` to the above query!
 Lets update balance of customer `1` in the `balances` table:
 
 ```questdb-sql
-insert into balances (cust_id, balance_ccy, balance, timestamp)
-values (1, 'USD', 330.50, 1587572414404997);
+INSERT INTO balances (cust_id, balance_ccy, balance, timestamp)
+VALUES (1, 'USD', 330.50, 1587572414404997);
 ```
 
 After this step, our table looks like this
@@ -389,9 +389,9 @@ will have to change. We use `LATEST BY` to only select last row for the
 `(1,USD)` tuple for customer 1 and find the updated USD balance.
 
 ```questdb-sql
-balances
-latest by cust_id, balance_ccy
-where cust_id = 1
+SELECT * FROM balances
+LATEST BY cust_id, balance_ccy
+WHERE cust_id = 1;
 ```
 
 | cust_id | balance_ccy | balance | inactive | timestamp                   |
@@ -406,9 +406,9 @@ sub-queries. To find out more, check out our
 the latest account information, only for balances over 800.
 
 ```questdb-sql
-(balances
-latest by cust_id, balance_ccy)
-where balance > 800
+(SELECT * FROM balances
+LATEST BY cust_id, balance_ccy)
+WHERE balance > 800;
 ```
 
 | cust_id | balance_ccy | balance | inactive | timestamp                   |
@@ -432,9 +432,9 @@ Let's assume that `customer 1` closes their `USD` account but keeps their `EUR`
 account. This can be reflected in the database as follows.
 
 ```questdb-sql
-insert into balances
+INSERT INTO balances
 (cust_id, balance_ccy, inactive, timestamp)
-values (1, 'USD', true, 1587572423312698));
+VALUES (1, 'USD', true, 1587572423312698));
 ```
 
 Notice that this sets tue `inactive` boolean flag to `true` for this balance. At
@@ -453,10 +453,10 @@ If we now want to look at the active account balances for `customer 1` we can do
 so as follows:
 
 ```questdb-sql
-(balances
-latest by balance_ccy
-where cust_id=1)
-where not inactive;
+(SELECT * FROM balances
+LATEST BY balance_ccy
+WHERE cust_id=1)
+WHERE NOT inactive;
 ```
 
 The results will exclude deleted records (the USD balance) and only show the
@@ -478,10 +478,10 @@ inactive". If we were to remove the brackets and use the following query, we
 would get "the latest non inactive balance" which is slightly different.
 
 ```questdb-sql
-balances
-latest by balance_ccy
-where cust_id=1
-and not inactive;
+SELECT * FROM balances
+LATEST BY balance_ccy
+WHERE cust_id=1
+AND NOT inactive;
 ```
 
 and returns different results (not what we are looking for!). See below.
@@ -510,10 +510,10 @@ For example the below query can be used to know the state of all balances at a
 `15:00:00` snapshot.
 
 ```questdb-sql
-balances
-latest by balance_ccy, cust_id
-where timestamp <= '2020-04-22T16:15:00.000Z'
-and not inactive;
+SELECT * FROM balances
+LATEST BY balance_ccy, cust_id
+WHERE timestamp <= '2020-04-22T16:15:00.000Z'
+AND NOT inactive;
 ```
 
 | cust_id | balance_ccy | balance | inactive | timestamp                   |

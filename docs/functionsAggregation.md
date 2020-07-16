@@ -45,7 +45,7 @@ SELECT item, sum(quantity) FROM transactions;
 argument to wider type.
 
 ```questdb-sql title="Cast as long to avoid overflow"
-SELECT sum(cast(a as long)) from table
+SELECT sum(cast(a as long)) FROM table;
 ```
 
 ## ksum
@@ -71,8 +71,8 @@ Return value type is the same as the type of the argument.
 #### Examples
 
 ```questdb-sql
-select ksum(a)
-from (select rnd_double() a from long_sequence(100));
+SELECT ksum(a)
+FROM (SELECT rnd_double() a FROM long_sequence(100));
 ```
 
 | ksum              |
@@ -102,8 +102,8 @@ Return value type is the same as the type of the argument.
 #### Examples
 
 ```questdb-sql
-select nsum(a)
-from (select rnd_double() a from long_sequence(100));
+SELECT nsum(a)
+FROM (SELECT rnd_double() a FROM long_sequence(100));
 ```
 
 | nsum             |
