@@ -3,7 +3,7 @@ title: Root directory structure
 sidebar_label: Root directory structure
 ---
 
-QuestDB creates the following file structure in it's `root_directory`.
+QuestDB creates the following file structure in it's `root_directory`:
 
 ```filestructure
 questdb
@@ -15,7 +15,7 @@ questdb
 
 ## `conf` directory
 
-Contains configuration files for QuestDB
+Contains configuration files for QuestDB:
 
 ```filestructure
 ├── conf
@@ -43,7 +43,7 @@ organised as follows:
 - If a given column has an [index](concept/indexes.md), then there will also be an
   `index_file`, for example `mycolumn.k`
 
-The table also stores metadata in `_meta` files.
+The table also stores metadata in `_meta` files:
 
 ```filestructure
 ├── db
@@ -67,7 +67,7 @@ The table also stores metadata in `_meta` files.
 │   └──  table_1.lock
 ```
 
-If the table is not partitioned, data is stored in a directory called `default`
+If the table is not partitioned, data is stored in a directory called `default`:
 
 ```filestructure
 ├── db
@@ -94,7 +94,7 @@ for this effect.
 
 ## `log` directory
 
-Contains the log files for QuestDB
+Contains the log files for QuestDB:
 
 ```filestructure
 ├── log
@@ -102,7 +102,7 @@ Contains the log files for QuestDB
 │   └── stdout-2020-04-12T13-31-22.txt
 ```
 
-Log files look like this
+Log files look like this:
 
 ```script
 2020-04-15T16:42:32.879970Z I i.q.c.TableReader new transaction [txn=2, transientRowCount=1, fixedRowCount=1, maxTimestamp=1585755801000000, attempts=0]
@@ -133,24 +133,15 @@ Log files look like this
 
 ## `public` directory
 
-Contains the web files for the Web Console.
+Contains the web files for the Web Console:
 
 ```filestructure
 └── public
-    ├── fonts
-    │   ├── fontawesome-webfont.eot
-    │   ├── fontawesome-webfont.svg
-    │   └── ...
-    ├── images
-    │   ├── favicon@16x-8.png
-    │   ├── favicon@76x-8.png
-    │   └── ...
+    ├── assets
+    │   ├── console-configuration.json
+    │   └── favicon.png
     ├── index.html
-    ├── robots.txt
-    ├── scripts
-    │   └── qdb.js
-    └── styles
-        ├── patterns
-        │   └── header-profile.png
-        └── qdb.css
+    ├── qdb.js
+    ├── qdb.css
+    └── ...
 ```

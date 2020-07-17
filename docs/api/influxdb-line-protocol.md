@@ -10,7 +10,7 @@ created on the fly. If new columns are added, the table is automatically updated
 to reflect the new structure.
 
 QuestDB can listen for Line protocol packets both over [TCP](#tcp-receiver) and
-[UDP](#udp-receiver)
+[UDP](#udp-receiver).
 
 ### Using line protocol
 
@@ -155,7 +155,7 @@ busiest worker thread will be reassigned to the least busy worker thread.
 
 #### Commit strategy
 
-Uncommitted rows are committed either
+Uncommitted rows are committed either:
 
 - after `line.tcp.maintenance.job.hysterisis.in.ms` milliseconds have passed
 - once reaching `line.tcp.max.uncommitted.rows` uncommitted rows.
@@ -186,7 +186,7 @@ to listen for `unicast`.
 
 #### Commit strategy
 
-Uncommitted rows are committed either
+Uncommitted rows are committed either:
 
 - after receiving a number of continuous messages equal to
   `line.udp.commit.rate`

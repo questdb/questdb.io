@@ -8,7 +8,7 @@ each column stored in its own file and its own native format. New data is
 appended to the bottom of each column to allow data to be organically retrieved
 in the same order versus ingestion.
 
-## Append Model
+## Append model
 
 QuestDB appends one column at a time and each one is updated using the same
 method. The tail of column file is mapped into the memory page in RAM and the
@@ -20,7 +20,7 @@ mapped at a new append offset.
 
 ![column read](/img/doc/concepts/column-read.png)
 
-## Read Model
+## Read model
 
 Table columns are randomly accessible. Columns with fixed size data types are
 read by translating the record number into a file offset by a simple bit shift.

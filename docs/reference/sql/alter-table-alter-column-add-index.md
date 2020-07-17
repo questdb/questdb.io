@@ -3,7 +3,7 @@ title: ALTER TABLE COLUMN ADD INDEX
 sidebar_label: ALTER TABLE COLUMN ADD INDEX
 ---
 
-Adds an index to an existing column
+Adds an index to an existing column.
 
 ## Syntax
 

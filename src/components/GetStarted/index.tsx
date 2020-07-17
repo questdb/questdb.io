@@ -82,10 +82,7 @@ const GetStarted = () => (
 
       <p className={getStartedStyles.getStarted__text}>
         Find out more in the&nbsp;
-        <Link to="docs/reference/embedded-java-api">
-          embedded JAVA API documentation
-        </Link>
-        .
+        <Link to="docs/api/java">Java API documentation</Link>.
       </p>
     </div>
   </section>

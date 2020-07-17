@@ -33,7 +33,7 @@ A restart of QuestDB is required to pickup the new configuration
 | ----------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | telemetry.enabled | true          | Enable / disable anonymous usage sharing to better understand and help QuestDB users. We do not collect any personally-identifying information. |
 
-### Worker configuration
+### Worker
 
 | Property                  | Default value | Description                                                                                                                                                  |
 | ------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -41,7 +41,7 @@ A restart of QuestDB is required to pickup the new configuration
 | shared.worker.affinity    |               | comma-delimited list of CPU ids, one per thread specified in "shared.worker.count". By default, threads have no CPU affinity.                                |
 | shared.worker.haltOnError | false         | Toggle whether worker should stop on error.                                                                                                                  |
 
-### HTTP server configuration
+### HTTP server
 
 | Property                                       | Default value  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ---------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -92,7 +92,7 @@ A restart of QuestDB is required to pickup the new configuration
 | http.security.interruptor.iterations.per.check | 2000000        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | http.security.interruptor.buffer.size          | 32             |
 
-### Cairo configuration
+### Cairo
 
 | Property                                     | Default value     | Description                                                                                                                                                                                                              |
 | -------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -161,7 +161,7 @@ A restart of QuestDB is required to pickup the new configuration
 | cairo.date.locale                            | en                |                                                                                                                                                                                                                          |
 | cairo.timestamp.locale                       | en                |                                                                                                                                                                                                                          |
 
-### Postgres wire configuration
+### Postgres wire
 
 | Property                            | Default value | Description |
 | ----------------------------------- | ------------- | ----------- |
@@ -194,7 +194,7 @@ A restart of QuestDB is required to pickup the new configuration
 | pg.halt.on.error                    | false         |             |
 | pg.daemon.pool                      | true          |             |
 
-### InfluxDB line protocol configuration (UDP)
+### InfluxDB line protocol (UDP)
 
 | Property                     | Default value  | Description                                                                                                                                                                                                                      |
 | ---------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -211,7 +211,7 @@ A restart of QuestDB is required to pickup the new configuration
 | line.udp.timestamp           | n              | Input timestamp resolution. Possible values are `n`, `u`, `ms`, `s` and `h`.                                                                                                                                                     |
 | line.udp.commit.mode         | "nosync"       | Commit durability. Available values are "nosync", "sync" and "async"                                                                                                                                                             |
 
-### InfluxDB line protocol configuration (TCP)
+### InfluxDB line protocol (TCP)
 
 | Property                             | Default value | Description                                                                                                                                  |
 | ------------------------------------ | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -233,7 +233,7 @@ A restart of QuestDB is required to pickup the new configuration
 | line.tcp.worker.affinity             | 0             | Comma-separated list of thread numbers which should be pinned for line protocol ingestion over TCP. Example `line.tcp.worker.affinity=1,3,4` |
 | line.tcp.halt.on.error               | false         |                                                                                                                                              |
 
-Load balancing
+#### Load balancing
 
 | Property                                  | Default value | Description                                                                                                                                             |
 | ----------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |

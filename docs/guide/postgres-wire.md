@@ -1,5 +1,5 @@
 ---
-title: How to connect QuestDB to PSQL (alpha)
+title: How to access QuestDB from PSQL (alpha)
 sidebar_label: Postgres wire (alpha)
 ---
 
@@ -141,7 +141,7 @@ column `x` with monotonically increasing values. As `x` is of type `long`, we
 use `cast` to convert it to `int`.
 
 The below will add 1 million readings from a location chosen at random
-approximatively every 30 seconds.
+approximately every 30 seconds.
 
 ```questdb-sql title="Inserting randomly generated values"
 INSERT INTO temp

@@ -1,5 +1,5 @@
 ---
-title: How to use QuestDB with Docker
+title: Docker
 ---
 
 Docker is great to try new stuff and get started in minutes with just a few

@@ -49,12 +49,12 @@ module.exports = {
               to: "docs/guide/docker",
             },
             {
-              label: "With the binaries",
-              to: "docs/guide/binaries",
-            },
-            {
               label: "Homebrew",
               to: "docs/guide/homebrew",
+            },
+            {
+              label: "From the binaries",
+              to: "docs/guide/binaries",
             },
           ],
         },

@@ -121,7 +121,7 @@ to readers. This method call is atomic and has a complexity of O(1).
 
 ## Compiling SQL
 
-JAVA users can use the `SqlCompiler` to run SQL queries like they would do in
+Java users can use the `SqlCompiler` to run SQL queries like they would do in
 the Web Console for example.
 
 :::note

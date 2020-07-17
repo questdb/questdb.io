@@ -3,7 +3,7 @@ title: INSERT
 sidebar_label: INSERT
 ---
 
-Inserts data into a database table
+Inserts data into a database table.
 
 ## Syntax
 

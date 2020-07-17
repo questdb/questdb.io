@@ -3,7 +3,7 @@ title: Cast
 sidebar_label: CAST
 ---
 
-Type conversion. Can be either
+Type conversion. Can be either:
 
 - [Explicit](#explicit-conversion) via `cast()`
 - [Implicit](#implicit-conversion), in which case it will be automatically
@@ -15,7 +15,7 @@ Types can be converted from one to another using the `cast()` function.
 
 ### Syntax
 
-![cast sql syntax](/img/doc/diagrams/cast.svg)
+![CAST SQL syntax](/img/doc/diagrams/cast.svg)
 
 where:
 

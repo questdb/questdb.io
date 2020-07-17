@@ -3,7 +3,7 @@ title: Timestamp
 sidebar_label: TIMESTAMP
 ---
 
-`timestamp(columnName)` elects a [designated timestamp](concept/designated-timestamp.md)
+`timestamp(columnName)` elects a [designated timestamp](concept/designated-timestamp.md):
 
 - during a [CREATE TABLE](reference/sql/create-table.md#timestamp) operation
 - during a [SELECT](reference/sql/select.md) operation (`dynamic timestamp`)

@@ -7,7 +7,7 @@ sidebar_label: UNION
 ## Overview
 
 `UNION` is used to combine the results of two or more `SELECT` statements. To
-work properly,
+work properly:
 
 - Each select statement should return the same number of column
 - Each column should have the same type
