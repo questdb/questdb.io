@@ -37,7 +37,7 @@ const Jumbotron = () => (
             />
           }
           style="secondary"
-          to="docs/documentationOverview"
+          to="docs/introduction"
         >
           GitHub
         </Button>

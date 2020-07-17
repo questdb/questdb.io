@@ -1,123 +1,114 @@
 module.exports = {
-    "docs": {
-        "Guides": [
-            "documentationOverview",
-            {
-                type: "category",
-                label: "Setting up QuestDB",
-                items: [
-                    "guideDocker",
-                    "guideHomebrew",
-                    "guideBinaries"
-                ]
-            },
-            {
-                type: "category",
-                label: "Using QuestDB",
-                items: [
-                    "usingWebConsole",
-                    "guidePSQL",
-                    "guideREST",
-                    "crudOperations",
-                    "myFirstDatabase"
-                ]
-            }
+  docs: {
+    Guides: [
+      "introduction",
+      {
+        type: "category",
+        label: "Setting up QuestDB",
+        items: ["guide/docker", "guide/homebrew", "guide/binaries"],
+      },
+      {
+        type: "category",
+        label: "Using QuestDB",
+        items: [
+          "guide/web-console",
+          "guide/plsql",
+          "guide/rest",
+          "guide/crud",
+          "guide/my-first-database",
         ],
-        "Concepts": [
-            "storageModel",
-            "designatedTimestamp",
-            "sqlExtensions",
-            "partitions",
-            "symbol",
-            "indexes",
-            "sqlExecutionOrder"
+      },
+    ],
+    Concepts: [
+      "concept/storage-model",
+      "concept/designated-timestamp",
+      "concept/sql-extensions",
+      "concept/partitions",
+      "concept/symbol",
+      "concept/indexes",
+      "concept/sql-execution-order",
+    ],
+    Reference: [
+      {
+        type: "category",
+        label: "Configuration",
+        items: [
+          "reference/datatypes",
+          "reference/root-directory-structure",
+          "reference/server-configuration",
         ],
-        "Reference": [
-            {
-                type: "category",
-                label: "Configuration",
-                items: [
-                    "datatypes",
-                    "rootDirectoryStructure",
-                    "serverConf"
-                ]
-            },
-            {
-                type: "category",
-                label: "Interfaces",
-                items: [
-                    "dockerReference",
-                    "homebrewReference",
-                    "installFromBinary",
-                    "consoleReference",
-                    "influxReference"
-                ]
-            },
-            {
-                type: "category",
-                label: "APIs",
-                items: [
-                    "restAPI",
-                    "embeddedJavaAPI",
-                    "influxSenderLibrary"
-                ]
-            },
-            {
-                type: "category",
-                label: "Functions",
-                items: [
-                    "functionsAggregation",
-                    "functionsNumeric",
-                    "functionsDateAndTime",
-                    "functionsRandomValueGenerators",
-                    "functionsRowGenerator",
-                    "functionsTimestampGenerator",
-                    "functionsText",
-                    "functionsMeta"
-                ]
-            },
-            {
-                type: "category",
-                label: "SQL Reference",
-                items: [
-                    "sqlExecutionOrder",
-                    "alterTableAddColumn",
-                    "alterTableDropColumn",
-                    "alterTableAlterColumnAddIndex",
-                    "alterTableDropPartition",
-                    "backup",
-                    "case",
-                    "cast",
-                    "copy",
-                    "createTable",
-                    "distinct",
-                    "fill",
-                    "rename",
-                    "drop",
-                    "insert",
-                    "joins",
-                    "latestBy",
-                    "limit",
-                    "orderBy",
-                    "sampleBy",
-                    "select",
-                    "show",
-                    "timestamp",
-                    "truncate",
-                    "union",
-                    "where"
-                ]
-            },
-            {
-                type: "category",
-                label: "Java API Reference",
-                items: [
-                    "javaAPIOverview",
-                    "influxSenderLibrary"
-                ]
-            }
-        ]
-    }
-};
-
-
+      },
+      {
+        type: "category",
+        label: "Interfaces",
+        items: [
+          "reference/docker",
+          "reference/homebrew",
+          "reference/binaries",
+          "reference/web-console",
+          "reference/influx",
+        ],
+      },
+      {
+        type: "category",
+        label: "APIs",
+        items: [
+          "reference/rest-api",
+          "reference/embedded-java-api",
+          "reference/influx-sender-library",
+        ],
+      },
+      {
+        type: "category",
+        label: "Functions",
+        items: [
+          "function/aggregation",
+          "function/date-time",
+          "function/meta",
+          "function/numeric",
+          "function/random-value-generator",
+          "function/row-generator",
+          "function/text",
+          "function/timestamp-generator",
+        ],
+      },
+      {
+        type: "category",
+        label: "SQL Reference",
+        items: [
+          "concept/sql-execution-order",
+          "reference/alter-table-add-column",
+          "reference/alter-table-drop-column",
+          "reference/alter-table-alter-column-add-index",
+          "reference/alter-table-drop-partition",
+          "reference/backup",
+          "reference/case",
+          "reference/cast",
+          "reference/copy",
+          "reference/create-table",
+          "reference/distinct",
+          "reference/fill",
+          "reference/rename",
+          "reference/drop",
+          "reference/insert",
+          "reference/join",
+          "reference/latest-by",
+          "reference/limit",
+          "reference/order-by",
+          "reference/sample-by",
+          "reference/select",
+          "reference/show",
+          "reference/timestamp",
+          "reference/truncate",
+          "reference/union",
+          "reference/where",
+        ],
+      },
+      {
+        type: "category",
+        label: "Java API Reference",
+        items: ["reference/java-api", "reference/influx-sender-library"],
+      },
+    ],
+  },
+}

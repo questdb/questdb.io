@@ -26,7 +26,7 @@ module.exports = {
     },
     prism: {
       defaultLanguage: "questdb-sql",
-      theme: require("./src/prismDracula"),
+      theme: require("./src/prism-dracula"),
     },
     algolia: {
       apiKey: "b2a69b4869a2a85284a82fb57519dcda",
@@ -46,83 +46,27 @@ module.exports = {
           items: [
             {
               label: "Docker",
-              to: "docs/guideDocker",
+              to: "docs/guide/docker",
             },
             {
               label: "With the binaries",
-              to: "docs/guideBinaries",
+              to: "docs/guide/binaries",
             },
             {
               label: "Homebrew",
-              to: "docs/guideHomebrew",
+              to: "docs/guide/homebrew",
             },
           ],
         },
         {
-          label: "Concepts",
+          label: "Documentation",
           position: "left",
-          items: [
-            {
-              label: "Storage Model",
-              to: "docs/storageModel",
-            },
-            {
-              label: "SQL Extensions",
-              to: "docs/sqlExtensions",
-            },
-            {
-              label: "Designated Timestamp",
-              to: "docs/designatedTimestamp",
-            },
-            {
-              label: "Symbol",
-              to: "docs/symbol",
-            },
-            {
-              label: "Partitions",
-              to: "docs/partitions",
-            },
-            {
-              label: "Indexes",
-              to: "docs/indexes",
-            },
-          ],
-        },
-        {
-          label: "Use",
-          position: "left",
-          items: [
-            {
-              label: "Web Console",
-              to: "docs/usingWebConsole",
-            },
-            {
-              label: "Postgres Wire protocol (alpha)",
-              to: "docs/guidePSQL",
-            },
-            {
-              label: "HTTP REST API",
-              to: "docs/guideREST",
-            },
-            {
-              label: "Java API",
-              to: "docs/embeddedJavaAPI",
-            },
-            {
-              label: "Influx Line protocol",
-              to: "docs/influxReference",
-            },
-          ],
+          to: "docs/introduction",
         },
         {
           label: "Blog",
           to: "blog",
           position: "left",
-        },
-        {
-          label: "Docs",
-          to: "docs/documentationOverview",
-          position: "right",
         },
         {
           label: "Github",
@@ -144,20 +88,12 @@ module.exports = {
           items: [
             {
               label: "Documentation",
-              to: "docs/documentationOverview",
+              to: "docs/introduction",
             },
-            // {
-            //   label: "Download",
-            //   to: "getstarted",
-            // },
             {
               label: "Roadmap",
               href: "https://github.com/questdb/questdb/projects/3",
             },
-            // {
-            //   label: "About",
-            //   to: "about",
-            // },
           ],
         },
         {

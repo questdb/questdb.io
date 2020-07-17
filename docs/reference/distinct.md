@@ -1,0 +1,35 @@
+---
+id: distinct
+title: DISTINCT
+sidebar_label: DISTINCT
+---
+
+`SELECT DISTINCT` is used to return only distinct (i.e different) values from a
+column as part of a [SELECT statement](reference/select.md).
+
+### Syntax
+
+![distinct syntax](/img/doc/diagrams/distinct.svg)
+
+### Examples
+
+The following query will return a list of all unique ratings in the table.
+
+```questdb-sql title="Simple query"
+SELECT DISTINCT movieId
+FROM ratings;
+```
+
+SELECT DISTINCT can be used in conjunction with more advanced queries and
+filters.
+
+```questdb-sql title="With aggregate"
+SELECT DISTINCT movieId, count()
+FROM ratings;
+```
+
+```questdb-sql title="With filter"
+SELECT DISTINCT movieId, count()
+FROM ratings
+WHERE score > 3;
+```

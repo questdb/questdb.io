@@ -29,7 +29,7 @@ const Whatis = () => {
         What is QuestDB?
       </h1>
       <h2 className={clsx(whatisStyles.whatis__subtitle, "text--center")}>
-        QuestDB ships with an interactive web console which allows your to
+        QuestDB ships with an interactive Web Console which allows your to
         import data with a simple drag and drop, and to start querying right
         away.
       </h2>

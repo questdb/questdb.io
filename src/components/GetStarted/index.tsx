@@ -40,7 +40,7 @@ const GetStarted = () => (
       </pre>
       <p className={getStartedStyles.getStarted__text}>
         Learn how to use it with our&nbsp;
-        <Link to="docs/guideDocker">Docker guide</Link>.
+        <Link to="docs/guide/docker">Docker guide</Link>.
       </p>
 
       <h4 className={getStartedStyles.getStarted__type}>
@@ -55,7 +55,7 @@ const GetStarted = () => (
       </pre>
       <p className={getStartedStyles.getStarted__text}>
         Follow our&nbsp;
-        <Link to="docs/guideBinaries">installation steps</Link>
+        <Link to="docs/guide/binaries">installation steps</Link>
         &nbsp;to get started.
       </p>
 
@@ -65,7 +65,7 @@ const GetStarted = () => (
       </pre>
       <p className={getStartedStyles.getStarted__text}>
         Learn how to use QuestDB with Homebrew&nbsp;
-        <Link to="docs/guideHomebrew">in our documentation</Link>.
+        <Link to="docs/guide/homebrew">in our documentation</Link>.
       </p>
 
       <h4 className={getStartedStyles.getStarted__type}>Java library</h4>
@@ -82,7 +82,10 @@ const GetStarted = () => (
 
       <p className={getStartedStyles.getStarted__text}>
         Find out more in the&nbsp;
-        <Link to="docs/embeddedJavaAPI">embedded JAVA API documentation</Link>.
+        <Link to="docs/reference/embedded-java-api">
+          embedded JAVA API documentation
+        </Link>
+        .
       </p>
     </div>
   </section>

@@ -254,7 +254,7 @@ increased the memory limit from the default value from 10GB to 40GB
 #### Test data
 
 We generated two test files using our
-[random generation functions](/docs/functionsRandomValueGenerators) and exported
+[random generation functions](/docs/function/random-value-generator) and exported
 the results to CSV. We then imported the CSV individually in the databases.
 
 ```questdb-sql
