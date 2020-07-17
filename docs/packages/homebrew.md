@@ -1,6 +1,6 @@
 ---
-title: Homebrew Reference
-sidebar_label: Homebrew Reference
+title: Homebrew
+sidebar_label: Homebrew
 ---
 
 QuestDB is distributed via Homebrew to use on MacOS. This is useful when you
@@ -42,7 +42,7 @@ questdb [start|stop|status] [-d dir] [-f] [-t tag]
 
 ### Start
 
-`start` - starts the questdb service.
+`start` - starts the QuestDB service.
 
 ```script
 questdb start

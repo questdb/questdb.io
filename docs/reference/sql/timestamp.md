@@ -5,8 +5,8 @@ sidebar_label: TIMESTAMP
 
 `timestamp(columnName)` elects a [designated timestamp](concept/designated-timestamp.md)
 
-- during a [CREATE TABLE](reference/create-table.md#timestamp) operation
-- during a [SELECT](reference/select.md) operation (`dynamic timestamp`)
+- during a [CREATE TABLE](reference/sql/create-table.md#timestamp) operation
+- during a [SELECT](reference/sql/select.md) operation (`dynamic timestamp`)
 
 ## Syntax
 
@@ -15,7 +15,7 @@ sidebar_label: TIMESTAMP
 ![timestamp syntax](/img/doc/diagrams/timestamp.svg)
 
 Create a [designated timestamp](concept/designated-timestamp.md) column during table
-creation. For more information, refer to the [CREATE TABLE](reference/create-table.md)
+creation. For more information, refer to the [CREATE TABLE](reference/sql/create-table.md)
 section.
 
 #### During a SELECT operation

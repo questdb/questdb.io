@@ -5,11 +5,11 @@ sidebar_label: Homebrew
 
 This guide shows how to use Homebrew to install and start QuestDB. This is a
 quick guide. For more reference, please refer to our
-[Homebrew reference](reference/homebrew.md)
+[Homebrew package](packages/homebrew.md).
 
 ## Installing Homebrew
 
-If you already have homebrew installed, you can skip this part.
+If you already have Homebrew installed, you can skip this part.
 
 To install Homebrew, run the following.
 
@@ -37,7 +37,7 @@ questdb start
 
 This service will create the default `root directory` in
 `/usr/local/var/questdb/`. For a reference of startup options, please refer to
-our [Homebrew reference](reference/homebrew.md).
+our [Homebrew package](packages/homebrew.md).
 
 :::note
 QuestDB will start and run in the background and continue running even if you close the session. You will need to actively [stop it](#stop).
@@ -56,8 +56,8 @@ questdb status
 Here are some guides to get started using the QuestDB service. These will show
 you how to import data and run queries
 
-- with the [HTTP API](guide/plsql.md)
-- with [psql](guide/plsql.md) over Postgres wire protocol
+- with [REST](guide/rest.md)
+- with [Postgres wire](guide/postgres-wire.md)
 
 ## Stopping QuestDB
 

@@ -4,7 +4,7 @@ sidebar_label: FILL
 ---
 
 Specifies fill behavior for missing data for as part of a
-[SAMPLE BY](reference/sample-by.md) aggregation query.
+[SAMPLE BY](reference/sql/sample-by.md) aggregation query.
 
 ### Syntax
 

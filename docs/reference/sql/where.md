@@ -158,7 +158,7 @@ SELECT * FROM users WHERE age != 23;
 Evaluates whether the column value is within a range of the target value. This
 is useful to simulate equality on `double` and `float` values.
 
-![syntax eq comparison doulbe](/img/doc/diagrams/whereEqDoublePrecision.svg)
+![syntax eq comparison double](/img/doc/diagrams/whereEqDoublePrecision.svg)
 
 ```questdb-sql title="Equal to 23 with 0.00001 precision"
 SELECT * FROM users WHERE eq(age, 23, 0.00001);
@@ -203,13 +203,13 @@ QuestDB supports both its own timestamp search notation and standard search
 based on inequality. This section describes the use of the
 `timestamp search notation` which is efficient and fast but requires a
 [designated timestamp](concept/designated-timestamp.md). Remember, designated timestamp
-can be applied [dynamically](reference/timestamp.md#during-a-select-operation).
+can be applied [dynamically](reference/sql/timestamp.md#during-a-select-operation).
 
 ### Exact timestamp
 
 #### Syntax
 
-![syntax timestamp exacth where](/img/doc/diagrams/timestampExact.svg)
+![syntax timestamp exact where](/img/doc/diagrams/timestampExact.svg)
 
 ```questdb-sql title="Example - Date"
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z';

@@ -1,10 +1,10 @@
 ---
-title: SQL Execution Order
-sidebar_label: SQL Execution Order
+title: SQL execution order
+sidebar_label: SQL execution order
 ---
 
 QuestDB attempts to implement standard ANSI SQL. We also attempt to be
-PostgresSQL compatible, although some of it is work in progress. QuestDB
+PostgreSQL compatible, although some of it is work in progress. QuestDB
 implements the following clauses in this execution order:
 
 1. FROM

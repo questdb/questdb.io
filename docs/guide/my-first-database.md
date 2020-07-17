@@ -1,11 +1,11 @@
 ---
-title: My First Database
-sidebar_label: My First Database
+title: My first database
+sidebar_label: My first database
 ---
 
 The goal of this tutorial is to explore QuestDB's features to interact with
 time-series data. This assumes you have an instance running. You can find guides
-to setup QuestDB [here](overview.md).
+to setup QuestDB [here](introduction.md).
 
 In this tutorial, you will learn how to
 
@@ -19,10 +19,10 @@ of sensors.
 
 :::info
 All commands are run through the [Web Console](guide/web-console.md) accessible on
-[http://localhost:9000/index.html](http://localhost:9000/index.html).
+[http://localhost:9000](http://localhost:9000).
 
-If you prefer, you could easily run the same SQL using [PSQL](guide/plsql.md) or
-the [HTTP API](guide/rest.md).
+You can also run the same SQL using [Postgres wire](guide/postgres-wire.md) or
+the [REST API](guide/rest.md).
 :::
 
 ## Creating a table
@@ -38,7 +38,7 @@ CREATE TABLE sensors (ID LONG, make STRING, city STRING);
 
 :::info
 The `CREATE TABLE` command comes with many more functions. For more
-information, please refer to the [CREATE TABLE](reference/create-table.md) command
+information, please refer to the [CREATE TABLE](reference/sql/create-table.md) command
 reference.
 :::
 
@@ -58,11 +58,11 @@ INSERT INTO sensors
 
 :::info
 For more information on `INSERT` and `INSERT as select`, please refer to
-the [INSERT reference](reference/insert.md).
+the [INSERT reference](reference/sql/insert.md).
 
 For more information on procedurally generated data in the
-[random generator functions](function/random-value-generator.md) and in the
-[row generator functions](function/row-generator.md).
+[random generator functions](reference/function/random-value-generator.md) and in the
+[row generator functions](reference/function/row-generator.md).
 :::
 
 Our `sensors` table now contains 10,000 randomly generated sensors of different
@@ -211,8 +211,8 @@ Results should look like the data below.
 | ...                         | ...   | ...   | ...         |
 
 :::info
-Find more about these commands in the [Select](reference/select.md) and
-[Join](reference/join.md) sections.
+Find more about these commands in the [Select](reference/sql/select.md) and
+[Join](reference/sql/join.md) sections.
 :::
 
 ## Deleting tables

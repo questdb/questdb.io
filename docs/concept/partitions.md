@@ -13,7 +13,7 @@ each interval is stored in separate sets of files.
 - Available partition intervals are `NONE`, `DAY`, `MONTH` and `YEAR`.
 - Default behaviour is `PARTITION BY NONE`.
 - Partitions are defined at table creation. For more information, refer to
-  [CREATE TABLE section](reference/create-table.md).
+  [CREATE TABLE section](reference/sql/create-table.md).
 
 #### Requirements
 

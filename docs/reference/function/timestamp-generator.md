@@ -1,6 +1,6 @@
 ---
-title: Timestamp Generator
-sidebar_label: Timestamp Generator
+title: Timestamp generator
+sidebar_label: Timestamp generator
 ---
 
 ## timestamp_sequence
@@ -22,7 +22,7 @@ sidebar_label: Timestamp Generator
 - a static value, in which case the growth will be monotonic.
 - a randomized value, in which case the growth will be randomized. This is done
   using
-  [random value generator functions](function/random-value-generator.md).
+  [random value generator functions](reference/function/random-value-generator.md).
 
 #### Return value
 

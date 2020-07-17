@@ -1,8 +1,8 @@
 ---
-title: Influx Line Protocol Reference
+title: InfluxDB line protocol
 ---
 
-Influx Line Protocol ingestion makes it easy for existing InfluxDB users to try
+InfluxDB line protocol ingestion makes it easy for existing InfluxDB users to try
 QuestDB by only changing the address they send data to.
 
 It is not necessary to create a table schema beforehand: the table will be
@@ -35,7 +35,7 @@ table_name,tagset valueset timestamp
 - The `timestamp` column is automatically created as
   [designated timestamp](concept/designated-timestamp.md) with the
   [partition strategy](concept/partitions.md) set to `NONE`. If you would like to define
-  a partition stragey, you should [CREATE](reference/create-table.md) the table beforehand.
+  a partition stragey, you should [CREATE](reference/sql/create-table.md) the table beforehand.
 - When the timestamp is empty, QuestDB will use the server timestamp.
 
 #### Examples
@@ -69,7 +69,7 @@ overhead. Should users decide to send varying quantities of readings or metadata
 tags for different entries, QuestDB will adapt on the fly.
 :::
 
-Influx line protocol makes it possible to send data under different shapes. Each
+InfluxDB line protocol makes it possible to send data under different shapes. Each
 new entry may contain certain metadata tags or readings, and others not. Whilst
 the example just above highlights structured data, it is possible for Influx
 line protocol users to send data as follows.
@@ -131,7 +131,7 @@ The TCP receiver uses two types of threads.
 
 The workflow is as follows.
 
-![influx line protocol structure diagram](/img/doc/diagrams/influxLineProtocolTCPStructure.svg)
+![InfluxDB line protocol structure diagram](/img/doc/diagrams/influxLineProtocolTCPStructure.svg)
 
 The network IO thread receives write requests and sets up a queue for the
 workers. Workers pick up write requests for their assigned tables and insert the
@@ -151,7 +151,7 @@ by the busiest thread divided by the number of writes in the least busy thread.
 If this ratio is above the threshold, the table with the least writes in the
 busiest worker thread will be reassigned to the least busy worker thread.
 
-![influx line protocol load balancing diagram](/img/doc/diagrams/influxLineProtocolTCPLoadBalancing.svg)
+![InfluxDB line protocol load balancing diagram](/img/doc/diagrams/influxLineProtocolTCPLoadBalancing.svg)
 
 #### Commit strategy
 
@@ -163,7 +163,7 @@ Uncommitted rows are committed either
 #### Configuration
 
 The TCP receiver configuration can be completely customised using
-[configuration keys](reference/server-configuration.md#influx-line-protocol-config-tcp). You can use
+[configuration keys](reference/server-configuration.md#influxdb-line-protocol-config-tcp). You can use
 this to configure the tread pool, buffer and queue sizes, receiver IP address
 and port, load balancing etc.
 
@@ -174,7 +174,7 @@ currently single-threaded, and performs both network IO and write jobs out of
 one thread. The UDP worker thread can work either on its own thread or use the
 common thread pool. It supports both multicast and unicast.
 
-Find an example of how to use this [here](reference/influx-sender-library.md)
+Find an example of how to use this [here](java#influx-sender-library)
 
 #### Overview
 
@@ -195,6 +195,6 @@ Uncommitted rows are committed either
 #### Configuration
 
 The UDP receiver configuration can be completely customised using
-[configuration keys](reference/server-configuration.md#influx-line-protocol-config-udp). You can use
+[configuration keys](reference/server-configuration.md#influxdb-line-protocol-config-udp). You can use
 this to configure the IP address and port the receiver binds to, commit rates,
 buffer size, whether it should run on a separate thread etc.

@@ -17,7 +17,8 @@
   background: var(--palette-white-05);
 }
 
-:global(.docs-sidebar .menu > .menu__list > li > .menu__link) {
+
+:global(.docs-sidebar .menu > .menu__list > .menu__list-item:not(:first-child) > .menu__link) {
   text-transform: uppercase;
   font-weight: var(--ifm-font-weight-bold);
 }

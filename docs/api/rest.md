@@ -1,6 +1,6 @@
 ---
-title: REST API reference
-sidebar_label: REST API reference
+title: REST API
+sidebar_label: REST
 ---
 
 The QuestDB REST API is based around standard HTTP features and is understood by
@@ -16,7 +16,7 @@ QuestDB distribution. Find out more in the section
 [using the Web Console](guide/web-console.md).
 
 :::tip
-Other machines on your network can access the console and the HTTP API on
+Other machines on your network can access the console and the REST API on
 `http://IP_OF_THE_HOST_MACHINE:9000`
 :::
 

@@ -1,6 +1,6 @@
 ---
-title: Web Console Reference
-sidebar_label: Web Console Reference
+title: Web Console
+sidebar_label: Web Console
 ---
 
 This is a reference for the Console. If you want to learn how to use it, we

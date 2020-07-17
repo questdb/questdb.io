@@ -9,7 +9,7 @@ and export results with `curl`. If you prefer a more visual approach, you can
 also use the [Web Console](guide/web-console.md).
 
 For more information about our REST API, please consult the
-[REST API reference](reference/rest-api.md)
+[REST API](api/rest.md)
 
 :::note
 This requires a running instance of QuestDB with port `9000` exposed.

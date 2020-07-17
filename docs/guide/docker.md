@@ -5,12 +5,12 @@ title: How to use QuestDB with Docker
 Docker is great to try new stuff and get started in minutes with just a few
 commands. Follow this guide to set up and start using QuestDB from scratch. By
 the end, you will be able to set up containers and be ready to send and query
-data using the HTTP API and Postgres Wire protocol.
+data using the REST API and Postgres wire protocol.
 
 ## Install Docker
 
 Before we start, you will need to install Docker. You can find guides for your
-platform [here](https://docs.docker.com/get-docker/). The linux page points to
+platform [here](https://docs.docker.com/get-docker/). The Linux page points to
 several guides depending on your distribution (Fedora, Debian, Ubuntu, etc). For
 Unix machines, this requires sudo rights.
 
@@ -28,16 +28,15 @@ docker pull questdb/questdb
 
 `docker create` lets you create a container. In this guide, we mostly look at
 the following two arguments. For a complete list, please refer to our
-[Docker reference](reference/docker.md).
+[Docker image](packages/docker.md).
 
-| argument | description                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| `--name` | name for your container                                                                                       |
-| `-p`     | port to map. For the HTTP API and Web Console, open `9000:9000`. For Postgres wire protocol, open `8812:8812` |
+| argument | description                                                                                         |
+| -------- | --------------------------------------------------------------------------------------------------- |
+| `--name` | name for your container                                                                             |
+| `-p`     | port to map. For the REST API and Web Console, `9000:9000`. For Postgres wire protocol, `8812:8812` |
 
 The below will use the image you just pulled to create a container called
-**questdb** with local port 9000 mapped to the container. This will open up the
-HTTP API.
+**questdb** with local port 9000 mapped to the container.
 
 ```questdb-sql title="Create a container"
 docker create --name questdb -p 9000:9000 questdb/questdb
@@ -72,8 +71,8 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 Congratulations, you have a running QuestDB server. You can now start to
 interact with it.
 
-- If you opened port 9000, you can follow our [HTTP REST API](guide/plsql.md)
-- If you mapped port `8812`, follow our [psql Guide](guide/plsql.md)
+- If you exposed the port `9000`, you can follow our [REST guide](rest.md)
+- If you exposed the port `8812`, follow our [Postgres wire guide](guide/postgres-wire.md)
 
 ## Shut down and cleanup
 
@@ -89,7 +88,7 @@ DROP TABLE weather;
 :::info
 You can run QuestDB in Sandbox mode which will delete all data when the
 container is stopped. Find out more in our
-[Docker reference](reference/docker.md)
+[Docker image](packages/docker.md)
 :::
 
 You can then shut down and remove the container.

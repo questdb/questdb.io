@@ -175,7 +175,7 @@ database
 If you were paying attention, and read the code, you'll have noticed the UDP
 stuff I snuck in there. That's because we're going to make this super easy and
 use UDP to send our data. And there's a <strong>really</strong> good reason for
-that: InfluxDB Line Protocol. You see, QuestDB has a built-in InfluxDB Line
+that: InfluxDB line protocol. You see, QuestDB has a built-in InfluxDB Line
 Protocol listener, but (for now) it's only listening on a UDP port. So we're
 going to use that.
 

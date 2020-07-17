@@ -8,8 +8,8 @@ Displays tables and columns available in the database.
 :::info
 These commands return the tables and columns as a table. If you would
 like to query your tables and columns with filters or to use the results as part
-of a function, see [table_columns()](function/meta.md#table_columns) and
-[all_tables()](function/meta.md#all_tables) functions.
+of a function, see [table_columns()](reference/function/meta.md#table_columns) and
+[all_tables()](reference/function/meta.md#all_tables) functions.
 :::
 
 ### Examples

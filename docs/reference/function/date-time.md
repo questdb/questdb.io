@@ -1,6 +1,6 @@
 ---
-title: Date and Time
-sidebar_label: Date and Time
+title: Date and time
+sidebar_label: Date and time
 ---
 
 ## systimestamp

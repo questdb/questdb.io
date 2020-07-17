@@ -24,8 +24,8 @@ values.
 #### Usage
 
 To declare a column as `SYMBOL` please refer to the
-[CREATE TABLE](reference/create-table.md) section. To create an `INDEX` on `SYMBOL`, please
-refer to the [INDEX](concept/indexes.md) section.
+[CREATE TABLE](reference/sql/create-table.md) section. To create an `INDEX` on `SYMBOL`, please
+refer to the [index](concept/indexes.md) section.
 
 #### Properties
 

@@ -1,5 +1,5 @@
 ---
-title: Docker reference
+title: Docker
 ---
 
 Docker is a convenient method to have QuestDB running very quickly via simple
@@ -42,13 +42,6 @@ The interactive sandbox will create a container on the fly and start
 it. Once stopped, the container will be removed and the data deleted.
 :::
 
-#### Ports & security
-
-QuestDB requires that you open ports to allow for interactions with the HTTP
-server and the Postgres wire. If you do not want to open either of these ports,
-you can alter the [port options](#-p-ports). However doing so may limit your
-interaction with QuestDB.
-
 ### Run as a container
 
 #### Create a container
@@ -74,14 +67,14 @@ docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb:5.0.0
 
 ##### -p ports
 
-- `-p 9000:9000` opens port 9000 for the HTTP API and the Web Console. The web
-  console is available on localhost:9000.
-- `-p 8812:8812` opens port 8812 for the PostgresSQL wire protocol.
-- `-p 9009:9009` opens port 9009 to listen for UDP Influx line protocol
+- `-p 9000:9000` for the REST API and the Web Console. The web
+  console is available on [http://localhost:9000](http://localhost:9000)
+- `-p 8812:8812` for the PostgreSQL wire protocol
+- `-p 9009:9009` InfluxDB line protocol
 
 ##### -v volumes
 
-The questdb [root_directory](reference/root-directory-structure.md) will be in the following
+The QuestDB [root_directory](reference/root-directory-structure.md) will be in the following
 locations.
 
 | Container OS       | Volume              |
@@ -137,8 +130,8 @@ As the process will be running in shell, you can `CTRL + C` to stop it.
 ### Log into the container
 
 You can log into the container and interact using `cmd` (if your container is
-windows-based) or `bash` (if your container is linux-based). If you are using a
-MacOS or linux machine, this will also be `bash`. If you are using a Windows
+windows-based) or `bash` (if your container is Linux based). If you are using a
+MacOS or Linux machine, this will also be `bash`. If you are using a Windows
 machine, it could be either `cmd` or `bash` depending on what type of container
 you are running.
 

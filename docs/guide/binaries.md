@@ -8,7 +8,7 @@ using the server.
 
 :::info
 For complete information on how to use QuestDB's binary, please refer to
-the [Binaries reference](reference/binaries.md)
+the [Binaries](packages/binaries.md)
 :::
 
 ## Setup QuestDB
@@ -51,7 +51,7 @@ To start the QuestDB server service, simply run the below
 questdb.exe start
 ```
 
-This will use the following [root directories](reference/root-directory-structure.md)
+This will use the following [root directory](reference/root-directory-structure.md)
 
 ```script title="Linux"
 $HOME/.questdb
@@ -80,8 +80,8 @@ questdb status
 Here are some guides to get started using the QuestDB service. These will show
 you how to import data and run queries
 
-- with the [HTTP API](guide/rest.md)
-- with [psql](guide/plsql.md) over Postgres wire protocol
+- with the [REST API](guide/rest.md)
+- with the [Postgres wire protocol](guide/postgres-wire.md)
 
 ## Stop QuestDB
 

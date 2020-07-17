@@ -76,7 +76,7 @@ FROM ratings
 
 :::info
 Supported aggregation functions are listed
-[here](function/aggregation.md).
+[here](reference/function/aggregation.md).
 :::
 
 ### Aggregation by group
@@ -108,7 +108,7 @@ FROM ratings;
 ```
 
 :::tip
-Whenever possible, it is recommended to perform arithmetics `outside` of
+Whenever possible, it is recommended to perform arithmetic `outside` of
 aggregation functions as this can have a dramatic impact on performance. For
 example, `min(value/2)` is going to execute considerably slower than
 `min(value)/2` although both alternative will return the same result
@@ -127,7 +127,7 @@ Conditional results based on expressions.
 ![case sql syntax](/img/doc/diagrams/case-def.svg)
 
 :::info
-For more information, please refer to the [CASE reference](reference/case.md)
+For more information, please refer to the [CASE reference](reference/sql/case.md)
 :::
 
 ### CAST
@@ -139,7 +139,7 @@ Convert values and expression between types.
 ![cast sql syntax](/img/doc/diagrams/cast.svg)
 
 :::info
-For more information, please refer to the [CAST reference](reference/cast.md)
+For more information, please refer to the [CAST reference](reference/sql/cast.md)
 :::
 
 ### DISTINCT
@@ -152,20 +152,20 @@ Returns distinct values of the specified column(s).
 
 :::info
 For more information, please refer to the
-[DISTINCT reference](reference/distinct.md).
+[DISTINCT reference](reference/sql/distinct.md).
 :::
 
 ### FILL
 
 Defines filling strategy for missing data in aggregation queries. This function
-complements [SAMPLE BY](reference/sample-by.md) queries.
+complements [SAMPLE BY](reference/sql/sample-by.md) queries.
 
 #### Syntax
 
 ![fill syntax](/img/doc/diagrams/fill.svg)
 
 :::info
-For more information, please refer to the [FILL reference](reference/fill.md).
+For more information, please refer to the [FILL reference](reference/sql/fill.md).
 :::
 
 ### JOIN
@@ -177,7 +177,7 @@ Join tables based on a key or timestamp.
 ![join syntax](/img/doc/diagrams/joins.svg)
 
 :::info
-For more information, please refer to the [JOIN reference](reference/join.md)
+For more information, please refer to the [JOIN reference](reference/sql/join.md)
 :::
 
 ### LIMIT
@@ -189,7 +189,7 @@ Specify the number and position of records returned by a query.
 ![limit syntax](/img/doc/diagrams/limit.svg)
 
 :::info
-For more information, please refer to the [LIMIT reference](reference/limit.md).
+For more information, please refer to the [LIMIT reference](reference/sql/limit.md).
 :::
 
 ### ORDER BY
@@ -202,7 +202,7 @@ Orders the results of a query by one or several columns.
 
 :::info
 For more information, please refer to the
-[ORDER BY reference](reference/order-by.md)
+[ORDER BY reference](reference/sql/order-by.md)
 :::
 
 ### UNION
@@ -215,7 +215,7 @@ duplicates.
 ![union syntax](/img/doc/diagrams/union.svg)
 
 :::info
-For more information, please refer to the [UNION reference](reference/union.md)
+For more information, please refer to the [UNION reference](reference/sql/union.md)
 :::
 
 ### WHERE
@@ -228,9 +228,9 @@ Filters query results
 
 :::info
 QuestDB supports complex WHERE clauses along with type-specific
-searches. For more information, please refer to the [WHERE reference](reference/where.md).
-There are different syntaxes for [text](reference/where.md#symbol-and-string),
-[numeric](where.md#numeric), or [timestamp](reference/where.md#timestamp-and-date)
+searches. For more information, please refer to the [WHERE reference](reference/sql/where.md).
+There are different syntaxes for [text](reference/sql/where.md#symbol-and-string),
+[numeric](where.md#numeric), or [timestamp](reference/sql/where.md#timestamp-and-date)
 filters.
 :::
 
@@ -249,7 +249,7 @@ This function requires a [designated timestamp](concept/designated-timestamp.md)
 
 :::info
 For more information, please refer to the
-[LATEST BY reference](reference/latest-by.md).
+[LATEST BY reference](reference/sql/latest-by.md).
 :::
 
 ### SAMPLE BY
@@ -264,7 +264,7 @@ average, monthly maximum etc. This function requires a
 
 :::info
 For more information, please refer to the
-[SAMPLE BY reference](reference/sample-by.md).
+[SAMPLE BY reference](reference/sql/sample-by.md).
 :::
 
 ### TIMESTAMP
@@ -285,5 +285,5 @@ unexpected results.
 ![dynamic timestamp syntax](/img/doc/diagrams/dynamicTimestamp.svg)
 
 :::info
-For more information, refer to the [TIMESTAMP reference](reference/timestamp.md)
+For more information, refer to the [TIMESTAMP reference](reference/sql/timestamp.md)
 :::

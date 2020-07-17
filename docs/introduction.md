@@ -1,5 +1,5 @@
 ---
-title: "Welcome to QuestDB"
+title: Introduction
 ---
 
 QuestDB is a relational column-oriented database designed for real-time
@@ -24,16 +24,16 @@ interesting to store and retrieve repetitive strings efficiently.
 Setup guides are available for [Docker](guide/docker.md), the
 [binaries](guide/binaries.md) or [Homebrew](guide/homebrew.md).
 
-There are guides to get started with the [Web console](guide/web-console.md), with
-the Postgres Wire Protocol (beta), for example with [PSQL](guide/plsql.md), the
-[HTTP REST API](reference/rest-api.md) or the [Java API](reference/embedded-java-api.md)
+There are guides to get started with the [Web Console](guide/web-console.md), with
+the [Postgres wire protocol (alpha)](guide/postgres-wire.md), the
+[REST API](guide/rest.md) or the [Java API](api/java.md).
 
 ### Reference
 
-This section lists reference about configuration, interfaces, APIs, functions,
-and SQL statements.
+This section contains reference about configuration, functions and SQL
+language.
 
-### Need help? Have questions?
+### Support
 
 We are happy to help with any question you may have, particularly to help you
 optimise the performance of your application. Feel free to reach out using the

@@ -1,6 +1,6 @@
 ---
-title: Root Directory Structure
-sidebar_label: Root Directory Structure
+title: Root directory structure
+sidebar_label: Root directory structure
 ---
 
 QuestDB creates the following file structure in it's `root_directory`.
@@ -36,7 +36,7 @@ This directory contains all the files related to database tables. It is
 organised as follows:
 
 - Each table has its own `table_directory` under `root_directory/db/table_name`
-- Within a `table_directory`, each [partition](concept/partitions.md)s has its own
+- Within a `table_directory`, each [partition](concept/partitions.md) has its own
   `partition_directory`.
 - Within each `partition directory`, each column has its own `column_file`, for
   example `mycolumn.d`
@@ -88,7 +88,7 @@ If the table is not partitioned, data is stored in a directory called `default`
 As tempting as it may be to delete partitions by manually removing
 the directories from the file system, we really discourage this. The partitions
 are organised with metadata and deleting them directly could corrupt the table.
-We recommend you use [ALTER TABLE DROP PARTITION](reference/alter-table-drop-partition.md)
+We recommend you use [ALTER TABLE DROP PARTITION](reference/sql/alter-table-drop-partition.md)
 for this effect.
 :::
 

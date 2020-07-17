@@ -1,6 +1,6 @@
 ---
-title: Random Value Generator
-sidebar_label: Random Value Generator
+title: Random value generator
+sidebar_label: Random value generator
 ---
 
 ## Overview
@@ -12,7 +12,7 @@ generate large test datasets that mimic the structure of their actual data.
 Values can be generated either:
 
 - Pseudo randomly
-- [Deterministically](function/row-generator.md#long_sequence) when specifying a
+- [Deterministically](reference/function/row-generator.md#long_sequence) when specifying a
   `seed`
 
 QuestDB supports the following random generation functions:
@@ -54,7 +54,7 @@ example
 
 This page describes the functions to generate values. To generate sequences of
 values, please refer the page about
-[row generators](function/row-generator.md).
+[row generators](reference/function/row-generator.md).
 
 ## rnd_boolean
 
@@ -437,7 +437,7 @@ FROM long_sequence(5);
 #### Sequences
 
 To generate increasing timestamps, please refer the page about
-[row generators](function/row-generator.md).
+[row generators](reference/function/row-generator.md).
 
 ## rnd_char
 

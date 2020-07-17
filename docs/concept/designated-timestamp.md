@@ -41,7 +41,7 @@ Electing a `designated timestamp` allows you to:
 - leverage timestamp partitions. For more information, refer to the
   [partitions section](concept/partitions.md).
 - use time-series joins such as `ASOF JOIN`. For more information refer to the
-  [joins section](reference/join.md).
+  [JOIN reference](reference/sql/join.md).
 
 #### Examples
 
@@ -92,7 +92,7 @@ to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'),
 
 :::info
 For more information about `systimestamp()` and related functions, check
-the [date & time functions section](function/date-time.md).
+the [date & time functions section](../reference/function/date-time.md).
 :::
 
 - Use a temporary table for the latest partition and order data to insert into

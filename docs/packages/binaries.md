@@ -1,5 +1,5 @@
 ---
-title: Binaries reference
+title: Binaries
 ---
 
 QuestDB comes with an executable `questdb.exe` for Windows, and script
@@ -28,7 +28,7 @@ questdb.exe [start|stop|status|install|remove] \
 
 ### Start
 
-`start` - starts the questdb service.
+`start` - starts the QuestDB service.
 
 ```questdb-sql title="Linux & MacOS"
 ./questdb.sh start
@@ -122,7 +122,7 @@ questdb.exe status -t 'my-questdb-service'
 
 ### Install
 
-`install` - installs the Windows questdb service. It will start automatically at
+`install` - installs the Windows QuestDB service. It will start automatically at
 startup.
 
 :::note
@@ -141,7 +141,7 @@ questdb.exe install -t 'my-questdb-service'
 
 ### Remove
 
-`remove` - removes the Windows questdb service. It will no longer start at
+`remove` - removes the Windows QuestDB service. It will no longer start at
 startup.
 
 :::note

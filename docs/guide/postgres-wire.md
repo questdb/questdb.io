@@ -1,6 +1,6 @@
 ---
 title: How to connect QuestDB to PSQL (alpha)
-sidebar_label: Postgres Wire (alpha)
+sidebar_label: Postgres wire (alpha)
 ---
 
 This short guide explains how to connect to QuestDB using `psql`.
@@ -134,8 +134,8 @@ INSERT INTO temp VALUES(
 
 For the purpose of this guide, it is easier to insert from a file or in this
 case to generate the data. We can use QuestDB's
-[row generation functions](function/row-generator.md) and
-[random generators](function/random-value-generator.md) to quickly create test
+[row generation functions](reference/function/row-generator.md) and
+[random generators](reference/function/random-value-generator.md) to quickly create test
 data. We use `long_sequence()` which generates rows and returns a synthetic
 column `x` with monotonically increasing values. As `x` is of type `long`, we
 use `cast` to convert it to `int`.
@@ -173,7 +173,7 @@ SAMPLE BY 7d;
 | 2020-07-02 00:00:00.000000 | 13.0 |
 
 :::info
-This query uses [SAMPLE BY](reference/select.md#sample-by) to generate weekly
+This query uses [SAMPLE BY](reference/sql/select.md#sample-by) to generate weekly
 time buckets in just 3 words.
 :::
 
@@ -197,7 +197,7 @@ WHERE ts='2020-12';
 
 :::info
 This query uses [LATEST BY](guide/crud.md) and our
-[timestamp search](reference/select.md#interval-timestamp).
+[timestamp search](reference/sql/select.md#interval-timestamp).
 :::
 
 | ts                         | location | tempC |
@@ -211,7 +211,7 @@ This query uses [LATEST BY](guide/crud.md) and our
 
 There is plenty to do with QuestDB. As a next step, you could check out our
 guide to [CRUD operations](guide/crud.md), how to join time-series with
-[ASOF JOIN](reference/join.md#asof-join) or how to [FILL](reference/select.md#fill) missing
+[ASOF JOIN](reference/sql/join.md#asof-join) or how to [FILL](reference/sql/select.md#fill) missing
 intervals within a select statement.
 
 Before we leave, let's remember to cleanup and delete all the data

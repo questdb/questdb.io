@@ -32,11 +32,11 @@ const Console = () => (
           )}
         >
           <img
-            alt="Postres Wire protocol logo"
+            alt="Postgres wire protocol logo"
             src="img/pages/index/pgwire.svg"
           />
           <div className={consoleStyles.console__label}>
-            Postgres Wire Support
+            Postgres wire Support
           </div>
           <div className={consoleStyles.console__summary}>
             Interact with QuestDB using the postgres wire and any tool that
@@ -46,7 +46,7 @@ const Console = () => (
 
         <div className={consoleStyles.console__highlight}>
           <img
-            alt="Postres Wire protocol logo"
+            alt="Postgres wire protocol logo"
             src="img/pages/index/foss.svg"
           />
           <div className={consoleStyles.console__label}>Open Source</div>

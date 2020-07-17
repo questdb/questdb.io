@@ -119,7 +119,7 @@ connection.close();
 - `inactive` is used to flag deleted records.
 - `timestamp` timestamp in microseconds of the record. Note that if you receive
   the timestamp data as a string, it could also be inserted using
-  [to_timestamp](function/date-time.md#to_timestamp).
+  [to_timestamp](reference/function/date-time.md#to_timestamp).
 
 Let's now insert a few records:
 
@@ -234,7 +234,7 @@ Our resulting table looks like the following.
 ## (R)ead
 
 Reading records can be done using `SELECT` or by reading a table directly via
-the Java API. Reading via the [Java API](reference/embedded-java-api.md) (see tab
+the Java API. Reading via the [Java API](api/java.md) (see tab
 `Java Raw`) iterates over a table and can therefore only access one table at a
 time. If you would like to query various tables via the Java API, you can pass
 SQL to Java and read the resulting table (see tab `Java SQL`).
@@ -344,7 +344,7 @@ The results are shown below
 | 2       | USD         | 900.75  | FALSE    | 2020-04-22T16:12:43.504432Z |
 | 2       | EUR         | 880.2   | FALSE    | 2020-04-22T16:18:34.404665Z |
 
-You can use [aggregation functions](function/aggregation.md) to derive
+You can use [aggregation functions](reference/function/aggregation.md) to derive
 information like the average balance per currency (note the
 [voluntary omission of redundant GROUP BY](concept/sql-extensions.md#absence-of-group-by)
 below).
@@ -359,7 +359,7 @@ SELECT balance_ccy, avg(balance) FROM balances;
 | EUR         | 765.35   |
 
 If we had more data we could get deeper and use
-[SAMPLE BY](reference/select.md#sample-by) clauses to easily generate aggregates based
+[SAMPLE BY](reference/sql/select.md#sample-by) clauses to easily generate aggregates based
 on time intervals. For example, to get the average hourly balance per currency,
 all we need is to add `SAMPLE BY 1h` to the above query!
 

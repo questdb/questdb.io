@@ -9,19 +9,19 @@ will show you how to import data,
 ![console overview](/img/doc/console/console-overview.png)
 
 :::note
-This guide assumes you have QuestDB running with port `9000` open. You
+This guide assumes you have QuestDB running with port `9000` accessible. You
 can get QuestDB running by following our quick start guides for
 [Docker](guide/docker.md), [Homebrew](guide/homebrew.md), and how to use QuestDB's
-[binaries](reference/binaries.md).
+[binaries](packages/binaries.md).
 :::
 
 ## Accessing the Web Console
 
-The Web Console will be available on `http://[server-address]:9000` If running
-locally, the console is available on
-[http://localhost:9000/index.html](http://localhost:9000/index.html) If you are
-running QuestDB from Docker, make sure you mapped port `9000`. If running from
-binaries or Homebrew, the port is open by default.
+The Web Console will be available at `http://[server-address]:9000`. When running
+locally, the console is available at
+[http://localhost:9000](http://localhost:9000).
+
+If you are running QuestDB from Docker, make sure you expose the port `9000`.
 
 ## SQL editor
 
@@ -34,8 +34,8 @@ By default, the Web Console opens on the SQL editor.
 #### Using the editor
 
 You can run queries directly in the editor. Let's create a simple table using
-the [row generation](function/row-generator.md) and
-[random generator](function/random-value-generator.md) functions.
+the [row generation](reference/function/row-generator.md) and
+[random generator](reference/function/random-value-generator.md) functions.
 
 :::tip
 You can also insert data using the Import screen.

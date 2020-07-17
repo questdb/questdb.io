@@ -1,6 +1,6 @@
 ---
-title: JOINS
-sidebar_label: JOINS
+title: JOIN
+sidebar_label: JOIN
 ---
 
 QuestDB supports the following types of joins: `INNER`, `OUTER`, `CROSS`, `ASOF`
@@ -13,7 +13,7 @@ joins and there are no limitations on number of joins either.
 
 ## Join Syntax
 
-![joins](/img/doc/diagrams/joins.svg)
+![join](/img/doc/diagrams/joins.svg)
 
 Following data join columns from joined tables are combined in single row. Same
 name columns originating from different tables will be automatically aliased to
@@ -122,7 +122,7 @@ timestamp **prior to** the timestamp in the first table.
 :::note
 To be able to leverage `ASOF JOIN`, both joined table must have a
 designated `timestamp` column. To designate a column as `timestamp`, please
-refer to the [CREATE TABLE](reference/create-table.md) section.
+refer to the [CREATE TABLE](reference/sql/create-table.md) section.
 :::
 
 `ASOF` join is performed on tables or result sets that are ordered by time. When

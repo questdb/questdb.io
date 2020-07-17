@@ -5,7 +5,7 @@ sidebar_label: SAMPLE BY
 
 `SAMPLE BY` is used on time-series data to summarise large datasets into
 aggregates of homogeneous time chunks as part of a
-[SELECT statement](reference/select.md).
+[SELECT statement](reference/sql/select.md).
 
 :::note
 To use `SAMPLE BY`, one column needs to be designated as `timestamp`.

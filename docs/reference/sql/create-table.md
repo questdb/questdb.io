@@ -48,7 +48,7 @@ character
 
 #### typeDef
 
-`typeDef` - column [type name](reference/datatypes.md) with additional options.
+`typeDef` - column [type name](reference/sql/datatypes.md) with additional options.
 
 ![column type](/img/doc/diagrams/column-type-def.svg)
 
@@ -156,7 +156,7 @@ CREATE TABLE
 With this setting, QuestDB enforce chronological order of `ts` values.
 :::
 
-#### With [Partition](concept/partitions.md)
+#### With [partition](concept/partitions.md)
 
 ```questdb-sql
 CREATE TABLE
@@ -165,7 +165,7 @@ CREATE TABLE
     PARTITION BY DAY;
 ```
 
-#### With [SYMBOL](concept/symbol.md)
+#### With [symbol](concept/symbol.md)
 
 ```questdb-sql
 CREATE TABLE my_table(
@@ -205,7 +205,7 @@ CREATE TABLE x AS(SELECT * FROM table WHERE false)
 ```
 
 Here we changed type of `price` (assuming it was `INT`) to `LONG` and changed
-type of `sym` to [SYMBOL](concept/symbol.md) and created an [index](concept/indexes.md).
+type of `sym` to [symbol](concept/symbol.md) and created an [index](concept/indexes.md).
 
 ### Create a new table using SQL structure and data
 

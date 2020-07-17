@@ -4,7 +4,7 @@ sidebar_label: LATEST BY
 ---
 
 `LATEST BY` finds the latest entry by timestamp for a given key or combination
-of keys as part of a [SELECT statement](reference/select.md).
+of keys as part of a [SELECT statement](reference/sql/select.md).
 
 To find the latest values, QuestDB will search time series from the newest
 values to the oldest.

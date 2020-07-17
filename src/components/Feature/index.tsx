@@ -42,10 +42,10 @@ const Feature = () => (
           SQL language, augmented for time-series
         </span>
         <span className={featureStyles.feature__description}>
-          Postgres wire (beta)
+          Postgres wire (alpha)
         </span>
         <span className={featureStyles.feature__description}>
-          Influx line protocol
+          InfluxDB line protocol
         </span>
       </div>
 

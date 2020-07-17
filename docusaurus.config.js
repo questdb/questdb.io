@@ -131,7 +131,7 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          homePageId: "docs",
+          homePageId: "docs/introduction",
           sidebarPath: require.resolve("./sidebars.js"),
         },
 
