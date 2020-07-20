@@ -5,6 +5,7 @@
   "scripts": {
     "start": "docusaurus start",
     "build": "docusaurus build",
+    "postbuild": "rimraf build/docs/__guidelines",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
@@ -17,6 +18,9 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "typescript": "3.9.6"
+  },
+  "devDependencies": {
+    "rimraf": "3.0.2"
   },
   "browserslist": {
     "production": [

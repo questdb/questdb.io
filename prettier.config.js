@@ -1,6 +1,6 @@
 module.exports = {
   arrowParens: "always",
-  // proseWrap: "always",
+  proseWrap: "always",
   trailingComma: "all",
   semi: false,
   overrides: [
