@@ -9,7 +9,7 @@ Please refers to these terms using the **exact** same casing.
 - InfluxDB line protocol
 - Embedded Java API
 - Postgres wire protocol
-- REST API (not REST API)
+- REST API (not HTTP API)
 - Web Console
 
 ## Spell checked
