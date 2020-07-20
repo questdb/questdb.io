@@ -65,7 +65,7 @@
     "Segoe UI Emoji", "Android Emoji", EmojiSymbols, "EmojiOne Mozilla",
     "Twemoji Mozilla", "Segoe UI Symbol", "Noto Color Emoji";
 
-  --font-size-small: 14px;
+  --font-size-small: 15px;
   --font-size-normal: 16px;
   --font-size-large: 18px;
   --font-size-xlarge: 32px;
@@ -184,6 +184,31 @@ nav {
  * Custom global styles
  *
  **/
+
+/* Firefox */
+* {
+  scrollbar-color: var(--palette-pale-blue) var(--palette-gray);
+  scrollbar-width: thin;
+}
+
+/* WebKit / Blink */
+::-webkit-scrollbar {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--palette-gray) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+  background: var(--palette-pale-blue) !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--palette-gray) !important;
+}
 
 .join-slack {
   padding-left: 2.5rem;
