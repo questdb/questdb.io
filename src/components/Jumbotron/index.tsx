@@ -19,7 +19,7 @@ const Jumbotron = () => (
       <div className={jumbotronStyles.jumbotron__cta}>
         <Button
           className={jumbotronStyles["jumbotron__cta--link"]}
-          href="https://github.com/questdb/questdb"
+          to="docs/introduction"
         >
           Get Started
         </Button>
@@ -28,6 +28,7 @@ const Jumbotron = () => (
             jumbotronStyles["jumbotron__cta--link"],
             jumbotronStyles["jumbotron__cta--github"],
           )}
+          href="https://github.com/questdb/questdb"
           icon={
             <img
               alt="GitHub icon"
@@ -37,7 +38,6 @@ const Jumbotron = () => (
             />
           }
           style="secondary"
-          to="docs/introduction"
         >
           GitHub
         </Button>
