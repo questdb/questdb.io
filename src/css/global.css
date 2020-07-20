@@ -73,9 +73,11 @@
   --font-size-xxxlarge: 64px;
 
   --ifm-background-color: var(--palette-black);
+  --ifm-blockquote-color: var(--palette-pale-blue);
   --ifm-code-background: var(--palette-gray);
   --ifm-code-color: var(--palette-white);
   --ifm-code-font-size: var(--font-size-small);
+  --ifm-color-emphasis-300: var(--palette-pale-blue);
   --ifm-color-primary: var(--palette-pink);
   --ifm-color-primary-dark: #c93261;
   --ifm-color-primary-darker: var(--palette-pink-darker);
@@ -111,6 +113,7 @@
 
 html[data-theme="dark"] {
   --ifm-background-color: var(--palette-black);
+  --ifm-color-emphasis-300: var(--palette-pale-blue);
 }
 
 /**

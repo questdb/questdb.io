@@ -62,6 +62,7 @@ module.exports = {
           label: "Documentation",
           position: "left",
           to: "docs/introduction",
+          activeBasePath: "docs",
         },
         {
           label: "Blog",
