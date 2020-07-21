@@ -9,7 +9,7 @@ tags: [thread model, messaging, disruptor]
 
 ### Introduction
 
-![thread messaging image](/img/blog/thread-messaging/threadmessaging.png)
+![Thread messaging](/img/blog/2020-03-15/header.png)
 
 Inter-thread messaging is a fundamental part of any asynchronous system. It is
 the component responsible for transportation of data between threads. Messaging
@@ -245,5 +245,4 @@ Disruptor and QuestDB perform essentially the same.
 
 Our messaging system is on Maven central as a part of QuestDB. Don't worry about
 package size though, QuestDB jar weighs in at 3.6MB and has no dependencies.
-Jump [here](https://github.com/questdb/questdb/releases) for version
-reference.
+Jump [here](https://github.com/questdb/questdb/releases) for version reference.

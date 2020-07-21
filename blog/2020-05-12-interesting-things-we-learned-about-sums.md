@@ -7,7 +7,7 @@ author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [questdb, performance]
 ---
 
-![Road Runner](/img/blog/sums/road-runner.png)
+![Road Runner cartoon](/img/blog/2020-05-12/banner.png)
 
 In the world of databases, benchmarking performance has always been the hottest
 topic. Who is faster for data ingestion and queries? About a month ago we
@@ -135,17 +135,17 @@ different orders of magnitude.
 
 We start with both our numbers expressed in scientific notation.
 
-![sum 1](/img/blog/sums/sum-1.png)
+![Significant digits](/img/blog/2020-05-12/significantDigits.png)
 
 Let's expand into decimal notation and place them on a similar scale so all
 digits fit.
 
-![sum 2](/img/blog/sums/sum-2.png)
+![Significant digits expanded](/img/blog/2020-05-12/digitsExpanded.png)
 
 Now, let us express this sum back as one number in scientific notation. We have
 to `truncate` the result back to 5 significant digits.
 
-![sum 3](/img/blog/sums/sum-3.png)
+![Significant digits result](/img/blog/2020-05-12/digitsResult.png)
 
 The result is incorrect. In fact, it is as if we did not sum anything.
 
@@ -254,8 +254,9 @@ increased the memory limit from the default value from 10GB to 40GB
 #### Test data
 
 We generated two test files using our
-[random generation functions](/docs/function/random-value-generator) and exported
-the results to CSV. We then imported the CSV individually in the databases.
+[random generation functions](/docs/function/random-value-generator) and
+exported the results to CSV. We then imported the CSV individually in the
+databases.
 
 ```questdb-sql
 SELECT rnd_double() FROM long_sequence(1_000_000_000l); -- non null
@@ -296,12 +297,12 @@ Without null values, both databases sum naively at roughly the same speed. With
 Kahan summation, QuestDB performs at the same speed while Clickhouse's
 performance drops by ~40%.
 
-![results not null](/img/blog/sums/kahan-naive-not-null.png)
+![QuestDB vs Clickhouse benchmark for Kahan](/img/blog/2020-05-12/kahanComparison.png)
 
 As we include null values, Clickhouse's performance degrades by 28% and 50% for
 naive and Kahan summation, respectively.
 
-![results with null](/img/blog/sums/kahan-naive-null.png)
+![QuestDB vs Clickhouse benchmark for Kahan with nulls](/img/blog/2020-05-12/kahanNullComparison.png)
 
 ### Concluding remarks
 

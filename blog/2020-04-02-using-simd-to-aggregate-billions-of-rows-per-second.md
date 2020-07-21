@@ -7,7 +7,7 @@ author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [questdb, performance, simd]
 ---
 
-![banner questdb 4.2](/img/blog/simd-1bln/banner-4-2.png)
+![QuestDB 4.2 banner](/img/blog/2020-04-02/banner.png)
 
 (SIMD instructions)[https://en.wikipedia.org/wiki/SIMD] are specific CPU
 instruction sets for arithmetic calculations that use synthetic parallelisation.
@@ -51,9 +51,9 @@ were running on 4 threads.
 
 #### Results
 
-![alt-text](/img/blog/simd-1bln/bench-8850h.png)
+![Intel 8850H benchmark](/img/blog/2020-04-02/benchmark8850h.png)
 
-![alt-text](/img/blog/simd-1bln/bench-3900x.png)
+![AMD 3900X benchmark](/img/blog/2020-04-02/benchmark3900x.png)
 
 The dataset producing the results shown above does not contain NULL values.
 Interestingly, when introducing nulls, QuestDB sum() query time is unchanged.
@@ -75,7 +75,7 @@ The execution times outlined above become more interesting once put into
 context. This is how QuestDB compares to Postgres when doing a sum of 1 billion
 numbers from a given table `select sum(d) from 1G_double_nonNull`.
 
-![alt-text](/img/blog/simd-1bln/bench-pg.png)
+![PostgreSQL benchmark](/img/blog/2020-04-02/benchmarkPostgres.png)
 
 We found that our performance figures are constrained by the available memory
 channels. Both the 8850H and the 3900X have 2 memory channels, and throwing more
@@ -96,7 +96,7 @@ We plot those results below on the left. On the right-hand side, we normalise
 the results for each CPU and plot the performance improvement of going from 1 to
 more cores.
 
-![alt-text](/img/blog/simd-1bln/core-scale.png)
+![Memory channels analysis](/img/blog/2020-04-02/memoryChannelsAnalysis.png)
 
 Interestingly, the 2-channel 3900X, is much faster on 1 core than the 8275CL.
 But it does not scale well and hits a performance ceiling at 4 cores. This is
