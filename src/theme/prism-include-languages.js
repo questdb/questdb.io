@@ -1,5 +1,5 @@
-import { constants, dataTypes, functions, keywords } from "@questdb/sql-grammar"
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment"
+import { constants, dataTypes, functions, keywords } from "@questdb/sql-grammar"
 
 const prismIncludeLanguages = (Prism) => {
   if (ExecutionEnvironment.canUseDOM) {

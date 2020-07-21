@@ -1,6 +1,6 @@
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import useUserPreferencesContext from "@theme/hooks/useUserPreferencesContext"
 
 import styles from "./styles.module.css"

@@ -5,6 +5,10 @@
   background: var(--palette-rock);
 }
 
+.footer--alt {
+  background: var(--palette-charade);
+}
+
 .footer__inner {
   flex: 1;
 }

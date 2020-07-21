@@ -1,11 +1,10 @@
 import clsx from "clsx"
-import React from "react"
-
 import Link from "@docusaurus/Link"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
+import React from "react"
 
-import Button from "../../components/Button"
+import { Button, useHomeContext } from "../../components"
 import sectionStyles from "../../components/Section/styles.module.css"
 import footerStyles from "./styles.module.css"
 
@@ -29,6 +28,7 @@ const FooterLink = ({ to, href, label, ...props }) => (
 
 const Footer = () => {
   const context = useDocusaurusContext()
+  const homeContext = useHomeContext()
   const { siteConfig = {} } = context
   const { themeConfig = {} } = siteConfig
   const { footer } = themeConfig
@@ -36,7 +36,11 @@ const Footer = () => {
   const logoUrl = useBaseUrl(logo.src)
 
   return (
-    <footer className={clsx(footerStyles.footer, sectionStyles.section)}>
+    <footer
+      className={clsx(footerStyles.footer, sectionStyles.section, {
+        [footerStyles["footer--alt"]]: homeContext === true,
+      })}
+    >
       <div
         className={clsx(
           footerStyles.footer__inner,

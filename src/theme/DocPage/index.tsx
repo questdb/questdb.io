@@ -1,15 +1,16 @@
 import clsx from "clsx"
-import React from "react"
-import { MDXProvider } from "@mdx-js/react"
-
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import renderRoutes from "@docusaurus/renderRoutes"
+import { matchPath } from "@docusaurus/router"
+import { MDXProvider } from "@mdx-js/react"
+import React from "react"
+
 import Layout from "@theme/Layout"
 import DocSidebar from "@theme/DocSidebar"
 import MDXComponents from "@theme/MDXComponents"
 import NotFound from "@theme/NotFound"
-import { matchPath } from "@docusaurus/router"
 
+import { Head, HomeContextProvider } from "../../components"
 import styles from "./styles.module.css"
 
 const DocPage = (props) => {
@@ -33,28 +34,32 @@ const DocPage = (props) => {
   }
 
   return (
-    <Layout version={version} key={isClient}>
-      <div className={styles.doc}>
-        {sidebar && (
-          <div
-            className={clsx("docs-sidebar", styles.doc__sidebar)}
-            role="complementary"
-          >
-            <DocSidebar
-              docsSidebars={docsSidebars}
-              path={currentRoute.path}
-              sidebar={sidebar}
-              sidebarCollapsible={sidebarCollapsible}
-            />
-          </div>
-        )}
-        <main className={styles.doc__main}>
-          <MDXProvider components={MDXComponents}>
-            {renderRoutes(baseRoute.routes)}
-          </MDXProvider>
-        </main>
-      </div>
-    </Layout>
+    <HomeContextProvider value={false}>
+      <Layout version={version} key={isClient}>
+        <Head />
+
+        <div className={styles.doc}>
+          {sidebar && (
+            <div
+              className={clsx("docs-sidebar", styles.doc__sidebar)}
+              role="complementary"
+            >
+              <DocSidebar
+                docsSidebars={docsSidebars}
+                path={currentRoute.path}
+                sidebar={sidebar}
+                sidebarCollapsible={sidebarCollapsible}
+              />
+            </div>
+          )}
+          <main className={styles.doc__main}>
+            <MDXProvider components={MDXComponents}>
+              {renderRoutes(baseRoute.routes)}
+            </MDXProvider>
+          </main>
+        </div>
+      </Layout>
+    </HomeContextProvider>
   )
 }
 

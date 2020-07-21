@@ -1,7 +1,6 @@
 import clsx from "clsx"
-import React, { ReactNode } from "react"
-
 import Link from "@docusaurus/Link"
+import React, { ReactNode } from "react"
 
 import styles from "./styles.module.css"
 

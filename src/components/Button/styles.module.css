@@ -7,7 +7,7 @@
   border-radius: var(--ifm-global-border-radius);
   font-weight: var(--ifm-font-weight-bold);
   font-size: var(--font-size-normal);
-  transition: background-color 100ms cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  transition: background-color 100ms var(--transition-bezier);
 }
 
 .button:hover {
@@ -31,11 +31,11 @@
 
 .button--secondary {
   background-color: var(--palette-white);
-  color: var(--palette-black);
+  color: var(--palette-charade);
 }
 
 .button--secondary:hover {
-  color: var(--palette-black);
+  color: var(--palette-charade);
   background-color: var(--palette-white-darker);
 }
 

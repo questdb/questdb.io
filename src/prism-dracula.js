@@ -1,5 +1,5 @@
 const color = {
-  draculaBackground: "#282a36",
+  draculaBackground: "#262833",
   draculaForeground: "#f8f8f2",
   draculaSelection: "#44475a",
   draculaComment: "#6272a4",
