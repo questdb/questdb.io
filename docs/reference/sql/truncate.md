@@ -3,8 +3,6 @@ title: TRUNCATE TABLE
 sidebar_label: TRUNCATE TABLE
 ---
 
-## TRUNCATE TABLE
-
 `TRUNCATE TABLE` is used to permanently delete the contents of a table without
 deleting the table itself.
 
@@ -15,13 +13,13 @@ sure you have created [backups](reference/sql/backup.md) of your data.
 
 :::
 
-### Syntax
+## Syntax
 
 ```questdb-sql
 TRUNCATE TABLE 'table_name';
 ```
 
-### Examples
+## Examples
 
 ```questdb-sql
 TRUNCATE TABLE ratings;

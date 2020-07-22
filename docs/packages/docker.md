@@ -13,20 +13,20 @@ You can find our docker repository
 
 :::
 
-#### Supported platforms
+## Supported platforms
 
 - Linux
 - Windows
 
 ## Pulling the image
 
-#### Latest
+### Latest
 
 ```script
 docker pull questdb/questdb
 ```
 
-#### Specific tag
+### Specific tag
 
 ```script
 docker pull questdb/questdb:5.0.0
@@ -46,9 +46,9 @@ stopped, the container will be removed and the data deleted.
 
 :::
 
-### Run as a container
+## Run as a container
 
-#### Create a container
+### Create a container
 
 ```script
 docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb
@@ -61,7 +61,7 @@ when creating the container:
 docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb:5.0.0
 ```
 
-##### Options
+### Options
 
 | Option   | Comments                                                                                                         |
 | -------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -69,14 +69,14 @@ docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb:5.0.0
 | `-p`     | Allows Docker to map a port. e.g. `-p 9000:9000`.                                                                |
 | `-v`     | Specify a path where QuestDB will save data, directly on the host machine. e.g `-v /local/dir:/root/.questdb/db` |
 
-##### -p ports
+### -p ports
 
 - `-p 9000:9000` for the REST API and the Web Console. The web console is
   available on [http://localhost:9000](http://localhost:9000)
 - `-p 8812:8812` for the PostgreSQL wire protocol
 - `-p 9009:9009` InfluxDB line protocol
 
-##### -v volumes
+### -v volumes
 
 The QuestDB [root_directory](reference/root-directory-structure.md) will be in
 the following locations.
@@ -86,52 +86,52 @@ the following locations.
 | Linux containers   | `/root/.questdb/db` |
 | Windows containers | `c:\questdb\db`     |
 
-#### Start the container
+### Start the container
 
 ```script
 docker start questdb
 ```
 
-#### Stop the container
+### Stop the container
 
 ```script
 docker stop questdb
 ```
 
-#### Display logs
+### Display logs
 
 ```script
 docker logs questdb
 ```
 
-#### Remove a container
+### Remove a container
 
 ```script
 docker rm questdb
 ```
 
-### Run as an interactive sandbox
+## Run as an interactive sandbox
 
 You can run the container as an interactive sandbox with the `-it` option.
 
-#### Differences compared to running a container
+### Differences compared to running a container
 
 - You do not need to create the container beforehand: it will be created on the
   fly.
 - Logs will be displayed in the shell window.
 - The container and all the data will be deleted when the container stops.
 
-#### Start the sandbox
+### Start the sandbox
 
 ```script
 docker run --rm -it -p 9000:9000 -p 8812:8812 questdb/questdb
 ```
 
-#### Stop the sandbox
+### Stop the sandbox
 
 As the process will be running in shell, you can `CTRL + C` to stop it.
 
-### Log into the container
+## Log into the container
 
 You can log into the container and interact using `cmd` (if your container is
 windows-based) or `bash` (if your container is Linux based). If you are using a

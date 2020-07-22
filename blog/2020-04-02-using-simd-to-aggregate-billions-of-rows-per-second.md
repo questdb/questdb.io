@@ -7,9 +7,13 @@ author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [questdb, performance, simd]
 ---
 
-![QuestDB 4.2 banner](/img/blog/2020-04-02/banner.png)
+<img
+  alt="QuestDB 4.2 banner"
+  className="banner"
+  src="/img/blog/2020-04-02/banner.png"
+/>
 
-(SIMD instructions)[https://en.wikipedia.org/wiki/SIMD] are specific CPU
+[SIMD instructions](https://en.wikipedia.org/wiki/SIMD) are specific CPU
 instruction sets for arithmetic calculations that use synthetic parallelisation.
 
 <!--truncate-->
@@ -31,7 +35,7 @@ keyed aggregations, for example `select key, sum(value) from table` (note the
 intentional omission of `GROUP BY`). This will also result in ultrafast
 aggregation for time bucketed queries using `SAMPLE BY`.
 
-### How fast is it?
+## How fast is it?
 
 We ran performance tests using 2 different CPUs: the
 [Intel 8850H](https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html)
@@ -39,7 +43,7 @@ and the
 [AMD Ryzen 3900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x). Both
 were running on 4 threads.
 
-#### Queries
+### Queries
 
 | Test                              | Query                                                                                                   |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -49,7 +53,7 @@ were running on 4 threads.
 | max of 1Bn doubles                | create table zz as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from zz;   |
 | max of 1Bn longs                  | create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from zz;     |
 
-#### Results
+### Results
 
 ![Intel 8850H benchmark](/img/blog/2020-04-02/benchmark8850h.png)
 
@@ -63,13 +67,13 @@ This can be tested by creating the table as follows.
 | ------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | sum of 1Bn doubles <br/>(nulls) | create table zz as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from zz; |
 
-#### We can improve this performance further
+### We can improve this performance further
 
 Our approach is currently slightly more complicated as we convert each 32-bit
 integer to a 64-bit long to avoid overflow. By removing this overhead and more,
 there is scope left to make our implementation faster in the future.
 
-### Perspectives on performance
+## Perspectives on performance
 
 The execution times outlined above become more interesting once put into
 context. This is how QuestDB compares to Postgres when doing a sum of 1 billion
@@ -112,7 +116,7 @@ you have easy access to 8 or 12-channel servers and would like to benchmark
 QuestDB, we'd love to hear the results. You can [download QuestDB](getstarted)
 and leave a [comment on github](https://github.com/questdb/questdb/issues/146).
 
-### What is next?
+## What is next?
 
 In further releases, we will roll out this functionality to other parts of our
 SQL implementation. QuestDB implements SIMD in a generic fashion, which will
@@ -123,9 +127,9 @@ another 15% speed on these operations. In the meantime, if you want to know
 exactly how we have achieved this, all of our code is
 [open source](https://github.com/questdb/questdb)!
 
-### About the release: QuestDB 4.2
+## About the release: QuestDB 4.2
 
-#### Summary
+### Summary
 
 We have implemented SIMD-based vector execution of queries, such as
 `select sum(value) from table`. This is ~100x faster than non-vector based
@@ -133,20 +137,20 @@ execution. This is just the beginning as we will introduce vectors to more
 operations going forward. Try our first implementation in this release - stay
 tuned for more features in the upcoming releases!
 
-#### Important
+### Important
 
 Metadata file format has been changed to include a new flag for columns of type
 symbol. It is necessary to convert existing tables to new format. Running the
 following SQL: `repair table myTable` will update the table metadata.
 
-#### What is new?
+### What is new?
 
 - Java: vectorized sum(), avg(), min(), max() for DOUBLE, LONG, INT
 - Java: select distinct symbol optimisation
 - FreeBSD support
 - Automatically restore data consistency and recover from partial data loss.
 
-#### What we fixed
+### What we fixed
 
 - SQL: NPE when parsing SQL text with malformed table name expression , for
   example ')', or ', blah'

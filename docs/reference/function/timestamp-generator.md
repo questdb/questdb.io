@@ -7,14 +7,14 @@ sidebar_label: Timestamp generator
 
 - `timestamp_sequence(startTimestamp, step)` - generates increasing timestamps.
 
-#### Arguments
+### Arguments
 
 - `startTimestamp`: is a `timestamp` representing the starting (i.e lowest)
   generated timestamp in the sequence.
 - `step`: is a `long` representing the interval between 2 consecutive generated
   timestamps in `microseconds`.
 
-#### Description
+### Description
 
 - `timestamp_sequnence(startTimestamp, step)` generates a sequence of
   `timestamp` starting at `startTimestamp`, and incrementing by a `step` set as
@@ -24,11 +24,11 @@ sidebar_label: Timestamp generator
   using
   [random value generator functions](reference/function/random-value-generator.md).
 
-#### Return value
+### Return value
 
 Return value type is `timestamp`.
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Monotonic timestamp increase"
 SELECT x, timestamp_sequence(

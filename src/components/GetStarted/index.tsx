@@ -21,7 +21,7 @@ const GetStarted = () => (
       <h2 className={getStartedStyles.getStarted__subtitle}>
         QuestDB is a relational column-oriented database which can handle
         transactions and real-time analytics. It uses the SQL language with a
-        few extensions for time series.
+        few extensions for time series
       </h2>
     </div>
     <div

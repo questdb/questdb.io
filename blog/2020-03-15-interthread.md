@@ -7,9 +7,11 @@ author_image_url: https://avatars.githubusercontent.com/bluestreak01
 tags: [thread model, messaging, disruptor]
 ---
 
-### Introduction
-
-![Thread messaging](/img/blog/2020-03-15/header.png)
+<img
+  alt="Thread messaging"
+  className="banner"
+  src="/img/blog/2020-03-15/header.png"
+/>
 
 Inter-thread messaging is a fundamental part of any asynchronous system. It is
 the component responsible for transportation of data between threads. Messaging
@@ -20,11 +22,9 @@ reliable and clean.
 For QuestDB we wrote our own messaging and this post is about how it works and
 how fast it is.
 
-<div></div>
-
 <!--truncate-->
 
-### Architecture
+## Architecture
 
 Borrowing heavily from world-famous Disruptor our messaging revolves around
 multiple threads accessing shared circular data structure. We call it RingQueue.
@@ -202,7 +202,7 @@ while (running) {
 
 Multi-threaded sequence do not support batches.
 
-### Performance
+## Performance
 
 I used Shipilev's project that already had Disruptor benchmark and I added
 QuestDB implementation of the same pipeline.
@@ -241,7 +241,7 @@ QuestdbWorker.run       5000          4          10    ss   50  142.207 ± 15.15
 
 Disruptor and QuestDB perform essentially the same.
 
-### How to get it
+## How to get it
 
 Our messaging system is on Maven central as a part of QuestDB. Don't worry about
 package size though, QuestDB jar weighs in at 3.6MB and has no dependencies.

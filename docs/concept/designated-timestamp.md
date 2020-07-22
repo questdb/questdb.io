@@ -8,7 +8,7 @@ allows you to leverage specific high-performance time series functions of
 QuestDB, but introduces a constraint on the column in question that will reject
 out of order inserts.
 
-#### Properties
+## Properties
 
 - Only a `timestamp` column can be `designated timestamp`.
 - Only `one` column can be elected for a given table.
@@ -23,7 +23,7 @@ To elect a timestamp column on the fly, please refer to the
 
 :::
 
-#### Out of order policy
+## Out of order policy
 
 Once a column is elected `designated timestamp`, it will enforce an order policy
 on this column. Inserts in `designated timestamp` need to be incrementing and
@@ -37,7 +37,7 @@ need only be `superior or equal` to the latest timestamp in the column.
 
 :::
 
-#### Advantages
+## Advantages
 
 Electing a `designated timestamp` allows you to:
 
@@ -46,7 +46,7 @@ Electing a `designated timestamp` allows you to:
 - use time series joins such as `ASOF JOIN`. For more information refer to the
   [JOIN reference](reference/sql/join.md).
 
-#### Examples
+## Examples
 
 Representation of `designated timestamp` as a special column alongside other
 existing timestamp columns. Note that
@@ -60,7 +60,7 @@ Attempts to insert `out of order` timestamps will be rejected:
 
 ![timestamp reject](/img/doc/concepts/timestamp_reject.jpg)
 
-#### Working with timestamp order constraint
+## Working with timestamp order constraint
 
 The constraint provides many benefits for both insert and query speed. However,
 it may be impractical in certain cases, for example when inserting values from

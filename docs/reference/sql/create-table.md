@@ -11,7 +11,7 @@ Creates new table in the database.
 
 ## Description
 
-#### tableName
+### tableName
 
 `tableName` - name used to reference the table in SQL statements. Internally the
 table name is used as directory name on the file system. It can contain both
@@ -34,7 +34,7 @@ CREATE TABLE 'example out of.space' (a INT);
 
 :::
 
-#### columnName
+### columnName
 
 `columnName` - name used to reference the columns of table. Just like table
 name, column name is used as a part of file name internally. \
@@ -54,7 +54,7 @@ character
 
 :::
 
-#### typeDef
+### typeDef
 
 `typeDef` - column [type name](reference/sql/datatypes.md) with additional
 options.
@@ -121,7 +121,7 @@ Default option is `CACHE`.
 
   ![index definition](/img/doc/diagrams/index-def.svg)
 
-#### timestamp
+### timestamp
 
 `timestamp` - references a column in new table, which will be the nominated
 timestamp. Such column must be of type `timestamp`
@@ -133,7 +133,7 @@ implemented in a future release.
 
 :::
 
-#### partition
+### partition
 
 `partition by` - the [partitioning strategy](concept/partitions.md) for the
 table.
@@ -233,7 +233,7 @@ Here we changed type of `price` (assuming it was `INT`) to `LONG` and changed
 type of `sym` to [symbol](concept/symbol.md) and created an
 [index](concept/indexes.md).
 
-### Create a new table using SQL structure and data
+#### Create a new table using SQL structure and data
 
 Let's assume we imported a text file into the table `taxi_trips_unordered` and
 now we want to turn this data into time series thru ordering trips by

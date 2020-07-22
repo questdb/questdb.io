@@ -5,13 +5,13 @@ sidebar_label: ORDER BY
 
 Sort the results of a query in ascending or descending order.
 
-### Syntax
+## Syntax
 
 ![order by syntax](/img/doc/diagrams/orderBy.svg)
 
 Default order is `ASC`. You can omit to order in ascending order.
 
-### Examples
+## Examples
 
 ```questdb-sql title="Omitting ASC will default to ascending order"
 ratings ORDER BY userId;
@@ -25,7 +25,7 @@ ratings ORDER BY userId DESC;
 ratings ORDER BY userId, rating DESC;
 ```
 
-### Ressources management
+## Ressources management
 
 :::caution
 

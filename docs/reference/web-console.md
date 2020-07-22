@@ -88,7 +88,7 @@ uses the following logic to decide what command to execute.
   encountered statement will be executed. If there is no statement following the
   cursor, then the previous statement will be executed.
 
-#### Examples
+### Examples
 
 - Command highlighted. Note neither the `CREATE TABLE` statement nor the `x*x`
   column have been executed and evaluated.

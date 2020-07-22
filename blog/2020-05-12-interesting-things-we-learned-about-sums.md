@@ -7,7 +7,11 @@ author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [questdb, performance]
 ---
 
-![Road Runner cartoon](/img/blog/2020-05-12/banner.png)
+<img
+  alt="Road Runner cartoon"
+  className="banner"
+  src="/img/blog/2020-05-12/banner.png"
+/>
 
 In the world of databases, benchmarking performance has always been the hottest
 topic. Who is faster for data ingestion and queries? About a month ago we
@@ -43,7 +47,7 @@ your
 [pull-requests](https://github.com/questdb/questdb/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)
 and [stars](https://github.com/questdb/questdb) are welcome 🙂.
 
-### How did we get there? TL;DR
+## How did we get there? TL;DR
 
 We used prefetch and co-routines techniques to pull data from RAM to cache in
 parallel with other CPU instructions. Our performance was previously limited by
@@ -56,7 +60,7 @@ with nulls (versus 139ms for Clickhouse). We believe this is a significant
 advance in terms of performance for accurate summations, and will help
 developers handling intensive computations with large datasets.
 
-### Contents
+## Contents
 
 - An [introductory example](#inaccurate-summation) of the problem with summing
   doubles.
@@ -69,7 +73,7 @@ developers handling intensive computations with large datasets.
 - A [benchmark versus Clickhouse](#comparison-with-clickhouse) for naive and
   accurate summation methods.
 
-### Inaccurate summation?
+## Inaccurate summation?
 
 Before we dig in, some of you might wonder how an addition can be inaccurate as
 opposed to simply right or wrong.
@@ -115,7 +119,7 @@ But we expected: 17.8
 The error has just grown to `0.000000000000003` and will keep on growing as we
 add operations.
 
-### Float representation and truncation accuracy loss
+## Float representation and truncation accuracy loss
 
 Decimal numbers are not accurately stored. This is well documented already, for
 example on
@@ -149,7 +153,7 @@ to `truncate` the result back to 5 significant digits.
 
 The result is incorrect. In fact, it is as if we did not sum anything.
 
-### Kahan's algorithm for compensated summation
+## Kahan's algorithm for compensated summation
 
 Compensated sum maintains a sum of accumulated errors and uses it to attempt to
 correct the (inaccurate) sum by the total error amount. It does so by trying to
@@ -169,7 +173,7 @@ The main Compensated summation algorithm is the
 
 This works because of addition transitivity rules.
 
-### Implementation with SIMD instructions
+## Implementation with SIMD instructions
 
 Now, the interesting bit! QuestDB implements the same 4-step algorithm as Kahan.
 However, it uses vectorized instructions to make things a lot faster. The idea
@@ -235,12 +239,12 @@ for (; d < lim; d++) {
 }
 ```
 
-### Comparison with Clickhouse
+## Comparison with Clickhouse
 
 We compared how performance behaves when switching from naive (inaccurate) sum
 to Kahan compensated sum.
 
-#### Hardware
+### Hardware
 
 We run all databases on an `c5.metal` AWS instance, which has two Intel 8275CL
 24-core CPUs and 192GB of memory. QuestDB was running on 16 threads. As we
@@ -251,7 +255,7 @@ Clickhouse was running using all cores as per default configuration, however we
 increased the memory limit from the default value from 10GB to 40GB
 `<max_memory_usage>40000000000</max_memory_usage>`.
 
-#### Test data
+### Test data
 
 We generated two test files using our
 [random generation functions](/docs/function/random-value-generator) and
@@ -263,14 +267,14 @@ SELECT rnd_double() FROM long_sequence(1_000_000_000l); -- non null
 SELECT rnd_double(2) FROM long_sequence(1_000_000_000l); -- with nulls
 ```
 
-#### Storage engine
+### Storage engine
 
 - **QuestDB**: on disk
 - **Clickhouse**: in memory (using the `memory()` engine)
 
-#### Commands
+### Commands
 
-##### With null
+#### With null
 
 | Description | QuestDB                                                                            | Clickhouse                                                                                   |
 | ----------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -279,7 +283,7 @@ SELECT rnd_double(2) FROM long_sequence(1_000_000_000l); -- with nulls
 | Naive sum   | `SELECT sum(val) FROM test_double;`                                                | `SELECT sum(val) FROM test_double;`                                                          |
 | Kahan sum   | `SELECT ksum(val) FROM test_double;`                                               | `SELECT sumKahan(val) FROM test_double;`                                                     |
 
-##### Non-null
+#### Non-null
 
 For non-null values, we adjusted the commands as follows
 
@@ -288,7 +292,7 @@ For non-null values, we adjusted the commands as follows
   `CREATE TABLE test_double_not_null (val Float64) Engine=Memory;`.
 - for QuestDB, replace `rnd_double()` by `rnd_double(2)` at the DDL step.
 
-#### Results
+### Results
 
 We ran each query several times for both QuestDB and Clickhouse and kept the
 best result.
@@ -304,7 +308,7 @@ naive and Kahan summation, respectively.
 
 ![QuestDB vs Clickhouse benchmark for Kahan with nulls](/img/blog/2020-05-12/kahanNullComparison.png)
 
-### Concluding remarks
+## Concluding remarks
 
 It is useful to stabilize aggregation with compensated sums. We learned that
 vector-based calculation produce different arithmetic errors compared to

@@ -3,11 +3,11 @@ title: CASE
 sidebar_label: CASE
 ---
 
-### Syntax
+## Syntax
 
 ![case syntax](/img/doc/diagrams/case-def.svg)
 
-### Description
+## Description
 
 `CASE` goes through a set of conditions and returns a value corresponding to the
 first condition met. Each new condition follows the `WHEN condition THEN value`
@@ -15,7 +15,7 @@ syntax. The user can define a return value when no condition is met using
 `ELSE`. If `ELSE` is not defined and no conditions are met, then case returns
 `null`.
 
-### Examples
+## Examples
 
 Assume the following data
 

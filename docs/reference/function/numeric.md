@@ -8,7 +8,7 @@ sidebar_label: Numeric
 `round(value, scale)` rounds a value to the specified scale using the "half up"
 method.
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 - `scale` is the number of decimal points returned. A negative scale means the
@@ -16,17 +16,17 @@ method.
   -1 means the number will be rounded to the nearest tens and +1 to the nearest
   tenths.
 
-#### Description
+### Description
 
 `round(value, scale)` returns the **closest** value in the specified scale. It
 uses the "half up" tie-breaking method when the value is exactly halfway between
 the `round_up` and `round_down` values.
 
-#### Return value
+### Return value
 
 Return value type is `double`.
 
-#### Examples
+### Examples
 
 ```questdb-sql
 SELECT
@@ -54,7 +54,7 @@ FROM dbl;
 
 `round_down(value, scale)` - rounds a value down to the specified scale
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 - `scale` is the number of decimal points returned. A negative scale means the
@@ -62,15 +62,15 @@ FROM dbl;
   -1 means the number will be rounded to the nearest tens and +1 to the nearest
   tenths.
 
-#### Description
+### Description
 
 `round_up(value, scale)` rounds a value down to the specified scale.
 
-#### Return value
+### Return value
 
 Return value type is `double`.
 
-#### Examples
+### Examples
 
 ```questdb-sql
 SELECT
@@ -98,7 +98,7 @@ FROM dbl;
 
 `round_up(value, scale)` - rounds a value up to the specified scale
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 - `scale` is the number of decimal points returned. A negative scale means the
@@ -106,15 +106,15 @@ FROM dbl;
   -1 means the number will be rounded to the nearest tens and +1 to the nearest
   tenths.
 
-#### Description
+### Description
 
 `round_up(value, scale)` rounds a value up to the specified scale
 
-#### Return value
+### Return value
 
 Return value type is `double`.
 
-#### Examples
+### Examples
 
 ```questdb-sql
 SELECT
@@ -143,7 +143,7 @@ FROM dbl;
 `round_half_even(value, scale)` - returns the **closest** value in the specified
 scale using the "half to even" behaviour
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 - `scale` is the number of decimal points returned. A negative scale means the
@@ -151,17 +151,17 @@ scale using the "half to even" behaviour
   -1 means the number will be rounded to the nearest tens and +1 to the nearest
   tenths.
 
-#### Description
+### Description
 
 `round_half_even(value, scale)` returns the **closest** value in the specified
 scale. It uses the "half up" tie-breaking method when the value is exactly
 halfway between the `round_up` and `round_down` values.
 
-#### Return value
+### Return value
 
 Return value type is `double`.
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Tie-breaker behavior"
 SELECT
@@ -200,11 +200,11 @@ FROM dbl;
 
 `abs(value)` return the absolute value.
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 
-#### Description
+### Description
 
 `abs(value)` behaves as follow
 
@@ -212,11 +212,11 @@ FROM dbl;
 - When the input `value` is negative, `abs` returns `- value`
 - When the input `value` is `0`, `abs` returns `0`
 
-#### Return value
+### Return value
 
 Return value type is `double`.
 
-#### Examples
+### Examples
 
 ```questdb-sql
 SELECT

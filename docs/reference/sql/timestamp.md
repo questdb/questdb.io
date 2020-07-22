@@ -11,7 +11,7 @@ sidebar_label: TIMESTAMP
 
 ## Syntax
 
-#### During a CREATE operation
+### During a CREATE operation
 
 ![timestamp syntax](/img/doc/diagrams/timestamp.svg)
 
@@ -19,7 +19,7 @@ Create a [designated timestamp](concept/designated-timestamp.md) column during
 table creation. For more information, refer to the
 [CREATE TABLE](reference/sql/create-table.md) section.
 
-#### During a SELECT operation
+### During a SELECT operation
 
 ![dynamic timestamp syntax](/img/doc/diagrams/dynamicTimestamp.svg)
 
@@ -42,7 +42,7 @@ Dynamic timestamp allows to perform time series operations such as `LATEST BY`,
 
 ## Examples
 
-#### During a CREATE operation
+### During a CREATE operation
 
 The following creates a table with
 [designated timestamp](concept/designated-timestamp.md).
@@ -53,7 +53,7 @@ temperatures(ts timestamp, sensorID symbol, sensorLocation symbol, reading doubl
 timestamp(ts);
 ```
 
-#### During a SELECT operation
+### During a SELECT operation
 
 The following will query a table and assign a
 [designated timestamp](concept/designated-timestamp.md) to the output. Note the

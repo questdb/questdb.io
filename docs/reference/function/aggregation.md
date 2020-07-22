@@ -7,19 +7,19 @@ sidebar_label: Aggregation
 
 `sum(value)` - adds values.
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 
-#### Description
+### Description
 
 `sum(value)` adds values ignoring missing data (e.g `null` values).
 
-#### Return value
+### Return value
 
 Return value type is the same as the type of the argument.
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Sum all quantities in the transactions table"
 SELECT sum(quantity) FROM transactions;
@@ -38,7 +38,7 @@ SELECT item, sum(quantity) FROM transactions;
 | apple  | 53    |
 | orange | 47    |
 
-#### Overflow
+### Overflow
 
 `sum` does not perform overflow check. To avoid overflow, you can cast the
 argument to wider type.
@@ -51,11 +51,11 @@ SELECT sum(cast(a AS LONG)) FROM table;
 
 `ksum(value)` - adds values using Kahan algorithm.
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 
-#### Description
+### Description
 
 `ksum(value)` adds values ignoring missing data (e.g `null` values). Values are
 added using the
@@ -63,11 +63,11 @@ added using the
 [Kahan compensated sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm).
 This is only beneficial for floating-point values such as `float` or `double`.
 
-#### Return value
+### Return value
 
 Return value type is the same as the type of the argument.
 
-#### Examples
+### Examples
 
 ```questdb-sql
 SELECT ksum(a)
@@ -82,11 +82,11 @@ FROM (SELECT rnd_double() a FROM long_sequence(100));
 
 `nsum(value)` - adds values using Neumaier algorithm.
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 
-#### Description
+### Description
 
 `nsum(value)` adds values ignoring missing data (e.g `null` values). Values are
 added using the
@@ -94,11 +94,11 @@ added using the
 [Neumaier sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements).
 This is only beneficial for floating-point values such as `float` or `double`.
 
-#### Return value
+### Return value
 
 Return value type is the same as the type of the argument.
 
-#### Examples
+### Examples
 
 ```questdb-sql
 SELECT nsum(a)
@@ -113,19 +113,19 @@ FROM (SELECT rnd_double() a FROM long_sequence(100));
 
 `count()` or `count(*)` - counts rows.
 
-#### Arguments
+### Arguments
 
 - `count` does not require arguments.
 
-#### Description
+### Description
 
 `count()` counts rows, irrespective of underlying data.
 
-#### Return value
+### Return value
 
 Return value type is `long`.
 
-#### Examples
+### Examples
 
 - Count of rows in the transactions table.
 
@@ -159,19 +159,19 @@ SELECT payment_type, count() FROM transactions;
 
 `avg(value)` calculates simple average of values
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value.
 
-#### Description
+### Description
 
 `avg(value)` averages values ignoring missing data (e.g `null` values).
 
-#### Return value
+### Return value
 
 Return value type is `double`.
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Average transaction amount"
 SELECT avg(amount) FROM transactions;
@@ -195,19 +195,19 @@ SELECT payment_type, avg(amount) FROM transactions;
 
 `min(value)` - finds the lowest value.
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value
 
-#### Description
+### Description
 
 `min(value)` finds the lowest value ignoring missing data (e.g `null` values).
 
-#### Return value
+### Return value
 
 Return value type is the same as the type of the argument.
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Lowest transaction amount"
 SELECT min(amount) FROM transactions;
@@ -231,19 +231,19 @@ SELECT payment_type, min(amount) FROM transactions;
 
 `max(value)` - finds the highest value.
 
-#### Arguments
+### Arguments
 
 - `value` is any numeric value
 
-#### Description
+### Description
 
 `max(value)` finds the highest value ignoring missing data (e.g `null` values).
 
-#### Return value
+### Return value
 
 Return value type is the same as the type of the argument.
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Highest transaction amount"
 SELECT max(amount) FROM transactions;

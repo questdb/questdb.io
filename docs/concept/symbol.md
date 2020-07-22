@@ -7,7 +7,7 @@ QuestDB introduces a specific data type called `symbol`. It is a data structure
 used to store repetitive strings as a table of integers and corresponding string
 values.
 
-#### Advantages
+## Advantages
 
 - reduced complexity of database schemas by removing the need for explicit extra
   tables and joins.
@@ -23,13 +23,13 @@ values.
 
 :::
 
-#### Usage
+## Usage
 
 To declare a column as `SYMBOL` please refer to the
 [CREATE TABLE](reference/sql/create-table.md) section. To create an `INDEX` on
 `SYMBOL`, please refer to the [index](concept/indexes.md) section.
 
-#### Properties
+## Properties
 
 - Symbol tables are stored separately from column data.
 - Q conversion from `string` to `int` and vice-versa when reading or writing

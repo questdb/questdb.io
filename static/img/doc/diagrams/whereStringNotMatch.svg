@@ -6,17 +6,17 @@
                 .bold-line            {stroke: #636273; shape-rendering: crispEdges; stroke-width: 2; }
                 .thin-line            {stroke: #636273; shape-rendering: crispEdges}
                 .filled               {fill: #636273; stroke: none;}
-                text.terminal         {font-family: Verdana, Sans-serif;
+                text.terminal         {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
                 font-size: 12px;
                 fill: #ffffff;
                 font-weight: bold;
                 }
-                text.nonterminal      {font-family: Verdana, Sans-serif;
+                text.nonterminal      {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
                 font-size: 12px;
                 fill: #e289a4;
                 font-weight: normal;
                 }
-                text.regexp           {font-family: Verdana, Sans-serif;
+                text.regexp           {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
                 font-size: 12px;
                 fill: #00141F;
                 font-weight: normal;

@@ -19,7 +19,7 @@ const Jumbotron = () => {
     >
       <div className={jumbotronStyles.jumbotron__left}>
         <h1 className={jumbotronStyles.jumbotron__title}>
-          Fast and open source
+          Fast SQL for time series
         </h1>
         <h2 className={jumbotronStyles.jumbotron__subtitle}>
           {siteConfig.tagline}

@@ -20,7 +20,7 @@ brew install questdb
 brew uninstall questdb
 ```
 
-#### Root directory
+## Root directory
 
 By default, QuestDB `root_directory` will be the following
 
@@ -55,8 +55,8 @@ close the session. You will need to actively [stop it](#stop).
 
 #### Default directories
 
-By default, QuestDB [root directory](reference/root-directory-structure.md) will be the
-following
+By default, QuestDB [root directory](reference/root-directory-structure.md) will
+be the following
 
 ```script
 /usr/local/var/questdb/
@@ -79,7 +79,7 @@ questdb start -d '/home/user/my_new_root_directory' -t 'mytag'
 `stop` - stops the default `questdb` service, or the service specified with the
 `-t` option.
 
-#### Examples
+### Examples
 
 ```script title="Stop the default service"
 questdb stop
@@ -95,7 +95,7 @@ questdb stop -t 'my-questdb-service'
 problems with the service. It prints `Running` or `Not running` if the service
 is start or stopped respectively. On Unix systems, it also prints the `PID`
 
-#### Examples
+### Examples
 
 ```script title="Default service"
 questdb status

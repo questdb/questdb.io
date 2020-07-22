@@ -6,11 +6,11 @@ sidebar_label: FILL
 Specifies fill behavior for missing data for as part of a
 [SAMPLE BY](reference/sql/sample-by.md) aggregation query.
 
-### Syntax
+## Syntax
 
 ![fill syntax](/img/doc/diagrams/fill.svg)
 
-#### Options
+### Options
 
 There are as many `fillOption` as there are `aggreate` columns in your query.
 
@@ -22,7 +22,7 @@ There are as many `fillOption` as there are `aggreate` columns in your query.
 | `LINEAR`   | Fills by linear interpolation of the 2 surrounding points                                                                                             |
 | `x`        | Fills with the constant defined (replace the `x` by the value you want. For example `fill 100.05`                                                     |
 
-### Examples
+## Examples
 
 Consider the following `prices` table
 

@@ -10,7 +10,7 @@ In other implementations of SQL, this is sometimes replaced by statements such
 as `OFFSET` or `ROWNUM` Our implementation of `LIMIT` encompasses both in one
 statement.
 
-### Syntax
+## Syntax
 
 ![limit syntax](/img/doc/diagrams/limit.svg)
 
@@ -21,7 +21,7 @@ statement.
 A `positive` number will return the `first` n records. A `negative` number will
 return the `last` n records.
 
-### Examples
+## Examples
 
 ```questdb-sql title="First 5 results"
 SELECT * FROM ratings LIMIT 5;

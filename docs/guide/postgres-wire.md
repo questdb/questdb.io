@@ -28,26 +28,26 @@ psql --version
 
 Here are installation instructions for the major platforms:
 
-#### Homebrew (MacOS)
+### Homebrew (MacOS)
 
 ```script
 brew install libpq
 brew link --force libpq
 ```
 
-#### Ubuntu
+### Ubuntu
 
 ```script
 sudo apt-get install postgresql-client
 ```
 
-#### Fedora
+### Fedora
 
 ```script
 sudo dnf install postgresql.x86_64
 ```
 
-#### Windows 10
+### Windows 10
 
 Install using the
 [Windows Installer](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).

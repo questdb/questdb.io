@@ -78,7 +78,7 @@ services. Each can be started, stopped etc using its own service tag name.
 
 :::
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Linux & MacOS - custom root_directory"
 ./questdb.sh start -d '/home/user/my_new_root_directory'
@@ -97,7 +97,7 @@ questdb.exe start -j 'C:\Program Files\Java\jdk1.8.0_141'
 `stop` - stops the default `questdb` service, or the service specified with the
 `-t` option.
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Windows"
 questdb.exe stop
@@ -113,7 +113,7 @@ questdb.exe stop
 problems with the service. It prints `Running` or `Not running` if the service
 is start or stopped respectively. On Unix systems, it also prints the `PID`
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Linux & MacOS"
 ./questdb.sh status
@@ -134,7 +134,7 @@ startup.
 
 :::
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Default service"
 questdb.exe install
@@ -155,7 +155,7 @@ startup.
 
 :::
 
-#### Examples
+### Examples
 
 ```questdb-sql title="Default service"
 questdb.exe remove
@@ -169,17 +169,17 @@ questdb.exe remove -t 'my-questdb-service'
 
 You can start QuestDB interactively by running `questdb.exe`.
 
-#### Behaviour
+### Behaviour
 
 This will launch QuestDB interactively in the active `Shell` window. QuestDB
 will be stopped when the Shell is closed.
 
-#### Default directory
+### Default directory
 
 When started interactively, QuestDB's root directory defaults to the `current`
 directory.
 
-#### Start
+### Start
 
 To start, run the following.
 
@@ -187,7 +187,7 @@ To start, run the following.
 questdb.exe
 ```
 
-#### Stop
+### Stop
 
 To stop, simply press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the Shell window or close
 it.

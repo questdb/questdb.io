@@ -55,7 +55,6 @@
   --ifm-menu-link-padding-horizontal: 0.75rem;
   display: flex;
   justify-content: center;
-  font-family: var(--font-family-base);
 }
 
 .doc__sidebar {

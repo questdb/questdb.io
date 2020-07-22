@@ -8,14 +8,14 @@ each interval is stored in separate sets of files.
 
 ![storage model](/img/doc/concepts/storage-model.png)
 
-#### Properties
+## Properties
 
 - Available partition intervals are `NONE`, `DAY`, `MONTH` and `YEAR`.
 - Default behaviour is `PARTITION BY NONE`.
 - Partitions are defined at table creation. For more information, refer to
   [CREATE TABLE section](reference/sql/create-table.md).
 
-#### Requirements
+## Requirements
 
 Partition is only available on tables with a `designated timestamp`. The main
 benefit of using a designated timestamp is that the field in question will
@@ -24,7 +24,7 @@ specific high-performance time series functions. For more information on
 `designated timestamp`, refer to the
 [designated timestamp section](concept/designated-timestamp.md).
 
-#### Advantages
+## Advantages
 
 - Reduced disk IO for timestamp interval searches. This is because our SQL
   optimiser leverages partitioning.
@@ -34,7 +34,7 @@ specific high-performance time series functions. For more information on
 - Physical separation of data files. This makes it easily to implement file
   retention policies or extract certain intervals.
 
-#### Storage Example
+## Storage Example
 
 Each partition effectively is a directory on the host machine corresponding to
 the partitioning interval. In the example below, we assume a table `trips` that

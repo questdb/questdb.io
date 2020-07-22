@@ -14,7 +14,7 @@ function, see [table_columns()](reference/function/meta.md#table_columns) and
 
 :::
 
-### Examples
+## Examples
 
 Show all tables:
 

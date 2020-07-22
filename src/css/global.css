@@ -1,39 +1,3 @@
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: local(""), url("/fonts/inter-latin-300.woff2") format("woff2"),
-    url("/fonts/inter-latin-300.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local(""), url("/fonts/inter-latin-400.woff2") format("woff2"),
-    url("/fonts/inter-latin-400.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: local(""), url("/fonts/inter-latin-500.woff2") format("woff2"),
-    url("/fonts/inter-latin-500.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local(""), url("/fonts/inter-latin-700.woff2") format("woff2"),
-    url("/fonts/inter-latin-700.woff") format("woff");
-}
-
 /**
 *
 * Override Infima's variables + set color palette
@@ -66,7 +30,6 @@
     Ubuntu, Cantarell, Helvetica, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Android Emoji", EmojiSymbols, "EmojiOne Mozilla",
     "Twemoji Mozilla", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-inter: Inter, var(--font-family-base);
 
   --font-size-small: 15px;
   --font-size-normal: 16px;
@@ -94,7 +57,7 @@
   --ifm-color-warning: var(--palette-yellow);
   --ifm-dropdown-background-color: var(--palette-rock);
   --ifm-font-color-base: var(--palette-white);
-  --ifm-font-family-base: var(--font-family-inter);
+  --ifm-font-family-base: var(--font-family-base);
   --ifm-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
   --ifm-font-size-base: var(--font-size-small);
@@ -188,7 +151,11 @@ nav {
 }
 
 main article header h2 a {
-    color: var(--palette-white-darker);
+  color: var(--palette-white-darker);
+}
+
+.main-wrapper main > article > section .banner {
+  display: none;
 }
 
 /**

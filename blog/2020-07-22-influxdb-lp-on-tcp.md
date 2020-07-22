@@ -7,9 +7,13 @@ author_image_url: https://avatars.githubusercontent.com/davidgs
 tags: [questdb, InfluxDB line protocol, tcp]
 ---
 
-![Picture of blue sky surrounded by latice-work](/img/blog/2020-07-22/banner.jpg)
+<img
+  alt="Picture of blue sky surrounded by latice-work"
+  className="banner"
+  src=" /img/blog/2020-07-22/banner.jpg"
+/>
 
-<div style={{ fontSize: "14px", marginBottom: "1rem" }}>
+<div className="banner" style={{ fontSize: "14px", marginBottom: "1rem" }}>
   Photo by&nbsp;
   <a href="https://unsplash.com/@ripato?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
     Ricardo Gomez Angel

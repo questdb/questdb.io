@@ -29,11 +29,11 @@ If you are running QuestDB from Docker, make sure you expose the port `9000`.
 
 By default, the Web Console opens on the SQL editor.
 
-#### Layout
+### Layout
 
 ![Preview of the different sections in the Web Console](/img/doc/console/sections.gif)
 
-#### Using the editor
+### Using the editor
 
 You can run queries directly in the editor. Let's create a simple table using
 the [row generation](reference/function/row-generator.md) and
@@ -45,7 +45,7 @@ You can also insert data using the Import screen.
 
 :::
 
-#### Create a table
+### Create a table
 
 Type the following SQL into the editor then click the `RUN` button.
 
@@ -67,14 +67,14 @@ clicking the `RUN` button
 
 :::
 
-#### Execution behaviour
+### Execution behaviour
 
 As you have noticed, you can insert multiple statements into the editor.
 However, only one will be run at a time. It uses the cursor position to
 determine which statement to run. To run a particular statement, click within
 this statement or highlight it.
 
-#### Insert data
+### Insert data
 
 We can now insert data. Let's insert some random temperatures from 4 different
 places chosen at random in a list to simulate 4 sensors sending data. Note we
@@ -90,7 +90,7 @@ INSERT INTO temp
     FROM long_sequence(1000000);
 ```
 
-#### Query data
+### Query data
 
 Let's now run a query. Copy/paste the following into the editor.
 
@@ -110,7 +110,7 @@ it.
 
 :::
 
-#### Building queries with the table explorer
+### Building queries with the table explorer
 
 Now that you have created a table, it will appear in the table explorer on the
 left-hand side. You can use this tool to explore your tables, their columns, and
@@ -123,13 +123,13 @@ name.
 
 :::
 
-#### Visualising results
+### Visualising results
 
 You can run the above query again and now click on the `Chart` button. This will
 display the chart editor. You can then choose chart type, for example `line` and
 click `draw`. This will draw a chart for the series.
 
-#### Downloading results
+### Downloading results
 
 You can download your query results by clicking the `CSV` button. This file will
 be useful to test the import functionality below.
@@ -141,7 +141,7 @@ icon on the left-side navigation menu.
 
 ![Upload button from the Web Console](/img/doc/console/uploadButton.png)
 
-#### Loading data
+### Loading data
 
 The Import screen allows you to instantly load data. QuestDB will automatically
 recognise the schema by analysing a sample of the data.

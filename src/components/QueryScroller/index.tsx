@@ -99,7 +99,7 @@ const QueryScroller = () => {
           "text--center",
         )}
       >
-        Augmented for time series
+        Augmented SQL for time series
       </h1>
 
       <h2
@@ -109,7 +109,7 @@ const QueryScroller = () => {
         )}
       >
         QuestDB enhances ANSI SQL with time series extensions to manipulate time
-        stamped data.
+        stamped data
       </h2>
 
       <div className={queryScrollerStyles.queryScroller__scroller}>

@@ -3,8 +3,6 @@ title: DROP TABLE
 sidebar_label: DROP TABLE
 ---
 
-## DROP TABLE
-
 `DROP TABLE` is used to permanently delete a table and its contents.
 
 :::caution
@@ -14,13 +12,13 @@ sure you have created [backups](reference/sql/backup.md) of your data.
 
 :::
 
-### Syntax
+## Syntax
 
 ```questdb-sql
 DROP TABLE 'TABLE_NAME';
 ```
 
-### Example
+## Example
 
 ```questdb-sql
 DROP TABLE ratings;

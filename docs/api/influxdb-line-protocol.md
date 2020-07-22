@@ -12,9 +12,9 @@ to reflect the new structure.
 QuestDB can listen for Line protocol packets both over [TCP](#tcp-receiver) and
 [UDP](#udp-receiver).
 
-### Using line protocol
+## Using line protocol
 
-#### Syntax
+### Syntax
 
 ```script title="ILP syntax"
 table_name,tagset valueset timestamp
@@ -27,7 +27,7 @@ table_name,tagset valueset timestamp
 | `values`     | Array of key-value pairs separated by commas that represent the readings. The keys are string, values can be numeric or boolean |
 | `timestamp`  | UNIX timestamp. By default in microseconds. Can be changed in the configuration                                                 |
 
-#### Behaviour
+### Behaviour
 
 - When the `table_name` does not correspond to an existing table, QuestDB will
   create the table on the fly using the name provided. Column types will be
@@ -39,7 +39,7 @@ table_name,tagset valueset timestamp
   [CREATE](reference/sql/create-table.md) the table beforehand.
 - When the timestamp is empty, QuestDB will use the server timestamp.
 
-#### Examples
+### Examples
 
 Let's assume the following data:
 
@@ -64,7 +64,7 @@ Second between `values` and `timestamp`.
 
 :::
 
-#### Dealing with irregularly-structured data
+### Dealing with irregularly-structured data
 
 :::info
 
@@ -114,14 +114,14 @@ minimise structural changes to maintain operational simplicity.
 
 :::
 
-### TCP receiver
+## TCP receiver
 
 The TCP receiver can handle both single and multi-row write requests. It is
 fully multi-threaded and customizable. It can work from the common worker pool
 or out of dedicated threads. A load balancing mechanism dynamically assigns work
 between the threads.
 
-#### Overview
+### Overview
 
 By default, QuestDB listens to line protocol packets over TCP on `0.0.0.0:9009`.
 If you are running QuestDB with Docker, you will need to map port 9009 using
@@ -144,7 +144,7 @@ The network IO thread receives write requests and sets up a queue for the
 workers. Workers pick up write requests for their assigned tables and insert the
 data.
 
-#### Load balancing
+### Load balancing
 
 A load balancing job reassigns work between threads in order to relieve the
 busiest threads and maintain high ingestion speed. It can be triggered in two
@@ -160,21 +160,21 @@ busiest worker thread will be reassigned to the least busy worker thread.
 
 ![InfluxDB line protocol load balancing diagram](/img/doc/diagrams/influxLineProtocolTCPLoadBalancing.svg)
 
-#### Commit strategy
+### Commit strategy
 
 Uncommitted rows are committed either:
 
 - after `line.tcp.maintenance.job.hysterisis.in.ms` milliseconds have passed
 - once reaching `line.tcp.max.uncommitted.rows` uncommitted rows.
 
-#### Configuration
+### Configuration
 
 The TCP receiver configuration can be completely customised using
 [configuration keys](reference/server-configuration.md#influxdb-line-protocol-config-tcp).
 You can use this to configure the tread pool, buffer and queue sizes, receiver
 IP address and port, load balancing etc.
 
-### UDP receiver
+## UDP receiver
 
 The UDP receiver can handle both single and multi row write requests. It is
 currently single-threaded, and performs both network IO and write jobs out of
@@ -183,7 +183,7 @@ common thread pool. It supports both multicast and unicast.
 
 Find an example of how to use this [here](java#influx-sender-library)
 
-#### Overview
+### Overview
 
 By default, QuestDB listens for `multicast` line protocol packets over UDP on
 `232.1.2.3:9009`. If you are running QuestDB with Docker, you will need to map
@@ -191,7 +191,7 @@ port 9009 using `-p 9009:9009 --net=host` and publish multicast packets with TTL
 of at least 2. This port can be customised, and you can also configure QuestDB
 to listen for `unicast`.
 
-#### Commit strategy
+### Commit strategy
 
 Uncommitted rows are committed either:
 
@@ -199,7 +199,7 @@ Uncommitted rows are committed either:
   `line.udp.commit.rate`
 - when messages are no longer being received
 
-#### Configuration
+### Configuration
 
 The UDP receiver configuration can be completely customised using
 [configuration keys](reference/server-configuration.md#influxdb-line-protocol-config-udp).

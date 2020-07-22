@@ -22,7 +22,7 @@ more in the [designated timestamp](concept/designated-timestamp.md) section.
 
 :::
 
-### Syntax
+## Syntax
 
 ![latest by syntax](/img/doc/diagrams/latestBy.svg)
 
@@ -34,9 +34,9 @@ learn how to do this in the [examples](#execution-order).
 
 :::
 
-### Examples
+## Examples
 
-#### Single column
+### Single column
 
 LATEST BY can be used with single columns. When this column is of type SYMBOL,
 the query will end as soon as all distinct symbol values have been found.
@@ -47,7 +47,7 @@ FROM weather
 LATEST BY city;
 ```
 
-#### Multiple columns
+### Multiple columns
 
 LATEST BY can also reference multiple columns although this can be slower.
 
@@ -57,7 +57,7 @@ FROM balances
 LATEST BY cust_id, balance_ccy;
 ```
 
-#### Execution order
+### Execution order
 
 The below queries illustrate how to change the execution order in a query by
 using brackets. Assume the following table
@@ -70,7 +70,7 @@ using brackets. Assume the following table
 | 2       | EUR         | 880.2   | FALSE    | 2020-04-22T16:18:34.404665Z |
 | 1       | USD         | 330.5   | FALSE    | 2020-04-22T16:20:14.404997Z |
 
-#### WHERE first
+### WHERE first
 
 ```questdb-sql
 SELECT * FROM balances LATEST BY cust_id, balance_ccy
@@ -93,7 +93,7 @@ latest possible balance above 800.
 | 2       | USD         | 900.75  | FALSE    | 2020-04-22T16:12:43.504432Z |
 | 2       | EUR         | 880.2   | FALSE    | 2020-04-22T16:18:34.404665Z |
 
-#### LATEST BY first
+### LATEST BY first
 
 ```questdb-sql
 (SELECT * FROM balances LATEST BY cust_id, balance_ccy) --note the brackets

@@ -54,9 +54,7 @@ const Footer = () => {
             className={footerStyles.footer__logo}
             src="/img/questdbLogoMono.svg"
           />
-          <h4 className={footerStyles.footer__tagline}>
-            {siteConfig.tagline}.
-          </h4>
+          <h4 className={footerStyles.footer__tagline}>{siteConfig.tagline}</h4>
 
           <Button
             className={footerStyles.footer__github}

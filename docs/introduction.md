@@ -7,7 +7,7 @@ analytics on time series and event data. It uses the SQL language with a few
 extensions for time series. The below will help you get familiar with QuestDB
 and get started.
 
-### Concepts
+## Concepts
 
 This section describes the architecture of QuestDB, how it stores and queries
 data, and introduces features and capabilities specific to QuestDB.
@@ -21,7 +21,7 @@ series capabilities with an efficient non-verbose syntax. You will also find the
 [symbol](concept/symbol.md) concept interesting to store and retrieve repetitive
 strings efficiently.
 
-### Guides
+## Guides
 
 Setup guides are available for [Docker](guide/docker.md), the
 [binaries](guide/binaries.md) or [Homebrew](guide/homebrew.md).
@@ -30,11 +30,11 @@ There are guides to get started with the [Web Console](guide/web-console.md),
 with the [Postgres wire protocol (alpha)](guide/postgres-wire.md), the
 [REST API](guide/rest.md) or the [Java API](api/java.md).
 
-### Reference
+## Reference
 
 This section contains reference about configuration, functions and SQL language.
 
-### Support
+## Support
 
 We are happy to help with any question you may have, particularly to help you
 optimise the performance of your application. Feel free to reach out using the
