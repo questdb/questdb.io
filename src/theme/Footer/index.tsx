@@ -36,11 +36,7 @@ const Footer = () => {
   const logoUrl = useBaseUrl(logo.src)
 
   return (
-    <footer
-      className={clsx(footerStyles.footer, sectionStyles.section, {
-        [footerStyles["footer--alt"]]: homeContext === true,
-      })}
-    >
+    <footer className={clsx(footerStyles.footer, sectionStyles.section)}>
       <div
         className={clsx(
           footerStyles.footer__inner,

@@ -18,8 +18,10 @@ table name is used as directory name on the file system. It can contain both
 ASCII and unicode characters.
 
 :::tip
-Table name containing spaces or `.` must be enclosed in _single_ quotes,
-for example:
+
+Table name containing spaces or `.` must be enclosed in _single_ quotes, for
+example:
+
 :::
 
 ```questdb-sql title="Example"
@@ -27,7 +29,9 @@ CREATE TABLE 'example out of.space' (a INT);
 ```
 
 :::note
+
 `tableName` must be unique
+
 :::
 
 #### columnName
@@ -38,41 +42,51 @@ Although it does support both ASCII and unicode characters, character restrictio
 specific to the file system still apply.
 
 :::info
+
 Maximum number of columns in a table is 2,147,483,647
+
 :::
 
 :::note
+
 `columnName` must be unique in context of table and must not contain '.'
 character
+
 :::
 
 #### typeDef
 
-`typeDef` - column [type name](reference/sql/datatypes.md) with additional options.
+`typeDef` - column [type name](reference/sql/datatypes.md) with additional
+options.
 
 ![column type](/img/doc/diagrams/column-type-def.svg)
 
 - `distinctValueEstimate` - optionally you can hint QuestDB how many distinct
   values this column is going to have. QuestDB will use this value to size data
-  structures used to support [symbol](concept/symbol.md). These data structures will
-  resize themselves when necessary to allow QuestDB to function correctly.
+  structures used to support [symbol](concept/symbol.md). These data structures
+  will resize themselves when necessary to allow QuestDB to function correctly.
   Under-estimating symbol value count might result in drop of performance
   whereas over-estimating - in higher disk space and memory consumption.
 
 :::info
-When `distinctValueEstimate` is not specified, a configuration default
-is used (`cairo.default.symbol.capacity`).
+
+When `distinctValueEstimate` is not specified, a configuration default is used
+(`cairo.default.symbol.capacity`).
+
 :::
 
-- `CACHE | NOCACHE` - a flag to tell QuestDB how to cache a [symbol](concept/symbol.md).
-  `CACHE` means that QuestDB will use Java Heap based Map to resolve symbol
-  values and keys. When column has large number of distinct symbol values (over
-  100,000) heap impact might be significant and depending on heap size might
-  cause OutOfMemory error. To avoid Java Heap impact, `NOCACHE` will leverage
-  off-heap structure, which can deal with larger value count but is slower.
+- `CACHE | NOCACHE` - a flag to tell QuestDB how to cache a
+  [symbol](concept/symbol.md). `CACHE` means that QuestDB will use Java Heap
+  based Map to resolve symbol values and keys. When column has large number of
+  distinct symbol values (over 100,000) heap impact might be significant and
+  depending on heap size might cause OutOfMemory error. To avoid Java Heap
+  impact, `NOCACHE` will leverage off-heap structure, which can deal with larger
+  value count but is slower.
 
 :::info
+
 Default option is `CACHE`.
+
 :::
 
 - `inlineIndexDef` - when present, QuestDB will create and maintain
@@ -113,17 +127,22 @@ Default option is `CACHE`.
 timestamp. Such column must be of type `timestamp`
 
 :::note
-The designated timestamp cannot be changed after table is created. This
-will be implemented in a future release.
+
+The designated timestamp cannot be changed after table is created. This will be
+implemented in a future release.
+
 :::
 
 #### partition
 
-`partition by` - the [partitioning strategy](concept/partitions.md) for the table.
+`partition by` - the [partitioning strategy](concept/partitions.md) for the
+table.
 
 :::note
-The partitioning strategy cannot be changed after table is created. A
-new table will have to be created.
+
+The partitioning strategy cannot be changed after table is created. A new table
+will have to be created.
+
 :::
 
 ## Usage
@@ -141,7 +160,9 @@ my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING);
 ```
 
 :::info
+
 Such table can accept data in any order.
+
 :::
 
 #### With [designated timestamp](concept/designated-timestamp.md)
@@ -153,7 +174,9 @@ CREATE TABLE
 ```
 
 :::info
+
 With this setting, QuestDB enforce chronological order of `ts` values.
+
 :::
 
 #### With [partition](concept/partitions.md)
@@ -195,7 +218,9 @@ CREATE TABLE x AS(
 ```
 
 :::note
-notice the `where false` condition.
+
+Notice the `where false` condition.
+
 :::
 
 ```questdb-sql title="Clone an existing wide table and change type of cherry-picked columns"
@@ -205,7 +230,8 @@ CREATE TABLE x AS(SELECT * FROM table WHERE false)
 ```
 
 Here we changed type of `price` (assuming it was `INT`) to `LONG` and changed
-type of `sym` to [symbol](concept/symbol.md) and created an [index](concept/indexes.md).
+type of `sym` to [symbol](concept/symbol.md) and created an
+[index](concept/indexes.md).
 
 ### Create a new table using SQL structure and data
 

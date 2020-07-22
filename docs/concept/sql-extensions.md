@@ -19,10 +19,10 @@ DELETE operations within an append-only framework.
 
 ### SAMPLE BY
 
-[SAMPLE BY](../reference/sql/select.md#sample-by) for time-based
-[aggregations](../reference/function/aggregation.md) with an efficient syntax. The short
-query below will return the simple average balance from a list of accounts by
-one month buckets.
+[SAMPLE BY](../reference/sql/select.md#sample-by) for time based
+[aggregations](../reference/function/aggregation.md) with an efficient syntax.
+The short query below will return the simple average balance from a list of
+accounts by one month buckets.
 
 ```questdb-sql title="Using SAMPLE BY"
 select avg(balance) from accounts sample by 1M
@@ -31,8 +31,9 @@ select avg(balance) from accounts sample by 1M
 ### Timestamp Search
 
 Timestamp search can be performed with regular operators, e.g `>`, `<=` etc.
-However, QuestDB provides a [native notation](../reference/sql/where.md#timestamp-and-date) which
-is faster and less verbose.
+However, QuestDB provides a
+[native notation](../reference/sql/where.md#timestamp-and-date) which is faster
+and less verbose.
 
 ## Important differences from standard SQL
 

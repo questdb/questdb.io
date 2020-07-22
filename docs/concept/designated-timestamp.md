@@ -4,7 +4,7 @@ sidebar_label: Designated timestamp
 ---
 
 QuestDB offers the option to elect a column as `designated timestamp`. This
-allows you to leverage specific high-performance time-series functions of
+allows you to leverage specific high-performance time series functions of
 QuestDB, but introduces a constraint on the column in question that will reject
 out of order inserts.
 
@@ -17,8 +17,10 @@ out of order inserts.
   - on the fly on sub-tables created within a query.
 
 :::tip
+
 To elect a timestamp column on the fly, please refer to the
 [dynamic timestamp]() documentation.
+
 :::
 
 #### Out of order policy
@@ -29,9 +31,10 @@ out of order timestamps inserts will be rejected. This does not affect the
 behaviour of other columns.
 
 :::tip
-Timestamps need NOT be unique. Duplicate timestamps are accepted. New
-timestamps need only be `superior or equal` to the latest timestamp in the
-column.
+
+Timestamps need NOT be unique. Duplicate timestamps are accepted. New timestamps
+need only be `superior or equal` to the latest timestamp in the column.
+
 :::
 
 #### Advantages
@@ -40,7 +43,7 @@ Electing a `designated timestamp` allows you to:
 
 - leverage timestamp partitions. For more information, refer to the
   [partitions section](concept/partitions.md).
-- use time-series joins such as `ASOF JOIN`. For more information refer to the
+- use time series joins such as `ASOF JOIN`. For more information refer to the
   [JOIN reference](reference/sql/join.md).
 
 #### Examples
@@ -65,8 +68,10 @@ multiple devices with slightly different clocks or network conditions. Luckily,
 there are ways to circumvent this with little overhead.
 
 :::note
-This is a temporary workaround. We are working on a table implementation
-which supports out of order inserts
+
+This is a temporary workaround. We are working on a table implementation which
+supports out of order inserts
+
 :::
 
 - Use the `database host clock` as `designated timestamp` by using
@@ -91,8 +96,10 @@ to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'),
 ```
 
 :::info
-For more information about `systimestamp()` and related functions, check
-the [date & time functions section](../reference/function/date-time.md).
+
+For more information about `systimestamp()` and related functions, check the
+[date & time functions section](../reference/function/date-time.md).
+
 :::
 
 - Use a temporary table for the latest partition and order data to insert into

@@ -92,7 +92,7 @@ result will be `null`.
 For more information about recognized timestamp formats, see the
 [date and timestamp format section](#date-and-timestamp-format).
 
-#### Return Value
+#### Return value
 
 Return value type is `timestamp`
 
@@ -145,7 +145,7 @@ result will be `null`.
 For more information about recognized timestamp formats, see the
 [date and timestamp format section](#date-and-timestamp-format).
 
-#### Return Value
+#### Return value
 
 Return value type is `date`
 
@@ -330,7 +330,7 @@ from long_sequence(1);
 `millis(value)` returns the `millis` of the second for a given date or timestamp
 from 0 to 999
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -371,7 +371,7 @@ select millis(ts), count() from transactions;
 `micros(value)` returns the `micros` of the millisecond for a given date or
 timestamp from 0 to 999
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -411,7 +411,7 @@ select micros(ts), count() from transactions;
 `second(value)` returns the `second` of the minute for a given date or timestamp
 from 0 to 59
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -451,7 +451,7 @@ select second(ts), count() from transactions;
 `minute(value)` returns the `minute` of the hour for a given date or timestamp
 from 0 to 59
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -491,7 +491,7 @@ select minute(ts), count() from transactions;
 `hour(value)` returns the `hour` of day for a given date or timestamp from 0 to
 23
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -531,7 +531,7 @@ select hour(ts), count() from transactions;
 `day(value)` returns the `day` of month for a given date or timestamp from 0 to
 23
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -571,7 +571,7 @@ select day(ts), count() from transactions;
 `month(value)` returns the `month` of year for a given date or timestamp from 1
 to 12
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -610,7 +610,7 @@ select month(ts), count() from transactions;
 
 `year(value)` returns the `year` for a given date or timestamp
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -648,7 +648,7 @@ select month(ts), count() from transactions;
 `is_leap_year(value)` returns `true` if the `year` of `value` is a leap year,
 `false` otherwise.
 
-#### Return Value
+#### Return value
 
 Return value type is `boolean`
 
@@ -679,7 +679,7 @@ select year(ts), is_leap_year(ts) from myTable;
 
 `days_in_month(value)` returns the count of days in a the month.
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -710,7 +710,7 @@ select month(ts), days_in_month(ts) from myTable;
 `day_of_week(value)` returns the day number in a week from 1 (Monday) to 7
 (Sunday)
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 
@@ -743,7 +743,7 @@ select to_str(ts,'EE'),day_of_week(ts) from myTable;
 `day_of_week_sunday_first(value)` returns the day number in a week from 1
 (Sunday) to 7 (Saturday)
 
-#### Return Value
+#### Return value
 
 Return value type is `int`
 

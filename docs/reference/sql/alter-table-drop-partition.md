@@ -6,8 +6,9 @@ sidebar_label: ALTER TABLE DROP PARTITION
 Drops a partition from an existing table.
 
 :::caution
-This action irremediably deletes the data contained in the dropped
-partition
+
+This action irremediably deletes the data contained in the dropped partition
+
 :::
 
 ## Syntax
@@ -26,8 +27,10 @@ partitions is in itself non-atomic. Drop partition will bail on the first
 failure and will not continue with the list.
 
 :::note
+
 The last partition (active partition) cannot be removed. This will be
 implemented in a future release.
+
 :::
 
 Naming convention for partition directories is as follows:

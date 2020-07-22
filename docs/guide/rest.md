@@ -36,7 +36,7 @@ to the database server. This guide shows examples of how to interact with it.
 
 First, we create the tables using `/exec`, which allows us to pass SQL
 statements. We also specify a designated timestamp column which will be useful
-for time-based queries and time joins across tables.
+for time based queries and time joins across tables.
 
 ```questdb-sql title="Create trips table"
 curl -G http://localhost:9000/exec --data-urlencode \
@@ -55,7 +55,7 @@ timestamp(timestamp);"
 
 Note that the table creation step is optional as QuestDB automatically
 recognizes schema. However, creating the table manually allows us to specify a
-`dedicated timestamp` column which will be useful for time-based queries, and to
+`dedicated timestamp` column which will be useful for time based queries, and to
 specify `symbol` which are more efficient than the automatically `string` type
 for skyCover.
 

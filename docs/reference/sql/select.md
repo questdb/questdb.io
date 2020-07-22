@@ -11,11 +11,13 @@ and evaluated from a table.
 ![select syntax](/img/doc/diagrams/select-statement.svg)
 
 :::tip
-The `TABLE` can either be a in your database (in which case you would
-pass the table's name), or the result of a sub query.
+
+The `TABLE` can either be a in your database (in which case you would pass the
+table's name), or the result of a sub query.
+
 :::
 
-## Simple Select
+## Simple select
 
 ### All columns
 
@@ -43,7 +45,7 @@ Example:
 SELECT movieId, rating FROM ratings;
 ```
 
-### Arithmetic Expressions
+### Arithmetic expressions
 
 `SELECT` is capable of evaluating multiple expressions and functions. You can
 mix comma separated lists of expressions with the column names you are
@@ -64,7 +66,9 @@ can assign an alias to a column or an expression by writing the alias name you
 want after that expression
 
 :::note
+
 Alias names and column names must be unique.
+
 :::
 
 ```questdb-sql
@@ -75,8 +79,10 @@ FROM ratings
 ## Aggregation
 
 :::info
+
 Supported aggregation functions are listed
 [here](reference/function/aggregation.md).
+
 :::
 
 ### Aggregation by group
@@ -108,10 +114,12 @@ FROM ratings;
 ```
 
 :::tip
+
 Whenever possible, it is recommended to perform arithmetic `outside` of
 aggregation functions as this can have a dramatic impact on performance. For
 example, `min(value/2)` is going to execute considerably slower than
 `min(value)/2` although both alternative will return the same result
+
 :::
 
 ## Supported clauses
@@ -127,7 +135,10 @@ Conditional results based on expressions.
 ![case sql syntax](/img/doc/diagrams/case-def.svg)
 
 :::info
-For more information, please refer to the [CASE reference](reference/sql/case.md)
+
+For more information, please refer to the
+[CASE reference](reference/sql/case.md)
+
 :::
 
 ### CAST
@@ -139,7 +150,10 @@ Convert values and expression between types.
 ![cast sql syntax](/img/doc/diagrams/cast.svg)
 
 :::info
-For more information, please refer to the [CAST reference](reference/sql/cast.md)
+
+For more information, please refer to the
+[CAST reference](reference/sql/cast.md)
+
 :::
 
 ### DISTINCT
@@ -151,8 +165,10 @@ Returns distinct values of the specified column(s).
 ![distinct syntax](/img/doc/diagrams/distinct.svg)
 
 :::info
+
 For more information, please refer to the
 [DISTINCT reference](reference/sql/distinct.md).
+
 :::
 
 ### FILL
@@ -165,7 +181,10 @@ complements [SAMPLE BY](reference/sql/sample-by.md) queries.
 ![fill syntax](/img/doc/diagrams/fill.svg)
 
 :::info
-For more information, please refer to the [FILL reference](reference/sql/fill.md).
+
+For more information, please refer to the
+[FILL reference](reference/sql/fill.md).
+
 :::
 
 ### JOIN
@@ -177,7 +196,10 @@ Join tables based on a key or timestamp.
 ![join syntax](/img/doc/diagrams/joins.svg)
 
 :::info
-For more information, please refer to the [JOIN reference](reference/sql/join.md)
+
+For more information, please refer to the
+[JOIN reference](reference/sql/join.md)
+
 :::
 
 ### LIMIT
@@ -189,7 +211,10 @@ Specify the number and position of records returned by a query.
 ![limit syntax](/img/doc/diagrams/limit.svg)
 
 :::info
-For more information, please refer to the [LIMIT reference](reference/sql/limit.md).
+
+For more information, please refer to the
+[LIMIT reference](reference/sql/limit.md).
+
 :::
 
 ### ORDER BY
@@ -201,8 +226,10 @@ Orders the results of a query by one or several columns.
 ![order by syntax](/img/doc/diagrams/orderBy.svg)
 
 :::info
+
 For more information, please refer to the
 [ORDER BY reference](reference/sql/order-by.md)
+
 :::
 
 ### UNION
@@ -215,7 +242,10 @@ duplicates.
 ![union syntax](/img/doc/diagrams/union.svg)
 
 :::info
-For more information, please refer to the [UNION reference](reference/sql/union.md)
+
+For more information, please refer to the
+[UNION reference](reference/sql/union.md)
+
 :::
 
 ### WHERE
@@ -227,34 +257,39 @@ Filters query results
 ![filter syntax](/img/doc/diagrams/filtered-statement.svg)
 
 :::info
-QuestDB supports complex WHERE clauses along with type-specific
-searches. For more information, please refer to the [WHERE reference](reference/sql/where.md).
-There are different syntaxes for [text](reference/sql/where.md#symbol-and-string),
-[numeric](where.md#numeric), or [timestamp](reference/sql/where.md#timestamp-and-date)
-filters.
+
+QuestDB supports complex WHERE clauses along with type-specific searches. For
+more information, please refer to the [WHERE reference](reference/sql/where.md).
+There are different syntaxes for
+[text](reference/sql/where.md#symbol-and-string), [numeric](where.md#numeric),
+or [timestamp](reference/sql/where.md#timestamp-and-date) filters.
+
 :::
 
-## Additional time-series clauses
+## Additional time series clauses
 
 QuestDB augments SQL with the following clauses.
 
 ### LATEST BY
 
 Retrieves the latest entry by timestamp for a given key or combination of keys
-This function requires a [designated timestamp](concept/designated-timestamp.md).
+This function requires a
+[designated timestamp](concept/designated-timestamp.md).
 
 #### Syntax
 
 ![latest by syntax](/img/doc/diagrams/latestBy.svg)
 
 :::info
+
 For more information, please refer to the
 [LATEST BY reference](reference/sql/latest-by.md).
+
 :::
 
 ### SAMPLE BY
 
-Aggregates time-series data into homogeneous time-chunks. For example daily
+Aggregates time series data into homogeneous time chunks. For example daily
 average, monthly maximum etc. This function requires a
 [designated timestamp](concept/designated-timestamp.md).
 
@@ -263,21 +298,24 @@ average, monthly maximum etc. This function requires a
 ![sample by syntax](/img/doc/diagrams/sampleBy.svg)
 
 :::info
+
 For more information, please refer to the
 [SAMPLE BY reference](reference/sql/sample-by.md).
+
 :::
 
 ### TIMESTAMP
 
-Dynamically creates a [designated timestamp](concept/designated-timestamp.md) on the
-output of a query. This allows to perform timestamp operations like
+Dynamically creates a [designated timestamp](concept/designated-timestamp.md) on
+the output of a query. This allows to perform timestamp operations like
 [SAMPLE BY](#sample-by) or [LATEST BY](#latest-by) on tables which originally do
 not have a designated timestamp.
 
 :::caution
-The output query must be ordered by time. `TIMESTAMP()` does not
-check for order and using timestamp functions on unordered data may produce
-unexpected results.
+
+The output query must be ordered by time. `TIMESTAMP()` does not check for order
+and using timestamp functions on unordered data may produce unexpected results.
+
 :::
 
 #### Syntax
@@ -285,5 +323,8 @@ unexpected results.
 ![dynamic timestamp syntax](/img/doc/diagrams/dynamicTimestamp.svg)
 
 :::info
-For more information, refer to the [TIMESTAMP reference](reference/sql/timestamp.md)
+
+For more information, refer to the
+[TIMESTAMP reference](reference/sql/timestamp.md)
+
 :::

@@ -112,8 +112,9 @@ row.cancel();
 ```
 
 :::note
-A pending row is automatically cancelled when `writer.newRow()` is
-called.
+
+A pending row is automatically cancelled when `writer.newRow()` is called.
+
 :::
 
 `5 - Commit changes` `writer.commit` commits changes, which makes them visible
@@ -125,9 +126,12 @@ Java users can use the `SqlCompiler` to run SQL queries like they would do in
 the Web Console for example.
 
 :::note
+
 This can be used for any supported SQL statement. For example
-[INSERT](reference/sql/insert.md) or [COPY](reference/sql/copy.md) to write data, DDL such as
-[CREATE TABLE](reference/sql/create-table.md) or [SELECT](reference/sql/select.md) to query data etc.
+[INSERT](reference/sql/insert.md) or [COPY](reference/sql/copy.md) to write
+data, DDL such as [CREATE TABLE](reference/sql/create-table.md) or
+[SELECT](reference/sql/select.md) to query data etc.
+
 :::
 
 ### Syntax
@@ -273,8 +277,10 @@ where
 | `$(timestamp)`         | Specify the timestamp for the reading              | no              |
 
 :::tip
+
 You can chain several tags and fields, e.g
 `tag("a","x").tag("b","y").tag("c","z")` etc.
+
 :::
 
 ```java title="Example"

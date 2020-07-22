@@ -5,6 +5,7 @@ import React from "react"
 import Layout from "@theme/Layout"
 
 import {
+  Cards,
   Console,
   Feature,
   Head,
@@ -12,7 +13,7 @@ import {
   GetStarted,
   Jumbotron,
   QueryScroller,
-  Whatis,
+  Why,
 } from "../components"
 
 const Home = () => {
@@ -22,11 +23,12 @@ const Home = () => {
   return (
     <HomeContextProvider value>
       <Layout description={siteConfig.tagline} title="QuestDB" version="5.0.1">
-        <Head />
+        <Head fonts />
         <Jumbotron />
         <Feature />
         <QueryScroller />
-        <Whatis />
+        <Why />
+        <Cards />
         <Console />
         <GetStarted />
       </Layout>

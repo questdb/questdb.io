@@ -16,16 +16,28 @@ const Feature = () => (
           src="img/pages/index/rawPower.svg"
         />
 
-        <h2 className={featureStyles.feature__title}>Raw Power</h2>
+        <h2 className={featureStyles.feature__title}>Built for performance</h2>
 
         <span className={featureStyles.feature__description}>
-          Millions of writes per second / thread
+          SIMD optimised analytics
         </span>
         <span className={featureStyles.feature__description}>
-          SIMD boosted aggregrations
+          Rows and columns based access
         </span>
         <span className={featureStyles.feature__description}>
-          Non-blocking threading model
+          Vectorized queries execution
+        </span>
+        <span className={featureStyles.feature__description}>
+          Tiny memory footprint
+        </span>
+        <span className={featureStyles.feature__description}>
+          C++ and zero-GC Java
+        </span>
+        <span className={featureStyles.feature__description}>
+          Simple deployment
+        </span>
+        <span className={featureStyles.feature__description}>
+          Zero dependencies
         </span>
       </div>
 
@@ -36,16 +48,24 @@ const Feature = () => (
           src="img/pages/index/easyToUse.svg"
         />
 
-        <h2 className={featureStyles.feature__title}>Easy to use</h2>
+        <h2 className={featureStyles.feature__title}>
+          Optimized for time series
+        </h2>
 
         <span className={featureStyles.feature__description}>
-          SQL language, augmented for time-series
+          Relational model for time series
         </span>
         <span className={featureStyles.feature__description}>
-          Postgres wire (alpha)
+          Data stored in chronological order
         </span>
         <span className={featureStyles.feature__description}>
-          InfluxDB line protocol
+          Time partitioned
+        </span>
+        <span className={featureStyles.feature__description}>
+          Scalable ingestion and immediate consistency
+        </span>
+        <span className={featureStyles.feature__description}>
+          High performance InfluxDB line protocol
         </span>
       </div>
 
@@ -56,15 +76,24 @@ const Feature = () => (
           src="img/pages/index/featureRich.svg"
         />
 
-        <h2 className={featureStyles.feature__title}>Feature Rich</h2>
+        <h2 className={featureStyles.feature__title}>SQL</h2>
 
         <span className={featureStyles.feature__description}>
-          Relational and time based joins
+          Time series and relational joins
         </span>
         <span className={featureStyles.feature__description}>
-          Unlimited transactions size
+          Postgres wire support
         </span>
-        <span className={featureStyles.feature__description}>Blob support</span>
+        <span className={featureStyles.feature__description}>
+          Aggregations and down sampling
+        </span>
+        <span className={featureStyles.feature__description}>
+          Unlimited sub-queries
+        </span>
+
+        <span className={featureStyles.feature__description}>
+          Built-in SQL optimizer
+        </span>
       </div>
     </div>
   </section>

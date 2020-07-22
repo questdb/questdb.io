@@ -11,7 +11,7 @@ QuestDB SQL optimiser to determine best execution order and algorithms.
 There are no known limitations on size of tables or sub-queries participating in
 joins and there are no limitations on number of joins either.
 
-## Join Syntax
+## Join syntax
 
 ![join](/img/doc/diagrams/joins.svg)
 
@@ -24,8 +24,10 @@ also analyse `WHERE` clause for implicit join condition and will derive
 transient join conditions where necessary.
 
 :::tip
-When tables are joined on column that has the same name in both tables
-you can use shorthand `ON (column)` clause
+
+When tables are joined on column that has the same name in both tables you can
+use shorthand `ON (column)` clause
+
 :::
 
 ## (INNER) JOIN
@@ -50,8 +52,10 @@ ON ratings.movieId = id;
 ```
 
 :::tip
-By default `JOIN` is interpreted as `INNER JOIN`. Therefore `INNER` can
-be dropped.
+
+By default `JOIN` is interpreted as `INNER JOIN`. Therefore `INNER` can be
+dropped.
+
 :::
 
 ```questdb-sql title="Dropping INNER"
@@ -99,7 +103,9 @@ WHERE tab2.colB = NULL
 It can be used to a table with all possible combinations.
 
 :::note
+
 `CROSS JOIN` does not have `ON` clause.
+
 :::
 
 ### EXAMPLE
@@ -114,15 +120,17 @@ SELECT * FROM starters CROSS JOIN deserts;
 
 ### Overview
 
-`ASOF` joins are used on time-series data to join two tables based on timestamp
+`ASOF` joins are used on time series data to join two tables based on timestamp
 where timestamps do not exactly match. For a given record at a given timestamp,
 it will return the corresponding record in the other table at the closest
 timestamp **prior to** the timestamp in the first table.
 
 :::note
-To be able to leverage `ASOF JOIN`, both joined table must have a
-designated `timestamp` column. To designate a column as `timestamp`, please
-refer to the [CREATE TABLE](reference/sql/create-table.md) section.
+
+To be able to leverage `ASOF JOIN`, both joined table must have a designated
+`timestamp` column. To designate a column as `timestamp`, please refer to the
+[CREATE TABLE](reference/sql/create-table.md) section.
+
 :::
 
 `ASOF` join is performed on tables or result sets that are ordered by time. When
@@ -165,9 +173,11 @@ Will return the following
 | 2019-10-17T00:00:00.500000Z | 102 | 102 |
 
 :::note
-There is no `ASKS` at timestamp `2019-10-17T00:00:00.100000Z`. The
-`ASOF JOIN` will look for the value in the `BIDS` table that has the closest
-timestamp inferior or equal to the target timestamp.
+
+There is no `ASKS` at timestamp `2019-10-17T00:00:00.100000Z`. The `ASOF JOIN`
+will look for the value in the `BIDS` table that has the closest timestamp
+inferior or equal to the target timestamp.
+
 :::
 
 In case tables do not have designated timestamp column, but data is in
@@ -182,8 +192,10 @@ FROM (bids timestamp(ts)) ASOF JOIN (asks timestamp (ts))
 ```
 
 :::caution
-`ASOF` join does not check timestamp order, if data is not in
-chronological order join result is non-deterministic
+
+`ASOF` join does not check timestamp order, if data is not in chronological
+order join result is non-deterministic
+
 :::
 
 Above query assumes that there is only one instrument in `BIDS` and `ASKS`

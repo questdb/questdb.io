@@ -32,8 +32,9 @@ VALUES(
 ```
 
 :::note
-Columns can be omitted during `INSERT` in which case value will be
-`NULL`
+
+Columns can be omitted during `INSERT` in which case value will be `NULL`
+
 :::
 
 ```questdb-sql title="Inserting only specific columns"
@@ -52,6 +53,8 @@ INSERT INTO confirmed_trades
 ```
 
 :::note
-This method allows you to insert several rows at once (as many as your
-query returns).
+
+This method allows you to insert several rows at once (as many as your query
+returns).
+
 :::

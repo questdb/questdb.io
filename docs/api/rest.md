@@ -16,13 +16,17 @@ QuestDB distribution. Find out more in the section
 [using the Web Console](guide/web-console.md).
 
 :::tip
+
 Other machines on your network can access the console and the REST API on
 `http://IP_OF_THE_HOST_MACHINE:9000`
+
 :::
 
 :::note
+
 All strings need to be passed as url-encoded, for example by using
 `--data-urlencode`
+
 :::
 
 ## Available methods
@@ -41,9 +45,11 @@ usually without additional configuration. However in some cases additional
 configuration can be provided to augment automatic detection results.
 
 :::note
-The structure detection algorithm analyses the chunk in the beginning
-and relies on relative uniformity of data. When the first chunk is
-non-representative of the rest of the data, automatic imports can yield errors.
+
+The structure detection algorithm analyses the chunk in the beginning and relies
+on relative uniformity of data. When the first chunk is non-representative of
+the rest of the data, automatic imports can yield errors.
+
 :::
 
 `/imp` column names from header row as table columns. The following characters
@@ -222,7 +228,9 @@ The following will use `curl` to send a query over http. The result will be sent
 back over HTTP.
 
 :::note
+
 The `query` text must be URL-encoded.
+
 :::
 
 ```script

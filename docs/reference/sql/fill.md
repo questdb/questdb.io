@@ -16,7 +16,7 @@ There are as many `fillOption` as there are `aggreate` columns in your query.
 
 | fillOption | Description                                                                                                                                           |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `NONE`     | Will not fill. In case there is no data, the time-chunk will be skipped in the results. This means your table could potentially be missing intervals. |
+| `NONE`     | Will not fill. In case there is no data, the time chunk will be skipped in the results. This means your table could potentially be missing intervals. |
 | `NULL`     | Fills with `null`                                                                                                                                     |
 | `PREV`     | Fills using the previous value                                                                                                                        |
 | `LINEAR`   | Fills by linear interpolation of the 2 surrounding points                                                                                             |
@@ -52,7 +52,8 @@ It would generally return result like this:
 | tsn       | minn | maxn | avgn    |
 
 However, in case there was no `PRICES` data for a given hour, your table would
-have time-chunks missing. In the below example, there is no data to generate aggregates for `ts3`
+have time chunks missing. In the below example, there is no data to generate
+aggregates for `ts3`
 
 | timestamp | min    | max    | average |
 | --------- | ------ | ------ | ------- |

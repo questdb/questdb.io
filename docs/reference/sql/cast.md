@@ -39,9 +39,9 @@ cast('行' AS INT);
 | ---- | --------------------------- | ----- | ----- |
 | 5    | 2020-01-08T17:55:42.000000Z | 10.2  | 34892 |
 
-Explicit casting of an expression to a smaller [data type](reference/sql/datatypes.md)
-may result in loss of data when the output data type is smaller than the
-expression.
+Explicit casting of an expression to a smaller
+[data type](reference/sql/datatypes.md) may result in loss of data when the
+output data type is smaller than the expression.
 
 - Casting a decimal number type (`float` or `double`) to an integer number type
   (`long`, `int`, `short`) will result in decimals drop.
@@ -78,8 +78,10 @@ QuestDB will attempt to convert to the data type required by the context. This
 is called `implicit cast` and does not require using the `cast()` function.
 
 :::note
-QuestDB will only perform implicit cast when they would not result in
-data being truncated or precision being lost.
+
+QuestDB will only perform implicit cast when they would not result in data being
+truncated or precision being lost.
+
 :::
 
 The below chart illustrates the explicit and implicit cast available in QuestDB.
@@ -87,9 +89,10 @@ The below chart illustrates the explicit and implicit cast available in QuestDB.
 ![cast map](/img/doc/castmap.jpg)
 
 :::note
-Implicit casting prevents data loss. When an operation involves multiple
-types, the resulting type will be the smallest possible type so that no data is
-lost.
+
+Implicit casting prevents data loss. When an operation involves multiple types,
+the resulting type will be the smallest possible type so that no data is lost.
+
 :::
 
 ```questdb-sql title="Queries"
@@ -104,8 +107,8 @@ to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 0.323;
 | ---- | -------- | --------------------------- | ---------------- |
 | 1801 | 1234.567 | 2019-10-17T00:00:00.000323Z | 1571270400000000 |
 
-When inserting into a table, QuestDB will cast data implicitly to match the
-type of the destination column.
+When inserting into a table, QuestDB will cast data implicitly to match the type
+of the destination column.
 
 ```questdb-sql title="Example"
 -- We create a table with one column of type long

@@ -1,42 +1,38 @@
-.whatis {
+.why {
   flex-direction: column;
   align-items: center;
 }
 
-.whatis__title {
+.why__title {
   width: 100%;
 }
 
-.whatis__subtitle {
-  max-width: 860px;
-  color: var(--palette-pale-blue);
-}
-
-.whatis__menu {
+.why__menu {
   display: flex;
-  flex-direction: column;
   flex: 0 0 auto;
+  flex-direction: column;
 }
 
-.whatis__menu--item {
+.why__menu--item {
   justify-content: center;
 }
 
-.whatis__menu--item:not(:last-child) {
+.why__menu--item:not(:last-child) {
   margin-bottom: 1rem;
 }
 
-.whatis__footer {
+.why__footer {
   display: flex;
   width: 100%;
-  margin-top: 6rem;
+  margin-top: 3rem;
   align-items: center;
   justify-content: space-around;
 }
 
-.whatis__content {
+.why__content {
   display: flex;
   max-width: 660px;
+  width: 100%;
   flex: 1 1 auto;
   flex-flow: row nowrap;
   justify-content: center;
@@ -44,24 +40,14 @@
   overflow: hidden;
 }
 
-.whatis__description {
-  margin-bottom: 2rem;
-}
-
-.whatis__list {
-  display: flex;
-  max-height: 135px;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-
-.whatis__item {
+.why__item {
   position: relative;
   padding-left: 2.5rem;
+  padding-right: 0.5rem;
   margin-bottom: 1rem;
 }
 
-.whatis__item::before {
+.why__item::before {
   position: absolute;
   height: 100%;
   width: 2.5rem;
@@ -73,50 +59,57 @@
   background-repeat: no-repeat;
 }
 
-.whatis__toggle {
+.why__toggle {
+  display: flex;
+  max-height: 135px;
   margin-left: -100%;
+  flex: 1;
+  flex-wrap: wrap;
+  flex-direction: column;
   opacity: 0;
   transition: opacity 100ms var(--transition-bezier);
 }
 
-.whatis__toggle--active {
+.why__toggle--active {
   margin-left: 0;
   opacity: 1;
 }
 
 @media (max-width: 996px) {
-  .whatis__footer {
+  .why__footer {
     margin-top: 2rem;
     flex-direction: column;
   }
 
-  .whatis__content {
+  .why__content {
     margin-top: 2rem;
     font-size: var(--font-size-normal);
   }
 
-  .whatis__menu {
+  .why__menu {
+    max-width: 660px;
+    width: 100%;
     flex-direction: row;
   }
 
-  .whatis__menu--item {
+  .why__menu--item {
     min-width: 30%;
     padding: 0 0.5rem;
     flex: 0 1 auto;
     font-size: var(--font-size-small);
   }
 
-  .whatis__menu--item:not(:last-child) {
+  .why__menu--item:not(:last-child) {
     margin: 0;
     margin-right: 1rem;
   }
 
-  .whatis__list {
-    max-height: initial;
+  .why__menu--item:nth-child(2) {
+    word-wrap: anywhere;
   }
 
-  .whatis__toggle {
-    display: flex;
+  .why__toggle {
+    max-height: initial;
     flex-direction: column;
   }
 }

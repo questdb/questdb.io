@@ -72,7 +72,8 @@ Congratulations, you have a running QuestDB server. You can now start to
 interact with it.
 
 - If you exposed the port `9000`, you can follow our [REST guide](rest.md)
-- If you exposed the port `8812`, follow our [Postgres wire guide](guide/postgres-wire.md)
+- If you exposed the port `8812`, follow our
+  [Postgres wire guide](guide/postgres-wire.md)
 
 ## Shut down and cleanup
 
@@ -86,9 +87,10 @@ DROP TABLE weather;
 ```
 
 :::info
+
 You can run QuestDB in Sandbox mode which will delete all data when the
-container is stopped. Find out more in our
-[Docker image](packages/docker.md)
+container is stopped. Find out more in our [Docker image](packages/docker.md)
+
 :::
 
 You can then shut down and remove the container.

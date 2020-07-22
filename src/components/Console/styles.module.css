@@ -44,6 +44,11 @@
   font-weight: var(--ifm-font-weight-bold);
 }
 
+.console__illustration {
+  max-width: 600px;
+  width: 100%;
+}
+
 .console__summary {
   font-size: var(--font-size-large);
 }
@@ -68,6 +73,7 @@
   }
 
   .console__footer {
+    margin-top: 6rem;
     flex-direction: column;
     align-items: center;
   }
@@ -83,9 +89,5 @@
 
   .console__label {
     font-size: var(--ifm-h2-font-size);
-  }
-
-  .console__footer {
-    margin-top: 6rem;
   }
 }

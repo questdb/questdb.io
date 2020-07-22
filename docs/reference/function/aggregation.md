@@ -150,7 +150,9 @@ SELECT payment_type, count() FROM transactions;
 | null         | 5     |
 
 :::note
+
 `null` values are aggregated with `count()`.
+
 :::
 
 ## avg

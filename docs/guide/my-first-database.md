@@ -3,9 +3,9 @@ title: My first database
 sidebar_label: My first database
 ---
 
-The goal of this tutorial is to explore QuestDB's features to interact with
-time-series data. This assumes you have an instance running. You can find guides
-to setup QuestDB [here](introduction.md).
+The goal of this tutorial is to explore QuestDB's features to interact with time
+series data. This assumes you have an instance running. You can find guides to
+setup QuestDB [here](introduction.md).
 
 In this tutorial, you will learn how to
 
@@ -18,11 +18,13 @@ As an example, we will look at hypothetical temperature readings from a variety
 of sensors.
 
 :::info
-All commands are run through the [Web Console](guide/web-console.md) accessible on
-[http://localhost:9000](http://localhost:9000).
+
+All commands are run through the [Web Console](guide/web-console.md) accessible
+on [http://localhost:9000](http://localhost:9000).
 
 You can also run the same SQL using [Postgres wire](guide/postgres-wire.md) or
 the [REST API](guide/rest.md).
+
 :::
 
 ## Creating a table
@@ -37,9 +39,11 @@ CREATE TABLE sensors (ID LONG, make STRING, city STRING);
 ```
 
 :::info
-The `CREATE TABLE` command comes with many more functions. For more
-information, please refer to the [CREATE TABLE](reference/sql/create-table.md) command
+
+The `CREATE TABLE` command comes with many more functions. For more information,
+please refer to the [CREATE TABLE](reference/sql/create-table.md) command
 reference.
+
 :::
 
 ## Inserting data
@@ -57,12 +61,14 @@ INSERT INTO sensors
 ```
 
 :::info
-For more information on `INSERT` and `INSERT as select`, please refer to
-the [INSERT reference](reference/sql/insert.md).
+
+For more information on `INSERT` and `INSERT as select`, please refer to the
+[INSERT reference](reference/sql/insert.md).
 
 For more information on procedurally generated data in the
-[random generator functions](reference/function/random-value-generator.md) and in the
-[row generator functions](reference/function/row-generator.md).
+[random generator functions](reference/function/random-value-generator.md) and
+in the [row generator functions](reference/function/row-generator.md).
+
 :::
 
 Our `sensors` table now contains 10,000 randomly generated sensors of different
@@ -93,11 +99,12 @@ PARTITION BY MONTH;
 ```
 
 :::note
+
 While creating this table we did the following:
 
 - `TIMESTAMP(ts)` elected `ts` as
-  [designated timestamp](concept/designated-timestamp.md). This will enable
-  time-partitioning.
+  [designated timestamp](concept/designated-timestamp.md). This will enable time
+  partitioning.
 - `PARTITION BY MONTH` created a monthly partition strategy. Our data will be
   sharded in monthly files.
 
@@ -211,15 +218,12 @@ Results should look like the data below.
 | ...                         | ...   | ...   | ...         |
 
 :::info
+
 Find more about these commands in the [Select](reference/sql/select.md) and
 [Join](reference/sql/join.md) sections.
+
 :::
 
 ## Deleting tables
 
 Upon dropping the table, all data is deleted.
-
-```questdb-sql
-DROP TABLE readings;
-DROP TABLE sensors;
-```

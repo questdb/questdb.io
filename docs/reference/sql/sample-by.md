@@ -3,21 +3,23 @@ title: SAMPLE BY
 sidebar_label: SAMPLE BY
 ---
 
-`SAMPLE BY` is used on time-series data to summarise large datasets into
+`SAMPLE BY` is used on time series data to summarise large datasets into
 aggregates of homogeneous time chunks as part of a
 [SELECT statement](reference/sql/select.md).
 
 :::note
-To use `SAMPLE BY`, one column needs to be designated as `timestamp`.
-Find out more in the [designated timestamp](concept/designated-timestamp.md) section.
+
+To use `SAMPLE BY`, one column needs to be designated as `timestamp`. Find out
+more in the [designated timestamp](concept/designated-timestamp.md) section.
+
 :::
 
 ### Syntax
 
 ![sample by syntax](/img/doc/diagrams/sampleBy.svg)
 
-WHere `SAMPLE_SIZE` is the unit of time by which you wish to aggregate your
-results, and `n` is the number of time-chunks that will be summarised together.
+Where `SAMPLE_SIZE` is the unit of time by which you wish to aggregate your
+results, and `n` is the number of time chunks that will be summarised together.
 
 ### Examples
 

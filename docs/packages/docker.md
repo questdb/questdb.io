@@ -7,8 +7,10 @@ commands. QuestDB has images for Windows and Linux along with a manifest to
 automatically download correct image for your target architecture.
 
 :::info
+
 You can find our docker repository
 [here](https://hub.docker.com/r/questdb/questdb).
+
 :::
 
 #### Supported platforms
@@ -38,8 +40,10 @@ You can use the Docker image in two ways:
 - [Run as an interactive sandbox](#run-as-an-interactive-sandbox)
 
 :::caution
-The interactive sandbox will create a container on the fly and start
-it. Once stopped, the container will be removed and the data deleted.
+
+The interactive sandbox will create a container on the fly and start it. Once
+stopped, the container will be removed and the data deleted.
+
 :::
 
 ### Run as a container
@@ -67,15 +71,15 @@ docker create --name questdb -p 9000:9000 -p 8812:8812 questdb/questdb:5.0.0
 
 ##### -p ports
 
-- `-p 9000:9000` for the REST API and the Web Console. The web
-  console is available on [http://localhost:9000](http://localhost:9000)
+- `-p 9000:9000` for the REST API and the Web Console. The web console is
+  available on [http://localhost:9000](http://localhost:9000)
 - `-p 8812:8812` for the PostgreSQL wire protocol
 - `-p 9009:9009` InfluxDB line protocol
 
 ##### -v volumes
 
-The QuestDB [root_directory](reference/root-directory-structure.md) will be in the following
-locations.
+The QuestDB [root_directory](reference/root-directory-structure.md) will be in
+the following locations.
 
 | Container OS       | Volume              |
 | ------------------ | ------------------- |

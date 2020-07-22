@@ -28,6 +28,8 @@ ratings ORDER BY userId, rating DESC;
 ### Ressources management
 
 :::caution
-Ordering data requires holding it in RAM. For large operations, we
-suggest you check you have sufficient memory to perform the operation.
+
+Ordering data requires holding it in RAM. For large operations, we suggest you
+check you have sufficient memory to perform the operation.
+
 :::

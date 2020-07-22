@@ -234,10 +234,10 @@ Our resulting table looks like the following.
 ## (R)ead
 
 Reading records can be done using `SELECT` or by reading a table directly via
-the Java API. Reading via the [Java API](api/java.md) (see tab
-`Java Raw`) iterates over a table and can therefore only access one table at a
-time. If you would like to query various tables via the Java API, you can pass
-SQL to Java and read the resulting table (see tab `Java SQL`).
+the Java API. Reading via the [Java API](api/java.md) (see tab `Java Raw`)
+iterates over a table and can therefore only access one table at a time. If you
+would like to query various tables via the Java API, you can pass SQL to Java
+and read the resulting table (see tab `Java SQL`).
 
 <Tabs defaultValue="sql" values={[
   { label: "SQL", value: "sql" },
@@ -359,9 +359,9 @@ SELECT balance_ccy, avg(balance) FROM balances;
 | EUR         | 765.35   |
 
 If we had more data we could get deeper and use
-[SAMPLE BY](reference/sql/select.md#sample-by) clauses to easily generate aggregates based
-on time intervals. For example, to get the average hourly balance per currency,
-all we need is to add `SAMPLE BY 1h` to the above query!
+[SAMPLE BY](reference/sql/select.md#sample-by) clauses to easily generate
+aggregates based on time intervals. For example, to get the average hourly
+balance per currency, all we need is to add `SAMPLE BY 1h` to the above query!
 
 ## (U)pdate
 
@@ -401,8 +401,8 @@ WHERE cust_id = 1;
 In the above example QuestDB will execute the `where` clause _before_
 `latest by`. To execute `where` _after_ `latest by` we have to rely on
 sub-queries. To find out more, check out our
-[SQL execution order](concept/sql-execution-order.md) Here is an example of how to select
-the latest account information, only for balances over 800.
+[SQL execution order](concept/sql-execution-order.md) Here is an example of how
+to select the latest account information, only for balances over 800.
 
 ```questdb-sql
 (SELECT * FROM balances
@@ -417,12 +417,14 @@ WHERE balance > 800;
 | 2       | EUR         | 880.2   | FALSE    | 2020-04-22T16:18:34.404665Z |
 
 :::note
-With `latest by`, QuestDB will search time series from most recent
-values to oldest. For single `SYMBOL` columns, QuestDB will know all distinct
-values upfront. Time series scan will end as soon as all values are matched. For
-all other field types, or multiple fields QuestDB will scan entire time series.
+
+With `latest by`, QuestDB will search time series from most recent values to
+oldest. For single `SYMBOL` columns, QuestDB will know all distinct values
+upfront. Time series scan will end as soon as all values are matched. For all
+other field types, or multiple fields QuestDB will scan entire time series.
 Although scan is very fast you should be aware that in certain setups,
 performance will degrade on hundreds of millions of records.
+
 :::
 
 ## (D)elete
@@ -466,10 +468,12 @@ latest EUR balance for this customer.
 | 1       | EUR         | 650.5   | FALSE    | 2020-04-22T16:11:32.904234Z |
 
 :::note
+
 The above sql example uses brackets. This is because our
-[SQL execution order](concept/sql-execution-order.md) will execute WHERE clauses before
-LATEST BY. By encapsulating the query and applying `where not inactive` to the
-whole result set, we are able to easily remove the inactive accounts.
+[SQL execution order](concept/sql-execution-order.md) will execute WHERE clauses
+before LATEST BY. By encapsulating the query and applying `where not inactive`
+to the whole result set, we are able to easily remove the inactive accounts.
+
 :::
 
 In other words, the brackets allow us to get "the latest balance excluding

@@ -22,7 +22,9 @@ shared.worker.count=5
 ```
 
 :::note
+
 A restart of QuestDB is required to pickup the new configuration
+
 :::
 
 ### Available keys and default values

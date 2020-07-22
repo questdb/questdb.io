@@ -20,7 +20,7 @@ each interval is stored in separate sets of files.
 Partition is only available on tables with a `designated timestamp`. The main
 benefit of using a designated timestamp is that the field in question will
 enforce an increasing policy on timestamp value. This allows you to leverage
-specific high-performance time-series functions. For more information on
+specific high-performance time series functions. For more information on
 `designated timestamp`, refer to the
 [designated timestamp section](concept/designated-timestamp.md).
 

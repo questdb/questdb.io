@@ -13,7 +13,7 @@ detailed thereafter.
 
 ![filter syntax](/img/doc/diagrams/filtered-statement.svg)
 
-### Logical Operators
+### Logical operators
 
 QuestDB supports `AND`, `OR`, `NOT` as logical operators and can assemble
 conditions using brackets `()`.
@@ -132,12 +132,14 @@ QuestDB can filter numeric values based on equality, inequality, comparison, and
 proximity
 
 :::note
+
 For timestamp filters, we recommend the
 [timestamp search notation](#timestamp-and-date) which is faster and less
 verbose.
+
 :::
 
-### Equality, Inequality and comparison
+### Equality, inequality and comparison
 
 ![syntax numeric comparison](/img/doc/diagrams/whereNumericValue.svg)
 
@@ -165,9 +167,11 @@ SELECT * FROM users WHERE eq(age, 23, 0.00001);
 ```
 
 :::tip
+
 When performing multiple equality checks of double values against integer
 constants, it may be preferable to store double values as long integers with a
 scaling factor.
+
 :::
 
 ## Boolean
@@ -202,8 +206,9 @@ SELECT * FROM users WHERE NOT isActive;
 QuestDB supports both its own timestamp search notation and standard search
 based on inequality. This section describes the use of the
 `timestamp search notation` which is efficient and fast but requires a
-[designated timestamp](concept/designated-timestamp.md). Remember, designated timestamp
-can be applied [dynamically](reference/sql/timestamp.md#during-a-select-operation).
+[designated timestamp](concept/designated-timestamp.md). Remember, designated
+timestamp can be applied
+[dynamically](reference/sql/timestamp.md#during-a-select-operation).
 
 ### Exact timestamp
 
@@ -259,7 +264,7 @@ SELECT * FROM scores WHERE ts = '2018-05-23T12:15';
 | ...                         | ...   |
 | 2018-05-23T12:15:59.999999Z | 115.8 |
 
-### Time Range with modifier
+### Time range with modifier
 
 You can apply a modifier to further customise the range. The algorithm will
 calculate the resulting range by modifying the upper bound of the original range

@@ -11,12 +11,14 @@ sidebar_label: BACKUP
 
 Creates a backup for one, several, or all database tables.
 
-## Backup Directory
+## Backup directory
 
 :::tip
+
 `BACKUP TABLE` requires a `backup directory` which is set using the
-[configuration key](reference/server-configuration.md) `cairo.sql.backup.root` in the
-[server.conf](reference/root-directory-structure.md#serverconf) file.
+[configuration key](reference/server-configuration.md) `cairo.sql.backup.root`
+in the [server.conf](reference/root-directory-structure.md#serverconf) file.
+
 :::
 
 ```script title="Example configuration key"
@@ -32,9 +34,10 @@ The tables will be written in a directory with today's date. By default, the
 format is `yyyy-MM-dd`, for example `2020-04-20`.
 
 :::tip
-You can define a custom format using the
-`cairo.sql.backup.dir.datetime.format` [configuration key](reference/server-configuration.md) like
-the example below
+
+You can define a custom format using the `cairo.sql.backup.dir.datetime.format`
+[configuration key](reference/server-configuration.md) like the example below
+
 :::
 
 ```script title="Example user-defined directory format"

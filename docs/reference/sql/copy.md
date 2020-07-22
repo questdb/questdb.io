@@ -25,9 +25,10 @@ is automatic.
   whether the first rows should be used as header.
 
 :::note
+
 `COPY` requires a `copy root directory` which is set using the
-[configuration key](reference/server-configuration.md) `cairo.sql.copy.root` in the
-[server.conf](reference/root-directory-structure.md#serverconf) file.
+[configuration key](reference/server-configuration.md) `cairo.sql.copy.root` in
+the [server.conf](reference/root-directory-structure.md#serverconf) file.
 
 ```script title="Example"
 cairo.sql.copy.root=/Users/UserName/Desktop

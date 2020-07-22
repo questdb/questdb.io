@@ -40,7 +40,10 @@ This service will create the default `root directory` in
 our [Homebrew package](packages/homebrew.md).
 
 :::note
-QuestDB will start and run in the background and continue running even if you close the session. You will need to actively [stop it](#stop).
+
+QuestDB will start and run in the background and continue running even if you
+close the session. You will need to actively [stop it](#stop).
+
 :::
 
 ## Status

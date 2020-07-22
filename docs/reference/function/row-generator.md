@@ -24,22 +24,26 @@ and `seed2` are `long64` representing both parts of a `long128` seed.
   from 1, which can be accessed for queries.
 
 :::tip
-You can use this to generate very large datasets for your testing e.g
-billions of rows or more if your disk allows.
+
+You can use this to generate very large datasets for your testing e.g billions
+of rows or more if your disk allows.
+
 :::
 
 ##### Random number seed
 
 When `long_sequence` is used conjointly with
-[random generators](reference/function/random-value-generator.md), these values are usually
-generated at random. The function supports a seed to be passed in order to
-produce deterministic results.
+[random generators](reference/function/random-value-generator.md), these values
+are usually generated at random. The function supports a seed to be passed in
+order to produce deterministic results.
 
 :::tip
-Deterministic procedural generation makes it easy to test on vasts
-amounts of data without actually moving large files around across machines.
-Using the same seed on any machine at any time will consistently produce the
-same results for all random functions.
+
+Deterministic procedural generation makes it easy to test on vasts amounts of
+data without actually moving large files around across machines. Using the same
+seed on any machine at any time will consistently produce the same results for
+all random functions.
+
 :::
 
 #### Examples
@@ -76,8 +80,10 @@ FROM long_sequence(2,128349234,4327897);
 ```
 
 :::note
-The results below will be the same on any machine at any time as long as
-they use the same seed in long_sequence.
+
+The results below will be the same on any machine at any time as long as they
+use the same seed in long_sequence.
+
 :::
 
 | rnd_double         |

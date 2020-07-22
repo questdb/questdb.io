@@ -23,6 +23,8 @@ ALTER TABLE trades ALTER COLUMN instrument ADD INDEX;
 ```
 
 :::info
+
 For more information about indexes please refer to the
 [INDEX section](concept/indexes.md).
+
 :::

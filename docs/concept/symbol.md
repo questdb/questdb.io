@@ -18,14 +18,16 @@ values.
 - greatly improved storage efficiency (storing `int` instead of `string`)
 
 :::note
+
 `symbol` comparison across tables is not directly supported.
+
 :::
 
 #### Usage
 
 To declare a column as `SYMBOL` please refer to the
-[CREATE TABLE](reference/sql/create-table.md) section. To create an `INDEX` on `SYMBOL`, please
-refer to the [index](concept/indexes.md) section.
+[CREATE TABLE](reference/sql/create-table.md) section. To create an `INDEX` on
+`SYMBOL`, please refer to the [index](concept/indexes.md) section.
 
 #### Properties
 

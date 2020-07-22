@@ -7,8 +7,10 @@ This guides shows how to install QuestDB using the binaries and how to start
 using the server.
 
 :::info
-For complete information on how to use QuestDB's binary, please refer to
-the [Binaries](packages/binaries.md)
+
+For complete information on how to use QuestDB's binary, please refer to the
+[Binaries](packages/binaries.md)
+
 :::
 
 ## Setup QuestDB
@@ -51,7 +53,8 @@ To start the QuestDB server service, simply run the below
 questdb.exe start
 ```
 
-This will use the following [root directory](reference/root-directory-structure.md)
+This will use the following
+[root directory](reference/root-directory-structure.md)
 
 ```script title="Linux"
 $HOME/.questdb

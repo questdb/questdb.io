@@ -12,8 +12,8 @@ generate large test datasets that mimic the structure of their actual data.
 Values can be generated either:
 
 - Pseudo randomly
-- [Deterministically](reference/function/row-generator.md#long_sequence) when specifying a
-  `seed`
+- [Deterministically](reference/function/row-generator.md#long_sequence) when
+  specifying a `seed`
 
 QuestDB supports the following random generation functions:
 
@@ -449,7 +449,7 @@ To generate increasing timestamps, please refer the page about
   character from the 26-letter A to Z alphabet. Letters from A to Z will be
   generated with equal probability.
 
-#### Return Value
+#### Return value
 
 Return value type is `char`.
 

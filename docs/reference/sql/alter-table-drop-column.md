@@ -6,8 +6,9 @@ sidebar_label: ALTER TABLE DROP COLUMN
 Drops a column from an existing table.
 
 :::caution
-This action irremediably deletes the data contained in the dropped
-column
+
+This action irremediably deletes the data contained in the dropped column
+
 :::
 
 ## Syntax

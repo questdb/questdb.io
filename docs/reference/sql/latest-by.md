@@ -16,8 +16,10 @@ values to the oldest.
   hundreds of millions of records for non-symbol keys.
 
 :::note
+
 To use `LATEST BY`, one column needs to be designated as `timestamp`. Find out
 more in the [designated timestamp](concept/designated-timestamp.md) section.
+
 :::
 
 ### Syntax
@@ -25,9 +27,11 @@ more in the [designated timestamp](concept/designated-timestamp.md) section.
 ![latest by syntax](/img/doc/diagrams/latestBy.svg)
 
 :::note
-By default, QuestDB executes `where` clauses before `latest by`. To
-execute `where` after `latest by`, you need to use sub-queries using brackets.
-You can learn how to do this in the [examples](#execution-order).
+
+By default, QuestDB executes `where` clauses before `latest by`. To execute
+`where` after `latest by`, you need to use sub-queries using brackets. You can
+learn how to do this in the [examples](#execution-order).
+
 :::
 
 ### Examples

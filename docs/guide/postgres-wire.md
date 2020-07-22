@@ -6,12 +6,16 @@ sidebar_label: Postgres wire (alpha)
 This short guide explains how to connect to QuestDB using `psql`.
 
 :::note
+
 Our implementation of the Postgres wire protocol is still in alpha. Some
 features such as metadata are not yet supported.
+
 :::
 
 :::info
+
 This guide assumes you have installed QuestDB and have it running.
+
 :::
 
 ## How to Install psql
@@ -45,7 +49,8 @@ sudo dnf install postgresql.x86_64
 
 #### Windows 10
 
-Install using the [Windows Installer](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
+Install using the
+[Windows Installer](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads).
 
 ## How to connect
 
@@ -108,9 +113,11 @@ timestamp(ts);
 ```
 
 :::info
+
 Symbol is a special type which allows us to write strings but store them
 efficiently as an int which makes writes and scans more efficient and reduces
 the storage requirements. Find out more [here](concept/symbol.md).
+
 :::
 
 ### Insert data
@@ -135,10 +142,10 @@ INSERT INTO temp VALUES(
 For the purpose of this guide, it is easier to insert from a file or in this
 case to generate the data. We can use QuestDB's
 [row generation functions](reference/function/row-generator.md) and
-[random generators](reference/function/random-value-generator.md) to quickly create test
-data. We use `long_sequence()` which generates rows and returns a synthetic
-column `x` with monotonically increasing values. As `x` is of type `long`, we
-use `cast` to convert it to `int`.
+[random generators](reference/function/random-value-generator.md) to quickly
+create test data. We use `long_sequence()` which generates rows and returns a
+synthetic column `x` with monotonically increasing values. As `x` is of type
+`long`, we use `cast` to convert it to `int`.
 
 The below will add 1 million readings from a location chosen at random
 approximately every 30 seconds.
@@ -155,7 +162,7 @@ INSERT INTO temp
 ### Query data
 
 Now that we have data, we can run a few queries to start leveraging QuestDB's
-time-series SQL extensions.
+time series SQL extensions.
 
 ```questdb-sql title="Weekly average temperature"
 SELECT ts, avg(tempC)
@@ -173,8 +180,10 @@ SAMPLE BY 7d;
 | 2020-07-02 00:00:00.000000 | 13.0 |
 
 :::info
-This query uses [SAMPLE BY](reference/sql/select.md#sample-by) to generate weekly
-time buckets in just 3 words.
+
+This query uses [SAMPLE BY](reference/sql/select.md#sample-by) to generate
+weekly time buckets in just 3 words.
+
 :::
 
 ```questdb-sql title="Last temperature reading by location"
@@ -196,8 +205,10 @@ WHERE ts='2020-12';
 ```
 
 :::info
+
 This query uses [LATEST BY](guide/crud.md) and our
 [timestamp search](reference/sql/select.md#interval-timestamp).
+
 :::
 
 | ts                         | location | tempC |
@@ -210,9 +221,10 @@ This query uses [LATEST BY](guide/crud.md) and our
 ## What's next
 
 There is plenty to do with QuestDB. As a next step, you could check out our
-guide to [CRUD operations](guide/crud.md), how to join time-series with
-[ASOF JOIN](reference/sql/join.md#asof-join) or how to [FILL](reference/sql/select.md#fill) missing
-intervals within a select statement.
+guide to [CRUD operations](guide/crud.md), how to join time series with
+[ASOF JOIN](reference/sql/join.md#asof-join) or how to
+[FILL](reference/sql/select.md#fill) missing intervals within a select
+statement.
 
 Before we leave, let's remember to cleanup and delete all the data
 

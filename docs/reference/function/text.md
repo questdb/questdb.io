@@ -20,7 +20,9 @@ SELECT firstName, lastName, concat(firstName, ' ', lastName) FROM names;
 | Tim       | Smith    | Tim Smith     |
 
 :::tip
+
 `concat()` can be used to generate `line protocol`. See example below.
+
 :::
 
 ```questdb-sql title="Generating line protocol"

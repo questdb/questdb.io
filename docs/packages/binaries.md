@@ -39,14 +39,16 @@ questdb.exe start
 ```
 
 :::info
-QuestDB will start and run in the background and continue running even
-if you close the session. You will need to actively [stop it](#stop).
+
+QuestDB will start and run in the background and continue running even if you
+close the session. You will need to actively [stop it](#stop).
+
 :::
 
 #### Default directories
 
-By default, QuestDB [root directory](reference/root-directory-structure.md) will be the
-following
+By default, QuestDB [root directory](reference/root-directory-structure.md) will
+be the following
 
 ```script title="Linux"
 $HOME/.questdb
@@ -70,9 +72,10 @@ C:\Windows\System32\questdb
   and administer them separately.
 
 :::tip
-The tag option, `-t`, can be used to start and manipulate independent
-QuestDB services. Each can be started, stopped etc using its own service tag
-name.
+
+The tag option, `-t`, can be used to start and manipulate independent QuestDB
+services. Each can be started, stopped etc using its own service tag name.
+
 :::
 
 #### Examples
@@ -126,7 +129,9 @@ questdb.exe status -t 'my-questdb-service'
 startup.
 
 :::note
+
 `install` is only available on Windows.
+
 :::
 
 #### Examples
@@ -145,7 +150,9 @@ questdb.exe install -t 'my-questdb-service'
 startup.
 
 :::note
+
 `remove` is only available on Windows.
+
 :::
 
 #### Examples

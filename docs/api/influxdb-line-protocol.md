@@ -2,8 +2,8 @@
 title: InfluxDB line protocol
 ---
 
-InfluxDB line protocol ingestion makes it easy for existing InfluxDB users to try
-QuestDB by only changing the address they send data to.
+InfluxDB line protocol ingestion makes it easy for existing InfluxDB users to
+try QuestDB by only changing the address they send data to.
 
 It is not necessary to create a table schema beforehand: the table will be
 created on the fly. If new columns are added, the table is automatically updated
@@ -34,8 +34,9 @@ table_name,tagset valueset timestamp
   automatically recognized and assigned based on the data.
 - The `timestamp` column is automatically created as
   [designated timestamp](concept/designated-timestamp.md) with the
-  [partition strategy](concept/partitions.md) set to `NONE`. If you would like to define
-  a partition stragey, you should [CREATE](reference/sql/create-table.md) the table beforehand.
+  [partition strategy](concept/partitions.md) set to `NONE`. If you would like
+  to define a partition stragey, you should
+  [CREATE](reference/sql/create-table.md) the table beforehand.
 - When the timestamp is empty, QuestDB will use the server timestamp.
 
 #### Examples
@@ -57,22 +58,26 @@ readings,city=London,make=Omron temperature=23.6,humidity=0.348 1465839830100700
 ```
 
 :::note
-There are only 2 spaces in each line. First between the `tagset` and
-`values`. Second between `values` and `timestamp`.
+
+There are only 2 spaces in each line. First between the `tagset` and `values`.
+Second between `values` and `timestamp`.
+
 :::
 
 #### Dealing with irregularly-structured data
 
 :::info
-QuestDB can support on-the-fly data structure changes with minimal
-overhead. Should users decide to send varying quantities of readings or metadata
-tags for different entries, QuestDB will adapt on the fly.
+
+QuestDB can support on-the-fly data structure changes with minimal overhead.
+Should users decide to send varying quantities of readings or metadata tags for
+different entries, QuestDB will adapt on the fly.
+
 :::
 
-InfluxDB line protocol makes it possible to send data under different shapes. Each
-new entry may contain certain metadata tags or readings, and others not. Whilst
-the example just above highlights structured data, it is possible for Influx
-line protocol users to send data as follows.
+InfluxDB line protocol makes it possible to send data under different shapes.
+Each new entry may contain certain metadata tags or readings, and others not.
+Whilst the example just above highlights structured data, it is possible for
+Influx line protocol users to send data as follows.
 
 ```script
 readings,city=London temperature=23.2 1465839830100400000
@@ -101,10 +106,12 @@ The third entry would result in the following table
 | 1465839830100800000 | NULL   | 23.2        | 0.358    | Honeywell |
 
 :::tip
-Adding columns on the fly is no issue for QuestDB. New columns will be
-created in the affected partitions, and only populated if they contain values.
-Whilst we offer this function for flexibility. However, we recommend that users
-try to minimise structural changes to maintain operational simplicity.
+
+Adding columns on the fly is no issue for QuestDB. New columns will be created
+in the affected partitions, and only populated if they contain values. Whilst we
+offer this function for flexibility. However, we recommend that users try to
+minimise structural changes to maintain operational simplicity.
+
 :::
 
 ### TCP receiver
@@ -163,9 +170,9 @@ Uncommitted rows are committed either:
 #### Configuration
 
 The TCP receiver configuration can be completely customised using
-[configuration keys](reference/server-configuration.md#influxdb-line-protocol-config-tcp). You can use
-this to configure the tread pool, buffer and queue sizes, receiver IP address
-and port, load balancing etc.
+[configuration keys](reference/server-configuration.md#influxdb-line-protocol-config-tcp).
+You can use this to configure the tread pool, buffer and queue sizes, receiver
+IP address and port, load balancing etc.
 
 ### UDP receiver
 
@@ -195,6 +202,6 @@ Uncommitted rows are committed either:
 #### Configuration
 
 The UDP receiver configuration can be completely customised using
-[configuration keys](reference/server-configuration.md#influxdb-line-protocol-config-udp). You can use
-this to configure the IP address and port the receiver binds to, commit rates,
-buffer size, whether it should run on a separate thread etc.
+[configuration keys](reference/server-configuration.md#influxdb-line-protocol-config-udp).
+You can use this to configure the IP address and port the receiver binds to,
+commit rates, buffer size, whether it should run on a separate thread etc.

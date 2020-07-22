@@ -21,8 +21,10 @@ atomic operation. QuestDB will stop adding the remaining columns on the list on
 the first failure. It is therefore possible to add some columns and not others.
 
 :::info
-Adding a new column does not lock the table for reading and does not
-wait on any reads to finish.
+
+Adding a new column does not lock the table for reading and does not wait on any
+reads to finish.
+
 :::
 
 ## Examples
@@ -41,10 +43,14 @@ ALTER TABLE ratings ADD COLUMN comment SYMBOL NOCACHE INDEX
 ```
 
 :::tip
+
 For `symbol`, both `nocache` and `index` keywords are optional.
+
 :::
 
 :::note
+
 For more information on symbol options, please refer to the
 [symbol documentation](concept/symbol.md)
+
 :::

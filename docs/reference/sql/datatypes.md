@@ -23,11 +23,15 @@ The type system is derived from Java types.
 | `long256`   | `256`        | unsigned 256-bit integer                                                                                                                                                                                                                                            |
 
 :::info
-`BINARY` field size is limited either by 64-Bit signed int (8388608 peta
-bytes) or disk size, whichever is smaller.
+
+`BINARY` field size is limited either by 64-Bit signed int (8388608 peta bytes)
+or disk size, whichever is smaller.
+
 :::
 
 :::info
+
 `STRING` field size is limited by either 32-bit signed int (1073741824
 characters) or disk size, whichever is smaller.
+
 :::
