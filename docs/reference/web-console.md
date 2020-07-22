@@ -4,11 +4,13 @@ sidebar_label: Web Console
 ---
 
 This is a reference for the Console. If you want to learn how to use it, we
-suggest you follow the [Quickstart Guide](guide/web-console.md)
+suggest you follow the [Quickstart Guide](guide/web-console.md).
 
 :::info
-We are currently updating the Web Console so part of this page is out of
-date. This page will be updated with the next release.
+
+We are currently updating the Web Console so part of this page is out of date.
+This page will be updated with the next release.
+
 :::
 
 ## Import
@@ -46,7 +48,7 @@ column using the following steps:
   displayed.
 - Find and click on the column which type you want to change.
 - You will then need to [re-trigger the import](#custom-import).
-  ![amend type](/img/doc/console/amendtype.jpg)
+  ![Change the schema in the Web Console when importing data](/img/doc/console/amendType.jpg)
 
 ### Custom import
 
@@ -62,7 +64,7 @@ to import the data again.
 
 **To start the import, click the following button:**
 
-![upload button](/img/doc/console/upload-button.png)
+![Upload button from the Web Console](/img/doc/console/uploadButton.png)
 
 ## SQL Editor
 
@@ -91,13 +93,13 @@ uses the following logic to decide what command to execute.
 - Command highlighted. Note neither the `CREATE TABLE` statement nor the `x*x`
   column have been executed and evaluated.
 
-![highlight](/img/doc/console/sql-highlight.png)
+![Code editor in the Web Console with part of the code highlighted](/img/doc/console/sqlHighlight.png)
 
 - Cursor within a SQL statement
-  ![cursor](/img/doc/console/cursor-in-sql.png)
+  ![Code editor in the Web Console where the cursor is positioned in the SQL statement in order to run the surrounding expression](/img/doc/console/cursorInSql.png)
 
 - Cursor outside of a statement but on the same line
-  ![cursor2](/img/doc/console/cursor-outside-same-line.png)
+  ![Code editor in the Web Console where the cursor is positioned at the end of the SQL statement in order to run the surrounding expression](/img/doc/console/cursorOutsideSameLine.png)
 
 - Cursor on another line
-  ![cursor other line](/img/doc/console/cursor-outside-different-line.png)
+  ![Code editor in the Web Console with the cursor positioned on a new empty line](/img/doc/console/cursorOutsideDifferentLine.png)

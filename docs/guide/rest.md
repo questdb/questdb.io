@@ -12,9 +12,10 @@ For more information about our REST API, please consult the
 [REST API](api/rest.md)
 
 :::note
-This requires a running instance of QuestDB with port `9000` exposed.
-You can learn how to do so with
-[Docker](guide/docker.md)
+
+This requires a running instance of QuestDB with port `9000` exposed. You can
+learn how to do so with [Docker](guide/docker.md)
+
 :::
 
 ## Get test data
@@ -144,7 +145,7 @@ curl -G http://localhost:9000/exp --data-urlencode \
 If you are querying from the Web Console, then you can download the results
 using the `download to csv` button.
 
-![download gif](/img/doc/console/downloadgif.gif)
+![Preview of the export function in the Web Console](/img/doc/console/download.gif)
 
 ## Shut down and cleanup
 
