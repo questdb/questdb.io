@@ -6,8 +6,8 @@ author_url: https://github.com/davids
 author_image_url: https://avatars.githubusercontent.com/davidgs
 tags: [questdb, InfluxDB line protocol, tcp]
 ---
-![Picture of blue sky surrounded by latice-work](../static/img/blog/influx-ilp-on-tcp/banner.jpg)<span>Photo by <a href="https://unsplash.com/@ripato?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ricardo Gomez Angel</a> on <a href="https://unsplash.com/collections/1231819/influx?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
-# Using TCP InfluxDB Line Protocol writer in QuestDB
+![Picture of blue sky surrounded by latice-work](/img/blog/influx-ilp-on-tcp/banner.jpg)<span>Photo by <a href="https://unsplash.com/@ripato?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ricardo Gomez Angel</a> on <a href="https://unsplash.com/collections/1231819/influx?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
 
 We've had a UDP version of the InfluxDB Line Protocol (ILP) reader in QuestDB for quite some time, but we've had customers ask for a TCP version of it, so we delivered!
 
@@ -69,7 +69,7 @@ Now I have all the basic elements I need to construct my ILP, which will look li
 
 `iot,dev_id=THP002,dev_loc=Apex,dev_name=BME280 temp_c=23.18,altitude=93.10,humidity=52.16,pressure=1002.12`
 
-And yes, I rounded those values. But you'll notice that I did not add a `timestamp` value. In this case, it's because I am sending the values from a small, embedded sensor device that really doesn't have a great sense of time. By sening the ILP without a `timestamp` I'm telling the database itself to add one for me, using the arrival time as the `timestamp`.
+And yes, I rounded those values. But you'll notice that I did not add a `timestamp` value. In this case, it's because I am sending the values from a small, embedded sensor device that really doesn't have a great sense of time. By sending the ILP without a `timestamp` I'm telling the database itself to add one for me, using the arrival time as the `timestamp`.
 
 ## Database structure
 
