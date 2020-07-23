@@ -86,7 +86,7 @@ truncated or precision being lost.
 
 The below chart illustrates the explicit and implicit cast available in QuestDB.
 
-![cast map](/img/docs/castmap.jpg)
+![Table showing the different possibilities the cast function supports, those are defined by an input and output types](/img/docs/castmap.jpg)
 
 :::note
 

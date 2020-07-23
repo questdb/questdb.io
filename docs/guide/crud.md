@@ -507,7 +507,7 @@ and reproduce the state of the database at any point in time. You can use this
 to restore a previous state, or to produce snapshots. Welcome to the world of
 fast time travel!
 
-![btff](/img/docs/bttf.jpg)
+![Cartoon reproduction of the film Back to the Future Part II](/img/docs/bttf.jpg)
 
 For example the below query can be used to know the state of all balances at a
 `15:00:00` snapshot.
