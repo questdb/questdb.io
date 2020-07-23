@@ -5,7 +5,7 @@ sidebar_label: BACKUP
 
 ## Syntax
 
-![backup syntax](/img/doc/diagrams/backup.svg)
+![Flow chart showing the syntax of the BACKUP keyword](/img/docs/diagrams/backup.svg)
 
 ## Description
 
@@ -21,7 +21,7 @@ in the [server.conf](reference/root-directory-structure.md#serverconf) file.
 
 :::
 
-```script title="Example configuration key"
+```shell title="Example configuration key"
 cairo.sql.backup.root=/Users/UserName/Desktop
 ```
 
@@ -40,7 +40,7 @@ You can define a custom format using the `cairo.sql.backup.dir.datetime.format`
 
 :::
 
-```script title="Example user-defined directory format"
+```shell title="Example user-defined directory format"
 cairo.sql.backup.dir.datetime.format=yyyy-dd-MM
 ```
 

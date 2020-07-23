@@ -13,7 +13,7 @@ joins and there are no limitations on number of joins either.
 
 ## Join syntax
 
-![join](/img/doc/diagrams/joins.svg)
+![Flow chart showing the syntax of the JOIN keyword](/img/docs/diagrams/join.svg)
 
 Following data join columns from joined tables are combined in single row. Same
 name columns originating from different tables will be automatically aliased to
@@ -242,7 +242,7 @@ FROM bids SPLICE JOIN asks
 
 Will return the following results
 
-```script
+```shell
 RESULTS
 =================================================
 ts,                          bid        ask

@@ -90,16 +90,16 @@ memory block is flushed to physical device.
 
 ### Examples
 
-The following examples upload ratings.csv, which can be found
-[here](https://grouplens.org/datasets/movielens/) Response shows table name,
-columns, types, error count in each column and total rows. When column types are
-correct error count must be zero.
+The following examples upload `ratings.csv`. This file can be found at
+[grouplens.org](https://grouplens.org/datasets/movielens). The response shows
+table name, columns, types, error count in each column and total rows. When
+column types are correct, error count must be `0`.
 
-```script title="Import from file, automatic schema detection"
+```shell title="Import from file, automatic schema detection"
 curl -i -F data=@ratings.csv http://localhost:9000/imp
 ```
 
-```script title="Response"
+```shell title="Response"
 HTTP/1.1 200 OK
 Server: questDB/1.0
 Date: Fri, 28 Oct 2016 17:58:31 GMT
@@ -162,14 +162,14 @@ JSON response for the same request would be:
 This example overrides types of `userId` and `movieId` by including `schema`
 parameter. Schema is passed as a `JSON object`.
 
-```script title="Import with custom schema"
+```shell title="Import with custom schema"
 curl -i \
 -F schema='[{"name":"userId", "type": "STRING"},{"name":"movieId", "type":"STRING"}]' \
 -F data=@ratings.csv \
 http://localhost:9000/imp
 ```
 
-```script title="Response"
+```shell title="Response"
 HTTP/1.1 200 OK
 Server: questDB/1.0
 Date: Sun, 30 Oct 2016 1:20:7 GMT
@@ -194,7 +194,7 @@ Content-Type: text/plain; charset=utf-8
 
 This example shows the concatenation of several import parameters
 
-```script title="Using multiple options"
+```shell title="Using multiple options"
 curl -i \
 -F data=@ratings.csv \
 'http://localhost:9000/imp?forceHeaders=true&overwrite=true'
@@ -233,7 +233,7 @@ The `query` text must be URL-encoded.
 
 :::
 
-```script
+```shell
 curl -v \
 -G http://localhost:9000/exp \
 --data-urlencode "query=select * from mydb;" -d limit=5
@@ -299,13 +299,13 @@ which is equivalent to `limit=0,20`. `limit=-20` will return the last 20 rows.|
 
 Below is example of exporting data from command line using `curl`
 
-```script
+```shell
 curl -v -G http://localhost:9000/exp \
     --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
     -d limit=5
 ```
 
-```script title="Success response"
+```shell title="Success response"
 *   Trying ::1...
 * connect to ::1 port 9000 failed: Connection refused
 *   Trying 127.0.0.1...
@@ -336,7 +336,7 @@ curl -v -G http://localhost:9000/exp \
 When query contains syntax errors `/exp` attempts to return as much diagnostic
 information as possible. Example erroneous request:
 
-```script title="Error response"
+```shell title="Error response"
 curl -v -G http://localhost:9000/exp \
     --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
     -d limit=5
@@ -344,7 +344,7 @@ curl -v -G http://localhost:9000/exp \
 
 Response:
 
-```script
+```shell
 *   Trying ::1...
 * connect to ::1 port 9000 failed: Connection refused
 *   Trying 127.0.0.1...

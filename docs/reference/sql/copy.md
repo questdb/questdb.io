@@ -5,7 +5,7 @@ sidebar_label: COPY
 
 ## Syntax
 
-![copy syntax](/img/doc/diagrams/copy.svg)
+![Flow chart showing the syntax of the COPY keyword](/img/docs/diagrams/copy.svg)
 
 ## Description
 
@@ -30,7 +30,7 @@ is automatic.
 [configuration key](reference/server-configuration.md) `cairo.sql.copy.root` in
 the [server.conf](reference/root-directory-structure.md#serverconf) file.
 
-```script title="Example"
+```shell title="Example"
 cairo.sql.copy.root=/Users/UserName/Desktop
 ```
 

@@ -7,7 +7,7 @@ Sort the results of a query in ascending or descending order.
 
 ## Syntax
 
-![order by syntax](/img/doc/diagrams/orderBy.svg)
+![Flow chart showing the syntax of the ORDER BY keyword](/img/docs/diagrams/orderBy.svg)
 
 Default order is `ASC`. You can omit to order in ascending order.
 

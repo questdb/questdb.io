@@ -7,7 +7,7 @@ sidebar_label: SQL
 
 ## Syntax
 
-![meaningful alt text](/img/doc/diagrams/case-def.svg)
+![Flow chart showing the syntax of CASE](/img/docs/diagrams/case.svg)
 
 Some arguments may need explanations.
 

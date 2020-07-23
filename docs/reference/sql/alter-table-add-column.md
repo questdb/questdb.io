@@ -7,9 +7,8 @@ Adds a new column to an existing table.
 
 ## Syntax
 
-![alter table syntax](/img/doc/diagrams/alter-table.svg)
-
-![add column syntax](/img/doc/diagrams/alter-table-add-column.svg)
+![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)
+![Flow chart showing the syntax of ALTER TABLE with ADD COLUMN keyword](/img/docs/diagrams/alterTableAddColumn.svg)
 
 ## Description
 

@@ -12,7 +12,7 @@ statement.
 
 ## Syntax
 
-![limit syntax](/img/doc/diagrams/limit.svg)
+![Flow chart showing the syntax of the LIMIT keyword](/img/docs/diagrams/limit.svg)
 
 - `numberOfRecords` is the number of records to return.
 - `upperBound` and `lowerBound` is the return range. `lowerBound` is

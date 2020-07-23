@@ -8,7 +8,7 @@ tags: [thread model, messaging, disruptor]
 ---
 
 <img
-  alt="Thread messaging"
+  alt="Flock of birds flying in a harmonised way"
   className="banner"
   src="/img/blog/2020-03-15/header.png"
 />
@@ -49,7 +49,7 @@ To branch we use helper class FanOut:
 
 The result is this sequence graph:
 
-```script
+```shell
      +--> B -->+
 A -->|         |--> D
      +--> C -->+
@@ -62,7 +62,7 @@ example shows that FanOut can have chain of sequences and other FanOuts:
 
 It is quite a mouthful but it creates this nice little graph:
 
-```script
+```shell
         +--> B -->+
     +-> |         |
     |   +--> C -->+
@@ -211,7 +211,7 @@ Benchmark source on [GitHub](https://github.com/bluestreak01/disrupting-fjp)
 
 **2 CPU MBP 2015**
 
-```script
+```shell
 Benchmark          (slicesK)  (threads)  (workMult)  Mode  Cnt    Score    Error  Units
 Disruptor.run            500          2          10    ss   50   10.043 ±  0.158  ms/op
 Disruptor.run           1000          2          10    ss   50   19.944 ±  0.285  ms/op
@@ -226,7 +226,7 @@ QuestdbWorker.run       5000          2          10    ss   50  321.697 ± 12.03
 
 **4 CPU x5960 @ 4.2Ghz**
 
-```script
+```shell
 Benchmark          (slicesK)  (threads)  (workMult)  Mode  Cnt    Score    Error  Units
 Disruptor.run            500          4          10    ss   50    6.892 ±  0.654  ms/op
 Disruptor.run           1000          4          10    ss   50   10.143 ±  0.623  ms/op
@@ -244,5 +244,6 @@ Disruptor and QuestDB perform essentially the same.
 ## How to get it
 
 Our messaging system is on Maven central as a part of QuestDB. Don't worry about
-package size though, QuestDB jar weighs in at 3.6MB and has no dependencies.
-Jump [here](https://github.com/questdb/questdb/releases) for version reference.
+package size though, QuestDB jar is around 3.6MB and has no dependencies. Jump
+to the [GitHub release page](https://github.com/questdb/questdb/releases) for
+version reference.

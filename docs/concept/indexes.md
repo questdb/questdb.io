@@ -7,25 +7,26 @@ An index stores the row locations for each value of the target column in order
 to provide faster read access. It allows you to bypass full table scans by
 directly accessing the relevant rows during queries with `WHERE` conditions.
 
-Indexing is available for [symbol](concept/symbol.md) columns. Index support for other
-types will be added over time.
+Indexing is available for [symbol](concept/symbol.md) columns. Index support for
+other types will be added over time.
 
 There are two ways to create an index:
 
-- At table creation time using [CREATE TABLE](reference/sql/create-table.md#index)
+- At table creation time using
+  [CREATE TABLE](reference/sql/create-table.md#index)
 - Using [ALTER TABLE](reference/sql/alter-table-alter-column-add-index.md)
 
 ## How Index works
 
 Index creates a table of row locations for each distinct value for the target
-[symbol](concept/symbol.md). Once the index is created, inserting data into the table
-will update the index. Lookups on indexed values will be performed in the index
-table directly which will provide the memory locations of the items, thus
+[symbol](concept/symbol.md). Once the index is created, inserting data into the
+table will update the index. Lookups on indexed values will be performed in the
+index table directly which will provide the memory locations of the items, thus
 avoiding unnecessary table scans.
 
 Here is an example of a table and its index table.
 
-```script
+```shell
 Table                                       Index
 |Row ID | Symbol    | Value |             | Symbol     | Row IDs       |
 | 1     | A         | 1     |             | A          | 1, 2, 4       |
@@ -38,7 +39,7 @@ Table                                       Index
 `INSERT INTO Table values(B, 1);` would trigger two updates: one for the Table,
 and one for the Index.
 
-```script
+```shell
 Table                                       Index
 |Row ID | Symbol    | Value |             | Symbol     | Row IDs       |
 | 1     | A         | 1     |             | A          | 1, 2, 4       |

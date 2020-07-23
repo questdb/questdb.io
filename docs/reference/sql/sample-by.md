@@ -16,7 +16,7 @@ more in the [designated timestamp](concept/designated-timestamp.md) section.
 
 ## Syntax
 
-![sample by syntax](/img/doc/diagrams/sampleBy.svg)
+![Flow chart showing the syntax of the SAMPLE BY keyword](/img/docs/diagrams/sampleBy.svg)
 
 Where `SAMPLE_SIZE` is the unit of time by which you wish to aggregate your
 results, and `n` is the number of time chunks that will be summarised together.

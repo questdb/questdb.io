@@ -23,7 +23,7 @@ people are less likely to use.
 Pages need to start with text, not a title. Titles should always follow the
 following hierarchy:
 
-```script
+```shell
 h1 (title) > h2 (##) > h3 (###) > h4 (####)
 ```
 

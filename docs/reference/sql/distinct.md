@@ -9,7 +9,7 @@ column as part of a [SELECT statement](reference/sql/select.md).
 
 ## Syntax
 
-![distinct syntax](/img/doc/diagrams/distinct.svg)
+![Flow chart showing the syntax of the DISTINCT keyword](/img/docs/diagrams/distinct.svg)
 
 ## Examples
 

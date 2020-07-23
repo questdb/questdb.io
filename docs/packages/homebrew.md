@@ -3,34 +3,32 @@ title: Homebrew
 sidebar_label: Homebrew
 ---
 
-QuestDB is distributed via Homebrew to use on MacOS. This is useful when you
-want to perform fast analytics on data files using your own local machine. This
-requires a 64-bit MacOS machine.
+QuestDB is distributed via Homebrew for macOS users.
 
 ## Setup
 
-Follow the steps below to install and uninstall the QuestDB service using
-Homebrew.
+Follow the steps below to install and uninstall QuestDB:
 
-```script title="Installing the service"
+```shell
 brew install questdb
 ```
 
-```script title="Uninstalling the service"
+```shell
 brew uninstall questdb
 ```
 
 ## Root directory
 
-By default, QuestDB `root_directory` will be the following
+By default, QuestDB's [root directory](reference/root-directory-structure.md)
+will be the following:
 
-```script
+```shell
 /usr/local/var/questdb/
 ```
 
 ## Using QuestDB
 
-```script
+```shell
 questdb [start|stop|status] [-d dir] [-f] [-t tag]
 ```
 
@@ -44,23 +42,12 @@ questdb [start|stop|status] [-d dir] [-f] [-t tag]
 
 `start` - starts the QuestDB service.
 
-```script
+```shell
 questdb start
 ```
 
-#### Behaviour
-
 QuestDB will start and run in the background and continue running even if you
 close the session. You will need to actively [stop it](#stop).
-
-#### Default directories
-
-By default, QuestDB [root directory](reference/root-directory-structure.md) will
-be the following
-
-```script
-/usr/local/var/questdb/
-```
 
 #### Options
 
@@ -70,7 +57,7 @@ be the following
 - `-t` - specify a service tag. You can use this option to run several services
   and administer them separately.
 
-```script title="Example with -d and -t"
+```shell title="Example with -d and -t"
 questdb start -d '/home/user/my_new_root_directory' -t 'mytag'
 ```
 
@@ -81,11 +68,11 @@ questdb start -d '/home/user/my_new_root_directory' -t 'mytag'
 
 ### Examples
 
-```script title="Stop the default service"
+```shell title="Stop the default service"
 questdb stop
 ```
 
-```script title="Stop a specific service"
+```shell title="Stop a specific service"
 questdb stop -t 'my-questdb-service'
 ```
 
@@ -93,14 +80,15 @@ questdb stop -t 'my-questdb-service'
 
 `status` shows service status. This command is useful for troubleshooting
 problems with the service. It prints `Running` or `Not running` if the service
-is start or stopped respectively. On Unix systems, it also prints the `PID`
+is start or stopped respectively. On \*nix operating systems, it also prints the
+`PID`.
 
 ### Examples
 
-```script title="Default service"
+```shell title="Default service"
 questdb status
 ```
 
-```script title="Specific service"
+```shell title="Specific service"
 questdb status -t 'my-questdb-service'
 ```

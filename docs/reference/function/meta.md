@@ -5,7 +5,7 @@ sidebar_label: Meta
 
 ## all_tables
 
-`all_tables()` returns a list of tables
+`all_tables()` returns a list of tables.
 
 ### Arguments
 

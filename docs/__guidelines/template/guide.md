@@ -14,7 +14,7 @@ Beginning steps. Include any code in code blocks. Make sure that the code is
 runnable, and actually works. Each snippet should be executable as one entity -
 no several commands into one single snippet.
 
-```script
+```shell
 /bin/bash -f shell-code-here
 ```
 

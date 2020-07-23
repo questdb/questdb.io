@@ -48,7 +48,7 @@ column using the following steps:
   displayed.
 - Find and click on the column which type you want to change.
 - You will then need to [re-trigger the import](#custom-import).
-  ![Change the schema in the Web Console when importing data](/img/doc/console/amendType.jpg)
+  ![Change the schema in the Web Console when importing data](/img/docs/console/amendType.jpg)
 
 ### Custom import
 
@@ -64,7 +64,7 @@ to import the data again.
 
 **To start the import, click the following button:**
 
-![Upload button from the Web Console](/img/doc/console/uploadButton.png)
+![Upload button from the Web Console](/img/docs/console/uploadButton.png)
 
 ## SQL Editor
 
@@ -72,7 +72,7 @@ to import the data again.
 
 | Shortcut        | Action                                                                      |
 | --------------- | --------------------------------------------------------------------------- |
-| `Run Query`     | `F9` or `CTRL` + `Enter` or `CMD` + `Enter` (MacOS)                         |
+| `Run Query`     | `F9` or `CTRL` + `Enter` or `CMD` + `Enter` (macOS)                         |
 | `Locate cursor` | `F2`. Use this to focus the SQL editor on your cursor in order to locate it |
 
 ### Behaviour
@@ -93,13 +93,13 @@ uses the following logic to decide what command to execute.
 - Command highlighted. Note neither the `CREATE TABLE` statement nor the `x*x`
   column have been executed and evaluated.
 
-![Code editor in the Web Console with part of the code highlighted](/img/doc/console/sqlHighlight.png)
+![Code editor in the Web Console with part of the code highlighted](/img/docs/console/sqlHighlight.png)
 
 - Cursor within a SQL statement
-  ![Code editor in the Web Console where the cursor is positioned in the SQL statement in order to run the surrounding expression](/img/doc/console/cursorInSql.png)
+  ![Code editor in the Web Console where the cursor is positioned in the SQL statement in order to run the surrounding expression](/img/docs/console/cursorInSql.png)
 
 - Cursor outside of a statement but on the same line
-  ![Code editor in the Web Console where the cursor is positioned at the end of the SQL statement in order to run the surrounding expression](/img/doc/console/cursorOutsideSameLine.png)
+  ![Code editor in the Web Console where the cursor is positioned at the end of the SQL statement in order to run the surrounding expression](/img/docs/console/cursorOutsideSameLine.png)
 
 - Cursor on another line
-  ![Code editor in the Web Console with the cursor positioned on a new empty line](/img/doc/console/cursorOutsideDifferentLine.png)
+  ![Code editor in the Web Console with the cursor positioned on a new empty line](/img/docs/console/cursorOutsideDifferentLine.png)

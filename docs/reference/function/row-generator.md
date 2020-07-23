@@ -5,7 +5,7 @@ sidebar_label: Row generator
 
 ## long_sequence
 
-- `long_sequence(iterations)` - generates rows.
+- `long_sequence(iterations)` - generates rows
 - `long_sequence(iterations, seed1, seed2)` - generates rows deterministically
 
 ### Arguments

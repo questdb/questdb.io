@@ -8,7 +8,7 @@ tags: [questdb, performance, simd]
 ---
 
 <img
-  alt="QuestDB 4.2 banner"
+  alt="QuestDB release 4.2 banner"
   className="banner"
   src="/img/blog/2020-04-02/banner.png"
 />
@@ -79,7 +79,7 @@ The execution times outlined above become more interesting once put into
 context. This is how QuestDB compares to Postgres when doing a sum of 1 billion
 numbers from a given table `select sum(d) from 1G_double_nonNull`.
 
-![PostgreSQL benchmark](/img/blog/2020-04-02/benchmarkPostgres.png)
+![Benchmark results for QuestDB vs PostgreSQL](/img/blog/2020-04-02/benchmarkPostgres.png)
 
 We found that our performance figures are constrained by the available memory
 channels. Both the 8850H and the 3900X have 2 memory channels, and throwing more
@@ -100,7 +100,7 @@ We plot those results below on the left. On the right-hand side, we normalise
 the results for each CPU and plot the performance improvement of going from 1 to
 more cores.
 
-![Memory channels analysis](/img/blog/2020-04-02/memoryChannelsAnalysis.png)
+![Charts showing the execution time for the Intel 8275CL and AMD 3900X when using a various number of cores](/img/blog/2020-04-02/memoryChannelAnalysis.png)
 
 Interestingly, the 2-channel 3900X, is much faster on 1 core than the 8275CL.
 But it does not scale well and hits a performance ceiling at 4 cores. This is
@@ -113,8 +113,9 @@ if CPU were fully isolated to run the computations.
 
 We did not get our hands on CPUs with more memory channels for this test, but if
 you have easy access to 8 or 12-channel servers and would like to benchmark
-QuestDB, we'd love to hear the results. You can [download QuestDB](getstarted)
-and leave a [comment on github](https://github.com/questdb/questdb/issues/146).
+QuestDB, we'd love to hear the results. You can
+[download QuestDB](/docs/introduction) and leave a
+[comment on github](https://github.com/questdb/questdb/issues/146).
 
 ## What is next?
 

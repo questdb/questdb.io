@@ -5,7 +5,7 @@ sidebar_label: Date and time
 
 ## systimestamp
 
-`systimestamp()` - offset from UTC Epoch in microseconds
+`systimestamp()` - offset from UTC Epoch in microseconds.
 
 ### Arguments
 

@@ -54,11 +54,11 @@ existing timestamp columns. Note that
 - the `designated timestamp` column only allows ordered timestamps
 - any other `timestamp` column tolerates out of order timestamps
 
-![designated timestamp](/img/doc/concepts/designated_timestamp.jpg)
+![Comparison between a designated timestamp and a "normal" timestamp](/img/docs/concepts/designatedTimestamp.jpg)
 
 Attempts to insert `out of order` timestamps will be rejected:
 
-![timestamp reject](/img/doc/concepts/timestamp_reject.jpg)
+![Diagram of an out of order insertion being rejected](/img/docs/concepts/timestampReject.jpg)
 
 ## Working with timestamp order constraint
 

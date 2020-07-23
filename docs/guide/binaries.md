@@ -17,64 +17,101 @@ For complete information on how to use QuestDB's binary, please refer to the
 
 You need Java 11 or above. You can check your installation as follows
 
-```script title="Check Java version"
+```shell
 java -version
 ```
 
 If you do not already have Java installed, download and install the package for
 your architecture. You will also need to download QuestDB binaries.
 
-| Asset            | Link                                                                                                |
-| ---------------- | --------------------------------------------------------------------------------------------------- |
-| Java             | [Oracle download page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)        |
-| QuestDB binaries | [Download now](https://github.com/questdb/questdb/releases/download/5.0.0/questdb-5.0.0-bin.tar.gz) |
+| Asset            | Link                                                                                                        |
+| ---------------- | ----------------------------------------------------------------------------------------------------------- |
+| OpenJDK          | [OpenJDK download page](https://openjdk.java.net/install/)                                                  |
+| Oracle Java      | [Oracle download page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)                |
+| QuestDB binaries | [Download from GitHub](https://github.com/questdb/questdb/releases/download/5.0.1/questdb-5.0.1-bin.tar.gz) |
 
-The QuestDB binaries come as a tarball which needs to be extracted
+The QuestDB binaries come as a tarball which needs to be extracted:
 
-```script title="Extract the tarball"
-tar -xvf questdb-5.0.0-bin.tar.gz
+```shell title="Extract the tarball"
+tar -xvf questdb-5.0.1-bin.tar.gz
 ```
 
 ## Start QuestDB
 
-Navigate to the directory created in the previous step
+Navigate to the directory created in the previous step:
 
-```script
-cd questdb-5.0.0-bin.tar.gz
+```shell
+cd questdb-5.0.1-bin.tar.gz
 ```
 
-To start the QuestDB server service, simply run the below
+To start the QuestDB server service, run the following:
 
-```script title="Linux & MacOS"
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+<Tabs defaultValue="nix" groupId="operating-systems" values={[
+  { label: "Linux & macOS", value: "nix" },
+  { label: "Windows", value: "windows" },
+]}>
+
+<TabItem value="nix">
+
+```shell
 ./questdb.sh start
 ```
 
-```script title="Windows"
+</TabItem>
+
+<TabItem value="windows">
+
+```shell
 questdb.exe start
 ```
 
-This will use the following
-[root directory](reference/root-directory-structure.md)
+</TabItem>
 
-```script title="Linux"
+</Tabs>
+
+This will run QuestDB with the following
+[root directory](reference/root-directory-structure.md):
+
+<Tabs defaultValue="linux" values={[
+  { label: "Linux", value: "linux" },
+  { label: "macOS", value: "macos" },
+  { label: "Windows", value: "windows" },
+]}>
+
+<TabItem value="linux">
+
+```shell
 $HOME/.questdb
 ```
 
-```script title="MacOS"
+</TabItem>
+
+<TabItem value="macos">
+
+```shell
 /usr/local/var/questdb/
 ```
 
-```script title="Windows"
+</TabItem>
+
+<TabItem value="windows">
+
+```shell
 C:\Windows\System32\questdb
 ```
 
-<!--END_DOCUSAURUS_CODE_TABS-->
+</TabItem>
+
+</Tabs>
 
 ## Status
 
 You can use the following to get the status of the QuestDB service.
 
-```script title="Check status"
+```shell
 questdb status
 ```
 
@@ -88,12 +125,27 @@ you how to import data and run queries
 
 ## Stop QuestDB
 
-Stop the QuestDB service as follows
+Stop the QuestDB service as follows:
 
-```script title="Linux & MacOS"
+<Tabs defaultValue="nix" groupId="operating-systems" values={[
+  { label: "Linux & macOS", value: "nix" },
+  { label: "Windows", value: "windows" },
+]}>
+
+<TabItem value="nix">
+
+```shell
 ./questdb.sh stop
 ```
 
-```script title="Windows"
+</TabItem>
+
+<TabItem value="windows">
+
+```shell
 questdb.exe stop
 ```
+
+</TabItem>
+
+</Tabs>

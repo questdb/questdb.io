@@ -13,7 +13,7 @@ sidebar_label: TIMESTAMP
 
 ### During a CREATE operation
 
-![timestamp syntax](/img/doc/diagrams/timestamp.svg)
+![Flow chart showing the syntax of the TIMESTAMP keyword](/img/docs/diagrams/timestamp.svg)
 
 Create a [designated timestamp](concept/designated-timestamp.md) column during
 table creation. For more information, refer to the
@@ -21,7 +21,7 @@ table creation. For more information, refer to the
 
 ### During a SELECT operation
 
-![dynamic timestamp syntax](/img/doc/diagrams/dynamicTimestamp.svg)
+![Flow chart showing the syntax of the timestamp function](/img/docs/diagrams/dynamicTimestamp.svg)
 
 Creates a [designated timestamp](concept/designated-timestamp.md) column in the
 result of a query.

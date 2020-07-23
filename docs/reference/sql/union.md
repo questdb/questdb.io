@@ -15,7 +15,7 @@ work properly:
 
 ## Syntax
 
-![union syntax](/img/doc/diagrams/union.svg)
+![Flow chart showing the syntax of the UNION keyword](/img/docs/diagrams/union.svg)
 
 - `UNION` will return distinct results.
 - `UNION ALL` will return all results including duplicates.

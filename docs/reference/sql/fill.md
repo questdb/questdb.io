@@ -8,7 +8,7 @@ Specifies fill behavior for missing data for as part of a
 
 ## Syntax
 
-![fill syntax](/img/doc/diagrams/fill.svg)
+![Flow chart showing the syntax of the FILL keyword](/img/docs/diagrams/fill.svg)
 
 ### Options
 

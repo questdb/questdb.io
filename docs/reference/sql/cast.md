@@ -15,7 +15,7 @@ Types can be converted from one to another using the `cast()` function.
 
 ### Syntax
 
-![CAST SQL syntax](/img/doc/diagrams/cast.svg)
+![Flow chart showing the syntax of the CAST keyword](/img/docs/diagrams/cast.svg)
 
 where:
 
@@ -86,7 +86,7 @@ truncated or precision being lost.
 
 The below chart illustrates the explicit and implicit cast available in QuestDB.
 
-![cast map](/img/doc/castmap.jpg)
+![cast map](/img/docs/castmap.jpg)
 
 :::note
 

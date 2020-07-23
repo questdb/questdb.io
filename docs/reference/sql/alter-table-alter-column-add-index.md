@@ -7,8 +7,8 @@ Adds an index to an existing column.
 
 ## Syntax
 
-![alter table syntax](/img/doc/diagrams/alter-table.svg)
-![add index syntax](/img/doc/diagrams/alter-table-add-index.svg)
+![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)
+![Flow chart showing the syntax of the ALTER TABLE with ADD INDEX keyword](/img/docs/diagrams/alterTableAddIndex.svg)
 
 ## Description
 

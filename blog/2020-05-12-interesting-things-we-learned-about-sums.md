@@ -8,7 +8,7 @@ tags: [questdb, performance]
 ---
 
 <img
-  alt="Road Runner cartoon"
+  alt="Wile E. Coyote and the Road Runner cartoon"
   className="banner"
   src="/img/blog/2020-05-12/banner.png"
 />
@@ -35,8 +35,8 @@ wanted to see how it affected performance. There is typically a trade-off
 between speed and accuracy. However, by extracting even more performance out of
 QuestDB (see below for how we did it), we managed to compute accurate sums as
 fast as naive ones! Since comparisons to Clickhouse have been our most frequent
-question, we have run the numbers and [here](#comparison-with-clickhouse) is
-what we got, 2x faster for summing 1bn doubles will nulls.
+question, we have run the numbers and the result is:
+[2x faster for summing 1bn doubles will nulls](#comparison-with-clickhouse).
 
 All of this is included in our new
 [release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1)
@@ -124,7 +124,7 @@ add operations.
 Decimal numbers are not accurately stored. This is well documented already, for
 example on
 [StackOverlow](https://stackoverflow.com/questions/588004/is-floating-point-math-broken/588014#588014)
-or [here](https://0.30000000000000004.com/).
+or [0.30000000000000004.com](https://0.30000000000000004.com).
 
 Consequently, operations on floating points will return inaccurate results. This
 is not the only problem. Performing operations is also likely to introduce more
@@ -139,17 +139,17 @@ different orders of magnitude.
 
 We start with both our numbers expressed in scientific notation.
 
-![Significant digits](/img/blog/2020-05-12/significantDigits.png)
+![Numbers expressed in scientific notation](/img/blog/2020-05-12/significantDigits.png)
 
 Let's expand into decimal notation and place them on a similar scale so all
 digits fit.
 
-![Significant digits expanded](/img/blog/2020-05-12/digitsExpanded.png)
+![Numbers expressed in decimal notation](/img/blog/2020-05-12/digitsExpanded.png)
 
 Now, let us express this sum back as one number in scientific notation. We have
 to `truncate` the result back to 5 significant digits.
 
-![Significant digits result](/img/blog/2020-05-12/digitsResult.png)
+![A number expressed in 2 parts: the significant digits and the truncated part](/img/blog/2020-05-12/digitsResult.png)
 
 The result is incorrect. In fact, it is as if we did not sum anything.
 
@@ -249,7 +249,7 @@ to Kahan compensated sum.
 We run all databases on an `c5.metal` AWS instance, which has two Intel 8275CL
 24-core CPUs and 192GB of memory. QuestDB was running on 16 threads. As we
 showed in a
-[previous article](2020-04-02-using-simd-to-aggregate-billions-of-rows-per-second),
+[previous article](/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second),
 adding more threads does not improve performance beyond a certain point.
 Clickhouse was running using all cores as per default configuration, however we
 increased the memory limit from the default value from 10GB to 40GB
@@ -258,8 +258,8 @@ increased the memory limit from the default value from 10GB to 40GB
 ### Test data
 
 We generated two test files using our
-[random generation functions](/docs/function/random-value-generator) and
-exported the results to CSV. We then imported the CSV individually in the
+[random generation functions](/docs/reference/function/random-value-generator)
+and exported the results to CSV. We then imported the CSV individually in the
 databases.
 
 ```questdb-sql
@@ -301,12 +301,12 @@ Without null values, both databases sum naively at roughly the same speed. With
 Kahan summation, QuestDB performs at the same speed while Clickhouse's
 performance drops by ~40%.
 
-![QuestDB vs Clickhouse benchmark for Kahan](/img/blog/2020-05-12/kahanComparison.png)
+![QuestDB vs Clickhouse benchmark for Kahan's sums](/img/blog/2020-05-12/kahanComparison.png)
 
 As we include null values, Clickhouse's performance degrades by 28% and 50% for
 naive and Kahan summation, respectively.
 
-![QuestDB vs Clickhouse benchmark for Kahan with nulls](/img/blog/2020-05-12/kahanNullComparison.png)
+![QuestDB vs Clickhouse benchmark for Kahan's sums with nulls](/img/blog/2020-05-12/kahanNullComparison.png)
 
 ## Concluding remarks
 

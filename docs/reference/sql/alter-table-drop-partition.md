@@ -13,8 +13,8 @@ This action irremediably deletes the data contained in the dropped partition
 
 ## Syntax
 
-![alter table](/img/doc/diagrams/alter-table.svg)
-![drop partition](/img/doc/diagrams/alter-table-drop-partition.svg)
+![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)
+![Flow chart showing the syntax of ALTER TABLE with DROP PARTITION keyword](/img/docs/diagrams/alterTableDropPartition.svg)
 
 ## Description
 

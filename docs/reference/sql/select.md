@@ -8,7 +8,7 @@ and evaluated from a table.
 
 ## Syntax
 
-![select syntax](/img/doc/diagrams/select-statement.svg)
+![Flow chart showing the syntax of the SELECT keyword](/img/docs/diagrams/select.svg)
 
 :::tip
 
@@ -22,7 +22,7 @@ table's name), or the result of a sub query.
 ### All columns
 
 QuestDB supports `SELECT * FROM tablename`. When selecting all, you can also
-omit most of the statement and simply pass the table name.
+omit most of the statement and pass the table name.
 
 The two examples below are equivalent
 
@@ -80,16 +80,16 @@ FROM ratings
 
 :::info
 
-Supported aggregation functions are listed
-[here](reference/function/aggregation.md).
+Supported aggregation functions are listed on the
+[aggregation reference](reference/function/aggregation.md).
 
 :::
 
 ### Aggregation by group
 
 QuestDB evaluates aggregation functions without need for traditional `GROUP BY`.
-Simply use a mix of column names and aggregation functions in a `SELECT` clause.
-You can have any number of discrete value columns and any number of aggregation
+Use a mix of column names and aggregation functions in a `SELECT` clause. You
+can have any number of discrete value columns and any number of aggregation
 functions.
 
 ```questdb-sql title="QuestDB dialect"
@@ -132,7 +132,7 @@ Conditional results based on expressions.
 
 #### Syntax
 
-![case sql syntax](/img/doc/diagrams/case-def.svg)
+![Flow chart showing the syntax of CASE](/img/docs/diagrams/case.svg)
 
 :::info
 
@@ -147,7 +147,7 @@ Convert values and expression between types.
 
 #### Syntax
 
-![cast sql syntax](/img/doc/diagrams/cast.svg)
+![Flow chart showing the syntax of the CAST keyword](/img/docs/diagrams/cast.svg)
 
 :::info
 
@@ -162,7 +162,7 @@ Returns distinct values of the specified column(s).
 
 #### Syntax
 
-![distinct syntax](/img/doc/diagrams/distinct.svg)
+![Flow chart showing the syntax of the DISTINCT keyword](/img/docs/diagrams/distinct.svg)
 
 :::info
 
@@ -178,7 +178,7 @@ complements [SAMPLE BY](reference/sql/sample-by.md) queries.
 
 #### Syntax
 
-![fill syntax](/img/doc/diagrams/fill.svg)
+![Flow chart showing the syntax of the FILL keyword](/img/docs/diagrams/fill.svg)
 
 :::info
 
@@ -193,7 +193,7 @@ Join tables based on a key or timestamp.
 
 #### Syntax
 
-![join syntax](/img/doc/diagrams/joins.svg)
+![Flow chart showing the syntax of the JOIN keyword](/img/docs/diagrams/join.svg)
 
 :::info
 
@@ -208,7 +208,7 @@ Specify the number and position of records returned by a query.
 
 #### Syntax
 
-![limit syntax](/img/doc/diagrams/limit.svg)
+![Flow chart showing the syntax of the LIMIT keyword](/img/docs/diagrams/limit.svg)
 
 :::info
 
@@ -223,7 +223,7 @@ Orders the results of a query by one or several columns.
 
 #### Syntax
 
-![order by syntax](/img/doc/diagrams/orderBy.svg)
+![Flow chart showing the syntax of the ORDER BY keyword](/img/docs/diagrams/orderBy.svg)
 
 :::info
 
@@ -239,7 +239,7 @@ duplicates.
 
 #### Syntax
 
-![union syntax](/img/doc/diagrams/union.svg)
+![Flow chart showing the syntax of the UNION keyword](/img/docs/diagrams/union.svg)
 
 :::info
 
@@ -254,7 +254,7 @@ Filters query results
 
 #### Syntax
 
-![filter syntax](/img/doc/diagrams/filtered-statement.svg)
+![Flow chart showing the syntax of the WHERE clause](/img/docs/diagrams/where.svg)
 
 :::info
 
@@ -278,7 +278,7 @@ This function requires a
 
 #### Syntax
 
-![latest by syntax](/img/doc/diagrams/latestBy.svg)
+![Flow chart showing the syntax of the LATEST BY keyword](/img/docs/diagrams/latestBy.svg)
 
 :::info
 
@@ -295,7 +295,7 @@ average, monthly maximum etc. This function requires a
 
 #### Syntax
 
-![sample by syntax](/img/doc/diagrams/sampleBy.svg)
+![Flow chart showing the syntax of the SAMPLE BY keyword](/img/docs/diagrams/sampleBy.svg)
 
 :::info
 
@@ -320,7 +320,7 @@ and using timestamp functions on unordered data may produce unexpected results.
 
 #### Syntax
 
-![dynamic timestamp syntax](/img/doc/diagrams/dynamicTimestamp.svg)
+![Flow chart showing the syntax of the timestamp function](/img/docs/diagrams/dynamicTimestamp.svg)
 
 :::info
 

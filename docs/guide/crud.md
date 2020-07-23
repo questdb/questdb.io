@@ -54,7 +54,7 @@ CREATE TABLE balances (
 </TabItem>
 <TabItem value="rest">
 
-```script
+```shell
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
 create table balances (
     cust_id int,
@@ -149,7 +149,7 @@ VALUES (2, 'EUR', 880.20, 1587572314404665);
 </TabItem>
 <TabItem value="rest">
 
-```script
+```shell
 curl -G "http://localhost:13005/exec" --data-urlencode "query=
 insert into balances (cust_id, balance_ccy, balance, timestamp)
 	values (1, 'USD', 1500.00, 1587571882704665)
@@ -255,7 +255,7 @@ balances;
 </TabItem>
 <TabItem value="rest">
 
-```script
+```shell
 curl -G "http://localhost:9000/exec" \
 --data-urlencode "query=select * from balances"
 ```
@@ -469,7 +469,7 @@ latest EUR balance for this customer.
 
 :::note
 
-The above sql example uses brackets. This is because our
+The above SQL example uses brackets. This is because our
 [SQL execution order](concept/sql-execution-order.md) will execute WHERE clauses
 before LATEST BY. By encapsulating the query and applying `where not inactive`
 to the whole result set, we are able to easily remove the inactive accounts.
@@ -504,10 +504,10 @@ removes the need to maintain separated master and audit tables.
 There is another nice advantage. By keeping all change history and leveraging
 QuestDB's seek speed, you can trivially travel through time at incredible speed
 and reproduce the state of the database at any point in time. You can use this
-to restore a previous state, or simply to produce snapshots. Welcome to the
-world of fast time travel!
+to restore a previous state, or to produce snapshots. Welcome to the world of
+fast time travel!
 
-![btff](/img/doc/concepts/bttf.jpg)
+![btff](/img/docs/bttf.jpg)
 
 For example the below query can be used to know the state of all balances at a
 `15:00:00` snapshot.

@@ -4,7 +4,7 @@ const githubUrl = "https://github.com/questdb/questdb"
 module.exports = {
   title: "Time series data, faster",
   tagline: "QuestDB is the fastest open source time series database",
-  url: "https://questdb.io",
+  url: "https://v2.questdb.io",
   baseUrl: "/",
   favicon: "img/favicon.png",
   organizationName: "QuestDB",

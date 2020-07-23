@@ -18,7 +18,7 @@ mapped at a new append offset.
 
 **This method ensures minimum resource churn and consistent append latency.**
 
-![column read](/img/doc/concepts/column-read.png)
+![Architecture of the file storing a column](/img/docs/concepts/columnRead.png)
 
 ## Read model
 
@@ -27,7 +27,7 @@ read by translating the record number into a file offset by a simple bit shift.
 The offset in the column file is then translated into an offset in a lazily
 mapped memory page, where the required value is read from.
 
-![column update](/img/doc/concepts/column-update.png)
+![Diagram showing how the data from a column file is mapped to the memory](/img/docs/concepts/columnUpdate.png)
 
 ## ACID properties
 
@@ -53,7 +53,7 @@ user-defined constraints, checks and triggers.
 Data **durability** can be configured with commit() optionally being able to
 invoke msync() with a choice of synchronous or asynchronous IO.
 
-![storage model](/img/doc/concepts/storage-model-2.png)
+![Diagram of a commit accross several column files](/img/docs/concepts/storageModelAlt.png)
 
 ## Summary
 
@@ -63,4 +63,4 @@ Data committed by one process can be instantaneously read by another process
 either randomly (via queries) or incrementally (as data queue). QuestDB provides
 a variety of reader implementations.
 
-![storage summarized](/img/doc/concepts/storage-summarized.png)
+![Architecture of the storage model with column files, readers/writers and the mapped memory](/img/docs/concepts/storageSummarized.png)

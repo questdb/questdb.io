@@ -5,7 +5,7 @@ sidebar_label: Text
 
 ## concat
 
-`concat(str, ...)` - concatenates a string from one or more input values
+`concat(str, ...)` - concatenates a string from one or more input values.
 
 ```questdb-sql title="Example"
 SELECT firstName, lastName, concat(firstName, ' ', lastName) FROM names;
@@ -75,7 +75,7 @@ SELECT name a, length(name) b FROM names limit 4
 
 `~=(symbol, regex)` - matches `symbol` value to regex
 
-https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
+[java.util.regex](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html)
 
 ## !~
 

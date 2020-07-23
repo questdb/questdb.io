@@ -7,7 +7,7 @@ Creates new table in the database.
 
 ## Syntax
 
-![create table syntax](/img/doc/diagrams/create-table.svg)
+![Flow chart showing the syntax of the CREATE TABLE keyword](/img/docs/diagrams/createTable.svg)
 
 ## Description
 
@@ -15,7 +15,7 @@ Creates new table in the database.
 
 `tableName` - name used to reference the table in SQL statements. Internally the
 table name is used as directory name on the file system. It can contain both
-ASCII and unicode characters.
+ASCII and Unicode characters.
 
 :::tip
 
@@ -38,7 +38,7 @@ CREATE TABLE 'example out of.space' (a INT);
 
 `columnName` - name used to reference the columns of table. Just like table
 name, column name is used as a part of file name internally. \
-Although it does support both ASCII and unicode characters, character restrictions
+Although it does support both ASCII and Unicode characters, character restrictions
 specific to the file system still apply.
 
 :::info
@@ -59,7 +59,7 @@ character
 `typeDef` - column [type name](reference/sql/datatypes.md) with additional
 options.
 
-![column type](/img/doc/diagrams/column-type-def.svg)
+![Flow chart showing the syntax of the different column types](/img/docs/diagrams/columnTypeDef.svg)
 
 - `distinctValueEstimate` - optionally you can hint QuestDB how many distinct
   values this column is going to have. QuestDB will use this value to size data
@@ -92,11 +92,11 @@ Default option is `CACHE`.
 - `inlineIndexDef` - when present, QuestDB will create and maintain
   [index](concept/indexes.md) for `symbol` column.
 
-  ![index definition](/img/doc/diagrams/inline-index-def.svg)
+  ![Flow chart showing the syntax of the INDEX keyword](/img/docs/diagrams/inlineIndexDef.svg)
 
 - `indexCapacityDef` - storage options for the index
 
-  ![index capacity](/img/doc/diagrams/index-capacity-def.svg)
+  ![Flow chart showing the syntax of the CAPACITY keyword](/img/docs/diagrams/indexCapacityDef.svg)
 
 - `valueBlockSize` - index storage parameter. This value is optional and will
   default to the value of [configuration key](reference/server-configuration.md)
@@ -113,13 +113,13 @@ Default option is `CACHE`.
 - `castDef` - casts type of cherry-picked column. `columnRef` must reference
   existing column in the `selectSql`
 
-  ![cast definition](/img/doc/diagrams/cast-def.svg)
+  ![Flow chart showing the syntax of the cast function](/img/docs/diagrams/castDef.svg)
 
 - `indexDef` - instructs QuestDB to create an index for one of table's columns.
   This clause references column name to be indexed. The referenced column muse
   be of type `SYMBOL`
 
-  ![index definition](/img/doc/diagrams/index-def.svg)
+  ![Flow chart showing the syntax of the index function](/img/docs/diagrams/indexDef.svg)
 
 ### timestamp
 

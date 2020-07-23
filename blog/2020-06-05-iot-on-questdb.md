@@ -25,29 +25,19 @@ fact that it will literally suck the life out of a macOS laptop). There's also
 (for you macOS users) `brew install questdb` but since I work here, and I wanted
 to test out the latest and greatest Web Console, I decided to build from source:
 
-<a href="https://davidgs.com/wp-content/uploads/2020/06/Build.gif">
-  <img src="https://davidgs.com/wp-content/uploads/2020/06/Build.gif" alt="" />
-</a>
+![Terminal showing QuestDB being build from its source code](/img/blog/2020-06-05/build.gif)
 
 It builds really quickly due to the lack of external dependencies, so that is
 great! Then all I have to do is start it:
 
-<a href="https://davidgs.com/wp-content/uploads/2020/06/StartQuest.gif">
-  <img
-    src="https://davidgs.com/wp-content/uploads/2020/06/StartQuest.gif"
-    alt="Animation showing QuestDB being launched"
-  />
-</a>
+![Terminal showing how to start QuestDB](/img/blog/2020-06-05/start.gif)
 
 That is literally all there is to getting QuestDB built and running. But that's
 just the first part. Now it's time to do something mildly useful with it. First,
 I'll need to create a table in QuestDB to store my IoT Data (A bit more on this
 later, so store a pointer to this).
 
-<img
-  alt="SQL query to create a table"
-  src="https://davidgs.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-04-at-9.15.33-AM-1.png"
-/>
+![Screenshot of a SQL query in the Web Console to create a table](/img/blog/2020-06-05/console.png)
 
 Remember, we're doing SQL here, so it there's no new language or syntax to
 learn. This is a really simple table that I'm building because I'm going to be
@@ -61,10 +51,7 @@ to have a giant pile of them lying around. I buy them in bulk because they are a
 dollar or 2 each, easy to use, and largely disposable if I blow one up (which I
 do with alarming regularity.). The circuit is extremely simple to do:
 
-<img
-  alt="Sensor electrical schema"
-  src="https://davidgs.com/wp-content/uploads/2020/06/Screen-Shot-2020-06-04-at-9.24.39-AM-1.png"
-/>
+![Electrical schema showing how the sensor is wired](/img/blog/2020-06-05/sensor.png)
 
 I used an actual WEMOS Shield with the DHT11 on it, so I didn't have to
 breadboard it, but this schematic gives you an idea of how simple the wiring is.
@@ -254,12 +241,7 @@ database, and it will happily store them for you. Pretty cool stuff.
 Using the QuestDB Console, you can then query the data to make sure you're
 getting what you expect:
 
-<a href="https://davidgs.com/wp-content/uploads/2020/06/queries.gif">
-  <img
-    alt="Running a SELECT query in the console"
-    src="https://davidgs.com/wp-content/uploads/2020/06/queries.gif"
-  />
-</a>
+![Running a SELECT query on the Web Console. The result is in both a table and a chart](/img/blog/2020-06-05/queries.gif)
 
 That's exactly what I expected!
 

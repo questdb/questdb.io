@@ -6,7 +6,7 @@ sidebar_label: Partitions
 QuestDB offers the option to partition tables by intervals of time. Data for
 each interval is stored in separate sets of files.
 
-![storage model](/img/doc/concepts/storage-model.png)
+![Diagram of data column files and how they are partitioned to form a table](/img/docs/concepts/storageModel.png)
 
 ## Properties
 

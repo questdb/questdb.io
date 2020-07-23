@@ -11,14 +11,14 @@ result.
 The general syntax is as follows. Specific filters have distinct syntaxes
 detailed thereafter.
 
-![filter syntax](/img/doc/diagrams/filtered-statement.svg)
+![Flow chart showing the syntax of the WHERE clause](/img/docs/diagrams/where.svg)
 
 ### Logical operators
 
 QuestDB supports `AND`, `OR`, `NOT` as logical operators and can assemble
 conditions using brackets `()`.
 
-![complex where syntax](/img/doc/diagrams/complexWhere.svg)
+![Flow chart showing the detailed syntax of the WHERE clause](/img/docs/diagrams/whereComplex.svg)
 
 ```questdb-sql title="Example"
 SELECT * FROM table
@@ -35,7 +35,7 @@ regular expression patterns.
 
 Evaluates match of a string or symbol.
 
-![where syntax exact string](/img/doc/diagrams/whereExactString.svg)
+![Flow chart showing the syntax of the WHERE clause with a string comparison](/img/docs/diagrams/whereExactString.svg)
 
 ```questdb-sql title="Example"
 SELECT * FROM users
@@ -52,7 +52,7 @@ WHERE name = 'John';
 
 Evaluates mismatch of a string or symbol.
 
-![where syntax string not match](/img/doc/diagrams/whereStringNotMatch.svg)
+![Flow chart showing the syntax of the WHERE clause with a string comparison](/img/docs/diagrams/whereStringNotMatch.svg)
 
 ```questdb-sql title="Example"
 SELECT * FROM users
@@ -68,10 +68,10 @@ WHERE name != 'John';
 ### Regular expression match
 
 Evaluates match against a regular expression defined using
-[java.util.regex](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
+[java.util.regex](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html)
 patterns.
 
-![where syntax regex match](/img/doc/diagrams/whereRegexMatch.svg)
+![Flow chart showing the syntax of the WHERE clause with a regex comparison](/img/docs/diagrams/whereRegexMatch.svg)
 
 ```questdb-sql title="Example"
 SELECT * FROM users WHERE ~=(name, 'Jo');
@@ -86,10 +86,10 @@ SELECT * FROM users WHERE ~=(name, 'Jo');
 ### Regular expression does NOT match
 
 Evaluates mismatch against a regular expression defined using
-[java.util.regex](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
+[java.util.regex](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html)
 patterns.
 
-![where syntax regex not match](/img/doc/diagrams/whereRegexNotMatch.svg)
+![Flow chart showing the syntax of the WHERE clause with a regex comparison](/img/docs/diagrams/whereRegexNotMatch.svg)
 
 ```questdb-sql title="Example"
 SELECT * FROM users WHERE !~(name, 'Jo');
@@ -104,7 +104,8 @@ SELECT * FROM users WHERE !~(name, 'Jo');
 ### List search
 
 Evaluates match or mismatch against a list of elements.
-![where syntax list match](/img/doc/diagrams/listMatch.svg)
+
+![Flow chart showing the syntax of the WHERE clause with a list comparison](/img/docs/diagrams/whereListIn.svg)
 
 ```questdb-sql title="List match"
 SELECT * FROM users WHERE name in('Tim', 'Tom');
@@ -141,7 +142,7 @@ verbose.
 
 ### Equality, inequality and comparison
 
-![syntax numeric comparison](/img/doc/diagrams/whereNumericValue.svg)
+![Flow chart showing the syntax of the WHERE clause with a numeric comparison](/img/docs/diagrams/whereNumericValue.svg)
 
 ```questdb-sql title="Superior or equal to 23"
 SELECT * FROM users WHERE age >= 23;
@@ -160,7 +161,7 @@ SELECT * FROM users WHERE age != 23;
 Evaluates whether the column value is within a range of the target value. This
 is useful to simulate equality on `double` and `float` values.
 
-![syntax eq comparison double](/img/doc/diagrams/whereEqDoublePrecision.svg)
+![Flow chart showing the syntax of the WHERE clause with an EQ comparison](/img/docs/diagrams/whereEqDoublePrecision.svg)
 
 ```questdb-sql title="Equal to 23 with 0.00001 precision"
 SELECT * FROM users WHERE eq(age, 23, 0.00001);
@@ -176,7 +177,7 @@ scaling factor.
 
 ## Boolean
 
-![syntax boolean where](/img/doc/diagrams/booleanWhere.svg)
+![Flow chart showing the syntax of the WHERE clause with a boolean comparison](/img/docs/diagrams/whereBoolean.svg)
 
 Using the columnName will return `true` values. To return `false` values,
 precede the column name with the `NOT` operator.
@@ -214,7 +215,7 @@ timestamp can be applied
 
 #### Syntax
 
-![syntax timestamp exact where](/img/doc/diagrams/timestampExact.svg)
+![Flow chart showing the syntax of the WHERE clause with a timestamp comparison](/img/docs/diagrams/whereTimestampExact.svg)
 
 ```questdb-sql title="Example - Date"
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z';
@@ -242,7 +243,7 @@ Return results within a defined range
 
 #### Syntax
 
-![syntax timestamp partial where](/img/doc/diagrams/timestampPartial.svg)
+![Flow chart showing the syntax of the WHERE clause with a partial timestamp comparison](/img/docs/diagrams/whereTimestampPartial.svg)
 
 ```questdb-sql title="Results in a given year"
 SELECT * FROM scores WHERE ts = '2018';
@@ -272,7 +273,7 @@ by the modifier parameter.
 
 #### Syntax
 
-![syntax timestamp partial modifier where](/img/doc/diagrams/timestampPartialModifier.svg)
+![Flow chart showing the syntax of the WHERE clause with a timestamp/modifier comparison](/img/docs/diagrams/whereTimestampPartialModifier.svg)
 
 `multiplier` is a signed integer.
 
@@ -312,7 +313,7 @@ Dec 2018) by 3 days.
 For non-standard ranges, users can explicitly specify the target range using the
 `in` operator.
 
-![syntax timestamp explicit range where](/img/doc/diagrams/timestampExplicitRange.svg)
+![Flow chart showing the syntax of the WHERE clause with a timestamp range comparison](/img/docs/diagrams/whereTimestampRange.svg)
 
 `lower_bound` and `upper_bound` must be valid timestamps or dates and are
 `inclusive`.

@@ -5,7 +5,7 @@ sidebar_label: My first database
 
 The goal of this tutorial is to explore QuestDB's features to interact with time
 series data. This assumes you have an instance running. You can find guides to
-setup QuestDB [here](introduction.md).
+setup QuestDB on the [introduction page](introduction.md).
 
 In this tutorial, you will learn how to
 

@@ -26,7 +26,7 @@ posts)
 
 Images should always be inserted in markdown, not HTML:
 
-```script
+```shell
 [Image description](path/to/img.jpg)
 ```
 
@@ -37,7 +37,7 @@ improves SEO.
 
 Links should always be inserted in markdown, not HTML:
 
-```script
+```shell
 [link text](https://path/to/resource.html)
 ```
 

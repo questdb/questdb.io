@@ -5,7 +5,7 @@ sidebar_label: CASE
 
 ## Syntax
 
-![case syntax](/img/doc/diagrams/case-def.svg)
+![Flow chart showing the syntax of CASE](/img/docs/diagrams/case.svg)
 
 ## Description
 

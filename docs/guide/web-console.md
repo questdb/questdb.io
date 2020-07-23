@@ -6,7 +6,7 @@ sidebar_label: Web Console
 The web-console allows you to quickly interact with your data. In this guide, we
 will show you how to import data,
 
-![Overview of the Web Console](/img/doc/console/overview.png)
+![Overview of the Web Console](/img/docs/console/overview.png)
 
 :::note
 
@@ -31,7 +31,7 @@ By default, the Web Console opens on the SQL editor.
 
 ### Layout
 
-![Preview of the different sections in the Web Console](/img/doc/console/sections.gif)
+![Preview of the different sections in the Web Console](/img/docs/console/sections.gif)
 
 ### Using the editor
 
@@ -139,7 +139,7 @@ be useful to test the import functionality below.
 Let's now take a look at the import screen. It can be accessed by clicking this
 icon on the left-side navigation menu.
 
-![Upload button from the Web Console](/img/doc/console/uploadButton.png)
+![Upload button from the Web Console](/img/docs/console/uploadButton.png)
 
 ### Loading data
 

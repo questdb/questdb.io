@@ -7,7 +7,7 @@ sidebar_label: RENAME TABLE
 
 ## Syntax
 
-![syntax rename table sql](/img/doc/diagrams/renameTable.svg)
+![Flow chart showing the syntax of the RENAME TABLE keyword](/img/docs/diagrams/renameTable.svg)
 
 ## Example
 

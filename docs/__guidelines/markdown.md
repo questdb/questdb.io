@@ -70,7 +70,7 @@ SELECT * FROM users;
 </TabItem>
 <TabItem value="rest">
 
-```script
+```shell
 curl -G "http://localhost:13005/exec"
 ```
 
@@ -89,7 +89,7 @@ final CairoEngine engine = new CairoEngine();
 
 Use the `script` language. The title is optional.
 
-```script
+```shell
 some shell command
 ```
 

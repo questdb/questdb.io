@@ -55,7 +55,7 @@ this will tell you how you should write your data to QuestDB.
 
 ### Basic structure
 
-```script title="ILP syntax"
+```shell title="ILP syntax"
 table_name,tagset valueset timestamp
 ```
 
@@ -180,14 +180,14 @@ QuestDB. If you're using Telegraf as a data collector, that is.
 Edit your `/etc/telegraf.conf` file (it may be in different places, depending on
 your operating system) and change the line:
 
-```script
+```shell
 [[outputs.influxdb]]
   urls = ["http://127.0.0.1:8086"]
 ```
 
 to be:
 
-```script
+```shell
 [[outputs.influxdb]]
   urls = ["tcp://127.0.0.1:9009"]
 ```

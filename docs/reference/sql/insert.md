@@ -7,7 +7,7 @@ Inserts data into a database table.
 
 ## Syntax
 
-![insert data](/img/doc/diagrams/insert-into-table.svg)
+![Flow chart showing the syntax of the INSERT keyword](/img/docs/diagrams/insert.svg)
 
 ## Examples
 

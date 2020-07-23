@@ -24,7 +24,7 @@ more in the [designated timestamp](concept/designated-timestamp.md) section.
 
 ## Syntax
 
-![latest by syntax](/img/doc/diagrams/latestBy.svg)
+![Flow chart showing the syntax of the LATEST BY keyword](/img/docs/diagrams/latestBy.svg)
 
 :::note
 

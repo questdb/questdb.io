@@ -8,17 +8,35 @@ it is a single JAR with no additional dependencies.
 
 To include QuestDB in your project, use the latest Maven coordinates:
 
-```script title="gradle"
-    implementation 'org.questdb:core:5.0.0'
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+<Tabs defaultValue="maven" values={[
+  { label: "Maven", value: "maven" },
+  { label: "Gradle", value: "gradle" },
+]}>
+
+<TabItem value="maven">
+
+```xml
+<dependency>
+    <groupId>org.questdb</groupId>
+    <artifactId>core</artifactId>
+    <version>5.0.1</version>
+</dependency>
 ```
 
-```xml title="maven"
-    <dependency>
-        <groupId>org.questdb</groupId>
-        <artifactId>core</artifactId>
-        <version>5.0.0</version>
-    </dependency>
+</TabItem>
+
+<TabItem value="gradle">
+
+```shell
+implementation 'org.questdb:core:5.0.1'
 ```
+
+</TabItem>
+
+</Tabs>
 
 ## Writing data
 
@@ -284,8 +302,7 @@ You can chain several tags and fields, e.g
 :::
 
 ```java title="Example"
-
-    sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).field("humid", 0.434).$(Os.currentTimeNanos());
+sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).field("humid", 0.434).$(Os.currentTimeNanos());
 ```
 
 Sender will send message as soon as send buffer is full. To send messages before
@@ -297,9 +314,9 @@ This example sends multicast messages to `232.1.2.3:9009`. In this mode multiple
 QuestDB instances can receive the same message.
 
 ```java title="Sending InfluxDB line protocol"
-    LineProtoSender sender = new LineProtoSender(0, Net.parseIPv4("232.1.2.3"), 9009, 1024, 2);
-    sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeMicros());
-    sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeMicros());
-    sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeMicros());
-    sender.flush();
+LineProtoSender sender = new LineProtoSender(0, Net.parseIPv4("232.1.2.3"), 9009, 1024, 2);
+sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeMicros());
+sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeMicros());
+sender.metric("readings").tag("city", "London").tag("by", "quest").field("temp", 3400).$(Os.currentTimeMicros());
+sender.flush();
 ```

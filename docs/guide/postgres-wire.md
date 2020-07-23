@@ -22,28 +22,28 @@ This guide assumes you have installed QuestDB and have it running.
 
 You can check if you already have psql installed with
 
-```script title="Check psql version"
+```shell title="Check psql version"
 psql --version
 ```
 
 Here are installation instructions for the major platforms:
 
-### Homebrew (MacOS)
+### Homebrew (macOS)
 
-```script
+```shell
 brew install libpq
 brew link --force libpq
 ```
 
 ### Ubuntu
 
-```script
+```shell
 sudo apt-get install postgresql-client
 ```
 
 ### Fedora
 
-```script
+```shell
 sudo dnf install postgresql.x86_64
 ```
 
@@ -59,7 +59,7 @@ using the default configuration.
 
 ### Syntax
 
-```script
+```shell
 psql -h [host] -p [port] -U [user] -W -d [database]
 ```
 
@@ -78,14 +78,14 @@ psql -h [host] -p [port] -U [user] -W -d [database]
 The following will use the default parameters to connect to a QuestDB instance
 running locally listening on port 8812.
 
-```script
+```shell
 psql -h localhost -p 8812 -U admin -W -d qdb
 ```
 
 This will prompt you for a password. Enter the default password `quest`. A
 successful connection will return the following
 
-```script title="Successful connection"
+```shell title="Successful connection"
 psql -h localhost -p 8812 -U admin -W -d qdb
 Password:
 psql (12.2, server 11.3)
@@ -114,9 +114,9 @@ timestamp(ts);
 
 :::info
 
-Symbol is a special type which allows us to write strings but store them
-efficiently as an int which makes writes and scans more efficient and reduces
-the storage requirements. Find out more [here](concept/symbol.md).
+[Symbol](concept/symbol.md) is a special type which allows us to write strings
+but store them efficiently as an int which makes writes and scans more efficient
+and reduces the storage requirements.
 
 :::
 

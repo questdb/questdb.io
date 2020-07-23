@@ -16,7 +16,7 @@ QuestDB can listen for Line protocol packets both over [TCP](#tcp-receiver) and
 
 ### Syntax
 
-```script title="ILP syntax"
+```shell title="ILP syntax"
 table_name,tagset valueset timestamp
 ```
 
@@ -51,7 +51,7 @@ Let's assume the following data:
 
 Line protocol to insert this data in the `readings` table would look like this:
 
-```script
+```shell
 readings,city=London,make=Omron temperature=23.5,humidity=0.343 1465839830100400000
 readings,city=Bristol,make=Honeywell temperature=23.2,humidity=0.443 1465839830100600000
 readings,city=London,make=Omron temperature=23.6,humidity=0.348 1465839830100700000
@@ -79,7 +79,7 @@ Each new entry may contain certain metadata tags or readings, and others not.
 Whilst the example just above highlights structured data, it is possible for
 Influx line protocol users to send data as follows.
 
-```script
+```shell
 readings,city=London temperature=23.2 1465839830100400000
 readings,city=London temperature=23.6 1465839830100700000
 readings,make=Honeywell temperature=23.2,humidity=0.443 1465839830100800000
@@ -138,7 +138,7 @@ The TCP receiver uses two types of threads.
 
 The workflow is as follows.
 
-![InfluxDB line protocol structure diagram](/img/doc/diagrams/influxLineProtocolTCPStructure.svg)
+![InfluxDB line protocol structure diagram](/img/docs/diagrams/influxLineProtocolTCPStructure.svg)
 
 The network IO thread receives write requests and sets up a queue for the
 workers. Workers pick up write requests for their assigned tables and insert the
@@ -158,7 +158,7 @@ by the busiest thread divided by the number of writes in the least busy thread.
 If this ratio is above the threshold, the table with the least writes in the
 busiest worker thread will be reassigned to the least busy worker thread.
 
-![InfluxDB line protocol load balancing diagram](/img/doc/diagrams/influxLineProtocolTCPLoadBalancing.svg)
+![InfluxDB line protocol load balancing diagram](/img/docs/diagrams/influxLineProtocolTCPLoadBalancing.svg)
 
 ### Commit strategy
 
@@ -181,7 +181,8 @@ currently single-threaded, and performs both network IO and write jobs out of
 one thread. The UDP worker thread can work either on its own thread or use the
 common thread pool. It supports both multicast and unicast.
 
-Find an example of how to use this [here](java#influx-sender-library)
+Find an example of how to use this in the
+[InfluxDB sender library section](java#influxdb-sender-library).
 
 ### Overview
 

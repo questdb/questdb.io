@@ -13,16 +13,16 @@ If you already have Homebrew installed, you can skip this part.
 
 To install Homebrew, run the following.
 
-```script title="Install Homebrew"
+```shell title="Install Homebrew"
 /bin/bash -c \
 "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
 ## Installing QuestDB
 
-The below will install the `questdb` service.
+The command below will install the `questdb` service.
 
-```script title="Install QuestDB"
+```shell
 brew install questdb
 ```
 
@@ -31,7 +31,7 @@ brew install questdb
 Run the below to start the QuestDB service. The service will run in the
 background.
 
-```script title="Start QuestDB"
+```shell
 questdb start
 ```
 
@@ -42,38 +42,38 @@ our [Homebrew package](packages/homebrew.md).
 :::note
 
 QuestDB will start and run in the background and continue running even if you
-close the session. You will need to actively [stop it](#stop).
+close the session. You will need to actively [stop it](#stopping-questdb).
 
 :::
 
 ## Status
 
-You can use the following to get the status of the QuestDB service.
+You can use the following to get the status of the QuestDB service:
 
-```script title="Get status"
+```shell
 questdb status
 ```
 
 ## Using QuestDB
 
 Here are some guides to get started using the QuestDB service. These will show
-you how to import data and run queries
+you how to import data and run queries:
 
 - with [REST](guide/rest.md)
 - with [Postgres wire](guide/postgres-wire.md)
 
 ## Stopping QuestDB
 
-To stop the QuestDB service, simply run the following.
+To stop the QuestDB service, run the following:
 
-```script title="Stop QuestDB"
+```shell
 questdb stop
 ```
 
 ## Uninstalling QuestDB
 
-To Uninstall the QuestDB service, run
+To uninstall the QuestDB service, run:
 
-```script title="Uninstall QuestDB"
+```shell
 questdb uninstall
 ```
