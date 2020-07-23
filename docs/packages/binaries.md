@@ -7,6 +7,11 @@ QuestDB comes with an executable `questdb.exe` for Windows, and script
 service. On Windows, QuestDB can also be
 [started interactively](#use-interactively-windows).
 
+## Download
+
+You can find the latest binaries on
+[our release page](https://github.com/questdb/questdb/releases).
+
 ## Available commands
 
 import Tabs from "@theme/Tabs"

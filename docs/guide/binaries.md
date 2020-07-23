@@ -24,11 +24,11 @@ java -version
 If you do not already have Java installed, download and install the package for
 your architecture. You will also need to download QuestDB binaries.
 
-| Asset            | Link                                                                                                        |
-| ---------------- | ----------------------------------------------------------------------------------------------------------- |
-| OpenJDK          | [OpenJDK download page](https://openjdk.java.net/install/)                                                  |
-| Oracle Java      | [Oracle download page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)                |
-| QuestDB binaries | [Download from GitHub](https://github.com/questdb/questdb/releases/download/5.0.1/questdb-5.0.1-bin.tar.gz) |
+| Asset            | Link                                                                                                               |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
+| OpenJDK          | [OpenJDK download page](https://openjdk.java.net/install/)                                                         |
+| Oracle Java      | [Oracle download page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)                       |
+| QuestDB binaries | [Download from GitHub](https://github.com/questdb/questdb/releases/download/5.0.1/questdb-5.0.1-no-jre-bin.tar.gz) |
 
 The QuestDB binaries come as a tarball which needs to be extracted:
 
