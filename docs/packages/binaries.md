@@ -9,8 +9,7 @@ service. On Windows, QuestDB can also be
 
 ## Download
 
-You can find the latest binaries on
-[our release page](https://github.com/questdb/questdb/releases).
+You can find the latest binaries on [our release page]({@githubUrl@}/releases).
 
 ## Available commands
 

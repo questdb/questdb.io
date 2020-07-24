@@ -1,3 +1,4 @@
+import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
@@ -10,6 +11,8 @@ const AnnouncementBar = () => {
     isAnnouncementBarClosed,
     closeAnnouncementBar,
   } = useUserPreferencesContext()
+  const context = useDocusaurusContext()
+  const { siteConfig = {} } = context
 
   if (isAnnouncementBarClosed) {
     return null
@@ -19,14 +22,12 @@ const AnnouncementBar = () => {
     <div className={styles.announcement} role="banner">
       <div className={styles.announcement__content}>
         If you like QuestDB,&nbsp;
-        <a
+        <Link
           className={styles.announcement__link}
-          href="https://github.com/questdb/questdb"
-          rel="noopener noreferrer"
-          target="_blank"
+          href={siteConfig.customFields.githubUrl}
         >
           give us a star on GitHub
-        </a>
+        </Link>
         &nbsp;⭐
       </div>
 

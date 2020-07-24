@@ -58,7 +58,7 @@ const Footer = () => {
 
           <Button
             className={footerStyles.footer__github}
-            href="https://github.com/questdb/questdb"
+            href={siteConfig.customFields.githubUrl}
             icon={
               <img
                 alt="GitHub icon"

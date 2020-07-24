@@ -39,13 +39,12 @@ question, we have run the numbers and the result is:
 [2x faster for summing 1bn doubles will nulls](#comparison-with-clickhouse).
 
 All of this is included in our new
-[release 4.2.1](https://github.com/questdb/questdb/releases/tag/4.2.1)
+[release 4.2.1]({@githubUrl@}/releases/tag/4.2.1)
 
-You can find our repository on [GitHub](https://github.com/questdb/questdb). All
-your
-[issues](https://github.com/questdb/questdb/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc),
-[pull-requests](https://github.com/questdb/questdb/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)
-and [stars](https://github.com/questdb/questdb) are welcome 🙂.
+You can find our repository on [GitHub]({@githubUrl@}). All your
+[issues]({@githubUrl@}/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc),
+[pull-requests]({@githubUrl@}/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc) and
+[stars]({@githubUrl@}) are welcome 🙂.
 
 ## How did we get there? TL;DR
 
@@ -323,4 +322,4 @@ prefetch on what is essentially sequential memory read.
 Your support means a lot to us! If you like content like this, what we do, and
 where we're going, please
 [join our community](https://join.slack.com/t/questdb/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY>)
-and give us a [star️](https://github.com/questdb/questdb) on GitHub.
+and give us a [star️]({@githubUrl@}) on GitHub.

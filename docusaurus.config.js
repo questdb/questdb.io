@@ -1,5 +1,39 @@
-const copyright = `Copyright © ${new Date().getFullYear()} QuestDB`
-const githubUrl = "https://github.com/questdb/questdb"
+const visit = require("unist-util-visit")
+
+const customFields = {
+  copyright: `Copyright © ${new Date().getFullYear()} QuestDB`,
+  githubUrl: "https://github.com/questdb/questdb",
+  slackUrl: "https://questdb.slack.com",
+  twitterUrl: "https://twitter.com/questdb",
+  dockerUrl: "https://hub.docker.com/r/questdb/questdb",
+  version: "5.0.1",
+}
+
+function variable() {
+  const RE_VAR = /{@([\w-_]+)@}/g
+  const getVariable = (full, partial) =>
+    partial ? customFields[partial] : full
+
+  function textVisitor(node) {
+    node.value = node.value.replace(RE_VAR, getVariable)
+  }
+
+  function linkVisitor(node) {
+    node.url = node.url.replace(RE_VAR, getVariable)
+
+    if (node.title) {
+      node.title = node.title.replace(RE_VAR, getVariable)
+    }
+  }
+
+  function transformer(ast) {
+    visit(ast, "text", textVisitor)
+    visit(ast, "code", textVisitor)
+    visit(ast, "link", linkVisitor)
+  }
+
+  return transformer
+}
 
 module.exports = {
   title: "Time series data, faster",
@@ -9,6 +43,7 @@ module.exports = {
   favicon: "img/favicon.png",
   organizationName: "QuestDB",
   projectName: "questdb",
+  customFields,
   themeConfig: {
     announcementBar: {
       id: "github-star",
@@ -70,13 +105,13 @@ module.exports = {
         },
         {
           label: "Github",
-          href: githubUrl,
+          href: customFields.githubUrl,
           position: "right",
         },
         {
           label: "Join Slack",
           className: "join-slack",
-          href: "https://questdb.slack.com",
+          href: customFields.slackUrl,
           position: "right",
         },
       ],
@@ -92,7 +127,7 @@ module.exports = {
             },
             {
               label: "Roadmap",
-              href: "https://github.com/questdb/questdb/projects/3",
+              href: `${customFields.githubUrl}/projects/3`,
             },
           ],
         },
@@ -101,11 +136,11 @@ module.exports = {
           items: [
             {
               label: "Slack",
-              href: "https://questdb.slack.com",
+              href: customFields.slackUrl,
             },
             {
               label: "Twitter",
-              href: "https://twitter.com/questdb",
+              href: customFields.twitterUrl,
             },
           ],
         },
@@ -118,12 +153,12 @@ module.exports = {
             },
             {
               label: "GitHub",
-              href: githubUrl,
+              href: customFields.githubUrl,
             },
           ],
         },
       ],
-      copyright,
+      copyright: customFields.copyright,
     },
   },
   presets: [
@@ -132,13 +167,14 @@ module.exports = {
       {
         docs: {
           homePageId: "docs/introduction",
+          remarkPlugins: [variable],
           sidebarPath: require.resolve("./sidebars.js"),
         },
-
         blog: {
+          remarkPlugins: [variable],
           feedOptions: {
             type: "all",
-            copyright,
+            copyright: customFields.copyright,
           },
           showReadingTime: true,
         },

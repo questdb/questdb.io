@@ -22,7 +22,11 @@ const Home = () => {
 
   return (
     <HomeContextProvider value>
-      <Layout description={siteConfig.tagline} title="QuestDB" version="5.0.1">
+      <Layout
+        description={siteConfig.tagline}
+        title="QuestDB"
+        version={siteConfig.customFields.version}
+      >
         <Head />
         <Jumbotron />
         <Feature />

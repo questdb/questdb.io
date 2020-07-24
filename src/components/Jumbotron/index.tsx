@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
@@ -36,7 +37,7 @@ const Jumbotron = () => {
               jumbotronStyles["jumbotron__cta--link"],
               jumbotronStyles["jumbotron__cta--github"],
             )}
-            href="https://github.com/questdb/questdb"
+            href={siteConfig.customFields.githubUrl}
             icon={
               <img
                 alt="GitHub icon"
@@ -58,18 +59,14 @@ const Jumbotron = () => {
             {`docker pull questdb/questdb
 docker run -p 9000:9000 questdb/questdb`}
           </code>
-          <a
-            href="https://hub.docker.com/r/questdb/questdb"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+          <Link href={siteConfig.customFields.dockerUrl}>
             <img
               alt="Docker icon"
               className={jumbotronStyles["jumbotron__docker-icon"]}
               src="img/pages/index/dockerIcon.svg"
               width="60"
             />
-          </a>
+          </Link>
         </pre>
       </div>
     </section>

@@ -26,8 +26,8 @@ combining SIMD with actual parallelisation and spanning the work across CPUs.
 
 QuestDB 4.2 introduces SIMD instructions, which made our aggregations faster by
 100x! QuestDB is available open source (Apache 2.0) . If you like what we do,
-please consider [starring our repo](https://github.com/questdb/questdb)
-following us on GitHub and starring our project.
+please consider [starring our repo]({@githubUrl@}) following us on GitHub and
+starring our project.
 
 As of now, SIMD operations are available for non-keyed aggregation queries, such
 as `select sum(value) from table`. In future releases, we will extend these to
@@ -115,7 +115,7 @@ We did not get our hands on CPUs with more memory channels for this test, but if
 you have easy access to 8 or 12-channel servers and would like to benchmark
 QuestDB, we'd love to hear the results. You can
 [download QuestDB](/docs/introduction) and leave a
-[comment on github](https://github.com/questdb/questdb/issues/146).
+[comment on github]({@githubUrl@}/issues/146).
 
 ## What is next?
 
@@ -126,7 +126,7 @@ as keyed aggregations, indexing etc. We will also keep improving QuestDB's
 performance. Through some further work on assembly, we estimate that we can gain
 another 15% speed on these operations. In the meantime, if you want to know
 exactly how we have achieved this, all of our code is
-[open source](https://github.com/questdb/questdb)!
+[open source]({@githubUrl@})!
 
 ## About the release: QuestDB 4.2
 

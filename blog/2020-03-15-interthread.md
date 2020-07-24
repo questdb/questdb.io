@@ -245,5 +245,4 @@ Disruptor and QuestDB perform essentially the same.
 
 Our messaging system is on Maven central as a part of QuestDB. Don't worry about
 package size though, QuestDB jar is around 3.6MB and has no dependencies. Jump
-to the [GitHub release page](https://github.com/questdb/questdb/releases) for
-version reference.
+to the [GitHub release page]({@githubUrl@}/releases) for version reference.

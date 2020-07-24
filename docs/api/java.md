@@ -22,7 +22,7 @@ import TabItem from "@theme/TabItem"
 <dependency>
     <groupId>org.questdb</groupId>
     <artifactId>core</artifactId>
-    <version>5.0.1</version>
+    <version>{@version@}</version>
 </dependency>
 ```
 
@@ -31,7 +31,7 @@ import TabItem from "@theme/TabItem"
 <TabItem value="gradle">
 
 ```shell
-implementation 'org.questdb:core:5.0.1'
+implementation 'org.questdb:core:{@version@}'
 ```
 
 </TabItem>

@@ -251,5 +251,4 @@ Now it's time to start building some dashboards, etc. on top of this. I'm
 currently working on connecting this all up with Node Red, so that may be my
 next post. We're also working on support for Grafana, which will be huge, so
 stay tuned for that. If you like what you see here, pleases go give us a star on
-[GitHub](https://github.com/questdb/questdb), and follow the project if you'd
-like to get updates!
+[GitHub]({@githubUrl@}), and follow the project if you'd like to get updates!

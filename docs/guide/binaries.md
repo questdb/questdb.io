@@ -24,16 +24,16 @@ java -version
 If you do not already have Java installed, download and install the package for
 your architecture. You will also need to download QuestDB binaries.
 
-| Asset            | Link                                                                                                               |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------ |
-| OpenJDK          | [OpenJDK download page](https://openjdk.java.net/install/)                                                         |
-| Oracle Java      | [Oracle download page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)                       |
-| QuestDB binaries | [Download from GitHub](https://github.com/questdb/questdb/releases/download/5.0.1/questdb-5.0.1-no-jre-bin.tar.gz) |
+| Asset            | Link                                                                                                      |
+| ---------------- | --------------------------------------------------------------------------------------------------------- |
+| OpenJDK          | [OpenJDK download page](https://openjdk.java.net/install/)                                                |
+| Oracle Java      | [Oracle download page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)              |
+| QuestDB binaries | [Download from GitHub]({@githubUrl@}/releases/download/{@version@}/questdb-{@version@}-no-jre-bin.tar.gz) |
 
 The QuestDB binaries come as a tarball which needs to be extracted:
 
 ```shell title="Extract the tarball"
-tar -xvf questdb-5.0.1-bin.tar.gz
+tar -xvf questdb-{@version@}-bin.tar.gz
 ```
 
 ## Start QuestDB
@@ -41,7 +41,7 @@ tar -xvf questdb-5.0.1-bin.tar.gz
 Navigate to the directory created in the previous step:
 
 ```shell
-cd questdb-5.0.1-bin.tar.gz
+cd questdb-{@version@}-bin.tar.gz
 ```
 
 To start the QuestDB server service, run the following:
