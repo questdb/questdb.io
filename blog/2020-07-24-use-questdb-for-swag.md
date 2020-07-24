@@ -6,11 +6,10 @@ author_url: https://github.com/davids
 author_image_url: https://avatars.githubusercontent.com/davidgs
 tags: [questdb, projects, swag]
 ---
-![Picture of grey cat wearing mirrored sunglasses](/img/blog/2020-07-24/banner.jpg)
 
-<span>Photo by <a href="https://unsplash.com/@raouldroog?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Raoul Droog</a> on <a href="https://unsplash.com/s/photos/swag?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+!["Grey cat wearing mirrored sunglasses"](/img/blog/2020-07-24/banner.jpg)
 
-# Use QuestDB, Get Swag!
+Photo by <a href="https://unsplash.com/@raouldroog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Raoul Droog</a> on <a href="https://unsplash.com/s/photos/swag?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 We've been upping our SWAG game a lot lately, and we want to share it with you, the valuable members of our community! We want to give you the chance to show off your projects, show off your love for QuestDB, and to show just off!
 
@@ -36,7 +35,7 @@ So you like QuestDB. But you're not sure you _like_ like QuestDB. Fair enough. W
 
 This level's pretty easy to get. Just do the following:
 
-* [🌟](https://github.com/questdb/questdb) on Github
+* [🌟](https://github.com/questdb/questdb) on GitHub
 * [Follow](https://twitter.com/intent/follow?screen_name=QuestDB) us on Twitter
 * Send out a tweet about how much you like QuestDB -- and that you gave us a 🌟 on GitHub! (Don't forget to @QuestDB so we can see it!)
 * [Join](https://questdb.slack.com/) our Slack community
@@ -46,14 +45,14 @@ This level's pretty easy to get. Just do the following:
 
 You're a QuestDB Superfan and you want everyone to know it! At this level you will get one of our exclusive, _really_ nice custom-embroidered T-Shirts. These are not your standard printed tech T-Shirts. No, these are heavy-weight (6oz) cotton-blend shirts with the QuestDB logo _embroidered_ in full color on the left chest. You won't be waxing your car with this shirt! You'll also get the pin and the stickers, of course, because you're a super-fan!
 
-At this level we assume you already [follow](https://twitter.com/intent/follow?screen_name=QuestDB)) us and are a member of our [community](https://questdb.slack.com/), but if not, please do!
+At this level we assume you already [follow](https://twitter.com/intent/follow?screen_name=QuestDB) us and are a member of our [community](https://questdb.slack.com/), but if not, please do!
 
 How do you get this level? Just do the following:
 
 * Build a project -- any project really -- using QuestDB. Do something cool with it.
 * Write up a blog post about it. You can post it on your blog, or on Medium, or Dev.to or wherever you want. If you don't have a place to post it, or you'd rather be featured on _our_ blog then just send it to us and we'll post it!
 * Send us your mailing address (we'll need a phone number too, probably, as most shippers require one now)
-  * Bonus: Send out a tweet of you wearing your QuestDB shirt. Don't forget to @QuestDB so we don't miss it!
+  * Bonus: Send out a tweet of you wearing your QuestDB shirt. Don't forget to [@QuestDB](https://twitter.com/intent/follow?screen_name=QuestDB) so we don't miss it!
 
 ![photo of black t-shirt with color QuestDB logo](/img/blog/2020-07-24/IMGP0250.png)
 
@@ -61,7 +60,7 @@ That's it! Sit back and wait for the SWAG!
 
 ### Level 4: QuestDB Implementor Extraordinaire!
 
-You think QuestDB is the solution to all your data woes. You don't just think it, you _know_ it! So much so that you've already implemented a solution, in production, at your company.
+You think [QuestDB](https://questdb.io) is the solution to all your data woes. You don't just think it, you _know_ it! So much so that you've already implemented a solution, in production, at your company.
 
-We love you! Reach out and let's talk. We'll have some *really* special SWAG for you. YOu're going to like it, we promise.
+We love you! Reach out and let's talk. We'll have some *really* special SWAG for you. You're going to like it, we promise.
 
