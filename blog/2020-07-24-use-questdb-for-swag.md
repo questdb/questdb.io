@@ -55,6 +55,8 @@ How do you get this level? Just do the following:
 * Send us your mailing address (we'll need a phone number too, probably, as most shippers require one now)
   * Bonus: Send out a tweet of you wearing your QuestDB shirt. Don't forget to @QuestDB so we don't miss it!
 
+![photo of black t-shirt with color QuestDB logo](/img/blog/2020-07-24/IMGP0250.png)
+
 That's it! Sit back and wait for the SWAG!
 
 ### Level 4: QuestDB Implementor Extraordinaire!
