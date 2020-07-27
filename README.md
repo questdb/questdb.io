@@ -29,3 +29,7 @@ served using any static contents hosting service.
 ### Deployment
 
 Master is deployed automatically via Netlify.
+
+### Lexicon
+
+Consult the [lexicon](https://github.com/questdb/questdb.io.v2/blob/master/docs/__guidelines/lexicon.md) for terminology we commonly use
