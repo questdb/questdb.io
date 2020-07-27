@@ -1,10 +1,10 @@
 .button {
   display: inline-flex;
   align-items: center;
-  height: 4rem;
+  height: 55px;
   padding: 0 2rem;
   border: none;
-  border-radius: var(--ifm-global-border-radius);
+  border-radius: calc(var(--ifm-global-border-radius) / 2);
   font-weight: var(--ifm-font-weight-bold);
   font-size: var(--font-size-normal);
   transition: background-color 100ms var(--transition-bezier);

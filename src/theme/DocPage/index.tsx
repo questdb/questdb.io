@@ -1,35 +1,28 @@
 import clsx from "clsx"
+import React from "react"
+import { MDXProvider } from "@mdx-js/react"
+
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import renderRoutes from "@docusaurus/renderRoutes"
-import { matchPath } from "@docusaurus/router"
-import { MDXProvider } from "@mdx-js/react"
-import React from "react"
-
 import Layout from "@theme/Layout"
 import DocSidebar from "@theme/DocSidebar"
 import MDXComponents from "@theme/MDXComponents"
 import NotFound from "@theme/NotFound"
+import { matchPath } from "@docusaurus/router"
 
 import { Head, HomeContextProvider } from "../../components"
 import styles from "./styles.module.css"
 
-const DocPage = (props) => {
-  const { route: baseRoute, docsMetadata, location } = props
-  // case-sensitive route such as it is defined in the sidebar
-  const currentRoute =
-    baseRoute.routes.find((route) => {
-      return matchPath(location.pathname, route)
-    }) || {}
+const DocPage = ({ docsMetadata, location, route: { routes: docRoutes } }) => {
   const { permalinkToSidebar, docsSidebars, version } = docsMetadata
-  const sidebar = permalinkToSidebar[currentRoute.path]
-  const {
-    siteConfig: { themeConfig = {} } = {},
-    isClient,
-  } = useDocusaurusContext()
+  const currentDocRoute = docRoutes.find((docRoute) =>
+    matchPath(location.pathname, docRoute),
+  )
+  const { siteConfig, isClient } = useDocusaurusContext()
+  const sidebarName = permalinkToSidebar[currentDocRoute.path]
+  const sidebar = docsSidebars[sidebarName]
 
-  const { sidebarCollapsible = true } = themeConfig
-
-  if (Object.keys(currentRoute).length === 0) {
+  if (!currentDocRoute) {
     return <NotFound {...props} />
   }
 
@@ -37,7 +30,6 @@ const DocPage = (props) => {
     <HomeContextProvider value={false}>
       <Layout version={version} key={isClient}>
         <Head />
-
         <div className={styles.doc}>
           {sidebar && (
             <div
@@ -45,16 +37,17 @@ const DocPage = (props) => {
               role="complementary"
             >
               <DocSidebar
-                docsSidebars={docsSidebars}
-                path={currentRoute.path}
+                path={currentDocRoute.path}
                 sidebar={sidebar}
-                sidebarCollapsible={sidebarCollapsible}
+                sidebarCollapsible={
+                  siteConfig.themeConfig?.sidebarCollapsible ?? true
+                }
               />
             </div>
           )}
           <main className={styles.doc__main}>
             <MDXProvider components={MDXComponents}>
-              {renderRoutes(baseRoute.routes)}
+              {renderRoutes(docRoutes)}
             </MDXProvider>
           </main>
         </div>

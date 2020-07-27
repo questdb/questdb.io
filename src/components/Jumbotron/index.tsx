@@ -19,22 +19,22 @@ const Jumbotron = () => {
       )}
     >
       <div className={jumbotronStyles.jumbotron__left}>
-        <h1 className={jumbotronStyles.jumbotron__title}>
+        <h1 className={clsx("jumbotron", jumbotronStyles.jumbotron__title)}>
           Fast SQL for time series
         </h1>
-        <h2 className={jumbotronStyles.jumbotron__subtitle}>
+        <h2 className={clsx("jumbotron", jumbotronStyles.jumbotron__subtitle)}>
           {siteConfig.tagline}
         </h2>
         <div className={jumbotronStyles.jumbotron__cta}>
           <Button
-            className={jumbotronStyles["jumbotron__cta--link"]}
-            to="docs/introduction"
+            className={jumbotronStyles.jumbotron__link}
+            href="http://try.questdb.io:9000"
           >
-            Get Started
+            Try it now
           </Button>
           <Button
             className={clsx(
-              jumbotronStyles["jumbotron__cta--link"],
+              jumbotronStyles.jumbotron__link,
               jumbotronStyles["jumbotron__cta--github"],
             )}
             href={siteConfig.customFields.githubUrl}

@@ -26,7 +26,7 @@ const Console = () => {
         </h2>
 
         <img
-          alt="Illustration"
+          alt="Artistic view of QuestDB's Web Console split in 3 components: the navigation tree, the SQL code editor and data displayed as a chart"
           className={consoleStyles.console__illustration}
           src="img/pages/index/console.svg"
         />
@@ -46,7 +46,7 @@ const Console = () => {
               Postgres wire support
             </div>
             <div className={consoleStyles.console__summary}>
-              Interact with QuestDB using the postgres wire and any tool that
+              Interact with QuestDB using the Postgres wire and any tool that
               connects to it.
             </div>
           </div>

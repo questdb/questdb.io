@@ -1,93 +1,90 @@
 import clsx from "clsx"
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
+import { differenceInDays, format, formatDistanceToNowStrict } from "date-fns"
 import Link from "@docusaurus/Link"
-import React from "react"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
+import { usePluginData } from "@docusaurus/useGlobalData"
+import React, { useEffect, useState } from "react"
 
+import { getAssets, getOs, Os } from "../../utils"
+import Button from "../Button"
 import sectionStyles from "../Section/styles.module.css"
 import getStartedStyles from "./styles.module.css"
 
 const GetStarted = () => {
   const context = useDocusaurusContext()
+  const { release } = usePluginData("fetch-release")
+  const [os, setOs] = useState<Os>()
+  const [releaseDate, setReleaseDate] = useState(
+    format(new Date(release.published_at), "MMMM M, yyyy"),
+  )
   const { siteConfig = {} } = context
+  const assets = getAssets(release)
+
+  useEffect(() => {
+    const isClient = typeof window !== "undefined"
+
+    if (!isClient) {
+      return
+    }
+
+    if (differenceInDays(new Date(), new Date(release.published_at)) < 31) {
+      setReleaseDate(
+        `${formatDistanceToNowStrict(new Date(release.published_at))} ago`,
+      )
+    }
+    setOs(getOs())
+  }, [])
 
   return (
     <section
-      className={clsx(sectionStyles.section, sectionStyles["section--inner"])}
+      className={clsx(
+        sectionStyles["section--inner"],
+        getStartedStyles.getStarted,
+      )}
     >
-      <div
-        className={clsx(
-          getStartedStyles.getStarted__column,
-          getStartedStyles["getStarted__column--left"],
-        )}
-      >
-        <h1 className={getStartedStyles.getStarted__title}>
+      <div className={getStartedStyles.getStarted__top}>
+        <h1 className={clsx("getStarted", getStartedStyles.getStarted__title)}>
           Get started with QuestDB
         </h1>
-        <h2 className={getStartedStyles.getStarted__subtitle}>
-          QuestDB is a relational column-oriented database which can handle
-          transactions and real-time analytics. It uses the SQL language with a
-          few extensions for time series
+        <h2
+          className={clsx("getStarted", getStartedStyles.getStarted__subtitle)}
+        >
+          You can find below download links for the latest version of QuestDB (
+          {siteConfig.customFields.version}).
         </h2>
-      </div>
-      <div
-        className={clsx(
-          getStartedStyles.getStarted__column,
-          getStartedStyles["getStarted__column--right"],
-        )}
-      >
-        <h4 className={getStartedStyles.getStarted__type}>Docker</h4>
-        <p className={getStartedStyles.getStarted__text}>
-          Docker manifest to pull image for your target platform
-        </p>
-        <pre className={getStartedStyles.getStarted__snippet}>
-          <code>docker run -p 9000:9000 questdb/questdb</code>
-        </pre>
-        <p className={getStartedStyles.getStarted__text}>
-          Learn how to use it with our&nbsp;
-          <Link to="docs/guide/docker">Docker guide</Link>.
-        </p>
 
-        <h4 className={getStartedStyles.getStarted__type}>
-          Cross-platform binaries (requires JRE11+)
-        </h4>
-        <p className={getStartedStyles.getStarted__text}>
-          Supported Platforms: FreeBSD 64-bit, Linux 64-bit, Windows 64-bit and
-          macOS.
-        </p>
-        <pre className={getStartedStyles.getStarted__snippet}>
-          {`${siteConfig.customFields.githubUrl}/releases`}
-        </pre>
-        <p className={getStartedStyles.getStarted__text}>
-          Follow our&nbsp;
-          <Link to="docs/guide/binaries">installation steps</Link>
-          &nbsp;to get started.
-        </p>
+        <div className={getStartedStyles.getStarted__cta}>
+          <div
+            className={clsx(getStartedStyles.getStarted__details, {
+              [getStartedStyles["getStarted__details--download"]]:
+                os !== "macos",
+            })}
+          >
+            Latest Release:&nbsp;
+            <span className="color--pink">
+              {siteConfig.customFields.version}
+            </span>
+            &nbsp;({releaseDate})
+          </div>
+          {os !== "macos" && assets[os] && (
+            <Button href={assets[os].href}>{os}&nbsp;Download</Button>
+          )}
+        </div>
 
-        <h4 className={getStartedStyles.getStarted__type}>Homebrew</h4>
-        <pre className={getStartedStyles.getStarted__snippet}>
-          <code>brew install questdb</code>
-        </pre>
-        <p className={getStartedStyles.getStarted__text}>
-          Learn how to use QuestDB with Homebrew&nbsp;
-          <Link to="docs/guide/homebrew">in our documentation</Link>.
-        </p>
-
-        <h4 className={getStartedStyles.getStarted__type}>Java library</h4>
-        <p className={getStartedStyles.getStarted__text}>
-          Embedded Java database as Maven dependency
-        </p>
-        <pre>
-          <code>{`<dependency>
-  <groupId>org.questdb</groupId>
-  <artifactId>core</artifactId>
-  <version>${siteConfig.customFields.version}</version>
-</dependency>`}</code>
-        </pre>
-
-        <p className={getStartedStyles.getStarted__text}>
-          Find out more in the&nbsp;
-          <Link to="docs/api/java">Java API documentation</Link>.
-        </p>
+        <div className={getStartedStyles.getStarted__links}>
+          <Link
+            className={getStartedStyles.getStarted__link}
+            href={release.html_url}
+          >
+            View the changelog
+          </Link>
+          <Link
+            className={getStartedStyles.getStarted__link}
+            href={`${siteConfig.customFields.githubUrl}/tags`}
+          >
+            View previous releases
+          </Link>
+        </div>
       </div>
     </section>
   )

@@ -36,7 +36,11 @@ const Footer = () => {
   const logoUrl = useBaseUrl(logo.src)
 
   return (
-    <footer className={clsx(footerStyles.footer, sectionStyles.section)}>
+    <footer
+      className={clsx(footerStyles.footer, sectionStyles.section, {
+        [footerStyles["footer--alt"]]: homeContext === true,
+      })}
+    >
       <div
         className={clsx(
           footerStyles.footer__inner,
@@ -54,7 +58,9 @@ const Footer = () => {
             className={footerStyles.footer__logo}
             src="/img/questdbLogoMono.svg"
           />
-          <h4 className={footerStyles.footer__tagline}>{siteConfig.tagline}</h4>
+          <div className={footerStyles.footer__tagline}>
+            {siteConfig.tagline}
+          </div>
 
           <Button
             className={footerStyles.footer__github}
@@ -84,7 +90,9 @@ const Footer = () => {
           {links.map((linkItem, i) => (
             <div key={i} className={footerStyles.footer__links}>
               {linkItem.title && (
-                <h4 className={footerStyles.footer__title}>{linkItem.title}</h4>
+                <div className={footerStyles.footer__title}>
+                  {linkItem.title}
+                </div>
               )}
 
               {linkItem.items && (

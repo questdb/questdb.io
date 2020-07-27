@@ -26,5 +26,5 @@
 .cards__header {
   margin-bottom: 1rem;
   font-size: var(--font-size-large);
-  font-weight: 700;
+  font-weight: var(--ifm-font-weight-bold);
 }

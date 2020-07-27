@@ -2,11 +2,11 @@ const visit = require("unist-util-visit")
 
 const customFields = {
   copyright: `Copyright © ${new Date().getFullYear()} QuestDB`,
+  dockerUrl: "https://hub.docker.com/r/questdb/questdb",
   githubUrl: "https://github.com/questdb/questdb",
   slackUrl: "https://questdb.slack.com",
   twitterUrl: "https://twitter.com/questdb",
-  dockerUrl: "https://hub.docker.com/r/questdb/questdb",
-  version: "5.0.1",
+  version: "5.0.2",
 }
 
 function variable() {
@@ -44,6 +44,7 @@ module.exports = {
   organizationName: "QuestDB",
   projectName: "questdb",
   customFields,
+  plugins: [require.resolve("./plugins/fetch-release")],
   themeConfig: {
     announcementBar: {
       id: "github-star",
@@ -65,15 +66,14 @@ module.exports = {
     algolia: {
       apiKey: "b2a69b4869a2a85284a82fb57519dcda",
       indexName: "questdb",
-      algoliaOptions: {},
     },
     navbar: {
-      title: "",
+      title: " ",
       logo: {
         alt: "QuestDB Logo",
         src: "img/questdbLogo.svg",
       },
-      links: [
+      items: [
         {
           label: "Install",
           position: "left",

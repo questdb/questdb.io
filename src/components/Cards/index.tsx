@@ -19,7 +19,7 @@ const Cards = () => (
 
     <div className={cardsStyles.cards__footer}>
       <div className={cardsStyles.cards__wrapper}>
-        <div className={cardsStyles.cards__header}>Devops monitoring</div>
+        <div className={cardsStyles.cards__header}>DevOps monitoring</div>
         <div className={cardsStyles.cards__content}>
           Collect metrics and events from your infrastructure (CPU, memory,
           networks, etc) and get real-time visibility into your entire stack.
@@ -59,7 +59,7 @@ const Cards = () => (
       </div>
 
       <div className={cardsStyles.cards__wrapper}>
-        <div className={cardsStyles.cards__header}>Integrated Data</div>
+        <div className={cardsStyles.cards__header}>Integrated data</div>
         <div className={cardsStyles.cards__content}>
           Pull together all your application, device, and infrastructure data
           for a complete, 360º view of all aspects of your business

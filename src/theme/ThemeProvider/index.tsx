@@ -1,6 +1,10 @@
-import React, { useEffect } from "react"
+import React, { ReactNode, useEffect } from "react"
 
 import ThemeContext from "@theme/ThemeContext"
+
+type Props = Readonly<{
+  children: ReactNode
+}>
 
 const noop = () => {}
 const theme = {
@@ -9,7 +13,7 @@ const theme = {
   setLightTheme: noop,
 }
 
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }: Props) => {
   useEffect(() => {
     localStorage.setItem("theme", "dark")
     document.documentElement.setAttribute("data-theme", "dark")

@@ -10,7 +10,6 @@ import {
   Feature,
   Head,
   HomeContextProvider,
-  GetStarted,
   Jumbotron,
   QueryScroller,
   Why,
@@ -34,7 +33,6 @@ const Home = () => {
         <Why />
         <Cards />
         <Console />
-        <GetStarted />
       </Layout>
     </HomeContextProvider>
   )

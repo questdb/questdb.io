@@ -64,15 +64,15 @@ const Why = () => {
             >
               <div className={whyStyles.why__item}>Reduce hardware costs</div>
               <div className={whyStyles.why__item}>
-                Reduce operational complexity
+                Contain operational complexity
               </div>
               <div className={whyStyles.why__item}>
-                Reduce development costs
+                Decrease development costs
               </div>
               <div className={whyStyles.why__item}>
-                Cloud ready: AWS, Azure, GCP
+                Cloud native (AWS, Azure, GCP)
               </div>
-              <div className={whyStyles.why__item}>On premise, embedded</div>
+              <div className={whyStyles.why__item}>On premises or embedded</div>
             </div>
 
             <div

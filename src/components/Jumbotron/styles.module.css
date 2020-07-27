@@ -20,10 +20,17 @@
 
 .jumbotron__cta {
   display: flex;
-  margin-top: 1rem;
+  margin-top: 2.9rem;
+  align-self: stretch;
 }
 
-.jumbotron__cta--link:not(:last-child) {
+.jumbotron__link {
+  flex: 0 0 175px;
+  padding: 0;
+  justify-content: center;
+}
+
+.jumbotron__link:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -85,6 +92,7 @@
   .jumbotron__cta {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+    justify-content: center;
   }
 
   .jumbotron__left {
@@ -94,12 +102,18 @@
   }
 
   .jumbotron__right {
-      display: none;
+    display: none;
   }
 }
 
 @media (max-width: 1026px) {
   .jumbotron__docker {
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-normal);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .jumbotron__link {
+    flex-shrink: 1;
   }
 }

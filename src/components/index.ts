@@ -1,3 +1,4 @@
+export { default as Binary } from "./Binary"
 export { default as Button } from "./Button"
 export { default as Cards } from "./Cards"
 export { default as Console } from "./Console"

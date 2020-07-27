@@ -33,12 +33,6 @@ const Feature = () => (
         <span className={featureStyles.feature__description}>
           C++ and zero-GC Java
         </span>
-        <span className={featureStyles.feature__description}>
-          Simple deployment
-        </span>
-        <span className={featureStyles.feature__description}>
-          Zero dependencies
-        </span>
       </div>
 
       <div className={featureStyles.feature}>
@@ -62,10 +56,13 @@ const Feature = () => (
           Time partitioned
         </span>
         <span className={featureStyles.feature__description}>
-          Scalable ingestion and immediate consistency
+          Scalable ingestion
         </span>
         <span className={featureStyles.feature__description}>
-          High performance InfluxDB line protocol
+          Immediate consistency
+        </span>
+        <span className={featureStyles.feature__description}>
+          Fast InfluxDB line protocol
         </span>
       </div>
 

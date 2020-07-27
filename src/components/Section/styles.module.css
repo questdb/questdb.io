@@ -4,7 +4,7 @@
 
 .section--inner {
   display: flex;
-  max-width: 1200px;
+  max-width: var(--ifm-container-width);
   width: 100%;
   padding: 4.5rem 1rem;
   margin: 0 auto;
@@ -28,11 +28,11 @@
 }
 
 @media (max-width: 1026px) {
-  .section--inner h1 {
+  .section--inner :global(h1:not(.jumbotron)) {
     font-size: var(--font-size-xlarge);
   }
 
-  .section--inner h2 {
+  .section--inner :global(h2:not(.jumbotron)) {
     font-size: var(--font-size-large);
   }
 }

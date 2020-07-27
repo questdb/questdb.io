@@ -34,7 +34,8 @@
 
 .footer__tagline {
   max-width: 380px;
-  font-weight: var(--ifm-font-weight-normal);
+  margin-bottom: 1rem;
+  font-size: var(--font-size-large);
   color: var(--palette-pale-blue);
 }
 
@@ -46,6 +47,12 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+
+.footer__title {
+  margin-bottom: 1.25rem;
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: var(--font-size-large);
 }
 
 .footer__link {
@@ -74,7 +81,7 @@
 
 .footer__copyright {
   display: flex;
-  max-width: 1200px;
+  max-width: var(--ifm-container-width);
   width: 100%;
   padding: 0 1rem;
 }

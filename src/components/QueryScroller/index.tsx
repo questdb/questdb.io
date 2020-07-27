@@ -198,7 +198,7 @@ ${mergeQuery}`}</CodeBlock>
                 Search Time
               </div>
               <div className={queryScrollerStyles.queryScroller__description}>
-                Create time buckets and aggregate by intervals with sample by
+                Filter and search for specific timestamps with “where”
               </div>
             </div>
 
@@ -238,7 +238,7 @@ ${mergeQuery}`}</CodeBlock>
                 Slice Time
               </div>
               <div className={queryScrollerStyles.queryScroller__description}>
-                Create time buckets and aggregate by intervals with sample by
+                Create time buckets and aggregate by intervals with “sample by”
               </div>
             </div>
 
@@ -270,7 +270,8 @@ ${mergeQuery}`}</CodeBlock>
                 Navigate Time
               </div>
               <div className={queryScrollerStyles.queryScroller__description}>
-                Create time buckets and aggregate by intervals with sample by
+                Search time series from most recent values to oldest with
+                “latest by”
               </div>
             </div>
             <div
@@ -309,7 +310,8 @@ ${mergeQuery}`}</CodeBlock>
                 Merge Time
               </div>
               <div className={queryScrollerStyles.queryScroller__description}>
-                Create time buckets and aggregate by intervals with sample by
+                Join two tables based on timestamp where timestamps do not
+                exactly match with “asof join”
               </div>
             </div>
           </div>
