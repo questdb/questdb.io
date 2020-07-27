@@ -8,9 +8,9 @@ tags: [questdb, InfluxDB line protocol, tcp]
 ---
 
 <img
-  alt="Picture of blue sky surrounded by latice-work"
+  alt="Blue sky surrounded by latice-work"
   className="banner"
-  src=" /img/blog/2020-07-22/banner.jpg"
+  src="/img/blog/2020-07-22/banner.jpg"
 />
 
 <div className="banner" style={{ fontSize: "14px", marginBottom: "1rem" }}>
