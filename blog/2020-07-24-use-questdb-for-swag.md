@@ -7,32 +7,35 @@ author_image_url: https://avatars.githubusercontent.com/davidgs
 tags: [questdb, projects, swag]
 ---
 
-<img
-  alt="Grey cat wearing mirrored sunglasses"
+<div
   className="banner"
-  src="/img/blog/2020-07-24/banner.jpg"
-/>
-
-<div className="banner" style={{ fontSize: "14px", marginBottom: "1rem" }}>
-  Photo by&nbsp;
-  <a href="https://unsplash.com/@raouldroog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
-    Raoul Droog
-  </a>&nbsp;on&nbsp;
-  <a href="https://unsplash.com/s/photos/swag?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
-    Unsplash
-  </a>
+  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
+>
+  <img
+    alt="Grey cat wearing mirrored sunglasses"
+    src="/img/blog/2020-07-24/banner.jpg"
+  />
+  <div>
+    Photo by&nbsp;
+    <a href="https://unsplash.com/@raouldroog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+      Raoul Droog
+    </a>&nbsp;on&nbsp;
+    <a href="https://unsplash.com/s/photos/swag?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
+      Unsplash
+    </a>
+  </div>
 </div>
 
 We've been upping our SWAG game a lot lately, and we want to share it with you,
 the valuable members of our community! We want to give you the chance to show
 off your projects, show off your love for QuestDB, and to show just off!
 
+<!-- truncate -->
+
 ## How does it work?
 
 It's going to be really simple. And there are different levels of SWAG and
 participation. Just complete a level, get the SWAG.
-
-<!-- truncate -->
 
 ### Level 1: You're new here
 
@@ -90,7 +93,16 @@ How do you get this level? Just do the following:
     [@QuestDB](https://twitter.com/intent/follow?screen_name=QuestDB) so we
     don't miss it!
 
-![Black t-shirt with QuestDB's logo](/img/blog/2020-07-24/IMGP0250.png)
+<img
+  alt="Black t-shirt with QuestDB's logo"
+  src="/img/blog/2020-07-24/tShirt.png"
+  style={{
+    display: "block",
+    maxHeight: "400px",
+    margin: "0 auto",
+    marginBottom: "2rem",
+  }}
+/>
 
 That's it! Sit back and wait for the SWAG!
 
