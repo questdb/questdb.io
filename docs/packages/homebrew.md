@@ -3,7 +3,7 @@ title: Homebrew
 sidebar_label: Homebrew
 ---
 
-QuestDB is distributed via Homebrew for macOS users.
+QuestDB is distributed via Homebrew for MacOS users.
 
 ## Setup
 
