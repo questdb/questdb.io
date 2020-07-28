@@ -100,7 +100,7 @@ $HOME/.questdb
 <TabItem value="windows">
 
 ```shell
-C:\Windows\System32\questdb
+.\qdbroot
 ```
 
 </TabItem>
