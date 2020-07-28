@@ -34,7 +34,7 @@ specific high-performance time series functions. For more information on
 - Physical separation of data files. This makes it easily to implement file
   retention policies or extract certain intervals.
 
-## Storage Example
+## Storage example
 
 Each partition effectively is a directory on the host machine corresponding to
 the partitioning interval. In the example below, we assume a table `trips` that

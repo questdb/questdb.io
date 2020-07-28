@@ -28,7 +28,7 @@ accounts by one month buckets.
 select avg(balance) from accounts sample by 1M
 ```
 
-### Timestamp Search
+### Timestamp search
 
 Timestamp search can be performed with regular operators, e.g `>`, `<=` etc.
 However, QuestDB provides a
@@ -37,13 +37,13 @@ and less verbose.
 
 ## Important differences from standard SQL
 
-### `SELECT * FROM` Optionality
+### Optionality of SELECT * FROM
 
 In QuestDB `select * from` is optional. So `SELECT * FROM tab;` achieves the
 same effect as `tab;` While `select * from` makes SQL look more complete, there are examples where its optionality makes things a lot easier
 to read.
 
-### Optionality of `GROUP BY`
+### Optionality of GROUP BY
 
 The `GROUP BY` clause is optional and can be ommitted as the QuestDB optimiser derives
 group-by implementation from `SELECT` clause.
