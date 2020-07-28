@@ -26,6 +26,11 @@ import TabItem from "@theme/TabItem"
 ```shell
 ./questdb.sh [start|stop|status] [-d dir] [-f] [-t tag]
 ```
+| Option              | Description                                                                                                                                                                   |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [start](#start)     | Starts QuestDB service.                                                                                                                      |
+| [stop](#stop)       | Stops QuestDB service                                                                                                                                                         |
+| [status](#status)   | Shows service status. This command is useful for troubleshooting problems with the service. It prints `RUNNING` or `INACTIVE` if the service is started or stopped respectively |
 
 </TabItem>
 
@@ -36,10 +41,6 @@ questdb.exe [start|stop|status|install|remove] \
   [-d dir] [-f] [-j JAVA_HOME] [-t tag]
 ```
 
-</TabItem>
-
-</Tabs>
-
 | Option              | Description                                                                                                                                                                   |
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [start](#start)     | Starts Windows service. Default service name is `QuestDB`                                                                                                                     |
@@ -47,6 +48,10 @@ questdb.exe [start|stop|status|install|remove] \
 | [status](#status)   | Shows service status. This command is useful for troubleshooting problems with the service. It prints `RUNNING` or `INACTIVE` if the service is start or stopped respectively |
 | [install](#install) | Install the Windows service                                                                                                                                                   |
 | [remove](#remove)   | Remove the Windows service                                                                                                                                                    |
+</TabItem>
+
+</Tabs>
+
 
 ### Start
 
