@@ -43,3 +43,38 @@ In QuestDB `select * from` is optional. So `SELECT * FROM tab;` achieves the
 same effect as `tab;` While `select * from` makes SQL look more complete, there are examples where its optionality makes things a lot easier
 to read.
 
+### Optionality of `GROUP BY`
+
+The `GROUP BY` clause is optional and can be ommitted as the QuestDB optimiser derives
+group-by implementation from `SELECT` clause.
+
+In standard SQL, users might write a query like the below.
+
+```questdb-sql
+SELECT a, b, c, d, sum(e) FROM tab GROUP BY a, b, c, d;
+```
+
+However, enumerating subset of `SELECT` columns in the `GROUP BY` clause
+redundant and therefore unnecessary. The same SQL in QuestDB SQL-dialect can be written as:
+
+```questdb-sql
+SELECT a, b, c, d, sum(e) FROM tab;
+```
+
+Let's look at another more complex example using HAVING in standard SQL.
+
+```questdb-sql
+SELECT a, b, c, d, sum(e)
+FROM tab
+GROUP BY a, b, c, d
+HAVING sum(e) > 100;
+```
+
+In QuestDB's dialect, `select * from` optionality and featherweight sub-queries
+come to the rescue to create a smaller, more readable query, without unnecessary
+repetitive aggregations.
+
+```questdb-sql
+(SELECT a, b, c, d, sum(e) s FROM tab) WHERE s > 100;
+```
+
