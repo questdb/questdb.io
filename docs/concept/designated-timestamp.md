@@ -4,7 +4,7 @@ sidebar_label: Designated timestamp
 ---
 
 QuestDB offers the option to elect a column as `designated timestamp`. This
-allows you to leverage the high-performance time-series functions of
+allows you to leverage the high-performance time series functions of
 QuestDB, but introduces a constraint on the column in question that will reject
 out-of-order inserts.
 
