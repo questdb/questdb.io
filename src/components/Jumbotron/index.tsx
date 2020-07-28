@@ -30,7 +30,7 @@ const Jumbotron = () => {
             className={jumbotronStyles.jumbotron__link}
             href="http://try.questdb.io:9000"
           >
-            Try it now
+            Live Demo
           </Button>
           <Button
             className={clsx(
@@ -50,6 +50,9 @@ const Jumbotron = () => {
           >
             GitHub
           </Button>
+        </div>
+        <div className={jumbotronStyles.jumbotron__description}>
+          Query a 1.6 billion rows dataset in our demo
         </div>
       </div>
 

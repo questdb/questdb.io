@@ -21,6 +21,7 @@
 .jumbotron__cta {
   display: flex;
   margin-top: 2.9rem;
+  margin-bottom: 1rem;
   align-self: stretch;
 }
 
@@ -32,6 +33,11 @@
 
 .jumbotron__link:not(:last-child) {
   margin-right: 1rem;
+}
+
+.jumbotron__description {
+  color: var(--palette-pink);
+  font-size: var(--font-size-large);
 }
 
 .jumbotron__right {
@@ -50,7 +56,7 @@
 
 .jumbotron__docker {
   position: absolute;
-  bottom: 55px;
+  bottom: 66px;
   right: 16px;
   max-width: 568px;
   width: 100%;

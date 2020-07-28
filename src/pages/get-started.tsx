@@ -348,7 +348,7 @@ $ brew install questdb`}</CodeBlock>
           >
             <CodeBlock className="language-xml">{`<dependency>
   <groupId>org.questdb</groupId>
-  <artifactId>core</artifactId>
+  <artifactId>questdb</artifactId>
   <version>${siteConfig.customFields.version}</version>
 </dependency>`}</CodeBlock>
           </Binary>

@@ -21,7 +21,7 @@ import TabItem from "@theme/TabItem"
 ```xml
 <dependency>
     <groupId>org.questdb</groupId>
-    <artifactId>core</artifactId>
+    <artifactId>questdb</artifactId>
     <version>{@version@}</version>
 </dependency>
 ```
