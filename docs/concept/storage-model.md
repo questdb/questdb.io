@@ -6,15 +6,15 @@ sidebar_label: Storage model
 QuestDB uses a **column-based** storage model. Data is stored in tables with
 each column stored in its own file and its own native format. New data is
 appended to the bottom of each column to allow data to be organically retrieved
-in the same order versus ingestion.
+in the same order that it was ingested.
 
 ## Append model
 
 QuestDB appends one column at a time and each one is updated using the same
 method. The tail of column file is mapped into the memory page in RAM and the
 column append is effectively a memory write at an address. Once the memory page
-is exhausted it is unmapped (thus writing data to disk) and the new page is
-mapped at a new append offset.
+is exhausted it is unmapped (thus writing data to disk) and a new page is
+mapped.
 
 **This method ensures minimum resource churn and consistent append latency.**
 
@@ -39,7 +39,7 @@ disk space.**
 
 To guarantee **atomicity**, each table maintains a `last_committed_record_count`
 in a separate file. By convention, any table reader will never read more records
-than `tx_count`. This enables the property `isolation`: where uncommitted data
+than `tx_count`. This enables the **isolation** property: where uncommitted data
 cannot be read. Since uncommitted data is appended directly to the table,
 
 Once all data is appended, QuestDB `commit()` ensures that the `tx_count` is
@@ -50,7 +50,7 @@ The **consistency** assurance of the data stored is limited to QuestDB
 auto-repairing abnormally terminated transactions. We do not yet support
 user-defined constraints, checks and triggers.
 
-Data **durability** can be configured with commit() optionally being able to
+Data **durability** can be configured with `commit()` optionally being able to
 invoke msync() with a choice of synchronous or asynchronous IO.
 
 ![Diagram of a commit accross several column files](/img/docs/concepts/storageModelAlt.png)

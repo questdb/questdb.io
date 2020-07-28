@@ -4,9 +4,9 @@ sidebar_label: Designated timestamp
 ---
 
 QuestDB offers the option to elect a column as `designated timestamp`. This
-allows you to leverage specific high-performance time series functions of
+allows you to leverage the high-performance time-series functions of
 QuestDB, but introduces a constraint on the column in question that will reject
-out of order inserts.
+out-of-order inserts.
 
 ## Properties
 
@@ -23,17 +23,17 @@ To elect a timestamp column on the fly, please refer to the
 
 :::
 
-## Out of order policy
+## Out-of-order policy
 
-Once a column is elected `designated timestamp`, it will enforce an order policy
+Once a column is elected as `designated timestamp`, it will enforce an order policy
 on this column. Inserts in `designated timestamp` need to be incrementing and
-out of order timestamps inserts will be rejected. This does not affect the
+out-of-order timestamps inserts will be rejected. This does not affect the
 behaviour of other columns.
 
 :::tip
 
 Timestamps need NOT be unique. Duplicate timestamps are accepted. New timestamps
-need only be `superior or equal` to the latest timestamp in the column.
+need only be `greater or equal` to the latest timestamp in the column.
 
 :::
 
@@ -49,14 +49,14 @@ Electing a `designated timestamp` allows you to:
 ## Examples
 
 Representation of `designated timestamp` as a special column alongside other
-existing timestamp columns. Note that
+existing timestamp columns. Note that:
 
 - the `designated timestamp` column only allows ordered timestamps
-- any other `timestamp` column tolerates out of order timestamps
+- any other `timestamp` column tolerates out-of-order timestamps
 
 ![Comparison between a designated timestamp and a "normal" timestamp](/img/docs/concepts/designatedTimestamp.jpg)
 
-Attempts to insert `out of order` timestamps will be rejected:
+Attempts to insert `out-of-order` timestamps will be rejected:
 
 ![Diagram of an out of order insertion being rejected](/img/docs/concepts/timestampReject.jpg)
 
@@ -70,7 +70,7 @@ there are ways to circumvent this with little overhead.
 :::note
 
 This is a temporary workaround. We are working on a table implementation which
-supports out of order inserts
+supports out-of-order insertion.
 
 :::
 
@@ -102,8 +102,7 @@ For more information about `systimestamp()` and related functions, check the
 
 :::
 
-- Use a temporary table for the latest partition and order data to insert into
-  the main table when changing partition.
+- Use a temporary table for the latest partition. Data can be out-of-order in this table.
 
 ```questdb-sql title="Main table"
 CREATE TABLE readings(
@@ -123,7 +122,9 @@ CREATE TABLE readings_temp(
     reading int);
 ```
 
-When switching over to a new day, insert the last day of data in an ordered
+When switching over to a new day, order the data in the temporary partition 
+as it is inserted into the main table.
+
 fashion:
 
 ```questdb-sql title="Insert ordered data"
