@@ -33,7 +33,7 @@ your architecture. You will also need to download QuestDB binaries.
 The QuestDB binaries come as a tarball which needs to be extracted:
 
 ```shell title="Extract the tarball"
-tar -xvf questdb-{@version@}-bin.tar.gz
+tar -xvf questdb-{@version@}-no-jre-bin.tar.gz
 ```
 
 ## Start QuestDB
@@ -41,7 +41,7 @@ tar -xvf questdb-{@version@}-bin.tar.gz
 Navigate to the directory created in the previous step:
 
 ```shell
-cd questdb-{@version@}-bin.tar.gz
+cd questdb-{@version@}-no-jre-bin.tar.gz
 ```
 
 To start the QuestDB server service, run the following:
