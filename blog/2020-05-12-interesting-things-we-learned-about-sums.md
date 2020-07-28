@@ -4,7 +4,7 @@ author: Tancrede Collard
 author_title: QuestDB Team
 author_url: https://github.com/TheTanc
 author_image_url: https://avatars.githubusercontent.com/TheTanc
-tags: [questdb, performance]
+tags: [questdb, performance, algo]
 ---
 
 <img
