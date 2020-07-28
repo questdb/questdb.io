@@ -2,8 +2,8 @@
 title: Binaries
 ---
 
-QuestDB comes with an executable `questdb.exe` for Windows, and script
-`questdb.sh` for macOS and Linux which can be used to control QuestDB as a
+QuestDB comes with an executable `questdb.exe` for Windows, and a script
+`questdb.sh` for MacOS and Linux which can be used to control QuestDB as a
 service. On Windows, QuestDB can also be
 [started interactively](#use-interactively-windows).
 
@@ -17,7 +17,7 @@ import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
 <Tabs defaultValue="nix"  groupId="operating-systems" values={[
-  { label: "Linux & macOS", value: "nix" },
+  { label: "Linux & MacOS", value: "nix" },
   { label: "Windows", value: "windows" },
 ]}>
 
@@ -53,7 +53,7 @@ questdb.exe [start|stop|status|install|remove] \
 `start` - starts the QuestDB service.
 
 <Tabs defaultValue="nix" groupId="operating-systems" values={[
-  { label: "Linux & macOS", value: "nix" },
+  { label: "Linux & MacOS", value: "nix" },
   { label: "Windows", value: "windows" },
 ]}>
 
@@ -89,7 +89,7 @@ be the following:
 
 <Tabs defaultValue="linux" values={[
   { label: "Linux", value: "linux" },
-  { label: "macOS", value: "macos" },
+  { label: "MacOS", value: "macos" },
   { label: "Windows", value: "windows" },
 ]}>
 
@@ -137,7 +137,7 @@ services. Each can be started, stopped etc using its own service tag name.
 
 ### Examples
 
-```questdb-sql title="Linux & macOS - custom root_directory"
+```questdb-sql title="Linux & MacOS - custom root_directory"
 ./questdb.sh start -d '/home/user/my_new_root_directory'
 ```
 
@@ -157,7 +157,7 @@ questdb.exe start -j 'C:\Program Files\Java\jdk-11\'
 ### Examples
 
 <Tabs defaultValue="nix" groupId="operating-systems" values={[
-  { label: "Linux & macOS", value: "nix" },
+  { label: "Linux & MacOS", value: "nix" },
   { label: "Windows", value: "windows" },
 ]}>
 
@@ -189,7 +189,7 @@ is start or stopped respectively. On \*nix operating systems, it also prints the
 ### Examples
 
 <Tabs defaultValue="nix"  groupId="operating-systems" values={[
-  { label: "Linux & macOS", value: "nix" },
+  { label: "Linux & MacOS", value: "nix" },
   { label: "Windows", value: "windows" },
 ]}>
 
