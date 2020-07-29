@@ -45,7 +45,10 @@ module.exports = {
   organizationName: "QuestDB",
   projectName: "questdb",
   customFields,
-  plugins: [require.resolve("./plugins/fetch-release")],
+  plugins: [
+    require.resolve("./plugins/fetch-release"),
+    require.resolve("./plugins/lint"),
+  ],
   themeConfig: {
     announcementBar: {
       id: "github-star",

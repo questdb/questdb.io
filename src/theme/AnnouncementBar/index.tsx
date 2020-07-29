@@ -12,7 +12,7 @@ const AnnouncementBar = () => {
     closeAnnouncementBar,
   } = useUserPreferencesContext()
   const context = useDocusaurusContext()
-  const { siteConfig = {} } = context
+  const { siteConfig } = context
 
   if (isAnnouncementBarClosed) {
     return null
@@ -33,9 +33,9 @@ const AnnouncementBar = () => {
 
       <button
         aria-label="Close"
-        type="button"
         className={styles.announcement__close}
         onClick={closeAnnouncementBar}
+        type="button"
       >
         <span aria-hidden="true">&times;</span>
       </button>

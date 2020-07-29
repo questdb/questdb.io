@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from "react"
 
 import CodeBlock from "@theme/CodeBlock"
 
-import Button from "../Button"
 import useWindowWidth from "../hooks/useWindowWidth"
 import sectionStyles from "../Section/styles.module.css"
 import queryScrollerStyles from "./styles.module.css"
@@ -12,13 +11,16 @@ const S = [3, 1, 6, 10]
 const M = [3, 0, 4, 8]
 const L = [4, 0, 4, 8]
 
-const getTopByIndex = (m: typeof S, index: number) =>
-  ({
-    1: 25 * m[0],
-    2: -25 * m[1],
-    3: -25 * m[2],
-    4: -25 * m[3],
-  }[index])
+const getTopByIndex = (m: number[], index: 1 | 2 | 3 | 4): number => {
+  const scale = {
+    1: 25 * (m[0] || 0),
+    2: -25 * (m[1] || 0),
+    3: -25 * (m[2] || 0),
+    4: -25 * (m[3] || 0),
+  }
+
+  return scale[index] || 0
+}
 
 const searchQuery = `SELECT timestamp, tempC
 FROM sensors
@@ -38,20 +40,22 @@ ASOF JOIN weather;`
 
 const Chevron = () => (
   <svg
+    fill="currentColor"
     focusable="false"
     role="img"
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-    width="26"
     viewBox="5.40 7.12 9.23 5.25"
+    width="26"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M6.582 12.141a.695.695 0 01-.978 0 .68.68 0 010-.969l3.908-3.83a.697.697 0 01.979 0l3.908 3.83a.68.68 0 010 .969.697.697 0 01-.979 0L10 9l-3.418 3.141z"></path>
+    <path d="M6.582 12.141a.695.695 0 01-.978 0 .68.68 0 010-.969l3.908-3.83a.697.697 0 01.979 0l3.908 3.83a.68.68 0 010 .969.697.697 0 01-.979 0L10 9l-3.418 3.141z" />
   </svg>
 )
 
+type Index = 1 | 2 | 3 | 4
+
 const QueryScroller = () => {
   const [top, setTop] = useState(S)
-  const [index, setIndex] = useState(2)
+  const [index, setIndex] = useState<Index>(2)
   const windowWidth = useWindowWidth()
   const handleClick1 = useCallback(() => {
     setIndex(1)
@@ -66,19 +70,19 @@ const QueryScroller = () => {
     setIndex(4)
   }, [])
   const handleUpClick = useCallback(() => {
-    setIndex(Math.max(index - 1, 1))
+    setIndex(Math.max(index - 1, 1) as Index)
   }, [index])
   const handleDownClick = useCallback(() => {
-    setIndex(Math.min(index + 1, 4))
+    setIndex(Math.min(index + 1, 4) as Index)
   }, [index])
 
   useEffect(() => {
-    if (windowWidth < 622) {
+    if (windowWidth && windowWidth < 622) {
       setTop(S)
       return
     }
 
-    if (windowWidth < 800) {
+    if (windowWidth && windowWidth < 800) {
       setTop(M)
       return
     }
@@ -130,17 +134,25 @@ const QueryScroller = () => {
               style={{ top: getTopByIndex(top, index) }}
             >
               <CodeBlock>{`${searchQuery}`}</CodeBlock>
-              <CodeBlock>{`-- Search time
-${searchQuery}`}</CodeBlock>
+              <CodeBlock>
+                {`-- Search time
+${searchQuery}`}
+              </CodeBlock>
               <CodeBlock>{`${sliceQuery}`}</CodeBlock>
-              <CodeBlock>{`-- Slice time
-${sliceQuery}`}</CodeBlock>
+              <CodeBlock>
+                {`-- Slice time
+${sliceQuery}`}
+              </CodeBlock>
               <CodeBlock>{`${navigateQuery}`}</CodeBlock>
-              <CodeBlock>{`-- Navigate time
-${navigateQuery}`}</CodeBlock>
+              <CodeBlock>
+                {`-- Navigate time
+${navigateQuery}`}
+              </CodeBlock>
               <CodeBlock>{`${mergeQuery}`}</CodeBlock>
-              <CodeBlock>{`-- Merge time
-${mergeQuery}`}</CodeBlock>
+              <CodeBlock>
+                {`-- Merge time
+${mergeQuery}`}
+              </CodeBlock>
             </div>
           </div>
           <div

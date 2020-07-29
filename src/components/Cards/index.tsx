@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import Link from "@docusaurus/Link"
 import React from "react"
 
 import sectionStyles from "../Section/styles.module.css"
@@ -54,7 +53,7 @@ const Cards = () => (
         <div className={cardsStyles.cards__header}>CRUD for time series</div>
         <div className={cardsStyles.cards__content}>
           Allows easy changes in historical data through fully ACID support for
-          CRUD APIs
+          CRUD APIs.
         </div>
       </div>
 
@@ -62,7 +61,7 @@ const Cards = () => (
         <div className={cardsStyles.cards__header}>Integrated data</div>
         <div className={cardsStyles.cards__content}>
           Pull together all your application, device, and infrastructure data
-          for a complete, 360º view of all aspects of your business
+          for a complete, 360º view of all aspects of your business.
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import clsx from "clsx"
 import React from "react"
 import { MDXProvider } from "@mdx-js/react"
@@ -13,7 +14,12 @@ import { matchPath } from "@docusaurus/router"
 import { Head, HomeContextProvider } from "../../components"
 import styles from "./styles.module.css"
 
-const DocPage = ({ docsMetadata, location, route: { routes: docRoutes } }) => {
+const DocPage = (props) => {
+  const {
+    docsMetadata,
+    location,
+    route: { routes: docRoutes },
+  } = props
   const { permalinkToSidebar, docsSidebars, version } = docsMetadata
   const currentDocRoute = docRoutes.find((docRoute) =>
     matchPath(location.pathname, docRoute),
@@ -57,3 +63,4 @@ const DocPage = ({ docsMetadata, location, route: { routes: docRoutes } }) => {
 }
 
 export default DocPage
+/* eslint-enable */

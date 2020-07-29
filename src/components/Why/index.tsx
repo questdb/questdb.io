@@ -34,7 +34,7 @@ const Why = () => {
               className={whyStyles["why__menu--item"]}
               onClick={handleClickIs}
               size="small"
-              style={opened === "digital" ? "primary" : "tertiary"}
+              variant={opened === "digital" ? "primary" : "tertiary"}
             >
               Digital transformation
             </Button>
@@ -42,7 +42,7 @@ const Why = () => {
               className={whyStyles["why__menu--item"]}
               onClick={handleClickGoodFor}
               size="small"
-              style={opened === "realtime" ? "primary" : "tertiary"}
+              variant={opened === "realtime" ? "primary" : "tertiary"}
             >
               Real-time insights
             </Button>
@@ -50,7 +50,7 @@ const Why = () => {
               className={whyStyles["why__menu--item"]}
               onClick={handleClickIsNot}
               size="small"
-              style={opened === "integration" ? "primary" : "tertiary"}
+              variant={opened === "integration" ? "primary" : "tertiary"}
             >
               Enterprise integration
             </Button>

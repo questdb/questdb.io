@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
@@ -17,7 +16,7 @@ import {
 
 const Home = () => {
   const context = useDocusaurusContext()
-  const { siteConfig = {} } = context
+  const { siteConfig } = context
 
   return (
     <HomeContextProvider value>

@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import Link from "@docusaurus/Link"
 import React, { ReactNode } from "react"
 
 import Button from "../Button"
@@ -7,7 +6,7 @@ import binaryStyles from "./styles.module.css"
 
 type Props = Readonly<{
   architecture: boolean
-  children: ReactNode
+  children?: ReactNode
   href?: string
   logo: ReactNode
   rt: boolean
@@ -47,7 +46,7 @@ const Binary = ({
         <Button
           className={binaryStyles.binary__download}
           href={href}
-          style="tertiary"
+          variant="tertiary"
         >
           Download
         </Button>

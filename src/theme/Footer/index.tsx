@@ -8,32 +8,40 @@ import { Button, useHomeContext } from "../../components"
 import sectionStyles from "../../components/Section/styles.module.css"
 import footerStyles from "./styles.module.css"
 
-const FooterLink = ({ to, href, label, ...props }) => (
-  <Link
-    className={footerStyles.footer__link}
-    {...(href
-      ? {
-          target: "_blank",
-          rel: "noopener noreferrer",
-          href: useBaseUrl(href, { forcePrependBaseUrl: false }),
-        }
-      : {
-          to: useBaseUrl(to),
-        })}
-    {...props}
-  >
-    {label}
-  </Link>
-)
+type Props = Readonly<{
+  href?: string
+  label: string
+  to?: string
+}>
+
+const FooterLink = ({ to, href, label, ...props }: Props) => {
+  const linkHref = useBaseUrl(href || "", { forcePrependBaseUrl: false })
+  const linkTo = useBaseUrl(to || "")
+
+  return (
+    <Link
+      className={footerStyles.footer__link}
+      {...(href
+        ? {
+            href: linkHref,
+            rel: "noopener noreferrer",
+            target: "_blank",
+          }
+        : { to: linkTo })}
+      {...props}
+    >
+      {label}
+    </Link>
+  )
+}
 
 const Footer = () => {
   const context = useDocusaurusContext()
   const homeContext = useHomeContext()
-  const { siteConfig = {} } = context
-  const { themeConfig = {} } = siteConfig
+  const { siteConfig } = context
+  const { themeConfig } = siteConfig
   const { footer } = themeConfig
-  const { copyright, links = [], logo = {} } = footer || {}
-  const logoUrl = useBaseUrl(logo.src)
+  const { copyright, links } = footer
 
   return (
     <footer
@@ -68,14 +76,14 @@ const Footer = () => {
             icon={
               <img
                 alt="GitHub icon"
-                src="/img/githubIcon.svg"
                 height="22"
+                src="/img/githubIcon.svg"
                 width="22"
               />
             }
             size="xsmall"
-            style="secondary"
             uppercase={false}
+            variant="secondary"
           >
             Star us on GitHub
           </Button>
@@ -97,10 +105,10 @@ const Footer = () => {
 
               {linkItem.items && (
                 <ul className={footerStyles.footer__items}>
-                  {linkItem.items.map((item, key) => (
+                  {linkItem.items.map((item) => (
                     <li
-                      key={item.href || item.to}
                       className={footerStyles.footer__item}
+                      key={item.href || item.to}
                     >
                       <FooterLink {...item} />
                     </li>

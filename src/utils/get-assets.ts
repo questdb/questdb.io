@@ -1,8 +1,23 @@
-export type release = {
-  assets: { name: string; browser_download_url: string; size: number }[]
+/* eslint-disable */
+export type Release = {
+  assets: {
+    browser_download_url: string
+    name: string
+    size: number
+  }[]
+  html_url: string
+  published_at: string
+}
+/* eslint-enable */
+
+type Asset = {
+  href?: string
+  size?: string
 }
 
-export const getAssets = (release: Release) => {
+export const getAssets = (
+  release: Release,
+): { bsd: Asset; linux: Asset; noJre: Asset; windows: Asset } => {
   const bsdRaw = release.assets.find(({ name }) => name.indexOf("bsd") !== -1)
   const linuxRaw = release.assets.find(
     ({ name }) => name.indexOf("linux") !== -1,

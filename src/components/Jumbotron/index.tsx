@@ -9,7 +9,7 @@ import jumbotronStyles from "./styles.module.css"
 
 const Jumbotron = () => {
   const context = useDocusaurusContext()
-  const { siteConfig = {} } = context
+  const { siteConfig } = context
 
   return (
     <section
@@ -41,12 +41,12 @@ const Jumbotron = () => {
             icon={
               <img
                 alt="GitHub icon"
-                src="img/githubIcon.svg"
                 height="26"
+                src="img/githubIcon.svg"
                 width="26"
               />
             }
-            style="secondary"
+            variant="secondary"
           >
             GitHub
           </Button>

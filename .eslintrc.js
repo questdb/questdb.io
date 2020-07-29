@@ -20,7 +20,6 @@ module.exports = {
     "prettier/react",
     "prettier/standard",
   ],
-  globals: { ace: true },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {},
@@ -56,7 +55,6 @@ module.exports = {
     "react/no-this-in-sfc": "error",
     "react/no-typos": "error",
     "react/no-redundant-should-component-update": "error",
-    "react/no-array-index-key": "error",
     "react/no-access-state-in-setstate": "error",
     "react/jsx-closing-bracket-location": "error",
     "react/jsx-closing-tag-location": "error",
@@ -65,7 +63,6 @@ module.exports = {
     "react/jsx-indent": ["error", 2],
     "react/jsx-indent-props": ["error", 2],
     "react/jsx-pascal-case": "error",
-    "react/jsx-sort-props": "error",
     "react/jsx-sort-default-props": "error",
     "react/jsx-wrap-multilines": "error",
     "react/jsx-tag-spacing": [

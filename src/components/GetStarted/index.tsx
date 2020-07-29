@@ -5,19 +5,19 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import { usePluginData } from "@docusaurus/useGlobalData"
 import React, { useEffect, useState } from "react"
 
-import { getAssets, getOs, Os } from "../../utils"
+import { getAssets, getOs, Os, Release } from "../../utils"
 import Button from "../Button"
 import sectionStyles from "../Section/styles.module.css"
 import getStartedStyles from "./styles.module.css"
 
 const GetStarted = () => {
   const context = useDocusaurusContext()
-  const { release } = usePluginData("fetch-release")
+  const { release } = usePluginData<{ release: Release }>("fetch-release")
   const [os, setOs] = useState<Os>()
   const [releaseDate, setReleaseDate] = useState(
     format(new Date(release.published_at), "MMMM M, yyyy"),
   )
-  const { siteConfig = {} } = context
+  const { siteConfig } = context
   const assets = getAssets(release)
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const GetStarted = () => {
       )
     }
     setOs(getOs())
-  }, [])
+  }, [release.published_at])
 
   return (
     <section
@@ -66,7 +66,7 @@ const GetStarted = () => {
             </span>
             &nbsp;({releaseDate})
           </div>
-          {os !== "macos" && assets[os] && (
+          {os && os !== "macos" && assets[os] && (
             <Button href={assets[os].href}>{os}&nbsp;Download</Button>
           )}
         </div>

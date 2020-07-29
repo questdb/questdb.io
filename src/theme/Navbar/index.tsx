@@ -19,154 +19,6 @@ import NavbarItem from "@theme/NavbarItem"
 // retrocompatible with v1
 const DefaultNavItemPosition = "right"
 
-function NavLink({
-  activeBasePath,
-  activeBaseRegex,
-  to,
-  href,
-  label,
-  activeClassName = "navbar__link--active",
-  prependBaseUrlToHref,
-  ...props
-}: {
-  activeBasePath?: string
-  activeBaseRegex?: string
-  to?: string
-  href?: string
-  label?: string
-  activeClassName?: string
-  prependBaseUrlToHref?: string
-} & ComponentProps<"a">) {
-  const toUrl = useBaseUrl(to)
-  const activeBaseUrl = useBaseUrl(activeBasePath)
-  const normalizedHref = useBaseUrl(href, { forcePrependBaseUrl: true })
-
-  return (
-    <Link
-      {...(href
-        ? {
-            target: "_blank",
-            rel: "noopener noreferrer",
-            href: prependBaseUrlToHref ? normalizedHref : href,
-          }
-        : {
-            isNavLink: true,
-            activeClassName,
-            to: toUrl,
-            ...(activeBasePath || activeBaseRegex
-              ? {
-                  isActive: (_match, location) =>
-                    activeBaseRegex
-                      ? new RegExp(activeBaseRegex).test(location.pathname)
-                      : location.pathname.startsWith(activeBaseUrl),
-                }
-              : null),
-          })}
-      {...props}
-    >
-      {label}
-    </Link>
-  )
-}
-
-function NavItem({
-  items,
-  position = DefaultNavItemPosition,
-  className,
-  ...props
-}) {
-  const navLinkClassNames = (extraClassName, isDropdownItem = false) =>
-    clsx(
-      {
-        "navbar__item navbar__link": !isDropdownItem,
-        dropdown__link: isDropdownItem,
-      },
-      extraClassName,
-    )
-
-  if (!items) {
-    return <NavLink className={navLinkClassNames(className)} {...props} />
-  }
-
-  return (
-    <div
-      className={clsx("navbar__item", "dropdown", "dropdown--hoverable", {
-        "dropdown--left": position === "left",
-        "dropdown--right": position === "right",
-      })}
-    >
-      <NavLink
-        className={navLinkClassNames(className)}
-        {...props}
-        onClick={(e) => e.preventDefault()}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            ;((e.target as HTMLElement)
-              .parentNode as HTMLElement).classList.toggle("dropdown--show")
-          }
-        }}
-      >
-        {props.label}
-      </NavLink>
-      <ul className="dropdown__menu">
-        {items.map(
-          ({ className: childItemClassName, ...childItemProps }, i) => (
-            <li key={i}>
-              <NavLink
-                activeClassName="dropdown__link--active"
-                className={navLinkClassNames(childItemClassName, true)}
-                {...childItemProps}
-              />
-            </li>
-          ),
-        )}
-      </ul>
-    </div>
-  )
-}
-
-function MobileNavItem({ items, position: _position, className, ...props }) {
-  // Need to destructure position from props so that it doesn't get passed on.
-  const navLinkClassNames = (extraClassName, isSubList = false) =>
-    clsx(
-      "menu__link",
-      {
-        "menu__link--sublist": isSubList,
-      },
-      extraClassName,
-    )
-
-  if (!items) {
-    return (
-      <li className="menu__list-item">
-        <NavLink className={navLinkClassNames(className)} {...props} />
-      </li>
-    )
-  }
-
-  return (
-    <li className="menu__list-item">
-      <NavLink className={navLinkClassNames(className, true)} {...props}>
-        {props.label}
-      </NavLink>
-      <ul className="menu__list">
-        {items.map(
-          ({ className: childItemClassName, ...childItemProps }, i) => (
-            <li className="menu__list-item" key={i}>
-              <NavLink
-                activeClassName="menu__link--active"
-                className={navLinkClassNames(childItemClassName)}
-                {...childItemProps}
-                onClick={props.onClick}
-              />
-            </li>
-          ),
-        )}
-      </ul>
-    </li>
-  )
-}
-
 // If split links by left/right
 // if position is unspecified, fallback to right (as v1)
 function splitNavItemsByPosition(items) {
@@ -186,8 +38,8 @@ function Navbar(): JSX.Element {
   const {
     siteConfig: {
       themeConfig: {
-        navbar: { title = "", items = [], hideOnScroll = false } = {},
-        colorMode: { disableSwitch: disableColorModeSwitch = false } = {},
+        navbar: { title, items, hideOnScroll },
+        colorMode: { disableSwitch: disableColorModeSwitch },
       },
     },
     isClient,
@@ -265,8 +117,8 @@ function Navbar(): JSX.Element {
           <Link className="navbar__brand" to={logoLink} {...logoLinkProps}>
             {logoImageUrl != null && (
               <img
-                key={isClient}
                 className="navbar__logo"
+                key={`${isClient}`}
                 src={logoImageUrl}
                 alt={logoAlt}
               />
@@ -321,7 +173,7 @@ function Navbar(): JSX.Element {
           >
             {logoImageUrl != null && (
               <img
-                key={isClient}
+                key={`${isClient}`}
                 className="navbar__logo"
                 src={logoImageUrl}
                 alt={logoAlt}

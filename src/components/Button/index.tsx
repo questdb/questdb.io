@@ -7,13 +7,13 @@ import styles from "./styles.module.css"
 type Props = Readonly<{
   children: ReactNode
   className?: string
-  icon: ReactNode
+  icon?: ReactNode
   href?: string
   onClick?: () => void
   size: "normal" | "small" | "xsmall"
-  style: "primary" | "secondary" | "tertiary"
   to?: string
   uppercase: boolean
+  variant: "primary" | "secondary" | "tertiary"
 }>
 
 const Button = ({
@@ -23,17 +23,16 @@ const Button = ({
   icon,
   onClick,
   size,
-  small,
-  style,
   to,
   uppercase,
+  variant,
 }: Props) => {
   const classes = clsx(className, styles.button, {
     [styles["button--icon"]]: !!icon,
-    [styles["button--primary"]]: style === "primary",
-    [styles["button--secondary"]]: style === "secondary",
+    [styles["button--primary"]]: variant === "primary",
+    [styles["button--secondary"]]: variant === "secondary",
     [styles["button--small"]]: size === "small",
-    [styles["button--tertiary"]]: style === "tertiary",
+    [styles["button--tertiary"]]: variant === "tertiary",
     [styles["button--uppercase"]]: uppercase,
     [styles["button--xsmall"]]: size === "xsmall",
   })
@@ -49,7 +48,7 @@ const Button = ({
 
   if (to) {
     return (
-      <Link className={classes} to={to} onClick={onClick}>
+      <Link className={classes} onClick={onClick} to={to}>
         {icon}
         {children}
       </Link>
@@ -64,6 +63,10 @@ const Button = ({
   )
 }
 
-Button.defaultProps = { size: "normal", style: "primary", uppercase: true }
+Button.defaultProps = {
+  size: "normal",
+  uppercase: true,
+  variant: "primary",
+}
 
 export default Button

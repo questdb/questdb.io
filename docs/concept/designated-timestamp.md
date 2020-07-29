@@ -4,8 +4,8 @@ sidebar_label: Designated timestamp
 ---
 
 QuestDB offers the option to elect a column as `designated timestamp`. This
-allows you to leverage the high-performance time series functions of
-QuestDB, but introduces a constraint on the column in question that will reject
+allows you to leverage the high-performance time series functions of QuestDB,
+but introduces a constraint on the column in question that will reject
 out-of-order inserts.
 
 ## Properties
@@ -25,15 +25,15 @@ To elect a timestamp column on the fly, please refer to the
 
 ## Out-of-order policy
 
-Once a column is elected as `designated timestamp`, it will enforce an order policy
-on this column. Inserts in `designated timestamp` need to be incrementing and
-out-of-order timestamps inserts will be rejected. This does not affect the
+Once a column is elected as `designated timestamp`, it will enforce an order
+policy on this column. Inserts in `designated timestamp` need to be incrementing
+and out-of-order timestamps inserts will be rejected. This does not affect the
 behaviour of other columns.
 
 :::tip
 
-Timestamps need NOT be unique. Duplicate timestamps are accepted. New timestamps
-need only be `greater or equal` to the latest timestamp in the column.
+New timestamps need to be `greater or equal` to the latest timestamp in the
+column.
 
 :::
 
@@ -102,7 +102,8 @@ For more information about `systimestamp()` and related functions, check the
 
 :::
 
-- Use a temporary table for the latest partition. Data can be out-of-order in this table.
+- Use a temporary table for the latest partition. Data can be out-of-order in
+  this table.
 
 ```questdb-sql title="Main table"
 CREATE TABLE readings(
@@ -122,8 +123,8 @@ CREATE TABLE readings_temp(
     reading int);
 ```
 
-When switching over to a new day, order the data in the temporary partition 
-as it is inserted into the main table.
+When switching over to a new day, order the data in the temporary partition as
+it is inserted into the main table.
 
 fashion:
 

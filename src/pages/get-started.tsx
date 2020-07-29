@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import { usePluginData } from "@docusaurus/useGlobalData"
@@ -7,21 +6,15 @@ import React, { useEffect, useState } from "react"
 import Layout from "@theme/Layout"
 import CodeBlock from "@theme/CodeBlock"
 
-import { getAssets, getOs, Os } from "../utils"
-import {
-  Binary,
-  GetStarted,
-  Head,
-  HomeContextProvider,
-  Why,
-} from "../components"
+import { getAssets, getOs, Os, Release } from "../utils"
+import { Binary, GetStarted, Head, HomeContextProvider } from "../components"
 import styles from "./get-started.module.css"
 
 const GetStartedPage = () => {
   const context = useDocusaurusContext()
-  const { release } = usePluginData("fetch-release")
+  const { release } = usePluginData<{ release: Release }>("fetch-release")
   const [os, setOs] = useState<Os | undefined>()
-  const { siteConfig = {} } = context
+  const { siteConfig } = context
   const assets = getAssets(release)
 
   const perOs = {
@@ -31,10 +24,10 @@ const GetStartedPage = () => {
         href={assets.bsd.href}
         logo={
           <svg
-            width="45"
+            fill="none"
             height="45"
             viewBox="0 0 45 45"
-            fill="none"
+            width="45"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -62,10 +55,10 @@ const GetStartedPage = () => {
         href={assets.linux.href}
         logo={
           <svg
-            width="41"
+            fill="none"
             height="48"
             viewBox="0 0 41 48"
-            fill="none"
+            width="41"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -95,10 +88,10 @@ const GetStartedPage = () => {
       <Binary
         logo={
           <svg
-            width="41"
+            fill="none"
             height="49"
             viewBox="0 0 41 49"
-            fill="none"
+            width="41"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -114,8 +107,10 @@ const GetStartedPage = () => {
         title="macOS (via Homebrew)"
       >
         <div />
-        <CodeBlock className="language-shell">{`$ brew update
-$ brew install questdb`}</CodeBlock>
+        <CodeBlock className="language-shell">
+          {`$ brew update
+$ brew install questdb`}
+        </CodeBlock>
       </Binary>
     ),
     windows: (
@@ -124,10 +119,10 @@ $ brew install questdb`}</CodeBlock>
         href={assets.windows.href}
         logo={
           <svg
-            width="44"
+            fill="none"
             height="44"
             viewBox="0 0 44 44"
-            fill="none"
+            width="44"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -185,34 +180,34 @@ $ brew install questdb`}</CodeBlock>
             href={assets.noJre.href}
             logo={
               <svg
-                width="78"
+                fill="none"
                 height="51"
                 viewBox="0 0 78 51"
-                fill="none"
+                width="78"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <mask
+                  height="51"
                   id="mask0"
                   mask-type="alpha"
                   maskUnits="userSpaceOnUse"
+                  width="51"
                   x="16"
                   y="0"
-                  width="51"
-                  height="51"
                 >
                   <circle
                     cx="41.1744"
                     cy="25.8397"
-                    r="24.9371"
                     fill="#C4C4C4"
+                    r="24.9371"
                   />
                 </mask>
                 <g mask="url(#mask0)">
                   <circle
                     cx="41.1744"
                     cy="25.8397"
-                    r="24.9371"
                     fill="#EC779B"
+                    r="24.9371"
                   />
                   <path
                     d="M50.0829 -1.05298C50.0829 -1.05298 46.3653 4.19695 33.4603 7.04175C20.5554 9.88655 24.273 15.1365 24.4895 16.6655C24.7061 18.1946 28.2104 19.7302 38.7103 11.6354C49.2101 3.5407 51.6152 1.57198 56.8652 1.35542C62.1151 1.13886 50.0829 -1.05298 50.0829 -1.05298Z"
@@ -279,10 +274,10 @@ $ brew install questdb`}</CodeBlock>
           <Binary
             logo={
               <svg
-                width="68"
+                fill="none"
                 height="48"
                 viewBox="0 0 68 48"
-                fill="none"
+                width="68"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -304,10 +299,10 @@ $ brew install questdb`}</CodeBlock>
           <Binary
             logo={
               <svg
-                width="41"
+                fill="none"
                 height="55"
                 viewBox="0 0 41 55"
-                fill="none"
+                width="41"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -346,11 +341,13 @@ $ brew install questdb`}</CodeBlock>
             }
             title="Maven"
           >
-            <CodeBlock className="language-xml">{`<dependency>
+            <CodeBlock className="language-xml">
+              {`<dependency>
   <groupId>org.questdb</groupId>
   <artifactId>questdb</artifactId>
   <version>${siteConfig.customFields.version}</version>
-</dependency>`}</CodeBlock>
+</dependency>`}
+            </CodeBlock>
           </Binary>
         </div>
 
@@ -368,8 +365,8 @@ $ brew install questdb`}</CodeBlock>
               either:
             </p>
             <span className={styles.instructions__bullet}>
-              The "rt" version, this includes a trimmed JVM so you do not need
-              anything else (~ {assets.linux.size})
+              The &quot;rt&quot; version, this includes a trimmed JVM so you do
+              not need anything else (~ {assets.linux.size})
             </span>
             <span className={styles.instructions__bullet}>
               The binary itself (~ {assets.noJre.size}), without the JVM. In

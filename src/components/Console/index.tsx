@@ -8,7 +8,7 @@ import consoleStyles from "./styles.module.css"
 
 const Console = () => {
   const context = useDocusaurusContext()
-  const { siteConfig = {} } = context
+  const { siteConfig } = context
 
   return (
     <section
@@ -67,13 +67,13 @@ const Console = () => {
                 className={consoleStyles.console__link}
                 href={siteConfig.customFields.githubUrl}
               >
-                Go to GitHub&nbsp;&nbsp;>
+                Go to GitHub&nbsp;&nbsp;&gt;
               </Link>
               <Link
                 className={consoleStyles.console__link}
                 href={siteConfig.customFields.slackUrl}
               >
-                Join Slack&nbsp;&nbsp;>
+                Join Slack&nbsp;&nbsp;&gt;
               </Link>
             </div>
           </div>
