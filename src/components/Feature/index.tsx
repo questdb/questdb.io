@@ -73,7 +73,7 @@ const Feature = () => (
           src="img/pages/index/featureRich.svg"
         />
 
-        <h2 className={featureStyles.feature__title}>SQL</h2>
+        <h2 className={featureStyles.feature__title}>Implemented with SQL</h2>
 
         <span className={featureStyles.feature__description}>
           Time series and relational joins

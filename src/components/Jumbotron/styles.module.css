@@ -36,9 +36,9 @@
 }
 
 .jumbotron__description {
+  padding-right: 2rem;
   color: var(--palette-pink);
   font-size: var(--font-size-large);
-  text-align: center;
 }
 
 .jumbotron__right {
@@ -57,7 +57,7 @@
 
 .jumbotron__docker {
   position: absolute;
-  bottom: 66px;
+  bottom: 95px;
   right: 16px;
   max-width: 568px;
   width: 100%;
@@ -93,6 +93,11 @@
 
   .jumbotron__subtitle {
     max-width: 500px;
+    text-align: center;
+  }
+
+  .jumbotron__description {
+    padding: 0;
     text-align: center;
   }
 

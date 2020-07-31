@@ -52,7 +52,7 @@ const Jumbotron = () => {
           </Button>
         </div>
         <div className={jumbotronStyles.jumbotron__description}>
-          Query a 1.6 billion rows dataset in our demo
+          Query our demo dataset with 1.6 billion rows in milliseconds
         </div>
       </div>
 
