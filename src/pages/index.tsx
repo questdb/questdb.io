@@ -11,6 +11,7 @@ import {
   HomeContextProvider,
   Jumbotron,
   QueryScroller,
+  SeenOn,
   Why,
 } from "../components"
 
@@ -19,7 +20,7 @@ const Home = () => {
   const { siteConfig } = context
 
   return (
-    <HomeContextProvider value>
+    <HomeContextProvider>
       <Layout
         description={siteConfig.tagline}
         title="QuestDB"
@@ -32,6 +33,7 @@ const Home = () => {
         <Why />
         <Cards />
         <Console />
+        <SeenOn />
       </Layout>
     </HomeContextProvider>
   )
