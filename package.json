@@ -45,9 +45,11 @@
     "fork-ts-checker-webpack-plugin": "5.0.12",
     "glob": "7.1.6",
     "graceful-fs": "4.2.4",
+    "husky": ">=4",
     "imagemin": "7.0.1",
     "imagemin-gifsicle": "7.0.0",
     "imagemin-svgo": "8.0.0",
+    "lint-staged": ">=10",
     "make-dir": "3.1.0",
     "node-fetch": "2.6.0",
     "prettier": "2.0.5",
@@ -65,5 +67,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "static/img/**/*": "scripts/check-size"
   }
 }
