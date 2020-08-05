@@ -170,7 +170,7 @@ Uncommitted rows are committed either:
 ### Configuration
 
 The TCP receiver configuration can be completely customised using
-[configuration keys](reference/server-configuration#influxdb-line-protocol-tcp).
+[configuration keys](reference/server-configuration.md#influxdb-line-protocol-tcp).
 You can use this to configure the tread pool, buffer and queue sizes, receiver
 IP address and port, load balancing etc.
 
