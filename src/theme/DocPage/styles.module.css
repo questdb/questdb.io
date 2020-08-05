@@ -4,7 +4,7 @@
 }
 
 :global(.docs-sidebar .menu__link::after) {
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 15 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L7.5 9L14 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("/img/docs/chevron.svg");
   background-size: 12px 12px;
   background-repeat: no-repeat;
 }
@@ -44,10 +44,14 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -17px;
+  left: -18px;
   width: 3px;
   content: " ";
   background: var(--palette-pink);
+}
+
+ul ul :global(.table-of-contents__link--active::before) {
+  left: -33px;
 }
 
 .doc {

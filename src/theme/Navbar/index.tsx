@@ -117,10 +117,10 @@ function Navbar(): JSX.Element {
           <Link className="navbar__brand" to={logoLink} {...logoLinkProps}>
             {logoImageUrl != null && (
               <img
+                alt={logoAlt}
                 className="navbar__logo"
                 key={`${isClient}`}
                 src={logoImageUrl}
-                alt={logoAlt}
               />
             )}
             {title != null && (
@@ -173,10 +173,10 @@ function Navbar(): JSX.Element {
           >
             {logoImageUrl != null && (
               <img
+                alt={logoAlt}
                 key={`${isClient}`}
                 className="navbar__logo"
                 src={logoImageUrl}
-                alt={logoAlt}
               />
             )}
             {title != null && (

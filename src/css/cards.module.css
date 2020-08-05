@@ -1,0 +1,33 @@
+.cards {
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards__title {
+  width: 100%;
+}
+
+.cards__footer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cards__wrapper {
+  min-width: 260px;
+  margin: 1.25rem;
+  padding: 1.5rem;
+  flex: 1 1 360px;
+  background: var(--palette-gray);
+  font-size: var(--font-size-normal);
+  border-radius: var(--ifm-global-border-radius);
+}
+
+.cards__header {
+  margin-bottom: 1rem;
+  font-size: var(--font-size-large);
+  font-weight: var(--ifm-font-weight-bold);
+}
+
+.cards__content {
+  margin: 0;
+}

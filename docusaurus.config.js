@@ -2,6 +2,8 @@ const visit = require("unist-util-visit")
 
 const customFields = {
   copyright: `Copyright © ${new Date().getFullYear()} QuestDB`,
+  description:
+    "QuestDB is an open source database designed to make time-series lightning fast and easy. It exposes a high-performance REST API, supports Postgres wire protocol and can be natively embedded in Java.",
   dockerUrl: "https://hub.docker.com/r/questdb/questdb",
   githubUrl: "https://github.com/questdb/questdb",
   slackUrl:
@@ -39,7 +41,7 @@ function variable() {
 module.exports = {
   title: "Time series data, faster",
   tagline: "QuestDB is the fastest open source time series database",
-  url: "https://v2.questdb.io",
+  url: "https://questdb.io",
   baseUrl: "/",
   favicon: "img/favicon.png",
   organizationName: "QuestDB",
@@ -48,6 +50,59 @@ module.exports = {
   plugins: [
     require.resolve("./plugins/fetch-release"),
     require.resolve("./plugins/lint"),
+    [
+      "@docusaurus/plugin-pwa",
+      {
+        pwaHead: [
+          {
+            tagName: "link",
+            rel: "icon",
+            href: "/img/favicon.png",
+          },
+          {
+            tagName: "link",
+            rel: "manifest",
+            href: "/manifest.webmanifest",
+          },
+          {
+            tagName: "meta",
+            name: "theme-color",
+            content: "#d14671",
+          },
+          {
+            tagName: "meta",
+            name: "apple-mobile-web-app-capable",
+            content: "yes",
+          },
+          {
+            tagName: "meta",
+            name: "apple-mobile-web-app-status-bar-style",
+            content: "#21222c",
+          },
+          {
+            tagName: "link",
+            rel: "apple-touch-icon",
+            href: "/img/docusaurus.png",
+          },
+          {
+            tagName: "link",
+            rel: "mask-icon",
+            href: "/img/favicon.png",
+            content: "#fff",
+          },
+          {
+            tagName: "meta",
+            name: "msapplication-TileImage",
+            content: "/img/favicon.png",
+          },
+          {
+            tagName: "meta",
+            name: "msapplication-TileColor",
+            content: "#21222c",
+          },
+        ],
+      },
+    ],
   ],
   themeConfig: {
     announcementBar: {
@@ -58,7 +113,7 @@ module.exports = {
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
-    image: "img/questdbOg.png",
+    image: "img/og.png",
     gtag: {
       trackingID: "GTM-PVR7M2G",
       anonymizeIP: true,
@@ -74,8 +129,8 @@ module.exports = {
     navbar: {
       title: " ",
       logo: {
-        alt: "QuestDB Logo",
-        src: "img/questdbLogo.svg",
+        alt: "QuestDB",
+        src: "img/navbar/questdb.svg",
       },
       items: [
         {
@@ -108,13 +163,14 @@ module.exports = {
           position: "left",
         },
         {
-          label: "Github",
+          label: "GitHub",
+          className: "navbar__item--github",
           href: customFields.githubUrl,
           position: "right",
         },
         {
           label: "Join Slack",
-          className: "join-slack",
+          className: "navbar__item--slack",
           href: customFields.slackUrl,
           position: "right",
         },
@@ -181,6 +237,11 @@ module.exports = {
             copyright: customFields.copyright,
           },
           showReadingTime: true,
+        },
+        sitemap: {
+          cacheTime: 600 * 1000, // 600 sec - cache purge period
+          changefreq: "daily",
+          priority: 0.7,
         },
         theme: {
           customCss: require.resolve("./src/css/global.css"),

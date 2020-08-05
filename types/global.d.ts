@@ -96,6 +96,7 @@ declare module "@docusaurus/useDocusaurusContext" {
     siteConfig: Omit<DocusaurusConfig, "customFields" | "themeConfig"> & {
       customFields: {
         copyright: string
+        description: string
         dockerUrl: string
         githubUrl: string
         slackUrl: string

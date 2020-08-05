@@ -99,7 +99,7 @@ Default option is `CACHE`.
   ![Flow chart showing the syntax of the CAPACITY keyword](/img/docs/diagrams/indexCapacityDef.svg)
 
 - `valueBlockSize` - index storage parameter. This value is optional and will
-  default to the value of [configuration key](reference/server-configuration.md)
+  default to the value of [configuration key](reference/configuration/server.md)
   `cairo.index.value.block.size`. `valueBlockSize` tells QuestDB how many row
   IDs to store in a single storage block on disk. Consider the following
   example. Your table has 200 unique stock symbols and 1,000,000,000 stock

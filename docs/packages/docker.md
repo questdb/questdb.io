@@ -34,12 +34,13 @@ docker run -p 9000:9000 -p 8812:8812 questdb/questdb:latest
 
 - `-p 9000:9000` for the REST API and the Web Console. The web console is
   available on [http://localhost:9000](http://localhost:9000)
-- `-p 8812:8812` for the PostgreSQL wire protocol
+- `-p 8812:8812` for the Postgres wire protocol
 - `-p 9009:9009` InfluxDB line protocol
 
 #### -v volumes
 
-The QuestDB [root_directory](reference/root-directory-structure.md) will be in
+The QuestDB
+[root_directory](reference/configuration/root-directory-structure.md) will be in
 the following location:
 
 import Tabs from "@theme/Tabs"

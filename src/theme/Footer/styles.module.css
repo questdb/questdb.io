@@ -53,6 +53,7 @@
   margin-bottom: 1.25rem;
   font-weight: var(--ifm-font-weight-bold);
   font-size: var(--font-size-large);
+  list-style: none;
 }
 
 .footer__link {
@@ -83,6 +84,7 @@
   display: flex;
   max-width: var(--ifm-container-width);
   width: 100%;
+  margin: 0;
   padding: 0 1rem;
 }
 

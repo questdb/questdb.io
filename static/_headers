@@ -1,0 +1,12 @@
+/*
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com 'sha256-VCQSWtLbqzzaaPxlW4gFrQN9lH+v6DKW4wBUqGfn5u4=' 'sha256-ATtoF2oBGf0wHxVVte8/6al1uii1Q2BFUqFp/aYKx9E='; img-src 'self' https://api.producthunt.com https://www.google-analytics.com https://avatars.githubusercontent.com https://stats.g.doubleclick.net; connect-src https://www.google-analytics.com; manifest-src 'self';
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+/
+  Content-Security-Policy: default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com 'sha256-VCQSWtLbqzzaaPxlW4gFrQN9lH+v6DKW4wBUqGfn5u4=' 'sha256-ATtoF2oBGf0wHxVVte8/6al1uii1Q2BFUqFp/aYKx9E='; img-src 'self' https://api.producthunt.com https://www.google-analytics.com https://avatars.githubusercontent.com https://stats.g.doubleclick.net; connect-src https://www.google-analytics.com; manifest-src 'self';
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

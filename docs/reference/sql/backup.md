@@ -16,8 +16,10 @@ Creates a backup for one, several, or all database tables.
 :::tip
 
 `BACKUP TABLE` requires a `backup directory` which is set using the
-[configuration key](reference/server-configuration.md) `cairo.sql.backup.root`
-in the [server.conf](reference/root-directory-structure.md#serverconf) file.
+[configuration key](reference/configuration/server.md) `cairo.sql.backup.root`
+in the
+[server.conf](reference/configuration/root-directory-structure.md#serverconf)
+file.
 
 :::
 
@@ -36,7 +38,7 @@ format is `yyyy-MM-dd`, for example `2020-04-20`.
 :::tip
 
 You can define a custom format using the `cairo.sql.backup.dir.datetime.format`
-[configuration key](reference/server-configuration.md) like the example below
+[configuration key](reference/configuration/server.md) like the example below
 
 :::
 
@@ -45,7 +47,7 @@ cairo.sql.backup.dir.datetime.format=yyyy-dd-MM
 ```
 
 The data and meta files will be written following the
-[db directory structure](reference/root-directory-structure.md#db)
+[db directory structure](reference/configuration/root-directory-structure.md#db)
 
 ```filestructure title="Directory structure (single backup)"
 'backup directory/'

@@ -4,6 +4,7 @@ author: David G Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
+description: Demo launch on HackerNews postmorterm
 tags: [questdb, hn, hackernews, postmorterm, demo]
 ---
 
@@ -204,7 +205,7 @@ Here are just a few of the comments we got in the thread:
 > Very cool and impressive!! Is full PostreSQL wire compatibility on the
 > roadmap? I like postgres compatibility :)
 
-(Yes, full PostgreSQL Wire Protocol is on the roadmap!)
+(Yes, full Postgres wire protocol is on the roadmap!)
 
 > Mind blowing, did not know about questDB. The back button seems broken on
 > chrome mobile

@@ -11,7 +11,7 @@ import MDXComponents from "@theme/MDXComponents"
 import NotFound from "@theme/NotFound"
 import { matchPath } from "@docusaurus/router"
 
-import { Head, HomeContextProvider } from "../../components"
+import { Head, MetadataContextProvider } from "../../components"
 import styles from "./styles.module.css"
 
 const DocPage = (props) => {
@@ -33,8 +33,12 @@ const DocPage = (props) => {
   }
 
   return (
-    <HomeContextProvider value={false}>
-      <Layout version={version} key={isClient}>
+    <MetadataContextProvider>
+      <Layout
+        description={siteConfig.customFields.description}
+        key={isClient}
+        version={version}
+      >
         <Head />
         <div className={styles.doc}>
           {sidebar && (
@@ -58,7 +62,7 @@ const DocPage = (props) => {
           </main>
         </div>
       </Layout>
-    </HomeContextProvider>
+    </MetadataContextProvider>
   )
 }
 

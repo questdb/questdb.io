@@ -20,7 +20,7 @@ const AnnouncementBar = () => {
 
   return (
     <div className={styles.announcement} role="banner">
-      <div className={styles.announcement__content}>
+      <p className={styles.announcement__content}>
         If you like QuestDB,&nbsp;
         <Link
           className={styles.announcement__link}
@@ -29,7 +29,7 @@ const AnnouncementBar = () => {
           give us a star on GitHub
         </Link>
         &nbsp;⭐
-      </div>
+      </p>
 
       <button
         aria-label="Close"

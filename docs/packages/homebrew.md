@@ -19,8 +19,9 @@ brew uninstall questdb
 
 ## Root directory
 
-By default, QuestDB's [root directory](reference/root-directory-structure.md)
-will be the following:
+By default, QuestDB's
+[root directory](reference/configuration/root-directory-structure.md) will be
+the following:
 
 ```shell
 /usr/local/var/questdb/

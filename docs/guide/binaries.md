@@ -73,7 +73,7 @@ questdb.exe start
 </Tabs>
 
 This will run QuestDB with the following
-[root directory](reference/root-directory-structure.md):
+[root directory](reference/configuration/root-directory-structure.md):
 
 <Tabs defaultValue="linux" values={[
   { label: "Linux", value: "linux" },

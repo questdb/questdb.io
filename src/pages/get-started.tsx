@@ -1,14 +1,175 @@
+import clsx from "clsx"
+import { differenceInDays, format, formatDistanceToNowStrict } from "date-fns"
 import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import { usePluginData } from "@docusaurus/useGlobalData"
-import React, { useEffect, useState } from "react"
+import React, { ReactNode, useEffect, useState } from "react"
 
 import Layout from "@theme/Layout"
 import CodeBlock from "@theme/CodeBlock"
 
 import { getAssets, getOs, Os, Release } from "../utils"
-import { Binary, GetStarted, Head, HomeContextProvider } from "../components"
-import styles from "./get-started.module.css"
+import { Button, Head, MetadataContextProvider } from "../components"
+import binaryStyles from "../css/binary.module.css"
+import instructionStyles from "../css/instruction.module.css"
+import sectionStyles from "../css/section.module.css"
+import getStartedStyles from "../css/getStarted.module.css"
+
+type BinaryProps = Readonly<{
+  architecture: boolean
+  basis: string
+  children?: ReactNode
+  href?: string
+  logo: ReactNode
+  rt: boolean
+  size?: string
+  title: string
+}>
+
+const Binary = ({
+  architecture,
+  basis,
+  children,
+  href,
+  logo,
+  rt,
+  size,
+  title,
+}: BinaryProps) => {
+  return (
+    <section className={clsx(binaryStyles.binary)}>
+      <div
+        className={binaryStyles.binary__expand}
+        style={{ flexBasis: basis }}
+      />
+
+      {logo}
+
+      <h3 className={binaryStyles.binary__title}>{title}</h3>
+
+      <p className={binaryStyles.binary__details}>
+        {architecture && (
+          <span
+            className={clsx("color--pink", binaryStyles.binary__architecture)}
+          >
+            64-bit
+          </span>
+        )}
+
+        <span className={binaryStyles.binary__size}>
+          {rt && " rt -"}
+          {size && ` ${size}`}
+        </span>
+      </p>
+
+      {href && (
+        <Button
+          className={binaryStyles.binary__download}
+          href={href}
+          variant="tertiary"
+        >
+          Download
+        </Button>
+      )}
+
+      {children}
+    </section>
+  )
+}
+
+Binary.defaultProps = {
+  architecture: false,
+  basis: "auto",
+  rt: false,
+}
+
+const GetStarted = () => {
+  const context = useDocusaurusContext()
+  const { release } = usePluginData<{ release: Release }>("fetch-release")
+  const [os, setOs] = useState<Os>()
+  const [releaseDate, setReleaseDate] = useState(
+    format(new Date(release.published_at), "MMMM M, yyyy"),
+  )
+  const { siteConfig } = context
+  const assets = getAssets(release)
+
+  useEffect(() => {
+    const isClient = typeof window !== "undefined"
+
+    if (!isClient) {
+      return
+    }
+
+    if (differenceInDays(new Date(), new Date(release.published_at)) < 31) {
+      setReleaseDate(
+        `${formatDistanceToNowStrict(new Date(release.published_at))} ago`,
+      )
+    }
+    setOs(getOs())
+  }, [release.published_at])
+
+  return (
+    <section
+      className={clsx(
+        sectionStyles["section--inner"],
+        getStartedStyles.getStarted,
+      )}
+    >
+      <div className={getStartedStyles.getStarted__top}>
+        <h1
+          className={clsx(
+            sectionStyles.section__title,
+            getStartedStyles.getStarted__title,
+          )}
+        >
+          Get started with QuestDB
+        </h1>
+        <p
+          className={clsx(
+            sectionStyles.section__subtitle,
+            getStartedStyles.getStarted__subtitle,
+          )}
+        >
+          You can find below download links for the latest version of QuestDB (
+          {siteConfig.customFields.version}).
+        </p>
+
+        <div className={getStartedStyles.getStarted__cta}>
+          <p
+            className={clsx(getStartedStyles.getStarted__details, {
+              [getStartedStyles["getStarted__details--download"]]:
+                os !== "macos",
+            })}
+          >
+            Latest Release:&nbsp;
+            <span className="color--pink">
+              {siteConfig.customFields.version}
+            </span>
+            &nbsp;({releaseDate})
+          </p>
+          {os && os !== "macos" && assets[os] && (
+            <Button href={assets[os].href}>{os}&nbsp;Download</Button>
+          )}
+        </div>
+
+        <div className={getStartedStyles.getStarted__links}>
+          <Link
+            className={getStartedStyles.getStarted__link}
+            href={release.html_url}
+          >
+            View the changelog
+          </Link>
+          <Link
+            className={getStartedStyles.getStarted__link}
+            href={`${siteConfig.customFields.githubUrl}/tags`}
+          >
+            View previous releases
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 const GetStartedPage = () => {
   const context = useDocusaurusContext()
@@ -25,7 +186,7 @@ const GetStartedPage = () => {
         logo={
           <svg
             fill="none"
-            height="45"
+            height="49"
             viewBox="0 0 45 45"
             width="45"
             xmlns="http://www.w3.org/2000/svg"
@@ -56,9 +217,9 @@ const GetStartedPage = () => {
         logo={
           <svg
             fill="none"
-            height="48"
+            height="49"
             viewBox="0 0 41 48"
-            width="41"
+            width="45"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -86,12 +247,13 @@ const GetStartedPage = () => {
     ),
     macos: (
       <Binary
+        basis="15px"
         logo={
           <svg
             fill="none"
             height="49"
             viewBox="0 0 41 49"
-            width="41"
+            width="45"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -108,8 +270,8 @@ const GetStartedPage = () => {
       >
         <div />
         <CodeBlock className="language-shell">
-          {`$ brew update
-$ brew install questdb`}
+          {`brew update
+brew install questdb`}
         </CodeBlock>
       </Binary>
     ),
@@ -120,9 +282,9 @@ $ brew install questdb`}
         logo={
           <svg
             fill="none"
-            height="44"
+            height="49"
             viewBox="0 0 44 44"
-            width="44"
+            width="45"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -149,16 +311,16 @@ $ brew install questdb`}
   }, [])
 
   return (
-    <HomeContextProvider>
+    <MetadataContextProvider>
       <Layout
-        description={siteConfig.tagline}
+        description={siteConfig.customFields.description}
         title="QuestDB"
         version={siteConfig.customFields.version}
       >
         <Head />
         <GetStarted />
 
-        <div className={styles.binaries}>
+        <div className={binaryStyles.binaries}>
           {os ? (
             <>
               {perOs[os]}
@@ -181,9 +343,9 @@ $ brew install questdb`}
             logo={
               <svg
                 fill="none"
-                height="51"
+                height="49"
                 viewBox="0 0 78 51"
-                width="78"
+                width="61"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <mask
@@ -272,12 +434,13 @@ $ brew install questdb`}
             title="Any (no JVM)"
           />
           <Binary
+            basis="40px"
             logo={
               <svg
                 fill="none"
-                height="48"
+                height="49"
                 viewBox="0 0 68 48"
-                width="68"
+                width="61"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -291,18 +454,18 @@ $ brew install questdb`}
             <CodeBlock className="language-shell">
               docker run -p 9000:9000 questdb/questdb
             </CodeBlock>
-            <div className={styles.binaries__docker}>
+            <p className={instructionStyles.binaries__docker}>
               Documentation on&nbsp;
               <Link href={siteConfig.customFields.dockerUrl}>Docker Hub</Link>
-            </div>
+            </p>
           </Binary>
           <Binary
             logo={
               <svg
                 fill="none"
-                height="55"
+                height="49"
                 viewBox="0 0 41 55"
-                width="41"
+                width="45"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -351,27 +514,29 @@ $ brew install questdb`}
           </Binary>
         </div>
 
-        <div className={styles.instructions}>
+        <div className={instructionStyles.instructions}>
           <img
-            alt="Illustration"
-            className={styles.instructions__illustration}
+            alt="SQL statement in a code editor with an artistic view of the query result shown as a chart and a table"
+            className={instructionStyles.instructions__illustration}
             src="img/pages/getStarted/query.svg"
           />
 
-          <div className={styles.instructions__text}>
-            <h4 className={styles.instructions__title}>How does it work</h4>
+          <div className={instructionStyles.instructions__text}>
+            <h2 className={instructionStyles.instructions__title}>
+              How does it wok
+            </h2>
             <p>
               QuestDB is distributed as a single binary. You can download
               either:
             </p>
-            <span className={styles.instructions__bullet}>
+            <p className={instructionStyles.instructions__bullet}>
               The &quot;rt&quot; version, this includes a trimmed JVM so you do
               not need anything else (~ {assets.linux.size})
-            </span>
-            <span className={styles.instructions__bullet}>
+            </p>
+            <p className={instructionStyles.instructions__bullet}>
               The binary itself (~ {assets.noJre.size}), without the JVM. In
               this case, you need Java 11+ installed locally
-            </span>
+            </p>
             <p>
               To find out more about how to use the binaries, please check
               the&nbsp;
@@ -387,7 +552,7 @@ $ brew install questdb`}
           </div>
         </div>
       </Layout>
-    </HomeContextProvider>
+    </MetadataContextProvider>
   )
 }
 

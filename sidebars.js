@@ -84,9 +84,8 @@ module.exports = {
           type: "category",
           label: "Configuration",
           items: [
-            "reference/root-directory-structure",
-            "reference/server-configuration",
-            "reference/web-console",
+            "reference/configuration/root-directory-structure",
+            "reference/configuration/server",
           ],
         },
         {
@@ -135,6 +134,10 @@ module.exports = {
             "reference/sql/union",
             "reference/sql/where",
           ],
+        },
+        {
+          id: "reference/web-console",
+          type: "doc",
         },
       ],
     },

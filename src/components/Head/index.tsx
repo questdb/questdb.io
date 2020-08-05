@@ -1,17 +1,69 @@
 import ReactHelmetHead from "@docusaurus/Head"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
-const Head = () => (
-  <ReactHelmetHead>
-    <link href="https://www.googletagmanager.com" rel="preconnect" />
-    <link href="https://www.googletagmanager.com" rel="dns-prefetch" />
+const Head = () => {
+  const context = useDocusaurusContext()
+  const { siteConfig } = context
 
-    <link href="https://www.google-analytics.com" rel="preconnect" />
-    <link href="https://www.google-analytics.com" rel="dns-prefetch" />
+  return (
+    <ReactHelmetHead>
+      <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:creator" content="@questdb" />
+      <meta name="twitter:title" content={siteConfig.title} />
+      <meta
+        name="twitter:description"
+        content={siteConfig.customFields.description}
+      />
 
-    <link href="https://ajax.googleapis.com" rel="preconnect" />
-    <link href="https://ajax.googleapis.com" rel="dns-prefetch" />
-  </ReactHelmetHead>
-)
+      <link href="https://www.googletagmanager.com" rel="dns-prefetch" />
+      <link href="https://www.google-analytics.com" rel="dns-prefetch" />
+
+      <link
+        rel="apple-touch-icon"
+        sizes="48x48"
+        href="/img/icons/icon-48x48.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="72x72"
+        href="/img/icons/icon-72x72.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="96x96"
+        href="/img/icons/icon-96x96.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="144x144"
+        href="/img/icons/icon-144x144.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="192x192"
+        href="/img/icons/icon-192x192.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="256x256"
+        href="/img/icons/icon-256x256.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="384x384"
+        href="/img/icons/icon-384x384.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="512x512"
+        href="/img/icons/icon-512x512.png"
+      />
+
+      <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    </ReactHelmetHead>
+  )
+}
 
 export default Head

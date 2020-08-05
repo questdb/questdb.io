@@ -26,11 +26,12 @@ import TabItem from "@theme/TabItem"
 ```shell
 ./questdb.sh [start|stop|status] [-d dir] [-f] [-t tag]
 ```
-| Option              | Description                                                                                                                                                                   |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [start](#start)     | Starts QuestDB service.                                                                                                                      |
-| [stop](#stop)       | Stops QuestDB service                                                                                                                                                         |
-| [status](#status)   | Shows service status. This command is useful for troubleshooting problems with the service. It prints `RUNNING` or `INACTIVE` if the service is started or stopped respectively |
+
+| Option            | Description                                                                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [start](#start)   | Starts QuestDB service.                                                                                                                                                         |
+| [stop](#stop)     | Stops QuestDB service                                                                                                                                                           |
+| [status](#status) | Shows service status. This command is useful for troubleshooting problems with the service. It prints `RUNNING` or `INACTIVE` if the service is started or stopped respectively |
 
 </TabItem>
 
@@ -48,10 +49,10 @@ questdb.exe [start|stop|status|install|remove] \
 | [status](#status)   | Shows service status. This command is useful for troubleshooting problems with the service. It prints `RUNNING` or `INACTIVE` if the service is start or stopped respectively |
 | [install](#install) | Install the Windows service                                                                                                                                                   |
 | [remove](#remove)   | Remove the Windows service                                                                                                                                                    |
+
 </TabItem>
 
 </Tabs>
-
 
 ### Start
 
@@ -89,8 +90,9 @@ close the session. You will need to actively [stop it](#stop).
 
 #### Default directories
 
-By default, QuestDB [root directory](reference/root-directory-structure.md) will
-be the following:
+By default, QuestDB
+[root directory](reference/configuration/root-directory-structure.md) will be
+the following:
 
 <Tabs defaultValue="linux" values={[
   { label: "Linux", value: "linux" },

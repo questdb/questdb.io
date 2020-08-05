@@ -27,7 +27,7 @@ This parameter will publish a port to the host, you can specify:
 
 - `-p 9000:9000` for the REST API and the Web Console. The web console is
   available on [http://localhost:9000](http://localhost:9000)
-- `-p 8812:8812` for the PostgreSQL wire protocol
+- `-p 8812:8812` for the Postgres wire protocol
 - `-p 9009:9009` InfluxDB line protocol
 
 ## Container status

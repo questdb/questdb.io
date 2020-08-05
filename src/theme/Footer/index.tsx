@@ -4,8 +4,8 @@ import useBaseUrl from "@docusaurus/useBaseUrl"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
-import { Button, useHomeContext } from "../../components"
-import sectionStyles from "../../components/Section/styles.module.css"
+import { Button, useMetadataContext } from "../../components"
+import sectionStyles from "../../css/section.module.css"
 import footerStyles from "./styles.module.css"
 
 type Props = Readonly<{
@@ -37,7 +37,7 @@ const FooterLink = ({ to, href, label, ...props }: Props) => {
 
 const Footer = () => {
   const context = useDocusaurusContext()
-  const homeContext = useHomeContext()
+  const metadataContext = useMetadataContext()
   const { siteConfig } = context
   const { themeConfig } = siteConfig
   const { footer } = themeConfig
@@ -46,7 +46,7 @@ const Footer = () => {
   return (
     <footer
       className={clsx(footerStyles.footer, sectionStyles.section, {
-        [footerStyles["footer--alt"]]: homeContext === true,
+        [footerStyles["footer--alt"]]: metadataContext.altFooter === true,
       })}
     >
       <div
@@ -62,22 +62,22 @@ const Footer = () => {
           )}
         >
           <img
-            alt="QuestDB Logo"
+            alt="QuestDB logo"
             className={footerStyles.footer__logo}
-            src="/img/questdbLogoMono.svg"
+            src="/img/footer/questdb.svg"
+            title="QuestDB - Fastest open source database for time series and analytics"
           />
-          <div className={footerStyles.footer__tagline}>
-            {siteConfig.tagline}
-          </div>
+          <p className={footerStyles.footer__tagline}>{siteConfig.tagline}</p>
 
           <Button
             className={footerStyles.footer__github}
             href={siteConfig.customFields.githubUrl}
             icon={
               <img
-                alt="GitHub icon"
+                alt="GitHub logo"
                 height="22"
-                src="/img/githubIcon.svg"
+                src="/img/github.svg"
+                title="GitHub"
                 width="22"
               />
             }
@@ -97,15 +97,15 @@ const Footer = () => {
         >
           {links.map((linkItem, i) => (
             <div key={i} className={footerStyles.footer__links}>
-              {linkItem.title && (
-                <div className={footerStyles.footer__title}>
-                  {linkItem.title}
-                </div>
-              )}
+              <ul className={footerStyles.footer__items}>
+                {linkItem.title && (
+                  <li className={footerStyles.footer__title}>
+                    {linkItem.title}
+                  </li>
+                )}
 
-              {linkItem.items && (
-                <ul className={footerStyles.footer__items}>
-                  {linkItem.items.map((item) => (
+                {linkItem.items &&
+                  linkItem.items.map((item) => (
                     <li
                       className={footerStyles.footer__item}
                       key={item.href || item.to}
@@ -113,14 +113,13 @@ const Footer = () => {
                       <FooterLink {...item} />
                     </li>
                   ))}
-                </ul>
-              )}
+              </ul>
             </div>
           ))}
         </div>
       </div>
       <div className={footerStyles.footer__bottom}>
-        <div
+        <p
           className={footerStyles.footer__copyright}
           // Developer provided the HTML, so assume it's safe.
           // eslint-disable-next-line react/no-danger
