@@ -5,6 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/davids
 author_image_url: https://avatars.githubusercontent.com/davidgs
 tags: [questdb, projects, swag]
+image: /img/blog/2020-07-24/banner.jpg
 ---
 
 <div
