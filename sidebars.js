@@ -86,6 +86,7 @@ module.exports = {
           items: [
             "reference/configuration/root-directory-structure",
             "reference/configuration/server",
+            "reference/configuration/telemetry",
           ],
         },
         {
