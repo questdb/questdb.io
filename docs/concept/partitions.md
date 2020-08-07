@@ -7,7 +7,11 @@ description: Overview of QuestDB's partition system for time-series.
 QuestDB offers the option to partition tables by intervals of time. Data for
 each interval is stored in separate sets of files.
 
-![Diagram of data column files and how they are partitioned to form a table](/img/docs/concepts/partitionModel.svg)
+<img
+  alt="Diagram of data column files and how they are partitioned to form a table"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/concepts/partitionModel.svg"
+/>
 
 ## Properties
 

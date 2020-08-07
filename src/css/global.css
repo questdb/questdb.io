@@ -243,6 +243,9 @@ main article header h2 a {
 
 .screenshot--docs {
   display: block;
-  max-width: 500px;
   margin: 4rem auto;
+}
+
+.screenshot--small {
+  max-width: 500px;
 }

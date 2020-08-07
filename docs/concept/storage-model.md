@@ -19,7 +19,11 @@ mapped.
 
 **This method ensures minimum resource churn and consistent append latency.**
 
-![Architecture of the file storing a column](/img/docs/concepts/columnRead.svg)
+<img
+  alt="Architecture of the file storing a column"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/concepts/columnRead.svg"
+/>
 
 ## Read model
 
@@ -28,7 +32,11 @@ read by translating the record number into a file offset by a simple bit shift.
 The offset in the column file is then translated into an offset in a lazily
 mapped memory page, where the required value is read from.
 
-![Diagram showing how the data from a column file is mapped to the memory](/img/docs/concepts/columnUpdate.svg)
+<img
+  alt="Diagram showing how the data from a column file is mapped to the memory"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/concepts/columnUpdate.svg"
+/>
 
 ## ACID properties
 
@@ -54,7 +62,11 @@ user-defined constraints, checks and triggers.
 Data **durability** can be configured with `commit()` optionally being able to
 invoke msync() with a choice of synchronous or asynchronous IO.
 
-![Diagram of a commit accross several column files](/img/docs/concepts/commitModel.svg)
+<img
+  alt="Diagram of a commit across several column files"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/concepts/commitModel.svg"
+/>
 
 ## Summary
 
@@ -64,4 +76,10 @@ Data committed by one process can be instantaneously read by another process
 either randomly (via queries) or incrementally (as data queue). QuestDB provides
 a variety of reader implementations.
 
-![Architecture of the storage model with column files, readers/writers and the mapped memory](/img/docs/concepts/storageSummarized.svg)
+<img
+  alt="Architecture of the storage model with column files, readers/writers and the mapped memory"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/concepts/storageSummarized.svg"
+/>
+
+<span />

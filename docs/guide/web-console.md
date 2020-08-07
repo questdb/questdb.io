@@ -11,7 +11,7 @@ will show you how to use it.
 
 <img
   alt="Screenshot of the Web Console"
-  className="screenshot--shadow screenshot--docs"
+  className="screenshot--shadow screenshot--docs screenshot--small"
   src="/img/docs/console/overview.png"
 />
 
@@ -35,7 +35,7 @@ If you are running QuestDB from Docker, make sure you publish the port `9000`
 
 <img
   alt="Preview of the different sections in the Web Console"
-  className="screenshot--shadow screenshot--docs"
+  className="screenshot--shadow screenshot--docs screenshot--small"
   src="/img/docs/console/layout.png"
 />
 
@@ -140,7 +140,7 @@ icon on the left-side navigation menu:
 
 <img
   alt="Screenshot of the Web Console showing the location of the Import tab"
-  className="screenshot--shadow screenshot--docs"
+  className="screenshot--shadow screenshot--docs screenshot--small"
   src="/img/docs/console/importTab.png"
 />
 
