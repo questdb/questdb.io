@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="883" height="97">
+    <defs>
+        <style type="text/css">
+            @namespace "http://www.w3.org/2000/svg";
+            .line                 {fill: none; stroke: #636273;}
+            .bold-line            {stroke: #636273; shape-rendering: crispEdges; stroke-width: 2; }
+            .thin-line            {stroke: #636273; shape-rendering: crispEdges}
+            .filled               {fill: #636273; stroke: none;}
+            text.terminal         {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+            font-size: 12px;
+            fill: #ffffff;
+            font-weight: bold;
+            }
+            text.nonterminal      {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+            font-size: 12px;
+            fill: #e289a4;
+            font-weight: normal;
+            }
+            text.regexp           {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+            font-size: 12px;
+            fill: #00141F;
+            font-weight: normal;
+            }
+            rect, circle, polygon {fill: none; stroke: none;}
+            rect.terminal         {fill: none; stroke: #be2f5b;}
+            rect.nonterminal      {fill: rgba(255,255,255,0.1); stroke: none;}
+            rect.text             {fill: none; stroke: none;}
+            polygon.regexp        {fill: #C7ECFF; stroke: #038cbc;}
+        </style>
+    </defs>
+    <polygon points="9 61 1 57 1 65"/>
+    <polygon points="17 61 9 57 9 65"/>
+    <rect x="31" y="47" width="70" height="32" rx="10"/>
+    <rect x="29" y="45" width="70" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="39" y="65">SELECT</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#column" xlink:title="column">
+    <rect x="141" y="47" width="64" height="32"/>
+    <rect x="139" y="45" width="64" height="32" class="nonterminal"/>
+    <text class="nonterminal" x="149" y="65">column</text></a><rect x="141" y="3" width="24" height="32" rx="10"/>
+    <rect x="139" y="1" width="24" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="149" y="21">,</text>
+    <rect x="245" y="47" width="28" height="32" rx="10"/>
+    <rect x="243" y="45" width="28" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="253" y="65"> ,</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#aggregation" xlink:title="aggregation">
+    <rect x="313" y="47" width="96" height="32"/>
+    <rect x="311" y="45" width="96" height="32" class="nonterminal"/>
+    <text class="nonterminal" x="321" y="65">aggregation</text></a><rect x="313" y="3" width="24" height="32" rx="10"/>
+    <rect x="311" y="1" width="24" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="321" y="21">,</text>
+    <rect x="449" y="47" width="60" height="32" rx="10"/>
+    <rect x="447" y="45" width="60" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="457" y="65">FROM</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#table" xlink:title="table">
+    <rect x="529" y="47" width="52" height="32"/>
+    <rect x="527" y="45" width="52" height="32" class="nonterminal"/>
+    <text class="nonterminal" x="537" y="65">table</text></a><rect x="621" y="47" width="90" height="32" rx="10"/>
+    <rect x="619" y="45" width="90" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="629" y="65">GROUP BY</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#column" xlink:title="column">
+    <rect x="751" y="47" width="64" height="32"/>
+    <rect x="749" y="45" width="64" height="32" class="nonterminal"/>
+    <text class="nonterminal" x="759" y="65">column</text></a><rect x="751" y="3" width="24" height="32" rx="10"/>
+    <rect x="749" y="1" width="24" height="32" class="terminal" rx="10"/>
+    <text class="terminal" x="759" y="21">,</text>
+    <path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 61 h2 m0 0 h10 m70 0 h10 m20 0 h10 m64 0 h10 m-104 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m84 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-84 0 h10 m24 0 h10 m0 0 h40 m20 44 h10 m28 0 h10 m20 0 h10 m96 0 h10 m-136 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m116 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-116 0 h10 m24 0 h10 m0 0 h72 m20 44 h10 m60 0 h10 m0 0 h10 m52 0 h10 m20 0 h10 m90 0 h10 m20 0 h10 m64 0 h10 m-104 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m84 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-84 0 h10 m24 0 h10 m0 0 h40 m-234 44 h20 m234 0 h20 m-274 0 q10 0 10 10 m254 0 q0 -10 10 -10 m-264 10 v14 m254 0 v-14 m-254 14 q0 10 10 10 m234 0 q10 0 10 -10 m-244 10 h10 m0 0 h224 m23 -34 h-3"/>
+    <polygon points="873 61 881 57 881 65"/>
+    <polygon points="873 61 865 57 865 65"/></svg>

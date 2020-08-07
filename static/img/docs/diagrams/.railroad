@@ -115,7 +115,8 @@ InfluxLineProtocolOverTCP
 InfluxLineProtocolOverTCPLoadRebalance
   ::= Launch_Load_Balancing_Job  ('IF' load_ratio '>' 'max.load.ratio' Rebalance_Load)? ( 'IF' (updates_since_last_rebalance '<' 'n.updates.per.load.balance' | time_since_last_rebalance '<' 'maintenance.job.hysteresis.in.ms') Launch_Load_Balancing_Job ('IF' load_ratio '>' 'max.load.ratio' Rebalance_Load)?  )*
 
-
+groupBy
+  ::= 'SELECT' ((column ( ',' column )* ) ' ,' ( aggregation ( ',' aggregation )* )) 'FROM' table ('GROUP BY' (column ( ',' column )* ))?
 
 
 

@@ -120,6 +120,7 @@ module.exports = {
             "reference/sql/distinct",
             "reference/sql/fill",
             "reference/sql/drop",
+            "reference/sql/group-by",
             "reference/sql/insert",
             "reference/sql/join",
             "reference/sql/latest-by",
