@@ -1,11 +1,19 @@
 .getStarted {
   --ifm-link-hover-color: var(--palette-pink);
+  --ifm-link-color: var(--palette-pink);
   padding-top: 4rem;
   padding-bottom: 6.5rem;
 }
 
 .getStarted__title {
   font-size: var(--font-size-xxxlarge);
+}
+
+.getStarted__console {
+  display: flex;
+  width: 500px;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .getStarted__subtitle {
@@ -62,6 +70,13 @@
   .getStarted__title {
     font-size: var(--font-size-xlarge);
     text-align: center;
+  }
+
+  .getStarted__console {
+    width: 440px;
+    max-width: 88%;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .getStarted__subtitle {

@@ -5,14 +5,31 @@ description: Web console reference documentation.
 ---
 
 This is a reference for the Console. If you want to learn how to use it, we
-suggest you follow the [Quickstart Guide](guide/web-console.md).
+suggest you follow the [Guide](guide/web-console.md).
 
-:::info
+## SQL Editor
 
-We are currently updating the Web Console so part of this page is out of date.
-This page will be updated with the next release.
+### Shortcuts
 
-:::
+| Command       | Action                                                                      |
+| ------------- | --------------------------------------------------------------------------- |
+| Run query     | `f9` or `ctrl/cmd + enter`                                                  |
+| Locate cursor | `f2`, use this to focus the SQL editor on your cursor in order to locate it |
+
+### Behaviour
+
+As you can write numerous SQL commands separated by semicolon, the Web Console
+uses the following logic to decide what command to execute:
+
+- Check if you highlighted a query or part of it, if yes then it will be
+  executed, otherwise:
+- Verify if the cursor is within a SQL statement, if yes, the wrapping statement
+  will be executed, otherwise:
+- Find out if the cursor is on the same line as a SQL statement and after the
+  semicolon, if yes, this statement will be executed, finally:
+- If the cursor is on a line that does not contain a SQL statement, the next
+  encountered statement will be executed. If there is no statement following the
+  cursor, the previous statement will be used.
 
 ## Import
 
@@ -33,12 +50,12 @@ Description of the fields in the import details table
 
 Description of the import statuses
 
-| Status               | Description                                                                                                                                                                                   |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `importing`          | data is being imported                                                                                                                                                                        |
-| `failed`             | import failed, nothing was imported                                                                                                                                                           |
-| `imported in [time]` | import is finished. The completion time will be displayed next to the status                                                                                                                  |
-| `exists`             | you are trying to import a file that already exists. To import it anyways, you can either **append** or **override**. See [importing again](#custom-import) for a more exhaustive description |
+| Status               | Description                                                                                                                                                                                      |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `importing`          | Data is currently being imported                                                                                                                                                                 |
+| `failed`             | Import failed, nothing was imported                                                                                                                                                              |
+| `imported in [time]` | Import is finished. The completion time will be displayed next to the status                                                                                                                     |
+| `exists`             | You are trying to import a file that already exists. To import it regardless, you can either **append** or **override**. See [importing again](#custom-import) for a more exhaustive description |
 
 ### Amending the schema
 
@@ -49,7 +66,12 @@ column using the following steps:
   displayed.
 - Find and click on the column which type you want to change.
 - You will then need to [re-trigger the import](#custom-import).
-  ![Change the schema in the Web Console when importing data](/img/docs/console/amendType.jpg)
+
+<img
+  alt=" Change the schema in the Web Console when importing data"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/console/amendType.jpg"
+/>
 
 ### Custom import
 
@@ -63,44 +85,6 @@ to import the data again.
 | `LEV`  | Skip lines with extra values | Skips rows that contains dangling values that don't fit the schema |
 | `H`    | Header row                   | Flag whether the first row should be considered header             |
 
-**To start the import, click the following button:**
+To start the import, click the following button:
 
 ![Upload button from the Web Console](/img/docs/console/uploadButton.png)
-
-## SQL Editor
-
-### Shortcuts
-
-| Shortcut        | Action                                                                      |
-| --------------- | --------------------------------------------------------------------------- |
-| `Run Query`     | `F9` or `CTRL` + `Enter` or `CMD` + `Enter` (macOS)                         |
-| `Locate cursor` | `F2`. Use this to focus the SQL editor on your cursor in order to locate it |
-
-### Behaviour
-
-As you can write numerous SQL commands separated by semicolon, the Web Console
-uses the following logic to decide what command to execute.
-
-- If you have highlighted a command or part of it, this will be executed.
-- If your cursor is within a SQL statement, this statement will be executed.
-- If your cursor is on the same line as an SQL statement and after the
-  semicolon, this statement will be executed.
-- If your cursor is on a line that contains no SQL statement, the next
-  encountered statement will be executed. If there is no statement following the
-  cursor, then the previous statement will be executed.
-
-### Examples
-
-- Command highlighted. Note neither the `CREATE TABLE` statement nor the `x*x`
-  column have been executed and evaluated.
-
-![Code editor in the Web Console with part of the code highlighted](/img/docs/console/sqlHighlight.png)
-
-- Cursor within a SQL statement
-  ![Code editor in the Web Console where the cursor is positioned in the SQL statement in order to run the surrounding expression](/img/docs/console/cursorInSql.png)
-
-- Cursor outside of a statement but on the same line
-  ![Code editor in the Web Console where the cursor is positioned at the end of the SQL statement in order to run the surrounding expression](/img/docs/console/cursorOutsideSameLine.png)
-
-- Cursor on another line
-  ![Code editor in the Web Console with the cursor positioned on a new empty line](/img/docs/console/cursorOutsideDifferentLine.png)

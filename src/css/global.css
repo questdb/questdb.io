@@ -178,6 +178,12 @@ main article header h2 a {
   display: none !important;
 }
 
+@media (max-width: 996px) {
+  .main-wrapper {
+    margin-top: 2rem;
+  }
+}
+
 /**
  *
  * Custom global styles
@@ -229,4 +235,14 @@ main article header h2 a {
 
 .color--pink {
   color: var(--palette-pink);
+}
+
+.screenshot--shadow {
+  box-shadow: 0 15px 61px 5px rgba(20, 23, 37, 0.94);
+}
+
+.screenshot--docs {
+  display: block;
+  max-width: 500px;
+  margin: 4rem auto;
 }

@@ -2,87 +2,85 @@
 title: How to use the Web Console
 sidebar_label: Web Console
 description: A tutorial on how to use QuestDB's web console.
+image: /img/docs/console/overview.png
 ---
 
-The web-console allows you to quickly interact with your data. In this guide, we
-will show you how to import data.
+The Web Console allows you to interact with QuestDB. It provides you with tools
+to query data and visualize it in a table or using graphs. In this guide, we
+will show you how to use it.
 
-![Overview of the Web Console](/img/docs/console/overview.png)
+<img
+  alt="Screenshot of the Web Console"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/console/overview.png"
+/>
 
 :::note
 
-This guide assumes you have QuestDB running with port `9000` accessible. You can
-get QuestDB running by following our quick start guides for
-[Docker](guide/docker.md), [Homebrew](guide/homebrew.md), and how to use
-QuestDB's [binaries](packages/binaries.md).
+This assumes you have QuestDB running with port `9000` accessible. You can get
+QuestDB running by following our guides for [Docker](guide/docker.md),
+[Homebrew](guide/homebrew.md) or with the [binaries](guide/binaries.md).
 
 :::
 
 ## Accessing the Web Console
 
 The Web Console will be available at `http://[server-address]:9000`. When
-running locally, the console is available at
-[http://localhost:9000](http://localhost:9000).
+running locally, this will be [localhost:9000](http://localhost:9000).
 
-If you are running QuestDB from Docker, make sure you expose the port `9000`.
+If you are running QuestDB from Docker, make sure you publish the port `9000`
+(`-p 9000:9000`).
 
-## SQL editor
+## Layout
 
-By default, the Web Console opens on the SQL editor.
+<img
+  alt="Preview of the different sections in the Web Console"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/console/layout.png"
+/>
 
-### Layout
+## Code editor
 
-![Preview of the different sections in the Web Console](/img/docs/console/sections.gif)
-
-### Using the editor
-
-You can run queries directly in the editor. Let's create a simple table using
-the [row generation](reference/function/row-generator.md) and
-[random generator](reference/function/random-value-generator.md) functions.
-
-:::tip
-
-You can also insert data using the Import screen.
-
-:::
+By default, the Web Console opens on the code editor.
 
 ### Create a table
 
-Type the following SQL into the editor then click the `RUN` button.
+Re-use the following SQL statement in the editor and then press the `Run`
+button:
 
-```questdb-sql title="Create table"
+```questdb-sql
 CREATE TABLE temp(
     ts timestamp,
     location symbol,
-    tempC double)
-timestamp(ts);
+    tempC double
+) timestamp(ts);
 ```
 
-The editor will perform the query and perform feedback (success/failure,
-execution time).
+The editor will send the query to QuestDB and provide feedback as soon as the
+result is ready. The status (success/failure) as well as query timings (when
+relevant) will be shown in a toast notification.
 
 :::tip
 
-You can also use : `F9` or `CTRL` + `Enter` / `CMD` + `Enter` instead of
-clicking the `RUN` button
+To execute the query, you can also use the keyboard shortcuts `f9` or
+`ctrl/cmd + enter`
 
 :::
 
 ### Execution behaviour
 
-As you have noticed, you can insert multiple statements into the editor.
-However, only one will be run at a time. It uses the cursor position to
-determine which statement to run. To run a particular statement, click within
-this statement or highlight it.
+You can insert/type multiple statements in the code editor. When you press "Run"
+(or use a shorcut), only one statement will be executed at a time. The Console
+uses the cursor position to determine which statement to run. To run a
+particular statement, click within this statement or highlight it.
 
 ### Insert data
 
-We can now insert data. Let's insert some random temperatures from 4 different
-places chosen at random in a list to simulate 4 sensors sending data. Note we
-have to cast the row generator cursor to `int` as it is of default type `long`
-but `dateadd()` requires an `int`.
+Let's insert random temperatures of 4 different places from a list. This will
+simulate 4 sensors sending data. Note we have to cast the row generator cursor
+to `int` as it is of type `long` while `dateadd()` requires an `int`:
 
-```questdb-sql title="Insert"
+```questdb-sql
 INSERT INTO temp
     SELECT
         dateadd('s', 30 * cast(x AS INT), systimestamp()) ts,
@@ -93,28 +91,28 @@ INSERT INTO temp
 
 ### Query data
 
-Let's now run a query. Copy/paste the following into the editor.
+Let's now run a query. You can copy annd paste the following into the editor:
 
-```questdb-sql title="Query"
+```questdb-sql
 SELECT ts, avg(tempC)
-FROM temp
-WHERE location = 'kitchen'
-SAMPLE BY 7d;
+    FROM temp
+    WHERE location = 'kitchen'
+    SAMPLE BY 7d;
 ```
 
 :::tip
 
-You can use the mouse selection to run subsets of a query. If part of a
-statement is selected, the selected part will be executed. You can try by
-highlighting `SELECT ts, avg(tempC) FROM temp` in the above query and running
-it.
+You can use the mouse selection to run a subset of a query.
+
+For example, you can highlight `SELECT ts, avg(tempC) FROM temp` in the above
+query and try to run it.
 
 :::
 
 ### Building queries with the table explorer
 
 Now that you have created a table, it will appear in the table explorer on the
-left-hand side. You can use this tool to explore your tables, their columns, and
+left-hand side. You can use this tool to explore your tables, columns, and
 respective types.
 
 :::tip
@@ -128,34 +126,37 @@ name.
 
 You can run the above query again and now click on the `Chart` button. This will
 display the chart editor. You can then choose chart type, for example `line` and
-click `draw`. This will draw a chart for the series.
+press `Draw`.
 
 ### Downloading results
 
-You can download your query results by clicking the `CSV` button. This file will
+You can download the query result by clicking the `CSV` button. This file will
 be useful to test the import functionality below.
 
-## Import screen
+## Import tab
 
-Let's now take a look at the import screen. It can be accessed by clicking this
-icon on the left-side navigation menu.
+Let's now take a look at the import tab. It can be accessed by clicking this
+icon on the left-side navigation menu:
 
-![Upload button from the Web Console](/img/docs/console/uploadButton.png)
+<img
+  alt="Screenshot of the Web Console showing the location of the Import tab"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/console/importTab.png"
+/>
 
 ### Loading data
 
-The Import screen allows you to instantly load data. QuestDB will automatically
-recognise the schema by analysing a sample of the data.
+QuestDB will automatically recognize the schema by analyzing a sample of the
+data you upload.
 
-Locate the file you just downloaded in the previous step, and import it using
-either of the following methods:
+Locate the file you just downloaded in the previous step, and import it:
 
 - Drag and drop a `csv` or `txt` file into the import screen
 - Use the browse file function
 
 :::tip
 
-Alternatively, you can open the file in excel, copy the data, and paste it in
+Alternatively, you can open the file in Excel, copy the data, and paste it in
 the import window.
 
 :::

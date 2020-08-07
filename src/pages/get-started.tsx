@@ -8,8 +8,14 @@ import React, { ReactNode, useEffect, useState } from "react"
 import Layout from "@theme/Layout"
 import CodeBlock from "@theme/CodeBlock"
 
+import Console from "../../static/img/pages/getStarted/console.png"
 import { getAssets, getOs, Os, Release } from "../utils"
-import { Button, Head, MetadataContextProvider } from "../components"
+import {
+  Button,
+  Head,
+  IdealImage,
+  MetadataContextProvider,
+} from "../components"
 import binaryStyles from "../css/binary.module.css"
 import instructionStyles from "../css/instruction.module.css"
 import sectionStyles from "../css/section.module.css"
@@ -124,15 +130,30 @@ const GetStarted = () => {
         >
           Get started with QuestDB
         </h1>
+
         <p
           className={clsx(
             sectionStyles.section__subtitle,
             getStartedStyles.getStarted__subtitle,
+            "text--center",
           )}
         >
           You can find below download links for the latest version of QuestDB (
-          {siteConfig.customFields.version}).
+          {siteConfig.customFields.version}). Once your download is finished,
+          run QuestDB and use the&nbsp;
+          <Link to="docs/guide/web-console">Web Console guide</Link> to get
+          started.
         </p>
+
+        <IdealImage
+          alt="Screenshot of the Web Console showing various SQL statements and the result of one as a chart"
+          className={clsx(
+            "screenshot--shadow",
+            getStartedStyles.getStarted__console,
+          )}
+          img={Console}
+          src="/img/pages/getStarted/console.png"
+        />
 
         <div className={getStartedStyles.getStarted__cta}>
           <p

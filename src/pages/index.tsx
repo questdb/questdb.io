@@ -409,7 +409,9 @@ const Console = () => {
           )}
         >
           Interactive console to import data (drag and drop) and start querying
-          right away
+          right away. Check our&nbsp;
+          <Link to="docs/guide/web-console">Web Console guide</Link> to get
+          started.
         </p>
 
         <img

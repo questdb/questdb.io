@@ -133,7 +133,21 @@ declare module "@theme/hooks/useUserPreferencesContext" {
   export default out
 }
 
+declare module "@theme/IdealImage" {
+  const out: (props: {
+    alt: string
+    className?: string
+    img: string
+  }) => JSX.Element
+  export default out
+}
+
 declare module "*.module.css" {
   const classes: { readonly [key: string]: string }
   export default classes
+}
+
+declare module "*.png" {
+  const img: string
+  export default img
 }

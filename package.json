@@ -1,7 +1,8 @@
 {
-  "name": "questdb.io.v2",
+  "name": "questdb.io",
   "version": "0.0.1",
   "private": true,
+  "license": "Apache-2.0",
   "scripts": {
     "imagemin": "FORCE=true node scripts/image-min.js",
     "start": "docusaurus start",
