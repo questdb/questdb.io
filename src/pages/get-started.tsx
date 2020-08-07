@@ -539,7 +539,7 @@ brew install questdb`}
           <img
             alt="SQL statement in a code editor with an artistic view of the query result shown as a chart and a table"
             className={instructionStyles.instructions__illustration}
-            src="img/pages/getStarted/query.svg"
+            src="/img/pages/getStarted/query.svg"
           />
 
           <div className={instructionStyles.instructions__text}>
