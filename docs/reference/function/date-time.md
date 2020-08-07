@@ -1,6 +1,7 @@
 ---
 title: Date and time
 sidebar_label: Date and time
+description: Date and time functions reference.
 ---
 
 ## systimestamp

@@ -1,6 +1,7 @@
 ---
 title: Random value generator
 sidebar_label: Random value generator
+description: Random value generator function reference.
 ---
 
 ## Overview

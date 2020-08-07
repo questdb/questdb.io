@@ -1,6 +1,7 @@
 ---
 title: Numeric
 sidebar_label: Numeric
+description: Numeric function reference.
 ---
 
 ## round
