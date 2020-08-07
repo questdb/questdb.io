@@ -20,7 +20,7 @@ out-of-order inserts.
 :::tip
 
 To elect a timestamp column on the fly, please refer to the
-[dynamic timestamp]() documentation.
+[dynamic timestamp](/docs/reference/sql/timestamp.md) documentation.
 
 :::
 
@@ -55,11 +55,19 @@ existing timestamp columns. Note that:
 - the `designated timestamp` column only allows ordered timestamps
 - any other `timestamp` column tolerates out-of-order timestamps
 
-![Comparison between a designated timestamp and a "normal" timestamp](/img/docs/concepts/designatedTimestamp.jpg)
+<img
+  alt="Comparison between a designated timestamp and a normal timestamp"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/concepts/designatedTimestamp.svg"
+/>
 
 Attempts to insert `out-of-order` timestamps will be rejected:
 
-![Diagram of an out of order insertion being rejected](/img/docs/concepts/timestampReject.jpg)
+<img
+  alt="Diagram of an out of order insertion being rejected"
+  className="screenshot--shadow screenshot--docs"
+  src="/img/docs/concepts/timestampReject.svg"
+/>
 
 ## Working with timestamp order constraint
 
