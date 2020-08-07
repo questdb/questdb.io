@@ -1,7 +1,7 @@
 ---
 title: Aggregation
 sidebar_label: Aggregation
-description: Aggregation functions reference.
+description: Aggregation functions reference documentation.
 ---
 
 ## sum

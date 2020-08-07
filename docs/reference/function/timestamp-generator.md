@@ -1,7 +1,7 @@
 ---
 title: Timestamp generator
 sidebar_label: Timestamp generator
-description: Timestamp generator function reference.
+description: Timestamp generator function reference documentation.
 ---
 
 ## timestamp_sequence

@@ -1,7 +1,7 @@
 ---
 title: Meta
 sidebar_label: Meta
-description: Table and database metadata function reference.
+description: Table and database metadata function reference documentation.
 ---
 
 ## all_tables

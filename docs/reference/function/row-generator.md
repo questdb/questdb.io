@@ -1,7 +1,7 @@
 ---
 title: Row generator
 sidebar_label: Row generator
-description: Row generator function reference.
+description: Row generator function reference documentation.
 ---
 
 ## long_sequence

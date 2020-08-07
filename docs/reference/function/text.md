@@ -1,7 +1,7 @@
 ---
 title: Text
 sidebar_label: Text
-description: Text function reference.
+description: Text function reference documentation.
 ---
 
 ## concat
