@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator for iOS (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" xmlns:vectornator="http://vectornator.io" version="1.1" viewBox="0 0 283.5 170.1">
+<metadata>
+<vectornator:setting key="DynamicGuides" value="1"/>
+<vectornator:setting key="Units" value="Points"/>
+<vectornator:setting key="RulersVisible" value="1"/>
+<vectornator:setting key="SnapToGuides" value="1"/>
+<vectornator:setting key="GridSpacing" value="36"/>
+</metadata>
+<defs/>
+<g id="layer1 copy" vectornator:layerName="layer1 copy">
+<path d="M99.8931+14.1164L189.464+14.1164C190.679+14.1164+191.665+14.7564+191.665+15.5459L191.665+136.82C191.665+137.609+190.679+138.249+189.464+138.249L99.8931+138.249C98.6777+138.249+97.6924+137.609+97.6924+136.82L97.6924+15.5459C97.6924+14.7564+98.6777+14.1164+99.8931+14.1164Z" fill-rule="evenodd" fill="#464353" opacity="1"/>
+<text x="0" font-family="sans-serif" y="0" text-anchor="middle" vectornator:text="column&#x20;file" fill="#ffffff" font-size="9" vectornator:width="46.0181" opacity="1" transform="matrix(1 0 0 1 121.433 19.6054)"/>
+<path d="M104.745+79.939L183.822+79.939L183.822+79.939L183.822+133.924L183.822+133.924L104.745+133.924L104.745+133.924L104.745+79.939L104.745+79.939Z" fill-rule="evenodd" fill="#d14671" opacity="1"/>
+<path d="M80.9836+91.2747L10.4128+91.2028C9.6296+91.202+8.98744+90.9958+8.97481+90.7411L8.87025+86.9596C8.86316+86.7036+9.49554+86.4967+10.2827+86.4975L80.8535+86.5694L80.9836+91.2747Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+<path d="M181.069+90.2747L106.378+90.2388C105.549+90.2384+104.869+90.1353+104.856+90.0079L104.745+88.1172C104.737+87.9892+105.407+87.8857+106.24+87.8861L180.932+87.9221L181.069+90.2747Z" fill-rule="evenodd" fill="#61cfee" opacity="1"/>
+<path d="M118.724+89.4691L117.455+90.0257L107.204+94.5301L106.3+94.9248C106.174+94.9789+106.029+94.9832+105.899+94.9369C105.769+94.8906+105.665+94.7976+105.61+94.6798C105.586+94.6252+105.573+94.567+105.573+94.5082L105.546+91.83C105.544+91.5753+105.317+91.3676+105.038+91.365L79.9074+91.2931C79.6285+91.2923+79.3998+91.0861+79.3953+90.8313L79.3581+87.0498C79.3556+86.7938+79.5808+86.5869+79.8611+86.5877L104.991+86.6596C105.269+86.6586+105.491+86.4543+105.491+86.2008L105.464+83.463C105.463+83.4043+105.475+83.346+105.498+83.2916C105.55+83.174+105.653+83.0817+105.783+83.0363C105.913+82.991+106.058+82.9966+106.184+83.0519L107.095+83.4578L117.436+88.0688L118.718+88.6386C118.892+88.7178+119.002+88.8792+119.003+89.0553C119.004+89.2314+118.896+89.3917+118.724+89.4691Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+<path d="M141.693+154.52L141.106+153.246L136.353+142.956L135.936+142.048C135.879+141.922+135.875+141.777+135.924+141.648C135.974+141.518+136.073+141.414+136.198+141.361C136.256+141.337+136.317+141.325+136.38+141.325L139.22+141.322C139.49+141.321+139.711+141.096+139.714+140.817L139.848+115.688C139.85+115.409+140.069+115.182+140.339+115.18L144.35+115.175C144.621+115.175+144.84+115.402+144.838+115.682L144.704+140.811C144.705+141.089+144.921+141.313+145.19+141.315L148.093+141.312C148.156+141.312+148.217+141.324+148.275+141.348C148.4+141.401+148.497+141.504+148.545+141.635C148.593+141.765+148.587+141.91+148.528+142.036L148.095+142.943L143.181+153.244L142.574+154.521C142.49+154.694+142.318+154.803+142.132+154.802C141.945+154.802+141.775+154.693+141.693+154.52Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+<text x="0" font-family="sans-serif" y="0" text-anchor="middle" vectornator:text="&#xA;copy&#x20;value&#xA;mov&#x20;0x1234], x" fill="#ffffff" font-size="9" vectornator:width="73.2912" opacity="1" transform="matrix(1 0 0 1 17.8273 46.571)">
+<tspan x="0" y="9" textLength="0">
+
+</tspan>
+<tspan x="36.6456" y="20" textLength="43.0269">
+copy value
+</tspan>
+<tspan x="36.6456" y="31" textLength="61.0312">
+mov 0x1234], x</tspan>
+</text>
+<text x="0" font-family="sans-serif" y="0" text-anchor="middle" vectornator:text="Sliding&#x20;area&#x20;of&#x20;&#xA;file&#x20;mapped&#x20;to RAM" fill="#d14671" font-size="9" vectornator:width="88.1552" opacity="1" transform="matrix(1 0 0 1 191.665 99.2841)">
+<tspan x="45.3279" y="9" textLength="60.0381">
+Sliding area of 
+</tspan>
+<tspan x="44.0776" y="20" textLength="79.0356">
+file mapped to RAM</tspan>
+</text>
+<text x="0" font-family="sans-serif" y="0" text-anchor="middle" vectornator:text="Moves&#x20;down&#x20;&#xA;once&#x20;exhausted" fill="#ffffff" font-size="9" vectornator:width="119.574" opacity="1" transform="matrix(1 0 0 1 121.433 141.399)">
+<tspan x="61.0371" y="9" textLength="53.0244">
+Moves down 
+</tspan>
+<tspan x="59.7869" y="20" textLength="63.5493">
+once exhausted</tspan>
+</text>
+<text x="0" font-family="sans-serif" y="0" text-anchor="middle" vectornator:text="&#xA;Increment&#x20;&#xA;file offset" fill="#ffffff" font-size="9" vectornator:width="81.3765" opacity="1" transform="matrix(1 0 0 1 13.7847 96.175)">
+<tspan x="0" y="9" textLength="0">
+
+</tspan>
+<tspan x="41.9385" y="20" textLength="42.5171">
+Increment 
+</tspan>
+<tspan x="40.6882" y="31" textLength="35.8594">
+file offset</tspan>
+</text>
+</g>
+</svg>
