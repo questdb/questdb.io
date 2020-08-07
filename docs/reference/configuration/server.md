@@ -1,7 +1,7 @@
 ---
 title: Configuration properties
 sidebar_label: server.conf
-description: Server configuration keys reference.
+description: Server configuration keys reference documentation.
 ---
 
 QuestDB server configuration can be set in the `server.conf` configuration file.
