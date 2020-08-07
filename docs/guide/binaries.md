@@ -1,6 +1,7 @@
 ---
 title: How to use QuestDB from the binaries
 sidebar_label: From the binaries
+description: Tutorial on how to use the binaries to install and launch QuestDB.
 ---
 
 This guides shows how to install QuestDB using the binaries and how to start

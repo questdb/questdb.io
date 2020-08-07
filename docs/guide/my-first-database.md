@@ -1,6 +1,7 @@
 ---
 title: My first database
 sidebar_label: My first database
+description: A short tutorial 
 ---
 
 The goal of this tutorial is to explore QuestDB's features to interact with time

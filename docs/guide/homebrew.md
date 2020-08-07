@@ -1,6 +1,7 @@
 ---
 title: How to use QuestDB with Homebrew
 sidebar_label: Homebrew
+description: Tutorial on how to use QuestDB with Homebrew.
 ---
 
 This guide shows how to use Homebrew to install and start QuestDB. This is a

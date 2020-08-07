@@ -1,6 +1,7 @@
 ---
 title: How to perform CRUD operations
 sidebar_label: CRUD operations
+description: Tutorial on how to perform CRUD operations.
 ---
 
 QuestDB's data store is mostly meant to be immutable. While we plan to support

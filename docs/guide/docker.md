@@ -1,6 +1,7 @@
 ---
 title: How to use QuestDB with Docker
 sidebar_label: Docker
+description: Tutorial on how to use QuestDB with Docker.
 ---
 
 Docker is great to get started in minutes with just a few commands. Follow this

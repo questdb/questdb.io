@@ -1,6 +1,7 @@
 ---
 title: How to use the Web Console
 sidebar_label: Web Console
+description: A tutorial on how to use QuestDB's web console.
 ---
 
 The web-console allows you to quickly interact with your data. In this guide, we
