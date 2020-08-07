@@ -33,7 +33,7 @@ A restart of QuestDB is required to pickup the new configuration
 
 | Property          | Default value | Description                                                                                                                                     |
 | ----------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| telemetry.enabled | true          | Enable / disable anonymous usage sharing to better understand and help QuestDB users. We do not collect any personally-identifying information. |
+| telemetry.enabled | true          | Enable / disable anonymous [usage metrics collection](telemetry.md). |
 
 ### Worker
 

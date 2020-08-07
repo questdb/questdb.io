@@ -1,7 +1,7 @@
 ---
-id: telemetry
 title: Telemetry
 sidebar_label: Telemetry
+description: What data QuestDB collects and how to disable telemetry collection.
 ---
 QuestDB sends telemetry data with information about usage 
 which helps us improve the product over time. We do not collect any personally-identifying information, and we do not share any of this data 
@@ -9,9 +9,9 @@ with third parties.
 
 This page describes what data is collected and how to disable the telemetry reporting function.
 
-## Disabling Telemetry
+## Disabling telemetry
 To disable telemetry, add the following configuration key in [server.conf](server.md)
-```shell script title="Disabling Telemetry"
+```shell title="Disabling telemetry"
 telemetry.enabled=false
 ```
 
