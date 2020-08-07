@@ -14,7 +14,7 @@ Returns distinct rows by comparing the results of two queries.
 
 ## Examples
 
-The below examples use [long_sequence(n)](/docs/reference/function/row-generator.md#long_sequence) to generate a list of integers from 1 to n.
+The below examples use [long_sequence(n)](/docs/reference/function/row-generator#long_sequence) to generate a list of integers from 1 to n.
 
 ### EXCEPT
 
