@@ -1,5 +1,6 @@
 ---
 title: InfluxDB line protocol
+description: How to use InfluxDB line protocol.
 ---
 
 InfluxDB line protocol ingestion makes it easy for existing InfluxDB users to

@@ -1,6 +1,7 @@
 ---
 title: Embedded Java API
 sidebar_label: Java (embedded)
+description: How to use the Java API.
 ---
 
 QuestDB is written in Java and can be used as any other Java library. Moreover,

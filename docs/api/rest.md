@@ -1,6 +1,7 @@
 ---
 title: REST API
 sidebar_label: REST
+description: How to use the REST API.
 ---
 
 The QuestDB REST API is based around standard HTTP features and is understood by
