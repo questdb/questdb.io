@@ -523,7 +523,7 @@ brew install questdb`}
 
           <div className={instructionStyles.instructions__text}>
             <h2 className={instructionStyles.instructions__title}>
-              How does it wok
+              How does it work
             </h2>
             <p>
               QuestDB is distributed as a single binary. You can download

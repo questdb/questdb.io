@@ -67,6 +67,7 @@
   --ifm-h4-font-size: var(--font-size-large);
   --ifm-heading-margin-bottom: 1.5rem;
   --ifm-link-color: var(--palette-turquoise);
+  --ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
   --ifm-navbar-background-color: var(--palette-charade);
   --ifm-navbar-height: 80px;
   --ifm-navbar-item-padding-horizontal: 20px;
