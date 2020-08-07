@@ -1,6 +1,7 @@
 ---
 title: Indexes
 sidebar_label: Indexes
+description: How index works and when to use it.
 ---
 
 An index stores the row locations for each value of the target column in order

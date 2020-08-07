@@ -1,6 +1,7 @@
 ---
 title: Storage model
 sidebar_label: Storage model
+description: Overview of QuestDB's storage and read-write model.
 ---
 
 QuestDB uses a **column-based** storage model. Data is stored in tables with

@@ -1,6 +1,7 @@
 ---
 title: Symbol
 sidebar_label: Symbol
+description: Documentation of the symbol data type.
 ---
 
 QuestDB introduces a specific data type called `symbol`. It is a data structure

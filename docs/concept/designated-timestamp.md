@@ -1,6 +1,7 @@
 ---
 title: Designated timestamp
 sidebar_label: Designated timestamp
+description: Designated timestamp functionality for time-series.
 ---
 
 QuestDB offers the option to elect a column as `designated timestamp`. This

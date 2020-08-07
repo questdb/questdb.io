@@ -1,6 +1,7 @@
 ---
 title: SQL execution order
 sidebar_label: SQL execution order
+description: Execution order for SQL clauses in QuestDB.
 ---
 
 QuestDB attempts to implement standard ANSI SQL. We also attempt to be

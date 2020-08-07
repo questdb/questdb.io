@@ -1,5 +1,6 @@
 ---
 title: SQL extensions
+description: SQL syntax extensions for time-series.
 ---
 
 QuestDB attempts to implement standard ANSI SQL. We also attempt to be
