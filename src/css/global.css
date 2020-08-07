@@ -81,6 +81,7 @@
 html[data-theme="dark"] {
   --ifm-background-color: var(--palette-charade);
   --ifm-color-emphasis-300: var(--palette-pale-blue);
+  --ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
 }
 
 html[data-theme="dark"] .DocSearch {

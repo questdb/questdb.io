@@ -50,6 +50,7 @@ module.exports = {
   plugins: [
     require.resolve("./plugins/fetch-release"),
     require.resolve("./plugins/lint"),
+    require.resolve("./plugins/manifest"),
     [
       "@docusaurus/plugin-pwa",
       {

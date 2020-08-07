@@ -1,21 +1,24 @@
 ---
 title: EXCEPT and INTERSECT
 sidebar_label: EXCEPT & INTERSECT
-description: Documentation of the EXCEPT and INTERSECT SQL set operators.
+description: Documentation of the EXCEPT and INTERSECT SQL set operators
 ---
 
-Returns distinct rows by comparing the results of two queries. 
+Returns distinct rows by comparing the results of two queries.
 
 ## Syntax
 
 ![Flow chart showing the syntax of EXCEPT and INTERSECT](/img/docs/diagrams/exceptIntersect.svg)
 
-- `EXCEPT` returns distinct rows from the left input query that aren't output by the right input query.
+- `EXCEPT` returns distinct rows from the left input query that aren't output by
+  the right input query.
 - `INTERSECT` returns rows that are returned by both input queries.
 
 ## Examples
 
-The below examples use [long_sequence(n)](/docs/reference/function/row-generator#long_sequence) to generate a list of integers from 1 to n.
+The below examples use
+[long_sequence(n)](/docs/reference/function/row-generator#long_sequence) to
+generate a list of integers from 1 to n.
 
 ### EXCEPT
 

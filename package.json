@@ -6,7 +6,7 @@
     "imagemin": "FORCE=true node scripts/image-min.js",
     "start": "docusaurus start",
     "prebuild": "node scripts/image-min.js && rimraf docs/__guidelines",
-    "build": "docusaurus build",
+    "build": "PWA_SW_CUSTOM= docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve"
@@ -29,8 +29,8 @@
     "unist-util-visit": "2.0.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "3.7.1",
-    "@typescript-eslint/parser": "3.7.1",
+    "@typescript-eslint/eslint-plugin": "3.8.0",
+    "@typescript-eslint/parser": "3.8.0",
     "eslint": "7.6.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-config-standard": "14.1.1",
@@ -42,7 +42,7 @@
     "eslint-plugin-react": "7.20.5",
     "eslint-plugin-react-hooks": "4.0.8",
     "eslint-plugin-standard": "4.0.1",
-    "fork-ts-checker-webpack-plugin": "5.0.13",
+    "fork-ts-checker-webpack-plugin": "5.0.14",
     "glob": "7.1.6",
     "graceful-fs": "4.2.4",
     "husky": ">=4",
@@ -54,7 +54,8 @@
     "node-fetch": "2.6.0",
     "prettier": "2.0.5",
     "rimraf": "3.0.2",
-    "sharp": "0.25.4"
+    "sharp": "0.25.4",
+    "webpack-manifest-plugin": "2.2.0"
   },
   "browserslist": {
     "production": [
