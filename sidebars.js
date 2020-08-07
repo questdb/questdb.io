@@ -118,6 +118,7 @@ module.exports = {
             "reference/sql/copy",
             "reference/sql/create-table",
             "reference/sql/distinct",
+            "reference/sql/except-intersect",
             "reference/sql/fill",
             "reference/sql/drop",
             "reference/sql/insert",
