@@ -1,6 +1,7 @@
 ---
 title: EXCEPT and INTERSECT
 sidebar_label: EXCEPT & INTERSECT
+description: Documentation of the EXCEPT and INTERSECT SQL set operators.
 ---
 
 Returns distinct rows by comparing the results of two queries. 
