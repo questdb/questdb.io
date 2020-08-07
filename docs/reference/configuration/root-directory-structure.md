@@ -1,6 +1,7 @@
 ---
 title: Root directory structure
 sidebar_label: Root directory
+description: Root directory structure reference.
 ---
 
 QuestDB creates the following file structure in it's `root_directory`:
