@@ -1,6 +1,7 @@
 ---
 title: LATEST BY
 sidebar_label: LATEST BY
+description: LATEST BY SQL keyword reference documentation.
 ---
 
 `LATEST BY` finds the latest entry by timestamp for a given key or combination

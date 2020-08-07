@@ -1,6 +1,7 @@
 ---
 title: RENAME TABLE
 sidebar_label: RENAME TABLE
+description: RENAME TABLE SQL keyword reference documentation.
 ---
 
 `RENAME TABLE` is used to change the name of a table.

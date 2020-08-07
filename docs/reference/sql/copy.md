@@ -1,6 +1,7 @@
 ---
 title: COPY
 sidebar_label: COPY
+description: COPY SQL keyword reference documentation.
 ---
 
 ## Syntax

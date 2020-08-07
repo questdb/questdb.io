@@ -1,6 +1,7 @@
 ---
 title: Cast
 sidebar_label: CAST
+description: CAST SQL keyword reference documentation.
 ---
 
 Type conversion. Can be either:

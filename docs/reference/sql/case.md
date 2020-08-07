@@ -1,6 +1,7 @@
 ---
 title: CASE
 sidebar_label: CASE
+description: CASE SQL keyword reference documentation.
 ---
 
 ## Syntax

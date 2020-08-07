@@ -1,6 +1,7 @@
 ---
 title: JOIN
 sidebar_label: JOIN
+description: JOIN SQL keyword reference documentation.
 ---
 
 QuestDB supports the following types of joins: `INNER`, `OUTER`, `CROSS`, `ASOF`

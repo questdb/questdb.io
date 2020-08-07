@@ -1,7 +1,7 @@
 ---
 title: GROUP BY
 sidebar_label: GROUP BY
-description: Documentation of the GROUP BY SQL keyword in QuestDB
+description: GROUP BY SQL keyword reference documentation.
 ---
 
 Groups aggregation calculations by one or several keys. In QuestDB, this clause

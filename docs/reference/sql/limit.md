@@ -1,6 +1,7 @@
 ---
 title: LIMIT
 sidebar_label: LIMIT
+description: LIMIT SQL keyword reference documentation.
 ---
 
 Specify the number and position of records returned by a

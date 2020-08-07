@@ -1,6 +1,7 @@
 ---
 title: ORDER BY
 sidebar_label: ORDER BY
+description: ORDER BY SQL keyword reference documentation.
 ---
 
 Sort the results of a query in ascending or descending order.

@@ -1,6 +1,7 @@
 ---
 title: WHERE
 sidebar_label: WHERE
+description: WHERE SQL keyword reference documentation.
 ---
 
 `WHERE` clause filters data. Filter expressions are required to return boolean

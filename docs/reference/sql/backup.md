@@ -1,6 +1,7 @@
 ---
 title: BACKUP
 sidebar_label: BACKUP
+description: BACKUP SQL keyword reference documentation.
 ---
 
 ## Syntax

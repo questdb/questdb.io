@@ -1,6 +1,7 @@
 ---
 title: SHOW
 sidebar_label: SHOW
+description: SHOW SQL keyword reference documentation.
 ---
 
 Displays tables and columns available in the database.

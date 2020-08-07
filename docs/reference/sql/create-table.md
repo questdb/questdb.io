@@ -1,6 +1,7 @@
 ---
 title: CREATE TABLE
 sidebar_label: CREATE TABLE
+description: CREATE TABLE SQL keyword reference documentation.
 ---
 
 Creates new table in the database.

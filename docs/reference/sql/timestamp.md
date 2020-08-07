@@ -1,6 +1,7 @@
 ---
 title: Timestamp
 sidebar_label: TIMESTAMP
+description: TIMESTAMP SQL keyword reference documentation.
 ---
 
 `timestamp(columnName)` elects a

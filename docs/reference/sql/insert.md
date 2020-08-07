@@ -1,6 +1,7 @@
 ---
 title: INSERT
 sidebar_label: INSERT
+description: INSERT SQL keyword reference documentation.
 ---
 
 Inserts data into a database table.

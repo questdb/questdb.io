@@ -1,6 +1,7 @@
 ---
 title: ALTER TABLE COLUMN ADD INDEX
 sidebar_label: ALTER TABLE COLUMN ADD INDEX
+description: ADD INDEX SQL keword reference documentation.
 ---
 
 Adds an index to an existing column.

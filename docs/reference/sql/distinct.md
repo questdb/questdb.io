@@ -1,7 +1,7 @@
 ---
-id: distinct
 title: DISTINCT
 sidebar_label: DISTINCT
+description: DISTINCT SQL keyword reference documentation.
 ---
 
 `SELECT DISTINCT` is used to return only distinct (i.e different) values from a

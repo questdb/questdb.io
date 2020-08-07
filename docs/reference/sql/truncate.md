@@ -1,6 +1,7 @@
 ---
 title: TRUNCATE TABLE
 sidebar_label: TRUNCATE TABLE
+description: TRUNCATE SQL keyword reference documentation.
 ---
 
 `TRUNCATE TABLE` is used to permanently delete the contents of a table without

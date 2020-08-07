@@ -1,6 +1,7 @@
 ---
 title: SELECT
 sidebar_label: SELECT
+description: SELECT SQL keyword reference documentation.
 ---
 
 `SELECT` allows you to specify list of columns and expressions to be selected

@@ -1,6 +1,7 @@
 ---
 title: Data types
 sidebar_label: Data types
+description: Data types reference documentation.
 ---
 
 The type system is derived from Java types.

@@ -1,6 +1,7 @@
 ---
 title: ALTER TABLE DROP COLUMN
 sidebar_label: ALTER TABLE DROP COLUMN
+description: DROP COLUMN SQL keword reference documentation.
 ---
 
 Drops a column from an existing table.

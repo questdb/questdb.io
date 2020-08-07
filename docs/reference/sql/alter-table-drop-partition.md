@@ -1,6 +1,7 @@
 ---
 title: ALTER TABLE DROP PARTITION
 sidebar_label: ALTER TABLE DROP PARTITION
+description: DROP PARTITION SQL keyword reference documentation.
 ---
 
 Drops a partition from an existing table.

@@ -1,6 +1,7 @@
 ---
 title: FILL
 sidebar_label: FILL
+description: FILL SQL keyword reference documentation.
 ---
 
 Specifies fill behavior for missing data for as part of a

@@ -1,6 +1,7 @@
 ---
 title: DROP TABLE
 sidebar_label: DROP TABLE
+description: DROP TABLE SQL keyword reference documentation.
 ---
 
 `DROP TABLE` is used to permanently delete a table and its contents.

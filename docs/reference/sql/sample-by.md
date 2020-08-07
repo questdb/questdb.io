@@ -1,6 +1,7 @@
 ---
 title: SAMPLE BY
 sidebar_label: SAMPLE BY
+description: SAMPLE BY SQL keyword reference documentation.
 ---
 
 `SAMPLE BY` is used on time series data to summarise large datasets into

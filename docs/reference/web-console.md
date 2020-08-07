@@ -1,6 +1,7 @@
 ---
 title: Web Console
 sidebar_label: Web Console
+description: Web console reference documentation.
 ---
 
 This is a reference for the Console. If you want to learn how to use it, we
