@@ -9,13 +9,13 @@ with third parties.
 
 This page describes what data is collected and how to disable the telemetry reporting function.
 
-### Disabling Telemetry
+## Disabling Telemetry
 To disable telemetry, add the following configuration key in [server.conf](server.md)
 ```shell script title="Disabling Telemetry"
 telemetry.enabled=false
 ```
 
-### Data collected
+## Data collected
 QuestDB collects the following usage data
 
 | Field | Type | Description |
