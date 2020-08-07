@@ -1,6 +1,7 @@
 ---
 title: Homebrew
 sidebar_label: Homebrew
+description: Homebrew reference page.
 ---
 
 QuestDB is distributed via Homebrew for macOS users.

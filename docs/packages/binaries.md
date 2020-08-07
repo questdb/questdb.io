@@ -1,5 +1,6 @@
 ---
 title: Binaries
+description: Binaries reference page.
 ---
 
 QuestDB comes with an executable `questdb.exe` for Windows, and script
