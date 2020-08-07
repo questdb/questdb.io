@@ -3,7 +3,7 @@ const visit = require("unist-util-visit")
 const customFields = {
   copyright: `Copyright © ${new Date().getFullYear()} QuestDB`,
   description:
-    "QuestDB is an open source database designed to make time-series lightning fast and easy.",
+    "QuestDB is an open source database making time-series lightning fast and easy.",
   dockerUrl: "https://hub.docker.com/r/questdb/questdb",
   githubUrl: "https://github.com/questdb/questdb",
   slackUrl:
