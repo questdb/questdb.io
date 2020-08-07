@@ -5,6 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
 tags: [questdb, iot]
+description: A use-case of QuestDB in an IoT setting.
 ---
 
 As you can well imagine, I've been super busy in my hew job at QuestDB so this

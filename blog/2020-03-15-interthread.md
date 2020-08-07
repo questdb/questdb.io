@@ -5,6 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
 tags: [thread model, messaging, disruptor]
+description: Concept and performance figures of QuestDB's thread messaging system.
 ---
 
 <img

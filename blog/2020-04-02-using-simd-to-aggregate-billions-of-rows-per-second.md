@@ -5,6 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/TheTanc
 author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [questdb, performance, simd]
+description: How SIMD instructions made aggregations faster. Benchmark with Postgres.
 ---
 
 <img
