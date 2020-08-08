@@ -32,7 +32,7 @@ import TabItem from "@theme/TabItem"
 <TabItem value="gradle">
 
 ```shell
-implementation 'org.questdb:core:{@version@}'
+implementation 'org.questdb:questdb:{@version@}'
 ```
 
 </TabItem>
@@ -49,51 +49,83 @@ of `TableWriter`, the table must:
   attempt to obtain an exclusive cross-process lock on the table.
 
 ```java title="Example table writer"
-AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityContextFactory();
-CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
-try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
-    for (int i = 0; i < 10; i++) {
-        TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
-        row.putInt(0, 123);
-        row.putByte(1, (byte) 1111);
-        row.putShort(2, (short) 222);
-        row.putLong(3, 333);
-        row.putFloat(4, 4.44f);
-        row.putDouble(5, 5.55);
-        row.putDate(6, System.currentTimeMillis());
-        // skip 7 - see separate function to write blobs
-        // skip 8 - timestamp is already set via newRow() call
-        row.putSym(9, "xyz");
-        row.putStr(10, "abc");
-        row.putBool(11, true);
-        row.append();
+final CairoConfiguration configuration = new DefaultCairoConfiguration("data_dir");
+try (CairoEngine engine = new CairoEngine(configuration)) {
+    final SqlExecutionContextImpl ctx = new SqlExecutionContextImpl(engine, 1);
+    try (SqlCompiler compiler = new SqlCompiler(engine)) {
+
+        compiler.compile("create table abc (a int, b byte, c short, d long, e float, g double, h date, i symbol, j string, k boolean, ts timestamp) timestamp(ts)", ctx);
+
+        try (TableWriter writer = engine.getWriter(ctx.getCairoSecurityContext(), "abc")) {
+            for (int i = 0; i < 10; i++) {
+                TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
+                row.putInt(0, 123);
+                row.putByte(1, (byte) 1111);
+                row.putShort(2, (short) 222);
+                row.putLong(3, 333);
+                row.putFloat(4, 4.44f);
+                row.putDouble(5, 5.55);
+                row.putDate(6, System.currentTimeMillis());
+                row.putSym(7, "xyz");
+                row.putStr(8, "abc");
+                row.putBool(9, true);
+                row.append();
+            }
+            writer.commit();
+        }
     }
-    writer.commit();
 }
 ```
 
 ### Detailed Steps
 
-`1 - Create an instance of TableWriter`
+#### Configure Cairo engine
 
-In this case, we use engine but we can also use TableWriter constructor
-directly.
+CairoEngine is a resource manager for the embedded QuestDB. Its main function is to facilitate concurrent access to pools of `TableReader`
+and `TableWriter` instances.
 
-```java title="New table writer instance"
-AllowAllSecurityContextFactory securityContextFactor = new AllowAllSecurityContextFactory();
-CairoSecurityContext cairoSecurityContext = securityContextFactor.getInstance("admin");
-try (TableWriter writer = engine.getWriter(cairoSecurityContext, "abc")) {
+```java title="New CairoEngine instance"
+final CairoConfiguration configuration = new DefaultCairoConfiguration("data_dir");
+try (CairoEngine engine = new CairoEngine(configuration)) {
 ```
 
-The `writer` instance must be eventually released to release resources. In this
-case, it will be released back to the engine for re-use. Constructing a new
-writer is a resource-intensive operation and it will allocate memory on JVM
-heap. Writers lifecycle should be carefully considered for your particular use
-case.
+A typical application will need only one instance of `CairoEngine`. This instance will start when application starts and shuts down when application closes. Every attempt should be made to ensure `CairoEngine` is closed gracefully when application stops.
 
-`2 - Create a new row`
+QuestDB provides default configuration implementation, which only requires `data directory` to be specified. For more advanced use the whole `CairoConfiguration` interface can be overriden when necessary.
 
-```java
+#### Create an instance of SqlExecutionContext`
+
+Execution context is a conduit for passing SQL execution atrefacts to the execution site. This instance is not thread-safe and it must not be shared between threads.
+
+```java title="Example of execution context"
+final SqlExecutionContextImpl ctx = new SqlExecutionContextImpl(engine, 1);
+```
+Second argument is the number of threads that will be helping to execute SQLs. Unless you are bulding another QuestDB server this value should always be 1.
+
+#### New SqlCompiler instance and blank table
+
+Before we start writing data using `TableWriter` the target table has to exist. There are several ways to create new table. Using `SqlCompiler` is the esiest.
+
+```java title="Example of creating new table"
+try (SqlCompiler compiler = new SqlCompiler(engine)) {
+    compiler.compile("create table abc (a int, b byte, c short, d long, e float, g double, h date, i symbol, j string, k boolean, ts timestamp) timestamp(ts)", ctx);
+```
+As you will be able to see below, table field types and indexes must match the code that is populating the table
+
+#### New instance of TableWriter
+
+We use engine to create instance of `TableWriter`. This will enable reusing this `TableWriter` instance later, when we use the same method of creating table writer again.
+
+```java title="New table writer instance"
+try (TableWriter writer = engine.getWriter(ctx.getCairoSecurityContext(), "abc")) {
+```
+
+The writer will hold exclusing lock on table `abc` until such time it is closed. This lock is both intra- and inter-process. If you have two Java applications accessing the same table only one will succeed at one time.
+
+
+#### Create a new row`
+
+```java title="Example of creating new table row with timestamp"
 TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
 ```
 
@@ -101,162 +133,104 @@ Although this operation semantically looks like a new object creation, the row
 instance is actually being re-used under the hood. A Timestamp is necessary to
 determine a partition for the new row. Its value has to be either increment or
 stay the same as the last row. When the table is not partitioned and does not
-have a designated timestamp column, timestamp value can be 0, e.g.
+have a designated timestamp column, timestamp value can be omitted.
 
-```java
-TableWriter.Row row = writer.newRow(0);
+```java title="Example of creating new table row without timestamp"
+TableWriter.Row row = writer.newRow();
 ```
 
-`3 - Populate columns` There are put\* methods for every supported data type.
-Columns are updated by an index for performance reasons:
+#### Populate columns
 
-```java
+There are put\* methods for every supported data type. Columns are updated by an index as opposed to by name
+
+```java title="Example of populating table column"
 row.putLong(3, 333);
 ```
 
-Column update order is not important and update can be sparse. All unset columns
-will default to NULL values.
+Column update order is not important and update can be sparse. All unset columns will default to NULL values.
 
-`4 - Append row` It is a trivial and lightweight method call:
+#### Append row
 
-```java
+It is a trivial and lightweight method call:
+
+```java title="Example of appending a new row"
 row.append();
 ```
 
 Appended rows are not visible to readers until they are committed. An unneeded
 row can also be canceled if required.
 
-```java
+```java title="Example of cancelling half-populated row"
 row.cancel();
 ```
 
-:::note
+A pending row is automatically cancelled when `writer.newRow()` is called. Consider the following scenario:
 
-A pending row is automatically cancelled when `writer.newRow()` is called.
+```java
+TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
+row.putInt(0, 123);
+row.putByte(1, (byte) 1111);
+row.putShort(2, (short) 222);
+row.putLong(3, 333);
+row = writer.newRow(Os.currentTimeMicros());
+...
+```
 
-:::
+Second `newRow()` call would cancel all the updates to the row since the last `append()`
 
-`5 - Commit changes` `writer.commit` commits changes, which makes them visible
-to readers. This method call is atomic and has a complexity of O(1).
+#### Commit changes
 
-## Compiling SQL
+To make changes visiable to readers writer has to commit. `writer.commit` does this job. Unlike traditional SQL databases size of the transaction does not matter. You can commit anything between 1 and 1 trillion rows. We also spent considerable effort to ensure `commit()` is lightweight. You can drip one row at a time in applications that require such behaviour.
 
-Java users can use the `SqlCompiler` to run SQL queries like they would do in
-the Web Console for example.
+## Executing queries
 
-:::note
-
-This can be used for any supported SQL statement. For example
-[INSERT](reference/sql/insert.md) or [COPY](reference/sql/copy.md) to write
-data, DDL such as [CREATE TABLE](reference/sql/create-table.md) or
-[SELECT](reference/sql/select.md) to query data etc.
-
-:::
-
-### Syntax
+We provide single API for executing all kinds of SQL queries. The example below focuses on `SELECT` however and how to fetch data from cursor.
 
 ```java title="Compiling SQL"
-CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
-BindVariableService bindVariableService = new BindVariableService();
+final CairoConfiguration configuration = new DefaultCairoConfiguration(temp.getRoot().getAbsolutePath());
 try (CairoEngine engine = new CairoEngine(configuration)) {
-    try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
-        compiler.compile(
-            "YOUR_SQL_HERE"
-        );
+    final SqlExecutionContextImpl ctx = new SqlExecutionContextImpl(engine, 1);
+    try (SqlCompiler compiler = new SqlCompiler(engine)) {
+        try (RecordCursorFactory factory = compiler.compile("abc", ctx).getRecordCursorFactory()) {
+            try (RecordCursor cursor = factory.getCursor(ctx)) {
+                final Record record = cursor.getRecord();
+                while (cursor.hasNext()) {
+                    // access 'record' instance for field values
+                }
+            }
+        }
     }
 }
 ```
 
-- `configuration` holds various settings that can be overridden via a subclass.
-  Most importantly configuration is bound to the database root - directory where
-  table sub-directories will be created.
-- `engine` is a concurrent pool of table readers and writers.
-- `compiler` is the entry point for QuestDB's SQL engine.
+### Detailed steps
 
-### Example
+The steps to setup CairoEngine, execution context and SqlCompiler are the same as those we explained in (writing data)[#writing data] sections. We will skip
+them here and focus on fetching data.
 
-The following will create a new table with the specifications set below.
+#### RecordCursorFactory
 
-```java
-CairoConfiguration configuration = new DefaultCairoConfiguration("/tmp/my_database");
-BindVariableService bindVariableService = new BindVariableService();
-try (CairoEngine engine = new CairoEngine(configuration)) {
-    try (SqlCompiler compiler = new SqlCompiler(engine, configuration)) {
-        compiler.compile(
-                "create table abc (" +
-                        "a INT, " +
-                        "b BYTE, " +
-                        "c SHORT, " +
-                        "d LONG, " +
-                        "e FLOAT, " +
-                        "f DOUBLE, " +
-                        "g DATE, " +
-                        "h BINARY, " +
-                        "t TIMESTAMP, " +
-                        "x SYMBOL, " +
-                        "z STRING, " +
-                        "y BOOLEAN" +
-                        ") timestamp(t) partition by MONTH",
-        );
-    }
-}
-```
+You can think of `RecordCursorFactory` as PreparedStatement. This is the entity that holds SQL execution plan with all of the execution artefacts. Factories are
+designed to be reused and we strongly encourage caching them. Having said that you still need to make sure you close factory explcitly when you no longer need it. Failing to do so can cause memory or other resource leak.
 
-## Fetching query results
+#### RecordCursor
 
-Querying data is a three-step process:
+This instance allows iterating over the dataset produced by SQL. Cursors are relatively short-lived. You have to ensure cursor is closed as soon as enough data is fetched. You do not even have to fetch all data. Cursor can be closed at any time.
 
-- 1 - Compile the SQL text to an instance of `RecordCursorFactory`, an instance
-  that encapsulates execution plan. You can run custom SQL queries by
-  instantiating `RecordCursorFactory` to `compiler.compile("YOUR_SQL_HERE")`
-- 2 - Create a `RecordCursor` instance using a factory from step 1.
-- 3 - Iterate on `RecordCursor` to read the data.
+It goes without saying that cursors are not thread safe and cannot be shared between threads.
 
-### Example
+#### Record
 
-```java
-final CairoEngine engine = new Engine(new DefaultCairoConfiguration(""));
-final SqlCompiler compiler = new SqlCompiler(engine);
-final RecordCursorFactory factory = compiler.compile("select * from table");
-final RecordCursor cursor = factory.getCursor();
+This is cursor's data access API. Our example is not a mistake. Record instance is obtained from the cursor outside of the fetch loop.
+
+```java title="Example of fetching data from cursor"
 final Record record = cursor.getRecord();
-
-while(cursor.hasNext()) {
-    record.getInt(0);
-    ...
+while (cursor.hasNext()) {
+    // access 'record' instance for field values
 }
 ```
 
-### Component life cycle
-
-1 - **Engine**
-
-This is a thread-safe, concurrent and non-blocking pool of TableReader and
-TableWriter instances. Ideally, there should be only one per database location.
-
-2 - **SqlCompiler**
-
-This is a totally single-threaded, factory-style instance
-
-3 - **RecordCursorFactory**
-
-Execution plan of respective SQL, also single-threaded. The instance is reusable
-as far as the creation of RecordCursor is concerned and should be retained until
-data access is no longer needed. It can be closed explicitly via close() method.
-
-4 - **RecordCursor**
-
-This is a data iterator. The cursor has a fixed record instance, which is a
-moving window on the data set. `next()` calls push this "window" down one record
-at a time.
-
-<aside className="important">
-  <p>
-    {" "}
-    The `RecordCursor` must be explicitly released when no longer required in
-    order to free up the system's resources.
-  </p>
-</aside>
+Record does not hold the data. Instead this is an API to pull data when data is needed. Record instance remains the same while cursor goes over the data, making caching of records pointless.
 
 ## InfluxDB sender library
 
