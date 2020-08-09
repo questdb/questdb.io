@@ -118,6 +118,9 @@ InfluxLineProtocolOverTCPLoadRebalance
 groupBy
   ::= 'SELECT' ((column ( ',' column )* ) ' ,' ( aggregation ( ',' aggregation )* )) 'FROM' table ('GROUP BY' (column ( ',' column )* ))?
 
+with
+  ::= 'WITH' ( subQueryName 'AS' '(' subQuery ')' ( ',' subQueryName 'AS' '(' subQuery ')' )*) mainQuery
+
 
 
 

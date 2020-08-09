@@ -135,6 +135,7 @@ module.exports = {
             "reference/sql/timestamp",
             "reference/sql/truncate",
             "reference/sql/union",
+            "reference/sql/with",
             "reference/sql/where",
           ],
         },
