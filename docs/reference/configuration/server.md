@@ -15,7 +15,7 @@ configuration file as follows:
 ```shell
 aaa.bbb.ccc.ddd=myValue
 ```
-``
+
 For example:
 
 ```shell
