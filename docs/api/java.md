@@ -206,7 +206,7 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 
 ### Detailed steps
 
-The steps to setup CairoEngine, execution context and SqlCompiler are the same as those we explained in (writing data)[#writing-data] section. We will skip
+The steps to setup CairoEngine, execution context and SqlCompiler are the same as those we explained in [writing data](#writing-data) section. We will skip
 them here and focus on fetching data.
 
 #### RecordCursorFactory
