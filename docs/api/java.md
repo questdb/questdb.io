@@ -91,7 +91,7 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 
 A typical application will need only one instance of `CairoEngine`. This instance will start when application starts and shuts down when application closes. Every attempt should be made to ensure `CairoEngine` is closed gracefully when application stops.
 
-QuestDB provides default configuration implementation, which only requires `data directory` to be specified. For more advanced use the whole `CairoConfiguration` interface can be overriden when necessary.
+QuestDB provides a default configuration which only requires the `data directory` to be specified. For a more advanced usage, the whole `CairoConfiguration` interface can be overridden.
 
 #### Create an instance of SqlExecutionContext`
 
