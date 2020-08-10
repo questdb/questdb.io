@@ -216,7 +216,7 @@ designed to be reused and we strongly encourage caching them. You also need to m
 
 #### RecordCursor
 
-This instance allows iterating over the dataset produced by SQL. Cursors are relatively short-lived. You have to ensure cursor is closed as soon as enough data is fetched. You do not even have to fetch all data. Cursor can be closed at any time.
+This instance allows iterating over the dataset produced by SQL. Cursors are relatively short-lived and do not imply fetching all the data. Note that you have to close a cursor as soon as enough data is fetched ; the closing process can happen at any time.
 
 It goes without saying that cursors are not thread safe and cannot be shared between threads.
 
