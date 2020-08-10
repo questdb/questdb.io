@@ -10,7 +10,13 @@ const Head = () => {
     <ReactHelmetHead>
       <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       <meta property="og:type" content="website" />
+      <meta property="og:url" content={siteConfig.url} />
       <meta name="twitter:creator" content="@questdb" />
+      <meta
+        name="twitter:image"
+        content={`${siteConfig.url}/${siteConfig.themeConfig.image}`}
+      />
+      <meta name="twitter:site" content={siteConfig.url} />
       <meta name="twitter:title" content={siteConfig.title} />
       <meta
         name="twitter:description"
