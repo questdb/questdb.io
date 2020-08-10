@@ -222,7 +222,7 @@ Cursors are not thread safe and cannot be shared between threads.
 
 #### Record
 
-This is cursor's data access API. Our example is not a mistake. Record instance is obtained from the cursor outside of the fetch loop.
+This is cursor's data access API. Record instance is obtained from the cursor outside of the fetch loop.
 
 ```java title="Example of fetching data from cursor"
 final Record record = cursor.getRecord();
