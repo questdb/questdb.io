@@ -231,7 +231,7 @@ while (cursor.hasNext()) {
 }
 ```
 
-Record does not hold the data. Instead this is an API to pull data when data is needed. Record instance remains the same while cursor goes over the data, making caching of records pointless.
+Record does not hold the data. Instead, it is an API to pull data when data is needed. Record instance remains the same while cursor goes over the data, making caching of records pointless.
 
 ## InfluxDB sender library
 
