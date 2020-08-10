@@ -100,7 +100,8 @@ Execution context is a conduit for passing SQL execution artefacts to the execut
 ```java title="Example of execution context"
 final SqlExecutionContextImpl ctx = new SqlExecutionContextImpl(engine, 1);
 ```
-Second argument is the number of threads that will be helping to execute SQLs. Unless you are bulding another QuestDB server this value should always be 1.
+
+The second argument is the number of threads that will be helping to execute SQL statements. Unless you are building another QuestDB server, this value should always be 1.
 
 #### New SqlCompiler instance and blank table
 
