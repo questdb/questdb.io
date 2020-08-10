@@ -111,7 +111,7 @@ Before we start writing data using `TableWriter`, the target table has to exist.
 try (SqlCompiler compiler = new SqlCompiler(engine)) {
     compiler.compile("create table abc (a int, b byte, c short, d long, e float, g double, h date, i symbol, j string, k boolean, ts timestamp) timestamp(ts)", ctx);
 ```
-As you will be able to see below, table field types and indexes must match the code that is populating the table
+As you will be able to see below, the table field types and indexes must match the code that is populating the table.
 
 #### New instance of TableWriter
 
