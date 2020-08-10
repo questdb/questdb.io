@@ -89,7 +89,7 @@ final CairoConfiguration configuration = new DefaultCairoConfiguration("data_dir
 try (CairoEngine engine = new CairoEngine(configuration)) {
 ```
 
-A typical application will need only one instance of `CairoEngine`. This instance will start when application starts and shuts down when application closes. Every attempt should be made to ensure `CairoEngine` is closed gracefully when application stops.
+A typical application will need only one instance of `CairoEngine`. This instance will start when application starts and shuts down when application closes. You will need to close `CairoEngine` gracefully when the application stops.
 
 QuestDB provides a default configuration which only requires the `data directory` to be specified. For a more advanced usage, the whole `CairoConfiguration` interface can be overridden.
 
