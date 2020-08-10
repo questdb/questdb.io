@@ -152,7 +152,7 @@ Column update order is not important and update can be sparse. All unset columns
 
 #### Append row
 
-It is a trivial and lightweight method call:
+Following method call:
 
 ```java title="Example of appending a new row"
 row.append();
