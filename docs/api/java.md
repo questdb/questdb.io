@@ -95,7 +95,7 @@ QuestDB provides default configuration implementation, which only requires `data
 
 #### Create an instance of SqlExecutionContext`
 
-Execution context is a conduit for passing SQL execution atrefacts to the execution site. This instance is not thread-safe and it must not be shared between threads.
+Execution context is a conduit for passing SQL execution artefacts to the execution site. This instance is not thread-safe and it must not be shared between threads.
 
 ```java title="Example of execution context"
 final SqlExecutionContextImpl ctx = new SqlExecutionContextImpl(engine, 1);
