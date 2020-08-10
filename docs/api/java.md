@@ -93,7 +93,7 @@ A typical application will need only one instance of `CairoEngine`. This instanc
 
 QuestDB provides a default configuration which only requires the `data directory` to be specified. For a more advanced usage, the whole `CairoConfiguration` interface can be overridden.
 
-#### Create an instance of SqlExecutionContext`
+#### Create an instance of SqlExecutionContext
 
 Execution context is a conduit for passing SQL execution artefacts to the execution site. This instance is not thread-safe and it must not be shared between threads.
 
@@ -124,7 +124,7 @@ try (TableWriter writer = engine.getWriter(ctx.getCairoSecurityContext(), "abc")
 The writer will hold exclusive lock on table `abc` until it is closed. This lock is both intra and inter-process. If you have two Java applications accessing the same table only one will succeed at one time.
 
 
-#### Create a new row`
+#### Create a new row
 
 ```java title="Example of creating new table row with timestamp"
 TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
@@ -177,15 +177,15 @@ row = writer.newRow(Os.currentTimeMicros());
 ...
 ```
 
-The second `newRow()` call would cancel all the updates to the row since the last `append()`.
+Second `newRow()` call would cancel all the updates to the row since the last `append()`
 
 #### Commit changes
 
-To make changes visible to readers, writer has to commit ; `writer.commit` does this job. Unlike traditional SQL databases, the size of the transaction does not matter. You can commit anything between 1 and 1 trillion rows. We also spent considerable effort to ensure `commit()` is lightweight. You can drip one row at the time in applications that require such behaviour.
+To make changes visiable to readers writer has to commit. `writer.commit` does this job. Unlike traditional SQL databases size of the transaction does not matter. You can commit anything between 1 and 1 trillion rows. We also spent considerable effort to ensure `commit()` is lightweight. You can drip one row at a time in applications that require such behaviour.
 
 ## Executing queries
 
-We provide single API for executing all kinds of SQL queries. The example below focuses on `SELECT` and how to fetch data from cursor.
+We provide single API for executing all kinds of SQL queries. The example below focuses on `SELECT` however and how to fetch data from cursor.
 
 ```java title="Compiling SQL"
 final CairoConfiguration configuration = new DefaultCairoConfiguration(temp.getRoot().getAbsolutePath());
