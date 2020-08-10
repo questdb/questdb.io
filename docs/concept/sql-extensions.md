@@ -62,6 +62,7 @@ written as:
 ```questdb-sql
 SELECT a, b, c, d, sum(e) FROM tab;
 ```
+### Implicit HAVING
 
 Let's look at another more complex example using HAVING in standard SQL.
 
@@ -74,7 +75,7 @@ HAVING sum(e) > 100;
 
 In QuestDB's dialect, `select * from` optionality and featherweight sub-queries
 come to the rescue to create a smaller, more readable query, without unnecessary
-repetitive aggregations.
+repetitive aggregations. `HAVING` can be used implicitly as follows.
 
 ```questdb-sql
 (SELECT a, b, c, d, sum(e) s FROM tab) WHERE s > 100;
