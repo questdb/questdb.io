@@ -212,7 +212,7 @@ them here and focus on fetching data.
 #### RecordCursorFactory
 
 You can think of `RecordCursorFactory` as PreparedStatement. This is the entity that holds SQL execution plan with all of the execution artefacts. Factories are
-designed to be reused and we strongly encourage caching them. Having said that you still need to make sure you close factory explcitly when you no longer need it. Failing to do so can cause memory or other resource leak.
+designed to be reused and we strongly encourage caching them. You also need to make sure that you close factories explicitly when you no longer need them. Failing to do so can cause memory and/or other resources leak.
 
 #### RecordCursor
 
