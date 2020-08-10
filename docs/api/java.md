@@ -181,7 +181,7 @@ Second `newRow()` call would cancel all the updates to the row since the last `a
 
 #### Commit changes
 
-To make changes visiable to readers writer has to commit. `writer.commit` does this job. Unlike traditional SQL databases size of the transaction does not matter. You can commit anything between 1 and 1 trillion rows. We also spent considerable effort to ensure `commit()` is lightweight. You can drip one row at a time in applications that require such behaviour.
+To make changes visible to readers, writer has to commit. `writer.commit` does this job. Unlike traditional SQL databases, the size of the transaction does not matter. You can commit anything between 1 and 1 trillion rows. We also spent considerable effort to ensure `commit()` is lightweight. You can drip one row at a time in applications that require such behaviour.
 
 ## Executing queries
 
