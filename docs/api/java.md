@@ -177,7 +177,7 @@ row = writer.newRow(Os.currentTimeMicros());
 ...
 ```
 
-Second `newRow()` call would cancel all the updates to the row since the last `append()`
+Second `newRow()` call would cancel all the updates to the row since the last `append()`.
 
 #### Commit changes
 
