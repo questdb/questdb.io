@@ -104,7 +104,7 @@ Second argument is the number of threads that will be helping to execute SQLs. U
 
 #### New SqlCompiler instance and blank table
 
-Before we start writing data using `TableWriter` the target table has to exist. There are several ways to create new table. Using `SqlCompiler` is the esiest.
+Before we start writing data using `TableWriter`, the target table has to exist. There are several ways to create new table ; using `SqlCompiler` is the easiest.
 
 ```java title="Example of creating new table"
 try (SqlCompiler compiler = new SqlCompiler(engine)) {
