@@ -77,7 +77,7 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 }
 ```
 
-### Detailed Steps
+### Detailed steps
 
 #### Configure Cairo engine
 
