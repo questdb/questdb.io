@@ -121,7 +121,7 @@ We use engine to create instance of `TableWriter`. This will enable reusing this
 try (TableWriter writer = engine.getWriter(ctx.getCairoSecurityContext(), "abc")) {
 ```
 
-The writer will hold exclusing lock on table `abc` until such time it is closed. This lock is both intra- and inter-process. If you have two Java applications accessing the same table only one will succeed at one time.
+The writer will hold exclusive lock on table `abc` until it is closed. This lock is both intra and inter-process. If you have two Java applications accessing the same table only one will succeed at one time.
 
 
 #### Create a new row`
