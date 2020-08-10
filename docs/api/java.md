@@ -142,7 +142,7 @@ TableWriter.Row row = writer.newRow();
 
 #### Populate columns
 
-There are put\* methods for every supported data type. Columns are updated by an index as opposed to by name
+There are put\* methods for every supported data type. Columns are updated by an index as opposed to by name.
 
 ```java title="Example of populating table column"
 row.putLong(3, 333);
