@@ -185,7 +185,7 @@ To make changes visible to readers, writer has to commit. `writer.commit` does t
 
 ## Executing queries
 
-We provide single API for executing all kinds of SQL queries. The example below focuses on `SELECT` however and how to fetch data from cursor.
+We provide a single API for executing all kinds of SQL queries. The example below focuses on `SELECT` and how to fetch data from a cursor.
 
 ```java title="Compiling SQL"
 final CairoConfiguration configuration = new DefaultCairoConfiguration(temp.getRoot().getAbsolutePath());
