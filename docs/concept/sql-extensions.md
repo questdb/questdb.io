@@ -36,7 +36,7 @@ However, QuestDB provides a
 [native notation](../reference/sql/where.md#timestamp-and-date) which is faster
 and less verbose.
 
-## Important differences from standard SQL
+## Differences from standard SQL
 
 ### Optionality of SELECT \* FROM
 
@@ -63,6 +63,8 @@ written as:
 SELECT a, b, c, d, sum(e) FROM tab;
 ```
 
+### Implicit HAVING
+
 Let's look at another more complex example using HAVING in standard SQL.
 
 ```questdb-sql
@@ -74,7 +76,7 @@ HAVING sum(e) > 100;
 
 In QuestDB's dialect, `select * from` optionality and featherweight sub-queries
 come to the rescue to create a smaller, more readable query, without unnecessary
-repetitive aggregations.
+repetitive aggregations. `HAVING` functionality can be obtained implicitly as follows:
 
 ```questdb-sql
 (SELECT a, b, c, d, sum(e) s FROM tab) WHERE s > 100;

@@ -63,7 +63,6 @@ module.exports = {
         "concept/partitions",
         "concept/symbol",
         "concept/indexes",
-        "concept/sql-execution-order",
       ],
     },
     {
