@@ -1,17 +1,18 @@
 /* eslint-disable */
 import clsx from "clsx"
+import renderRoutes from "@docusaurus/renderRoutes"
+import { matchPath } from "@docusaurus/router"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 import { MDXProvider } from "@mdx-js/react"
 
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
-import renderRoutes from "@docusaurus/renderRoutes"
-import Layout from "@theme/Layout"
 import DocSidebar from "@theme/DocSidebar"
+import Head from "@theme/Head"
+import Layout from "@theme/Layout"
 import MDXComponents from "@theme/MDXComponents"
 import NotFound from "@theme/NotFound"
-import { matchPath } from "@docusaurus/router"
+import { MetadataContextProvider } from "@theme/useMetadataContext"
 
-import { Head, MetadataContextProvider } from "../../components"
 import styles from "./styles.module.css"
 
 const DocPage = (props) => {

@@ -1,10 +1,11 @@
 import clsx from "clsx"
-import Link from "@docusaurus/Link"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
-import { Button, useMetadataContext } from "../../components"
+import Button from "@theme/Button"
+import useMetadataContext from "@theme/useMetadataContext"
+
 import sectionStyles from "../../css/section.module.css"
 import footerStyles from "./styles.module.css"
 
@@ -19,7 +20,7 @@ const FooterLink = ({ to, href, label, ...props }: Props) => {
   const linkTo = useBaseUrl(to || "")
 
   return (
-    <Link
+    <a
       className={footerStyles.footer__link}
       {...(href
         ? {
@@ -27,11 +28,11 @@ const FooterLink = ({ to, href, label, ...props }: Props) => {
             rel: "noopener noreferrer",
             target: "_blank",
           }
-        : { to: linkTo })}
+        : { href: linkTo })}
       {...props}
     >
       {label}
-    </Link>
+    </a>
   )
 }
 

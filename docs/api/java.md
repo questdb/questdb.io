@@ -81,48 +81,64 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 
 #### Configure Cairo engine
 
-CairoEngine is a resource manager for the embedded QuestDB. Its main function is to facilitate concurrent access to pools of `TableReader`
-and `TableWriter` instances.
+CairoEngine is a resource manager for the embedded QuestDB. Its main function is
+to facilitate concurrent access to pools of `TableReader` and `TableWriter`
+instances.
 
 ```java title="New CairoEngine instance"
 final CairoConfiguration configuration = new DefaultCairoConfiguration("data_dir");
 try (CairoEngine engine = new CairoEngine(configuration)) {
 ```
 
-A typical application will need only one instance of `CairoEngine`. This instance will start when application starts and shuts down when application closes. You will need to close `CairoEngine` gracefully when the application stops.
+A typical application will need only one instance of `CairoEngine`. This
+instance will start when application starts and shuts down when application
+closes. You will need to close `CairoEngine` gracefully when the application
+stops.
 
-QuestDB provides a default configuration which only requires the `data directory` to be specified. For a more advanced usage, the whole `CairoConfiguration` interface can be overridden.
+QuestDB provides a default configuration which only requires the
+`data directory` to be specified. For a more advanced usage, the whole
+`CairoConfiguration` interface can be overridden.
 
 #### Create an instance of SqlExecutionContext
 
-Execution context is a conduit for passing SQL execution artefacts to the execution site. This instance is not thread-safe and it must not be shared between threads.
+Execution context is a conduit for passing SQL execution artefacts to the
+execution site. This instance is not thread-safe and it must not be shared
+between threads.
 
 ```java title="Example of execution context"
 final SqlExecutionContextImpl ctx = new SqlExecutionContextImpl(engine, 1);
 ```
 
-The second argument is the number of threads that will be helping to execute SQL statements. Unless you are building another QuestDB server, this value should always be 1.
+The second argument is the number of threads that will be helping to execute SQL
+statements. Unless you are building another QuestDB server, this value should
+always be 1.
 
 #### New SqlCompiler instance and blank table
 
-Before we start writing data using `TableWriter`, the target table has to exist. There are several ways to create new table ; using `SqlCompiler` is the easiest.
+Before we start writing data using `TableWriter`, the target table has to exist.
+There are several ways to create new table ; using `SqlCompiler` is the easiest.
 
 ```java title="Example of creating new table"
 try (SqlCompiler compiler = new SqlCompiler(engine)) {
     compiler.compile("create table abc (a int, b byte, c short, d long, e float, g double, h date, i symbol, j string, k boolean, ts timestamp) timestamp(ts)", ctx);
 ```
-As you will be able to see below, the table field types and indexes must match the code that is populating the table.
+
+As you will be able to see below, the table field types and indexes must match
+the code that is populating the table.
 
 #### New instance of TableWriter
 
-We use engine to create instance of `TableWriter`. This will enable reusing this `TableWriter` instance later, when we use the same method of creating table writer again.
+We use engine to create instance of `TableWriter`. This will enable reusing this
+`TableWriter` instance later, when we use the same method of creating table
+writer again.
 
 ```java title="New table writer instance"
 try (TableWriter writer = engine.getWriter(ctx.getCairoSecurityContext(), "abc")) {
 ```
 
-The writer will hold exclusive lock on table `abc` until it is closed. This lock is both intra and inter-process. If you have two Java applications accessing the same table only one will succeed at one time.
-
+The writer will hold exclusive lock on table `abc` until it is closed. This lock
+is both intra and inter-process. If you have two Java applications accessing the
+same table only one will succeed at one time.
 
 #### Create a new row
 
@@ -142,13 +158,15 @@ TableWriter.Row row = writer.newRow();
 
 #### Populate columns
 
-There are put\* methods for every supported data type. Columns are updated by an index as opposed to by name.
+There are put\* methods for every supported data type. Columns are updated by an
+index as opposed to by name.
 
 ```java title="Example of populating table column"
 row.putLong(3, 333);
 ```
 
-Column update order is not important and update can be sparse. All unset columns will default to NULL values.
+Column update order is not important and update can be sparse. All unset columns
+will default to NULL values.
 
 #### Append row
 
@@ -165,7 +183,8 @@ row can also be canceled if required.
 row.cancel();
 ```
 
-A pending row is automatically cancelled when `writer.newRow()` is called. Consider the following scenario:
+A pending row is automatically cancelled when `writer.newRow()` is called.
+Consider the following scenario:
 
 ```java
 TableWriter.Row row = writer.newRow(Os.currentTimeMicros());
@@ -177,15 +196,21 @@ row = writer.newRow(Os.currentTimeMicros());
 ...
 ```
 
-Second `newRow()` call would cancel all the updates to the row since the last `append()`.
+Second `newRow()` call would cancel all the updates to the row since the last
+`append()`.
 
 #### Commit changes
 
-To make changes visible to readers, writer has to commit. `writer.commit` does this job. Unlike traditional SQL databases, the size of the transaction does not matter. You can commit anything between 1 and 1 trillion rows. We also spent considerable effort to ensure `commit()` is lightweight. You can drip one row at a time in applications that require such behaviour.
+To make changes visible to readers, writer has to commit. `writer.commit` does
+this job. Unlike traditional SQL databases, the size of the transaction does not
+matter. You can commit anything between 1 and 1 trillion rows. We also spent
+considerable effort to ensure `commit()` is lightweight. You can drip one row at
+a time in applications that require such behaviour.
 
 ## Executing queries
 
-We provide a single API for executing all kinds of SQL queries. The example below focuses on `SELECT` and how to fetch data from a cursor.
+We provide a single API for executing all kinds of SQL queries. The example
+below focuses on `SELECT` and how to fetch data from a cursor.
 
 ```java title="Compiling SQL"
 final CairoConfiguration configuration = new DefaultCairoConfiguration(temp.getRoot().getAbsolutePath());
@@ -206,23 +231,31 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
 
 ### Detailed steps
 
-The steps to setup CairoEngine, execution context and SqlCompiler are the same as those we explained in [writing data](#writing-data) section. We will skip
+The steps to setup CairoEngine, execution context and SqlCompiler are the same
+as those we explained in [writing data](#writing-data) section. We will skip
 them here and focus on fetching data.
 
 #### RecordCursorFactory
 
-You can think of `RecordCursorFactory` as PreparedStatement. This is the entity that holds SQL execution plan with all of the execution artefacts. Factories are
-designed to be reused and we strongly encourage caching them. You also need to make sure that you close factories explicitly when you no longer need them. Failing to do so can cause memory and/or other resources leak.
+You can think of `RecordCursorFactory` as PreparedStatement. This is the entity
+that holds SQL execution plan with all of the execution artefacts. Factories are
+designed to be reused and we strongly encourage caching them. You also need to
+make sure that you close factories explicitly when you no longer need them.
+Failing to do so can cause memory and/or other resources leak.
 
 #### RecordCursor
 
-This instance allows iterating over the dataset produced by SQL. Cursors are relatively short-lived and do not imply fetching all the data. Note that you have to close a cursor as soon as enough data is fetched ; the closing process can happen at any time.
+This instance allows iterating over the dataset produced by SQL. Cursors are
+relatively short-lived and do not imply fetching all the data. Note that you
+have to close a cursor as soon as enough data is fetched ; the closing process
+can happen at any time.
 
 Cursors are not thread safe and cannot be shared between threads.
 
 #### Record
 
-This is cursor's data access API. Record instance is obtained from the cursor outside of the fetch loop.
+This is cursor's data access API. Record instance is obtained from the cursor
+outside of the fetch loop.
 
 ```java title="Example of fetching data from cursor"
 final Record record = cursor.getRecord();
@@ -231,7 +264,9 @@ while (cursor.hasNext()) {
 }
 ```
 
-Record does not hold the data. Instead, it is an API to pull data when data is needed. Record instance remains the same while cursor goes over the data, making caching of records pointless.
+Record does not hold the data. Instead, it is an API to pull data when data is
+needed. Record instance remains the same while cursor goes over the data, making
+caching of records pointless.
 
 ## InfluxDB sender library
 

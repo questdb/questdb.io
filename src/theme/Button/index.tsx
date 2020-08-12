@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import Link from "@docusaurus/Link"
 import React, { ReactNode } from "react"
 
 import styles from "./styles.module.css"
@@ -39,19 +38,19 @@ const Button = ({
 
   if (href) {
     return (
-      <Link className={classes} href={href} onClick={onClick}>
+      <a className={classes} href={href} onClick={onClick}>
         {icon}
         {children}
-      </Link>
+      </a>
     )
   }
 
   if (to) {
     return (
-      <Link className={classes} onClick={onClick} to={to}>
+      <a className={classes} href={to} onClick={onClick}>
         {icon}
         {children}
-      </Link>
+      </a>
     )
   }
 

@@ -1,4 +1,3 @@
-import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
@@ -22,12 +21,12 @@ const AnnouncementBar = () => {
     <div className={styles.announcement} role="banner">
       <p className={styles.announcement__content}>
         If you like QuestDB,&nbsp;
-        <Link
+        <a
           className={styles.announcement__link}
           href={siteConfig.customFields.githubUrl}
         >
           give us a star on GitHub
-        </Link>
+        </a>
         &nbsp;⭐
       </p>
 

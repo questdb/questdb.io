@@ -15,10 +15,12 @@ const metadata: Metadata = {
 
 const MetadataContext = createContext(metadata)
 
+const useMetadataContext = () => useContext(MetadataContext)
+
 export const MetadataContextProvider = ({ children, value }: Props) => (
   <MetadataContext.Provider value={value || metadata}>
     {children}
   </MetadataContext.Provider>
 )
 
-export const useMetadataContext = () => useContext(MetadataContext)
+export default useMetadataContext

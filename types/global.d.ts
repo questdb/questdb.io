@@ -107,7 +107,12 @@ declare module "@docusaurus/useDocusaurusContext" {
         colorMode: { disableSwitch: boolean }
         footer: { copyright: string; title: string; links: Item[] }
         image: string
-        navbar: { title: string; hideOnScroll: boolean; items: string[] }
+        navbar: {
+          hideOnScroll: boolean
+          items: string[]
+          logo: { alt: string; src: string }
+          title: string
+        }
         sidebarCollapsible: boolean
       }
     }

@@ -1,17 +1,15 @@
 import clsx from "clsx"
-import Link from "@docusaurus/Link"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { useCallback, useEffect, useState } from "react"
 
 import CodeBlock from "@theme/CodeBlock"
 import Layout from "@theme/Layout"
 
-import {
-  Button,
-  Head,
-  MetadataContextProvider,
-  useWindowWidth,
-} from "../components"
+import Button from "@theme/Button"
+import Head from "@theme/Head"
+import { MetadataContextProvider } from "@theme/useMetadataContext"
+import useWindowWidth from "@theme/useWindowWidth"
+
 import cardsStyles from "../css/cards.module.css"
 import consoleStyles from "../css/console.module.css"
 import featureStyles from "../css/feature.module.css"
@@ -139,7 +137,7 @@ const SeenOn = () => (
       seenOnStyles.section,
     )}
   >
-    <Link
+    <a
       className={seenOnStyles["product-hunt"]}
       href="https://www.producthunt.com/posts/questdb?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-questdb"
     >
@@ -149,7 +147,7 @@ const SeenOn = () => (
         width="250px"
         height="54px"
       />
-    </Link>
+    </a>
   </section>
 )
 
@@ -209,7 +207,7 @@ const Jumbotron = () => {
             {`docker pull questdb/questdb
 docker run -p 9000:9000 questdb/questdb`}
           </code>
-          <Link href={siteConfig.customFields.dockerUrl}>
+          <a href={siteConfig.customFields.dockerUrl}>
             <img
               alt="Docker logo"
               className={jumbotronStyles["jumbotron__docker-icon"]}
@@ -217,7 +215,7 @@ docker run -p 9000:9000 questdb/questdb`}
               title="Docker"
               width="60"
             />
-          </Link>
+          </a>
         </pre>
       </div>
     </section>
@@ -410,8 +408,7 @@ const Console = () => {
         >
           Interactive console to import data (drag and drop) and start querying
           right away. Check our&nbsp;
-          <Link to="docs/guide/web-console">Web Console guide</Link> to get
-          started.
+          <a href="docs/guide/web-console">Web Console guide</a> to get started.
         </p>
 
         <img
@@ -454,18 +451,18 @@ const Console = () => {
             </p>
 
             <div className={consoleStyles.console__actions}>
-              <Link
+              <a
                 className={consoleStyles.console__link}
                 href={siteConfig.customFields.githubUrl}
               >
                 Go to GitHub&nbsp;&nbsp;&gt;
-              </Link>
-              <Link
+              </a>
+              <a
                 className={consoleStyles.console__link}
                 href={siteConfig.customFields.slackUrl}
               >
                 Join Slack&nbsp;&nbsp;&gt;
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -643,39 +640,11 @@ ${mergeQuery}`}
               onClick={handleClick1}
             >
               <h3 className={queryScrollerStyles.queryScroller__header}>
-                <svg
+                <img
+                  alt="Magnifying glass icon"
                   className={queryScrollerStyles.queryScroller__icon}
-                  width="22"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M16.3125 16.3125L13.5 13.5"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M3.375 7.3125C3.375 6.26821 3.78984 5.26669 4.52827 4.52827C5.26669 3.78984 6.26821 3.375 7.3125 3.375"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M7.3125 13.5C10.7298 13.5 13.5 10.7298 13.5 7.3125C13.5 3.89524 10.7298 1.125 7.3125 1.125C3.89524 1.125 1.125 3.89524 1.125 7.3125C1.125 10.7298 3.89524 13.5 7.3125 13.5Z"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                  src="/img/pages/index/searchTime.svg"
+                />
                 Search Time
               </h3>
               <p className={queryScrollerStyles.queryScroller__description}>
@@ -691,31 +660,11 @@ ${mergeQuery}`}
               onClick={handleClick2}
             >
               <h3 className={queryScrollerStyles.queryScroller__header}>
-                <svg
+                <img
+                  alt="Knife icon"
                   className={queryScrollerStyles.queryScroller__icon}
-                  width="22"
-                  height="18"
-                  viewBox="0 0 22 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M11.6875 6.875L2.0625 16.5L11 15.125L12.375 11L14.4375 9.625"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M15.125 10.3125L11.6875 6.87504L16.8438 1.71879C17.7932 0.769354 19.3318 0.769354 20.2812 1.71879C21.2307 2.66823 21.2307 4.20685 20.2812 5.15629L15.125 10.3125Z"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                  src="/img/pages/index/sliceTime.svg"
+                />
                 Slice Time
               </h3>
               <p className={queryScrollerStyles.queryScroller__description}>
@@ -731,23 +680,11 @@ ${mergeQuery}`}
               onClick={handleClick3}
             >
               <h3 className={queryScrollerStyles.queryScroller__header}>
-                <svg
+                <img
+                  alt="Indication arrow icon"
                   className={queryScrollerStyles.queryScroller__icon}
-                  width="22"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.75 6L1.5 1.5L6 15.75L9 9L15.75 6Z"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                  src="/img/pages/index/navigateTime.svg"
+                />
                 Navigate Time
               </h3>
               <p className={queryScrollerStyles.queryScroller__description}>
@@ -763,31 +700,11 @@ ${mergeQuery}`}
               onClick={handleClick4}
             >
               <h3 className={queryScrollerStyles.queryScroller__header}>
-                <svg
+                <img
+                  alt="Two overlapping squares"
                   className={queryScrollerStyles.queryScroller__icon}
-                  width="22"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M17.5 1H6.25V12.25H17.5V1Z"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M12.25 6.25H1V17.5H12.25V6.25Z"
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeMiterlimit="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                  src="/img/pages/index/mergeTime.svg"
+                />
                 Merge Time
               </h3>
               <p className={queryScrollerStyles.queryScroller__description}>
