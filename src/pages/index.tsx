@@ -488,7 +488,7 @@ const getTopByIndex = (m: number[], index: 1 | 2 | 3 | 4): number => {
 
 const searchQuery = `SELECT timestamp, tempC
 FROM sensors
-WHERE timestamp = '2020-06-14;-2d';`
+WHERE timestamp = '2020-06-14;1M';`
 
 const sliceQuery = `SELECT timestamp, avg(tempC)
 FROM sensors
