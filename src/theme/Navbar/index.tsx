@@ -32,7 +32,6 @@ function Navbar(): JSX.Element {
       themeConfig: {
         navbar: { items, logo },
       },
-      url,
     },
     isClient,
   } = useDocusaurusContext()
@@ -92,7 +91,7 @@ function Navbar(): JSX.Element {
               />
             </svg>
           </div>
-          <a className="navbar__brand" href={url}>
+          <a className={clsx("navbar__brand", styles.brand)} href="/">
             <img
               alt={logo.alt}
               className="navbar__logo"
@@ -124,7 +123,11 @@ function Navbar(): JSX.Element {
       />
       <div className="navbar-sidebar">
         <div className="navbar-sidebar__brand">
-          <a className="navbar__brand" href={url} onClick={hideSidebar}>
+          <a
+            className={clsx("navbar__brand", styles.brand)}
+            href="/"
+            onClick={hideSidebar}
+          >
             <img
               alt={logo.alt}
               key={`${isClient}`}
