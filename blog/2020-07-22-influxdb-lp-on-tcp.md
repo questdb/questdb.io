@@ -2,7 +2,7 @@
 title: InfluxDB Line Protocol on QuestDB
 author: David G. Simmons
 author_title: QuestDB Team
-author_url: https://github.com/davids
+author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
 description: How to use InfluxDB line protocol with QuestDB, IoT example.
 tags: [questdb, influxdb line protocol, tcp]

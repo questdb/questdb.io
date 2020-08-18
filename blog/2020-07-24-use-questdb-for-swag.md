@@ -2,7 +2,7 @@
 title: Use QuestDB and Get Swag!
 author: David G. Simmons
 author_title: QuestDB Team
-author_url: https://github.com/davids
+author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
 description: Get swag when being a member of the QuestDB community.
 tags: [questdb, projects, swag]
