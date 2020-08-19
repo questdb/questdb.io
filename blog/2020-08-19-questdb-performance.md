@@ -43,7 +43,7 @@ What if, in order to get around data being on multiple pages, we simply used _on
 
 If your page size is bigger than the available memory, the kernel will handle swapping pages in and out for you as you try to access different parts of the page. So of course I asked "well then, why didn't you do this from the beginning?".
 
-Vlad, in his typically self-deprecating style, just said "we didn't know. We thought we should keep them to a certain size to keep them from growing out of control" which, quite frankly, seems like the right answer.
+Vlad, in his typically self-deprecating style, just said "We didn't know. We thought we should keep them to a certain size to keep them from growing out of control" which, quite frankly, seems like the right answer.
 
 We'd just resize those smaller pages as needed. But as Vald explained, if you do that then you need to copy the data over to the new, resized page and "copying can take over your life." Databases aren't built to maximize the efficiency of data copying. They are built to maximize the ability to extract value from data. Copying data from one page to another isn't extracting value.
 
