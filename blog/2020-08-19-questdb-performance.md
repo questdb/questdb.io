@@ -69,7 +69,7 @@ When you read an offset into a file, you send a buffer to read into, the address
 
 ## Speed
 
-When I asked Vlad about this, and how it relates to query speed, he was quite explicit in saying that thinking you (a database devleoper) can beat the kernel is pure folly. Postgres tries this and, according to Vlad, an aggregation over a large (really large!) dataset can take 5 *minutes*, whereas the same aggregation on QuestDB takes only 60ms. Those aren't typos.
+When I asked Vlad about this, and how it relates to query speed, he was quite explicit in saying that thinking you (a database developer) can beat the kernel is pure folly. Postgres tries this and, according to Vlad, an aggregation over a large (really large!) dataset can take 5 *minutes*, whereas the same aggregation on QuestDB takes only 60ms. Those aren't typos.
 
 To both Patrick and Vlad (and me, for what that's worth), the idea that we, as developers, can be better at these operations than the kernel (when really we're doing them *on top of* the kernel anyway) is simply ridiculous. If I take an army of researchers and spend a decade of development, then *maybe* I can do it better than the kernel, but during that time guess what? The army of people working on the kernel will have found further improvements and left you behind anyway.
 
