@@ -74,4 +74,4 @@ When I asked Vlad about this, and how it relates to query speed, he was quite ex
 
 To both Patrick and Vlad (and me, for what that's worth), the idea that we, as developers, can be better at these operations than the kernel (when really we're doing them *on top of* the kernel anyway) is simply ridiculous. If I take an army of researchers and spend a decade of development, then *maybe* I can do it better than the kernel, but during that time guess what? The army of people working on the kernel will have found further improvements and left you behind anyway.
 
-It comes down to letting the kernel do its job, and us doing ours. And our job is to exploiut the kernel for every ounce of performance we can get out of it without trying to do it's job for it. 
+It comes down to letting the kernel do its job, and us doing ours. And our job is to exploit the kernel for every ounce of performance we can get out of it without trying to do it's job for it. 
