@@ -33,7 +33,8 @@ QuestDB uses memory-mapped pages to reference data in order to make it really fa
 
 When you add variable-length data, suddenly you cannot ensure that everything will line up along page boundaries and you will have the very real possibility -- actually a certainty -- that you may have to jump from one page to another just to get all the data contined in a frame.
 
-This, it turns out, is hugely inefficient. If(data is in frame) then (process that data) else (figure out where the rest of the data is, get that, then process it all). This kind of if-then-else sprinkled throughout the code is a) hard to debug and b) leads to lots of branching, which slows down execution.
+This, it turns out, is hugely inefficient. If (data is in frame) then (process that data) else (figure out where the rest of the data is, get that, then process it all). This kind of if-then-else sprinkled throughout the code is a) hard to debug and b) leads to lots of branching, which slows down execution.
+In order to prevent variable length data from straddling frames we would need to have different frame lengths per column. Furthermore, calculating aligned frame lengths for variable length data is non trivial and requires scanning the entire data set which would reversing any performance gains from parallelization.```
 
 ## One page to rule them all
 
