@@ -195,3 +195,112 @@ anyway.
 It comes down to letting the kernel do its job, and us doing ours. And our job
 is to exploit the kernel for every ounce of performance we can get out of it
 without trying to do it's job for it.
+
+## It's time for pudding
+
+Because as we all know, the proof is in the pudding. And since we're talking about performance, I ran some tests. But I didn't want to just create random values, etc. I wanted to use real world data. And it just so happens that I've been collecting IoT data for about the last 2 months in QuestDB, so I exported it as a .csv file so that I could run equivalent tests on QuestDB, InfluxDB and Postgres. The results were almost exactly what I expected.
+
+### Import:
+| database | Time |
+|----------|------|
+| InfluxDB v2.0 Beta 16 | 33 seconds|
+| Postgres | 9.59 seconds |
+| QuestDB v5.0.3 | 3.17 seconds |
+
+
+### About the data:
+ 2,293,590 lines of csv data like so:
+
+ ```
+ "dev_id","dev_name","dev_loc","temp_c","humidity","altitude","pressure","timestamp"
+ "THPL002","BME280","DemoKit3",26.21,52.67,124.54,998.38,"2020-08-19T13:41:22.481625Z"
+ ```
+
+ In order to import into InfluxDB you have to add some annotations to the csv file, like so:
+
+ ```
+ #datatype measurement,tag,tag,tag,field,field,field,field,time
+ ```
+
+ I then had to add a `measurement` field to each row in the csv:
+
+ ```
+ sed -e 's/^/iot_data /' /Users/davidgs/Downloads/questdb-query-1597844484155.csv > import.csv
+ ```
+
+ And then I could run
+
+ ```
+ date;./influx write -b iot -o influxdata -t <myToken> -f import.csv;date
+ ```
+
+ And the results:
+
+ ```
+ Wed Aug 19 11:43:02 EDT 2020
+ Wed Aug 19 11:43:35 EDT 2020
+ ```
+
+ That's 33 seconds.
+
+ For Postgres:
+
+ ```
+ % psql postgres
+postgres=# \timing
+Timing is on.
+postgres=# create table sensor(id SERIAL, dev_id VARCHAR(10), dev_name VARCHAR(12), dev_loc VARCHAR(12), temp_c NUMERIC, humidity NUMERIC, altitude NUMERIC, pressure NUMERIC, timestamp DATE, PRIMARY KEY(id));
+CREATE TABLE
+Time: 16.745 ms
+postgres=# copy sensor(dev_id, dev_name, dev_loc, temp_c, humidity, altitude, pressure, timestamp) from '/Users/davidgs/Downloads/questdb-query-1597844484155.csv' DELIMITER ',' CSV HEADER;
+COPY 2293590
+Time: 9592.902 ms (00:09.593)
+```
+
+For QuestDB I had to do nothing but drag/drop the csv file into the console, and it imported the entire thing in 3.17 seconds.
+
+### Queries
+
+So now I have 3 databases with the exact same data in them and it's time to try a query. I figured a simple average over the `temp_c` field would be a good exercise. This 2.2M rows of data covers about 2 months (which I had to know for InfluxDB of course).
+
+Here's the flux query:
+
+```
+from(bucket: "iot")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "iot_data")
+  |> filter(fn: (r) => r["_field"] == "temp_c")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> yield(name: "mean")
+```
+And execution took a little over 9 seconds (looked like 9.4 in the pop-up spinning wheel). Of course, this does not give me an overall average of the temperature over the entire span of time. It gives me a running average, which isn't exactly what I wanted, but I didn't want to fool around trying to get a real average.
+
+In Postgres:
+
+```
+postgres=# SELECT avg(temp_c) from sensor;
+         avg
+---------------------
+ 11.5473707768171295
+(1 row)
+
+Time: 208.721 ms
+```
+And execution took 208.7ms
+
+In QuestDB:
+```
+SELECT avg(temp_c) from sensor;
+```
+![execution time results with execution time of 9.8ms](/img/blog/2020-08-19/queryResult.png)
+
+And execution took 9.8ms.
+
+Time for another table:
+
+| function | QuestDB | Postgres | InfluxDB |
+|----------|---------|----------|----------|
+| import csv | 3.17s | 9.5s | 33s |
+| average(temp) | 9.8ms | 208.7ms | 9.4s |
+
+
