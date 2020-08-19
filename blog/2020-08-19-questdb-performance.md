@@ -1,12 +1,33 @@
-# QuestDB Performance
+---
+title: QuestDB Performance
+author: David G. Simmons
+author_title: QuestDB Team
+author_url: https://github.com/davidgs
+author_image_url: https://avatars.githubusercontent.com/davidgs
+description: @@@@@todo@@@@@@
+tags: [performance]
+image: /img/blog/2020-08-19/banner.png
+---
+<div
+  className="banner"
+  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
+>
+  <img
+    alt="Hand holding an analog stopwatch"
+    src="/img/blog/2020-08-19/banner.jpg"
+  />
+  <div>
+    Photo by <a href="https://unsplash.com/@veri_ivanova?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Veri Ivanova</a> on <a href="https://unsplash.com/s/photos/speed?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 
+  </div>
+</div>
 Have you ever had one of those conversations where, in the end, you feel both smarter _and_ dumber? I had one last week when I sat down with our Founder and CTO Vlad Ilyuschenko and one of our engineers Patrick Mackinlay.
 
 I am now smarter because I learned so much from them, but I feel dumber because they are both so amazingly smart.
 
 But you didn't come here to listen to me talk about that. So let's get to the meat of this post: How does QuestDB get the kind of performance it does, and how are we continuing to squeeze another 50-60% out of it?
 
-<!-- -->
+<!--truncate-->
 ## How the performance improvements started
 
 QuestDB started out with a single-threaded approach to queries and such. But one obvious way to improve performance in a Java application like this is to paralelize as much as you can by using multiple threads of execution.
@@ -34,7 +55,8 @@ QuestDB uses memory-mapped pages to reference data in order to make it really fa
 When you add variable-length data, suddenly you cannot ensure that everything will line up along page boundaries and you will have the very real possibility -- actually a certainty -- that you may have to jump from one page to another just to get all the data contined in a frame.
 
 This, it turns out, is hugely inefficient. If (data is in frame) then (process that data) else (figure out where the rest of the data is, get that, then process it all). This kind of if-then-else sprinkled throughout the code is a) hard to debug and b) leads to lots of branching, which slows down execution.
-In order to prevent variable length data from straddling frames we would need to have different frame lengths per column. Furthermore, calculating aligned frame lengths for variable length data is non trivial and requires scanning the entire data set which would reversing any performance gains from parallelization.```
+
+In order to prevent variable length data from straddling frames we would need to have different frame lengths per column. Furthermore, calculating aligned frame lengths for variable length data is non trivial and requires scanning the entire data set which would reversing any performance gains from parallelization.
 
 ## One page to rule them all
 
@@ -42,11 +64,11 @@ In order to prevent variable length data from straddling frames we would need to
 
 What if, in order to get around data being on multiple pages, we simply used _one_ page for all of the data? Of course my first question was "Don't you at some point reach a limit on the page size?" but Vlad and Patrick assured me there is, indeed, no limit on a page size.
 
-If your page size is bigger than the available memory, the kernel will handle swapping pages in and out for you as you try to access different parts of the page. So of course I asked "well then, why didn't you do this from the beginning?".
+If your page size is bigger than the available memory, the kernel will handle swapping pages in and out for you as you try to access different parts of the page. So of course I asked "well then, why didn't you do this from the beginning?"
 
 Vlad, in his typically self-deprecating style, just said "We didn't know. We thought we should keep them to a certain size to keep them from growing out of control" which, quite frankly, seems like the right answer.
 
-We'd just resize those smaller pages as needed. But as Vald explained, if you do that then you need to copy the data over to the new, resized page and "copying can take over your life". Databases aren't built to maximize the efficiency of data copying. They are built to maximize the ability to extract value from data. Copying data from one page to another isn't extracting value.
+We'd just resize those smaller pages as needed. But as Vald explained, if you do that then you need to copy the data over to the new, resized page and "copying can take over your life." Databases aren't built to maximize the efficiency of data copying. They are built to maximize the ability to extract value from data. Copying data from one page to another isn't extracting value.
 
 So they tried just allocating a new page, and jumping from one page to the next as needed to find the required data. This cut down on the copying of data, but it lead to the problems outlined in the previous section. You never knew which page your data was going to be on, and jumping from one page to another was hugely inefficient.
 
@@ -54,7 +76,7 @@ So they tried having just the one page. One massive page (that you can grow as n
 
 When you get into using one single page, of course the total available address space comes into play. But since QuestDB only runs on 64-bit architectures, we have 2^64 address space, which is more than enough.
 
-This is where Patrick jumped in to explain that when you have an area of memory mapped from a file, when the file grows and you remap the new size into memory. The operating system does not need to copy anything, the virtual memory model allows the OS to just remap the already mapped pages into the newly mapped memory region. In many cases, the OS may have already reserved the entire address space for you, so your new mapping is in the same region as the old, just bigger.
+This is where Patrick jumped in to explain that when you have an area of memory mapped from a file, when the file grows you remap the new size into memory. The operating system does not need to copy anything; the virtual memory model allows the OS to just remap the already mapped pages into the newly mapped memory region. In many cases, the OS may have already reserved the entire address space for you so your new mapping is in the same region as the old, just bigger.
 
 ## Kernels are smart
 
@@ -72,6 +94,115 @@ When you read an offset into a file, you send a buffer to read into, the address
 
 When I asked Vlad about this, and how it relates to query speed, he was quite explicit in saying that thinking you (a database developer) can beat the kernel is pure folly. Postgres tries this and, according to Vlad, an aggregation over a large (really large!) dataset can take 5 *minutes*, whereas the same aggregation on QuestDB takes only 60ms. Those aren't typos.
 
-To both Patrick and Vlad (and me, for what that's worth), the idea that we, as developers, can be better at these operations than the kernel (when really we're doing them *on top of* the kernel anyway) is simply ridiculous. If I take an army of researchers and spend a decade of development, then *maybe* I can do it better than the kernel, but during that time guess what? The army of people working on the kernel will have found further improvements and left you behind anyway.
+To both Patrick and Vlad (and me, for what that's worth), the idea that we, as developers, can be better at these operations than the kernel (when really we're doing them *on top of* the kernel anyway) is simply ridiculous. If I take an army of researchers and spend a decade of development, then *maybe* I can do it better than the kernel, but during that time guess what? The army of people working on the kernel will have found further improvements and left me behind anyway.
 
-It comes down to letting the kernel do its job, and us doing ours. And our job is to exploit the kernel for every ounce of performance we can get out of it without trying to do it's job for it. 
+It comes down to letting the kernel do its job, and us doing ours. And our job is to exploit the kernel for every ounce of performance we can get out of it without trying to do it's job for it.
+
+## It's time for pudding
+
+Because as we all know, the proof is in the pudding. And since we're talking about performance, I ran some tests. But I didn't want to just create random values, etc. I wanted to use real world data. And it just so happens that I've been collecting IoT data for about the last 2 months in QuestDB, so I exported it as a .csv file so that I could run equivalent tests on QuestDB, InfluxDB and Postgres. The results were almost exactly what I expected.
+
+### Import:
+| database | Time |
+|----------|------|
+| InfluxDB v2.0 Beta 16 | 33 seconds|
+| Postgres | 9.59 seconds |
+| QuestDB v5.0.3 | 3.17 seconds |
+
+
+### About the data:
+ 2,293,590 lines of csv data like so:
+
+ ```
+ "dev_id","dev_name","dev_loc","temp_c","humidity","altitude","pressure","timestamp"
+ "THPL002","BME280","DemoKit3",26.21,52.67,124.54,998.38,"2020-08-19T13:41:22.481625Z"
+ ```
+
+ In order to import into InfluxDB you have to add some annotations to the csv file, like so:
+
+ ```
+ #datatype measurement,tag,tag,tag,field,field,field,field,time
+ ```
+
+ I then had to add a `measurement` field to each row in the csv:
+
+ ```
+ sed -e 's/^/iot_data /' /Users/davidgs/Downloads/questdb-query-1597844484155.csv > import.csv
+ ```
+
+ And then I could run
+
+ ```
+ date;./influx write -b iot -o influxdata -t <myToken> -f import.csv;date
+ ```
+
+ And the results:
+
+ ```
+ Wed Aug 19 11:43:02 EDT 2020
+ Wed Aug 19 11:43:35 EDT 2020
+ ```
+
+ That's 33 seconds.
+
+ For Postgres:
+
+ ```
+ % psql postgres
+postgres=# \timing
+Timing is on.
+postgres=# create table sensor(id SERIAL, dev_id VARCHAR(10), dev_name VARCHAR(12), dev_loc VARCHAR(12), temp_c NUMERIC, humidity NUMERIC, altitude NUMERIC, pressure NUMERIC, timestamp DATE, PRIMARY KEY(id));
+CREATE TABLE
+Time: 16.745 ms
+postgres=# copy sensor(dev_id, dev_name, dev_loc, temp_c, humidity, altitude, pressure, timestamp) from '/Users/davidgs/Downloads/questdb-query-1597844484155.csv' DELIMITER ',' CSV HEADER;
+COPY 2293590
+Time: 9592.902 ms (00:09.593)
+```
+
+For QuestDB I had to do nothing but drag/drop the csv file into the console, and it imported the entire thing in 3.17 seconds.
+
+### Queries
+
+So now I have 3 databases with the exact same data in them and it's time to try a query. I figured a simple average over the `temp_c` field would be a good exercise. This 2.2M rows of data covers about 2 months (which I had to know for InfluxDB of course).
+
+Here's the flux query:
+
+```
+from(bucket: "iot")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] == "iot_data")
+  |> filter(fn: (r) => r["_field"] == "temp_c")
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> yield(name: "mean")
+```
+And execution took a little over 9 seconds (looked like 9.4 in the pop-up spinning wheel). Of course, this does not give me an overall average of the temperature over the entire span of time. It gives me a running average, which isn't exactly what I wanted, but I didn't want to fool around trying to get a real average.
+
+In Postgres:
+
+```
+postgres=# SELECT avg(temp_c) from sensor;
+         avg
+---------------------
+ 11.5473707768171295
+(1 row)
+
+Time: 208.721 ms
+```
+And execution took 208.7ms
+
+In QuestDB:
+```
+SELECT avg(temp_c) from sensor;
+```
+![execution time results with execution time of 9.8ms](/img/blog/2020-08-19/queryResult.png)
+
+And execution took 9.8ms.
+
+Time for another table:
+
+| function | QuestDB | Postgres | InfluxDB |
+|----------|---------|----------|----------|
+| import csv | 3.17s | 9.5s | 33s |
+| average(temp) | 9.8ms | 208.7ms | 9.4s |
+
+
