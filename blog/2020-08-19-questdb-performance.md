@@ -59,7 +59,7 @@ This is where Patrick jumped in to explain that when you reserve space for memor
 
 The kernel allocated a full sized address space for your file when you requested the memory-mapped file. And apparently this is true across Linux, Mac OS and Windows. So from that point on, there's really no further copying that needs to happen.
 
-Furthermore, the kernel is going to handle paging parts of that file in and out of memory as needed. Now, I'm old-school UNIX, and page-swapping which lead to thrashing was always something we worried about back in the olden days. So I asked about it. According to Patrick, this could only happen really if you have a massive file that you are reading basically randomly at high speed. Other than that, the kernel will handle reading ahead and pre-loading pages as needed in order to be as efficient as possible.
+Furthermore, the kernel is going to handle paging parts of that file in and out of memory as needed. Now, I'm old-school Unix, and page-swapping which lead to thrashing was always something we worried about back in the olden days. So I asked about it. According to Patrick, this could only happen really if you have a massive file that you are reading basically randomly at high speed. Other than that, the kernel will handle reading ahead and pre-loading pages as needed in order to be as efficient as possible.
 
 Kernels, it turns out, are smart. In fact, kernels are basically smarter than you or I will ever hope to be. Theyve been developed across decades to be hugley efficient at doing these things. It's what they do. The kernel will memory map the file into the file cache and even if it needs to move stuff around, it can move the address around and it's still the same memory.
 
