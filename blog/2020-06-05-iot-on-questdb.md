@@ -4,7 +4,7 @@ author: David G Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
-tags: [questdb, iot]
+tags: [iot]
 description: A use-case of QuestDB in an IoT setting.
 ---
 

@@ -5,7 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
 description: Demo launch on HackerNews postmortem.
-tags: [questdb, hn, hackernews, postmorterm, demo]
+tags: [hackernews, postmorterm, demo]
 ---
 
 What happens when you put a SQL database on the internet? It's probably not what

@@ -4,151 +4,261 @@ author: David G. Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
-description: @@@@@todo@@@@@@
-tags: [performance]
+description:
+  QuestDB storage model explained with benchmarks comparing ingestion and
+  aggregations with Postgres and InfluxDB
+tags: [performance, postgres, influxdb, benchmark]
 image: /img/blog/2020-08-19/banner.png
 ---
+
 <div
   className="banner"
   style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
 >
   <img
     alt="Hand holding an analog stopwatch"
-    src="/img/blog/2020-08-19/banner.jpg"
+    src="/img/blog/2020-08-19/banner.png"
   />
   <div>
     Photo by <a href="https://unsplash.com/@veri_ivanova?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Veri Ivanova</a> on <a href="https://unsplash.com/s/photos/speed?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 
   </div>
 </div>
-Have you ever had one of those conversations where, in the end, you feel both smarter _and_ dumber? I had one last week when I sat down with our Founder and CTO Vlad Ilyuschenko and one of our engineers Patrick Mackinlay.
 
-I am now smarter because I learned so much from them, but I feel dumber because they are both so amazingly smart.
+Have you ever had one of those conversations where, in the end, you feel both
+smarter _and_ dumber? I had one last week when I sat down with our Founder and
+CTO Vlad Ilyuschenko and one of our engineers Patrick Mackinlay.
 
-But you didn't come here to listen to me talk about that. So let's get to the meat of this post: How does QuestDB get the kind of performance it does, and how are we continuing to squeeze another 50-60% out of it?
+I am now smarter because I learned so much from them, but I feel dumber because
+they are both so amazingly smart.
+
+But you didn't come here to listen to me talk about that. So let's get to the
+meat of this post: How does QuestDB get the kind of performance it does, and how
+are we continuing to squeeze another 50-60% out of it?
 
 <!--truncate-->
+
 ## How the performance improvements started
 
-QuestDB started out with a single-threaded approach to queries and such. But one obvious way to improve performance in a Java application like this is to paralelize as much as you can by using multiple threads of execution.
+QuestDB started out with a single-threaded approach to queries and such. But one
+obvious way to improve performance in a Java application like this is to
+parallelize as much as you can by using multiple threads of execution.
 
-I've written multi-threaded applications, and they are not easy to do. It's hard to coordinate the work between multiple threads, and to make sure that there are no race conditions, collisions, etc.
+I've written multi-threaded applications, and they are not easy to do. It's hard
+to coordinate the work between multiple threads, and to make sure that there are
+no race conditions, collisions, etc.
 
 ## Storage performance
 
-So first it's important to understand that QuestDB stores it's data in columnar format. We store each column of data in a file. So for every column of data, there is a file.
+So first it's important to understand that QuestDB stores it's data in columnar
+format. We store each column of data in a file. So for every column of data,
+there is a file.
 
-We then split those columns up into data frames that are independent and can be computed completely independently of each other.
+We then split those columns up into data frames that are independent and can be
+computed completely independently of each other.
 
-The problem we encountered with this framing scheme was that it was impossible to frame variable length data. Data spilled out of the frame, making it difficult to manage.
+The problem we encountered with this framing scheme was that it was impossible
+to frame variable length data. Data spilled out of the frame, making it
+difficult to manage.
 
-You see, we store fixed length fields with fixed length values, such that aligning frames to 8 bytes would ensure that all our fixed length data does not straddle frames. Hence all the columns are the same frame width. But strings and blobs can't be forced into 8 bytes without making them useless.
+You see, we store fixed length fields with fixed length values, such that
+aligning frames to 8 bytes would ensure that all our fixed length data does not
+straddle frames. Hence all the columns are the same frame width. But strings and
+blobs can't be forced into 8 bytes without making them useless.
 
-So we could extract extreme performance out of all the fixed-length values, but these variable-length values dragged the performance back down.
+So we could extract extreme performance out of all the fixed-length values, but
+these variable-length values dragged the performance back down.
 
 Which brings us to pages and how data is referenced in memory.
 
 ## Pages of data
 
-QuestDB uses memory-mapped pages to reference data in order to make it really fast. If you're dividing up your data into pages, and all data has a fixed length, then it's relatively easy to ensure that you don't have data that spans multiple pages. You just break pages at multiples of 8-bytes and everything will fit within page boundaries.
+QuestDB uses memory-mapped pages to reference data in order to make it really
+fast. If you're dividing up your data into pages, and all data has a fixed
+length, then it's relatively easy to ensure that you don't have data that spans
+multiple pages. You just break pages at multiples of 8-bytes and everything will
+fit within page boundaries.
 
-When you add variable-length data, suddenly you cannot ensure that everything will line up along page boundaries and you will have the very real possibility -- actually a certainty -- that you may have to jump from one page to another just to get all the data contined in a frame.
+When you add variable-length data, suddenly you cannot ensure that everything
+will line up along page boundaries and you will have the very real possibility
+-- actually a certainty -- that you may have to jump from one page to another
+just to get all the data contained in a frame.
 
-This, it turns out, is hugely inefficient. If (data is in frame) then (process that data) else (figure out where the rest of the data is, get that, then process it all). This kind of if-then-else sprinkled throughout the code is a) hard to debug and b) leads to lots of branching, which slows down execution.
+This, it turns out, is hugely inefficient. If (data is in frame) then (process
+that data) else (figure out where the rest of the data is, get that, then
+process it all). This kind of if-then-else sprinkled throughout the code is a)
+hard to debug and b) leads to lots of branching, which slows down execution.
 
-In order to prevent variable length data from straddling frames we would need to have different frame lengths per column. Furthermore, calculating aligned frame lengths for variable length data is non trivial and requires scanning the entire data set which would reversing any performance gains from parallelization.
+In order to prevent variable length data from straddling frames we would need to
+have different frame lengths per column. Furthermore, calculating aligned frame
+lengths for variable length data is non trivial and requires scanning the entire
+data set which would reversing any performance gains from parallelization.
 
 ## One page to rule them all
 
 (Yes, I just made a _The Highlander_ reference.)
 
-What if, in order to get around data being on multiple pages, we simply used _one_ page for all of the data? Of course my first question was "Don't you at some point reach a limit on the page size?" but Vlad and Patrick assured me there is, indeed, no limit on a page size.
+What if, in order to get around data being on multiple pages, we simply used
+_one_ page for all of the data? Of course my first question was "Don't you at
+some point reach a limit on the page size?" but Vlad and Patrick assured me
+there is, indeed, no limit on a page size.
 
-If your page size is bigger than the available memory, the kernel will handle swapping pages in and out for you as you try to access different parts of the page. So of course I asked "well then, why didn't you do this from the beginning?"
+If your page size is bigger than the available memory, the kernel will handle
+swapping pages in and out for you as you try to access different parts of the
+page. So of course I asked "well then, why didn't you do this from the
+beginning?"
 
-Vlad, in his typically self-deprecating style, just said "We didn't know. We thought we should keep them to a certain size to keep them from growing out of control" which, quite frankly, seems like the right answer.
+Vlad, in his typically self-deprecating style, just said "We didn't know. We
+thought we should keep them to a certain size to keep them from growing out of
+control" which, quite frankly, seems like the right answer.
 
-We'd just resize those smaller pages as needed. But as Vald explained, if you do that then you need to copy the data over to the new, resized page and "copying can take over your life." Databases aren't built to maximize the efficiency of data copying. They are built to maximize the ability to extract value from data. Copying data from one page to another isn't extracting value.
+We'd just resize those smaller pages as needed. But as Vlad explained, if you do
+that then you need to copy the data over to the new, resized page and "copying
+can take over your life." Databases aren't built to maximize the efficiency of
+data copying. They are built to maximize the ability to extract value from data.
+Copying data from one page to another isn't extracting value.
 
-So they tried just allocating a new page, and jumping from one page to the next as needed to find the required data. This cut down on the copying of data, but it lead to the problems outlined in the previous section. You never knew which page your data was going to be on, and jumping from one page to another was hugely inefficient.
+So they tried just allocating a new page, and jumping from one page to the next
+as needed to find the required data. This cut down on the copying of data, but
+it lead to the problems outlined in the previous section. You never knew which
+page your data was going to be on, and jumping from one page to another was
+hugely inefficient.
 
-So they tried having just the one page. One massive page (that you can grow as needed, without copying data around). Vlad, again in his style, said the performance turned out to be "not bad" with this approach. And by "not bad" he of course meant about a 60% performance improvement.
+So they tried having just the one page. One massive page (that you can grow as
+needed, without copying data around). Vlad, again in his style, said the
+performance turned out to be "not bad" with this approach. And by "not bad" he
+of course meant about a 60% performance improvement.
 
-When you get into using one single page, of course the total available address space comes into play. But since QuestDB only runs on 64-bit architectures, we have 2^64 address space, which is more than enough.
+When you get into using one single page, of course the total available address
+space comes into play. But since QuestDB only runs on 64-bit architectures, we
+have 2^64 address space, which is more than enough.
 
-This is where Patrick jumped in to explain that when you have an area of memory mapped from a file, when the file grows you remap the new size into memory. The operating system does not need to copy anything; the virtual memory model allows the OS to just remap the already mapped pages into the newly mapped memory region. In many cases, the OS may have already reserved the entire address space for you so your new mapping is in the same region as the old, just bigger.
+This is where Patrick jumped in to explain that when you have an area of memory
+mapped from a file, when the file grows you remap the new size into memory. The
+operating system does not need to copy anything; the virtual memory model allows
+the OS to just remap the already mapped pages into the newly mapped memory
+region. In many cases, the OS may have already reserved the entire address space
+for you so your new mapping is in the same region as the old, just bigger.
 
 ## Kernels are smart
 
-The kernel allocated a full sized address space for your file when you requested the memory-mapped file. And apparently this is true across Linux, macOS and Windows. So from that point on, there's really no further copying that needs to happen.
+The kernel allocated a full sized address space for your file when you requested
+the memory-mapped file. And apparently this is true across Linux, macOS and
+Windows. So from that point on, there's really no further copying that needs to
+happen.
 
-Furthermore, the kernel is going to handle paging parts of that file in and out of memory as needed. Now, I'm old-school Unix, and page-swapping which lead to thrashing was always something we worried about back in the olden days. So I asked about it. According to Patrick, this could only happen really if you have a massive file that you are reading basically randomly at high speed. Other than that, the kernel will handle reading ahead and pre-loading pages as needed in order to be as efficient as possible.
+Furthermore, the kernel is going to handle paging parts of that file in and out
+of memory as needed. Now, I'm old-school Unix, and page-swapping which lead to
+thrashing was always something we worried about back in the olden days. So I
+asked about it. According to Patrick, this could only happen really if you have
+a massive file that you are reading basically randomly at high speed. Other than
+that, the kernel will handle reading ahead and pre-loading pages as needed in
+order to be as efficient as possible.
 
-Kernels, it turns out, are smart. In fact, kernels are basically smarter than you or I will ever hope to be. They've been developed across decades to be hugely efficient at doing these things. It's what they do. The kernel will memory map the file into the file cache and even if it needs to move stuff around, it can move the logical address and it's still the same underlying physical memory pages.
+Kernels, it turns out, are smart. In fact, kernels are basically smarter than
+you or I will ever hope to be. They've been developed across decades to be
+hugely efficient at doing these things. It's what they do. The kernel will
+memory map the file into the file cache and even if it needs to move stuff
+around, it can move the logical address and it's still the same underlying
+physical memory pages.
 
-If you think that you can take over caching the data from the OS and do a better job of managing the memory space, and the allocation and re-allocation of the memory, you're wrong. Again, this is what the Kernel does, and at some level, even if you try to take this job away from the kernel, it is *still* doing some amount of it anyway. So your attempts to take this memory manageent and allocation away from the kernel has done little more than just add another layer on top of what the kernel is doing anyway. Another layer on top of something is basically never more efficient than the original thing.
+If you think that you can take over caching the data from the OS and do a better
+job of managing the memory space, and the allocation and re-allocation of the
+memory, you're wrong. Again, this is what the Kernel does, and at some level,
+even if you try to take this job away from the kernel, it is _still_ doing some
+amount of it anyway. So your attempts to take this memory management and
+allocation away from the kernel has done little more than just add another layer
+on top of what the kernel is doing anyway. Another layer on top of something is
+basically never more efficient than the original thing.
 
-When you read an offset into a file, you send a buffer to read into, the address to start reading at, and the offset into the file. Now, the kernel is going to cache all of that for you as you do it, because that's the kernel's job, really. But many database developers then take that, and cache it themselves, with their own caching scheme.
+When you read an offset into a file, you send a buffer to read into, the address
+to start reading at, and the offset into the file. Now, the kernel is going to
+cache all of that for you as you do it, because that's the kernel's job, really.
+But many database developers then take that, and cache it themselves, with their
+own caching scheme.
 
 ## Speed
 
-When I asked Vlad about this, and how it relates to query speed, he was quite explicit in saying that thinking you (a database developer) can beat the kernel is pure folly. Postgres tries this and, according to Vlad, an aggregation over a large (really large!) dataset can take 5 *minutes*, whereas the same aggregation on QuestDB takes only 60ms. Those aren't typos.
+When I asked Vlad about this, and how it relates to query speed, he was quite
+explicit in saying that thinking you (a database developer) can beat the kernel
+is pure folly. Postgres tries this and, according to Vlad, an aggregation over a
+large (really large!) dataset can take 5 _minutes_, whereas the same aggregation
+on QuestDB takes only 60ms. Those aren't typos.
 
-To both Patrick and Vlad (and me, for what that's worth), the idea that we, as developers, can be better at these operations than the kernel (when really we're doing them *on top of* the kernel anyway) is simply ridiculous. If I take an army of researchers and spend a decade of development, then *maybe* I can do it better than the kernel, but during that time guess what? The army of people working on the kernel will have found further improvements and left me behind anyway.
+To both Patrick and Vlad (and me, for what that's worth), the idea that we, as
+developers, can be better at these operations than the kernel (when really we're
+doing them _on top of_ the kernel anyway) is simply ridiculous. If I take an
+army of researchers and spend a decade of development, then _maybe_ I can do it
+better than the kernel, but during that time guess what? The army of people
+working on the kernel will have found further improvements and left me behind
+anyway.
 
-It comes down to letting the kernel do its job, and us doing ours. And our job is to exploit the kernel for every ounce of performance we can get out of it without trying to do it's job for it.
+It comes down to letting the kernel do its job, and us doing ours. And our job
+is to exploit the kernel for every ounce of performance we can get out of it
+without trying to do it's job for it.
 
 ## It's time for pudding
 
-Because as we all know, the proof is in the pudding. And since we're talking about performance, I ran some tests. But I didn't want to just create random values, etc. I wanted to use real world data. And it just so happens that I've been collecting IoT data for about the last 2 months in QuestDB, so I exported it as a .csv file so that I could run equivalent tests on QuestDB, InfluxDB and Postgres. The results were almost exactly what I expected.
+Because as we all know, the proof is in the pudding. And since we're talking
+about performance, I ran some tests. But I didn't want to just create random
+values, etc. I wanted to use real world data. And it just so happens that I've
+been collecting IoT data for about the last 2 months in QuestDB, so I exported
+it as a CSV file so that I could run equivalent tests on QuestDB, InfluxDB and
+Postgres. The results were almost exactly what I expected.
 
-### Import:
-| database | Time |
-|----------|------|
-| InfluxDB v2.0 Beta 16 | 33 seconds|
-| Postgres | 9.59 seconds |
-| QuestDB v5.0.3 | 3.17 seconds |
+### Import
 
+| database              | Time         |
+| --------------------- | ------------ |
+| InfluxDB v2.0 Beta 16 | 33 seconds   |
+| Postgres              | 9.59 seconds |
+| QuestDB v5.0.3        | 3.17 seconds |
 
-### About the data:
- 2,293,590 lines of csv data like so:
+### About the data
 
- ```
- "dev_id","dev_name","dev_loc","temp_c","humidity","altitude","pressure","timestamp"
- "THPL002","BME280","DemoKit3",26.21,52.67,124.54,998.38,"2020-08-19T13:41:22.481625Z"
- ```
+2,293,590 lines of CSV data, here is a sample:
 
- In order to import into InfluxDB you have to add some annotations to the csv file, like so:
+```
+"dev_id","dev_name","dev_loc","temp_c","humidity","altitude","pressure","timestamp"
+"THPL002","BME280","DemoKit3",26.21,52.67,124.54,998.38,"2020-08-19T13:41:22.481625Z"
+```
 
- ```
- #datatype measurement,tag,tag,tag,field,field,field,field,time
- ```
+#### InfluxDB
 
- I then had to add a `measurement` field to each row in the csv:
+In order to import into InfluxDB you have to add some annotations to the CSV
+file, like so:
 
- ```
- sed -e 's/^/iot_data /' /Users/davidgs/Downloads/questdb-query-1597844484155.csv > import.csv
- ```
+```
+#datatype measurement,tag,tag,tag,field,field,field,field,time
+```
 
- And then I could run
+I then had to add a `measurement` field to each row in the CSV:
 
- ```
- date;./influx write -b iot -o influxdata -t <myToken> -f import.csv;date
- ```
+```shell
+sed -e 's/^/iot_data /' /Users/davidgs/Downloads/questdb-query-1597844484155.csv > import.csv
+```
 
- And the results:
+And then I could run:
 
- ```
- Wed Aug 19 11:43:02 EDT 2020
- Wed Aug 19 11:43:35 EDT 2020
- ```
+```
+date;./influx write -b iot -o influxdata -t <myToken> -f import.csv;date
+```
 
- That's 33 seconds.
+And the results:
 
- For Postgres:
+```
+Wed Aug 19 11:43:02 EDT 2020
+Wed Aug 19 11:43:35 EDT 2020
+```
 
- ```
- % psql postgres
+That's 33 seconds.
+
+#### Postgres
+
+I used the following:
+
+```
+% psql postgres
 postgres=# \timing
 Timing is on.
 postgres=# create table sensor(id SERIAL, dev_id VARCHAR(10), dev_name VARCHAR(12), dev_loc VARCHAR(12), temp_c NUMERIC, humidity NUMERIC, altitude NUMERIC, pressure NUMERIC, timestamp DATE, PRIMARY KEY(id));
@@ -159,11 +269,19 @@ COPY 2293590
 Time: 9592.902 ms (00:09.593)
 ```
 
-For QuestDB I had to do nothing but drag/drop the csv file into the console, and it imported the entire thing in 3.17 seconds.
+#### QuestDB
+
+I used the drag/drop feature from the [Web Console](/docs/guide/web-console),
+and it imported the entire dataset in 3.17 seconds.
 
 ### Queries
 
-So now I have 3 databases with the exact same data in them and it's time to try a query. I figured a simple average over the `temp_c` field would be a good exercise. This 2.2M rows of data covers about 2 months (which I had to know for InfluxDB of course).
+So now I have 3 databases with the exact same data in them and it's time to try
+a query. I figured a simple average over the `temp_c` field would be a good
+exercise. This 2.2M rows of data covers about 2 months (which I had to know for
+InfluxDB of course).
+
+#### InfluxDB
 
 Here's the flux query:
 
@@ -175,9 +293,14 @@ from(bucket: "iot")
   |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
   |> yield(name: "mean")
 ```
-And execution took a little over 9 seconds (looked like 9.4 in the pop-up spinning wheel). Of course, this does not give me an overall average of the temperature over the entire span of time. It gives me a running average, which isn't exactly what I wanted, but I didn't want to fool around trying to get a real average.
 
-In Postgres:
+And execution took a little over 9 seconds (looked like 9.4 in the pop-up
+spinning wheel). Of course, this does not give me an overall average of the
+temperature over the entire span of time. It gives me a running average, which
+isn't exactly what I wanted, but I didn't want to fool around trying to get a
+real average.
+
+#### Postgres
 
 ```
 postgres=# SELECT avg(temp_c) from sensor;
@@ -188,21 +311,24 @@ postgres=# SELECT avg(temp_c) from sensor;
 
 Time: 208.721 ms
 ```
-And execution took 208.7ms
 
-In QuestDB:
-```
+And execution took 208.7ms.
+
+#### QuestDB
+
+```questdb-sql
 SELECT avg(temp_c) from sensor;
 ```
-![execution time results with execution time of 9.8ms](/img/blog/2020-08-19/queryResult.png)
 
-And execution took 9.8ms.
+And the result:
 
-Time for another table:
+![Execution time results with execution time of 9.8ms for QuestDB](/img/blog/2020-08-19/queryResult.png)
 
-| function | QuestDB | Postgres | InfluxDB |
-|----------|---------|----------|----------|
-| import csv | 3.17s | 9.5s | 33s |
-| average(temp) | 9.8ms | 208.7ms | 9.4s |
+The execution took 9.8ms.
 
+Here is a summary of the benchmarks:
 
+| Function        | QuestDB | Postgres | InfluxDB |
+| --------------- | ------- | -------- | -------- |
+| Import CSV      | 3.17s   | 9.5s     | 33s      |
+| average(temp_c) | 9.8ms   | 208.7ms  | 9.4s     |

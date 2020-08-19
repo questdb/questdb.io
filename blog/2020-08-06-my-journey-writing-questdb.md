@@ -5,7 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
 description: The story of how the time-series database QuestDB came to life.
-tags: [questdb, hackernews, about, story]
+tags: [hackernews, about, story]
 image: /img/blog/2020-08-06/foggy-path.jpg
 ---
 
