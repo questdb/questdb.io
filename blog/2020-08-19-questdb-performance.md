@@ -41,7 +41,7 @@ This, it turns out, is hugely inefficient. If(data is in frame) then (process th
 
 What if, in order to get around data being on multiple pages, we simply used _one_ page for all of the data? Of course my first question was "Don't you at some point reach a limit on the page size?" but Vlad and Patrick assured me there is, indeed, no limit on a page size.
 
-If your page size is bigger than the available memory, the kernel will handle swapping pages in and out for you as you try to access different parts of the page.So of course I asked "well then, why didn't you do this from the beginning?"
+If your page size is bigger than the available memory, the kernel will handle swapping pages in and out for you as you try to access different parts of the page. So of course I asked "well then, why didn't you do this from the beginning?".
 
 Vlad, in his typically self-deprecating style, just said "we didn't know. We thought we should keep them to a certain size to keep them from growing out of control" which, quite frankly, seems like the right answer.
 
