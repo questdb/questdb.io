@@ -11,7 +11,7 @@ But you didn't come here to listen to me talk about that. So let's get to the me
 
 QuestDB started out with a single-threaded approach to queries and such. But one obvious way to improve performance in a Java application like this is to paralelize as much as you can by using multiple threads of execution.
 
-I've written multi-threaded applications, and they are not easy to do. It's hard to coordinate the work between multiple threads, and to make sure that there are not race consitions, collisions, etc.
+I've written multi-threaded applications, and they are not easy to do. It's hard to coordinate the work between multiple threads, and to make sure that there are no race conditions, collisions, etc.
 
 ## Storage performance
 
