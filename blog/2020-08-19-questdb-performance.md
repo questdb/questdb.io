@@ -45,7 +45,7 @@ If your page size is bigger than the available memory, the kernel will handle sw
 
 Vlad, in his typically self-deprecating style, just said "We didn't know. We thought we should keep them to a certain size to keep them from growing out of control" which, quite frankly, seems like the right answer.
 
-We'd just resize those smaller pages as needed. But as Vald explained, if you do that then you need to copy the data over to the new, resized page and "copying can take over your life." Databases aren't built to maximize the efficiency of data copying. They are built to maximize the ability to extract value from data. Copying data from one page to another isn't extracting value.
+We'd just resize those smaller pages as needed. But as Vald explained, if you do that then you need to copy the data over to the new, resized page and "copying can take over your life". Databases aren't built to maximize the efficiency of data copying. They are built to maximize the ability to extract value from data. Copying data from one page to another isn't extracting value.
 
 So they tried jusst allocating a new page, and jumping from one page to the next as needed to find the required data. This cut down on the copying of data, but it lead to the problems outlined in the previous section. You never knew which page your data was going to be on, and jumping from one page to another was hugely inefficient.
 
