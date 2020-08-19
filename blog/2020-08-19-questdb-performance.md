@@ -54,7 +54,7 @@ So they tried having just the one page. One massive page (that you can grow as n
 
 When you get into using one single page, of course the total available address space comes into play. But since QuestDB only runs on 64-bit architectures, we have 2^64 address space, which is more than enough.
 
-This is where Patrick jumped in to explain that when you have an area of memory mapped from a file, when the file grows and you remap the new size into memory. The operating system does not need to copy anything, the virtual memory model allows the OS to just remap the already mapped pages into the newly mapped memory region. In many cases the OS may have already reserved the entire address space for you, so your new mapping is in the same region as the old, just bigger.
+This is where Patrick jumped in to explain that when you have an area of memory mapped from a file, when the file grows and you remap the new size into memory. The operating system does not need to copy anything, the virtual memory model allows the OS to just remap the already mapped pages into the newly mapped memory region. In many cases, the OS may have already reserved the entire address space for you, so your new mapping is in the same region as the old, just bigger.
 
 ## Kernels are smart
 
