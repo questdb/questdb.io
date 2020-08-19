@@ -21,7 +21,7 @@ We then split those columns up into data frames that are independent and can be 
 
 The problem we encountered with this framing scheme was that it was impossible to frame variable length data. Data spilled out of the frame, making it difficult to manage.
 
-You see, we store everything as 8-byte values. Every value takes up 8 bytes, so that all the columns are the same width. But strings and blobs can't be forced into 8 bytes without making them useless.
+You see, we store fixed length fields with fixed length values, such that aligning frames to 8 bytes would ensure that all our fixed length data does not straddle frames. Hence all the columns are the same frame width. But strings and blobs can't be forced into 8 bytes without making them useless.
 
 So we could extract extreme performance out of all the fixed-length values, but these variable-length values dragged the performance back down.
 
