@@ -5,7 +5,7 @@ description: LIMIT SQL keyword reference documentation.
 ---
 
 Specify the number and position of records returned by a
-[SELECT statement](reference/sql/select.md).
+[SELECT statement](/docs/reference/sql/select/).
 
 In other implementations of SQL, this is sometimes replaced by statements such
 as `OFFSET` or `ROWNUM` Our implementation of `LIMIT` encompasses both in one

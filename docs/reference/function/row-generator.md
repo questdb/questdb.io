@@ -34,9 +34,9 @@ of rows or more if your disk allows.
 #### Random number seed
 
 When `long_sequence` is used conjointly with
-[random generators](reference/function/random-value-generator.md), these values
-are usually generated at random. The function supports a seed to be passed in
-order to produce deterministic results.
+[random generators](/docs/reference/function/random-value-generator), these
+values are usually generated at random. The function supports a seed to be
+passed in order to produce deterministic results.
 
 :::tip
 

@@ -1,6 +1,6 @@
 ---
 title: Docker
-description: Docker reference page.
+description: Use QuestDB with a Docker image on any host.
 ---
 
 QuestDB has images for both Linux/macOS and Windows on
@@ -34,15 +34,15 @@ docker run -p 9000:9000 -p 8812:8812 questdb/questdb:latest
 #### -p ports
 
 - `-p 9000:9000` for the REST API and the Web Console. The web console is
-  available on [http://localhost:9000](http://localhost:9000)
+  available on http://localhost:9000
 - `-p 8812:8812` for the Postgres wire protocol
 - `-p 9009:9009` InfluxDB line protocol
 
 #### -v volumes
 
 The QuestDB
-[root_directory](reference/configuration/root-directory-structure.md) will be in
-the following location:
+[root_directory](/docs/reference/configuration/root-directory-structure/) will
+be in the following location:
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"

@@ -82,7 +82,7 @@ FROM ratings
 :::info
 
 Supported aggregation functions are listed on the
-[aggregation reference](reference/function/aggregation.md).
+[aggregation reference](/docs/reference/function/aggregation/).
 
 :::
 
@@ -138,7 +138,7 @@ Conditional results based on expressions.
 :::info
 
 For more information, please refer to the
-[CASE reference](reference/sql/case.md)
+[CASE reference](/docs/reference/sql/case/)
 
 :::
 
@@ -153,7 +153,7 @@ Convert values and expression between types.
 :::info
 
 For more information, please refer to the
-[CAST reference](reference/sql/cast.md)
+[CAST reference](/docs/reference/sql/cast/)
 
 :::
 
@@ -168,14 +168,14 @@ Returns distinct values of the specified column(s).
 :::info
 
 For more information, please refer to the
-[DISTINCT reference](reference/sql/distinct.md).
+[DISTINCT reference](/docs/reference/sql/distinct/).
 
 :::
 
 ### FILL
 
 Defines filling strategy for missing data in aggregation queries. This function
-complements [SAMPLE BY](reference/sql/sample-by.md) queries.
+complements [SAMPLE BY](/docs/reference/sql/sample-by/) queries.
 
 #### Syntax
 
@@ -184,7 +184,7 @@ complements [SAMPLE BY](reference/sql/sample-by.md) queries.
 :::info
 
 For more information, please refer to the
-[FILL reference](reference/sql/fill.md).
+[FILL reference](/docs/reference/sql/fill/).
 
 :::
 
@@ -199,7 +199,7 @@ Join tables based on a key or timestamp.
 :::info
 
 For more information, please refer to the
-[JOIN reference](reference/sql/join.md)
+[JOIN reference](/docs/reference/sql/join/)
 
 :::
 
@@ -214,7 +214,7 @@ Specify the number and position of records returned by a query.
 :::info
 
 For more information, please refer to the
-[LIMIT reference](reference/sql/limit.md).
+[LIMIT reference](/docs/reference/sql/limit/).
 
 :::
 
@@ -229,7 +229,7 @@ Orders the results of a query by one or several columns.
 :::info
 
 For more information, please refer to the
-[ORDER BY reference](reference/sql/order-by.md)
+[ORDER BY reference](/docs/reference/sql/order-by/)
 
 :::
 
@@ -245,7 +245,7 @@ duplicates.
 :::info
 
 For more information, please refer to the
-[UNION reference](reference/sql/union.md)
+[UNION reference](/docs/reference/sql/union/)
 
 :::
 
@@ -260,10 +260,11 @@ Filters query results
 :::info
 
 QuestDB supports complex WHERE clauses along with type-specific searches. For
-more information, please refer to the [WHERE reference](reference/sql/where.md).
-There are different syntaxes for
-[text](reference/sql/where.md#symbol-and-string), [numeric](where.md#numeric),
-or [timestamp](reference/sql/where.md#timestamp-and-date) filters.
+more information, please refer to the
+[WHERE reference](/docs/reference/sql/where/). There are different syntaxes for
+[text](/docs/reference/sql/where/#symbol-and-string),
+[numeric](/docs/reference/sql/where/#numeric), or
+[timestamp](/docs/reference/sql/where/#timestamp-and-date) filters.
 
 :::
 
@@ -275,7 +276,7 @@ QuestDB augments SQL with the following clauses.
 
 Retrieves the latest entry by timestamp for a given key or combination of keys
 This function requires a
-[designated timestamp](concept/designated-timestamp.md).
+[designated timestamp](/docs/concept/designated-timestamp/).
 
 #### Syntax
 
@@ -284,7 +285,7 @@ This function requires a
 :::info
 
 For more information, please refer to the
-[LATEST BY reference](reference/sql/latest-by.md).
+[LATEST BY reference](/docs/reference/sql/latest-by/).
 
 :::
 
@@ -292,7 +293,7 @@ For more information, please refer to the
 
 Aggregates time series data into homogeneous time chunks. For example daily
 average, monthly maximum etc. This function requires a
-[designated timestamp](concept/designated-timestamp.md).
+[designated timestamp](/docs/concept/designated-timestamp/).
 
 #### Syntax
 
@@ -301,16 +302,17 @@ average, monthly maximum etc. This function requires a
 :::info
 
 For more information, please refer to the
-[SAMPLE BY reference](reference/sql/sample-by.md).
+[SAMPLE BY reference](/docs/reference/sql/sample-by/).
 
 :::
 
 ### TIMESTAMP
 
-Dynamically creates a [designated timestamp](concept/designated-timestamp.md) on
-the output of a query. This allows to perform timestamp operations like
-[SAMPLE BY](#sample-by) or [LATEST BY](#latest-by) on tables which originally do
-not have a designated timestamp.
+Dynamically creates a
+[designated timestamp](/docs/concept/designated-timestamp/) on the output of a
+query. This allows to perform timestamp operations like [SAMPLE BY](#sample-by)
+or [LATEST BY](#latest-by) on tables which originally do not have a designated
+timestamp.
 
 :::caution
 
@@ -326,6 +328,6 @@ and using timestamp functions on unordered data may produce unexpected results.
 :::info
 
 For more information, refer to the
-[TIMESTAMP reference](reference/sql/timestamp.md)
+[TIMESTAMP reference](/docs/reference/sql/timestamp/)
 
 :::

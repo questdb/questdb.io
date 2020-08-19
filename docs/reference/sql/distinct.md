@@ -5,7 +5,7 @@ description: DISTINCT SQL keyword reference documentation.
 ---
 
 `SELECT DISTINCT` is used to return only distinct (i.e different) values from a
-column as part of a [SELECT statement](reference/sql/select.md).
+column as part of a [SELECT statement](/docs/reference/sql/select/).
 
 ## Syntax
 

@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import DocusaurusHead from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { useCallback, useEffect, useState } from "react"
 
@@ -408,7 +409,8 @@ const Console = () => {
         >
           Interactive console to import data (drag and drop) and start querying
           right away. Check our&nbsp;
-          <a href="docs/guide/web-console">Web Console guide</a> to get started.
+          <a href="/docs/guide/web-console/">Web Console guide</a> to get
+          started.
         </p>
 
         <img
@@ -722,15 +724,19 @@ ${mergeQuery}`}
 const Home = () => {
   const context = useDocusaurusContext()
   const { siteConfig } = context
+  const title = "QuestDB"
 
   return (
     <MetadataContextProvider>
       <Layout
         description={siteConfig.customFields.description}
-        title="QuestDB"
+        title={title}
         version={siteConfig.customFields.version}
       >
-        <Head />
+        <Head title={title} />
+        <DocusaurusHead>
+          <link rel="canonical" href="https://questdb.io" />
+        </DocusaurusHead>
         <Jumbotron />
         <Feature />
         <QueryScroller />

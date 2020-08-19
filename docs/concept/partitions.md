@@ -18,7 +18,7 @@ each interval is stored in separate sets of files.
 - Available partition intervals are `NONE`, `DAY`, `MONTH` and `YEAR`.
 - Default behaviour is `PARTITION BY NONE`.
 - Partitions are defined at table creation. For more information, refer to
-  [CREATE TABLE section](reference/sql/create-table.md).
+  [CREATE TABLE section](/docs/reference/sql/create-table/).
 
 ## Requirements
 
@@ -27,7 +27,7 @@ benefit of using a designated timestamp is that the field in question will
 enforce an increasing policy on timestamp value. This allows you to leverage
 specific high-performance time series functions. For more information on
 `designated timestamp`, refer to the
-[designated timestamp section](concept/designated-timestamp.md).
+[designated timestamp section](/docs/concept/designated-timestamp/).
 
 ## Advantages
 

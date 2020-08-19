@@ -5,7 +5,7 @@ description: GROUP BY SQL keyword reference documentation.
 ---
 
 Groups aggregation calculations by one or several keys. In QuestDB, this clause
-is [optional](/docs/concept/sql-extensions#optionality-of-group-by).
+is [optional](/docs/concept/sql-extensions/#optionality-of-group-by/).
 
 ## Syntax
 

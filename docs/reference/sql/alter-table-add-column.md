@@ -51,6 +51,6 @@ For `symbol`, both `nocache` and `index` keywords are optional.
 :::note
 
 For more information on symbol options, please refer to the
-[symbol documentation](concept/symbol.md)
+[symbol documentation](/docs/concept/symbol/)
 
 :::

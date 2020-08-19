@@ -2,9 +2,14 @@ import ReactHelmetHead from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
-const Head = () => {
+type Props = {
+  title?: string
+}
+
+const Head = ({ title }: Props) => {
   const context = useDocusaurusContext()
   const { siteConfig } = context
+  const metaTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title
 
   return (
     <ReactHelmetHead>
@@ -14,10 +19,10 @@ const Head = () => {
       <meta name="twitter:creator" content="@questdb" />
       <meta
         name="twitter:image"
-        content={`${siteConfig.url}/${siteConfig.themeConfig.image}`}
+        content={`${siteConfig.url}${siteConfig.themeConfig.image}`}
       />
       <meta name="twitter:site" content={siteConfig.url} />
-      <meta name="twitter:title" content={siteConfig.title} />
+      <meta name="twitter:title" content={metaTitle} />
       <meta
         name="twitter:description"
         content={siteConfig.customFields.description}

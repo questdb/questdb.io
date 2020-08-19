@@ -6,12 +6,12 @@ description: SAMPLE BY SQL keyword reference documentation.
 
 `SAMPLE BY` is used on time series data to summarise large datasets into
 aggregates of homogeneous time chunks as part of a
-[SELECT statement](reference/sql/select.md).
+[SELECT statement](/docs/reference/sql/select/).
 
 :::note
 
 To use `SAMPLE BY`, one column needs to be designated as `timestamp`. Find out
-more in the [designated timestamp](concept/designated-timestamp.md) section.
+more in the [designated timestamp](/docs/concept/designated-timestamp/) section.
 
 :::
 

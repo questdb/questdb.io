@@ -20,7 +20,7 @@ out-of-order inserts.
 :::tip
 
 To elect a timestamp column on the fly, please refer to the
-[dynamic timestamp](/docs/reference/sql/timestamp) documentation.
+[dynamic timestamp](/docs/reference/sql/timestamp/) documentation.
 
 :::
 
@@ -43,9 +43,9 @@ column.
 Electing a `designated timestamp` allows you to:
 
 - leverage timestamp partitions. For more information, refer to the
-  [partitions section](concept/partitions.md).
+  [partitions section](/docs/concept/partitions/).
 - use time series joins such as `ASOF JOIN`. For more information refer to the
-  [JOIN reference](reference/sql/join.md).
+  [JOIN reference](/docs/reference/sql/join/).
 
 ## Examples
 
@@ -107,7 +107,7 @@ to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'),
 :::info
 
 For more information about `systimestamp()` and related functions, check the
-[date & time functions section](../reference/function/date-time.md).
+[date & time functions section](/docs/reference/function/date-time/).
 
 :::
 

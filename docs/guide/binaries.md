@@ -10,13 +10,13 @@ using the server.
 :::info
 
 For complete information on how to use QuestDB's binary, please refer to the
-[Binaries](packages/binaries.md)
+[Binaries](/docs/packages/binaries/)
 
 :::
 
 ## Setup QuestDB
 
-You need Java 11 or above. You can check your installation as follows:
+You need Java 11. You can check your installation as follows:
 
 ```shell
 java -version
@@ -74,7 +74,7 @@ questdb.exe start
 </Tabs>
 
 This will run QuestDB with the following
-[root directory](reference/configuration/root-directory-structure.md):
+[root directory](/docs/reference/configuration/root-directory-structure/):
 
 <Tabs defaultValue="linux" values={[
   { label: "Linux", value: "linux" },
@@ -121,8 +121,8 @@ questdb status
 Here are some guides to get started using the QuestDB service. These will show
 you how to import data and run queries
 
-- with the [REST API](guide/rest.md)
-- with the [Postgres wire protocol](guide/postgres-wire.md)
+- with the [REST API](/docs/guide/rest/)
+- with the [Postgres wire protocol](/docs/guide/postgres-wire/)
 
 ## Stop QuestDB
 

@@ -57,17 +57,18 @@ character
 
 ### typeDef
 
-`typeDef` - column [type name](reference/sql/datatypes.md) with additional
+`typeDef` - column [type name](/docs/reference/sql/datatypes/) with additional
 options.
 
 ![Flow chart showing the syntax of the different column types](/img/docs/diagrams/columnTypeDef.svg)
 
 - `distinctValueEstimate` - optionally you can hint QuestDB how many distinct
   values this column is going to have. QuestDB will use this value to size data
-  structures used to support [symbol](concept/symbol.md). These data structures
-  will resize themselves when necessary to allow QuestDB to function correctly.
-  Under-estimating symbol value count might result in drop of performance
-  whereas over-estimating - in higher disk space and memory consumption.
+  structures used to support [symbol](/docs/concept/symbol/). These data
+  structures will resize themselves when necessary to allow QuestDB to function
+  correctly. Under-estimating symbol value count might result in drop of
+  performance whereas over-estimating - in higher disk space and memory
+  consumption.
 
 :::info
 
@@ -77,7 +78,7 @@ When `distinctValueEstimate` is not specified, a configuration default is used
 :::
 
 - `CACHE | NOCACHE` - a flag to tell QuestDB how to cache a
-  [symbol](concept/symbol.md). `CACHE` means that QuestDB will use Java Heap
+  [symbol](/docs/concept/symbol/). `CACHE` means that QuestDB will use Java Heap
   based Map to resolve symbol values and keys. When column has large number of
   distinct symbol values (over 100,000) heap impact might be significant and
   depending on heap size might cause OutOfMemory error. To avoid Java Heap
@@ -91,7 +92,7 @@ Default option is `CACHE`.
 :::
 
 - `inlineIndexDef` - when present, QuestDB will create and maintain
-  [index](concept/indexes.md) for `symbol` column.
+  [index](/docs/concept/indexes/) for `symbol` column.
 
   ![Flow chart showing the syntax of the INDEX keyword](/img/docs/diagrams/inlineIndexDef.svg)
 
@@ -100,7 +101,8 @@ Default option is `CACHE`.
   ![Flow chart showing the syntax of the CAPACITY keyword](/img/docs/diagrams/indexCapacityDef.svg)
 
 - `valueBlockSize` - index storage parameter. This value is optional and will
-  default to the value of [configuration key](reference/configuration/server.md)
+  default to the value of
+  [configuration key](/docs/reference/configuration/server/)
   `cairo.index.value.block.size`. `valueBlockSize` tells QuestDB how many row
   IDs to store in a single storage block on disk. Consider the following
   example. Your table has 200 unique stock symbols and 1,000,000,000 stock
@@ -136,7 +138,7 @@ implemented in a future release.
 
 ### partition
 
-`partition by` - the [partitioning strategy](concept/partitions.md) for the
+`partition by` - the [partitioning strategy](/docs/concept/partitions/) for the
 table.
 
 :::note
@@ -153,7 +155,7 @@ Find below example uses of [CREATE TABLE](#create-table) and of
 
 ### CREATE TABLE
 
-#### Without [designated timestamp](concept/designated-timestamp.md) and not [partitioned](concept/partitions.md).
+#### Without [designated timestamp](/docs/concept/designated-timestamp/) and not [partitioned](/docs/concept/partitions/).
 
 ```questdb-sql
 CREATE TABLE
@@ -166,7 +168,7 @@ Such table can accept data in any order.
 
 :::
 
-#### With [designated timestamp](concept/designated-timestamp.md)
+#### With [designated timestamp](/docs/concept/designated-timestamp/)
 
 ```questdb-sql
 CREATE TABLE
@@ -180,7 +182,7 @@ With this setting, QuestDB enforce chronological order of `ts` values.
 
 :::
 
-#### With [partition](concept/partitions.md)
+#### With [partition](/docs/concept/partitions/)
 
 ```questdb-sql
 CREATE TABLE
@@ -189,7 +191,7 @@ CREATE TABLE
     PARTITION BY DAY;
 ```
 
-#### With [symbol](concept/symbol.md)
+#### With [symbol](/docs/concept/symbol/)
 
 ```questdb-sql
 CREATE TABLE my_table(
@@ -231,8 +233,8 @@ CREATE TABLE x AS(SELECT * FROM table WHERE false)
 ```
 
 Here we changed type of `price` (assuming it was `INT`) to `LONG` and changed
-type of `sym` to [symbol](concept/symbol.md) and created an
-[index](concept/indexes.md).
+type of `sym` to [symbol](/docs/concept/symbol/) and created an
+[index](/docs/concept/indexes/).
 
 #### Create a new table using SQL structure and data
 

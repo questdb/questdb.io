@@ -46,7 +46,7 @@ that's not a problem since one is UDP and one is TCP.
 
 There are a bunch of configuration options you can tune in your
 `conf/server.conf` file if you're interested. I won't go through them here, but
-you can read all about them in our [docs](/docs/api/influxdb-line-protocol). I
+you can read all about them in our [docs](/docs/api/influxdb-line-protocol/). I
 hope they are relatively self-explanatory.
 
 ## InfluxDB Line Protocol (ILP) refresher

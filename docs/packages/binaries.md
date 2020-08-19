@@ -1,6 +1,6 @@
 ---
 title: Binaries
-description: Binaries reference page.
+description: Install QuestDB from compiled binaries.
 ---
 
 QuestDB comes with an executable `questdb.exe` for Windows, and script
@@ -92,7 +92,7 @@ close the session. You will need to actively [stop it](#stop).
 #### Default directories
 
 By default, QuestDB
-[root directory](reference/configuration/root-directory-structure.md) will be
+[root directory](/docs/reference/configuration/root-directory-structure) will be
 the following:
 
 <Tabs defaultValue="linux" values={[

@@ -14,7 +14,7 @@ CSV files, directly from the API. You can also get JSON responses.
 
 The REST API can be accessed interactively using Web Console that is a part of
 QuestDB distribution. Find out more in the section
-[using the Web Console](guide/web-console.md).
+[using the Web Console](/docs/guide/web-console/).
 
 :::tip
 

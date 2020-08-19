@@ -34,10 +34,10 @@ table_name,tagset valueset timestamp
   create the table on the fly using the name provided. Column types will be
   automatically recognized and assigned based on the data.
 - The `timestamp` column is automatically created as
-  [designated timestamp](concept/designated-timestamp.md) with the
-  [partition strategy](concept/partitions.md) set to `NONE`. If you would like
-  to define a partition stragey, you should
-  [CREATE](reference/sql/create-table.md) the table beforehand.
+  [designated timestamp](/docs/concept/designated-timestamp/) with the
+  [partition strategy](/docs/concept/partitions/) set to `NONE`. If you would
+  like to define a partition strategy, you should
+  [CREATE](/docs/reference/sql/create-table/) the table beforehand.
 - When the timestamp is empty, QuestDB will use the server timestamp.
 
 ### Examples
@@ -171,7 +171,7 @@ Uncommitted rows are committed either:
 ### Configuration
 
 The TCP receiver configuration can be completely customised using
-[configuration keys](reference/configuration/server.md#influxdb-line-protocol-tcp).
+[configuration keys](/docs/reference/configuration/server/#influxdb-line-protocol-tcp).
 You can use this to configure the tread pool, buffer and queue sizes, receiver
 IP address and port, load balancing etc.
 
@@ -183,7 +183,7 @@ one thread. The UDP worker thread can work either on its own thread or use the
 common thread pool. It supports both multicast and unicast.
 
 Find an example of how to use this in the
-[InfluxDB sender library section](/docs/api/java/#influxdb-sender-library).
+[InfluxDB sender library section](/docs/api/java/#influxdb-sender-library/).
 
 ### Overview
 
@@ -204,6 +204,6 @@ Uncommitted rows are committed either:
 ### Configuration
 
 The UDP receiver configuration can be completely customised using
-[configuration keys](reference/configuration/server.md#influxdb-line-protocol-udp).
+[configuration keys](/docs/reference/configuration/server/#influxdb-line-protocol-udp).
 You can use this to configure the IP address and port the receiver binds to,
 commit rates, buffer size, whether it should run on a separate thread etc.

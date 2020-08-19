@@ -5,7 +5,7 @@ description: Web console reference documentation.
 ---
 
 This is a reference for the Console. If you want to learn how to use it, we
-suggest you follow the [Guide](guide/web-console.md).
+suggest you follow the [Guide](/docs/guide/web-console/).
 
 ## SQL Editor
 

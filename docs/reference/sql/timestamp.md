@@ -5,10 +5,10 @@ description: TIMESTAMP SQL keyword reference documentation.
 ---
 
 `timestamp(columnName)` elects a
-[designated timestamp](concept/designated-timestamp.md):
+[designated timestamp](/docs/concept/designated-timestamp/):
 
-- during a [CREATE TABLE](reference/sql/create-table.md#timestamp) operation
-- during a [SELECT](reference/sql/select.md) operation (`dynamic timestamp`)
+- during a [CREATE TABLE](/docs/reference/sql/create-table/#timestamp) operation
+- during a [SELECT](/docs/reference/sql/select/) operation (`dynamic timestamp`)
 
 ## Syntax
 
@@ -16,16 +16,16 @@ description: TIMESTAMP SQL keyword reference documentation.
 
 ![Flow chart showing the syntax of the TIMESTAMP keyword](/img/docs/diagrams/timestamp.svg)
 
-Create a [designated timestamp](concept/designated-timestamp.md) column during
-table creation. For more information, refer to the
-[CREATE TABLE](reference/sql/create-table.md) section.
+Create a [designated timestamp](/docs/concept/designated-timestamp/) column
+during table creation. For more information, refer to the
+[CREATE TABLE](/docs/reference/sql/create-table/) section.
 
 ### During a SELECT operation
 
 ![Flow chart showing the syntax of the timestamp function](/img/docs/diagrams/dynamicTimestamp.svg)
 
-Creates a [designated timestamp](concept/designated-timestamp.md) column in the
-result of a query.
+Creates a [designated timestamp](/docs/concept/designated-timestamp/) column in
+the result of a query.
 
 :::caution
 
@@ -46,7 +46,7 @@ Dynamic timestamp allows to perform time series operations such as `LATEST BY`,
 ### During a CREATE operation
 
 The following creates a table with
-[designated timestamp](concept/designated-timestamp.md).
+[designated timestamp](/docs/concept/designated-timestamp/).
 
 ```questdb-sql title="Create table"
 CREATE TABLE
@@ -57,9 +57,9 @@ timestamp(ts);
 ### During a SELECT operation
 
 The following will query a table and assign a
-[designated timestamp](concept/designated-timestamp.md) to the output. Note the
-use of brackets to ensure the timestamp clause is applied to the result of the
-query instead of the whole `readings` table.
+[designated timestamp](/docs/concept/designated-timestamp/) to the output. Note
+the use of brackets to ensure the timestamp clause is applied to the result of
+the query instead of the whole `readings` table.
 
 ```questdb-sql title="Dynamic timestamp"
 (SELECT cast(dateTime AS TIMESTAMP) ts, device, value FROM readings) timestamp(ts);

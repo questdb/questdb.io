@@ -9,7 +9,7 @@ description: DROP TABLE SQL keyword reference documentation.
 :::caution
 
 This command irremediably deletes the data in the target table. In doubt, make
-sure you have created [backups](reference/sql/backup.md) of your data.
+sure you have created [backups](/docs/reference/sql/backup/) of your data.
 
 :::
 
@@ -28,6 +28,6 @@ DROP TABLE ratings;
 :::tip
 
 To delete the data inside a table but keep the table and its structure, use
-[TRUNCATE](reference/sql/truncate.md).
+[TRUNCATE](/docs/reference/sql/truncate/).
 
 :::

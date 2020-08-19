@@ -10,7 +10,7 @@ deleting the table itself.
 :::caution
 
 This command irremediably deletes the data in the target table. In doubt, make
-sure you have created [backups](reference/sql/backup.md) of your data.
+sure you have created [backups](/docs/reference/sql/backup/) of your data.
 
 :::
 
@@ -29,6 +29,6 @@ TRUNCATE TABLE ratings;
 :::note
 
 To delete both the data and the table structure, use
-[DROP](reference/sql/drop.md).
+[DROP](/docs/reference/sql/drop/).
 
 :::

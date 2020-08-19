@@ -16,13 +16,14 @@ to implement them in an append-only scenario at high efficiency.
 ## (C)reate
 
 The Create operation in QuestDB appends records to bottom of a table. If the
-table has a [designated timestamp](concept/designated-timestamp.md), new record
-timestamps must be superior or equal to the latest timestamp. Attempts to add a
-timestamp in middle of a table will result in a `timestamp out of order` error.
+table has a [designated timestamp](/docs/concept/designated-timestamp/), new
+record timestamps must be superior or equal to the latest timestamp. Attempts to
+add a timestamp in middle of a table will result in a `timestamp out of order`
+error.
 
-If the table is [partitioned](concept/partitions.md), then the `timestamp` value
-determines which partition the record is appended to. In this case, only the
-last partition can be appended to.
+If the table is [partitioned](/docs/concept/partitions/), then the `timestamp`
+value determines which partition the record is appended to. In this case, only
+the last partition can be appended to.
 
 When a table does not have a `designated timestamp`, records can be added in any
 timestamp order and the table will only have one partition.
@@ -120,7 +121,7 @@ connection.close();
 - `inactive` is used to flag deleted records.
 - `timestamp` timestamp in microseconds of the record. Note that if you receive
   the timestamp data as a string, it could also be inserted using
-  [to_timestamp](reference/function/date-time.md#to_timestamp).
+  [to_timestamp](/docs/reference/function/date-time/#to_timestamp).
 
 Let's now insert a few records:
 
@@ -235,7 +236,7 @@ Our resulting table looks like the following.
 ## (R)ead
 
 Reading records can be done using `SELECT` or by reading a table directly via
-the Java API. Reading via the [Java API](api/java.md) (see tab `Java Raw`)
+the Java API. Reading via the [Java API](/docs/api/java/) (see tab `Java Raw`)
 iterates over a table and can therefore only access one table at a time. If you
 would like to query various tables via the Java API, you can pass SQL to Java
 and read the resulting table (see tab `Java SQL`).
@@ -345,9 +346,9 @@ The results are shown below
 | 2       | USD         | 900.75  | FALSE    | 2020-04-22T16:12:43.504432Z |
 | 2       | EUR         | 880.2   | FALSE    | 2020-04-22T16:18:34.404665Z |
 
-You can use [aggregation functions](reference/function/aggregation.md) to derive
-information like the average balance per currency (note the
-[voluntary omission of redundant GROUP BY](concept/sql-extensions.md#absence-of-group-by)
+You can use [aggregation functions](/docs/reference/function/aggregation/) to
+derive information like the average balance per currency (note the
+[voluntary omission of redundant GROUP BY](/docs/concept/sql-extensions/#absence-of-group-by)
 below).
 
 ```questdb-sql
@@ -360,7 +361,7 @@ SELECT balance_ccy, avg(balance) FROM balances;
 | EUR         | 765.35   |
 
 If we had more data we could get deeper and use
-[SAMPLE BY](reference/sql/select.md#sample-by) clauses to easily generate
+[SAMPLE BY](/docs/reference/sql/select/#sample-by) clauses to easily generate
 aggregates based on time intervals. For example, to get the average hourly
 balance per currency, all we need is to add `SAMPLE BY 1h` to the above query!
 
@@ -402,8 +403,8 @@ WHERE cust_id = 1;
 In the above example QuestDB will execute the `where` clause _before_
 `latest by`. To execute `where` _after_ `latest by` we have to rely on
 sub-queries. To find out more, check out our
-[SQL execution order](concept/sql-execution-order.md) Here is an example of how
-to select the latest account information, only for balances over 800.
+[SQL execution order](/docs/concept/sql-execution-order/) Here is an example of
+how to select the latest account information, only for balances over 800.
 
 ```questdb-sql
 (SELECT * FROM balances
@@ -471,9 +472,10 @@ latest EUR balance for this customer.
 :::note
 
 The above SQL example uses brackets. This is because our
-[SQL execution order](concept/sql-execution-order.md) will execute WHERE clauses
-before LATEST BY. By encapsulating the query and applying `where not inactive`
-to the whole result set, we are able to easily remove the inactive accounts.
+[SQL execution order](/docs/concept/sql-execution-order/) will execute WHERE
+clauses before LATEST BY. By encapsulating the query and applying
+`where not inactive` to the whole result set, we are able to easily remove the
+inactive accounts.
 
 :::
 

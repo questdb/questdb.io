@@ -115,9 +115,9 @@ timestamp(ts);
 
 :::info
 
-[Symbol](concept/symbol.md) is a special type which allows us to write strings
-but store them efficiently as an int which makes writes and scans more efficient
-and reduces the storage requirements.
+[Symbol](/docs/concept/symbol/) is a special type which allows us to write
+strings but store them efficiently as an int which makes writes and scans more
+efficient and reduces the storage requirements.
 
 :::
 
@@ -142,8 +142,8 @@ INSERT INTO temp VALUES(
 
 For the purpose of this guide, it is easier to insert from a file or in this
 case to generate the data. We can use QuestDB's
-[row generation functions](reference/function/row-generator.md) and
-[random generators](reference/function/random-value-generator.md) to quickly
+[row generation functions](/docs/reference/function/row-generator/) and
+[random generators](/docs/reference/function/random-value-generator/) to quickly
 create test data. We use `long_sequence()` which generates rows and returns a
 synthetic column `x` with monotonically increasing values. As `x` is of type
 `long`, we use `cast` to convert it to `int`.
@@ -182,7 +182,7 @@ SAMPLE BY 7d;
 
 :::info
 
-This query uses [SAMPLE BY](reference/sql/select.md#sample-by) to generate
+This query uses [SAMPLE BY](/docs/reference/sql/select/#sample-by) to generate
 weekly time buckets in just 3 words.
 
 :::
@@ -207,8 +207,8 @@ WHERE ts='2020-12';
 
 :::info
 
-This query uses [LATEST BY](guide/crud.md) and our
-[timestamp search](reference/sql/select.md#interval-timestamp).
+This query uses [LATEST BY](/docs/guide/crud/) and our
+[timestamp search](/docs/reference/sql/select/#interval-timestamp).
 
 :::
 
@@ -222,9 +222,9 @@ This query uses [LATEST BY](guide/crud.md) and our
 ## What's next
 
 There is plenty to do with QuestDB. As a next step, you could check out our
-guide to [CRUD operations](guide/crud.md), how to join time series with
-[ASOF JOIN](reference/sql/join.md#asof-join) or how to
-[FILL](reference/sql/select.md#fill) missing intervals within a select
+guide to [CRUD operations](/docs/guide/crud/), how to join time series with
+[ASOF JOIN](/docs/reference/sql/join/#asof-join) or how to
+[FILL](/docs/reference/sql/select/#fill) missing intervals within a select
 statement.
 
 Before we leave, let's remember to cleanup and delete all the data

@@ -1,7 +1,7 @@
 ---
 title: How to use the Web Console
 sidebar_label: Web Console
-description: A tutorial on how to use QuestDB's web console.
+description: A tutorial on how to use QuestDB's conceptWeb Console.
 image: /img/docs/console/overview.png
 ---
 
@@ -18,15 +18,15 @@ will show you how to use it.
 :::note
 
 This assumes you have QuestDB running with port `9000` accessible. You can get
-QuestDB running by following our guides for [Docker](guide/docker.md),
-[Homebrew](guide/homebrew.md) or with the [binaries](guide/binaries.md).
+QuestDB running by following our guides for [Docker](/docs/guide/docker/),
+[Homebrew](/docs/guide/homebrew/) or with the [binaries](/docs/guide/binaries/).
 
 :::
 
 ## Accessing the Web Console
 
 The Web Console will be available at `http://[server-address]:9000`. When
-running locally, this will be [localhost:9000](http://localhost:9000).
+running locally, this will be http://localhost:9000.
 
 If you are running QuestDB from Docker, make sure you publish the port `9000`
 (`-p 9000:9000`).
@@ -164,6 +164,6 @@ the import window.
 :::info
 
 The Web Console comes with more features such as schema editing. To find out
-more, consult our [Web Console reference](reference/web-console.md)
+more, consult our [Web Console reference](/docs/reference/web-console/)
 
 :::

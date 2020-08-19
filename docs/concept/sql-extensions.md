@@ -15,13 +15,13 @@ semantics of time series queries.
 
 ### LATEST BY
 
-[LATEST BY](../guide/crud.md) is a clause introduced to help perform UPDATE and
+[LATEST BY](/docs/guide/crud/) is a clause introduced to help perform UPDATE and
 DELETE operations within an append-only framework.
 
 ### SAMPLE BY
 
-[SAMPLE BY](../reference/sql/select.md#sample-by) for time based
-[aggregations](../reference/function/aggregation.md) with an efficient syntax.
+[SAMPLE BY](/docs/reference/sql/select/#sample-by) for time based
+[aggregations](/docs/reference/function/aggregation/) with an efficient syntax.
 The short query below will return the simple average balance from a list of
 accounts by one month buckets.
 
@@ -33,7 +33,7 @@ select avg(balance) from accounts sample by 1M
 
 Timestamp search can be performed with regular operators, e.g `>`, `<=` etc.
 However, QuestDB provides a
-[native notation](../reference/sql/where.md#timestamp-and-date) which is faster
+[native notation](/docs/reference/sql/where/#timestamp-and-date) which is faster
 and less verbose.
 
 ## Differences from standard SQL
@@ -76,7 +76,8 @@ HAVING sum(e) > 100;
 
 In QuestDB's dialect, `select * from` optionality and featherweight sub-queries
 come to the rescue to create a smaller, more readable query, without unnecessary
-repetitive aggregations. `HAVING` functionality can be obtained implicitly as follows:
+repetitive aggregations. `HAVING` functionality can be obtained implicitly as
+follows:
 
 ```questdb-sql
 (SELECT a, b, c, d, sum(e) s FROM tab) WHERE s > 100;

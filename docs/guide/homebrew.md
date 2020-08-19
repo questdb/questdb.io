@@ -1,12 +1,12 @@
 ---
 title: How to use QuestDB with Homebrew
 sidebar_label: Homebrew
-description: Tutorial on how to use QuestDB with Homebrew.
+description: Tutorial on how to use QuestDB with Homebrew on macOS.
 ---
 
 This guide shows how to use Homebrew to install and start QuestDB. This is a
 quick guide. For more reference, please refer to our
-[Homebrew package](packages/homebrew.md).
+[Homebrew package](/docs/packages/homebrew/).
 
 ## Installing Homebrew
 
@@ -38,7 +38,7 @@ questdb start
 
 This service will create the default `root directory` in
 `/usr/local/var/questdb/`. For a reference of startup options, please refer to
-our [Homebrew package](packages/homebrew.md).
+our [Homebrew package](/docs/packages/homebrew/).
 
 :::note
 
@@ -60,8 +60,8 @@ questdb status
 Here are some guides to get started using the QuestDB service. These will show
 you how to import data and run queries:
 
-- with [REST](guide/rest.md)
-- with [Postgres wire](guide/postgres-wire.md)
+- with [REST](/docs/guide/rest/)
+- with [Postgres wire](/docs/guide/postgres-wire/)
 
 ## Stopping QuestDB
 

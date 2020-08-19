@@ -147,27 +147,27 @@ module.exports = {
           items: [
             {
               label: "Docker",
-              to: "docs/guide/docker",
+              to: "/docs/guide/docker/",
             },
             {
               label: "Homebrew",
-              to: "docs/guide/homebrew",
+              to: "/docs/guide/homebrew/",
             },
             {
               label: "From the binaries",
-              to: "docs/guide/binaries",
+              to: "/docs/guide/binaries/",
             },
           ],
         },
         {
           label: "Documentation",
           position: "left",
-          to: "docs/introduction",
+          to: "/docs/introduction/",
           activeBasePath: "docs",
         },
         {
           label: "Blog",
-          to: "blog",
+          to: "/blog/",
           position: "left",
         },
         {
@@ -191,7 +191,7 @@ module.exports = {
           items: [
             {
               label: "Documentation",
-              to: "docs/introduction",
+              to: "/docs/introduction/",
             },
             {
               label: "Roadmap",
@@ -217,7 +217,7 @@ module.exports = {
           items: [
             {
               label: "Blog",
-              to: "blog",
+              to: "/blog/",
             },
             {
               label: "GitHub",

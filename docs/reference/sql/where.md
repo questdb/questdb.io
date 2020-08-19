@@ -208,9 +208,9 @@ SELECT * FROM users WHERE NOT isActive;
 QuestDB supports both its own timestamp search notation and standard search
 based on inequality. This section describes the use of the
 `timestamp search notation` which is efficient and fast but requires a
-[designated timestamp](concept/designated-timestamp.md). Remember, designated
-timestamp can be applied
-[dynamically](reference/sql/timestamp.md#during-a-select-operation).
+[designated timestamp](/docs/concept/designated-timestamp/). Remember,
+designated timestamp can be applied
+[dynamically](/docs/reference/sql/timestamp/#during-a-select-operation).
 
 ### Exact timestamp
 

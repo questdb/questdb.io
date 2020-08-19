@@ -5,7 +5,7 @@ description: FILL SQL keyword reference documentation.
 ---
 
 Specifies fill behavior for missing data for as part of a
-[SAMPLE BY](reference/sql/sample-by.md) aggregation query.
+[SAMPLE BY](/docs/reference/sql/sample-by/) aggregation query.
 
 ## Syntax
 

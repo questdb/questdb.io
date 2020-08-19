@@ -1,7 +1,7 @@
 ---
 title: Homebrew
 sidebar_label: Homebrew
-description: Homebrew reference page.
+description: Install QuestDB via Homebrew on macOS.
 ---
 
 QuestDB is distributed via Homebrew for macOS users.
@@ -21,8 +21,8 @@ brew uninstall questdb
 ## Root directory
 
 By default, QuestDB's
-[root directory](reference/configuration/root-directory-structure.md) will be
-the following:
+[root directory](/docs/reference/configuration/root-directory-structure/) will
+be the following:
 
 ```shell
 /usr/local/var/questdb/

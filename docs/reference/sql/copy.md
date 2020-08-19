@@ -28,9 +28,9 @@ is automatic.
 :::note
 
 `COPY` requires a `copy root directory` which is set using the
-[configuration key](reference/configuration/server.md) `cairo.sql.copy.root` in
-the
-[server.conf](reference/configuration/root-directory-structure.md#serverconf)
+[configuration key](/docs/reference/configuration/server/) `cairo.sql.copy.root`
+in the
+[server.conf](/docs/reference/configuration/root-directory-structure/#serverconf)
 file.
 
 ```shell title="Example"

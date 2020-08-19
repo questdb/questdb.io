@@ -31,5 +31,5 @@ Use Notes to call out important bits of information.
 
 include links to other relevant documentation.
 
-- with the [REST API](/guide/rest.md)
-- with [Postgres wire](/guide/postgres-wire.md) over Postgres wire protocol
+- with the [REST API](/docs/guide/rest/)
+- with [Postgres wire](/docs/guide/postgres-wire/) over Postgres wire protocol

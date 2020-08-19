@@ -23,7 +23,7 @@ description: Timestamp generator function reference documentation.
 - a static value, in which case the growth will be monotonic.
 - a randomized value, in which case the growth will be randomized. This is done
   using
-  [random value generator functions](reference/function/random-value-generator.md).
+  [random value generator functions](/docs/reference/function/random-value-generator/).
 
 ### Return value
 

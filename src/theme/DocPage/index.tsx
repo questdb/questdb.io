@@ -40,7 +40,7 @@ const DocPage = (props) => {
         key={isClient}
         version={version}
       >
-        <Head />
+        <Head title="Introduction" />
         <div className={styles.doc}>
           {sidebar && (
             <div

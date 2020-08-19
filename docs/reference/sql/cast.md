@@ -22,7 +22,7 @@ where:
 
 - `expression` can be a constant, a column, or an expression that evaluates to a
   value.
-- `type` refers to the desired [data type](reference/sql/datatypes.md).
+- `type` refers to the desired [data type](/docs/reference/sql/datatypes/).
 
 `cast` can be used a part of arithmetic expression as normal
 
@@ -41,7 +41,7 @@ cast('行' AS INT);
 | 5    | 2020-01-08T17:55:42.000000Z | 10.2  | 34892 |
 
 Explicit casting of an expression to a smaller
-[data type](reference/sql/datatypes.md) may result in loss of data when the
+[data type](/docs/reference/sql/datatypes/) may result in loss of data when the
 output data type is smaller than the expression.
 
 - Casting a decimal number type (`float` or `double`) to an integer number type

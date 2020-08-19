@@ -1,5 +1,6 @@
 import clsx from "clsx"
 import { differenceInDays, format, formatDistanceToNowStrict } from "date-fns"
+import DocusaurusHead from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import { usePluginData } from "@docusaurus/useGlobalData"
 import React, { ReactNode, useEffect, useState } from "react"
@@ -138,7 +139,7 @@ const GetStarted = () => {
           You can find below download links for the latest version of QuestDB (
           {siteConfig.customFields.version}). Once your download is finished,
           run QuestDB and use the&nbsp;
-          <a href="/docs/guide/web-console">Web Console guide</a> to get
+          <a href="/docs/guide/web-console/">Web Console guide</a> to get
           started.
         </p>
 
@@ -195,6 +196,7 @@ const GetStartedPage = () => {
   const [os, setOs] = useState<Os | undefined>()
   const { siteConfig } = context
   const assets = getAssets(release)
+  const title = "Download QuestDB"
 
   const perOs = {
     bsd: (
@@ -280,10 +282,17 @@ brew install questdb`}
     <MetadataContextProvider>
       <Layout
         description={siteConfig.customFields.description}
-        title="QuestDB"
+        title={title}
         version={siteConfig.customFields.version}
       >
-        <Head />
+        <Head title={title} />
+        <DocusaurusHead>
+          <link rel="canonical" href="https://questdb.io/get-started/" />
+          <meta
+            name="description"
+            content="An open source time series SQL database for fast ingestion and queries"
+          />
+        </DocusaurusHead>
         <GetStarted />
 
         <div className={binaryStyles.binaries}>
@@ -376,12 +385,12 @@ brew install questdb`}
             </p>
             <p className={instructionStyles.instructions__bullet}>
               The binary itself (~ {assets.noJre.size}), without the JVM. In
-              this case, you need Java 11+ installed locally
+              this case, you need Java 11 installed locally
             </p>
             <p>
               To find out more about how to use the binaries, please check
               the&nbsp;
-              <a href="/docs/guide/binaries">dedicated documentation</a>.
+              <a href="/docs/guide/binaries/">dedicated documentation</a>.
             </p>
             <p>
               Check out the{" "}

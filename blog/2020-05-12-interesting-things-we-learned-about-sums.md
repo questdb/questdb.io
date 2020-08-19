@@ -5,7 +5,9 @@ author_title: QuestDB Team
 author_url: https://github.com/TheTanc
 author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [questdb, performance, algo]
-description: What we learned implementing Kahan and Neumaier compensated sum algorithms, benchmark and comparison with Clickhouse.
+description:
+  What we learned implementing Kahan and Neumaier compensated sum algorithms,
+  benchmark and comparison with Clickhouse.
 ---
 
 <img
@@ -258,7 +260,7 @@ increased the memory limit from the default value from 10GB to 40GB
 ### Test data
 
 We generated two test files using our
-[random generation functions](/docs/reference/function/random-value-generator)
+[random generation functions](/docs/reference/function/random-value-generator/)
 and exported the results to CSV. We then imported the CSV individually in the
 databases.
 

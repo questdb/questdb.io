@@ -5,7 +5,7 @@ description: LATEST BY SQL keyword reference documentation.
 ---
 
 `LATEST BY` finds the latest entry by timestamp for a given key or combination
-of keys as part of a [SELECT statement](reference/sql/select.md).
+of keys as part of a [SELECT statement](/docs/reference/sql/select/).
 
 To find the latest values, QuestDB will search time series from the newest
 values to the oldest.
@@ -19,7 +19,7 @@ values to the oldest.
 :::note
 
 To use `LATEST BY`, one column needs to be designated as `timestamp`. Find out
-more in the [designated timestamp](concept/designated-timestamp.md) section.
+more in the [designated timestamp](/docs/concept/designated-timestamp/) section.
 
 :::
 
