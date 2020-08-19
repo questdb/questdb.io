@@ -49,7 +49,7 @@ We'd just resize those smaller pages as needed. But as Vald explained, if you do
 
 So they tried just allocating a new page, and jumping from one page to the next as needed to find the required data. This cut down on the copying of data, but it lead to the problems outlined in the previous section. You never knew which page your data was going to be on, and jumping from one page to another was hugely inefficient.
 
-So they tried having just the one page. One massive page (that you can grow as needed, without copying data around). Vlad, again in his style said the performance turned out to be "not bad" with this approach. And by "not bad" he of course meant about a 60% performance improvement.
+So they tried having just the one page. One massive page (that you can grow as needed, without copying data around). Vlad, again in his style, said the performance turned out to be "not bad" with this approach. And by "not bad" he of course meant about a 60% performance improvement.
 
 When you get into using one single page, of course the total available address space comes into play. But since QuestDB only runs on 64-bit architectures, we have 2^64 address space, which is more than enough.
 
