@@ -95,7 +95,7 @@ data set which would reversing any performance gains from parallelization.
 
 ## One page to rule them all
 
-(Yes, I just made a _The Highlander_ [reference](https://en.wikipedia.org/wiki/Highlander_(film))
+(Yes, I just made a _The Highlander_ [reference](https://en.wikipedia.org/wiki/Highlander_(film)))
 
 What if, in order to get around data being on multiple pages, we simply used
 _one_ page for all of the data? Of course my first question was "Don't you at
