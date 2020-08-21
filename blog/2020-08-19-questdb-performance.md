@@ -202,7 +202,8 @@ Because as we all know, the proof is in the pudding. And since we're talking
 about performance, I ran some tests. You can always go look at the [source code](https://github.com/questdb/questdb/tree/master/benchmarks/src/main/java/org/questdb)
 for these tests yourself. These first results are for the primitives and represent 10,000 reads/writes:
 
-### 32-bit Read:
+### 32-bit Read
+
 | Benchmark | Mode | Cnt | Score | Units |
 |-----------|------|-----|-------|-------|
 | VirtualMemoryReadBenchmark.testIntContiguous | avgt | 5 | 4601.940 | ns/op |
