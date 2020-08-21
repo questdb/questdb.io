@@ -208,7 +208,8 @@ for these tests yourself. These first results are for the primitives and represe
 | VirtualMemoryReadBenchmark.testIntContiguous | avgt | 5 | 4601.940 | ns/op |
 | VirtualMemoryReadBenchmark.testIntLegacy | avgt | 5 | 7064.822 | ns/op |
 
-### 32-Bit Write:
+### 32-Bit Write
+
 | Benchmark | Mode | Cnt | Score | Units |
 |-----------|------|-----|-------|-------|
 | VirtualMemoryBenchmark.testPutIntContiguous | avgt | 5 | 5270.264 | ns/op |
