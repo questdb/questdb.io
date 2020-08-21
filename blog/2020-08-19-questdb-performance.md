@@ -228,7 +228,9 @@ for these tests yourself. These first results are for the primitives and represe
 
 And here are the results for strings, which represent 100 reads/writes:
 
-### String Read:
+### String Read
+
+And here are the results for strings, which represent 100 reads/writes:
 | Benchmark | Mode | Cnt | Score | Units |
 |-----------|------|-----|-------|-------|
 | VirtualMemoryStrReadBenchmark.testGetStrContiguous | avgt | 5 | 300.346 | ns/op |
