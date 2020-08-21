@@ -220,7 +220,8 @@ for these tests yourself. These first results are for the primitives and represe
 | VirtualMemoryLongReadBenchmark.testLongContiguous | avgt | 5 | 4088.338 | ns/op |
 | VirtualMemoryLongReadBenchmark.testLongLegacy | avgt | 5 | 5022.875 | ns/op |
 
-### 64-bit Write:
+### 64-bit Write
+
 | Benchmark | Mode | Cnt | Score | Units |
 |-----------|------|-----|-------|-------|
 | VirtualMemoryLongWriteBenchmark.testPutLongContiguous | avgt | 5 | 4413.181 | ns/op |
