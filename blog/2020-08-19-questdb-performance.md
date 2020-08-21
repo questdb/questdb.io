@@ -240,4 +240,4 @@ For those of you that are more graphicly-inclined:
 
 ![relative performance of primitive types](/img/blog/2020-08-19/primitives.png)
 
-![relative performance of string types](/img/blog/2020-08-19/strings.png)
+![Benchmark showing the relative performance of string types](/img/blog/2020-08-19/strings.png)
