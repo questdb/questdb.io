@@ -1,5 +1,5 @@
 ---
-title: QuestDB Performance
+title: What we learned by re-examining our approach to memory mapping
 author: David G. Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs
@@ -24,16 +24,15 @@ image: /img/blog/2020-08-19/banner.png
   </div>
 </div>
 
-Have you ever had one of those conversations where, in the end, you feel both
-smarter _and_ dumber? I had one last week when I sat down with our Founder and
-CTO Vlad Ilyuschenko and one of our engineers Patrick Mackinlay.
+How does QuestDB get the kind of performance it does, and how
+are we continuing to squeeze another 50-60% out of it? We are
+constantly learning more about the fundamental concepts of memory
+performance, and this is one example of how what we at first thought
+would be _worse_ for perfromance ended up bringing us a rather
+substantial boost in overall memory performance.
 
-I am now smarter because I learned so much from them, but I feel dumber because
-they are both so amazingly smart.
-
-But you didn't come here to listen to me talk about that. So let's get to the
-meat of this post: How does QuestDB get the kind of performance it does, and how
-are we continuing to squeeze another 50-60% out of it?
+We will walk you through how some of our initial thoughts on storage and
+memory-mapping evolved to bring us better performance overall.
 
 <!--truncate-->
 
@@ -196,11 +195,15 @@ It comes down to letting the kernel do its job, and us doing ours. And our job
 is to exploit the kernel for every ounce of performance we can get out of it
 without trying to do it's job for it.
 
-## It's time for pudding
+## Conclusions
 
-Because as we all know, the proof is in the pudding. And since we're talking
-about performance, I ran some tests. You can always go and look at the [source code](https://github.com/questdb/questdb/tree/master/benchmarks/src/main/java/org/questdb)
-for these tests yourself. These first results are for the primitives and represent 10,000 reads/writes:
+When it comes to performance claims, we always try to back them up with actual
+numbers that can be replicated. You can run these tests yourself, and you can
+always go and look at the [source code](https://github.com/questdb/questdb/tree/master/benchmarks/src/main/java/org/questdb) for these tests to see how they are implemented.
+
+We think these numbers speak for themselves.
+
+These first results are for the primitives and represent 10,000 reads/writes:
 
 ### 32-bit Read
 
@@ -246,3 +249,6 @@ For those of you that are more graphicly-inclined:
 ![Benchmark showing the relative performance of primitive types](/img/blog/2020-08-19/primitives.png)
 
 ![Benchmark showing the relative performance of string types](/img/blog/2020-08-19/strings.png)
+
+Again, we think these numbers speak for themselves, but we're always happy to hear
+from you, our users and community, about what you think.
