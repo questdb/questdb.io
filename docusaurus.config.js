@@ -6,6 +6,7 @@ const customFields = {
     "QuestDB is an open source database designed to make time-series lightning fast and easy. It exposes a high performance REST API and supports Postgres wire.",
   dockerUrl: "https://hub.docker.com/r/questdb/questdb",
   githubUrl: "https://github.com/questdb/questdb",
+  linkedInUrl: "https://www.linkedin.com/company/questdb/",
   slackUrl:
     "https://questdb.slack.com/join/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY#/",
   twitterUrl: "https://twitter.com/questdb",
@@ -48,6 +49,7 @@ module.exports = {
   projectName: "questdb",
   customFields,
   plugins: [
+    require.resolve("./plugins/body-tags"),
     require.resolve("./plugins/fetch-release"),
     require.resolve("./plugins/lint"),
     require.resolve("./plugins/manifest"),

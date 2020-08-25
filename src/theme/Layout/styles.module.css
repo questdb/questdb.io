@@ -1,0 +1,14 @@
+.wrapper {
+  margin-top: 3rem;
+  flex: 1 0 auto;
+}
+
+.wrapper main > article > section :global(.banner) {
+  display: none;
+}
+
+@media (max-width: 996px) {
+  .wrapper {
+    margin-top: 2rem;
+  }
+}

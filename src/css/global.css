@@ -149,6 +149,26 @@ nav {
   --ifm-color-emphasis-300: transparent;
 }
 
+/* This is from Layout.tsx (cf. upstream) */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    transition: var(--ifm-transition-fast) ease color;
+}
+
+#__docusaurus {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Pagination */
+
 .pagination-nav__item--next .pagination-nav__link {
   background: var(--palette-pink);
 }
@@ -162,27 +182,14 @@ nav {
   font-size: var(--ifm-font-size-base);
 }
 
-.main-wrapper {
-  margin-top: 3rem;
-}
-
 main article header h2 a {
   color: var(--palette-white-darker);
-}
-
-.main-wrapper main > article > section .banner {
-  display: none;
 }
 
 .DocSearch-Button-Key {
   display: none !important;
 }
 
-@media (max-width: 996px) {
-  .main-wrapper {
-    margin-top: 2rem;
-  }
-}
 
 /**
  *
