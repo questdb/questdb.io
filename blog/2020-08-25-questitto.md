@@ -7,41 +7,60 @@ author_image_url: https://avatars.githubusercontent.com/shantanoo-desai
 description:
   Create a simple IoT Stack with Mosquitto MQTT Broker, Telegraf and QuestDB
 tags: [MQTT, IoT, Docker, docker-compose, User-Management]
-toc:
-  enable: true
-  auto: true
 ---
+
+Note: I wanted you to know that this post is written by one of our contributors,
+Shan Desai. Shan is a research scientist working for the Bremen Institute for
+Production and Logistics ([BIBA](http://www.biba.uni-bremen.de/)). His work
+involves the use of IoT devices in order to improve product tracking and
+transparency in a B2B marketplace. You can find more details on
+[Shan's personnal website](https://shantanoo-desai.github.io/).
+
+Thanks a lot for your contribution Shan!
+
 <!--truncate-->
 
 ## Overview
 
-> [QuestDB][1] is the fastest open-source Time-Series Database out there in terms of performance.
+> [QuestDB][1] is the fastest open-source Time-Series Database out there in
+> terms of performance.
 
-The developers were kind enough to welcome me into their community and I wanted to make things easier for people trying
-things out with QuestDB.
+The developers were kind enough to welcome me into their community and I wanted
+to make things easier for people trying things out with QuestDB.
 
-Lo! and behold [Questitto][2] an _out-of-the-box_ repository for your initial IoT Applications. The repository is an altered version
-for my repository [tiguitto][3] which helps users deploy the highly used __TIG+Mosquitto (Telegraf, InfluxDB, Grafana) + Mosquitto MQTT Broker__ stack in no time.
+Lo! and behold [Questitto][2] an _out-of-the-box_ repository for your initial
+IoT Applications. The repository is an altered version for my repository
+[tiguitto][3] which helps users deploy the highly used **TIG+Mosquitto
+(Telegraf, InfluxDB, Grafana) + Mosquitto MQTT Broker** stack in no time.
 
 ## Motivation
 
-I am really looking forward to use some `SQL` queries with Time-Series Databases and `QuestDB` provides such functionalities as well as
-some cool new features of [Dynamic Timestamping](https://questdb.io/docs/reference/sql/timestamp/).
+I am really looking forward to use some `SQL` queries with Time-Series Databases
+and `QuestDB` provides such functionalities as well as some cool new features of
+[Dynamic Timestamping](https://questdb.io/docs/reference/sql/timestamp/).
 
-Not to mention, my staple [InfluxDB's Line Protocol](https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_tutorial/) is supported via sockets too!
+Not to mention, my staple
+[InfluxDB's Line Protocol](https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_tutorial/)
+is supported via sockets too!
 
 ## Stack
 
-`questitto` currently comes with basic user authentication support for Mosquitto MQTT broker. The Broker allows only specific users to publish / subscribe data hence reducing misuse. Telegraf writes the incoming data via subscribing to the MQTT Broker and pushes the data to QuestDB.
+`questitto` currently comes with basic user authentication support for Mosquitto
+MQTT broker. The Broker allows only specific users to publish / subscribe data
+hence reducing misuse. Telegraf writes the incoming data via subscribing to the
+MQTT Broker and pushes the data to QuestDB.
 
-In order to make it easy to deploy, the stack is deployable via `docker` and configuration is made simple via usage of text files (MQTT broker's users) and an Environment File (for Telegraf)
-
+In order to make it easy to deploy, the stack is deployable via `docker` and
+configuration is made simple via usage of text files (MQTT broker's users) and
+an Environment File (for Telegraf)
 
 ### Setup
 
 Clone the repository:
 
-    git clone https://github.com/shantanoo-desai/questitto.git && cd questitto/
+```bash
+git clone https://github.com/shantanoo-desai/questitto.git && cd questitto/
+```
 
 Your Directory structure should look like:
 
@@ -61,27 +80,42 @@ Your Directory structure should look like:
 
 Some brief information on the files:
 
-* `mosquitto/config/passwd`: file that has the usernames and passwords necessary for publishing/subscribing to the MQTT broker
-* `questitto.env`: environment variable file used by `telegraf` container to subscribe to the MQTT Broker for data ingestion
-* `telegraf/telegraf.conf`: TOML Configuration file for letting `telegraf` do the heavy lifting and inserting the data into QuestDB
+- `mosquitto/config/passwd`: file that has the usernames and passwords necessary
+  for publishing/subscribing to the MQTT broker
+- `questitto.env`: environment variable file used by `telegraf` container to
+  subscribe to the MQTT Broker for data ingestion
+- `telegraf/telegraf.conf`: TOML Configuration file for letting `telegraf` do
+  the heavy lifting and inserting the data into QuestDB
 
 ### User Management for Mosquitto MQTT Broker
 
-In the repository there are two users added by default (see `mosquitto/config/passwd` file):
+In the repository there are two users added by default (see
+`mosquitto/config/passwd` file):
 
 ```
-    pubclient:questitto
-    subclient:questitto
+pubclient:questitto
+subclient:questitto
 ```
-You can use the `pubclient` credential on your IoT Devices / MQTT Client to publish information to the Broker. Similarly, `subclient` credential will be used by `telegraf` or any other user of the stack in order to subscribe to the incoming data. Feel free to change the passwords for the usernames or add more credentials according to your needs. The format for the credential entries is as follows (in plain text):
+
+You can use the `pubclient` credential on your IoT Devices / MQTT Client to
+publish information to the Broker. Similarly, `subclient` credential will be
+used by `telegraf` or any other user of the stack in order to subscribe to the
+incoming data. Feel free to change the passwords for the usernames or add more
+credentials according to your needs. The format for the credential entries is as
+follows (in plain text):
 
 ```
 username1:password1
 username2:password2
 ```
-{{< admonition >}}
-Mosquitto Broker requires the the credentials to be encrypted and hence you bring the stack up with encrypting the passwords, the broker container will fail to start
-{{< /admonition >}}
+
+:::note
+
+Mosquitto Broker requires the the credentials to be encrypted and hence you
+bring the stack up with encrypting the passwords, the broker container will fail
+to start
+
+:::
 
 Let's encrypt the passwords using the following command:
 
@@ -89,7 +123,9 @@ Let's encrypt the passwords using the following command:
 # assuming your current directory is questitto
 docker run -it --rm -v $(pwd)/mosquitto/config:/mosquitto/config eclipse-mosquitto mosquitto_passwd -U /mosquitto/config/passwd
 ```
-The command does not return anything hence, after executing the command check the `mosquitto/config/passwd` file using:
+
+The command does not return anything hence, after executing the command check
+the `mosquitto/config/passwd` file using:
 
 ```bash
 cat mosquitto/config/passwd
@@ -97,38 +133,48 @@ cat mosquitto/config/passwd
 
 ### Input Data Format + MQTT Topic Design
 
-> For IoT Applications, let the higher components in the stack do the heavy-lifting i.e. `telegraf` and `mosquitto` and keep the payload and topics very simple
+> For IoT Applications, let the higher components in the stack do the
+> heavy-lifting i.e. `telegraf` and `mosquitto` and keep the payload and topics
+> very simple
 
 As an example the MQTT Topics are selected as follows:
 
 ```
 IOT/<SensorID>/<measurement_name>
 ```
-if your IoT sensor publishes temperature data then you can publish it to a topic:
+
+if your IoT sensor publishes temperature data then you can publish it to a
+topic:
 
 ```
 IOT/sensor1/temp
 ```
 
-with the payload in __InfluxDB Line Protocol String__:
+with the payload in **InfluxDB Line Protocol String**:
 
 ```
 environment,type=BME280 temp=23.9
 ```
 
-We then let `telegraf` translate the location of `sensor1` for us using the `processors` plugin and the MQTT topic itself.
+We then let `telegraf` translate the location of `sensor1` for us using the
+`processors` plugin and the MQTT topic itself.
 
 ### Telegraf Configuration
 
-`telegraf` subscribes to the MQTT Broker using the `subclient` credential mentioned above.
+`telegraf` subscribes to the MQTT Broker using the `subclient` credential
+mentioned above.
 
-{{< admonition >}}
-If you change the user credentials, make sure to encrypt the password and change the `questitto.env` file with the actual credentials for `telegraf`
-{{< /admonition >}}
+:::note
+
+If you change the user credentials, make sure to encrypt the password and change
+the `questitto.env` file with the actual credentials for `telegraf`
+
+:::
 
 Let's look at how `telegraf` can add our sensor's location for us.
 
-We use the `inputs.mqtt_consumer` plugin to connect to our broker and subscribe to it via the credentials in the `.env` file:
+We use the `inputs.mqtt_consumer` plugin to connect to our broker and subscribe
+to it via the credentials in the `.env` file:
 
 ```toml
 [[inputs.mqtt_consumer]]
@@ -157,7 +203,8 @@ We use the `inputs.mqtt_consumer` plugin to connect to our broker and subscribe 
     data_format = "influx"
 ```
 
-we store the MQTT topic as a `tag` called `topic` and now leverage it for some Regular Expression and Enumeration Magic as follows:
+we store the MQTT topic as a `tag` called `topic` and now leverage it for some
+Regular Expression and Enumeration Magic as follows:
 
 ```toml
 [[processors.regex]]
@@ -192,9 +239,11 @@ we store the MQTT topic as a `tag` called `topic` and now leverage it for some R
             "sensor2" = "livingroom"
 ```
 
-Based on our MQTT Topic design we know that the `SensorID` will be on the second level i.e. `IOT/(.*)/#`.
+Based on our MQTT Topic design we know that the `SensorID` will be on the second
+level i.e. `IOT/(.*)/#`.
 
-We perform the Regular Expression to extract the sensor's ID and use `enum` to map it to its dedicated location:
+We perform the Regular Expression to extract the sensor's ID and use `enum` to
+map it to its dedicated location:
 
 ```
 sensor1 --> kitchen
@@ -203,7 +252,6 @@ sensor2 --> livingroom
 
 The location will be stored as a `tag` called `location`.
 
-
 ### Data Insertion to QuestDB
 
 ```toml
@@ -211,62 +259,70 @@ The location will be stored as a `tag` called `location`.
     address = "tcp://questdb:9009"
 ```
 
-will send the Line Protocol String to port 9009 of the `questdb` container and you don't even need to define a schema beforehand!
-
+will send the Line Protocol String to port 9009 of the `questdb` container and
+you don't even need to define a schema beforehand!
 
 ### Visualize It!
 
 QuestDB comes with its own cool UI available on `http://<IP_address>:9000`
 
 ## Example
+
 Get the Stack up:
 
 ```bash
 docker-compose up -d
 ```
 
-As a simple Example I used [MQTT.fx][4] as a client to publish information in Line Protocol to the following Topic:
+As a simple Example I used [MQTT.fx][4] as a client to publish information in
+Line Protocol to the following Topic:
 
 ```json
 {
-    "topic": "IOT/sensor1/acc",
-    "payload": [
-        "accleration,type=BNO055 x=2.3,y=3.2,z=0.01",
-        "accleration,type=BNO055 x=2.3,y=3.2,z=0.01",
-        "accleration,type=BNO055 x=2.3,y=3.2,z=0.02",
-    ]
+  "topic": "IOT/sensor1/acc",
+  "payload": [
+    "accleration,type=BNO055 x=2.3,y=3.2,z=0.01",
+    "accleration,type=BNO055 x=2.3,y=3.2,z=0.01",
+    "accleration,type=BNO055 x=2.3,y=3.2,z=0.02"
+  ]
 }
 ```
+
 with the `pubclient:questitto` credentials and on the QuestDB UI you can see:
 
-{{< figure src="/images/technology/questitto/Questitto_Tables.png" title="Automatic Table Creation based on InfluxDB Line Protocol Measurement Name" >}}
+![Automatic Table Creation based on InfluxDB Line Protocol Measurement Name](/img/blog/2020-08-25/tables.png)
 
 With the `location` and other `tags` from the Line Protocol inserted:
 
-{{< figure src="/images/technology/questitto/Questitto_Table_Schema.png" title="Columns created by QuestDB for acceleration Table" >}}
+![Columns created by QuestDB for acceleration Table](/img/blog/2020-08-25/schema.png)
 
-A simple query where I would like to know the acceleration value in the `kitchen` for the __X-axis__ is as simple as:
+A simple query where I would like to know the acceleration value in the
+`kitchen` for the **X-axis** is as simple as:
 
-```
+```questdb-sql
 SELECT timestamp, x FROM acceleration
 WHERE location = 'kitchen';
 ```
 
 ## Nuggets
 
-If you need to add/remove or adapt the Users or the `telegraf.conf` without bringing down the stack or the services within `questitto` simply use the `SIGHUP` signal for the containers.
+If you need to add/remove or adapt the Users or the `telegraf.conf` without
+bringing down the stack or the services within `questitto` simply use the
+`SIGHUP` signal for the containers.
 
 ```bash
 docker kill --signal=SIGHUP mosquitto
 # OR
 docker kill --signal=SIGHUP telegraf
 ```
-See [my blog post][5] for a detailed write up.
 
+See [my blog post][5] for a detailed write up.
 
 ## Repository
 
-You can find the [repository on GitHub][2]. Please feel free to open Issues/PRs and join the [QuestDB Slack Community](questdb.slack.com), the developers are really helpful there!
+You can find the [repository on GitHub][2]. Please feel free to open Issues/PRs
+and join the [QuestDB Slack Community](https://questdb.slack.com), the
+developers are really helpful there!
 
 [1]: https://questdb.io
 [2]: https://github.com/shantanoo-desai/questitto
