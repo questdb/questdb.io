@@ -4,9 +4,8 @@ author: David G. Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
-description:
-  QuestDB storage model performance improvements explained
-tags: [performance]
+description: QuestDB storage model performance improvements explained
+tags: [performance, deep-dive]
 image: /img/blog/2020-08-19/banner.png
 ---
 
@@ -21,15 +20,16 @@ image: /img/blog/2020-08-19/banner.png
   <div>
     Photo by <a href="https://unsplash.com/@veri_ivanova?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Veri Ivanova</a> on <a href="https://unsplash.com/s/photos/speed?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 
+
   </div>
 </div>
 
-How does QuestDB get the kind of performance it does, and how
-are we continuing to squeeze another 50-60% out of it? We are
-constantly learning more about the fundamental concepts of memory
-performance, and this is one example of how what we at first thought
-would be _worse_ for perfromance ended up bringing us a rather
-substantial boost in overall memory performance.
+
+How does QuestDB get the kind of performance it does, and how are we continuing
+to squeeze another 50-60% out of it? We are constantly learning more about the
+fundamental concepts of memory performance, and this is one example of how what
+we at first thought would be _worse_ for performance ended up bringing us a
+rather substantial boost in overall memory performance.
 
 We will walk you through how some of our initial thoughts on storage and
 memory-mapping evolved to bring us better performance overall.
@@ -94,7 +94,8 @@ data set which would reversing any performance gains from parallelization.
 
 ## One page to rule them all
 
-(Yes, I just made a _The Highlander_ [reference](https://en.wikipedia.org/wiki/Highlander_(film)))
+(Yes, I just made a _The Highlander_
+[reference](<https://en.wikipedia.org/wiki/Highlander_(film)>))
 
 What if, in order to get around data being on multiple pages, we simply used
 _one_ page for all of the data? Of course my first question was "Don't you at
@@ -199,7 +200,9 @@ without trying to do it's job for it.
 
 When it comes to performance claims, we always try to back them up with actual
 numbers that can be replicated. You can run these tests yourself, and you can
-always go and look at the [source code](https://github.com/questdb/questdb/tree/master/benchmarks/src/main/java/org/questdb) for these tests to see how they are implemented.
+always go and look at the
+[source code](https://github.com/questdb/questdb/tree/master/benchmarks/src/main/java/org/questdb)
+for these tests to see how they are implemented.
 
 We think these numbers speak for themselves.
 
@@ -207,42 +210,42 @@ These first results are for the primitives and represent 10,000 reads/writes:
 
 ### 32-bit Read
 
-| Benchmark | Mode | Cnt | Score | Units |
-|-----------|------|-----|-------|-------|
-| VirtualMemoryReadBenchmark.testIntContiguous | avgt | 5 | 4601.940 | ns/op |
-| VirtualMemoryReadBenchmark.testIntLegacy | avgt | 5 | 7064.822 | ns/op |
+| Benchmark                                    | Mode | Cnt | Score    | Units |
+| -------------------------------------------- | ---- | --- | -------- | ----- |
+| VirtualMemoryReadBenchmark.testIntContiguous | avgt | 5   | 4601.940 | ns/op |
+| VirtualMemoryReadBenchmark.testIntLegacy     | avgt | 5   | 7064.822 | ns/op |
 
 ### 32-Bit Write
 
-| Benchmark | Mode | Cnt | Score | Units |
-|-----------|------|-----|-------|-------|
-| VirtualMemoryBenchmark.testPutIntContiguous | avgt | 5 | 5270.264 | ns/op |
-| VirtualMemoryBenchmark.testPutIntLegacy | avgt | 5 | 5692.148 | ns/op |
+| Benchmark                                   | Mode | Cnt | Score    | Units |
+| ------------------------------------------- | ---- | --- | -------- | ----- |
+| VirtualMemoryBenchmark.testPutIntContiguous | avgt | 5   | 5270.264 | ns/op |
+| VirtualMemoryBenchmark.testPutIntLegacy     | avgt | 5   | 5692.148 | ns/op |
 
 ### 64-bit Read
 
-| Benchmark | Mode | Cnt | Score | Units |
-|-----------|------|-----|-------|-------|
-| VirtualMemoryLongReadBenchmark.testLongContiguous | avgt | 5 | 4088.338 | ns/op |
-| VirtualMemoryLongReadBenchmark.testLongLegacy | avgt | 5 | 5022.875 | ns/op |
+| Benchmark                                         | Mode | Cnt | Score    | Units |
+| ------------------------------------------------- | ---- | --- | -------- | ----- |
+| VirtualMemoryLongReadBenchmark.testLongContiguous | avgt | 5   | 4088.338 | ns/op |
+| VirtualMemoryLongReadBenchmark.testLongLegacy     | avgt | 5   | 5022.875 | ns/op |
 
 ### 64-bit Write
 
-| Benchmark | Mode | Cnt | Score | Units |
-|-----------|------|-----|-------|-------|
-| VirtualMemoryLongWriteBenchmark.testPutLongContiguous | avgt | 5 | 4413.181 | ns/op |
-| VirtualMemoryLongWriteBenchmark.testPutLongLegacy | avgt | 5 | 6976.593 | ns/op |
+| Benchmark                                             | Mode | Cnt | Score    | Units |
+| ----------------------------------------------------- | ---- | --- | -------- | ----- |
+| VirtualMemoryLongWriteBenchmark.testPutLongContiguous | avgt | 5   | 4413.181 | ns/op |
+| VirtualMemoryLongWriteBenchmark.testPutLongLegacy     | avgt | 5   | 6976.593 | ns/op |
 
 And here are the results for strings, which represent 100 reads/writes:
 
 ### String Read
 
-| Benchmark | Mode | Cnt | Score | Units |
-|-----------|------|-----|-------|-------|
-| VirtualMemoryStrReadBenchmark.testGetStrContiguous | avgt | 5 | 300.346 | ns/op |
-| VirtualMemoryStrReadBenchmark.testGetStrLegacy | avgt | 5 | 525.775 | ns/op |
-| VirtualMemoryStrWriteBenchmark.testPutStrContiguous | avgt  |  5 | 2.019 | ns/op |
-| VirtualMemoryStrWriteBenchmark.testPutStrLegacy | avgt | 5 | 3.646 | ns/op |
+| Benchmark                                           | Mode | Cnt | Score   | Units |
+| --------------------------------------------------- | ---- | --- | ------- | ----- |
+| VirtualMemoryStrReadBenchmark.testGetStrContiguous  | avgt | 5   | 300.346 | ns/op |
+| VirtualMemoryStrReadBenchmark.testGetStrLegacy      | avgt | 5   | 525.775 | ns/op |
+| VirtualMemoryStrWriteBenchmark.testPutStrContiguous | avgt | 5   | 2.019   | ns/op |
+| VirtualMemoryStrWriteBenchmark.testPutStrLegacy     | avgt | 5   | 3.646   | ns/op |
 
 For those of you that are more graphicly-inclined:
 
@@ -250,5 +253,5 @@ For those of you that are more graphicly-inclined:
 
 ![Benchmark showing the relative performance of string types](/img/blog/2020-08-19/strings.png)
 
-Again, we think these numbers speak for themselves, but we're always happy to hear
-from you, our users and community, about what you think.
+Again, we think these numbers speak for themselves, but we're always happy to
+hear from you, our users and community, about what you think.
