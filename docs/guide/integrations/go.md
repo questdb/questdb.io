@@ -70,5 +70,5 @@ func main() {
 
 ```
 
-### Run the following
+## Run the following
 ` go run questdb.go`
