@@ -34,8 +34,10 @@ const start = async () => {
     await client.connect()
 
     const res = await client.query(
-      "select x from long_sequence(2);",
+      "select x,  $1, $2, $3, $4, $5 from long_sequence(2);",
+      ["a", "3", "5000000000", "2.33333", "false"],
     )
+
 
     console.log(res.rows[0])
 
