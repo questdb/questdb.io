@@ -3,7 +3,6 @@ title: Postgres wire client using PSQL
 sidebar_label: PSQL
 ---
 
-
 From the command line, navigate to your postgres installation directory and run:
 
 ```shell

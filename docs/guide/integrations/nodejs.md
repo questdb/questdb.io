@@ -3,6 +3,10 @@ title: Postgres wire client in Nodejs
 sidebar_label: Nodejs
 ---
 
+This example shows how to connect to QuestDB from nodejs using Postgres wire protocol
+
+## Create package file
+
 `package.json`
 
 ```json
@@ -16,6 +20,7 @@ sidebar_label: Nodejs
 }
 ```
 
+## Create js file
 
 `pg-client.js`
 
@@ -52,7 +57,7 @@ start()
 
 ```
 
-Then run:
+## Run:
 
 - `npm i` to install the dependencies
 - `node pg-client.js` to run the code

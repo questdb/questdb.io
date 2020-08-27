@@ -3,8 +3,12 @@ title: Postgres wire client in Go
 sidebar_label: Go
 ---
 
+This example uses the `lib/pg` library to connect to QuestDB. Currently, we support queries without parameters when connecting via the Go client. We are working on supporting parameterized queries. 
 
-Currently we support queries without parameters when connecting via the Go client. We are working on supporting parameterized queries. 
+## Install lib/pg package
+`go get -u github.com/lib/pq`
+
+## Create file `questdb.go`
 
 
 ```go
@@ -64,3 +68,6 @@ func main() {
 }
 
 ```
+
+### Run the following
+` go run questdb.go`
