@@ -51,6 +51,11 @@ module.exports = {
             "guide/my-first-database",
           ],
         },
+        {
+          type: "category",
+          label: "Integrations",
+          items: ["guide/integrations/go", "guide/integrations/jdbc", "guide/integrations/psql", "guide/integrations/nodejs"],
+        },
       ],
     },
     {
