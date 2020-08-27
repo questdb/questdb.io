@@ -1,6 +1,7 @@
 ---
 title: Postgres wire client in Nodejs
 sidebar_label: Nodejs
+description: Tutorial on how to connect to QuestDB from nodejs using Postgres wire
 ---
 
 This example shows how to connect to QuestDB from nodejs using Postgres wire protocol

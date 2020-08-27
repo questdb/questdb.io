@@ -1,6 +1,7 @@
 ---
 title: Postgres wire client in Java using JDBC
 sidebar_label: JDBC
+description: Tutorial on how to connect to QuestDB using Postgres JDBC driver
 ---
 
 Example using the Postgres JDBC driver showing how to connect to QuestDB and execute a prepared statement.

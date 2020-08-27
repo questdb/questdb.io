@@ -1,6 +1,7 @@
 ---
 title: Postgres wire client in Go
 sidebar_label: Go
+description: Tutorial on how to connect to QuestDB from Go using Postgres wire
 ---
 
 This example uses the `lib/pg` library to connect to QuestDB. Currently, we support queries without parameters when connecting via the Go client. We are working on supporting parameterized queries. 
