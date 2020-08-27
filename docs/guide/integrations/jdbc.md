@@ -1,11 +1,11 @@
 ---
-title: PG wire client in JDBC
+title: Postgres wire client in Java using JDBC
 sidebar_label: JDBC
 ---
 
 
 Maven dependency:
-```
+```xml
 <dependency>
     <groupId>org.postgresql</groupId>
     <artifactId>postgresql</artifactId>
@@ -14,7 +14,7 @@ Maven dependency:
 ```
 
 
-```
+```java
     public static void main(String[] args) throws Exception {
         Class.forName("org.postgresql.Driver");
         Properties properties = new Properties();

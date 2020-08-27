@@ -1,13 +1,13 @@
 ---
-title: PG wire client in Go
+title: Postgres wire client in Go
 sidebar_label: Go
 ---
 
-:::note
-Currently we support queries without parameters when connecting via the Go client. We are working on supporting parameterized queries. 
-:::
 
-```
+Currently we support queries without parameters when connecting via the Go client. We are working on supporting parameterized queries. 
+
+
+```go
 package main
 
 import (

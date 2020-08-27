@@ -1,11 +1,11 @@
 ---
-title: PG wire client in Nodejs
+title: Postgres wire client in Nodejs
 sidebar_label: Nodejs
 ---
 
 `package.json`
 
-```
+```json
 {
   "name": "example",
   "version": "1.0.0",
@@ -19,7 +19,7 @@ sidebar_label: Nodejs
 
 `pg-client.js`
 
-```
+```javascript
 const { Client } = require("pg")
 
 const start = async () => {
