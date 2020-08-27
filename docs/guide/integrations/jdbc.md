@@ -3,6 +3,17 @@ title: PG wire client in JDBC
 sidebar_label: JDBC
 ---
 
+
+Maven dependency:
+```
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.2.12</version>
+</dependency>
+```
+
+
 ```
     public static void main(String[] args) throws Exception {
         Class.forName("org.postgresql.Driver");

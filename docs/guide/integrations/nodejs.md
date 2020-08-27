@@ -3,6 +3,8 @@ title: PG wire client in Nodejs
 sidebar_label: Nodejs
 ---
 
+`package.json`
+
 ```
 {
   "name": "example",
@@ -13,6 +15,9 @@ sidebar_label: Nodejs
   }
 }
 ```
+
+
+`pg-client.js`
 
 ```
 const { Client } = require("pg")
@@ -30,7 +35,6 @@ const start = async () => {
 
     const res = await client.query(
       "select x from long_sequence(2);",
-      
     )
 
     console.log(res.rows[0])
@@ -45,3 +49,8 @@ const start = async () => {
 start()
 
 ```
+
+Then run:
+
+- `npm i` to install the dependencies
+- `node pg-client.js` to run the code
