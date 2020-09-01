@@ -728,11 +728,7 @@ const Home = () => {
 
   return (
     <MetadataContextProvider>
-      <Layout
-        description={siteConfig.customFields.description}
-        title={title}
-        version={siteConfig.customFields.version}
-      >
+      <Layout description={siteConfig.customFields.description} title={title}>
         <Head title={title} />
         <DocusaurusHead>
           <link rel="canonical" href="https://questdb.io" />

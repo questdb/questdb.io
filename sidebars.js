@@ -32,19 +32,21 @@ module.exports = {
       type: "doc",
     },
     {
+      label: "Concepts",
+      type: "category",
+      items: [
+        "concept/storage-model",
+        "concept/designated-timestamp",
+        "concept/sql-extensions",
+        "concept/partitions",
+        "concept/symbol",
+        "concept/indexes",
+      ],
+    },
+    {
       label: "Guides",
       type: "category",
       items: [
-        {
-          type: "category",
-          label: "Integrations",
-          items: [
-            "guide/integrations/go",
-            "guide/integrations/jdbc",
-            "guide/integrations/nodejs",
-            "guide/integrations/psql",
-          ],
-        },
         {
           type: "category",
           label: "Setting up QuestDB",
@@ -64,15 +66,13 @@ module.exports = {
       ],
     },
     {
-      label: "Concepts",
       type: "category",
+      label: "Tutorials",
       items: [
-        "concept/storage-model",
-        "concept/designated-timestamp",
-        "concept/sql-extensions",
-        "concept/partitions",
-        "concept/symbol",
-        "concept/indexes",
+        "tutorial/go",
+        "tutorial/jdbc",
+        "tutorial/nodejs",
+        "tutorial/psql",
       ],
     },
     {

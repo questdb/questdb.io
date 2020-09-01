@@ -228,7 +228,6 @@ module.exports = {
           ],
         },
       ],
-      copyright: customFields.copyright,
     },
   },
   presets: [
@@ -236,7 +235,6 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          homePageId: "docs/introduction",
           remarkPlugins: [variable],
           sidebarPath: require.resolve("./sidebars.js"),
         },

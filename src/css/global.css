@@ -114,6 +114,7 @@ html[data-theme="dark"] .DocSearch {
 
 nav {
   --ifm-font-size-base: var(--font-size-normal);
+  --ifm-link-color: var(--palette-pink);
 }
 
 .markdown {
@@ -153,18 +154,18 @@ nav {
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    transition: var(--ifm-transition-fast) ease color;
+  margin: 0;
+  transition: var(--ifm-transition-fast) ease color;
 }
 
 #__docusaurus {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Pagination */
@@ -189,7 +190,6 @@ main article header h2 a {
 .DocSearch-Button-Key {
   display: none !important;
 }
-
 
 /**
  *

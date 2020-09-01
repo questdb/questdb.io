@@ -10,7 +10,6 @@ const IdealImage = ({
     return <img {...props} src={src} />
   }
 
-  // eslint-disable-next-line
   return <Image {...props} />
 }
 

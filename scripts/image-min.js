@@ -59,7 +59,10 @@ const run = async () => {
     for (const file of rename) {
       fs.renameSync(
         file,
-        file.replace(new RegExp(`\/_([\\w\\d]{0,255})\.${ext}$`), `/$1.${ext}`),
+        file.replace(
+          new RegExp(`\/_([\\w-\\d]{0,255})\.${ext}$`),
+          `/$1.${ext}`,
+        ),
       )
       console.log(`Renaming:  ${file}`)
       successList.push(file)

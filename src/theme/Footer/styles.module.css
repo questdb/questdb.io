@@ -66,6 +66,7 @@
 .footer__bottom {
   display: flex;
   height: 4.75rem;
+  width: 100%;
   justify-content: center;
   align-items: center;
   border-top: 1px solid var(--palette-white-10);

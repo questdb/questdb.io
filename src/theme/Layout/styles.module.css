@@ -1,6 +1,8 @@
 .wrapper {
+  display: flex;
   margin-top: 3rem;
   flex: 1 0 auto;
+  flex-direction: column;
 }
 
 .wrapper main > article > section :global(.banner) {

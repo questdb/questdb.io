@@ -16,7 +16,7 @@ type Props = Readonly<{
 }>
 
 const FooterLink = ({ to, href, label, ...props }: Props) => {
-  const linkHref = useBaseUrl(href || "", { forcePrependBaseUrl: false })
+  const linkHref = useBaseUrl(href || "", { forcePrependBaseUrl: undefined })
   const linkTo = useBaseUrl(to || "")
 
   return (
@@ -42,7 +42,7 @@ const Footer = () => {
   const { siteConfig } = context
   const { themeConfig } = siteConfig
   const { footer } = themeConfig
-  const { copyright, links } = footer
+  const { links } = footer
 
   return (
     <footer
@@ -120,14 +120,9 @@ const Footer = () => {
         </div>
       </div>
       <div className={footerStyles.footer__bottom}>
-        <p
-          className={footerStyles.footer__copyright}
-          // Developer provided the HTML, so assume it's safe.
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: copyright,
-          }}
-        />
+        <p className={footerStyles.footer__copyright}>
+          {siteConfig.customFields.copyright}
+        </p>
       </div>
     </footer>
   )

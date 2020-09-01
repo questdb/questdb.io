@@ -1,7 +1,6 @@
-/* eslint-disable */
 import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
-import React, { useCallback, useState, useEffect } from "react"
+import React, { ComponentProps, useCallback, useState, useEffect } from "react"
 
 import Button from "@theme/Button"
 import SearchBar from "@theme/SearchBar"
@@ -13,7 +12,12 @@ import NavbarItem from "@theme/NavbarItem"
 
 const DefaultNavItemPosition = "right"
 
-function splitNavItemsByPosition(items) {
+function splitNavItemsByPosition(
+  items: ComponentProps<typeof NavbarItem>[],
+): {
+  leftItems: ComponentProps<typeof NavbarItem>[]
+  rightItems: ComponentProps<typeof NavbarItem>[]
+} {
   const leftItems = items.filter(
     (item) => (item.position ?? DefaultNavItemPosition) === "left",
   )
@@ -94,7 +98,7 @@ function Navbar(): JSX.Element {
             <img
               alt={logo.alt}
               className="navbar__logo"
-              key={`${isClient}`}
+              key={isClient.toString()}
               src={logo.src}
             />
           </a>
@@ -133,7 +137,7 @@ function Navbar(): JSX.Element {
           >
             <img
               alt={logo.alt}
-              key={`${isClient}`}
+              key={isClient.toString()}
               className="navbar__logo"
               src={logo.src}
             />
@@ -154,4 +158,3 @@ function Navbar(): JSX.Element {
 }
 
 export default Navbar
-/* eslint-enable */

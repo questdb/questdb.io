@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  min-height:480px;
+  margin: 0 auto;
+  padding: 1rem;
+  flex-direction: column;
+  text-align: center;
+}
+
+.message {
+  font-size: var(--font-size-large);
+}

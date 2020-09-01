@@ -1,11 +1,11 @@
-/* eslint-disable */
 import clsx from "clsx"
-import renderRoutes from "@docusaurus/renderRoutes"
 import { matchPath } from "@docusaurus/router"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
+import { renderRoutes } from "react-router-config"
 import { MDXProvider } from "@mdx-js/react"
 
+import type { Props } from "@theme/DocPage"
 import DocSidebar from "@theme/DocSidebar"
 import Head from "@theme/Head"
 import Layout from "@theme/Layout"
@@ -15,30 +15,32 @@ import { MetadataContextProvider } from "@theme/useMetadataContext"
 
 import styles from "./styles.module.css"
 
-const DocPage = (props) => {
-  const {
-    docsMetadata,
-    location,
-    route: { routes: docRoutes },
-  } = props
-  const { permalinkToSidebar, docsSidebars, version } = docsMetadata
-  const currentDocRoute = docRoutes.find((docRoute) =>
+type Routes = Props["route"]["routes"]
+
+const DocPage = ({
+  location,
+  route: { routes },
+  versionMetadata,
+  ...rest
+}: Props) => {
+  const { siteConfig, isClient } = useDocusaurusContext()
+  const { permalinkToSidebar, docsSidebars } = versionMetadata || {}
+  const docRoutes = (routes as unknown) as Routes[]
+  const currentDocRoute = routes.find((docRoute) =>
     matchPath(location.pathname, docRoute),
   )
-  const { siteConfig, isClient } = useDocusaurusContext()
-  const sidebarName = permalinkToSidebar[currentDocRoute.path]
-  const sidebar = docsSidebars[sidebarName]
 
   if (!currentDocRoute) {
-    return <NotFound {...props} />
+    return <NotFound location={location} {...rest} />
   }
+
+  const sidebar = docsSidebars[permalinkToSidebar[currentDocRoute.path]]
 
   return (
     <MetadataContextProvider>
       <Layout
         description={siteConfig.customFields.description}
-        key={isClient}
-        version={version}
+        key={isClient.toString()}
       >
         <Head title="Introduction" />
         <div className={styles.doc}>
@@ -68,4 +70,3 @@ const DocPage = (props) => {
 }
 
 export default DocPage
-/* eslint-enable */
