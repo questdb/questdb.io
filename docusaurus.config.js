@@ -10,7 +10,7 @@ const customFields = {
   slackUrl:
     "https://questdb.slack.com/join/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY#/",
   twitterUrl: "https://twitter.com/questdb",
-  version: "5.0.2",
+  version: "5.0.3",
 }
 
 function variable() {
