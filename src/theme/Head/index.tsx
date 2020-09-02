@@ -7,8 +7,7 @@ type Props = {
 }
 
 const Head = ({ title }: Props) => {
-  const context = useDocusaurusContext()
-  const { siteConfig } = context
+  const { siteConfig } = useDocusaurusContext()
   const metaTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title
 
   return (

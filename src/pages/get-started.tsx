@@ -70,6 +70,7 @@ const Binary = ({
         <Button
           className={binaryStyles.binary__download}
           href={href}
+          newTab={false}
           variant="tertiary"
         >
           Download
@@ -87,14 +88,14 @@ Binary.defaultProps = {
   rt: false,
 }
 
-const GetStarted = () => {
-  const context = useDocusaurusContext()
+const GetStartedPage = () => {
+  const title = "Download QuestDB"
+  const { siteConfig } = useDocusaurusContext()
   const { release } = usePluginData<{ release: Release }>("fetch-release")
-  const [os, setOs] = useState<Os>()
+  const [os, setOs] = useState<Os | undefined>()
   const [releaseDate, setReleaseDate] = useState(
     format(new Date(release.published_at), "MMMM M, yyyy"),
   )
-  const { siteConfig } = context
   const assets = getAssets(release)
 
   useEffect(() => {
@@ -111,92 +112,6 @@ const GetStarted = () => {
     }
     setOs(getOs())
   }, [release.published_at])
-
-  return (
-    <section
-      className={clsx(
-        sectionStyles["section--inner"],
-        getStartedStyles.getStarted,
-      )}
-    >
-      <div className={getStartedStyles.getStarted__top}>
-        <h1
-          className={clsx(
-            sectionStyles.section__title,
-            getStartedStyles.getStarted__title,
-          )}
-        >
-          Get started with QuestDB
-        </h1>
-
-        <p
-          className={clsx(
-            sectionStyles.section__subtitle,
-            getStartedStyles.getStarted__subtitle,
-            "text--center",
-          )}
-        >
-          You can find below download links for the latest version of QuestDB (
-          {siteConfig.customFields.version}). Once your download is finished,
-          run QuestDB and use the&nbsp;
-          <a href="/docs/guide/web-console/">Web Console guide</a> to get
-          started.
-        </p>
-
-        <IdealImage
-          alt="Screenshot of the Web Console showing various SQL statements and the result of one as a chart"
-          className={clsx(
-            "screenshot--shadow",
-            getStartedStyles.getStarted__console,
-          )}
-          img={Console}
-          src="/img/pages/getStarted/console.png"
-        />
-
-        <div className={getStartedStyles.getStarted__cta}>
-          <p
-            className={clsx(getStartedStyles.getStarted__details, {
-              [getStartedStyles["getStarted__details--download"]]:
-                os !== "macos",
-            })}
-          >
-            Latest Release:&nbsp;
-            <span className="color--pink">
-              {siteConfig.customFields.version}
-            </span>
-            &nbsp;({releaseDate})
-          </p>
-          {os && os !== "macos" && assets[os] && (
-            <Button href={assets[os].href}>{os}&nbsp;Download</Button>
-          )}
-        </div>
-
-        <div className={getStartedStyles.getStarted__links}>
-          <a
-            className={getStartedStyles.getStarted__link}
-            href={release.html_url}
-          >
-            View the changelog
-          </a>
-          <a
-            className={getStartedStyles.getStarted__link}
-            href={`${siteConfig.customFields.githubUrl}/tags`}
-          >
-            View previous releases
-          </a>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const GetStartedPage = () => {
-  const context = useDocusaurusContext()
-  const { release } = usePluginData<{ release: Release }>("fetch-release")
-  const [os, setOs] = useState<Os | undefined>()
-  const { siteConfig } = context
-  const assets = getAssets(release)
-  const title = "Download QuestDB"
 
   const perOs = {
     bsd: (
@@ -293,7 +208,86 @@ brew install questdb`}
             content="An open source time series SQL database for fast ingestion and queries"
           />
         </DocusaurusHead>
-        <GetStarted />
+        <section
+          className={clsx(
+            sectionStyles["section--inner"],
+            getStartedStyles.getStarted,
+          )}
+        >
+          <div className={getStartedStyles.getStarted__top}>
+            <h1
+              className={clsx(
+                sectionStyles.section__title,
+                getStartedStyles.getStarted__title,
+              )}
+            >
+              Get started with QuestDB
+            </h1>
+
+            <p
+              className={clsx(
+                sectionStyles.section__subtitle,
+                getStartedStyles.getStarted__subtitle,
+                "text--center",
+              )}
+            >
+              You can find below download links for the latest version of
+              QuestDB ({siteConfig.customFields.version}). Once your download is
+              finished, run QuestDB and use the&nbsp;
+              <a href="/docs/guide/web-console/">Web Console guide</a> to get
+              started.
+            </p>
+
+            <IdealImage
+              alt="Screenshot of the Web Console showing various SQL statements and the result of one as a chart"
+              className={clsx(
+                "screenshot--shadow",
+                getStartedStyles.getStarted__console,
+              )}
+              img={Console}
+              src="/img/pages/getStarted/console.png"
+            />
+
+            <div className={getStartedStyles.getStarted__cta}>
+              <p
+                className={clsx(getStartedStyles.getStarted__details, {
+                  [getStartedStyles["getStarted__details--download"]]:
+                    os !== "macos",
+                })}
+              >
+                Latest Release:&nbsp;
+                <span className="color--pink">
+                  {siteConfig.customFields.version}
+                </span>
+                &nbsp;({releaseDate})
+              </p>
+              {os && os !== "macos" && assets[os] && (
+                <Button href={assets[os].href} newTab={false}>
+                  {os}&nbsp;Download
+                </Button>
+              )}
+            </div>
+
+            <div className={getStartedStyles.getStarted__links}>
+              <a
+                className={getStartedStyles.getStarted__link}
+                href={release.html_url}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View the changelog
+              </a>
+              <a
+                className={getStartedStyles.getStarted__link}
+                href={`${siteConfig.customFields.githubUrl}/tags`}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View previous releases
+              </a>
+            </div>
+          </div>
+        </section>
 
         <div className={binaryStyles.binaries}>
           {os ? (
@@ -339,9 +333,40 @@ brew install questdb`}
             <CodeBlock className="language-shell">
               docker run -p 9000:9000 questdb/questdb
             </CodeBlock>
-            <p className={instructionStyles.binaries__docker}>
+            <p className={binaryStyles.binaries__description}>
               Documentation on&nbsp;
-              <a href={siteConfig.customFields.dockerUrl}>Docker Hub</a>
+              <a
+                href={siteConfig.customFields.dockerUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Docker Hub
+              </a>
+            </p>
+          </Binary>
+          <Binary
+            logo={
+              <img
+                alt="Helm logo"
+                className={binaryStyles.binary__logo}
+                src="/img/pages/getStarted/helm.svg"
+              />
+            }
+            title="Kubernetes (via Helm)"
+          >
+            <CodeBlock className="language-shell">
+              {`helm repo add questdb https://helm.questdb.io/
+helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
+            </CodeBlock>
+            <p className={binaryStyles.binaries__description}>
+              Documentation on&nbsp;
+              <a
+                href={siteConfig.customFields.artifactHubUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                ArtifactHub
+              </a>
             </p>
           </Binary>
           <Binary
@@ -394,7 +419,11 @@ brew install questdb`}
             </p>
             <p>
               Check out the{" "}
-              <a href={release.html_url}>
+              <a
+                href={release.html_url}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 v{siteConfig.customFields.version} CHANGELOG
               </a>{" "}
               for information on the latest release.

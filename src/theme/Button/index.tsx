@@ -8,6 +8,7 @@ type Props = Readonly<{
   className?: string
   icon?: ReactNode
   href?: string
+  newTab: boolean
   onClick?: () => void
   size: "normal" | "small" | "xsmall"
   to?: string
@@ -20,6 +21,7 @@ const Button = ({
   className,
   href,
   icon,
+  newTab,
   onClick,
   size,
   to,
@@ -38,7 +40,17 @@ const Button = ({
 
   if (href) {
     return (
-      <a className={classes} href={href} onClick={onClick}>
+      <a
+        className={classes}
+        href={href}
+        onClick={onClick}
+        {...(newTab === true
+          ? {
+              rel: "noopener noreferrer",
+              target: "_blank",
+            }
+          : {})}
+      >
         {icon}
         {children}
       </a>
@@ -63,6 +75,7 @@ const Button = ({
 }
 
 Button.defaultProps = {
+  newTab: true,
   size: "normal",
   uppercase: true,
   variant: "primary",

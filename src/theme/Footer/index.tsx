@@ -37,12 +37,13 @@ const FooterLink = ({ to, href, label, ...props }: Props) => {
 }
 
 const Footer = () => {
-  const context = useDocusaurusContext()
+  const { siteConfig } = useDocusaurusContext()
   const metadataContext = useMetadataContext()
-  const { siteConfig } = context
-  const { themeConfig } = siteConfig
-  const { footer } = themeConfig
-  const { links } = footer
+  const {
+    themeConfig: {
+      footer: { links },
+    },
+  } = siteConfig
 
   return (
     <footer

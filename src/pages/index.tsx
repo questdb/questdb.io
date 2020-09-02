@@ -141,6 +141,8 @@ const SeenOn = () => (
     <a
       className={seenOnStyles["product-hunt"]}
       href="https://www.producthunt.com/posts/questdb?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-questdb"
+      rel="noopener noreferrer"
+      target="_blank"
     >
       <img
         src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=224674&theme=dark&period=daily"
@@ -153,8 +155,7 @@ const SeenOn = () => (
 )
 
 const Jumbotron = () => {
-  const context = useDocusaurusContext()
-  const { siteConfig } = context
+  const { siteConfig } = useDocusaurusContext()
 
   return (
     <section
@@ -208,7 +209,11 @@ const Jumbotron = () => {
             {`docker pull questdb/questdb
 docker run -p 9000:9000 questdb/questdb`}
           </code>
-          <a href={siteConfig.customFields.dockerUrl}>
+          <a
+            href={siteConfig.customFields.dockerUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <img
               alt="Docker logo"
               className={jumbotronStyles["jumbotron__docker-icon"]}
@@ -381,8 +386,7 @@ const Cards = () => (
 )
 
 const Console = () => {
-  const context = useDocusaurusContext()
-  const { siteConfig } = context
+  const { siteConfig } = useDocusaurusContext()
 
   return (
     <section
@@ -456,6 +460,8 @@ const Console = () => {
               <a
                 className={consoleStyles.console__link}
                 href={siteConfig.customFields.githubUrl}
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Go to GitHub&nbsp;&nbsp;&gt;
               </a>
@@ -722,8 +728,7 @@ ${mergeQuery}`}
 }
 
 const Home = () => {
-  const context = useDocusaurusContext()
-  const { siteConfig } = context
+  const { siteConfig } = useDocusaurusContext()
   const title = "QuestDB"
 
   return (

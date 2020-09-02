@@ -10,8 +10,7 @@ const AnnouncementBar = () => {
     isAnnouncementBarClosed,
     closeAnnouncementBar,
   } = useUserPreferencesContext()
-  const context = useDocusaurusContext()
-  const { siteConfig } = context
+  const { siteConfig } = useDocusaurusContext()
 
   if (isAnnouncementBarClosed) {
     return null
@@ -24,6 +23,8 @@ const AnnouncementBar = () => {
         <a
           className={styles.announcement__link}
           href={siteConfig.customFields.githubUrl}
+          rel="noopener noreferrer"
+          target="_blank"
         >
           give us a star on GitHub
         </a>

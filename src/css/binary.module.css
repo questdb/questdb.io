@@ -23,7 +23,7 @@
   font-weight: var(--ifm-font-weight-bold);
 }
 
-.binaries__docker {
+.binaries__description {
   margin-top: 1rem;
   margin-bottom: 0;
   font-size: var(--font-size-small);

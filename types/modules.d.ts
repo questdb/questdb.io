@@ -20,10 +20,12 @@ declare module "@docusaurus/useDocusaurusContext" {
   interface Ctx {
     siteConfig: Omit<DocusaurusConfig, "customFields" | "themeConfig"> & {
       customFields: {
+        artifactHubUrl: string
         copyright: string
         description: string
         dockerUrl: string
         githubUrl: string
+        helmVersion: string
         slackUrl: string
         twitterUrl: string
         version: string

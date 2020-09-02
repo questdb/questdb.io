@@ -1,11 +1,13 @@
 const visit = require("unist-util-visit")
 
 const customFields = {
+  artifactHubUrl: "https://artifacthub.io/packages/helm/questdb/questdb",
   copyright: `Copyright © ${new Date().getFullYear()} QuestDB`,
   description:
     "QuestDB is an open source database designed to make time-series lightning fast and easy. It exposes a high performance REST API and supports Postgres wire.",
   dockerUrl: "https://hub.docker.com/r/questdb/questdb",
   githubUrl: "https://github.com/questdb/questdb",
+  helmVersion: "0.2.4",
   linkedInUrl: "https://www.linkedin.com/company/questdb/",
   slackUrl:
     "https://questdb.slack.com/join/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY#/",
