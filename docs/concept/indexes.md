@@ -1,7 +1,9 @@
 ---
 title: Indexes
 sidebar_label: Indexes
-description: How index works and when to use it.
+description:
+  Explanation on how indexes work as well as the pros and cons that you need to
+  be aware of when using them.
 ---
 
 An index stores the row locations for each value of the target column in order
@@ -17,7 +19,7 @@ There are two ways to create an index:
   [CREATE TABLE](/docs/reference/sql/create-table/#index)
 - Using [ALTER TABLE](/docs/reference/sql/alter-table-alter-column-add-index/)
 
-## How Index works
+## How indexes work
 
 Index creates a table of row locations for each distinct value for the target
 [symbol](/docs/concept/symbol/). Once the index is created, inserting data into
@@ -68,7 +70,7 @@ Consider the following query applied to the above table
   the table to read the corresponding values. As a result, it would only scan
   the relevant rows in the table and leave irrelevant rows untouched.
 
-### Tradeoffs
+### Trade-offs
 
 - **Storage space**: The index will maintain a table with each distinct symbol
   value and the locations where these symbols can be found. As a result, there

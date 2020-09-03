@@ -1,7 +1,8 @@
 ---
 title: How to access QuestDB from PSQL (alpha)
 sidebar_label: Postgres wire (alpha)
-description: Tutorial showing how to use the Postgres wire and psql.
+description:
+  Tutorial showing how to use QuestDB with the Postgres wire and the psql CLI.
 ---
 
 This short guide explains how to connect to QuestDB using `psql`.

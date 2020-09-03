@@ -1,7 +1,9 @@
 ---
 title: How to perform CRUD operations
 sidebar_label: CRUD operations
-description: Tutorial showing how to perform CRUD operations.
+description:
+  Tutorial showing how to perform CRUD operations with QuestDB. This will help
+  you understand QuestDB's data model.
 ---
 
 QuestDB's data store is mostly meant to be immutable. While we plan to support

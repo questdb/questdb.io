@@ -1,7 +1,9 @@
 ---
 title: How to use the Web Console
 sidebar_label: Web Console
-description: Tutorial showing how to use QuestDB's conceptWeb Console.
+description:
+  Tutorial showing how to use QuestDB's Web Console. It provides you with tools
+  to query data and visualize it in a table or using graphs.
 image: /img/docs/console/overview.png
 ---
 
