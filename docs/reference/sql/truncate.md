@@ -1,5 +1,5 @@
 ---
-title: TRUNCATE TABLE
+title: TRUNCATE TABLE keyword
 sidebar_label: TRUNCATE TABLE
 description: TRUNCATE SQL keyword reference documentation.
 ---

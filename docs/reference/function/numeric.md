@@ -1,5 +1,5 @@
 ---
-title: Numeric
+title: Numeric functions
 sidebar_label: Numeric
 description: Numeric function reference documentation.
 ---

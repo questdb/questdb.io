@@ -1,5 +1,5 @@
 ---
-title: LIMIT
+title: LIMIT keyword
 sidebar_label: LIMIT
 description: LIMIT SQL keyword reference documentation.
 ---

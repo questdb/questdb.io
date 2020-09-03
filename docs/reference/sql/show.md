@@ -1,5 +1,5 @@
 ---
-title: SHOW
+title: SHOW keyword
 sidebar_label: SHOW
 description: SHOW SQL keyword reference documentation.
 ---

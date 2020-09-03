@@ -1,4 +1,5 @@
 const visit = require("unist-util-visit")
+const ssrTemplate = require("./src/internals/ssr.template")
 
 const customFields = {
   artifactHubUrl: "https://artifacthub.io/packages/helm/questdb/questdb",
@@ -10,6 +11,7 @@ const customFields = {
   githubUrl: "https://github.com/questdb/questdb",
   helmVersion: "0.2.4",
   linkedInUrl: "https://www.linkedin.com/company/questdb/",
+  oneLiner: "Fast SQL open source database for time series - QuestDB",
   slackUrl:
     "https://questdb.slack.com/join/shared_invite/enQtNzk4Nzg4Mjc2MTE2LTEzZThjMzliMjUzMTBmYzVjYWNmM2UyNWJmNDdkMDYyZmE0ZDliZTQxN2EzNzk5MDE3Zjc1ZmJiZmFiZTIwMGY#/",
   twitterUrl: "https://twitter.com/questdb",
@@ -42,7 +44,7 @@ function variable() {
   return transformer
 }
 
-module.exports = {
+const config = {
   title: "Time series data, faster",
   tagline: "QuestDB is the fastest open source time series database",
   url: `https://${customFields.domain}`,
@@ -52,7 +54,6 @@ module.exports = {
   projectName: "questdb",
   customFields,
   plugins: [
-    require.resolve("./plugins/body-tags"),
     require.resolve("./plugins/fetch-release"),
     require.resolve("./plugins/lint"),
     require.resolve("./plugins/manifest"),
@@ -133,7 +134,7 @@ module.exports = {
     },
     prism: {
       defaultLanguage: "questdb-sql",
-      theme: require("./src/prism-dracula"),
+      theme: require("./src/internals/prism-dracula"),
     },
     algolia: {
       apiKey: "b2a69b4869a2a85284a82fb57519dcda",
@@ -260,4 +261,9 @@ module.exports = {
       },
     ],
   ],
+}
+
+module.exports = {
+  ...config,
+  ssrTemplate: ssrTemplate(config),
 }

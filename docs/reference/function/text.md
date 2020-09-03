@@ -1,5 +1,5 @@
 ---
-title: Text
+title: Text functions
 sidebar_label: Text
 description: Text function reference documentation.
 ---

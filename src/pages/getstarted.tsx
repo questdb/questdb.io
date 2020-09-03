@@ -8,7 +8,6 @@ import React, { ReactNode, useEffect, useState } from "react"
 import CodeBlock from "@theme/CodeBlock"
 import Button from "@theme/Button"
 import IdealImage from "@theme/Image"
-import Head from "@theme/Head"
 import Layout from "@theme/Layout"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 
@@ -210,12 +209,7 @@ brew install questdb`}
 
   return (
     <MetadataContextProvider>
-      <Layout
-        description={siteConfig.customFields.description}
-        title={title}
-        version={siteConfig.customFields.version}
-      >
-        <Head title={title} />
+      <Layout description={siteConfig.customFields.description} title={title}>
         <DocusaurusHead>
           <link rel="canonical" href={`${siteConfig.url}/getstarted/`} />
           <meta

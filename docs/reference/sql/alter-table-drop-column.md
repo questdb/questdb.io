@@ -1,5 +1,5 @@
 ---
-title: ALTER TABLE DROP COLUMN
+title: ALTER TABLE DROP COLUMN keywords
 sidebar_label: ALTER TABLE DROP COLUMN
 description: DROP COLUMN SQL keword reference documentation.
 ---

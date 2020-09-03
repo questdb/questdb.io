@@ -1,7 +1,7 @@
 ---
 title: How to use the QuestDB REST API
 sidebar_label: REST API
-description: A tutorial on how to use QuestDB's REST API.
+description: Tutorial showing how to use QuestDB's REST API.
 ---
 
 QuestDB comes with an HTTP server which exposes a REST API. This guide will

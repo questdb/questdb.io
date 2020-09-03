@@ -1,5 +1,5 @@
 ---
-title: GROUP BY
+title: GROUP BY keyword
 sidebar_label: GROUP BY
 description: GROUP BY SQL keyword reference documentation.
 ---

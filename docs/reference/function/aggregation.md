@@ -1,5 +1,5 @@
 ---
-title: Aggregation
+title: Aggregation functions
 sidebar_label: Aggregation
 description: Aggregation functions reference documentation.
 ---

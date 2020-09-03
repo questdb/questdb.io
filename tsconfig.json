@@ -34,7 +34,6 @@
     "baseUrl": "./",
     "paths": {
       "@theme/Button": ["src/theme/Button"],
-      "@theme/Head": ["src/theme/Head"],
       "@theme/Image": ["src/theme/Image"],
       "@theme/useMetadataContext": ["src/theme/useMetadataContext"],
       "@theme/useWindowWidth": ["src/theme/useWindowWidth"]

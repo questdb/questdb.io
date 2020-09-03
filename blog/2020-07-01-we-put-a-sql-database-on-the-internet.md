@@ -4,7 +4,9 @@ author: David G Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
-description: Demo launch on HackerNews postmortem.
+description:
+  What happens when you put a SQL database on the internet? Demo launch on
+  HackerNews postmortem.
 tags: [hackernews, postmorterm, demo]
 ---
 
@@ -214,7 +216,7 @@ Yes, the demo did break the Back button on your browser. There's an actual
 reason for that, but it is true, for now. We're definitely addressing that one
 right away.
 
-# Try it yourself
+## Try it yourself
 
 Want to try it yourself? You've read this far, you really should! got to
 [http://try.questdb.io:9000/](http://try.questdb.io:9000/) to give it a whirl.

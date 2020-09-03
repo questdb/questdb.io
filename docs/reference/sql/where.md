@@ -1,5 +1,5 @@
 ---
-title: WHERE
+title: WHERE keyword
 sidebar_label: WHERE
 description: WHERE SQL keyword reference documentation.
 ---
@@ -210,7 +210,7 @@ based on inequality. This section describes the use of the
 `timestamp search notation` which is efficient and fast but requires a
 [designated timestamp](/docs/concept/designated-timestamp/). Remember,
 designated timestamp can be applied
-[dynamically](/docs/reference/sql/timestamp/#during-a-select-operation).
+[dynamically](/docs/reference/function/timestamp/#during-a-select-operation).
 
 ### Exact timestamp
 

@@ -1,5 +1,5 @@
 ---
-title: ALTER TABLE DROP PARTITION
+title: ALTER TABLE DROP PARTITION keywords
 sidebar_label: ALTER TABLE DROP PARTITION
 description: DROP PARTITION SQL keyword reference documentation.
 ---

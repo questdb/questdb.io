@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from "react"
 import Layout from "@theme/Layout"
 
 import styles from "./styles.module.css"
 
 const NotFound = () => (
-  <Layout title="Page not found">
+  // @ts-ignore
+  <Layout flex title="Page not found">
     <div className={styles.wrapper}>
       <h1 className={styles.title}>404</h1>
       <p className={styles.message}>
@@ -15,3 +17,4 @@ const NotFound = () => (
 )
 
 export default NotFound
+/* eslint-enable @typescript-eslint/ban-ts-comment */

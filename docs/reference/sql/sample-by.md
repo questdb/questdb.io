@@ -1,5 +1,5 @@
 ---
-title: SAMPLE BY
+title: SAMPLE BY keyword
 sidebar_label: SAMPLE BY
 description: SAMPLE BY SQL keyword reference documentation.
 ---

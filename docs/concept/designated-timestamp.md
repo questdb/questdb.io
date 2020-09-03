@@ -20,7 +20,7 @@ out-of-order inserts.
 :::tip
 
 To elect a timestamp column on the fly, please refer to the
-[dynamic timestamp](/docs/reference/sql/timestamp/) documentation.
+[dynamic timestamp](/docs/reference/function/timestamp/) documentation.
 
 :::
 

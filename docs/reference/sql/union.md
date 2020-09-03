@@ -1,5 +1,5 @@
 ---
-title: UNION
+title: UNION keyword
 sidebar_label: UNION
 description: UNION SQL keyword reference documentation.
 ---

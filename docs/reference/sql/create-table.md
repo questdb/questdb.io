@@ -1,5 +1,5 @@
 ---
-title: CREATE TABLE
+title: CREATE TABLE keyword
 sidebar_label: CREATE TABLE
 description: CREATE TABLE SQL keyword reference documentation.
 ---

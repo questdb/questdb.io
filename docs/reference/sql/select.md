@@ -1,5 +1,5 @@
 ---
-title: SELECT
+title: SELECT keyword
 sidebar_label: SELECT
 description: SELECT SQL keyword reference documentation.
 ---
@@ -328,6 +328,6 @@ and using timestamp functions on unordered data may produce unexpected results.
 :::info
 
 For more information, refer to the
-[TIMESTAMP reference](/docs/reference/sql/timestamp/)
+[TIMESTAMP reference](/docs/reference/function/timestamp/)
 
 :::

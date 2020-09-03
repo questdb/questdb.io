@@ -1,5 +1,5 @@
 ---
-title: INSERT
+title: INSERT keyword
 sidebar_label: INSERT
 description: INSERT SQL keyword reference documentation.
 ---

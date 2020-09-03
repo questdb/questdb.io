@@ -37,7 +37,7 @@ IoT Applications. The repository is an altered version for my repository
 
 I am really looking forward to use some `SQL` queries with Time-Series Databases
 and `QuestDB` provides such functionalities as well as some cool new features of
-[Dynamic Timestamping](/docs/reference/sql/timestamp/).
+[Dynamic Timestamping](/docs/reference/function/timestamp/).
 
 Not to mention, my staple
 [InfluxDB's Line Protocol](https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_tutorial/)

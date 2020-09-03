@@ -1,9 +1,9 @@
+import clsx from "clsx"
 import React, { ReactNode } from "react"
 import Head from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 
-import ThemeProvider from "@theme/ThemeProvider"
 import UserPreferencesProvider from "@theme/UserPreferencesProvider"
 import AnnouncementBar from "@theme/AnnouncementBar"
 import Navbar from "@theme/Navbar"
@@ -11,79 +11,64 @@ import Footer from "@theme/Footer"
 
 import styles from "./styles.module.css"
 
-function Providers({ children }: { children: ReactNode }) {
-  return (
-    <ThemeProvider>
-      <UserPreferencesProvider>{children}</UserPreferencesProvider>
-    </ThemeProvider>
-  )
-}
-
-type Props = {
+export type Props = {
   children: ReactNode
+  flex: boolean
   title?: string
   noFooter?: boolean
-  description?: string
+  description: string
   image?: string
-  keywords?: string[]
   permalink?: string
-  version?: string
 }
 
-function Layout(props: Props): JSX.Element {
+const Layout = ({
+  children,
+  flex,
+  title,
+  noFooter,
+  description,
+  image,
+  permalink,
+}: Props) => {
   const { siteConfig } = useDocusaurusContext()
   const {
-    favicon,
     title: siteTitle,
     themeConfig: { image: defaultImage },
     url: siteUrl,
   } = siteConfig
-  const {
-    children,
-    title,
-    noFooter,
-    description,
-    image,
-    keywords,
-    permalink,
-    version,
-  } = props
   const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle
   const metaImage = image || defaultImage
   const metaImageUrl = useBaseUrl(metaImage, { absolute: true })
-  const faviconUrl = useBaseUrl(favicon)
 
   return (
-    <Providers>
+    <UserPreferencesProvider>
       <Head>
-        <html lang="en" />
-
-        {metaTitle && <title>{metaTitle}</title>}
-        {metaTitle && <meta property="og:title" content={metaTitle} />}
-        {favicon && <link rel="shortcut icon" href={faviconUrl} />}
+        <title>{metaTitle}</title>
+        {permalink && <link rel="canonical" href={siteUrl + permalink} />}
         {description && <meta name="description" content={description} />}
+        <meta property="og:image" content={metaImageUrl} />
+        {permalink && <meta property="og:url" content={siteUrl + permalink} />}
+        <meta property="og:title" content={metaTitle} />
         {description && (
           <meta property="og:description" content={description} />
         )}
-        {version && <meta name="docsearch:version" content={version} />}
-        {keywords && keywords.length && (
-          <meta name="keywords" content={keywords.join(",")} />
+        <meta property="twitter:image" content={metaImageUrl} />
+        {description && (
+          <meta property="twitter:description" content={description} />
         )}
-        {metaImage && <meta property="og:image" content={metaImageUrl} />}
-        {metaImage && <meta property="twitter:image" content={metaImageUrl} />}
-        {metaImage && (
-          <meta name="twitter:image:alt" content={`Image for ${metaTitle}`} />
-        )}
-        {permalink && <meta property="og:url" content={siteUrl + permalink} />}
-        {permalink && <link rel="canonical" href={siteUrl + permalink} />}
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:image:alt" content={`Image for "${metaTitle}"`} />
       </Head>
       <AnnouncementBar />
       <Navbar />
-      <div className={styles.wrapper}>{children}</div>
+      <div className={clsx(styles.wrapper, { [styles.flex]: flex })}>
+        {children}
+      </div>
       {!noFooter && <Footer />}
-    </Providers>
+    </UserPreferencesProvider>
   )
 }
+
+Layout.defaultProps = { flex: false }
 
 export default Layout

@@ -1,5 +1,5 @@
 ---
-title: LATEST BY
+title: LATEST BY keyword
 sidebar_label: LATEST BY
 description: LATEST BY SQL keyword reference documentation.
 ---

@@ -1,5 +1,5 @@
 ---
-title: ALTER TABLE COLUMN ADD INDEX
+title: ALTER TABLE COLUMN ADD INDEX keywords
 sidebar_label: ALTER TABLE COLUMN ADD INDEX
 description: ADD INDEX SQL keword reference documentation.
 ---

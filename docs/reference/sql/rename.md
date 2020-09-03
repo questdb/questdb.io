@@ -1,5 +1,5 @@
 ---
-title: RENAME TABLE
+title: RENAME TABLE keyword
 sidebar_label: RENAME TABLE
 description: RENAME TABLE SQL keyword reference documentation.
 ---

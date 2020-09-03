@@ -110,6 +110,7 @@ module.exports = {
             "reference/function/row-generator",
             "reference/function/text",
             "reference/function/timestamp-generator",
+            "reference/function/timestamp",
           ],
         },
         {
@@ -141,7 +142,6 @@ module.exports = {
             "reference/sql/sample-by",
             "reference/sql/select",
             "reference/sql/show",
-            "reference/sql/timestamp",
             "reference/sql/truncate",
             "reference/sql/union",
             "reference/sql/where",

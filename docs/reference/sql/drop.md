@@ -1,5 +1,5 @@
 ---
-title: DROP TABLE
+title: DROP TABLE keyword
 sidebar_label: DROP TABLE
 description: DROP TABLE SQL keyword reference documentation.
 ---

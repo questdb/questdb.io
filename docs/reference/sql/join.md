@@ -1,5 +1,5 @@
 ---
-title: JOIN
+title: JOIN keyword
 sidebar_label: JOIN
 description: JOIN SQL keyword reference documentation.
 ---

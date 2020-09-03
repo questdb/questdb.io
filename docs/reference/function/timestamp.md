@@ -1,5 +1,5 @@
 ---
-title: Timestamp
+title: Timestamp function
 sidebar_label: TIMESTAMP
 description: TIMESTAMP SQL keyword reference documentation.
 ---

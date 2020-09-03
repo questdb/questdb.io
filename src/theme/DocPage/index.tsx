@@ -7,7 +7,6 @@ import { MDXProvider } from "@mdx-js/react"
 
 import type { Props } from "@theme/DocPage"
 import DocSidebar from "@theme/DocSidebar"
-import Head from "@theme/Head"
 import Layout from "@theme/Layout"
 import MDXComponents from "@theme/MDXComponents"
 import NotFound from "@theme/NotFound"
@@ -41,8 +40,8 @@ const DocPage = ({
       <Layout
         description={siteConfig.customFields.description}
         key={isClient.toString()}
+        title="Introduction"
       >
-        <Head title="Introduction" />
         <div className={styles.doc}>
           {sidebar && (
             <div

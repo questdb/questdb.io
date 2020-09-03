@@ -69,11 +69,6 @@ ul ul :global(.table-of-contents__link--active::before) {
   margin-right: initial;
 }
 
-/* @TODO: Hack - to remove when docusaurus .62 is out */
-.doc :global(article > div:first-of-type) {
-  display: none;
-}
-
 .doc__sidebar {
   position: relative;
   width: 300px;
@@ -92,6 +87,7 @@ ul ul :global(.table-of-contents__link--active::before) {
   }
 
   .doc__sidebar {
+    width: auto;
     margin-top: 0;
   }
 }

@@ -1,5 +1,5 @@
 ---
-title: Cast
+title: CAST keyword
 sidebar_label: CAST
 description: CAST SQL keyword reference documentation.
 ---

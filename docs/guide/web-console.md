@@ -1,7 +1,7 @@
 ---
 title: How to use the Web Console
 sidebar_label: Web Console
-description: A tutorial on how to use QuestDB's conceptWeb Console.
+description: Tutorial showing how to use QuestDB's conceptWeb Console.
 image: /img/docs/console/overview.png
 ---
 

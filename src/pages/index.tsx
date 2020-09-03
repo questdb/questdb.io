@@ -7,7 +7,6 @@ import CodeBlock from "@theme/CodeBlock"
 import Layout from "@theme/Layout"
 
 import Button from "@theme/Button"
-import Head from "@theme/Head"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 import useWindowWidth from "@theme/useWindowWidth"
 
@@ -734,7 +733,6 @@ const Home = () => {
   return (
     <MetadataContextProvider>
       <Layout description={siteConfig.customFields.description} title={title}>
-        <Head title={title} />
         <DocusaurusHead>
           <link rel="canonical" href={siteConfig.url} />
         </DocusaurusHead>

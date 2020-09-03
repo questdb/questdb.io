@@ -27,6 +27,7 @@ declare module "@docusaurus/useDocusaurusContext" {
         domain: string
         githubUrl: string
         helmVersion: string
+        oneLiner: string
         slackUrl: string
         twitterUrl: string
         version: string
@@ -41,6 +42,7 @@ declare module "@docusaurus/useDocusaurusContext" {
           logo: { alt: string; src: string }
           title: string
         }
+        prism: { theme: string }
         sidebarCollapsible: boolean
       }
     }

@@ -1,5 +1,5 @@
 ---
-title: Meta
+title: Meta functions
 sidebar_label: Meta
 description: Table and database metadata function reference documentation.
 ---

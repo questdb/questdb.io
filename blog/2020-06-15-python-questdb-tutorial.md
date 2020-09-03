@@ -1,5 +1,5 @@
 ---
-title: Querying data from QuestDB in a Jupyter Notebook
+title: Querying data in a Jupyter Notebook
 author: David G Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs

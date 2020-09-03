@@ -1,5 +1,5 @@
 ---
-title: DISTINCT
+title: DISTINCT keyword
 sidebar_label: DISTINCT
 description: DISTINCT SQL keyword reference documentation.
 ---

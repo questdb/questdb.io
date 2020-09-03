@@ -1,5 +1,5 @@
 ---
-title: Date and time
+title: Date and time functions
 sidebar_label: Date and time
 description: Date and time functions reference documentation.
 ---

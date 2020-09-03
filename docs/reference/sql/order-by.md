@@ -1,5 +1,5 @@
 ---
-title: ORDER BY
+title: ORDER BY keyword
 sidebar_label: ORDER BY
 description: ORDER BY SQL keyword reference documentation.
 ---

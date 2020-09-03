@@ -1,5 +1,5 @@
 ---
-title: ALTER TABLE ADD COLUMN
+title: ALTER TABLE ADD COLUMN keywords
 sidebar_label: ALTER TABLE ADD COLUMN
 description: ALTER TABLE ADD COLUMN SQL keword reference documentation.
 ---

@@ -1,5 +1,5 @@
 ---
-title: EXCEPT and INTERSECT
+title: EXCEPT & INTERSECT keywords
 sidebar_label: EXCEPT & INTERSECT
 description: EXCEPT and INTERSECT SQL keyword reference documentation.
 ---

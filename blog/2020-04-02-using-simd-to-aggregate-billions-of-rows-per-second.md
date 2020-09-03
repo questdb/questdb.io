@@ -1,5 +1,5 @@
 ---
-title: Using SIMD to aggregate billions of rows per second
+title: Aggregating billions of rows per sec with SIMD
 author: Tancrede Collard
 author_title: QuestDB Team
 author_url: https://github.com/TheTanc
