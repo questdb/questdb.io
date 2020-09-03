@@ -26,16 +26,12 @@ TypeScript, the styles in vanilla CSS with variables using
 
 ```script
 yarn
-# or
-npm i
 ```
 
 ## Local development
 
 ```script
 yarn start
-# or
-npm start
 ```
 
 This command starts a local development server and open up a browser window.
@@ -45,8 +41,6 @@ Most changes are reflected live without having to restart the server.
 
 ```script
 yarn build
-# or
-npm run build
 ```
 
 This command generates static content into the `build` directory and can be
@@ -55,8 +49,6 @@ use:
 
 ```script
 yarn serve
-# or
-npm run serve
 ```
 
 # Contributing
