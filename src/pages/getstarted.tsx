@@ -23,6 +23,7 @@ type BinaryProps = Readonly<{
   architecture: boolean
   basis: string
   children?: ReactNode
+  grow: number
   href?: string
   logo: ReactNode
   rt: boolean
@@ -34,12 +35,15 @@ const Binary = ({
   architecture,
   basis,
   children,
+  grow,
   href,
   logo,
   rt,
   size,
   title,
 }: BinaryProps) => {
+  const hasDetails = Boolean(architecture || rt || size)
+
   return (
     <section className={clsx(binaryStyles.binary)}>
       <div
@@ -49,22 +53,31 @@ const Binary = ({
 
       {logo}
 
-      <h3 className={binaryStyles.binary__title}>{title}</h3>
+      <h3
+        className={clsx(binaryStyles.binary__title, {
+          [binaryStyles["binary__title--grow"]]: !hasDetails,
+        })}
+        style={{ flexGrow: grow }}
+      >
+        {title}
+      </h3>
 
-      <p className={binaryStyles.binary__details}>
-        {architecture && (
-          <span
-            className={clsx("color--pink", binaryStyles.binary__architecture)}
-          >
-            64-bit
+      {hasDetails && (
+        <p className={binaryStyles.binary__details}>
+          {architecture && (
+            <span
+              className={clsx("color--pink", binaryStyles.binary__architecture)}
+            >
+              64-bit
+            </span>
+          )}
+
+          <span className={binaryStyles.binary__size}>
+            {rt && " rt -"}
+            {size && ` ${size}`}
           </span>
-        )}
-
-        <span className={binaryStyles.binary__size}>
-          {rt && " rt -"}
-          {size && ` ${size}`}
-        </span>
-      </p>
+        </p>
+      )}
 
       {href && (
         <Button
@@ -85,6 +98,7 @@ const Binary = ({
 Binary.defaultProps = {
   architecture: false,
   basis: "auto",
+  grow: 0,
   rt: false,
 }
 
@@ -149,6 +163,7 @@ const GetStartedPage = () => {
     macos: (
       <Binary
         basis="15px"
+        grow={1}
         logo={
           <img
             alt="macOS Logo"
@@ -321,6 +336,7 @@ brew install questdb`}
           />
           <Binary
             basis="40px"
+            grow={1}
             logo={
               <img
                 alt="Docker logo"
@@ -345,6 +361,7 @@ brew install questdb`}
             </p>
           </Binary>
           <Binary
+            grow={1.1}
             logo={
               <img
                 alt="Helm logo"
@@ -370,6 +387,7 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             </p>
           </Binary>
           <Binary
+            grow={0.5}
             logo={
               <img
                 alt="Maven logo"
@@ -386,6 +404,22 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
   <version>${siteConfig.customFields.version}</version>
 </dependency>`}
             </CodeBlock>
+          </Binary>
+          <Binary
+            grow={2}
+            logo={
+              <img
+                alt="Gradle logo"
+                className={binaryStyles.binary__logo}
+                src="/img/pages/getStarted/gradle.svg"
+              />
+            }
+            title="Gradle"
+          >
+            <CodeBlock className="language-shell">
+              {`implementation 'org.questdb:questdb:${siteConfig.customFields.version}'`}
+            </CodeBlock>
+            <div style={{ height: "2.75rem" }} />
           </Binary>
         </div>
 
