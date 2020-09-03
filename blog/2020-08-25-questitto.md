@@ -1,12 +1,12 @@
 ---
-title: "Questitto: Light-weight, Blazing Fast Stack for your IoT Application"
+title: Light-weight, blazing fast stack for your IoT application
 author: Shan Desai
 author_title: QuestDB Contributor
 author_url: https://github.com/shantanoo-desai
 author_image_url: https://avatars.githubusercontent.com/shantanoo-desai
 description:
   Create a simple IoT Stack with Mosquitto MQTT Broker, Telegraf and QuestDB
-tags: [MQTT, IoT, Docker, docker-compose, User-Management]
+tags: [mqtt, iot, docker, community-written]
 ---
 
 Note: I wanted you to know that this post is written by one of our contributors,
@@ -22,22 +22,22 @@ Thanks a lot for your contribution Shan!
 
 ## Overview
 
-> [QuestDB][1] is the fastest open-source Time-Series Database out there in
-> terms of performance.
+> QuestDB is the fastest open-source Time-Series Database out there in terms of
+> performance.
 
 The developers were kind enough to welcome me into their community and I wanted
 to make things easier for people trying things out with QuestDB.
 
-Lo! and behold [Questitto][2] an _out-of-the-box_ repository for your initial
+Lo! and behold [Questitto][1] an _out-of-the-box_ repository for your initial
 IoT Applications. The repository is an altered version for my repository
-[tiguitto][3] which helps users deploy the highly used **TIG+Mosquitto
+[tiguitto][2] which helps users deploy the highly used **TIG+Mosquitto
 (Telegraf, InfluxDB, Grafana) + Mosquitto MQTT Broker** stack in no time.
 
 ## Motivation
 
 I am really looking forward to use some `SQL` queries with Time-Series Databases
 and `QuestDB` provides such functionalities as well as some cool new features of
-[Dynamic Timestamping](https://questdb.io/docs/reference/sql/timestamp/).
+[Dynamic Timestamping](/docs/reference/sql/timestamp/).
 
 Not to mention, my staple
 [InfluxDB's Line Protocol](https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_tutorial/)
@@ -274,7 +274,7 @@ Get the Stack up:
 docker-compose up -d
 ```
 
-As a simple Example I used [MQTT.fx][4] as a client to publish information in
+As a simple Example I used [MQTT.fx][3] as a client to publish information in
 Line Protocol to the following Topic:
 
 ```json
@@ -316,16 +316,15 @@ docker kill --signal=SIGHUP mosquitto
 docker kill --signal=SIGHUP telegraf
 ```
 
-See [my blog post][5] for a detailed write up.
+See [my blog post][4] for a detailed write up.
 
 ## Repository
 
-You can find the [repository on GitHub][2]. Please feel free to open Issues/PRs
+You can find the [repository on GitHub][1]. Please feel free to open Issues/PRs
 and join the [QuestDB Slack Community](https://questdb.slack.com), the
 developers are really helpful there!
 
-[1]: https://questdb.io
-[2]: https://github.com/shantanoo-desai/questitto
-[3]: https://github.com/shantanoo-desai/tiguitto
-[4]: https://mqttfx.org
-[5]: https://shantanoo-desai.github.io/posts/technology/nugget_mqtt_iot/
+[1]: https://github.com/shantanoo-desai/questitto
+[2]: https://github.com/shantanoo-desai/tiguitto
+[3]: https://mqttfx.org
+[4]: https://shantanoo-desai.github.io/posts/technology/nugget_mqtt_iot/

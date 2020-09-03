@@ -110,9 +110,9 @@ That's it! Sit back and wait for the SWAG!
 
 ### Level 4: QuestDB Implementor Extraordinaire!
 
-You think [QuestDB](https://questdb.io) is the solution to all your data woes.
-You don't just think it, you _know_ it! So much so that you've already
-implemented a solution, in production, at your company.
+You think QuestDB is the solution to all your data woes. You don't just think
+it, you _know_ it! So much so that you've already implemented a solution, in
+production, at your company.
 
 We love you! Reach out and let's talk. We'll have some _really_ special SWAG for
 you. You're going to like it, we promise.

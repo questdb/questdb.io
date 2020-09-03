@@ -18,12 +18,10 @@ To get started, you'll need a few things installed and set up. This should be
 quick.
 
 **QuestDB:** To install Questdb you can see
-[Installation](https://questdb.io/docs/introduction#guides) for complete
-instructions in case you want to use
-[Docker](https://questdb.io/docs/guide/docker), or
-[brew](https://questdb.io/docs/guide/homebrew) on macOS, but the easiest way is
-to download the binaries and run it directly. Instructions for that are
-[in the official documentation](https://questdb.io/docs/guide/binaries).
+[Installation](/docs/introduction#guides) for complete instructions in case you
+want to use [Docker](/docs/guide/docker), or [brew](/docs/guide/homebrew) on
+macOS, but the easiest way is to download the binaries and run it directly.
+Instructions for that are [in the official documentation](/docs/guide/binaries).
 
 **Jupyter Notebooks:** These are interactive Python environments that will help
 you run a complete version of this tutorial interactively. To run it, you

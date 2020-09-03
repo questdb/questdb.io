@@ -202,7 +202,7 @@ brew install questdb`}
       >
         <Head title={title} />
         <DocusaurusHead>
-          <link rel="canonical" href="https://questdb.io/get-started/" />
+          <link rel="canonical" href={`${siteConfig.url}/getstarted/`} />
           <meta
             name="description"
             content="An open source time series SQL database for fast ingestion and queries"
@@ -355,7 +355,7 @@ brew install questdb`}
             title="Kubernetes (via Helm)"
           >
             <CodeBlock className="language-shell">
-              {`helm repo add questdb https://helm.questdb.io/
+              {`helm repo add questdb https://helm.${siteConfig.customFields.domain}/
 helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             </CodeBlock>
             <p className={binaryStyles.binaries__description}>

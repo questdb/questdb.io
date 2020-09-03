@@ -67,12 +67,12 @@ pull requests.
 ## Guidelines
 
 Consult the
-[guidelines](https://github.com/questdb/questdb.io.v2/blob/master/docs/__guidelines/markdown.md).
+[guidelines](https://github.com/questdb/questdb.io/blob/master/docs/__guidelines/markdown.md).
 
 ## Lexicon
 
 Consult the
-[lexicon](https://github.com/questdb/questdb.io.v2/blob/master/docs/__guidelines/lexicon.md)
+[lexicon](https://github.com/questdb/questdb.io/blob/master/docs/__guidelines/lexicon.md)
 for terminology we commonly use
 
 ## Commits

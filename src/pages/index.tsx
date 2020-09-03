@@ -174,7 +174,7 @@ const Jumbotron = () => {
         <div className={jumbotronStyles.jumbotron__cta}>
           <Button
             className={jumbotronStyles.jumbotron__link}
-            href="http://try.questdb.io:9000"
+            href={`http://try.${siteConfig.customFields.domain}:9000`}
           >
             Live Demo
           </Button>
@@ -736,7 +736,7 @@ const Home = () => {
       <Layout description={siteConfig.customFields.description} title={title}>
         <Head title={title} />
         <DocusaurusHead>
-          <link rel="canonical" href="https://questdb.io" />
+          <link rel="canonical" href={siteConfig.url} />
         </DocusaurusHead>
         <Jumbotron />
         <Feature />

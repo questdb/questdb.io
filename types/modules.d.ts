@@ -24,6 +24,7 @@ declare module "@docusaurus/useDocusaurusContext" {
         copyright: string
         description: string
         dockerUrl: string
+        domain: string
         githubUrl: string
         helmVersion: string
         slackUrl: string

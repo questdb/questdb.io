@@ -25,12 +25,12 @@ We did it though, and we're not even a little bit sorry about it.
 
 ## The idea
 
-[QuestDB](https://questdb.io) has built what we think is the fastest Open Source
-SQL Database in existence. We really do. And we're pretty proud of it, in fact.
-So much so that we wanted to give anyone that wanted the opportunity a chance to
-take it for a spin. With real data. Doing real queries. Almost anyone can pull
-together a demo that performs great under just the right conditions, with all
-the parameters tightly controlled.
+QuestDB has built what we think is the fastest Open Source SQL Database in
+existence. We really do. And we're pretty proud of it, in fact. So much so that
+we wanted to give anyone that wanted the opportunity a chance to take it for a
+spin. With real data. Doing real queries. Almost anyone can pull together a demo
+that performs great under just the right conditions, with all the parameters
+tightly controlled.
 
 But what happens if you unleash the hordes on it? What happens if you let anyone
 run queries against it? Well, we can tell you, now.
@@ -108,7 +108,7 @@ It was not disappointing!
 > performance. Even after decades in high performance computing, we are still
 > learning something new every day.
 >
-> [1][https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second](https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second)
+> [1][https://questdb.io/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second](/blog/2020/04/02/using-simd-to-aggregate-billions-of-rows-per-second)
 
 [2][https://www.agner.org/optimize/vectorclass.pdf](https://www.agner.org/optimize/vectorclass.pdf)
 
@@ -120,7 +120,7 @@ It was not disappointing!
 
 [6][https://github.com/questdb/questdb/blob/master/core/src/main](https://github.com/questdb/questdb/blob/master/core/src/main)...
 
-[7][https://questdb.io/blog/2020/03/15/interthread](https://questdb.io/blog/2020/03/15/interthread)
+[7][https://questdb.io/blog/2020/03/15/interthread](/blog/2020/03/15/interthread)
 
 [8][https://github.com/questdb/questdb](https://github.com/questdb/questdb)
 
@@ -221,4 +221,4 @@ Want to try it yourself? You've read this far, you really should! got to
 
 We'd love to have you join us on our [community Slack]({@slackUrl@}) channel,
 give us a [star](https://github.com/questdb/questdb) on GitHub, and
-[download](https://questdb.io/getstarted) and try it yourself!
+[download](/getstarted) and try it yourself!
