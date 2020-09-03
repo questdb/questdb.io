@@ -34,6 +34,8 @@ rather substantial boost in overall memory performance.
 We will walk you through how some of our initial thoughts on storage and
 memory-mapping evolved to bring us better performance overall.
 
+If you like QuestDB, please do give us a star on [GitHub](https://github.com/questdb/questdb)
+
 <!--truncate-->
 
 ## How the performance improvements started
