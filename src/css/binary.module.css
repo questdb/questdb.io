@@ -88,3 +88,9 @@
 .binary__download {
   justify-content: center;
 }
+
+@media (max-width: 996px) {
+  .binaries {
+    max-width: 100%;
+  }
+}
