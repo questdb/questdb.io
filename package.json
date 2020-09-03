@@ -4,9 +4,9 @@
   "private": true,
   "license": "Apache-2.0",
   "scripts": {
-    "imagemin": "FORCE=true node scripts/image-min.js",
     "start": "docusaurus start",
-    "prebuild": "node scripts/image-min.js && rimraf docs/__guidelines",
+    "pre-build": "FORCE=true node scripts/pre-build.js",
+    "prebuild": "node scripts/pre-build.js",
     "build": "PWA_SW_CUSTOM= docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",

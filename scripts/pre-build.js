@@ -7,13 +7,14 @@ const imagemin = require("imagemin")
 const imageminGifsicle = require("imagemin-gifsicle")
 const imageminSvgo = require("imagemin-svgo")
 const makeDir = require("make-dir")
+const rimraf = require("rimraf")
 const sharp = require("sharp")
 
 const writeFile = util.promisify(fs.writeFile)
 const src = "static/img"
 const dist = src
 
-const run = async () => {
+const optimiseImages = async () => {
   const doByExt = async (ext) => {
     let successList = []
     const files = glob.sync(`${src}/**/*.${ext}`)
@@ -117,5 +118,6 @@ const run = async () => {
 }
 
 if (process.env.NETLIFY === "true" || process.env.FORCE === "true") {
-  run()
+  optimiseImages()
+  rimraf.sync("docs/__guidelines")
 }
