@@ -96,7 +96,7 @@ We will add some random data, for now. You can re-run this section as many times
 as you want to add 100 entries at a time, or simply change the `range(100)` to
 add as many datapoints as you wish.
 
-```Python
+```python
 import requests
 import random
 from datetime import datetime
@@ -131,7 +131,7 @@ for x in range(1000):
 Now that we have data available, let's try querying some of it to see what we
 get back!
 
-```Python
+```python
 import requests
 import io
 
@@ -151,7 +151,7 @@ We are also telling pandas to parse the `timestamp` field as a date.
 
 This is important since we're dealing with Time Series data.
 
-```Python
+```python
 import pandas as pd
 
 pData = pd.read_csv(io.StringIO(rawData), parse_dates=['timestamp'])
@@ -177,7 +177,7 @@ back.
 
 **Note:** The query string must be URL-encoded before it is sent.
 
-```Python
+```python
 import urllib.parse
 
 q = "select cust_id,"\
@@ -201,7 +201,7 @@ print(rawData)
 
 We will use matplotlib to plot the data
 
-```Python
+```python
 from matplotlib import pyplot as plt
 
 rawData.plot("timestamp", ["balance"], subplots=True)
@@ -215,7 +215,7 @@ From that query we should get a nice little plot of our data, like this:
 
 Now we will clean everything up for the next time.
 
-```Python
+```python
 r = requests.get("http://localhost:9000/exec?query=drop table balances")
 if r.status_code == 200:
   print("Database Table dropped")
