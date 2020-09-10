@@ -32,9 +32,7 @@ First, create a `main.go` file with the following content:
 package main
 
 import (
-   "io/ioutil"
-    "log"
-		"fmt"
+    "fmt"
 		"net"
     "time"
     "encoding/json"
