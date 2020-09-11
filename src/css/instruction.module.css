@@ -11,12 +11,12 @@
 }
 
 .instructions__illustration {
-  flex: 0 1 500px;
+  width: 500px;
 }
 
 .instructions__text {
   margin-left: 4rem;
-  flex: 0 1 716px;
+  flex: 1;
   font-size: var(--font-size-large);
 }
 

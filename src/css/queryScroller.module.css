@@ -42,7 +42,10 @@
   left: 0;
   right: 0;
   height: 108px;
-  background: linear-gradient(var(--palette-rock), transparent);
+  background: linear-gradient(
+    var(--palette-rock),
+    rgba(var(--palette-rock-raw), 0)
+  );
   z-index: 1;
 }
 
@@ -53,7 +56,10 @@
   left: 0;
   right: 0;
   height: 108px;
-  background: linear-gradient(transparent, var(--palette-rock));
+  background: linear-gradient(
+    rgba(var(--palette-rock-raw), 0),
+    var(--palette-rock)
+  );
 }
 
 .queryScroller__right {
