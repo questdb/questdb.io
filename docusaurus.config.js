@@ -254,6 +254,7 @@ const config = {
           cacheTime: 600 * 1000, // 600 sec - cache purge period
           changefreq: "daily",
           priority: 0.7,
+          trailingSlash: true,
         },
         theme: {
           customCss: require.resolve("./src/css/global.css"),
