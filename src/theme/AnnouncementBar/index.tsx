@@ -28,7 +28,7 @@ const AnnouncementBar = () => {
         >
           give us a star on GitHub
         </a>
-        &nbsp;⭐
+        ! ⭐️
       </p>
 
       <button
