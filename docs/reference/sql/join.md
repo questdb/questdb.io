@@ -6,8 +6,8 @@ description: JOIN SQL keyword reference documentation.
 
 QuestDB supports the following types of joins: `INNER`, `OUTER`, `CROSS`, `ASOF`
 and `SPLICE`. `FULL` joins are not yet implemented and are on our roadmap. All
-supported join types can be combined in a single SQL statement; it is job of
-QuestDB SQL optimiser to determine best execution order and algorithms.
+supported join types can be combined in a single SQL statement; QuestDB SQL's
+optimiser determines the best execution order and algorithms.
 
 There are no known limitations on size of tables or sub-queries participating in
 joins and there are no limitations on number of joins either.
