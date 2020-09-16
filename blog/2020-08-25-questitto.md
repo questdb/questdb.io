@@ -321,8 +321,8 @@ See [my blog post][4] for a detailed write up.
 ## Repository
 
 You can find the [repository on GitHub][1]. Please feel free to open Issues/PRs
-and join the [QuestDB Slack Community](https://questdb.slack.com), the
-developers are really helpful there!
+and [join]({@slackUrl@}) the Slack Community, the developers are really helpful
+there!
 
 [1]: https://github.com/shantanoo-desai/questitto
 [2]: https://github.com/shantanoo-desai/tiguitto
