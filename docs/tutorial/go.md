@@ -32,10 +32,10 @@ First, create a `main.go` file with the following content:
 package main
 
 import (
-    "fmt"
-		"net"
-    "time"
-    "encoding/json"
+	"encoding/json"
+	"fmt"
+	"net"
+	"time"
 )
 
 const jsonData string = "{\"results\":[{ \"name\": \"questdb\", \"star_count\": 5, \"pull_count\": 1919,\"last_updated\": \"2020-09-02T13:47:23.804926Z\"}]  }"
@@ -46,38 +46,35 @@ type DockerNodes struct {
 
 // Dock is the overall datastructure
 type Dock struct {
-  Name        string  `json:"name"`
-	Stars       int     `json:"star_count"`
-	Pulls       int     `json:"pull_count"`
-	Update      string  `json:"last_updated"`
+	Name   string `json:"name"`
+	Stars  int    `json:"star_count"`
+	Pulls  int    `json:"pull_count"`
+	Update string `json:"last_updated"`
 }
+
 func main() {
-
-  var data = DockerNodes{}
-
+	var data = DockerNodes{}
 	_ = json.Unmarshal(jsonData, &data)
-
-  conn, err := net.Dial("tcp", "localhost:9009")
+	conn, err := net.Dial("tcp", "localhost:9009")
 	if err != nil {
 		fmt.Errorf("Connection Error: %v", err)
 	}
-	defer conn.Close();
-
-  for i := 0; i < len(data.DockerNodes); i++ {
-	  timeObj := time.Now()
-	  if err != nil {
-		  fmt.Errorf("Time Format Error: %v", err)
-	  }
-    //format a line of ILP
-    output := fmt.Sprintf("docker,name=%s pulls=%d,stars=%d %d",
-      data.DockerNodes[i].Name,
-      data.DockerNodes[i].Pulls,
-      data.DockerNodes[i].Stars,
-      timeObj.UnixNano())
-    // Write to QuestDB
-	  fmt.Fprintf(conn, output + "\n")
-  }
-  conn.Close()
+	defer conn.Close()
+	for i := 0; i < len(data.DockerNodes); i++ {
+		timeObj := time.Now()
+		if err != nil {
+			fmt.Errorf("Time Format Error: %v", err)
+		}
+		//format a line of ILP
+		output := fmt.Sprintf("docker,name=%s pulls=%d,stars=%d %d",
+			data.DockerNodes[i].Name,
+			data.DockerNodes[i].Pulls,
+			data.DockerNodes[i].Stars,
+			timeObj.UnixNano())
+		// Write to QuestDB
+		fmt.Fprintf(conn, output+"\n")
+	}
+	conn.Close()
 }
 ```
 If you want to try this example with your own Docker Hub repository, you can get the full JSON
