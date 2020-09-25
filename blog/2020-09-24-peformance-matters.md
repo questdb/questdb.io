@@ -30,7 +30,7 @@ A weather station capturing time-series data about wind speed might record zero 
 
 Time-series data is everywhere a modern technologist looks, and the tools for managing it effectively are a little specialized. Otherwise, the exploding need for processing power and the simultaneously reduced availability of it becomes a supply and demand problem.
 
-# The End of Moore’s Law Is in Sight
+## The end of Moore’s law is in sight
 Improvements in processor power are going to slow down while data continues to propagate exponentially. We’re facing a big problem in our quest to process and analyze all of this data, and throwing more server racks of improved CPUs at the problem will no longer cut it. The lack of performance improvements on the hardware side coupled with exploding costs for companies doesn’t help anything either. Hardware is tapped out.
 
 That’s why it’s time to focus on the other side of this equation: the software. The solution is to write leaner code that’s more hardware-efficient and extracts performance gains from having the software tuned so effectively. This kind of software is less reliant on the hardware side for its capabilities, opens up new possibilities for harnessing data, and operates in realtime without any lag.
