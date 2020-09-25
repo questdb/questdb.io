@@ -37,7 +37,7 @@ That’s why it’s time to focus on the other side of this equation: the softwa
 
 Moore’s law is approaching its physical limit because it’s only possible to fit so many transistors into an integrated circuit — most of the performance to data has come from hardware, indirectly giving developers permission to write lazy, bloated code. But there is much less room for optimizing hardware these days. Chip manufacturers are approaching a time when they’d need a new physics to improve on today’s modern processors. That means it’s time to focus on improving the software.
 
-# It Reduces Your Cloud Bills
+## It reduces your cloud bills
 However much data you store and process today, you’re only going to have more data tomorrow. If you want to process increased volumes of information in the same amount of time, then you need more computing resources, going from one to two or more servers as your needs increase. But not only will you pay more to your cloud service for this, you’ll also pay your database provider for additional software licenses.
 
 The question becomes: how much value do you actually get out of each machine? If one can handle a billion data points, then you know you’ll need a new machine for each additional billion. But if you can get 100 billion data points for each new machine by using higher-performance software, then you have a really reduced cost for each machine. You furthermore end up needing fewer of them.
