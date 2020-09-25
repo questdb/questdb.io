@@ -23,7 +23,7 @@ QuestDB is concerned with capturing time-series data in particular, which lets u
 
 Processing this category of data calls for a high-performance system that can quickly manipulate lots of individual data points to turn that data into a decision-making aid. Performance is uniquely important to time-series data for the following reasons.
 
-# Time Series Data Is Explosive
+## Time series data is explosive
 It’s at the heart of connected devices, the Internet of Things, autonomous cars, financial services, and even server farm monitoring. Rather than capture a single data point, time-series data calls for capturing tens of thousands of data points. But it doesn’t even stop there — not only does time-series data keep growing and never stopping, but it can grow in bursts, generating lots of readings in a short amount of time.
 
 A weather station capturing time-series data about wind speed might record zero for a long time. But as soon as it gets windy, you’ll get thousands of measurements per second because the measurement is changing a lot. It takes a high-performing system to capture and record it effectively.
