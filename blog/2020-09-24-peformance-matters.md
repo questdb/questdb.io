@@ -9,7 +9,7 @@ description:
 tags: [big data, moore's law]
 ---
 
-Reflexions on why speed and performance are crucial to time-series databases ingestion and analysis, originally posted in [The New Stack](https://thenewstack.io/why-performance-matters-in-time-series-data/).
+Thoughts on why speed and performance are crucial to time-series databases ingestion and analysis, originally posted in [The New Stack](https://thenewstack.io/why-performance-matters-in-time-series-data/).
 
 <!--truncate-->
 
