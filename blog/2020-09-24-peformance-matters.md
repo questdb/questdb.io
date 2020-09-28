@@ -5,7 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/NicQuestDB
 author_image_url: https://avatars.githubusercontent.com/NicQuestDB
 description:
-  Reflexions on why speed and performance are crucial to time-series databases ingestion and analysis.
+  Thoughts on why speed and performance are crucial to time-series databases ingestion and analysis.
 tags: [big data, moore's law]
 ---
 
