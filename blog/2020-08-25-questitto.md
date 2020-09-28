@@ -6,7 +6,7 @@ author_url: https://github.com/shantanoo-desai
 author_image_url: https://avatars.githubusercontent.com/shantanoo-desai
 description:
   Create a simple IoT stack with Mosquitto MQTT Broker, Telegraf and QuestDB.
-tags: [mqtt, iot, docker, community-written]
+tags: [iot, docker, community-written]
 ---
 
 Note: I wanted you to know that this post is written by one of our contributors,

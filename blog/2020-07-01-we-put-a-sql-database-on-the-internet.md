@@ -7,7 +7,7 @@ author_image_url: https://avatars.githubusercontent.com/davidgs
 description:
   What happens when you put a SQL database on the internet? Demo launch on
   HackerNews postmortem.
-tags: [hackernews, postmorterm, demo]
+tags: [hackernews, postmorterm]
 ---
 
 What happens when you put a SQL database on the internet? It's probably not what

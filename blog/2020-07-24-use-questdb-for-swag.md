@@ -7,7 +7,7 @@ author_image_url: https://avatars.githubusercontent.com/davidgs
 description:
   Participate to the QuestDB community and get rewarded with swag for your
   contributions.
-tags: [projects, swag]
+tags: [projects]
 image: /img/blog/2020-07-24/banner.jpg
 ---
 

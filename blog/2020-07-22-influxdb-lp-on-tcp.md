@@ -7,7 +7,7 @@ author_image_url: https://avatars.githubusercontent.com/davidgs
 description:
   How to use InfluxDB line protocol with QuestDB, this example shows an IoT
   application.
-tags: [influxdb line protocol, tcp]
+tags: [influxdb line protocol]
 ---
 
 <img
