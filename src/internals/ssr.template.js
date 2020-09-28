@@ -39,13 +39,15 @@ module.exports = ({ customFields, favicon, organizationName, url }) => `
       <link rel="stylesheet" type="text/css" href="<%= it.baseUrl %><%= stylesheet %>" />
     <% }); %>
   </head>
-  <body <%~ it.bodyAttributes %> itemscope="" itemtype="http://schema.org/Organization">
+  <body <%~ it.bodyAttributes %> itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="${customFields.oneLiner}" />
     <meta itemprop="description" content="${customFields.description}" />
     <meta itemprop="url" content="${url}" />
     <meta itemprop="logo" content="${url}${favicon}" />
     <meta itemprop="sameAs" content="${customFields.twitterUrl}" />
     <meta itemprop="sameAs" content="${customFields.linkedInUrl}" />
+    <meta itemprop="sameAs" content="${customFields.crunchbaseUrl}" />
+    <meta itemprop="sameAs" content="${customFields.githubOrgUrl}" />
     <%~ it.preBodyTags %>
     <div id="__docusaurus">
       <%~ it.appHtml %>

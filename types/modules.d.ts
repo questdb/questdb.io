@@ -22,9 +22,11 @@ declare module "@docusaurus/useDocusaurusContext" {
       customFields: {
         artifactHubUrl: string
         copyright: string
+        crunchbaseUrl: string
         description: string
         dockerUrl: string
         domain: string
+        githubOrgUrl: string
         githubUrl: string
         helmVersion: string
         oneLiner: string
