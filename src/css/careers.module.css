@@ -54,6 +54,10 @@
   font-size: var(--font-size-large);
 }
 
+.list__item {
+  margin-bottom: 0.5rem;
+}
+
 .list__item::before {
   content: ">";
   margin-right: 1rem;
