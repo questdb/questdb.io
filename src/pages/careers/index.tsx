@@ -1,8 +1,9 @@
 import clsx from "clsx"
 import DocusaurusHead from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
-import React from "react"
+import React, { useCallback, useRef } from "react"
 
+import Button from "@theme/Button"
 import Layout from "@theme/Layout"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 
@@ -14,6 +15,10 @@ const CareersPage = () => {
   const description =
     "Join us at QuestDB to build breakthrough technology that will power the infrastructure of tomorrow."
   const { siteConfig } = useDocusaurusContext()
+  const titleRef = useRef<HTMLHeadingElement | null>(null)
+  const handleClick = useCallback(() => {
+    titleRef.current?.scrollIntoView({ behavior: "smooth" })
+  }, [titleRef])
 
   return (
     <MetadataContextProvider>
@@ -41,6 +46,9 @@ const CareersPage = () => {
                 getting them started in just a few minutes with the simplest and
                 most accessible time series database.
               </p>
+              <Button className={careersStyles.card__cta} onClick={handleClick}>
+                Current openings
+              </Button>
             </div>
             <div
               className={clsx(
@@ -101,10 +109,12 @@ const CareersPage = () => {
           </div>
           <div className={careersStyles.card}>
             <div className={careersStyles.card__side}>
-              <h2 className={careersStyles.card__title}>Current openings</h2>
+              <h2 className={careersStyles.card__title} ref={titleRef}>
+                Current openings
+              </h2>
               <p className={careersStyles.card__content}>
-                We are always interested in hiring new talents, if you are
-                looking for a role that does is listed, you can contact us
+                We are always interested in hiring new talent, so if you are
+                looking for a role that does is not listed, you can contact us
                 anyway! Send your CV with any relevant links (GitHub, LinkedIn,
                 personal website, etc.) to{" "}
                 <a href="mailto:careers@questdb.io">careers@questdb.io</a>, we

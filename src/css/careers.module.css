@@ -40,6 +40,10 @@
   justify-content: center;
 }
 
+.card__cta {
+  align-self: baseline;
+}
+
 .list {
   padding: 0;
   list-style: none;
@@ -125,6 +129,10 @@
 
   .card__side--baseline {
     align-self: center;
+  }
+
+  .card__cta {
+    align-self: stretch;
   }
 
   .job__title {
