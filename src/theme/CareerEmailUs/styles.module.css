@@ -1,0 +1,28 @@
+.container {
+  margin-top: 6rem;
+}
+
+.separator {
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+  border-width: 1px;
+}
+
+.title {
+    margin-bottom: 3rem;
+  font-size: var(--font-size-xlarge);
+  text-align: center;
+}
+
+.content {
+  font-size: var(--font-size-large);
+  text-align: center;
+}
+
+.link {
+  display: block;
+  margin-top: 3rem;
+  font-size: var(--font-size-llarge);
+  text-align: center;
+}

@@ -67,7 +67,7 @@ function Navbar(): JSX.Element {
         "navbar-sidebar--show": sidebarShown,
       })}
     >
-      <div className="navbar__inner">
+      <div className={clsx("navbar__inner", styles.inner)}>
         <div className="navbar__items">
           <div
             aria-label="Navigation bar toggle"

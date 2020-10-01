@@ -7,6 +7,12 @@
   width: 126px;
 }
 
+.inner {
+  max-width: var(--ifm-container-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 @media (max-width: 768px) {
   .getStarted {
     margin-left: 0.75rem;

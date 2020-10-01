@@ -207,6 +207,10 @@ const config = {
               label: "Roadmap",
               href: `${customFields.githubUrl}/projects/3`,
             },
+            {
+              label: "Careers",
+              to: "/careers/",
+            },
           ],
         },
         {

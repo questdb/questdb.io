@@ -103,6 +103,8 @@ Binary.defaultProps = {
 
 const GetStartedPage = () => {
   const title = "Download QuestDB"
+  const description =
+    "Download QuestDB, an open source time series SQL database for fast ingestion and queries"
   const { siteConfig } = useDocusaurusContext()
   const { release } = usePluginData<{ release: Release }>("fetch-release")
   const [os, setOs] = useState<Os | undefined>()
@@ -209,13 +211,10 @@ brew install questdb`}
 
   return (
     <MetadataContextProvider>
-      <Layout description={siteConfig.customFields.description} title={title}>
+      <Layout description={description} title={title}>
         <DocusaurusHead>
           <link rel="canonical" href={`${siteConfig.url}/getstarted/`} />
-          <meta
-            name="description"
-            content="An open source time series SQL database for fast ingestion and queries"
-          />
+          <meta name="description" content={description} />
         </DocusaurusHead>
         <section
           className={clsx(
@@ -432,14 +431,16 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
               QuestDB is distributed as a single binary. You can download
               either:
             </p>
-            <p className={instructionStyles.instructions__bullet}>
-              The &quot;rt&quot; version, this includes a trimmed JVM so you do
-              not need anything else (~ {assets.linux.size})
-            </p>
-            <p className={instructionStyles.instructions__bullet}>
-              The binary itself (~ {assets.noJre.size}), without the JVM. In
-              this case, you need Java 11 installed locally
-            </p>
+            <ul className={instructionStyles.instructions__list}>
+              <li className={instructionStyles.instructions__bullet}>
+                The &quot;rt&quot; version, this includes a trimmed JVM so you
+                do not need anything else (~ {assets.linux.size})
+              </li>
+              <li className={instructionStyles.instructions__bullet}>
+                The binary itself (~ {assets.noJre.size}), without the JVM. In
+                this case, you need Java 11 installed locally
+              </li>
+            </ul>
             <p>
               To find out more about how to use the binaries, please check
               the&nbsp;

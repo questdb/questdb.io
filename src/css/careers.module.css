@@ -1,0 +1,137 @@
+.section {
+  flex-direction: column;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  margin-bottom: 6rem;
+  justify-content: space-between;
+}
+
+.card__title {
+  font-size: var(--font-size-xlarge);
+}
+
+.card__title--important {
+  font-size: var(--font-size-xxlarge);
+}
+
+.card__side {
+  display: flex;
+  max-width: 455px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.card__side--illustration {
+  padding: 4rem 5rem;
+  border-radius: var(--ifm-global-border-radius);
+  box-sizing: border-box;
+  background: var(--palette-midnight);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 30px 0px;
+}
+
+.card__side--baseline {
+  align-self: baseline;
+}
+
+.card__side--center {
+  justify-content: center;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.card__content,
+.list__item {
+  font-size: var(--font-size-large);
+}
+
+.list__item::before {
+  content: ">";
+  margin-right: 1rem;
+  color: var(--palette-pink);
+}
+
+.job {
+  position: relative;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  background: var(--palette-pink);
+  border-radius: var(--ifm-global-border-radius);
+  border: 1px solid transparent;
+  color: var(--palette-white);
+}
+
+.job:hover {
+  border-color: var(--palette-white);
+  color: var(--palette-white);
+  cursor: pointer;
+}
+
+.job:hover .job__cta {
+  color: var(--palette-white);
+}
+
+.job__title {
+  margin-bottom: 0.5rem;
+}
+
+.job__location {
+  margin: 0;
+}
+
+.job__cta {
+  position: absolute;
+  display: flex;
+  right: 1rem;
+  top: 0;
+  bottom: 0;
+  align-items: center;
+  font-weight: var(--ifm-font-weight-bold);
+  font-size: var(--font-size-large);
+}
+
+@media (max-width: 996px) {
+  .card {
+    margin-bottom: 3rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card--reverse {
+    flex-direction: column-reverse;
+  }
+
+  .card__side {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .job,
+  .card__side--illustration {
+    width: 100%;
+    max-width: 375px;
+    margin: 2rem 0;
+  }
+
+  .card__side--illustration {
+    padding: 2rem 3rem;
+  }
+
+  .card__side--baseline {
+    align-self: center;
+  }
+
+  .job__title {
+    font-size: var(--font-size-large);
+  }
+
+  .job__cta {
+    font-size: var(--font-size-normal);
+  }
+}

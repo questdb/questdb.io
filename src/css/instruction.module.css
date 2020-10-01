@@ -25,6 +25,11 @@
   font-weight: var(--ifm-font-weight-bold);
 }
 
+.instructions__list {
+  padding: 0;
+  list-style: none;
+}
+
 .instructions__bullet {
   display: block;
   margin-bottom: 0.5rem;

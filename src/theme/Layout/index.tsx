@@ -19,6 +19,7 @@ export type Props = {
   description: string
   image?: string
   permalink?: string
+  wrapperClassname?: string
 }
 
 const Layout = ({
@@ -29,6 +30,7 @@ const Layout = ({
   description,
   image,
   permalink,
+  wrapperClassname,
 }: Props) => {
   const { siteConfig } = useDocusaurusContext()
   const {
@@ -61,7 +63,11 @@ const Layout = ({
       </Head>
       <AnnouncementBar />
       <Navbar />
-      <div className={clsx(styles.wrapper, { [styles.flex]: flex })}>
+      <div
+        className={clsx(styles.wrapper, wrapperClassname, {
+          [styles.flex]: flex,
+        })}
+      >
         {children}
       </div>
       {!noFooter && <Footer />}
