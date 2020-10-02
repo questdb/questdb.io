@@ -1,4 +1,4 @@
-.getStarted {
+.getQuestdb {
   margin-left: 2rem;
   font-size: var(--font-size-small);
 }
@@ -14,7 +14,7 @@
 }
 
 @media (max-width: 768px) {
-  .getStarted {
+  .getQuestdb {
     margin-left: 0.75rem;
     padding: 0.5rem;
     font-size: calc(var(--font-size-small) - 1px);

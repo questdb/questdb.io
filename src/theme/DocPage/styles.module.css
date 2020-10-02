@@ -71,7 +71,7 @@ ul ul :global(.table-of-contents__link--active::before) {
 
 .doc__sidebar {
   position: relative;
-  width: 300px;
+  width: 290px;
   margin-top: calc(-1 * var(--ifm-navbar-height));
   margin-right: 1rem;
   box-sizing: border-box;

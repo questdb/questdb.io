@@ -28,10 +28,8 @@ is automatic.
 :::note
 
 `COPY` requires a `copy root directory` which is set using the
-[configuration key](/docs/reference/configuration/server/) `cairo.sql.copy.root`
-in the
-[server.conf](/docs/reference/configuration/root-directory-structure/#serverconf)
-file.
+[configuration key](/docs/reference/configuration/) `cairo.sql.copy.root` in the
+[server.conf](/docs/concept/root-directory-structure/#serverconf) file.
 
 ```shell title="Example"
 cairo.sql.copy.root=/Users/UserName/Desktop

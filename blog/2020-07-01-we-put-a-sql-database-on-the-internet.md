@@ -207,7 +207,7 @@ Here are just a few of the comments we got in the thread:
 > Very cool and impressive!! Is full PostreSQL wire compatibility on the
 > roadmap? I like postgres compatibility :)
 
-(Yes, full Postgres wire protocol is on the roadmap!)
+(Yes, full Postgres compatibility is on the roadmap!)
 
 > Mind blowing, did not know about questDB. The back button seems broken on
 > chrome mobile
@@ -223,4 +223,4 @@ Want to try it yourself? You've read this far, you really should! got to
 
 We'd love to have you join us on our [community Slack]({@slackUrl@}) channel,
 give us a [star](https://github.com/questdb/questdb) on GitHub, and
-[download](/getstarted) and try it yourself!
+[download](/get-questdb/) and try it yourself!

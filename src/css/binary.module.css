@@ -1,6 +1,4 @@
 .binaries {
-  --ifm-link-color: var(--palette-pink);
-  --ifm-link-hover-color: var(--palette-pink);
   display: flex;
   max-width: var(--ifm-container-width);
   margin: 0 auto;
@@ -23,14 +21,20 @@
   font-weight: var(--ifm-font-weight-bold);
 }
 
-.binaries__description {
-  margin-top: 1rem;
-  margin-bottom: 0;
+.binaries__docs {
+  --ifm-link-color: var(--palette-pale-blue);
+  --ifm-link-hover-color: var(--ifm-link-color);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+  border-bottom-left-radius: var(--ifm-global-border-radius);
+  background: var(--palette-white-05);
   font-size: var(--font-size-small);
-  color: var(--palette-pale-blue);
 }
 
 .binary {
+  position: relative;
   display: flex;
   min-width: 260px;
   height: 316px;

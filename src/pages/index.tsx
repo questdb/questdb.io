@@ -298,7 +298,7 @@ const Feature = () => (
           Time series and relational joins
         </p>
         <p className={featureStyles.feature__description}>
-          Postgres wire support
+          Postgres compatibility
         </p>
         <p className={featureStyles.feature__description}>
           Aggregations and down sampling
@@ -411,9 +411,11 @@ const Console = () => {
           )}
         >
           Interactive console to import data (drag and drop) and start querying
-          right away. Check our&nbsp;
-          <a href="/docs/guide/web-console/">Web Console guide</a> to get
-          started.
+          right away. Check our{" "}
+          <a href="/docs/reference/client/web-console/">
+            Web Console documentation
+          </a>{" "}
+          to get started.
         </p>
 
         <img
@@ -435,10 +437,10 @@ const Console = () => {
               title="Postgres"
             />
             <h3 className={consoleStyles.console__label}>
-              Postgres wire support
+              Postgres compatibility
             </h3>
             <p className={consoleStyles.console__summary}>
-              Interact with QuestDB using the Postgres wire and any tool that
+              Interact with QuestDB using the Postgres layer and any tool that
               connects to it.
             </p>
           </div>

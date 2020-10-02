@@ -114,8 +114,12 @@ function Navbar(): JSX.Element {
             handleSearchBarToggle={setIsSearchBarExpanded}
             isSearchBarExpanded={isSearchBarExpanded}
           />
-          <Button className={styles.getStarted} size="xsmall" to="/getstarted/">
-            Get Started
+          <Button
+            className={styles.getQuestdb}
+            size="xsmall"
+            to="/get-questdb/"
+          >
+            Get QuestDB
           </Button>
         </div>
       </div>

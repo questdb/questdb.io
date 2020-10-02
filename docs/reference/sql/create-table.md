@@ -101,8 +101,7 @@ Default option is `CACHE`.
   ![Flow chart showing the syntax of the CAPACITY keyword](/img/docs/diagrams/indexCapacityDef.svg)
 
 - `valueBlockSize` - index storage parameter. This value is optional and will
-  default to the value of
-  [configuration key](/docs/reference/configuration/server/)
+  default to the value of [configuration key](/docs/reference/configuration/)
   `cairo.index.value.block.size`. `valueBlockSize` tells QuestDB how many row
   IDs to store in a single storage block on disk. Consider the following
   example. Your table has 200 unique stock symbols and 1,000,000,000 stock
@@ -126,7 +125,7 @@ Default option is `CACHE`.
 
 ### timestamp
 
-`timestamp` - references a column in new table, which will be the nominated
+`timestamp` - references a column in new table, which will be the designated
 timestamp. Such column must be of type `timestamp`
 
 :::note

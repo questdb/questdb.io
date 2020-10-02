@@ -1,5 +1,5 @@
 # Dependencies
-/node_modules
+node_modules
 
 # Production
 /build
@@ -15,6 +15,9 @@
 .env.development.local
 .env.test.local
 .env.production.local
+snippets/db
+snippets/package-lock.json
+snippets/yarn.lock
 
 npm-debug.log*
 yarn-debug.log*

@@ -17,8 +17,8 @@ semantics of time series queries.
 
 ### LATEST BY
 
-[LATEST BY](/docs/guide/crud/) is a clause introduced to help perform UPDATE and
-DELETE operations within an append-only framework.
+[LATEST BY](/docs/reference/sql/latest-by/) is a clause introduced to help
+perform UPDATE and DELETE operations within an append-only framework.
 
 ### SAMPLE BY
 
@@ -48,7 +48,7 @@ are examples where its optionality makes things a lot easier to read.
 
 ### Optionality of GROUP BY
 
-The `GROUP BY` clause is optional and can be ommitted as the QuestDB optimiser
+The `GROUP BY` clause is optional and can be omitted as the QuestDB optimiser
 derives group-by implementation from `SELECT` clause.
 
 In standard SQL, users might write a query like the below.

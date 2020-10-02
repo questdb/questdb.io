@@ -1,0 +1,24 @@
+{
+  "name": "snippets",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "description": "Showcase for integrating QuestDB with your favorite programming language",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/questdb/questdb.io.git"
+  },
+  "author": {
+    "name": "QuestDB"
+  },
+  "scripts": {
+    "auth:go": "go run authenticate/ilp.go",
+    "auth:js": "node authenticate/ilp.js"
+  },
+  "dependencies": {
+    "form-data": "3.0.0",
+    "node-fetch": "2.6.0",
+    "node-webcrypto-ossl": "2.1.2",
+    "pg": "8.2.0"
+  }
+}

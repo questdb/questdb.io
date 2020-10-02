@@ -6,12 +6,6 @@ description: DROP COLUMN SQL keword reference documentation.
 
 Drops a column from an existing table.
 
-:::caution
-
-This action irremediably deletes the data contained in the dropped column
-
-:::
-
 ## Syntax
 
 ![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)

@@ -12,13 +12,13 @@ values.
 
 ## Advantages
 
-- reduced complexity of database schemas by removing the need for explicit extra
+- Reduced complexity of database schemas by removing the need for explicit extra
   tables and joins.
-- transparent to the user: exact same behaviour as if the table was storing
+- Transparent to the user: exact same behaviour as if the table was storing
   string values, without the burden of actually doing so.
-- greatly improved query performance (comparing and writing `int` instead of
-  `string`)
-- greatly improved storage efficiency (storing `int` instead of `string`)
+- Greatly improved query performance (comparing and writing `int` instead of
+  `string`).
+- Greatly improved storage efficiency (storing `int` instead of `string`).
 
 :::note
 

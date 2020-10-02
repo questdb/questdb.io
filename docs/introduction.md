@@ -6,9 +6,9 @@ description:
 ---
 
 QuestDB is a relational column-oriented database designed for real-time
-analytics on time series and event data. It uses the SQL language with a few
-extensions for time series. The below will help you get familiar with QuestDB
-and get started.
+analytics on time series and event data. It uses the SQL language with some
+extensions for time series. This documentation will help you to get familiar
+with QuestDB.
 
 ## Concepts
 
@@ -24,19 +24,85 @@ time series capabilities with an efficient non-verbose syntax. You will also
 find the [symbol](/docs/concept/symbol/) concept interesting to store and
 retrieve repetitive strings efficiently.
 
-## Guides
+## Get started
 
-Setup guides are available for [Docker](/docs/guide/docker/), the
-[binaries](/docs/guide/binaries/) or [Homebrew](/docs/guide/homebrew/).
+This section explains how to install and run QuestDB. There are dedicated pages
+for [Docker](/docs/get-started/docker/), the
+[binaries](/docs/get-started/binaries/) or
+[Homebrew](/docs/get-started/homebrew/). Once QuestDB is running you can follow
+the guide to [create your first database](/docs/get-started/first-database/).
 
-There are guides to get started with the
-[Web Console](/docs/guide/web-console/), with the
-[Postgres wire protocol (alpha)](/docs/guide/postgres-wire/), the
-[REST API](/docs/guide/rest/) or the [Java API](/docs/api/java/).
+## Develop
+
+In this section you will learn how to [connect](/docs/develop/connect/) to
+QuestDB using popular tools and languages. Importing and/or inserting data are
+both covered in the [insert data](/docs/develop/insert-data/) page. Finally, you
+can check the [query data](/docs/develop/query-data/) page in order to run your
+queries.
 
 ## Reference
 
-This section contains reference about configuration, functions and SQL language.
+This section contains the reference documentation for the following categories:
+
+### APIs
+
+- [REST](/docs/reference/api/rest/)
+- [Postgres](/docs/reference/api/postgres/)
+- [InfluxDB](/docs/reference/api/influxdb/)
+- [Java (embedded)](/docs/reference/api/java-embedded/)
+
+### Clients
+
+- [CLI](/docs/reference/client/cli/)
+- [Web Console](/docs/reference/client/web-console/)
+
+### Configuration
+
+The [configuration](/docs/reference/configuration/) page shows all the
+properties that can be used to customize QuestDB.
+
+### Functions
+
+- [Aggregation](/docs/reference/function/aggregation/)
+- [Date time](/docs/reference/function/date-time/)
+- [Meta](/docs/reference/function/meta/)
+- [Numeric](/docs/reference/function/numeric/)
+- [Random value generator](/docs/reference/function/random-value-generator/)
+- [Row generator](/docs/reference/function/row-generator/)
+- [Text](/docs/reference/function/text/)
+- [Timestamp generator](/docs/reference/function/timestamp-generator/)
+- [Timestamp](/docs/reference/function/timestamp/)
+
+### SQL
+
+- [Datatypes](/docs/reference/sql/datatypes/)
+- [ALTER TABLE ADD COLUMN](/docs/reference/sql/alter-table-add-column/)
+- [ALTER TABLE ALTER COLUMN ADD INDEX](/docs/reference/sql/alter-table-alter-column-add-index/)
+- [ALTER TABLE DROP COLUMN](/docs/reference/sql/alter-table-drop-column/)
+- [ALTER TABLE DROP PARTITION](/docs/reference/sql/alter-table-drop-partition/)
+- [BACKUP](/docs/reference/sql/backup/)
+- [CASE](/docs/reference/sql/case/)
+- [CAST](/docs/reference/sql/cast/)
+- [COPY](/docs/reference/sql/copy/)
+- [CREATE TABLE](/docs/reference/sql/create-table/)
+- [DISTINCT](/docs/reference/sql/distinct/)
+- [EXCEPT INTERSECT](/docs/reference/sql/except-intersect/)
+- [FILL](/docs/reference/sql/fill/)
+- [DROP](/docs/reference/sql/drop/)
+- [GROUP BY](/docs/reference/sql/group-by/)
+- [INSERT](/docs/reference/sql/insert/)
+- [JOIN](/docs/reference/sql/join/)
+- [LATEST BY](/docs/reference/sql/latest-by/)
+- [LIMIT](/docs/reference/sql/limit/)
+- [ORDER BY](/docs/reference/sql/order-by/)
+- [RENAME](/docs/reference/sql/rename/)
+- [SAMPLE BY](/docs/reference/sql/sample-by/)
+- [SELECT](/docs/reference/sql/select/)
+- [SHOW](/docs/reference/sql/show/)
+- [TRUNCATE](/docs/reference/sql/truncate/)
+- [UNION](/docs/reference/sql/union/)
+- [WHERE](/docs/reference/sql/where/)
+- [WITH](/docs/reference/sql/with/)
 
 ## Support
 

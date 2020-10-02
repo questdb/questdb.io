@@ -9,7 +9,7 @@ const customFields = {
   copyright: `Copyright © ${new Date().getFullYear()} QuestDB`,
   crunchbaseUrl: "https://www.crunchbase.com/organization/quest-db",
   description:
-    "QuestDB is an open source database designed to make time-series lightning fast and easy. It exposes a high performance REST API and supports Postgres wire.",
+    "QuestDB is an open source database designed to make time-series lightning fast and easy. It exposes a high performance REST API and is Postgres compatible.",
   dockerUrl: "https://hub.docker.com/r/questdb/questdb",
   domain,
   githubOrgUrl,
@@ -152,20 +152,20 @@ const config = {
       },
       items: [
         {
-          label: "Install",
+          label: "Get Started",
           position: "left",
           items: [
             {
               label: "Docker",
-              to: "/docs/guide/docker/",
+              to: "/docs/get-started/docker/",
+            },
+            {
+              label: "Binaries",
+              to: "/docs/get-started/binaries/",
             },
             {
               label: "Homebrew",
-              to: "/docs/guide/homebrew/",
-            },
-            {
-              label: "From the binaries",
-              to: "/docs/guide/binaries/",
+              to: "/docs/get-started/homebrew/",
             },
           ],
         },

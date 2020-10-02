@@ -15,7 +15,7 @@ out-of-order inserts.
 
 - Only a `timestamp` column can be `designated timestamp`.
 - Only `one` column can be elected for a given table.
-- `designated timestamp` can be elected either:
+- `Designated timestamp` can be elected either:
   - during table creation.
   - on the fly on sub-tables created within a query.
 
@@ -44,9 +44,9 @@ column.
 
 Electing a `designated timestamp` allows you to:
 
-- leverage timestamp partitions. For more information, refer to the
+- Leverage timestamp partitions. For more information, refer to the
   [partitions section](/docs/concept/partitions/).
-- use time series joins such as `ASOF JOIN`. For more information refer to the
+- Use time series joins such as `ASOF JOIN`. For more information refer to the
   [JOIN reference](/docs/reference/sql/join/).
 
 ## Examples
@@ -54,8 +54,8 @@ Electing a `designated timestamp` allows you to:
 Representation of `designated timestamp` as a special column alongside other
 existing timestamp columns. Note that:
 
-- the `designated timestamp` column only allows ordered timestamps
-- any other `timestamp` column tolerates out-of-order timestamps
+- The `designated timestamp` column only allows ordered timestamps.
+- Any other `timestamp` column tolerates out-of-order timestamps.
 
 <img
   alt="Comparison between a designated timestamp and a normal timestamp"
@@ -88,7 +88,7 @@ supports out-of-order insertion.
 - Use the `database host clock` as `designated timestamp` by using
   `systimestamp()`:
 
-```questdb-sql title=""
+```questdb-sql
 CREATE TABLE readings(
     db_ts timestamp,
     device_ts timestamp,

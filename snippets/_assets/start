@@ -1,0 +1,10 @@
+#!/bin/sh
+
+docker run \
+       -p 9000:9000 \
+       -p 8812:8812 \
+       -p 9009:9009 \
+       -e QDB_TELEMETRY_ENABLED=false \
+       -e QDB_LINE_TCP_AUTH_DB_PATH=conf/auth.txt \
+       --mount type=bind,source="$(pwd)/_assets/auth.txt",target=/root/.questdb/conf/auth.txt \
+       questdb/questdb:5.0.4-SNAPSHOT-linux-amd64

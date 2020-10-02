@@ -6,12 +6,6 @@ description: DROP PARTITION SQL keyword reference documentation.
 
 Drops a partition from an existing table.
 
-:::caution
-
-This action irremediably deletes the data contained in the dropped partition
-
-:::
-
 ## Syntax
 
 ![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)

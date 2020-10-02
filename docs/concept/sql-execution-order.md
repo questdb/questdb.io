@@ -17,7 +17,7 @@ implements the following clauses in this execution order:
 5. [LATEST BY](/docs/reference/sql/latest-by/)
 6. [GROUP BY](/docs/reference/sql/group-by/) (optional)
 7. [WITH](/docs/reference/sql/with/)
-8. [HAVING](/docs/concept/sql-extensions#implicit-having/) (implicit)
+8. [HAVING](/docs/concept/sql-extensions/#implicit-having/) (implicit)
 9. [SELECT](/docs/reference/sql/select/)
 10. [DISTINCT](/docs/reference/sql/distinct/)
 11. [ORDER BY](/docs/reference/sql/order-by/)

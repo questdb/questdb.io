@@ -40,8 +40,8 @@ and `QuestDB` provides such functionalities as well as some cool new features of
 [Dynamic Timestamping](/docs/reference/function/timestamp/).
 
 Not to mention, my staple
-[InfluxDB's line Protocol](https://docs.influxdata.com/influxdb/v1.8/write_protocols/line_protocol_tutorial/)
-is supported via sockets too!
+[InfluxDB's line Protocol](/docs/reference/api/influxdb/) is supported via
+sockets too!
 
 ## Stack
 

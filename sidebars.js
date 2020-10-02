@@ -41,49 +41,28 @@ module.exports = {
         "concept/partitions",
         "concept/symbol",
         "concept/indexes",
+        "concept/root-directory-structure",
       ],
     },
     {
-      label: "Guides",
+      label: "Get Started",
       type: "category",
       items: [
-        {
-          type: "category",
-          label: "Setting up QuestDB",
-          items: ["guide/docker", "guide/homebrew", "guide/binaries"],
-        },
-        {
-          type: "category",
-          label: "Using QuestDB",
-          items: [
-            "guide/web-console",
-            "guide/postgres-wire",
-            "guide/rest",
-            "guide/crud",
-            "guide/my-first-database",
-          ],
-        },
+        "get-started/docker",
+        "get-started/binaries",
+        "get-started/homebrew",
+        "get-started/first-database",
       ],
     },
     {
+      label: "Develop",
       type: "category",
-      label: "Tutorials",
       items: [
-        "tutorial/go",
-        "tutorial/jdbc",
-        "tutorial/nodejs",
-        "tutorial/psql",
+        "develop/connect",
+        "develop/insert-data",
+        "develop/query-data",
+        "develop/authenticate",
       ],
-    },
-    {
-      label: "Packages",
-      type: "category",
-      items: ["packages/docker", "packages/homebrew", "packages/binaries"],
-    },
-    {
-      label: "API",
-      type: "category",
-      items: ["api/influxdb-line-protocol", "api/java", "api/rest"],
     },
     {
       label: "Reference",
@@ -91,12 +70,22 @@ module.exports = {
       items: [
         {
           type: "category",
-          label: "Configuration",
+          label: "API",
           items: [
-            "reference/configuration/root-directory-structure",
-            "reference/configuration/server",
-            "reference/configuration/telemetry",
+            "reference/api/rest",
+            "reference/api/postgres",
+            "reference/api/influxdb",
+            "reference/api/java-embedded",
           ],
+        },
+        {
+          type: "category",
+          label: "Clients",
+          items: ["reference/client/cli", "reference/client/web-console"],
+        },
+        {
+          id: "reference/configuration",
+          type: "doc",
         },
         {
           type: "category",
@@ -147,10 +136,6 @@ module.exports = {
             "reference/sql/where",
             "reference/sql/with",
           ],
-        },
-        {
-          id: "reference/web-console",
-          type: "doc",
         },
       ],
     },

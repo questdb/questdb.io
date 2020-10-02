@@ -18,11 +18,10 @@ A short tutorial for Querying data from QuestDB in a Jupyter Notebook.
 To get started, you'll need a few things installed and set up. This should be
 quick.
 
-**QuestDB:** To install Questdb you can see
-[Installation](/docs/introduction#guides) for complete instructions in case you
-want to use [Docker](/docs/guide/docker), or [brew](/docs/guide/homebrew) on
-macOS, but the easiest way is to download the binaries and run it directly.
-Instructions for that are [in the official documentation](/docs/guide/binaries).
+**QuestDB:** To download QuestDB, you can check [Get QuestDB](/get-questdb/).
+You can also find complete instructions for [Docker](/docs/get-started/docker/),
+[Homebrew](/docs/get-started/homebrew/) on macOS or the
+[binaries](/docs/get-started/binaries/).
 
 **Jupyter Notebooks:** These are interactive Python environments that will help
 you run a complete version of this tutorial interactively. To run it, you

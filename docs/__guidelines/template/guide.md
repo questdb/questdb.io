@@ -31,5 +31,4 @@ Use Notes to call out important bits of information.
 
 include links to other relevant documentation.
 
-- with the [REST API](/docs/guide/rest/)
-- with [Postgres wire](/docs/guide/postgres-wire/) over Postgres wire protocol
+- with [DOCKER](/docs/get-started/docker/)
