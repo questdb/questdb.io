@@ -51,7 +51,8 @@ disk space.**
 To guarantee **atomicity**, each table maintains a `last_committed_record_count`
 in a separate file. By convention, any table reader will never read more records
 than `tx_count`. This enables the **isolation** property: where uncommitted data
-cannot be read. Since uncommitted data is appended directly to the table,
+cannot be read. Since uncommitted data is appended directly to the table, the
+transaction size is only limited by the available disk space.
 
 Once all data is appended, QuestDB `commit()` ensures that the `tx_count` is
 updated atomically both in multi-threaded and multi-process environments. It

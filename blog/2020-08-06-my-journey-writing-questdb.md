@@ -90,7 +90,7 @@ to be thrown away. It had no concept of separation between readers and writers
 and would thus allow dirty reads. Storage was not guaranteed to be contiguous,
 and pages could be of various non-64-bit-divisible sizes. It was also very much
 cache-unfriendly, forcing the use of slow row-based reads instead of fast
-columnar and vectorized ones.Commits were slow, and as individual column files
+columnar and vectorized ones. Commits were slow, and as individual column files
 could be committed independently, they left the data open to corruption.
 
 Although this was a setback, I got back to work. I wrote the new engine to allow
