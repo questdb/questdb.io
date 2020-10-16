@@ -43,7 +43,7 @@ Let's assume a cab is driving at a constant speed for an hour. At the end of the
 Let's plot the hourly earnings in function of speed. This instantly reminds me of an old friend: call options!
 
 <img
-  alt="A chart of call option payoff showing how cab drivers earnings increase with their average realised driving speed"
+  alt="A chart of call option payoff showing how cab drivers earnings increase with their average realized driving speed"
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/cab-hourly-earnings-by-speed.png"
 />
