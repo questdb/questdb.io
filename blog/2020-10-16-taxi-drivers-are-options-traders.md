@@ -243,7 +243,7 @@ I don’t have the data to tell why the average speed is lower, but I would thin
 
 The impact is significant. Over the past 10 years, increased traffic has cost up to $10 an hour per taxi. To put this in context, this means $29,000 per driver per year (8 hours a day, no holidays), or 300 million dollars a year for the NYC cab industry! And these are lower bound numbers. In reality, drivers share cabs. If we assume all of the 13,500 cabs are constantly on the road, this adds up to 1.2 billion dollars a year lost for the industry!
 
-## Customers are losing too.
+## Customers are losing too
 
 The pricing system was designed to align the interests of the drivers and the passengers. 
 These incentives are almost gone today, and I think the pricing system is becoming counterproductive.
