@@ -16,7 +16,7 @@ Interestingly, this approach allows us to show that drivers are worse-off, indep
 
 <!--truncate-->
 
-A couple of weeks ago, I was preparing data for the demo we are hosting of QuestDB which you can try [here](http://try.questdb.io:9000/). 
+A couple of weeks ago, I was preparing data for the [demo we released of QuestDB](http://try.questdb.io:9000/). 
 It has been over a year since I left derivatives trading, so I was far from imagining the work on the NYC taxi dataset would lead me to write a post about options pricing. 
 Much to my surprise, the economics of a taxi meter are very similar to the economics of options, and the forces that drive them affect cab drivers in similar ways.
 
@@ -274,7 +274,7 @@ then it makes more sense to drive slow, and to hold on to the current customer f
 
 ## Your turn to explore the data
 
-We made this dataset and the database available online. You can query it directly from your browser [here](http://try.questdb.io:9000/).
+We made this dataset and the database available online and you can [query it directly from your browser](http://try.questdb.io:9000/).
  
 The dataset contains over 1.6 billion taxi rides, 700 million FHV rides (Uber, Lyft etc), and 10 years of weather and gas prices data. 
 Feel free to explore it, come up with more analysis, and let me know your findings. 
