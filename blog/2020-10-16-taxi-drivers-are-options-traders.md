@@ -31,7 +31,7 @@ Most of the driver's earnings come from the meter: a flat $2.50 for entering the
 - $0.50 per minute otherwise (so the driver earns a living in case a customer takes them through traffic).
 
 This post focuses on the variable fare (the output of the meter excluding the $2.50 start fee). 
-We normalise it as an `hourly rate` assuming drivers are constantly driving a customer. 
+We normalize it as an `hourly rate` assuming drivers are constantly driving a customer. 
 Although this is a simplified version of reality, this produces results which can be compared over time and are independent of competition, offer and demand.
 
 ## Modeling variable earnings
