@@ -59,7 +59,7 @@ Interestingly, the above notation breaks down the hourly variable fare into two 
 Graphically, the breakdown between `guaranteed` and `variable` fare components look like the below:
 
 <img
-  alt="A chart of call option payoff showing how cab drivers earnings increase with their average realised driving speed broken down between fixed and variable"
+  alt="A chart of call option payoff showing how cab drivers earnings increase with their average realized driving speed broken down between fixed and variable"
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/cab-hourly-earnings-by-speed-breakdown.png"
 />
