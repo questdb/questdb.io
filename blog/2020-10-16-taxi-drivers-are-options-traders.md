@@ -5,7 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/TheTanc
 author_image_url: https://avatars.githubusercontent.com/TheTanc
 tags: [deep-dive, story]
-description: An experiment analyzing the NYC taxi dataset through the eye of an options trader.
+description: An experiment analyzing the NYC taxi dataset through the eyes of an options trader.
 ---
 
 Every cab I have ever ridden complained about how hard it is for drivers to make ends meet. The public is generally quick to 
