@@ -99,7 +99,7 @@ By adding all the potential payouts weighed by their probability, we compute the
 - If we pay more, we lose in the long run. 
 
 This example shows that in its simplest form, the value of an option is equal to the product of the payout profile and the associated probability distribution. 
-Let’s visualise this by plotting  the values for our game in the following chart:
+Let’s visualize this by plotting  the values for our game in the following chart:
 
 
 <img
