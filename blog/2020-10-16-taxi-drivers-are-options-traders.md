@@ -306,7 +306,7 @@ Feel free to explore it, come up with more analysis, and let me know your findin
 
 I am particularly interested in expanding these results based on weather data. I let readers give it a try using the hourly data 
 available on the QuestDB demo server. In his [analysis](https://toddwschneider.com/posts/analyzing-1-1-billion-nyc-taxi-and-uber-trips-with-a-vengeance/#taxi-weather), 
-Todd W Schneider concluded that the rain had no significant impact on the number of rides. But what about earnings? Doesn't it feel like 
+Todd W Schneider concluded that the rain had no significant impact on the number of rides. But what about the fare value? Doesn't it feel like 
 when it's raining, traffic gets slower? It would be interesting to study how the weather affects a driver's speed, and in turn earnings.
 This is only one of the so many fascinating questions left to explore with this dataset.
 
