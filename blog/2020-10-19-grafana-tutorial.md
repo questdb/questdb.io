@@ -8,7 +8,6 @@ tags: [tutorial]
 description: How to use Grafana and QuestDB to build a monitoring dashboard.
 ---
 
-# Build a monitoring dashboard with QuestDB and Grafana
 
 
 ## Introduction
@@ -37,7 +36,7 @@ docker run -p 8812:8812 questdb/questdb
 https://we.tl/t-4ON5T3sYmt
 
 ### Importing the dataset
-!!! TODO !!!
+[Inserting data] into QuestDB
 
 ## Creating your first visualization
 
@@ -53,7 +52,7 @@ password:quest
 SSL mode:disable
 ```
 
-Note: Grafana does not validate that queries are read-only, therefore a Grafana user could run `drop table x` and the statement would be executed. To protect against this, you might want to run a dedicated QuestDB instance set to read-only mode. You can do this by setting `http.security.readonly=true` in your `server.conf`  <--  !!! TODO !!! replace with new doc link
+Note: Grafana does not validate that queries are read-only, therefore a Grafana user could run `drop table x` and the statement would be executed. To protect against this, you might want to run a dedicated QuestDB instance set to read-only mode. You can do this by  `http.security.readonly=true` in your `server.conf`. Documentation link: https://questdb.io/docs/reference/configuration
 
 ### Create a dashboard
 
@@ -220,3 +219,5 @@ src="/img/blog/2020-10-19/enabling-2nd-y-axis.png"
 
 In the pop-up, click on the Y-axis tab and enable use of the right axis for this series.
 
+
+[Inserting data]: https://questdb.io/docs/develop/insert-data
