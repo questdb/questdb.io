@@ -164,7 +164,7 @@ try:
                                   password="quest",
                                   host="127.0.0.1",
                                   port="8812",
-                                  database="postgres_db")
+                                  database="qdb")
 
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties

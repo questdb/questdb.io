@@ -298,7 +298,7 @@ try:
                                   password="quest",
                                   host="127.0.0.1",
                                   port="8812",
-                                  database="postgres_db")
+                                  database="qdb")
     cursor = connection.cursor()
     postgreSQL_select_Query = "SELECT x FROM long_sequence(5);"
     cursor.execute(postgreSQL_select_Query)
