@@ -35,11 +35,11 @@ docker run -p 8812:8812 questdb/questdb
 ```
 
 ### Downloading the dataset
-On our live [demo](http://try.questdb.io:9000/), you can find 10+ years of taxi data. For this tutorial, we have a subset of that data, the data for the whole of February 2018. You can download the compressed dataset [here](https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/grafana_tutorial_dataset.tar.gz).
+On our live [demo](http://try.questdb.io:9000/), you can find 10+ years of taxi data. For this tutorial, we have a subset of that data, the data for the whole of February 2018. You can download the compressed dataset [from Amazon S3](https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/grafana_tutorial_dataset.tar.gz).
 
 
 ### Importing the dataset
-Now that we have the dataset, you can import the data by following the instructions [here](https://questdb.io/docs/develop/insert-data).
+Now that we have the dataset, you can import the data by following our [documentation](https://questdb.io/docs/develop/insert-data).
 
 ## Creating your first visualization
 
@@ -55,8 +55,8 @@ password:quest
 SSL mode:disable
 ```
 
-Note: Grafana does not validate that queries are read-only, therefore a Grafana user could run `drop table x` and the statement would be executed. To protect against this, you might want to run a dedicated QuestDB instance set to read-only mode. You can do this by  `http.security.readonly=true` in your `server.conf`. Documentation link: https://questdb.io/docs/reference/configuration
-
+Note: Grafana does not validate that queries are read-only, therefore a Grafana user could run: `drop table x`
+and the statement would be executed. To protect against this, you might want to run a dedicated QuestDB instance set to read-only mode. You can do this by  `http.security.readonly=true` in your `server.conf`. Please check the [configuration page](https://questdb.io/docs/reference/configuration).
 
 
 ### Create a new dashboard and add a panel
@@ -140,7 +140,7 @@ src="/img/blog/2020-10-19/panel-filtering-by-taxi-type.png"
 
 You might have noticed that we are using avg() function to calculate the average distance. The avg() function is an aggregate function, in this case, aggregating data over the specified sampling interval. This means that if the sampling interval is 1-hour, then we are in effect calculating the average distance traveled during each 1-hour interval.
 
-You can find more information on aggregate functions: here
+You can find more information on [aggregate functions on our documentation](https://questdb.io/docs/reference/function/aggregation).
 
 There are also 2 key grafana functions used in the query above:
 
@@ -222,5 +222,5 @@ src="/img/blog/2020-10-19/enabling-2nd-y-axis.png"
 
 In the pop-up, click on the Y-axis tab and enable use of the right axis for this series.
 
-
-[Inserting data]: https://questdb.io/docs/develop/insert-data
+## Conclusion
+In summary, we have showed you how to visualize your data by harnessing the power of Grafana and QuestDB. For more information on QuestDB, please go to our [documentation page](https://questdb.io/docs/introduction/).
