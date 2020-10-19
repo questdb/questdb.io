@@ -132,19 +132,15 @@ public class ConnectExample {
 <TabItem value="c">
 
 ```c
-
 // compile with
 // g++ libpq_example.c -o libpq_example.exe  -I pgsql\include -L dev\pgsql\lib -std=c++17  -lpthread -lpq
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <libpq-fe.h>
-
 void do_exit(PGconn *conn) {
     PQfinish(conn);
     exit(1);
 }
-
 int main() {
     PGconn *conn = PQconnectdb("host=localhost user=admin password=quest port=8812 dbname=testdb");
     if (PQstatus(conn) == CONNECTION_BAD) {
