@@ -239,7 +239,7 @@ int main() {
             PQerrorMessage(conn));
         do_exit(conn);
     }
-    PGresult *res = PQexec(conn, "select 1");    
+    PGresult *res = PQexec(conn, "SELECT x FROM long_sequence(5);");    
     if (PQresultStatus(res) != PGRES_TUPLES_OK) {
         printf("No data retrieved\n");        
         PQclear(res);
@@ -274,10 +274,10 @@ public class App {
         properties.setProperty("sslmode", "disable");
 
         final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
-        try (PreparedStatement preparedStatement = connection.prepareStatement("select * from test")) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT x FROM long_sequence(5);")) {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
-                    System.out.println(rs.getString(1) + "," + rs.getInt(2));
+                    System.out.println(rs.getLong(1));
                 }
             }
         }
@@ -300,7 +300,7 @@ try:
                                   port="8812",
                                   database="postgres_db")
    cursor = connection.cursor()
-   postgreSQL_select_Query = "select * from test"
+   postgreSQL_select_Query = "SELECT x FROM long_sequence(5);"
 
    cursor.execute(postgreSQL_select_Query)
    print("Selecting rows from test table using cursor.fetchall")
@@ -308,8 +308,7 @@ try:
    
    print("Print each row and it's columns values")
    for row in mobile_records:
-       print("x = ", row[0], )
-       print("y = ", row[1], "\n")
+       print("y = ", row[0], "\n")
 
 except (Exception, psycopg2.Error) as error :
     print ("Error while fetching data from PostgreSQL", error)
