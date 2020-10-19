@@ -35,7 +35,7 @@ docker run -p 8812:8812 questdb/questdb
 ```
 
 ### Downloading the dataset
-On our live [demo](http://try.questdb.io:9000/), you can find 10+ years of taxi data. For this tutorial, we have a subset of that data, the data for the whole of February 2018. You can download the compressed dataset [here](https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/grafana_tutorial_dataset.tar.gz)
+On our live [demo](http://try.questdb.io:9000/), you can find 10+ years of taxi data. For this tutorial, we have a subset of that data, the data for the whole of February 2018. You can download the compressed dataset [here](https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/grafana_tutorial_dataset.tar.gz).
 
 
 ### Importing the dataset
