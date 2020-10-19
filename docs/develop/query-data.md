@@ -223,35 +223,36 @@ func checkErr(err error) {
 
 ```c
 // compile with
-// g++ libpq_example.c -o libpq_example.exe  -I pgsql\include -L dev\pgsql\lib -std=c++17  -lpthread -lpq
-
+// g++ libpq_example.c -o libpq_example.exe  -I pgsql\include -L dev\pgsql\lib
+// -std=c++17  -lpthread -lpq
+#include <libpq-fe.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <libpq-fe.h>
 void do_exit(PGconn *conn) {
-    PQfinish(conn);
-    exit(1);
+  PQfinish(conn);
+  exit(1);
 }
 int main() {
-    PGconn *conn = PQconnectdb("host=localhost user=admin password=quest port=8812 dbname=testdb");
-    if (PQstatus(conn) == CONNECTION_BAD) {
-        fprintf(stderr, "Connection to database failed: %s\n",
+  PGconn *conn = PQconnectdb(
+      "host=localhost user=admin password=quest port=8812 dbname=testdb");
+  if (PQstatus(conn) == CONNECTION_BAD) {
+    fprintf(stderr, "Connection to database failed: %s\n",
             PQerrorMessage(conn));
-        do_exit(conn);
-    }
-    PGresult *res = PQexec(conn, "SELECT x FROM long_sequence(5);");    
-    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
-        printf("No data retrieved\n");        
-        PQclear(res);
-        do_exit(conn);
-    }       
-    int rows = PQntuples(res);
-    for(int i=0; i<rows; i++) {
-        printf("%s\n", PQgetvalue(res, i, 0));
-    }        
+    do_exit(conn);
+  }
+  PGresult *res = PQexec(conn, "SELECT x FROM long_sequence(5);");
+  if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+    printf("No data retrieved\n");
     PQclear(res);
-    PQfinish(conn);
-    return 0;
+    do_exit(conn);
+  }
+  int rows = PQntuples(res);
+  for (int i = 0; i < rows; i++) {
+    printf("%s\n", PQgetvalue(res, i, 0));
+  }
+  PQclear(res);
+  PQfinish(conn);
+  return 0;
 }
 ```
 
