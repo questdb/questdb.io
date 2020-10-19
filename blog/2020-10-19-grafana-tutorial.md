@@ -55,8 +55,11 @@ password:quest
 SSL mode:disable
 ```
 
-Note: Grafana does not validate that queries are read-only, therefore a Grafana user could run: `drop table x`
-and the statement would be executed. To protect against this, you might want to run a dedicated QuestDB instance set to read-only mode. You can do this by  `http.security.readonly=true` in your `server.conf`. Please check the [configuration page](https://questdb.io/docs/reference/configuration).
+Note: Grafana does not validate that queries are read-only, therefore a Grafana user could run: 
+
+`drop table x`
+
+To protect against this, you might want to run a dedicated QuestDB instance set to read-only mode. You can do this by  `http.security.readonly=true` in your `server.conf`. Please check the [configuration page](https://questdb.io/docs/reference/configuration).
 
 
 ### Create a new dashboard and add a panel
