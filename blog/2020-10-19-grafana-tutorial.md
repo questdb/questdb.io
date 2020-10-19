@@ -162,7 +162,7 @@ WHERE $__timeFilter(pickup_datetime)
 SAMPLE BY $__interval;
 ```
 
-This is what it looks like when viewing it over a time range of 28 days
+This is what it looks like when viewing it over a time range of 28 days:
 <img
 alt="A panel showing the number of trips over a month using dynamic sampling."
 className="screenshot--shadow screenshot--docs"
