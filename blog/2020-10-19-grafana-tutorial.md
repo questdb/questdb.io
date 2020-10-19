@@ -182,7 +182,7 @@ src="/img/blog/2020-10-19/panel-count-of-taxi-trips-in-a-day.png"
 
 ASOF joins allow us to join 2 tables based on timestamp where timestamps do not exactly match.
 
-Here we are joining the taxi trips data with weather data
+Here we are joining the taxi trips data with weather data:
 
 ```
 SELECT
