@@ -129,6 +129,9 @@ that QuestDB exposes. This is accessible via port `8812`.
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
+  { label: "JDBC", value: "java" },
+  { label: "C", value: "c" },
+  { label: "Python", value: "python" },
 ]}>
 
 
@@ -214,6 +217,110 @@ func checkErr(err error) {
 }
 ```
 
+</TabItem>
+
+<TabItem value="c">
+
+```c
+// compile with
+// g++ libpq_example.c -o libpq_example.exe  -I pgsql\include -L dev\pgsql\lib -std=c++17  -lpthread -lpq
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <libpq-fe.h>
+void do_exit(PGconn *conn) {
+    PQfinish(conn);
+    exit(1);
+}
+int main() {
+    PGconn *conn = PQconnectdb("host=localhost user=admin password=quest port=8812 dbname=testdb");
+    if (PQstatus(conn) == CONNECTION_BAD) {
+        fprintf(stderr, "Connection to database failed: %s\n",
+            PQerrorMessage(conn));
+        do_exit(conn);
+    }
+    PGresult *res = PQexec(conn, "select 1");    
+    if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+        printf("No data retrieved\n");        
+        PQclear(res);
+        do_exit(conn);
+    }       
+    int rows = PQntuples(res);
+    for(int i=0; i<rows; i++) {
+        printf("%s\n", PQgetvalue(res, i, 0));
+    }        
+    PQclear(res);
+    PQfinish(conn);
+    return 0;
+}
+```
+
+</TabItem>
+
+
+<TabItem value="java">
+
+```java
+package com.myco;
+
+import java.sql.*;
+import java.util.Properties;
+
+public class App {
+    public static void main(String[] args) throws SQLException {
+        Properties properties = new Properties();
+        properties.setProperty("user", "admin");
+        properties.setProperty("password", "quest");
+        properties.setProperty("sslmode", "disable");
+
+        final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
+        try (PreparedStatement preparedStatement = connection.prepareStatement("select * from test")) {
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    System.out.println(rs.getString(1) + "," + rs.getInt(2));
+                }
+            }
+        }
+        connection.close();
+    }
+}
+
+```
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import psycopg2
+
+try:
+   connection = psycopg2.connect(user="admin",
+                                  password="quest",
+                                  host="127.0.0.1",
+                                  port="8812",
+                                  database="postgres_db")
+   cursor = connection.cursor()
+   postgreSQL_select_Query = "select * from test"
+
+   cursor.execute(postgreSQL_select_Query)
+   print("Selecting rows from test table using cursor.fetchall")
+   mobile_records = cursor.fetchall() 
+   
+   print("Print each row and it's columns values")
+   for row in mobile_records:
+       print("x = ", row[0], )
+       print("y = ", row[1], "\n")
+
+except (Exception, psycopg2.Error) as error :
+    print ("Error while fetching data from PostgreSQL", error)
+
+finally:
+    #closing database connection.
+    if(connection):
+        cursor.close()
+        connection.close()
+        print("PostgreSQL connection is closed")
+```
 </TabItem>
 
 
