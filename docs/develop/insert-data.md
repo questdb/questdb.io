@@ -369,7 +369,7 @@ func checkErr(err error) {
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
 that QuestDB exposes. This is accessible via port `8812`.
 
-<Tabs defaultValue="curl" values={[
+<Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
 ]}>
 
