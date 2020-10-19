@@ -8,15 +8,13 @@ tags: [tutorial]
 description: How to use Grafana and QuestDB to build a monitoring dashboard.
 ---
 
-
-
-## Introduction
 In this tutorial you will learn how to use QuestDB as a data source for your Grafana dashboards and create visualizations using aggregate functions and sampling
+<!-- truncate -->
 
 ## What is Grafana?
 Grafana is an open-source visualization tool. It consists of a server that connects to one or more data-sources to retrieve data, which is then visualized by the user in a browser.
 
-## Grafana concepts
+## Grafana's concepts
 Before going ahead, let’s review 3 essential Grafana concepts that we will use in this tutorial:
 
 1. **Data source** - this is how you tell Grafana where your data is stored and how you want to access it. For the purposes of our tutorial, we will have a QuestDB server running and we will access it via Postgres Wire using the PostgreSQL data source plugin.
@@ -25,18 +23,23 @@ Before going ahead, let’s review 3 essential Grafana concepts that we will use
 
 ## Setup
 ### Running Grafana
+```shell
 docker run -p 3000:3000 grafana/grafana
+```
 
 Once the Grafana server has started, you can access it via port 3000 (http://locahost:3000).
 
 ### Running QuestDB
+```shell
 docker run -p 8812:8812 questdb/questdb
+```
 
 ### Downloading the dataset
-https://we.tl/t-4ON5T3sYmt
+On our live [demo](http://try.questdb.io:9000/), you can find 10+ years of taxi data. For this tutorial, we have a subset of that data, the data for the whole of February 2018. You can download the compressed dataset [here](https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/grafana_tutorial_dataset.tar.gz)
+
 
 ### Importing the dataset
-[Inserting data] into QuestDB
+Now that we have the dataset, you can import the data by following the instructions [here](https://questdb.io/docs/develop/insert-data).
 
 ## Creating your first visualization
 
@@ -45,9 +48,9 @@ https://we.tl/t-4ON5T3sYmt
 Choose PostgreSQL plugin and configure it with the following settings
 
 ```
-host: localhost:8812
+host:localhost:8812
 database:qdb
-user: admin
+user:admin
 password:quest
 SSL mode:disable
 ```
@@ -60,7 +63,7 @@ Note: Grafana does not validate that queries are read-only, therefore a Grafana 
 Now that we have a data source and a dashboard, we can go ahead and add our first panel.
 
 <img
-alt="An image of new dashboard with a 'Add new panel' button"
+alt="Screenshot of a new dashboard with a 'Add new panel' button"
 className="screenshot--shadow screenshot--docs"
 src="/img/blog/2020-10-19/add-new-panel.png"
 />
@@ -69,14 +72,14 @@ src="/img/blog/2020-10-19/add-new-panel.png"
 
 The new panel will look like this:
 <img
-alt="An blank panel after being created"
+alt="Screenshot of a blank panel after being created"
 className="screenshot--shadow screenshot--docs"
 src="/img/blog/2020-10-19/blank-panel.png"
 />
 
 Toggle the query edit box to “text edit mode” by clicking on the pencil icon. Your edit box should look like this:
 <img
-alt="How to toggle text edit mode"
+alt="Screenshot showing how to toggle text edit mode"
 className="screenshot--shadow screenshot--docs"
 src="/img/blog/2020-10-19/toggle-text-edit.png"
 />
@@ -95,7 +98,7 @@ SAMPLE BY $__interval
 
 And here we have our first panel!
 <img
-alt="Our first panel, showing the average distance travelled."
+alt="Screenshot of our first panel, showing the average distance travelled."
 className="screenshot--shadow screenshot--docs"
 src="/img/blog/2020-10-19/first-panel.png"
 />
