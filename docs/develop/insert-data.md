@@ -364,6 +364,55 @@ func checkErr(err error) {
 </Tabs>
 
 
+## Postgres compatibility
+
+You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
+that QuestDB exposes. This is accessible via port `8812`.
+
+<Tabs defaultValue="curl" values={[
+  { label: "NodeJS", value: "nodejs" },
+]}>
+
+
+<TabItem value="nodejs">
+
+
+```javascript
+const { Client } = require("pg")
+
+const start = async () => {
+  try {
+    const client = new Client({
+      database: "qdb",
+      host: "127.0.0.1",
+      password: "quest",
+      port: 8812,
+      user: "admin",
+    })
+    await client.connect()
+
+    const res = await client.query("INSERT INTO test VALUES($1, $2);", [
+      "abc",
+      "123",
+    ])
+
+    console.log(res)
+
+    await client.end()
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+start()
+```
+
+</TabItem>
+
+
+</Tabs>
+
+
 ## Web Console
 
 Our Web Console has an import function. You can find out more about this on the

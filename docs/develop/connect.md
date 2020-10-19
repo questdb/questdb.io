@@ -104,7 +104,9 @@ docker run -it --rm --network=host -e PGPASSWORD=quest postgres psql -h localhos
 
 </TabItem>
 
+
 <TabItem value="java">
+
 
 ```java
 package com.myco;
@@ -127,9 +129,12 @@ public class ConnectExample {
     }
 }
 ```
+
 </TabItem>
 
+
 <TabItem value="c">
+
 
 ```c
 // compile with
@@ -155,7 +160,9 @@ int main() {
 
 </TabItem>
 
+
 <TabItem value="python">
+
 
 ```python
 import psycopg2
@@ -184,7 +191,9 @@ finally:
         connection.close()
         print("PostgreSQL connection is closed")
 ```
+
 </TabItem>
+
 
 </Tabs>
 

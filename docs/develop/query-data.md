@@ -219,7 +219,9 @@ func checkErr(err error) {
 
 </TabItem>
 
+
 <TabItem value="c">
+
 
 ```c
 // compile with
@@ -261,6 +263,7 @@ int main() {
 
 <TabItem value="java">
 
+
 ```java
 package com.myco;
 
@@ -287,9 +290,12 @@ public class App {
 }
 
 ```
+
 </TabItem>
 
+
 <TabItem value="python">
+
 
 ```python
 import psycopg2
@@ -317,6 +323,7 @@ finally:
         connection.close()
         print("PostgreSQL connection is closed")
 ```
+
 </TabItem>
 
 
