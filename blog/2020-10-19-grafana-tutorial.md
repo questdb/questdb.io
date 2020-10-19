@@ -194,7 +194,7 @@ ASOF JOIN weather
 SAMPLE BY $__interval;
 ```
 
-This is what it looks like for the whole month of February 2018
+This is what it looks like for the whole month of February 2018:
 <img
 alt="A panel showing taxi fares plotted against rain fall"
 className="screenshot--shadow screenshot--docs"
