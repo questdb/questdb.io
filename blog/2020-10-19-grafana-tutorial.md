@@ -146,7 +146,7 @@ There are also 2 key grafana functions used in the query above:
 
 `$__timeFilter(pickup_datetime)`
 This handy function tells Grafana to send the from and to time defined in the Dashboard to the QuestDB server.  Grafana translates this to:
-pickup_datetime BETWEEN '2018-02-01T00:00:00Z' AND '2018-02-28T23:59:59Z'
+`pickup_datetime BETWEEN '2018-02-01T00:00:00Z' AND '2018-02-28T23:59:59Z'`.
 
 `$__interval`
 This function calculates a dynamic interval based on the time range applied to the dashboard. By using this function, the sampling interval changes automatically as the user zooms in and out of panel.
