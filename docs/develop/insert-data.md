@@ -371,6 +371,7 @@ that QuestDB exposes. This is accessible via port `8812`.
 
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
+{ label: "Go", value: "go" },
 ]}>
 
 
@@ -409,6 +410,48 @@ start()
 
 </TabItem>
 
+<TabItem value="go">
+
+```go
+package main
+
+import (
+  "database/sql"
+  "fmt"
+  _ "github.com/lib/pq"
+)
+
+const (
+  host     = "localhost"
+  port     = 8812
+  user     = "admin"
+  password = "quest"
+  dbname   = "qdb"
+)
+
+func main() {
+    connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+
+    db, err := sql.Open("postgres", connStr)
+  if err != nil {
+    panic(err)
+  }
+  defer db.Close()
+
+  rows, err := db.Query("insert into x values ('TRUCK')")
+  checkErr(err)
+  defer rows.Close()
+  fmt.Println("Done")
+}
+
+func checkErr(err error) {
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+</TabItem>
 
 </Tabs>
 
