@@ -195,6 +195,8 @@ func main() {
 	checkErr(err)
 	defer db.Close()
 
+
+    //currently we do not support queries with named variables in GO
 	rows, err := db.Query("SELECT x FROM long_sequence(5);")
 	checkErr(err)
 	defer rows.Close()

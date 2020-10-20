@@ -441,6 +441,7 @@ func main() {
   }
   defer db.Close()
 
+  //currently we do not support queries with named variables in GO
   rows, err := db.Query("insert into x values ('TRUCK')")
   checkErr(err)
   defer rows.Close()
