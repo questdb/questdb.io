@@ -20,7 +20,7 @@ Returns all tables in the database.
 
 Returns a `table`.
 
-### Examples:
+### Examples
 
 - Get all tables in the database
 
@@ -79,7 +79,7 @@ Returns a `table` with two columns:
 - `columnName` - name of the available columns in the table
 - `columnType` - type of the column
 
-### Examples:
+### Examples
 
 - Get all columns in the table
 

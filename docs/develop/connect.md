@@ -25,6 +25,9 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
+  { label: "JDBC", value: "java" },
+  { label: "C", value: "c" },
+  { label: "Python", value: "python" },
   { label: "psql", value: "psql" },
 ]}>
 
@@ -97,6 +100,96 @@ psql -h localhost -p 8812 -U admin -d qdb
 
 # OR, with Docker (does not require locally installed client)
 docker run -it --rm --network=host -e PGPASSWORD=quest postgres psql -h localhost -p 8812 -U admin -d qdb
+```
+
+</TabItem>
+
+
+<TabItem value="java">
+
+
+```java
+package com.myco;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class ConnectExample {
+    public static void main(String[] args) throws SQLException {
+        Properties properties = new Properties();
+        properties.setProperty("user", "admin");
+        properties.setProperty("password", "quest");
+        properties.setProperty("sslmode", "disable");
+
+        final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
+        System.out.println("Connected");
+        connection.close();
+    }
+}
+```
+
+</TabItem>
+
+
+<TabItem value="c">
+
+
+```c
+// compile with
+// g++ libpq_example.c -o libpq_example.exe  -I pgsql\include -L dev\pgsql\lib -std=c++17  -lpthread -lpq
+#include <stdio.h>
+#include <stdlib.h>
+#include <libpq-fe.h>
+void do_exit(PGconn *conn) {
+    PQfinish(conn);
+    exit(1);
+}
+int main() {
+    PGconn *conn = PQconnectdb("host=localhost user=admin password=quest port=8812 dbname=testdb");
+    if (PQstatus(conn) == CONNECTION_BAD) {
+        fprintf(stderr, "Connection to database failed: %s\n",
+            PQerrorMessage(conn));
+        do_exit(conn);
+    }
+    PQfinish(conn);
+    return 0;
+}
+```
+
+</TabItem>
+
+
+<TabItem value="python">
+
+
+```python
+import psycopg2
+try:
+    connection = psycopg2.connect(user="admin",
+                                  password="quest",
+                                  host="127.0.0.1",
+                                  port="8812",
+                                  database="qdb")
+
+    cursor = connection.cursor()
+    # Print PostgreSQL Connection properties
+    print(connection.get_dsn_parameters(), "\n")
+
+    # Print PostgreSQL version
+    cursor.execute("SELECT version();")
+    record = cursor.fetchone()
+    print("You are connected to - ", record, "\n")
+
+except (Exception, psycopg2.Error) as error:
+    print("Error while connecting to PostgreSQL", error)
+finally:
+    #closing database connection.
+    if (connection):
+        cursor.close()
+        connection.close()
+        print("PostgreSQL connection is closed")
 ```
 
 </TabItem>

@@ -17,9 +17,9 @@ description: Timestamp generator function reference documentation.
 
 ### Description
 
-- `timestamp_sequnence(startTimestamp, step)` generates a sequence of
-  `timestamp` starting at `startTimestamp`, and incrementing by a `step` set as
-  a `long` value in microseconds. This `step` can be.
+- `timestamp_sequence(startTimestamp, step)` generates a sequence of `timestamp`
+  starting at `startTimestamp`, and incrementing by a `step` set as a `long`
+  value in microseconds. This `step` can be.
 - a static value, in which case the growth will be monotonic.
 - a randomized value, in which case the growth will be randomized. This is done
   using

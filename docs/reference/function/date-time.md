@@ -22,7 +22,7 @@ manually changes the system time).
 
 Return value type is `timestamp`.
 
-### Examples:
+### Examples
 
 ```questdb-sql title="Insert current system timestamp"
 INSERT INTO readings
@@ -57,7 +57,7 @@ system administrator manually changes the system time).
 
 Return value type is `date`.
 
-### Examples:
+### Examples
 
 ```questdb-sql title="Insert current system date along with a value"
 INSERT INTO readings
