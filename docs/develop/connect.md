@@ -25,7 +25,7 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
-  { label: "JDBC", value: "java" },
+  { label: "Java", value: "java" },
   { label: "C", value: "c" },
   { label: "Python", value: "python" },
   { label: "psql", value: "psql" },

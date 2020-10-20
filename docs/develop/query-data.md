@@ -129,7 +129,7 @@ that QuestDB exposes. This is accessible via port `8812`.
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
-  { label: "JDBC", value: "java" },
+  { label: "Java", value: "java" },
   { label: "C", value: "c" },
   { label: "Python", value: "python" },
 ]}>
