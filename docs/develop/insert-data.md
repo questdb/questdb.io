@@ -371,7 +371,8 @@ that QuestDB exposes. This is accessible via port `8812`.
 
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
-{ label: "Go", value: "go" },
+  { label: "Go", value: "go" },
+  { label: "Python", value: "python" },
 ]}>
 
 
@@ -449,6 +450,31 @@ func checkErr(err error) {
         panic(err)
     }
 }
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import psycopg2
+try:
+    connection = psycopg2.connect(user="admin",
+                                  password="quest",
+                                  host="127.0.0.1",
+                                  port="8812",
+                                  database="qdb")
+    cursor = connection.cursor()
+    postgreSQL_select_Query = "INSERT INTO x VALUES ('LORRY')"
+    cursor.execute(postgreSQL_select_Query)
+    print("Inserted row")
+finally:
+    #closing database connection.
+    if (connection):
+        cursor.close()
+        connection.close()
+        print("PostgreSQL connection is closed")
+
 ```
 
 </TabItem>
