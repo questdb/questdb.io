@@ -419,40 +419,40 @@ start()
 package main
 
 import (
-  "database/sql"
-  "fmt"
-  _ "github.com/lib/pq"
+        "database/sql"
+        "fmt"
+        _ "github.com/lib/pq"
 )
 
 const (
-  host     = "localhost"
-  port     = 8812
-  user     = "admin"
-  password = "quest"
-  dbname   = "qdb"
+        host     = "localhost"
+        port     = 8812
+        user     = "admin"
+        password = "quest"
+        dbname   = "qdb"
 )
 
 func main() {
-    connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+        connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 
-    db, err := sql.Open("postgres", connStr)
-  if err != nil {
-    panic(err)
-  }
-  defer db.Close()
+        db, err := sql.Open("postgres", connStr)
+        if err != nil {
+                panic(err)
+        }
+        defer db.Close()
 
-  //currently we do not support queries with named variables in GO
-  rows, err := db.Query("insert into x values ('TRUCK')")
-  checkErr(err)
-  defer rows.Close()
-  fmt.Println("Done")
+        rows, err := db.Query("insert into x values ('abc', 123)")
+        checkErr(err)
+        defer rows.Close()
+        fmt.Println("Done")
 }
 
 func checkErr(err error) {
-    if err != nil {
-        panic(err)
-    }
+        if err != nil {
+                panic(err)
+        }
 }
+
 ```
 
 </TabItem>
@@ -473,8 +473,9 @@ class App {
     properties.setProperty("sslmode", "disable");
 
     final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
-    try (PreparedStatement preparedStatement = connection.prepareStatement("insert into x (vehicle) values (?)")) {
-      preparedStatement.setString(1, "VAN");
+    try (PreparedStatement preparedStatement = connection.prepareStatement("insert into x (id, ref) values (?, ?)")) {
+      preparedStatement.setString(1, "abc");
+      preparedStatement.setInt(2, 123);
       preparedStatement.execute();
     }
     System.out.println("Done");
@@ -508,7 +509,7 @@ int main() {
                 PQerrorMessage(conn));
         do_exit(conn);
     }
-    PGresult *res = PQexec(conn, "INSERT INTO x VALUES ('BIKE');");
+    PGresult *res = PQexec(conn, "INSERT INTO x VALUES ('abc', 123);");
     PQclear(res);
     PQfinish(conn);
     printf("Done\n");
@@ -530,7 +531,7 @@ try:
                                   port="8812",
                                   database="qdb")
     cursor = connection.cursor()
-    postgreSQL_select_Query = "INSERT INTO x VALUES ('LORRY')"
+    postgreSQL_select_Query = "INSERT INTO x VALUES ('abc', 123)"
     cursor.execute(postgreSQL_select_Query)
     print("Inserted row")
 finally:
