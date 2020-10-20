@@ -17,7 +17,7 @@ declare module "@docusaurus/useDocusaurusContext" {
     items: Item[]
   }
 
-  interface Ctx {
+  type Ctx = {
     siteConfig: Omit<DocusaurusConfig, "customFields" | "themeConfig"> & {
       customFields: {
         artifactHubUrl: string
@@ -40,7 +40,7 @@ declare module "@docusaurus/useDocusaurusContext" {
         image: string
         navbar: {
           hideOnScroll: boolean
-          items: ComponentProps<typeof NavbarItem>[]
+          items: Array<ComponentProps<typeof NavbarItem>>
           logo: { alt: string; src: string }
           title: string
         }

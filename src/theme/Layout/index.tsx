@@ -4,10 +4,10 @@ import Head from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 
-import UserPreferencesProvider from "@theme/UserPreferencesProvider"
 import AnnouncementBar from "@theme/AnnouncementBar"
-import Navbar from "@theme/Navbar"
 import Footer from "@theme/Footer"
+import LayoutProviders from "@theme/LayoutProviders"
+import Navbar from "@theme/Navbar"
 
 import styles from "./styles.module.css"
 
@@ -39,17 +39,17 @@ const Layout = ({
     url: siteUrl,
   } = siteConfig
   const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle
-  const metaImage = image || defaultImage
+  const metaImage = image ?? defaultImage
   const metaImageUrl = useBaseUrl(metaImage, { absolute: true })
 
   return (
-    <UserPreferencesProvider>
+    <LayoutProviders>
       <Head>
         <title>{metaTitle}</title>
         {permalink && <link rel="canonical" href={siteUrl + permalink} />}
         {description && <meta name="description" content={description} />}
         <meta property="og:image" content={metaImageUrl} />
-        <meta property="og:url" content={`${siteUrl}${permalink || ""}`} />
+        <meta property="og:url" content={`${siteUrl}${permalink ?? ""}`} />
         <meta property="og:title" content={metaTitle} />
         {description && (
           <meta property="og:description" content={description} />
@@ -71,7 +71,7 @@ const Layout = ({
         {children}
       </div>
       {!noFooter && <Footer />}
-    </UserPreferencesProvider>
+    </LayoutProviders>
   )
 }
 

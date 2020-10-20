@@ -44,7 +44,7 @@ const Button = ({
         className={classes}
         href={href}
         onClick={onClick}
-        {...(newTab === true
+        {...(newTab
           ? {
               rel: "noopener noreferrer",
               target: "_blank",

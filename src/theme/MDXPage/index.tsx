@@ -24,7 +24,7 @@ const MDXPage = (
       title={title}
       description={description}
       permalink={permalink}
-      /* @ts-ignore */
+      /* @ts-expect-error */
       wrapperClassname={clsx("container", "row", wrapperClassname)}
     >
       <main className="col col--8 col--offset-2">

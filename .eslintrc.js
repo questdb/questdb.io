@@ -6,11 +6,7 @@ module.exports = {
     es6: true,
   },
   extends: [
-    "standard",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "standard-with-typescript",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
@@ -79,13 +75,14 @@ module.exports = {
     "react/jsx-no-comment-textnodes": "warn",
     "react/jsx-curly-brace-presence": "error",
     "jsx-quotes": ["error", "prefer-double"],
-    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-this-alias": "off",
-    "@typescript-eslint/prefer-interface": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off", // @TODO: Revert this
     "quote-props": ["error", "as-needed"],
     "object-shorthand": ["error", "always"],
     "no-var": ["error"],
@@ -100,8 +97,7 @@ module.exports = {
     "prettier/prettier": ["error"],
   },
   settings: {
-    react: {
-      version: "detect",
-    },
+    "import/resolver": { typescript: {} },
+    react: { version: "detect" },
   },
 }

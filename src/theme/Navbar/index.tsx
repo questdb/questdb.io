@@ -13,10 +13,10 @@ import NavbarItem from "@theme/NavbarItem"
 const DefaultNavItemPosition = "right"
 
 function splitNavItemsByPosition(
-  items: ComponentProps<typeof NavbarItem>[],
+  items: Array<ComponentProps<typeof NavbarItem>>,
 ): {
-  leftItems: ComponentProps<typeof NavbarItem>[]
-  rightItems: ComponentProps<typeof NavbarItem>[]
+  leftItems: Array<ComponentProps<typeof NavbarItem>>
+  rightItems: Array<ComponentProps<typeof NavbarItem>>
 } {
   const leftItems = items.filter(
     (item) => (item.position ?? DefaultNavItemPosition) === "left",

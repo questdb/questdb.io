@@ -5,7 +5,7 @@ import Layout from "@theme/Layout"
 import styles from "./styles.module.css"
 
 const NotFound = () => (
-  // @ts-ignore
+  // @ts-expect-error
   <Layout flex title="Page not found">
     <div className={styles.wrapper}>
       <h1 className={styles.title}>404</h1>

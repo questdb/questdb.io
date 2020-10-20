@@ -16,8 +16,8 @@ type Props = Readonly<{
 }>
 
 const FooterLink = ({ to, href, label, ...props }: Props) => {
-  const linkHref = useBaseUrl(href || "", { forcePrependBaseUrl: undefined })
-  const linkTo = useBaseUrl(to || "")
+  const linkHref = useBaseUrl(href ?? "", { forcePrependBaseUrl: undefined })
+  const linkTo = useBaseUrl(to ?? "")
 
   return (
     <a
@@ -48,7 +48,7 @@ const Footer = () => {
   return (
     <footer
       className={clsx(footerStyles.footer, sectionStyles.section, {
-        [footerStyles["footer--alt"]]: metadataContext.altFooter === true,
+        [footerStyles["footer--alt"]]: metadataContext.altFooter,
       })}
     >
       <div
@@ -106,15 +106,14 @@ const Footer = () => {
                   </li>
                 )}
 
-                {linkItem.items &&
-                  linkItem.items.map((item) => (
-                    <li
-                      className={footerStyles.footer__item}
-                      key={item.href || item.to}
-                    >
-                      <FooterLink {...item} />
-                    </li>
-                  ))}
+                {linkItem.items?.map((item) => (
+                  <li
+                    className={footerStyles.footer__item}
+                    key={item.href || item.to}
+                  >
+                    <FooterLink {...item} />
+                  </li>
+                ))}
               </ul>
             </div>
           ))}

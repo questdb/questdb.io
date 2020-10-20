@@ -33,6 +33,7 @@ const DocPage = ({
     return <NotFound location={location} {...rest} />
   }
 
+  const sidebarName = permalinkToSidebar[currentDocRoute.path]
   const sidebar = docsSidebars[permalinkToSidebar[currentDocRoute.path]]
 
   return (
@@ -49,6 +50,11 @@ const DocPage = ({
               role="complementary"
             >
               <DocSidebar
+                key={
+                  // Reset sidebar state on sidebar changes
+                  // See https://github.com/facebook/docusaurus/issues/3414
+                  sidebarName
+                }
                 path={currentDocRoute.path}
                 sidebar={sidebar}
                 sidebarCollapsible={

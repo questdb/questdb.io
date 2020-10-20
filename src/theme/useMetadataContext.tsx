@@ -18,7 +18,7 @@ const MetadataContext = createContext(metadata)
 const useMetadataContext = () => useContext(MetadataContext)
 
 export const MetadataContextProvider = ({ children, value }: Props) => (
-  <MetadataContext.Provider value={value || metadata}>
+  <MetadataContext.Provider value={value ?? metadata}>
     {children}
   </MetadataContext.Provider>
 )
