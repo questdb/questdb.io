@@ -371,6 +371,10 @@ that QuestDB exposes. This is accessible via port `8812`.
 
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
+  { label: "Go", value: "go" },
+  { label: "Java", value: "java" },
+  { label: "C", value: "c" },
+  { label: "Python", value: "python" },
 ]}>
 
 
@@ -409,6 +413,135 @@ start()
 
 </TabItem>
 
+<TabItem value="go">
+
+```go
+package main
+
+import (
+  "database/sql"
+  "fmt"
+  _ "github.com/lib/pq"
+)
+
+const (
+  host     = "localhost"
+  port     = 8812
+  user     = "admin"
+  password = "quest"
+  dbname   = "qdb"
+)
+
+func main() {
+    connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+
+    db, err := sql.Open("postgres", connStr)
+  if err != nil {
+    panic(err)
+  }
+  defer db.Close()
+
+  rows, err := db.Query("insert into x values ('TRUCK')")
+  checkErr(err)
+  defer rows.Close()
+  fmt.Println("Done")
+}
+
+func checkErr(err error) {
+    if err != nil {
+        panic(err)
+    }
+}
+```
+
+</TabItem>
+
+<TabItem value="java">
+
+```java
+package com.myco;
+
+import java.sql.*;
+import java.util.Properties;
+
+class App {
+  public static void main(String[] args) throws SQLException {
+    Properties properties = new Properties();
+    properties.setProperty("user", "admin");
+    properties.setProperty("password", "quest");
+    properties.setProperty("sslmode", "disable");
+
+    final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
+    try (PreparedStatement preparedStatement = connection.prepareStatement("insert into x (vehicle) values (?)")) {
+      preparedStatement.setString(1, "VAN");
+      preparedStatement.execute();
+    }
+    System.out.println("Done");
+    connection.close();
+  }
+}
+
+```
+
+</TabItem>
+
+
+<TabItem value="c">
+
+```c
+// compile with
+// g++ libpq_example.c -o libpq_example.exe  -I pgsql\include -L dev\pgsql\lib
+// -std=c++17  -lpthread -lpq
+#include <libpq-fe.h>
+#include <stdio.h>
+#include <stdlib.h>
+void do_exit(PGconn *conn) {
+    PQfinish(conn);
+    exit(1);
+}
+int main() {
+    PGconn *conn = PQconnectdb(
+            "host=localhost user=admin password=quest port=8812 dbname=testdb");
+    if (PQstatus(conn) == CONNECTION_BAD) {
+        fprintf(stderr, "Connection to database failed: %s\n",
+                PQerrorMessage(conn));
+        do_exit(conn);
+    }
+    PGresult *res = PQexec(conn, "INSERT INTO x VALUES ('BIKE');");
+    PQclear(res);
+    PQfinish(conn);
+    printf("Done\n");
+    return 0;
+}
+```
+
+</TabItem>
+
+
+<TabItem value="python">
+
+```python
+import psycopg2
+try:
+    connection = psycopg2.connect(user="admin",
+                                  password="quest",
+                                  host="127.0.0.1",
+                                  port="8812",
+                                  database="qdb")
+    cursor = connection.cursor()
+    postgreSQL_select_Query = "INSERT INTO x VALUES ('LORRY')"
+    cursor.execute(postgreSQL_select_Query)
+    print("Inserted row")
+finally:
+    #closing database connection.
+    if (connection):
+        cursor.close()
+        connection.close()
+        print("PostgreSQL connection is closed")
+
+```
+
+</TabItem>
 
 </Tabs>
 
