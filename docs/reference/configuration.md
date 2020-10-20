@@ -46,6 +46,46 @@ your modifications to take effect
 
 :::
 
+## Logging
+
+### Configuration file
+
+Logs can be controlled via a dedicated file, for example:
+
+```shell title="qlog.conf"
+# list of configured writers
+writers=file,stdout
+
+# file writer
+#w.file.class=io.questdb.log.LogFileWriter
+#w.file.location=questdb-debug.log
+#w.file.level=INFO,ERROR
+
+# stdout
+w.stdout.class=io.questdb.log.LogConsoleWriter
+w.stdout.level=INFO,ERROR
+```
+
+QuestDB will look for `/qlog.conf` on the classpath unless this name is
+overridden via a "system" property: `-DquestdbLog=/something_else.conf`.
+
+### Environment variables
+
+Values in that file can be overridden with environment variables. For example:
+
+```shell title="Value set in qlog.conf"
+w.stdout.level=INFO
+```
+
+```shell title="Overriding the value using an environment variable"
+export QDB_LOG_W_STDOUT_LEVEL=ERROR
+```
+
+### Debug
+
+QuestDB logging can be quickly forced globally to `DEBUG` via either providing
+the java option `-Debug` or setting the environment variable `QDB_DEBUG=true`.
+
 ## Available keys and default values
 
 ### Shared worker
