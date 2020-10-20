@@ -128,8 +128,7 @@ const GetQuestdbPage = () => {
 
     if (differenceInDays(new Date(), new Date(release.published_at)) < 31) {
       setReleaseDate(
-        "dd" ||
-          `${formatDistanceToNowStrict(new Date(release.published_at))} ago`,
+        `${formatDistanceToNowStrict(new Date(release.published_at))} ago`,
       )
     }
     setOs(getOs())
