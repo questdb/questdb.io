@@ -196,7 +196,7 @@ func main() {
 	defer db.Close()
 
 
-    //currently we do not support queries with named variables in GO
+    // Currently, we do not support queries with bind parameters in Go
 	rows, err := db.Query("SELECT x FROM long_sequence(5);")
 	checkErr(err)
 	defer rows.Close()
