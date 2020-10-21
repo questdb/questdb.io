@@ -1,5 +1,5 @@
 ---
-title: Authentication for line protocol
+title: Authentication for InfluxDB line protocol
 author: Patrick Mackinlay
 author_title: QuestDB Team
 author_url: https://github.com/patrickSpaceSurfer
