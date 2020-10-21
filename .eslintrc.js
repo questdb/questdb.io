@@ -77,27 +77,14 @@ module.exports = {
     "jsx-quotes": ["error", "prefer-double"],
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-member-accessibility": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-this-alias": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off", // @TODO: Revert this
     "quote-props": ["error", "as-needed"],
     "object-shorthand": ["error", "always"],
     "no-var": ["error"],
-    "no-void": ["off"],
-    "no-console": [
-      "warn",
-      {
-        allow: ["warn", "error", "info"],
-      },
-    ],
-    "no-unused-vars": "off",
+    "no-console": ["warn", { allow: ["warn", "error", "info"] }],
     "prettier/prettier": ["error"],
   },
   settings: {
-    "import/resolver": { typescript: {} },
     react: { version: "detect" },
   },
 }

@@ -78,12 +78,12 @@ const Binary = ({
 
           <span className={binaryStyles.binary__size}>
             {rt && " rt -"}
-            {size && ` ${size}`}
+            {size != null && ` ${size}`}
           </span>
         </p>
       )}
 
-      {href && (
+      {href != null && (
         <Button
           className={binaryStyles.binary__download}
           href={href}
@@ -299,7 +299,7 @@ brew install questdb`}
                 </span>
                 &nbsp;({releaseDate})
               </p>
-              {os && os !== "macos" && assets[os] && (
+              {os != null && os !== "macos" && assets[os] && (
                 <Button href={assets[os].href} newTab={false}>
                   {os}&nbsp;Download
                 </Button>
@@ -372,7 +372,7 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
               </a>
             </p>
           </Binary>
-          {os ? (
+          {os != null ? (
             <>
               {perOs[os]}
               {os !== "linux" && perOs.linux}

@@ -29,7 +29,7 @@ const Button = ({
   variant,
 }: Props) => {
   const classes = clsx(className, styles.button, {
-    [styles["button--icon"]]: !!icon,
+    [styles["button--icon"]]: icon != null,
     [styles["button--primary"]]: variant === "primary",
     [styles["button--secondary"]]: variant === "secondary",
     [styles["button--small"]]: size === "small",
@@ -38,7 +38,7 @@ const Button = ({
     [styles["button--xsmall"]]: size === "xsmall",
   })
 
-  if (href) {
+  if (href != null) {
     return (
       <a
         className={classes}
@@ -57,7 +57,7 @@ const Button = ({
     )
   }
 
-  if (to) {
+  if (to != null) {
     return (
       <a className={classes} href={to} onClick={onClick}>
         {icon}

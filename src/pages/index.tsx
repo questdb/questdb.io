@@ -486,13 +486,13 @@ const L = [4, 0, 4, 8]
 
 const getTopByIndex = (m: number[], index: 1 | 2 | 3 | 4): number => {
   const scale = {
-    1: 25 * (m[0] || 0),
-    2: -25 * (m[1] || 0),
-    3: -25 * (m[2] || 0),
-    4: -25 * (m[3] || 0),
+    1: 25 * (m[0] ?? 0),
+    2: -25 * (m[1] ?? 0),
+    3: -25 * (m[2] ?? 0),
+    4: -25 * (m[3] ?? 0),
   }
 
-  return scale[index] || 0
+  return scale[index] ?? 0
 }
 
 const searchQuery = `SELECT timestamp, tempC
@@ -550,12 +550,12 @@ const QueryScroller = () => {
   }, [index])
 
   useEffect(() => {
-    if (windowWidth && windowWidth < 622) {
+    if (windowWidth != null && windowWidth < 622) {
       setTop(S)
       return
     }
 
-    if (windowWidth && windowWidth < 800) {
+    if (windowWidth != null && windowWidth < 800) {
       setTop(M)
       return
     }

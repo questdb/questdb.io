@@ -23,13 +23,13 @@ const DocPage = ({
   ...rest
 }: Props) => {
   const { siteConfig, isClient } = useDocusaurusContext()
-  const { permalinkToSidebar, docsSidebars } = versionMetadata || {}
+  const { permalinkToSidebar, docsSidebars } = versionMetadata ?? {}
   const docRoutes = (routes as unknown) as Routes[]
   const currentDocRoute = routes.find((docRoute) =>
     matchPath(location.pathname, docRoute),
   )
 
-  if (!currentDocRoute) {
+  if (currentDocRoute == null) {
     return <NotFound location={location} {...rest} />
   }
 
@@ -44,25 +44,23 @@ const DocPage = ({
         title="Introduction"
       >
         <div className={styles.doc}>
-          {sidebar && (
-            <div
-              className={clsx("docs-sidebar", styles.doc__sidebar)}
-              role="complementary"
-            >
-              <DocSidebar
-                key={
-                  // Reset sidebar state on sidebar changes
-                  // See https://github.com/facebook/docusaurus/issues/3414
-                  sidebarName
-                }
-                path={currentDocRoute.path}
-                sidebar={sidebar}
-                sidebarCollapsible={
-                  siteConfig.themeConfig?.sidebarCollapsible ?? true
-                }
-              />
-            </div>
-          )}
+          <div
+            className={clsx("docs-sidebar", styles.doc__sidebar)}
+            role="complementary"
+          >
+            <DocSidebar
+              key={
+                // Reset sidebar state on sidebar changes
+                // See https://github.com/facebook/docusaurus/issues/3414
+                sidebarName
+              }
+              path={currentDocRoute.path}
+              sidebar={sidebar}
+              sidebarCollapsible={
+                siteConfig.themeConfig?.sidebarCollapsible ?? true
+              }
+            />
+          </div>
           <main className={styles.doc__main}>
             <MDXProvider components={MDXComponents}>
               {renderRoutes(docRoutes)}

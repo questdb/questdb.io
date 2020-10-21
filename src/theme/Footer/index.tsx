@@ -22,7 +22,7 @@ const FooterLink = ({ to, href, label, ...props }: Props) => {
   return (
     <a
       className={footerStyles.footer__link}
-      {...(href
+      {...(href != null
         ? {
             href: linkHref,
             rel: "noopener noreferrer",
@@ -100,7 +100,7 @@ const Footer = () => {
           {links.map((linkItem, i) => (
             <div key={i} className={footerStyles.footer__links}>
               <ul className={footerStyles.footer__items}>
-                {linkItem.title && (
+                {linkItem.title != null && (
                   <li className={footerStyles.footer__title}>
                     {linkItem.title}
                   </li>
@@ -109,7 +109,7 @@ const Footer = () => {
                 {linkItem.items?.map((item) => (
                   <li
                     className={footerStyles.footer__item}
-                    key={item.href || item.to}
+                    key={item.href ?? item.to}
                   >
                     <FooterLink {...item} />
                   </li>
