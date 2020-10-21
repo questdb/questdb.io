@@ -12,7 +12,7 @@ InfluxDB line protocol is a simple and convenient way to add data points to Ques
 
 <!--truncate-->
 
-[Line protocol](/docs/reference/api/influxdb) is popular becuase its a simple text based format, you just open a socket and send data points line by line. Implementation is easy because encoding is trivial and there is no response to parse. The protocol can be used over UDP or TCP with minimal overhead.
+[InfluxDB line protocol](/docs/reference/api/influxdb) is popular because it is a simple text based format, you simply open a socket and send data points line by line. Implementation is easy because encoding is trivial and there is no response to parse. The protocol can be used over UDP or TCP with minimal overhead.
 
 This is all great as long as your end point can not be accessed by unauthorised actors that could send your database junk. If your end point is not secure then you can secure it by encapsulating it in a secure transport layer such as [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security), adding complexity to your infrastructure that needs to be managed. This is something we sought to avoid. Our goals when implementing authentication were:
 
