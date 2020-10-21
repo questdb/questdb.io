@@ -22,7 +22,7 @@ This is all great as long as your end point can not be accessed by unauthorised 
 
 To these ends we decided to provide authentication for the InfluxDB line protocol over TCP with a simple [challenge/response](https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication) mechanism, where the challenge is a [nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) and the response a signature. [Elliptic curve cryptography](https://en.wikipedia.org/wiki/Elliptic-curve_cryptography) (ECC curve P-256) with [SHA-256](https://en.wikipedia.org/wiki/SHA-2) was chosen for the signature algorithm, this ensures strong authentication that is hopefully future proof. The elliptic curve cryptographic keys have a public and secret component, it is possible to configure QuestDB with just the public part, thereby mitigating any risks of storing secret information on the server. Languages such as [JavaScript and Go](/docs/develop/insert-data/#influxdb-line-protocol) have standard libraries that implement ECC, the [JSON Web Key](https://tools.ietf.org/html/rfc7517) standard can be used to store and distribute the keys in a clear and ubiquitous manner.
 
-The authentication challenge/response mechanism was chosen to minimise the impact on the line protocol, it works as follows:
+The authentication challenge/response mechanism was chosen to minimise the impact on the protocol, it works as follows:
 1. When the client connects it sends its key id to the server.
 2. The server responds with a [nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) in printable characters.
 3. The client responds with the [base64](https://en.wikipedia.org/wiki/Base64) encoded signature of the nonce.
