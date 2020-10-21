@@ -8,22 +8,20 @@ description:
   How to use InfluxDB line protocol with QuestDB, this example shows an IoT
   application.
 tags: [influxdb line protocol]
+image: /img/blog/2020-07-22/banner.jpg
 ---
 
-<img
-  alt="Blue sky surrounded by latice-work"
+<div
   className="banner"
-  src="/img/blog/2020-07-22/banner.jpg"
-/>
-
-<div className="banner" style={{ fontSize: "14px", marginBottom: "1rem" }}>
-  Photo by&nbsp;
-  <a href="https://unsplash.com/@ripato?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
+>
+  <img
+    alt="Blue sky surrounded by latice-work"
+    src="/img/blog/2020-07-22/banner.jpg"
+  />
+  Photo by <a href="https://unsplash.com/photos/z0l-3cWpKto">
     Ricardo Gomez Angel
-  </a>&nbsp;on&nbsp;
-  <a href="https://unsplash.com/collections/1231819/influx?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
-    Unsplash
-  </a>
+  </a> on <a href="https://unsplash.com">Unsplash</a>
 </div>
 
 We've had a UDP version of the InfluxDB Line Protocol (ILP) reader in QuestDB

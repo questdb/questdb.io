@@ -9,7 +9,7 @@ description:
   implementation, as close as posibble to the kernel, enabled even greater
   performance.
 tags: [performance, deep-dive]
-image: /img/blog/2020-08-19/banner.png
+image: /img/blog/2020-08-19/banner.jpg
 ---
 
 <div
@@ -18,15 +18,13 @@ image: /img/blog/2020-08-19/banner.png
 >
   <img
     alt="Hand holding an analog stopwatch"
-    src="/img/blog/2020-08-19/banner.png"
+    src="/img/blog/2020-08-19/banner.jpg"
   />
   <div>
-    Photo by <a href="https://unsplash.com/@veri_ivanova?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Veri Ivanova</a> on <a href="https://unsplash.com/s/photos/speed?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-
-
+    Photo by <a href="https://unsplash.com/photos/p3Pj7jOYvnM">Veri Ivanova</a>{" "}
+    on <a href="https://unsplash.com">Unsplash</a>
   </div>
 </div>
-
 
 How does QuestDB get the kind of performance it does, and how are we continuing
 to squeeze another 50-60% out of it? We are constantly learning more about the

@@ -20,13 +20,8 @@ image: /img/blog/2020-07-24/banner.jpg
     src="/img/blog/2020-07-24/banner.jpg"
   />
   <div>
-    Photo by&nbsp;
-    <a href="https://unsplash.com/@raouldroog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
-      Raoul Droog
-    </a>&nbsp;on&nbsp;
-    <a href="https://unsplash.com/s/photos/swag?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
-      Unsplash
-    </a>
+    Photo by <a href="https://unsplash.com/photos/yMSecCHsIBc">Raoul Droog</a>{" "}
+    on <a href="https://unsplash.com">Unsplash</a>
   </div>
 </div>
 

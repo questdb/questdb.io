@@ -6,7 +6,22 @@ author_url: https://github.com/patrickSpaceSurfer
 description:
   QuestDB has added authentication for InfluxDB line protocol over TCP
 tags: [influxdb line protocol, story]
+image: /img/blog/2020-10-20/banner.jpg
 ---
+
+<div
+  className="banner"
+  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
+>
+  <img
+    alt="An open lock with its key attached to it."
+    src="/img/blog/2020-10-20/banner.jpg"
+  />
+  <div>
+    Photo by <a href="https://unsplash.com/photos/hRXIKdxoaPo">Vanna Phon</a> on{" "}
+    <a href="https://unsplash.com">Unsplash</a>
+  </div>
+</div>
 
 InfluxDB line protocol is a simple and convenient way to add data points to
 QuestDB. Now with

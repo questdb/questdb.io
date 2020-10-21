@@ -8,19 +8,25 @@ description:
   The detailed story of how the open source time series database QuestDB came to
   life.
 tags: [hackernews, story]
-image: /img/blog/2020-08-06/foggy-path.jpg
+image: /img/blog/2020-08-06/banner.jpg
 ---
+
+<div
+  className="banner"
+  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
+>
+  <img
+    alt="A path going into the morning mist"
+    src="/img/blog/2020-08-06/banner.jpg"
+  />
+  Photo by <a href="https://unsplash.com/photos/ptSJZoEjp3M">Wesley Tingey</a> on{" "}
+  <a href="https://unsplash.com">Unsplash</a>
+</div>
 
 A few weeks ago, I posted
 [the story of how I started QuestDB on Hacker News](https://news.ycombinator.com/item?id=23975807).
 As it seems several people found the story interesting, I thought I would post
 it here.
-
-<img
-  className="banner"
-  alt="A path going into the morning mist"
-  src="/img/blog/2020-08-06/foggyPath.jpg"
-/>
 
 <!-- truncate -->
 
