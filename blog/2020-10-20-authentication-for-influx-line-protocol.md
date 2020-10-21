@@ -28,4 +28,4 @@ The authentication challenge/response mechanism was chosen to minimise the impac
 3. The client responds with the [base64](https://en.wikipedia.org/wiki/Base64) encoded signature of the nonce.
 4. If authentication fails the server will disconnect, if not then the client can revert to sending standard line protocol data points.
 
-We developed this form of authentication in response to users who have QuestDB deployments where a simple form of authentication is required without the overheads of full encryption.
+We developed this form of authentication in response to users who have QuestDB deployments where a simple form of authentication is required without the overheads of full encryption. This seems to meet users needs and so far feedback has been good.
