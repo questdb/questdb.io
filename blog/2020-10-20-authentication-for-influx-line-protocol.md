@@ -8,7 +8,7 @@ description:
 tags: [story]
 ---
 
-Line protocol is a simple and convenient way to add data points to QuestDB. Now with [autentication](/docs/reference/api/influxdb/#authentication) your end point is more secure.
+InfluxDB line protocol is a simple and convenient way to add data points to QuestDB. Now with [authentication](/docs/reference/api/influxdb/#authentication), your endpoint is more secure.
 
 <!--truncate-->
 
