@@ -4,7 +4,7 @@ author: Patrick Mackinlay
 author_title: QuestDB Team
 author_url: https://github.com/patrickSpaceSurfer
 description:
-  QuestDB has added authentication for line protocol over TCP
+  QuestDB has added authentication for InfluxDB line protocol over TCP
 tags: [story]
 ---
 
