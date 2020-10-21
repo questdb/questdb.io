@@ -14,7 +14,7 @@ InfluxDB line protocol is a simple and convenient way to add data points to Ques
 
 [InfluxDB line protocol](/docs/reference/api/influxdb) is popular because it is a simple text based format, you simply open a socket and send data points line by line. Implementation is easy because encoding is trivial and there is no response to parse. The protocol can be used over UDP or TCP with minimal overhead.
 
-This is all great as long as your end point can not be accessed by unauthorised actors that could send junk to your database. If your endpoint is public, then you could secure it by encapsulating it in a secure transport layer such as [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security), adding complexity to your infrastructure that needs to be managed. This is something we sought to avoid. Our goals when implementing authentication were:
+This is all great as long as your endpoint can not be accessed by unauthorised actors that could send junk to your database. If your endpoint is public, then you could secure it by encapsulating it in a secure transport layer such as [TLS](https://en.wikipedia.org/wiki/Transport_Layer_Security), adding complexity to your infrastructure that needs to be managed. This is something we sought to avoid. Our goals when implementing authentication were:
 
 * Use a secure, future proof, authentication method.
 * Minimise protocol complexity and transport overhead.
@@ -26,6 +26,6 @@ The authentication challenge/response mechanism was chosen to minimise the impac
 1. When the client connects it sends its key id to the server.
 2. The server responds with a [nonce](https://en.wikipedia.org/wiki/Cryptographic_nonce) in printable characters.
 3. The client responds with the [base64](https://en.wikipedia.org/wiki/Base64) encoded signature of the nonce.
-4. If authentication fails the server will disconnect, if not then the client can revert to sending standard line protocol data points.
+4. If authentication fails the server will disconnect, if not then the client can revert to sending standard InfluxDB line protocol data points.
 
 We developed this form of authentication in response to users who have QuestDB deployments where a simple form of authentication is required without the overheads of full encryption. This seems to meet users needs and so far feedback has been good.
