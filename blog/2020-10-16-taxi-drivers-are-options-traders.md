@@ -1,5 +1,5 @@
 ---
-title: NYC cab drivers, the unsuspecting options traders
+title: The downfall of NYC taxis explained with options pricing
 author: Tancrede Collard
 author_title: QuestDB Team
 author_url: https://github.com/TheTanc
@@ -10,51 +10,57 @@ description:
   trader.
 ---
 
-Every cab I have ever ridden complained about how hard it is to make ends meet
-as a driver. The public is generally quick to blame unfair competition from the
-likes of Uber. However, other forces share the responsibility for the problem.
+Every cab I have ever ridden has been complaining about how hard it is to make
+ends meet as a driver. The public is generally quick to blame unfair competition
+from the likes of Uber. However, additional forces are also to blame.
 
-In this post, I focus on the impact of the antiquated meter system on the
-livelihood of NYC cabbies by drawing an analogy with options trading.
-Interestingly, this approach allows us to show that drivers are worse-off,
-independently of competition.
+Going through more than 10 years worth of NYC taxi data, I analyse how the
+antiquated meter system impacts the livelihood of NYC cabbies by drawing an
+analogy with stock options trading. Interestingly, this approach allows us to
+show that drivers have progressively been worse-off, independently of
+competition from Uber.
+
+In order to do so, we have loaded a dataset into our database QuestDB. This
+dataset includes over 1.6 billion taxi rides, 700 million FHV rides (Uber, Lyft
+etc), and 10 years of weather and gas prices data.
 
 <!--truncate-->
 
-A few of weeks ago, I was preparing data for the
-[demo we released of QuestDB](http://try.questdb.io:9000/). It has been a while
-since I left derivatives trading, so I was far from imagining the NYC taxi
-dataset would lead me to write about options pricing. Much to my surprise, the
-economics of a taxi meter are very similar to options and provide an interesting
-perspective into the fate of the profession.
+A few of months ago, I was putting together data for QuestDB's demo that we
+shared on [ShowHN](https://news.ycombinator.com/item?id=23616878).
+
+It has been a while since I left derivatives trading, and was not expecting to
+end up writing about options pricing. Much to my surprise, the economics of a
+taxi meter are very similar to options. This provides an interesting perspective
+into the fate of taxi drivers.
 
 ## The economics of the taxi meter
 
 Most rides are priced using the
 [standard meter system](https://www1.nyc.gov/site/tlc/passengers/taxi-fare.page).
-The meter is a machine which calculates the price of a ride based on inputs such
-as time, speed, and distance. Additionally, it adds a number of taxes, tolls and
+The meter is a machine, which calculates the price of a ride based on inputs
+such as time, speed, and distance. Additionally, it adds taxes, tolls and
 surcharges depending on a variety of factors such as the route taken or the time
-of day.
+of the day.
 
-Most of the driver's earnings come from the `fare`, which consists of a
-`flat fare` \$2.50 for entering the cab, and a `variable fare`. The variable
+Most of the driver's earnings come from the `fixed fare`, which consists of a
+`flat fare` $2.50 for entering the cab, and a `variable fare`. The variable
 fare is a function of speed, time and distance. It is calculated as follows:
 
-- When the cab drives above 12mph, \$2.50 per mile
-- Otherwise, \$0.50 per minute
+- When the cab drives above 12mph, $2.50 per mile
+- Otherwise, $0.50 per minute
 
 This post focuses on the variable fare, i.e the output of the meter excluding
-the \$2.50 start fee and extras. To be able to compare rides together, we
-normalize it as an `hourly rate` of driving a customer.
+the $2.50 start fee and extras. To be able to compare rides one with another,
+we normalize it as an `hourly rate` of driving a customer around.
 
-## Modeling variable earnings
+## Modelling variable earnings for taxi drivers
 
-Let's assume a cab is driving a customer at a constant speed for an hour. At the
-end of the hour, the driver can expect `variable earnings` of:
+Let's assume a cab is driving a customer at a constant speed during one hour. At
+the end of the hour, the driver can expect to pocket `variable earnings` of:
 
 - $30 if they drove below 12mph ($0.50 a minute)
-- \$2.50 x their average speed if they drove above 12mph
+- $2.50 x their average speed if they drove above 12mph
 
 Let's plot the hourly earnings in function of speed. This instantly reminds me
 of an old friend: call options!
@@ -65,8 +71,8 @@ of an old friend: call options!
   src="/img/blog/2020-10-16/cab-hourly-earnings-by-speed.png"
 />
 
-Indeed, rewriting the fare formula as follows, we recognize the call option
-formula `Max(0, S-K)`.
+Rewriting the fare formula as follows, we recognize the call option formula
+`Max(0, S-K)`.
 
 `Hourly Fare = 30 + max(0, Speed - 12)`
 
@@ -74,7 +80,7 @@ Interestingly, the above notation breaks down the hourly variable fare into two
 components.
 
 - A `guaranteed` component `30`: whenever driving a customer, a cab will make at
-  least \$30 an hour.
+  least $30 an hour.
 - An `optional` component `max(0, Speed - 12)`: driving customers faster earns
   the driver more.
 
@@ -105,28 +111,28 @@ However, before we continue, it is useful to understand what makes options
 valuable. Buying an option is like paying to play a game with a monetary payout
 contingent on some `variable`.
 
-As an example, imagine a game of dice. If the die value (our variable) is below
-2, you receive 0. Otherwise, you receive the difference between that value
-and 2. In financial markets, the threshold of 2 is called the `strike price` and
-is traditionally denoted K.
+As an example, think of a dice game. If the die value (our variable) is below 2,
+you receive 0. Otherwise, you receive the difference between that value and 2.
+In financial markets, the threshold of 2 is known as the `strike price` and is
+denoted K.
 
-**You have to pay a fee to play this game, how much are you ready to pay?**
+**You have to pay a fee to play this game. How much are you ready to pay?**
 
 To find out, we need to calculate the expected value of a game. This is easy
 since we know all `possible outcomes` and their
-`respective probabilities of occurrence`. We can write these in the below table:
+`respective probabilities of occurrence`. We can write these in the table below:
 
-| Die value | Probability | Payout | Weighed payout |
-| --------- | ----------- | ------ | -------------- |
-| 1         | 16.66%      | 0      | 0              |
-| 2         | 16.66%      | 0      | 0              |
-| 3         | 16.66%      | 1      | 0.1666         |
-| 4         | 16.66%      | 2      | 0.3332         |
-| 5         | 16.66%      | 3      | 0.4998         |
-| 6         | 16.66%      | 4      | 0.6664         |
+| Dice value | Probability | Payout | Weighed payout |
+| ---------- | ----------- | ------ | -------------- |
+| 1          | 16.66%      | 0      | 0              |
+| 2          | 16.66%      | 0      | 0              |
+| 3          | 16.66%      | 1      | 0.1666         |
+| 4          | 16.66%      | 2      | 0.3332         |
+| 5          | 16.66%      | 3      | 0.4998         |
+| 6          | 16.66%      | 4      | 0.6664         |
 
-By adding all the potential payouts weighed by their probability, we compute the
-expected value of playing this game \$1.4494.
+By summing all the potential payouts weighed by their probability, we compute
+the expected value of playing this game: $1.4494.
 
 - If we pay less to play the game, we will make money over time.
 - If we pay more, we lose in the long run.
@@ -137,7 +143,7 @@ when the option expires. Let’s visualize this by plotting the values for our
 game in the following chart:
 
 <img
-  alt="A chart showing the outcome profile of the die game and the corresponding probabilities and probability-weighed expected payout values"
+  alt="A chart showing the outcome profile of the dice game and the corresponding probabilities and probability-weighed expected payout values"
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/die-game-payout-profile.png"
 />
@@ -145,28 +151,29 @@ game in the following chart:
 where:
 
 - The white dashed line represents the possible (discrete) payouts for the game.
-- The cyan dotted line is the probability for each outcome (die value) to occur.
-  It is a straight line at 16.66% since each of the 6 values is equiprobable.
+- The cyan dotted line is the probability for each outcome (dice value) to
+  occur. It is a straight line at 16.66% since each of the 6 values is
+  equiprobable.
 - The coloured area is the product of the first two lines. Its total surface is
   the value of our option.
 
-Of course, this is very simplified. I completely omit time value, which is the
-idea that you (almost) always wish you could hold the option for longer. The
-reason time value exists has to do with the asymmetric payoff profile: there is
-more to win than to lose by waiting a little longer. Also, in real life,
-outcomes are rarely equiprobable. For example, stock prices are represented as a
-log-normal distribution. Nevertheless, this example gives a good introduction to
-calculate option value.
+Of course, this is very simplified. I omit time value, which is the idea that
+you (almost) always wish you could hold the option for longer. The reason time
+value exists has to do with the asymmetric payoff profile: there is more to win
+than to lose by waiting a little longer. Also, in real life, outcomes are rarely
+equiprobable. For example, stock prices are represented as a log-normal
+distribution. Nevertheless, this example gives a good introduction to calculate
+the value of an option.
 
-Now, since we saw speed is the main driver of the variable fare, we should
-attempt to build a representation of speed distribution in order to estimate the
-option value.
+Now, since we saw that speed is the main driver behind the variable fare, we
+should attempt to build a representation of speed distribution in order to
+estimate the option value.
 
-## Modelling cab speed and option value
+## Modelling cabs speed and option value
 
 This can be done using a log-normal distribution, which is analogous to the
-normal distribution but cannot be negative. It fits well since cabs can only
-drive above 0mph.
+normal distribution, but cannot be negative. This fits our situation well since
+cabs can only drive above 0mph.
 
 The log-normal distribution requires two parameters:
 
@@ -204,19 +211,19 @@ And here is the effect of standard deviation:
 />
 
 We can see that a higher mean and a higher standard deviation result in higher
-option value. In short, this means it's in the drivers' best interests to
+option value. In short, this means that it is in the drivers' best interests to
 
 - drive faster;
 - deviate for the mean, for example by taking risks.
 
-Now, to be clear, I don't mean they should drive recklessly, but rather that
-they should attempt "risky" routes which might sometimes save a lot of time, and
-sometimes be a disaster.
+Now, to be clear, I don't mean that they should drive recklessly, but rather
+that they should attempt "risky" routes, which could either save a lot of time,
+or otherwise be a disaster.
 
-In traditional finance, the sensitivities to input parameters we introduced
-above are called the “greeks”. These are measures of risk named (mostly) after
-Greek letters. They are used to evaluate and manage the risk of options
-portfolios. Here are the two greeks we saw respective to mean and standard
+In traditional finance, the sensitivities to input parameters, which we have
+introduced above are called the “Greeks”. These are measures of risk named
+(mostly) after Greek letters. They are used to evaluate and manage the risk of
+options portfolios. Here are the two greeks respective to the mean and standard
 deviation:
 
 - The `delta`, change of option value relative to change of the mean
@@ -228,21 +235,21 @@ value. There are more greeks, of higher order, which affect the option value
 indirectly. As example, the `vanna` is a second-order greek which measures how
 much the delta (first order greek) of an option changes when volatility changes.
 
-## Estimating the value for drivers
+## Slower traffic has cost a great amount to taxi drivers
 
 Let’s first look at the average speed over time.
 
 The NYC taxi dataset gives us the distance calculated by the meter, the pickup
-timestamp, and the drop-off timestamp. Using QuestDB, can derive the duration of
-each ride as the difference between the two timestamps and divide the distance
-by the duration, to calculate the average speed.
+timestamp, and the drop-off timestamp. Using QuestDB, we can derive the duration
+of each ride as the difference between the two timestamps and divide the
+distance by the duration, to calculate the average speed.
 
 With `SAMPLE BY`, I compute the average results for monthly intervals and plot
 it below. Over 10 years, the average speed dropped significantly from 13.3 to
 9.7mph (almost 30%!).
 
 <img
-  alt="A chart showing the evolution of the average cab driver speed over time and how it consistently became inferior to the threshold"
+  alt="A chart showing the evolution of the average cab driver speed over time and how it consistently dropped below the threshold"
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/average-speed-over-time.png"
 />
@@ -286,7 +293,7 @@ into a log-normal distribution model, we can compute the following percentiles.
 For the vast majority of rides, drivers can expect to average below 12mph.
 
 <img
-  alt="A chart showing the evolution of the distribution of NYC cab drivers' average speeds over time"
+  alt="A chart showing the evolution of the distribution of NYC cab drivers' average speed over time"
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/distribution-speed-over-time.png"
 />
@@ -308,8 +315,7 @@ follows.
 
 `Option value Actual = Actual Hourly Variable Fare - $30`
 
-Slowly, but surely, it stopped being a significant part in the driver’s
-earnings.
+Slowly but surely, it stopped being a significant part in the driver’s earnings.
 
 <img
   alt="A chart of the hourly fare earned by taxi drivers over the years broken down by whether it is fixed or variable"
@@ -324,12 +330,13 @@ for less space on the road and more congestion.
 
 Whatever the underlying reasons, the impact is visible, and it is significant.
 Over the past 10 years, slower traffic has cost up to
-$10 an hour per taxi.
-To put this in context, this means $29,000 per driver per
-year (8 hours a day, no holidays), or 300 million dollars a year for the NYC cab
+$10/hour per taxi.
+To put this in context, this means $29,000/driver each year (8
+hours a day, no holidays), or
+$300 million a year for the entire NYC cab
 industry! And these are lower bound numbers. In reality, drivers share cabs. If
-we assume all of the 13,500 cabs are constantly on the road, this adds up to 1.2
-billion dollars a year lost for the industry!
+we assume all of the 13,500 cabs are constantly on the road, this adds up to $1.2
+billion a year lost for the industry!
 
 ## Customers are losing too
 
@@ -349,7 +356,7 @@ incentive becomes apparent if we look at it over time as follows:
 
 So, are there any reasons left for cabs to drive customers around faster?
 
-The start fee of \$2.50 provides another incentive. But it's efficacy depends on
+The start fee of $2.50 provides another incentive. But it's efficacy depends on
 the waiting time between two rides. If the expected wait between customers is 5
 minutes or less, then drivers remain incentivized. Otherwise, it is economically
 more efficient to drive slowly and make the most of the current customer. A
@@ -364,16 +371,15 @@ fair to say that it lost a good part of it.
 If drivers are uncertain about their likelihood of finding the next ride, and if
 the optional fare component has become an insignificant fraction of their
 earnings, then it makes more sense to drive slow, and to hold on to the current
-customer for as long as possible. In the end, \$30 an hour is better than 0.
+customer for as long as possible. In the end, $30 per hour is better than 0.
 
 ## Your turn to explore the data
 
-We made this dataset and the database available online and you can
-[query it directly from your browser](http://try.questdb.io:9000/).
+We made this dataset and the database available online and you can query it
+directly from your browser via [QuestDB demo](http://try.questdb.io:9000/).
 
-The dataset contains over 1.6 billion taxi rides, 700 million FHV rides (Uber,
-Lyft etc), and 10 years of weather and gas prices data. Feel free to explore it,
-come up with more analysis, and let me know your findings.
+Feel free to explore it, come up with more analysis, and let me know your
+findings.
 
 I am particularly interested in expanding these results based on weather data. I
 let readers give it a try using the hourly data available on the QuestDB demo
@@ -385,6 +391,7 @@ traffic gets slower? It would be interesting to study how the weather affects a
 driver's speed, and in turn earnings. This is only one of the so many
 fascinating questions left to explore with this dataset.
 
-Anyway, I hope your found this interesting. If you like this post, please
-consider leaving a star on our GitHub. And, if you find anything interesting
-while playing with the data, email me and we'll write about it!
+Anyway, I hope you found this interesting. If you like this post, please
+consider leaving a star on our [GitHub](https://github.com/questdb/questdb).
+And, if you find anything interesting while playing with the data, email me and
+we'll write about it!
