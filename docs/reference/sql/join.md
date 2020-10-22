@@ -31,6 +31,26 @@ use shorthand `ON (column)` clause
 
 :::
 
+## Implicit joins
+
+It is possible to join two tables using the following syntax:
+
+```questdb-sql
+SELECT *
+FROM a, b
+WHERE a.id = b.id;
+```
+
+The type of join as well as the column will be inferred from the where clause,
+and may end up being either `INNER` or `CROSS` join. For the example above, the
+equivalent explicit statement would be:
+
+```questdb-sql
+SELECT *
+FROM a
+JOIN b ON (id);
+```
+
 ## (INNER) JOIN
 
 ### Overview
@@ -52,12 +72,8 @@ INNER JOIN (select movieId id, title from movies)
 ON ratings.movieId = id;
 ```
 
-:::tip
-
-By default `JOIN` is interpreted as `INNER JOIN`. Therefore `INNER` can be
-dropped.
-
-:::
+By default `JOIN` is interpreted as `INNER JOIN`. Therefore `INNER` does not
+need to be specified.
 
 ```questdb-sql title="Dropping INNER"
 SELECT movieId a, title, avg(rating)
@@ -93,7 +109,7 @@ SELECT tab1.colA, tab2.colB
 FROM table1 tab1
 OUTER JOIN table2 tab2
 ON tab1.colA = tab2.colB
-WHERE tab2.colB = NULL
+WHERE tab2.colB = NULL;
 ```
 
 ## CROSS JOIN
@@ -109,12 +125,14 @@ It can be used to a table with all possible combinations.
 
 :::
 
-### EXAMPLE
+### Example
 
 The following will return all possible combinations of starters and deserts
 
 ```questdb-sql
-SELECT * FROM starters CROSS JOIN deserts;
+SELECT *
+FROM starters
+CROSS JOIN deserts;
 ```
 
 ## ASOF JOIN
@@ -158,20 +176,18 @@ Consider the following tables.
 Therefore the following query:
 
 ```questdb-sql
-SELECT
- bids.ts timebid,
- bid,
- ask
-FROM bids ASOF JOIN asks
+SELECT bids.ts timebid, bid, ask
+FROM bids
+ASOF JOIN asks;
 ```
 
-Will return the following
+Will return the following:
 
 | timebid                     | bid | ask |
 | --------------------------- | --- | --- |
-| 2019-10-17T00:00:00.100000Z | 100 | 100 |
-| 2019-10-17T00:00:00.300000Z | 101 | 101 |
-| 2019-10-17T00:00:00.500000Z | 102 | 102 |
+| 2019-10-17T00:00:00.100000Z | 101 | 100 |
+| 2019-10-17T00:00:00.300000Z | 102 | 101 |
+| 2019-10-17T00:00:00.500000Z | 103 | 102 |
 
 :::note
 
@@ -185,11 +201,9 @@ In case tables do not have designated timestamp column, but data is in
 chronological order, timestamp columns can be specified at runtime:
 
 ```questdb-sql
-SELECT
- bids.ts timebid,
- bid,
- ask
-FROM (bids timestamp(ts)) ASOF JOIN (asks timestamp (ts))
+SELECT bids.ts timebid, bid, ask
+FROM (bids timestamp(ts))
+ASOF JOIN (asks timestamp (ts));
 ```
 
 :::caution
@@ -206,7 +220,9 @@ If both tables store data for multiple instruments `ON` clause will allow you to
 find bids for asks with matching instrument value.
 
 ```questdb-sql
-SELECT * FROM asks ASOF JOIN bids ON (instrument);
+SELECT *
+FROM asks
+ASOF JOIN bids ON (instrument);
 ```
 
 ## SPLICE JOIN
@@ -237,24 +253,21 @@ Considering the following tables.
 This query:
 
 ```questdb-sql
-SELECT ts timebid, bid, ask
-FROM bids SPLICE JOIN asks
+SELECT bids.ts timebid, bid, ask
+FROM bids
+SPLICE JOIN asks;
 ```
 
 Will return the following results
 
-```shell
-RESULTS
-=================================================
-ts,                          bid        ask
--------------------------------------------------
-2019-10-17T00:00:00.000000Z, 100,      null
-2019-10-17T00:00:00.100000Z, 100,      101
-2019-10-17T00:00:00.200000Z, 101,      101
-2019-10-17T00:00:00.300000Z, 101,      102
-2019-10-17T00:00:00.400000Z, 102,      102
-2019-10-17T00:00:00.500000Z, 101,      103
-```
+| timebid                     | bid  | ask |
+| --------------------------- | ---- | --- |
+| null                        | null | 100 |
+| 2019-10-17T00:00:00.100000Z | 101  | 100 |
+| 2019-10-17T00:00:00.100000Z | 101  | 101 |
+| 2019-10-17T00:00:00.300000Z | 102  | 101 |
+| 2019-10-17T00:00:00.300000Z | 102  | 102 |
+| 2019-10-17T00:00:00.500000Z | 103  | 102 |
 
 Note that the above query does not use the optional `ON` clause. In case you
 need additional filtering on the two tables, you can use the `ON` clause as
