@@ -47,10 +47,13 @@ const Layout = ({
       <Head>
         <title>{metaTitle}</title>
         {permalink != null && (
-          <link rel="canonical" href={siteUrl + permalink} />
+          <link rel="canonical" href={`${siteUrl}${permalink}/`} />
         )}
         <meta property="og:image" content={metaImageUrl} />
-        <meta property="og:url" content={`${siteUrl}${permalink ?? ""}`} />
+        <meta
+          property="og:url"
+          content={`${siteUrl}${permalink != null ? permalink + "/" : ""}`}
+        />
         <meta property="og:title" content={metaTitle} />
         <meta name="twitter:image" content={metaImageUrl} />
         {description != null && (

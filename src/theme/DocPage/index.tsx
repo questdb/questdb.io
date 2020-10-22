@@ -33,8 +33,9 @@ const DocPage = ({
     return <NotFound location={location} {...rest} />
   }
 
-  const sidebarName = permalinkToSidebar[currentDocRoute.path]
-  const sidebar = docsSidebars[permalinkToSidebar[currentDocRoute.path]]
+  const sidebarName = permalinkToSidebar[currentDocRoute.path] as
+    | string
+    | undefined
 
   return (
     <MetadataContextProvider>
@@ -48,18 +49,20 @@ const DocPage = ({
             className={clsx("docs-sidebar", styles.doc__sidebar)}
             role="complementary"
           >
-            <DocSidebar
-              key={
-                // Reset sidebar state on sidebar changes
-                // See https://github.com/facebook/docusaurus/issues/3414
-                sidebarName
-              }
-              path={currentDocRoute.path}
-              sidebar={sidebar}
-              sidebarCollapsible={
-                siteConfig.themeConfig?.sidebarCollapsible ?? true
-              }
-            />
+            {sidebarName != null && docsSidebars[sidebarName] != null && (
+              <DocSidebar
+                key={
+                  // Reset sidebar state on sidebar changes
+                  // See https://github.com/facebook/docusaurus/issues/3414
+                  sidebarName
+                }
+                path={currentDocRoute.path}
+                sidebar={docsSidebars[sidebarName]}
+                sidebarCollapsible={
+                  siteConfig.themeConfig?.sidebarCollapsible ?? true
+                }
+              />
+            )}
           </div>
           <main className={styles.doc__main}>
             <MDXProvider components={MDXComponents}>
