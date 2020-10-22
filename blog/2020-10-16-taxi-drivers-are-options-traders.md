@@ -235,7 +235,7 @@ value. There are more greeks, of higher order, which affect the option value
 indirectly. As example, the `vanna` is a second-order greek which measures how
 much the delta (first order greek) of an option changes when volatility changes.
 
-## Slower traffic has cost a great amount to taxi drivers
+## Traffic increrase has cost a great amount to taxi drivers
 
 Let’s first look at the average speed over time.
 
