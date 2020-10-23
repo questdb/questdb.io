@@ -8,6 +8,7 @@ tags: [deep-dive, story]
 description:
   An experiment analyzing the NYC taxi dataset through the eyes of an options
   trader.
+image: /img/blog/2020-10-16/banner.jpg
 ---
 
 <div
