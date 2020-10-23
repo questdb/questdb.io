@@ -69,6 +69,10 @@
   overflow: initial;
 }
 
+.jumbotron__docker--code {
+  display: block;
+}
+
 .jumbotron__docker-icon {
   position: absolute;
   left: -25px;

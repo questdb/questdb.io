@@ -204,7 +204,7 @@ const Jumbotron = () => {
 
       <div className={jumbotronStyles.jumbotron__right}>
         <pre className={jumbotronStyles.jumbotron__docker}>
-          <code>
+          <code className={jumbotronStyles["jumbotron__docker--code"]}>
             {`docker pull questdb/questdb
 docker run -p 9000:9000 questdb/questdb`}
           </code>
