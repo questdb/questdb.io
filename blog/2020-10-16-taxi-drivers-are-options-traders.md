@@ -1,5 +1,5 @@
 ---
-title: The downfall of NYC taxis explained with options pricing
+title: NYC taxi meter and options pricing
 author: Tancrede Collard
 author_title: QuestDB Team
 author_url: https://github.com/TheTanc
@@ -9,6 +9,20 @@ description:
   An experiment analyzing the NYC taxi dataset through the eyes of an options
   trader.
 ---
+
+<div
+  className="banner"
+  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
+>
+  <img
+    alt="Taxis in New York City stuck in traffic"
+    src="/img/blog/2020-10-16/banner.jpg"
+  />
+  <div>
+    Photo by <a href="https://unsplash.com/photos/K9cc-19hBKY">Kevin Lee</a> on{" "}
+    <a href="https://unsplash.com">Unsplash</a>
+  </div>
+</div>
 
 Every cab I have ever ridden has been complaining about how hard it is to make
 ends meet as a driver. The public is generally quick to blame unfair competition
@@ -43,7 +57,7 @@ such as time, speed, and distance. Additionally, it adds taxes, tolls and
 surcharges depending on a variety of factors such as the route taken or the time
 of the day.
 
-Most of the driver's earnings come from the `fixed fare`, which consists of a
+Most of the driver's earnings come from the `fare`, which consists of a
 `flat fare` $2.50 for entering the cab, and a `variable fare`. The variable
 fare is a function of speed, time and distance. It is calculated as follows:
 
@@ -51,7 +65,7 @@ fare is a function of speed, time and distance. It is calculated as follows:
 - Otherwise, $0.50 per minute
 
 This post focuses on the variable fare, i.e the output of the meter excluding
-the $2.50 start fee and extras. To be able to compare rides one with another,
+the $2.50 start fee and extras. To be able to compare rides with one another,
 we normalize it as an `hourly rate` of driving a customer around.
 
 ## Modelling variable earnings for taxi drivers
@@ -235,7 +249,7 @@ value. There are more greeks, of higher order, which affect the option value
 indirectly. As example, the `vanna` is a second-order greek which measures how
 much the delta (first order greek) of an option changes when volatility changes.
 
-## Slower traffic has cost a great amount to taxi drivers
+## Traffic increase has cost a great amount to taxi drivers
 
 Let’s first look at the average speed over time.
 
