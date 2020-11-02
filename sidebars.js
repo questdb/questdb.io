@@ -65,6 +65,11 @@ module.exports = {
       ],
     },
     {
+      label: "Operations",
+      type: "category",
+      items: ["operations/deployment"],
+    },
+    {
       label: "Reference",
       type: "category",
       items: [

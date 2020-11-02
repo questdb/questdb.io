@@ -80,7 +80,7 @@ The coding style rules are defined by [Prettier](https://prettier.io/) and
 enforced by [Eslint](https://eslint.org)
 
 On top of this, we follow the rules set by the
-[Javascript Standard Style](https://standardjs.com/rules.html).
+[JavaScript Standard Style](https://standardjs.com/rules.html).
 
 You do not need to run the linting task manually, Webpack will take care of that
 for you.

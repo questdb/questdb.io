@@ -40,6 +40,11 @@ both covered in the [insert data](/docs/develop/insert-data/) page. Finally, you
 can check the [query data](/docs/develop/query-data/) page in order to run your
 queries.
 
+## Operations
+
+In this section you will find resources regarding the
+[deployment](/docs/operations/deployment/) of QuestDB.
+
 ## Reference
 
 This section contains the reference documentation for the following categories:

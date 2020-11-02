@@ -35,10 +35,10 @@ docker run -p 9000:9000 -p 8812:8812 questdb/questdb
 
 This parameter will publish a port to the host, you can specify:
 
-- `-p 9000:9000` for the REST API and the Web Console. The web console is
-  available on http://localhost:9000
-- `-p 8812:8812` for the Postgres wire protocol
-- `-p 9009:9009` InfluxDB line protocol
+- `-p 9000:9000`: [REST API](/docs/reference/api/rest/) and
+  [Web Console](/docs/reference/client/web-console/)
+- `-p 8812:8812`: [Postgres](/docs/reference/api/postgres/)
+- `-p 9009:9009`: [InfluxDB line protocol](/docs/reference/api/influxdb/)
 
 #### -v volumes
 
