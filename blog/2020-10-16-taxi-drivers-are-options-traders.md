@@ -147,7 +147,7 @@ since we know all `possible outcomes` and their
 | 6          | 16.66%      | 4      | 0.6664         |
 
 By summing all the potential payouts weighed by their probability, we compute
-the expected value of playing this game: $1.4494.
+the expected value of playing this game: $1.666.
 
 - If we pay less to play the game, we will make money over time.
 - If we pay more, we lose in the long run.
