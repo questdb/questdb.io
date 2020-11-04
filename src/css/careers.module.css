@@ -75,6 +75,10 @@
   color: var(--palette-white);
 }
 
+.job:not(:first-child) {
+  margin-top: 2rem;
+}
+
 .job:hover {
   border-color: var(--palette-white);
   color: var(--palette-white);

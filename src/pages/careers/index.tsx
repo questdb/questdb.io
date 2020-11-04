@@ -127,6 +127,20 @@ const CareersPage = () => {
                 careersStyles["card__side--center"],
               )}
             >
+              <a className={careersStyles.job} href="backend-software-engineer">
+                <h3 className={careersStyles.job__title}>
+                  Software Engineer, Backend
+                </h3>
+                <p className={careersStyles.job__location}>Remote</p>
+                <span className={careersStyles.job__cta}>
+                  Details&nbsp;
+                  <img
+                    alt=""
+                    src="/img/pages/careers/arrowRight.svg"
+                    width="20px"
+                  />
+                </span>
+              </a>
               <a className={careersStyles.job} href="technical-content-writer">
                 <h3 className={careersStyles.job__title}>
                   Technical Content Writer
