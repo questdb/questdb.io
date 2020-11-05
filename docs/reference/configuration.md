@@ -96,6 +96,17 @@ the java option `-Debug` or setting the environment variable `QDB_DEBUG=true`.
 | shared.worker.affinity    |         | Comma-delimited list of CPU ids, one per thread specified in "shared.worker.count". By default, threads have no CPU affinity.                                |
 | shared.worker.haltOnError | false   | Toggle whether worker should stop on error.                                                                                                                  |
 
+### Minimal HTTP server
+
+This server is useful for doing health checks on QuestDB over http. It will respond to every request with HTTP 200 unless QuestDB process dies.
+
+| Property                                       | Default        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ---------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| http.min.enabled                               | true           | Enable Minimal HTTP server.                                                                                    
+| http.min.bind.to                               | 0.0.0.0:9003   | IPv4 address and port of the server. 0 means it will bind to all network interfaces. Otherwise IP address must by one of the existing network adaptors
+
+
+
 ### HTTP server
 
 | Property                                       | Default        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
