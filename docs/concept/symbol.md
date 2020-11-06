@@ -20,12 +20,6 @@ values.
   `string`).
 - Greatly improved storage efficiency (storing `int` instead of `string`).
 
-:::note
-
-`symbol` comparison across tables is not directly supported.
-
-:::
-
 ## Usage
 
 To declare a column as `SYMBOL` please refer to the
