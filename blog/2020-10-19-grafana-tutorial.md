@@ -198,7 +198,7 @@ And this is what the panel now looks like:
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-filtering-by-taxi-type.png"
 />
-We can see in this graph that   the distance  travelled  by those paying with cards is longer than for 
+We can see in this graph that the distance traveled by those paying with cards is longer than for 
 those paying with cash. This could be due to the fact that users usually carry less cash than the balance in their card.  
 
 Let’s add another panel:
