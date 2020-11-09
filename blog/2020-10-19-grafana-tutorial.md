@@ -146,7 +146,7 @@ translates this to:
 
 `$__interval` This function calculates a dynamic interval based on the time
 range applied to the dashboard. By using this function, the sampling interval
-changes automatically as the user zooms in and out of panel.
+changes automatically as the user zooms in and out of the panel.
 
 Let’s add the new panel using these functions:
 
