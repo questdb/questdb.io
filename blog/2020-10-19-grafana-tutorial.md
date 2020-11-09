@@ -254,7 +254,7 @@ This is what it looks like for the whole month of February 2018:
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-taxi-fares-and-rain.png"
 />
-In this graph,  we have 2 series, in  green se have the fare amount 
+In this graph, we have 2 series, in green we have the fare amount 
 sampled dynamically, and in yellow we have the precipitation over 
 the last hour in millimeters. From the graph, it’s hard to say 
 whether there is a correlation between rain and the amount spent on taxi rides.
