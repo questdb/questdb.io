@@ -140,7 +140,7 @@ You can find more information on
 There are also 2 key grafana functions used in the query above:
 
 `$__timeFilter(pickup_datetime)` This handy function tells Grafana to send the start-time and end-time
-defined in the Dashboard to the QuestDB server. Grafana
+defined in the dashboard to the QuestDB server. Grafana
 translates this to:
 `pickup_datetime BETWEEN '2018-02-01T00:00:00Z' AND '2018-02-28T23:59:59Z'`.
 
