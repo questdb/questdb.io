@@ -266,7 +266,7 @@ If we zooming on a rainy day:
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-taxi-fares-and-rain-on-a-rainy-day.png"
 />
-Again, we see no obvious increase in the amount spent in taxi rides during the rainiest period of the day .
+Again, we see no obvious increase in the amount spent in taxi rides during the rainiest period of the day.
 
 Note that the graphs above have 2 Y-axis. To enable the right Y-axis, do this,
 click on the yellow line next to the rainH label:
