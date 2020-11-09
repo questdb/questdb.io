@@ -157,7 +157,7 @@ And here we have our first panel!
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/first-panel.png"
 />
-As  we would expect, we can see the cyclical nature of the taxi business,  
+As we would expect, we can see the cyclical nature of the taxi business,  
 with a peak during the day’s rush hour and a trough at night.
 
 
