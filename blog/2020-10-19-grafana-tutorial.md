@@ -139,8 +139,8 @@ You can find more information on
 
 There are also 2 key grafana functions used in the query above:
 
-`$__timeFilter(pickup_datetime)` This handy function tells Grafana to send the start-time and end-time
-defined in the dashboard to the QuestDB server. Grafana
+`$__timeFilter(pickup_datetime)` This handy function tells Grafana to send the
+start-time and end-time defined in the dashboard to the QuestDB server. Grafana
 translates this to:
 `pickup_datetime BETWEEN '2018-02-01T00:00:00Z' AND '2018-02-28T23:59:59Z'`.
 
@@ -157,9 +157,8 @@ And here we have our first panel!
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/first-panel.png"
 />
-As we would expect, we can see the cyclical nature of the taxi business,  
-with a peak during the day’s rush hour and a trough at night.
-
+As we would expect, we can see the cyclical nature of the taxi business, with a peak
+during the day’s rush hour and a trough at night.
 
 You can add multiple queries to the same panel and show multiple lines in the
 same panel.
@@ -198,8 +197,9 @@ And this is what the panel now looks like:
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-filtering-by-taxi-type.png"
 />
-We can see in this graph that the distance traveled by those paying with cards is longer than for 
-those paying with cash. This could be due to the fact that users usually carry less cash than the balance in their card.  
+We can see in this graph that the distance traveled by those paying with cards is
+longer than for those paying with cash. This could be due to the fact that users
+usually carry less cash than the balance in their card.{" "}
 
 Let’s add another panel:
 
@@ -227,8 +227,8 @@ If we zoom in and choose a single day as the time range, it looks like this:
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-count-of-taxi-trips-in-a-day.png"
 />
-Here we see again the daily cycle, with rides peaking in the early evening and 
-reaching a low in the middle of the night.
+Here we see again the daily cycle, with rides peaking in the early evening and reaching
+a low in the middle of the night.
 
 ## ASOF JOIN
 
@@ -254,10 +254,10 @@ This is what it looks like for the whole month of February 2018:
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-taxi-fares-and-rain.png"
 />
-In this graph, we have 2 series, in green we have the fare amount 
-sampled dynamically, and in yellow we have the precipitation over 
-the last hour in millimeters. From the graph, it’s hard to say 
-whether there is a correlation between rain and the amount spent on taxi rides.
+In this graph, we have 2 series, in green we have the fare amount sampled dynamically,
+and in yellow we have the precipitation over the last hour in millimeters. From the
+graph, it’s hard to say whether there is a correlation between rain and the amount
+spent on taxi rides.
 
 If we zooming on a rainy day:
 
@@ -266,7 +266,8 @@ If we zooming on a rainy day:
   className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-taxi-fares-and-rain-on-a-rainy-day.png"
 />
-Again, we see no obvious increase in the amount spent in taxi rides during the rainiest period of the day.
+Again, we see no obvious increase in the amount spent in taxi rides during the rainiest
+period of the day.
 
 Note that the graphs above have 2 Y-axis. To enable the right Y-axis, do this,
 click on the yellow line next to the rainH label:
