@@ -135,7 +135,7 @@ interval is 1-hour, then we are in effect calculating the average distance
 traveled during each 1-hour interval.
 
 You can find more information on
-[aggregate functions on our documentation](https://questdb.io/docs/reference/function/aggregation).
+[aggregate functions on our documentation](/docs/reference/function/aggregation/).
 
 There are also 2 key grafana functions used in the query above:
 
