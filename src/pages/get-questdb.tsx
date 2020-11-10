@@ -5,18 +5,20 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import { usePluginData } from "@docusaurus/useGlobalData"
 import React, { ReactNode, useEffect, useState } from "react"
 
-import CodeBlock from "@theme/CodeBlock"
 import Button from "@theme/Button"
+import CodeBlock from "@theme/CodeBlock"
 import IdealImage from "@theme/Image"
 import Layout from "@theme/Layout"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 
 import Console from "../../static/img/pages/getQuestdb/console.png"
+import biCss from "../css/get-questdb/binary.module.css"
+import chCss from "../css/get-questdb/changelog.module.css"
+import ciCss from "../css/get-questdb/consoleIllustration.module.css"
+import dcCss from "../css/get-questdb/downloadCta.module.css"
+import heCss from "../css/get-questdb/help.module.css"
+import seCss from "../css/section.module.css"
 import { getAssets, getOs, Os, Release } from "../utils"
-import binaryStyles from "../css/binary.module.css"
-import instructionStyles from "../css/instruction.module.css"
-import sectionStyles from "../css/section.module.css"
-import getQuestdbStyles from "../css/getQuestdb.module.css"
 
 type BinaryProps = Readonly<{
   architecture: boolean
@@ -46,17 +48,14 @@ const Binary = ({
   const hasDetails = Boolean(architecture || rt || size)
 
   return (
-    <section className={clsx(binaryStyles.binary)}>
-      <div
-        className={binaryStyles.binary__expand}
-        style={{ flexBasis: basis }}
-      />
+    <section className={clsx(biCss.binary)}>
+      <div className={biCss.binary__expand} style={{ flexBasis: basis }} />
 
       {logo}
 
       <h3
-        className={clsx(binaryStyles.binary__title, {
-          [binaryStyles["binary__title--grow"]]: !hasDetails,
+        className={clsx(biCss.binary__title, {
+          [biCss["binary__title--grow"]]: !hasDetails,
         })}
         style={{ flexGrow: grow }}
       >
@@ -64,19 +63,14 @@ const Binary = ({
       </h3>
 
       {hasDetails && (
-        <p
-          className={binaryStyles.binary__details}
-          style={{ flexGrow: detailsGrow }}
-        >
+        <p className={biCss.binary__details} style={{ flexGrow: detailsGrow }}>
           {architecture && (
-            <span
-              className={clsx("color--pink", binaryStyles.binary__architecture)}
-            >
+            <span className={clsx("color--pink", biCss.binary__architecture)}>
               64-bit
             </span>
           )}
 
-          <span className={binaryStyles.binary__size}>
+          <span className={biCss.binary__size}>
             {rt && " rt -"}
             {size != null && ` ${size}`}
           </span>
@@ -85,7 +79,7 @@ const Binary = ({
 
       {href != null && (
         <Button
-          className={binaryStyles.binary__download}
+          className={biCss.binary__download}
           href={href}
           newTab={false}
           variant="tertiary"
@@ -142,7 +136,7 @@ const GetQuestdbPage = () => {
         logo={
           <img
             alt="BSD Logo"
-            className={binaryStyles.binary__logo}
+            className={biCss.binary__logo}
             src="/img/pages/getQuestdb/bsd.svg"
           />
         }
@@ -150,7 +144,7 @@ const GetQuestdbPage = () => {
         size={assets.bsd.size}
         title="FreeBSD"
       >
-        <p className={binaryStyles.binaries__docs}>
+        <p className={biCss.binary__docs}>
           <a href="/docs/get-started/binaries#your-operating-system-version">
             Docs
           </a>
@@ -164,7 +158,7 @@ const GetQuestdbPage = () => {
         logo={
           <img
             alt="Linux Logo"
-            className={binaryStyles.binary__logo}
+            className={biCss.binary__logo}
             src="/img/pages/getQuestdb/linux.svg"
           />
         }
@@ -172,7 +166,7 @@ const GetQuestdbPage = () => {
         size={assets.linux.size}
         title="Linux"
       >
-        <p className={binaryStyles.binaries__docs}>
+        <p className={biCss.binary__docs}>
           <a href="/docs/get-started/binaries#your-operating-system-version">
             Docs
           </a>
@@ -186,7 +180,7 @@ const GetQuestdbPage = () => {
         logo={
           <img
             alt="macOS Logo"
-            className={binaryStyles.binary__logo}
+            className={biCss.binary__logo}
             src="/img/pages/getQuestdb/macos.svg"
           />
         }
@@ -199,7 +193,7 @@ const GetQuestdbPage = () => {
 brew install questdb`}
         </CodeBlock>
 
-        <p className={binaryStyles.binaries__docs}>
+        <p className={biCss.binary__docs}>
           <a href="/docs/get-started/homebrew">Docs</a>
         </p>
       </Binary>
@@ -211,7 +205,7 @@ brew install questdb`}
         logo={
           <img
             alt="Windows Logo"
-            className={binaryStyles.binary__logo}
+            className={biCss.binary__logo}
             src="/img/pages/getQuestdb/windows.svg"
           />
         }
@@ -219,7 +213,7 @@ brew install questdb`}
         size={assets.windows.size}
         title="Windows"
       >
-        <p className={binaryStyles.binaries__docs}>
+        <p className={biCss.binary__docs}>
           <a href="/docs/get-started/binaries#your-operating-system-version">
             Docs
           </a>
@@ -245,17 +239,15 @@ brew install questdb`}
           <link rel="canonical" href={`${siteConfig.url}get-questdb/`} />
           <meta name="description" content={description} />
         </DocusaurusHead>
+
         <section
-          className={clsx(
-            sectionStyles["section--inner"],
-            getQuestdbStyles.getQuestdb,
-          )}
+          className={clsx(seCss["section--inner"], seCss["section--get"])}
         >
-          <div className={getQuestdbStyles.getQuestdb__top}>
+          <div className={seCss.section__header}>
             <h1
               className={clsx(
-                sectionStyles.section__title,
-                getQuestdbStyles.getQuestdb__title,
+                seCss.section__title,
+                seCss["section__title--get"],
               )}
             >
               Download QuestDB
@@ -263,8 +255,8 @@ brew install questdb`}
 
             <p
               className={clsx(
-                sectionStyles.section__subtitle,
-                getQuestdbStyles.getQuestdb__subtitle,
+                seCss.section__subtitle,
+                seCss["section__subtitle--get"],
                 "text--center",
               )}
             >
@@ -278,19 +270,15 @@ brew install questdb`}
 
             <IdealImage
               alt="Screenshot of the Web Console showing various SQL statements and the result of one as a chart"
-              className={clsx(
-                "screenshot--shadow",
-                getQuestdbStyles.getQuestdb__console,
-              )}
+              className={ciCss["console-illustration"]}
               img={Console}
               src="/img/pages/getQuestdb/console.png"
             />
 
-            <div className={getQuestdbStyles.getQuestdb__cta}>
+            <div className={dcCss.cta}>
               <p
-                className={clsx(getQuestdbStyles.getQuestdb__details, {
-                  [getQuestdbStyles["getQuestdb__details--download"]]:
-                    os !== "macos",
+                className={clsx(dcCss.cta__details, {
+                  [dcCss["cata__details--download"]]: os !== "macos",
                 })}
               >
                 Latest Release:&nbsp;
@@ -306,9 +294,9 @@ brew install questdb`}
               )}
             </div>
 
-            <div className={getQuestdbStyles.getQuestdb__links}>
+            <div className={chCss.changelog}>
               <a
-                className={getQuestdbStyles.getQuestdb__link}
+                className={chCss.changelog__link}
                 href={release.html_url}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -316,7 +304,7 @@ brew install questdb`}
                 View the changelog
               </a>
               <a
-                className={getQuestdbStyles.getQuestdb__link}
+                className={chCss.changelog__link}
                 href={`${siteConfig.customFields.githubUrl}/tags`}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -327,14 +315,14 @@ brew install questdb`}
           </div>
         </section>
 
-        <div className={binaryStyles.binaries}>
+        <div className={seCss["section--binaries"]}>
           <Binary
             basis="40px"
             grow={2.6}
             logo={
               <img
                 alt="Docker logo"
-                className={binaryStyles.binary__logo}
+                className={biCss.binary__logo}
                 src="/img/pages/getQuestdb/docker.svg"
               />
             }
@@ -343,7 +331,7 @@ brew install questdb`}
             <CodeBlock className="language-shell">
               docker run -p 9000:9000 questdb/questdb
             </CodeBlock>
-            <p className={binaryStyles.binaries__docs}>
+            <p className={biCss.binary__docs}>
               <a href="/docs/get-started/docker">Docs</a>
             </p>
           </Binary>
@@ -352,7 +340,7 @@ brew install questdb`}
             logo={
               <img
                 alt="Helm logo"
-                className={binaryStyles.binary__logo}
+                className={biCss.binary__logo}
                 src="/img/pages/getQuestdb/helm.svg"
               />
             }
@@ -362,7 +350,7 @@ brew install questdb`}
               {`helm repo add questdb https://helm.${siteConfig.customFields.domain}/
 helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             </CodeBlock>
-            <p className={binaryStyles.binaries__docs}>
+            <p className={biCss.binary__docs}>
               <a
                 href={siteConfig.customFields.artifactHubUrl}
                 rel="noopener noreferrer"
@@ -395,14 +383,14 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             logo={
               <img
                 alt="Planet with wings"
-                className={binaryStyles.binary__logo}
+                className={biCss.binary__logo}
                 src="/img/pages/getQuestdb/nojre.svg"
               />
             }
             size={assets.noJre.size}
             title="Any (no JVM)"
           >
-            <p className={binaryStyles.binaries__docs}>
+            <p className={biCss.binary__docs}>
               <a href="/docs/get-started/binaries#any-no-jvm-version">Docs</a>
             </p>
           </Binary>
@@ -411,7 +399,7 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             logo={
               <img
                 alt="Maven logo"
-                className={binaryStyles.binary__logo}
+                className={biCss.binary__logo}
                 src="/img/pages/getQuestdb/maven.svg"
               />
             }
@@ -424,7 +412,7 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
   <version>${siteConfig.customFields.version}</version>
 </dependency>`}
             </CodeBlock>
-            <p className={binaryStyles.binaries__docs}>
+            <p className={biCss.binary__docs}>
               <a href="/docs/reference/api/java-embedded">Docs</a>
             </p>
           </Binary>
@@ -433,7 +421,7 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             logo={
               <img
                 alt="Gradle logo"
-                className={binaryStyles.binary__logo}
+                className={biCss.binary__logo}
                 src="/img/pages/getQuestdb/gradle.svg"
               />
             }
@@ -443,33 +431,31 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
               {`implementation 'org.questdb:questdb:${siteConfig.customFields.version}'`}
             </CodeBlock>
             <div style={{ height: "2.75rem" }} />
-            <p className={binaryStyles.binaries__docs}>
+            <p className={biCss.binary__docs}>
               <a href="/docs/reference/api/java-embedded">Docs</a>
             </p>
           </Binary>
         </div>
 
-        <div className={instructionStyles.instructions}>
+        <div className={heCss.help}>
           <img
             alt="SQL statement in a code editor with an artistic view of the query result shown as a chart and a table"
-            className={instructionStyles.instructions__illustration}
+            className={heCss.help__illustration}
             src="/img/pages/getQuestdb/query.svg"
           />
 
-          <div className={instructionStyles.instructions__text}>
-            <h2 className={instructionStyles.instructions__title}>
-              How does it work
-            </h2>
+          <div className={heCss.help__text}>
+            <h2 className={heCss.help__title}>How does it work</h2>
             <p>
               QuestDB is distributed as a single binary. You can download
               either:
             </p>
-            <ul className={instructionStyles.instructions__list}>
-              <li className={instructionStyles.instructions__bullet}>
+            <ul className={heCss.help__list}>
+              <li className={heCss.help__bullet}>
                 The &quot;rt&quot; version, this includes a trimmed JVM so you
                 do not need anything else (~ {assets.linux.size})
               </li>
-              <li className={instructionStyles.instructions__bullet}>
+              <li className={heCss.help__bullet}>
                 The binary itself (~ {assets.noJre.size}), without the JVM. In
                 this case, you need Java 11 installed locally
               </li>

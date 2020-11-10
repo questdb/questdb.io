@@ -25,6 +25,8 @@
   --palette-white-darker: #d9d9d9;
   --palette-yellow: #ffd54f;
 
+  --image-shadow: 0 15px 61px 5px rgba(20, 23, 37, 0.94);
+
   --transition-bezier: cubic-bezier(0.17, 0.67, 0.83, 0.67);
 
   --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -111,7 +113,7 @@ html[data-theme="dark"] .DocSearch {
 
 /**
  *
- * Override Docusaurus/Infima
+ * Override Docusaurus/Infima variables
  *
  **/
 
@@ -153,7 +155,11 @@ nav {
   --ifm-color-emphasis-300: transparent;
 }
 
-/* This is from Layout.tsx (cf. upstream) */
+/**
+ *
+ * Globals
+ *
+ **/
 
 html,
 body {
@@ -181,22 +187,9 @@ body {
   background: var(--palette-white-05);
 }
 
-.navbar__link,
-.dropdown__link {
-  font-size: var(--ifm-font-size-base);
-}
-
-main article header h2 a {
-  color: var(--palette-white-darker);
-}
-
-.DocSearch-Button-Key {
-  display: none !important;
-}
-
 /**
  *
- * Custom global styles
+ * Scrollbars
  *
  **/
 
@@ -225,50 +218,43 @@ main article header h2 a {
   background: var(--palette-gray) !important;
 }
 
-.navbar__item--slack {
-  padding-left: 2.25rem;
-  background-image: url("/img/navbar/slack.svg");
-  background-position-x: 0.5rem;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
-}
-
-.navbar__item--github {
-  padding-left: 2.25rem;
-  background-image: url("/img/navbar/github.svg");
-  background-position-x: 0.5rem;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-}
+/**
+ *
+ * Utils
+ *
+ **/
 
 .color--pink {
   color: var(--palette-pink);
-}
-
-.screenshot--shadow {
-  box-shadow: 0 15px 61px 5px rgba(20, 23, 37, 0.94);
-}
-
-.screenshot--docs {
-  display: block;
-  margin: 4rem auto;
-}
-
-.screenshot--small {
-  max-width: 500px;
 }
 
 .margin-auto {
   margin: 0 auto;
 }
 
-.container.row {
-  padding: 0;
+/**
+ *
+ * Blog
+ *
+ **/
+
+/* Make blog title white */
+main article header h2 a {
+  color: var(--palette-white-darker);
 }
 
-.career h1 {
-  margin-bottom: 4rem;
-  text-align: center;
+/* Remove banner image from blog post on /blog/ */
+main > article > section .banner {
+  display: none;
+}
+
+/**
+ *
+ * Careers
+ *
+ **/
+
+/* @TODO: Remove this, this is a hack :( */
+.container.row {
+  padding: 0;
 }

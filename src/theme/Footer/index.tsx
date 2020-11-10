@@ -6,7 +6,7 @@ import React from "react"
 import Button from "@theme/Button"
 import useMetadataContext from "@theme/useMetadataContext"
 
-import sectionStyles from "../../css/section.module.css"
+import sectionCss from "../../css/section.module.css"
 import footerStyles from "./styles.module.css"
 
 type Props = Readonly<{
@@ -47,14 +47,14 @@ const Footer = () => {
 
   return (
     <footer
-      className={clsx(footerStyles.footer, sectionStyles.section, {
+      className={clsx(footerStyles.footer, sectionCss.section, {
         [footerStyles["footer--alt"]]: metadataContext.altFooter,
       })}
     >
       <div
         className={clsx(
           footerStyles.footer__inner,
-          sectionStyles["section--inner"],
+          sectionCss["section--inner"],
         )}
       >
         <div

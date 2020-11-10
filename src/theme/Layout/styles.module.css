@@ -8,15 +8,6 @@
   flex-direction: column;
 }
 
-.wrapper main > article > section :global(.banner) {
-  display: none;
-}
-
-.career {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
 @media (max-width: 996px) {
   .wrapper {
     margin-top: 2rem;

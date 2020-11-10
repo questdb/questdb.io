@@ -59,14 +59,14 @@ surcharges depending on a variety of factors such as the route taken or the time
 of the day.
 
 Most of the driver's earnings come from the `fare`, which consists of a
-`flat fare` $2.50 for entering the cab, and a `variable fare`. The variable
+`flat fare` \$2.50 for entering the cab, and a `variable fare`. The variable
 fare is a function of speed, time and distance. It is calculated as follows:
 
-- When the cab drives above 12mph, $2.50 per mile
-- Otherwise, $0.50 per minute
+- When the cab drives above 12mph, \$2.50 per mile
+- Otherwise, \$0.50 per minute
 
 This post focuses on the variable fare, i.e the output of the meter excluding
-the $2.50 start fee and extras. To be able to compare rides with one another,
+the \$2.50 start fee and extras. To be able to compare rides with one another,
 we normalize it as an `hourly rate` of driving a customer around.
 
 ## Modelling variable earnings for taxi drivers
@@ -75,14 +75,15 @@ Let's assume a cab is driving a customer at a constant speed during one hour. At
 the end of the hour, the driver can expect to pocket `variable earnings` of:
 
 - $30 if they drove below 12mph ($0.50 a minute)
-- $2.50 x their average speed if they drove above 12mph
+- \$2.50 x their average speed if they drove above 12mph
 
 Let's plot the hourly earnings in function of speed. This instantly reminds me
 of an old friend: call options!
 
-<img
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
   alt="A chart of call option payoff showing how cab drivers earnings increase with their average realized driving speed"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/cab-hourly-earnings-by-speed.png"
 />
 
@@ -95,16 +96,15 @@ Interestingly, the above notation breaks down the hourly variable fare into two
 components.
 
 - A `guaranteed` component `30`: whenever driving a customer, a cab will make at
-  least $30 an hour.
+  least \$30 an hour.
 - An `optional` component `max(0, Speed - 12)`: driving customers faster earns
   the driver more.
 
 Graphically, the breakdown between `guaranteed` and `optional` fare components
 look like the below:
 
-<img
+<Screenshot
   alt="A chart of call option payoff showing how cab drivers earnings increase with their average realized driving speed broken down between fixed and variable"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/cab-hourly-earnings-by-speed-breakdown.png"
 />
 
@@ -147,7 +147,7 @@ since we know all `possible outcomes` and their
 | 6          | 16.66%      | 4      | 0.6664         |
 
 By summing all the potential payouts weighed by their probability, we compute
-the expected value of playing this game: $1.666.
+the expected value of playing this game: \$1.666.
 
 - If we pay less to play the game, we will make money over time.
 - If we pay more, we lose in the long run.
@@ -157,9 +157,8 @@ the product of the payout profile and the associated probability distribution
 when the option expires. Let’s visualize this by plotting the values for our
 game in the following chart:
 
-<img
+<Screenshot
   alt="A chart showing the outcome profile of the dice game and the corresponding probabilities and probability-weighed expected payout values"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/die-game-payout-profile.png"
 />
 
@@ -202,26 +201,23 @@ log-normal distribution is skewed to the left and the mode (the highest point on
 the distribution, at around 10 mph) is lower than the mean (13 mph in the
 above).
 
-<img
+<Screenshot
   alt="A chart of call option payoff with the corresponding probability and weighed value area as overlay"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/option-payoff-probability-value.png"
 />
 
 We can play with our two parameters to get a grasp on the pricing dynamics. Here
 is how the average speed changes the distribution and expected option value:
 
-<img
+<Screenshot
   alt="A chart showing how distribution of outcomes and value change with the expected mean"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/payout-change-with-avg.png"
 />
 
 And here is the effect of standard deviation:
 
-<img
+<Screenshot
   alt="A chart showing how distribution of outcomes and value change with the standard deviation"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/payout-change-with-stdev.png"
 />
 
@@ -263,9 +259,8 @@ With `SAMPLE BY`, I compute the average results for monthly intervals and plot
 it below. Over 10 years, the average speed dropped significantly from 13.3 to
 9.7mph (almost 30%!).
 
-<img
+<Screenshot
   alt="A chart showing the evolution of the average cab driver speed over time and how it consistently dropped below the threshold"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/average-speed-over-time.png"
 />
 
@@ -296,9 +291,8 @@ September 2012 since cab prices were increased in August 2012. Interestingly,
 the average minimum variable fare has dropped over time and is now hitting a
 floor.
 
-<img
+<Screenshot
   alt="A chart showing the evolution of the average cab driver potential fare range against the actual average fare"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/potential-average-fare-range.png"
 />
 
@@ -307,9 +301,8 @@ the speed distribution. By feeding the historical mean and standard deviations
 into a log-normal distribution model, we can compute the following percentiles.
 For the vast majority of rides, drivers can expect to average below 12mph.
 
-<img
+<Screenshot
   alt="A chart showing the evolution of the distribution of NYC cab drivers' average speed over time"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/distribution-speed-over-time.png"
 />
 
@@ -317,9 +310,8 @@ To sum up, the following chart shows how the economics have changed over time.
 We can see how this damaged the option value for drivers, mostly as a result of
 the lower trending mean.
 
-<img
+<Screenshot
   alt="A chart showing how the distribution of outcomes changes due to a lower mean, and the resulting change in option"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/distribution-shift-with-lower-mean.png"
 />
 
@@ -332,9 +324,8 @@ follows.
 
 Slowly but surely, it stopped being a significant part in the driver’s earnings.
 
-<img
+<Screenshot
   alt="A chart of the hourly fare earned by taxi drivers over the years broken down by whether it is fixed or variable"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/variable-hourly-fare-over-time.png"
 />
 
@@ -363,15 +354,14 @@ When the average driver could expect to drive at 13mph 10 years ago, their
 expected speed is now around 9mph, way below the 12mph threshold. The loss of
 incentive becomes apparent if we look at it over time as follows:
 
-<img
+<Screenshot
   alt="A chart showing how the value of the incentive of driving customers faster has disappeared for NYC cab drivers"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-16/incentive-value-evolution-over-time.png"
 />
 
 So, are there any reasons left for cabs to drive customers around faster?
 
-The start fee of $2.50 provides another incentive. But it's efficacy depends on
+The start fee of \$2.50 provides another incentive. But it's efficacy depends on
 the waiting time between two rides. If the expected wait between customers is 5
 minutes or less, then drivers remain incentivized. Otherwise, it is economically
 more efficient to drive slowly and make the most of the current customer. A
@@ -386,7 +376,7 @@ fair to say that it lost a good part of it.
 If drivers are uncertain about their likelihood of finding the next ride, and if
 the optional fare component has become an insignificant fraction of their
 earnings, then it makes more sense to drive slow, and to hold on to the current
-customer for as long as possible. In the end, $30 per hour is better than 0.
+customer for as long as possible. In the end, \$30 per hour is better than 0.
 
 ## Your turn to explore the data
 

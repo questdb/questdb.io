@@ -1,0 +1,12 @@
+.shadow {
+  box-shadow: var(--image-shadow);
+}
+
+.margin {
+  display: block;
+  margin: 4rem auto;
+}
+
+.small {
+  max-width: 500px;
+}

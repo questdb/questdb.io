@@ -13,6 +13,34 @@
   padding: 0 1rem;
 }
 
+:global(.navbar__item--slack) {
+  padding-left: 2.25rem;
+  background-image: url("/img/navbar/slack.svg");
+  background-position-x: 0.5rem;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+}
+
+:global(.navbar__item--github) {
+  padding-left: 2.25rem;
+  background-image: url("/img/navbar/github.svg");
+  background-position-x: 0.5rem;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+
+/* Remove Algolia shorcuts */
+:global(.DocSearch-Button-Key) {
+  display: none !important;
+}
+
+:global(.navbar__link),
+:global(.dropdown__link) {
+    font-size: var(--ifm-font-size-base);
+}
+
 @media (max-width: 768px) {
   .getQuestdb {
     margin-left: 0.75rem;

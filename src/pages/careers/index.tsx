@@ -7,8 +7,10 @@ import Button from "@theme/Button"
 import Layout from "@theme/Layout"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 
-import careersStyles from "../../css/careers.module.css"
-import sectionStyles from "../../css/section.module.css"
+import benefitListCss from "../../css/careers/benefitList.module.css"
+import careerCardCss from "../../css/careers/careerCard.module.css"
+import jobCss from "../../css/careers/job.module.css"
+import sectionCss from "../../css/section.module.css"
 
 const CareersPage = () => {
   const title = "Careers at QuestDB"
@@ -32,87 +34,98 @@ const CareersPage = () => {
         </DocusaurusHead>
         <section
           className={clsx(
-            sectionStyles["section--inner"],
-            careersStyles.section,
+            sectionCss["section--inner"],
+            sectionCss["section--careers"],
           )}
         >
-          <div className={careersStyles.card}>
-            <div className={careersStyles.card__side}>
-              <h1 className={careersStyles["card__title--important"]}>
+          <div className={careerCardCss["career-card"]}>
+            <div className={careerCardCss["career-card__side"]}>
+              <h1 className={careerCardCss["career-card__title--important"]}>
                 Careers
               </h1>
-              <p className={careersStyles.card__content}>
+              <p className={careerCardCss["career-card__content"]}>
                 We help developers handle explosive amounts of data while
                 getting them started in just a few minutes with the simplest and
                 most accessible time series database.
               </p>
-              <Button className={careersStyles.card__cta} onClick={handleClick}>
+              <Button
+                className={careerCardCss["career-card__cta"]}
+                onClick={handleClick}
+              >
                 Current openings
               </Button>
             </div>
             <div
               className={clsx(
-                careersStyles.card__side,
-                careersStyles["card__side--illustration"],
+                careerCardCss["career-card__side"],
+                careerCardCss["career-card__side--illustration"],
               )}
             >
               <img
                 alt="A code editor containing a SQL statement"
-                className={careersStyles.card__illustration}
+                className={careerCardCss.card__illustration}
                 src="/img/pages/careers/teamCollaboration.svg"
               />
             </div>
           </div>
           <div
-            className={clsx(careersStyles.card, careersStyles["card--reverse"])}
+            className={clsx(
+              careerCardCss["career-card"],
+              careerCardCss["career-card--reverse"],
+            )}
           >
             <div
               className={clsx(
-                careersStyles.card__side,
-                careersStyles["card__side--illustration"],
-                careersStyles["card__side--baseline"],
+                careerCardCss["career-card__side"],
+                careerCardCss["career-card__side--illustration"],
+                careerCardCss["career-card__side--baseline"],
               )}
             >
               <img
                 alt="A code editor containing a SQL statement"
-                className={careersStyles.card__illustration}
+                className={careerCardCss.card__illustration}
                 src="/img/pages/careers/teamSpirit.svg"
               />
             </div>
-            <div className={careersStyles.card__side}>
-              <h2 className={careersStyles.card__title}>Working at QuestDB</h2>
-              <p className={careersStyles.card__content}>
+            <div className={careerCardCss["career-card__side"]}>
+              <h2 className={careerCardCss["career-card__title"]}>
+                Working at QuestDB
+              </h2>
+              <p className={careerCardCss["career-card__content"]}>
                 We hire talented and passionate people who share our mission to
                 empower developers to solve their problems with data. We are
                 building breakthrough technology to power the infrastructure of
                 tomorrow.
               </p>
-              <ul className={careersStyles.list}>
-                <li className={careersStyles.list__item}>
+              <ul className={benefitListCss["benefit-list"]}>
+                <li className={benefitListCss["benefit-list__item"]}>
                   We are a company with thousands of users; our mission is to
                   empower them.
                 </li>
-                <li className={careersStyles.list__item}>
+                <li className={benefitListCss["benefit-list__item"]}>
                   We invest in a culture that promotes ownership, autonomy and
                   independent thinking.
                 </li>
-                <li className={careersStyles.list__item}>
+                <li className={benefitListCss["benefit-list__item"]}>
                   We have transparent leadership and value employees’ strategic
                   inputs.
                 </li>
-                <li className={careersStyles.list__item}>
+                <li className={benefitListCss["benefit-list__item"]}>
                   Our team is ambitious and tackles the most difficult problems
                   at the deepest data infrastructure layer.
                 </li>
               </ul>
             </div>
           </div>
-          <div className={careersStyles.card}>
-            <div className={careersStyles.card__side}>
-              <h2 className={careersStyles.card__title} ref={titleRef}>
+          <div className={careerCardCss["career-card"]}>
+            <div className={careerCardCss["career-card__side"]}>
+              <h2
+                className={careerCardCss["career-card__title"]}
+                ref={titleRef}
+              >
                 Current openings
               </h2>
-              <p className={careersStyles.card__content}>
+              <p className={careerCardCss["career-card__content"]}>
                 We are always interested in hiring new talent, so if you are
                 looking for a role that does is not listed, you can contact us
                 anyway! Send your CV with any relevant links (GitHub, LinkedIn,
@@ -123,16 +136,16 @@ const CareersPage = () => {
             </div>
             <div
               className={clsx(
-                careersStyles.card__side,
-                careersStyles["card__side--center"],
+                careerCardCss["career-card__side"],
+                careerCardCss["career-card__side--center"],
               )}
             >
-              <a className={careersStyles.job} href="backend-software-engineer">
-                <h3 className={careersStyles.job__title}>
+              <a className={jobCss.job} href="backend-software-engineer">
+                <h3 className={jobCss.job__title}>
                   Software Engineer, Backend
                 </h3>
-                <p className={careersStyles.job__location}>Remote</p>
-                <span className={careersStyles.job__cta}>
+                <p className={jobCss.job__location}>Remote</p>
+                <span className={jobCss.job__cta}>
                   Details&nbsp;
                   <img
                     alt=""
@@ -141,12 +154,10 @@ const CareersPage = () => {
                   />
                 </span>
               </a>
-              <a className={careersStyles.job} href="technical-content-writer">
-                <h3 className={careersStyles.job__title}>
-                  Technical Content Writer
-                </h3>
-                <p className={careersStyles.job__location}>Remote</p>
-                <span className={careersStyles.job__cta}>
+              <a className={jobCss.job} href="technical-content-writer">
+                <h3 className={jobCss.job__title}>Technical Content Writer</h3>
+                <p className={jobCss.job__location}>Remote</p>
+                <span className={jobCss.job__cta}>
                   Details&nbsp;
                   <img
                     alt=""

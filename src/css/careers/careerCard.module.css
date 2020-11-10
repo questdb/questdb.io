@@ -1,0 +1,80 @@
+.career-card {
+  display: flex;
+  width: 100%;
+  margin-bottom: 6rem;
+  justify-content: space-between;
+}
+
+.career-card__title {
+  font-size: var(--font-size-xlarge);
+}
+
+.career-card__title--important {
+  font-size: var(--font-size-xxlarge);
+}
+
+.career-card__side {
+  display: flex;
+  max-width: 455px;
+  width: 100%;
+  flex-direction: column;
+}
+
+.career-card__side--illustration {
+  padding: 4rem 5rem;
+  border-radius: var(--ifm-global-border-radius);
+  box-sizing: border-box;
+  background: var(--palette-midnight);
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 30px 0px;
+}
+
+.career-card__side--baseline {
+  align-self: baseline;
+}
+
+.career-card__side--center {
+  justify-content: center;
+}
+
+.career-card__cta {
+  align-self: baseline;
+}
+
+.career-card__content {
+  font-size: var(--font-size-large);
+}
+
+@media (max-width: 996px) {
+  .career-card {
+    margin-bottom: 3rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .career-card--reverse {
+    flex-direction: column-reverse;
+  }
+
+  .career-card__side {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .career-card__side--illustration {
+    width: 100%;
+    max-width: 375px;
+    margin: 2rem 0;
+  }
+
+  .career-card__side--illustration {
+    padding: 2rem 3rem;
+  }
+
+  .career-card__side--baseline {
+    align-self: center;
+  }
+
+  .career-card__cta {
+    align-self: stretch;
+  }
+}

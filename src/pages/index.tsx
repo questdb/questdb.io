@@ -10,14 +10,14 @@ import Button from "@theme/Button"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 import useWindowWidth from "@theme/useWindowWidth"
 
-import cardsStyles from "../css/cards.module.css"
-import consoleStyles from "../css/console.module.css"
-import featureStyles from "../css/feature.module.css"
-import jumbotronStyles from "../css/jumbotron.module.css"
-import queryScrollerStyles from "../css/queryScroller.module.css"
-import sectionStyles from "../css/section.module.css"
-import seenOnStyles from "../css/seenOn.module.css"
-import whyStyles from "../css/why.module.css"
+import feCss from "../css/index/featureCard.module.css"
+import flCss from "../css/index/flashyCard.module.css"
+import juCss from "../css/index/jumbotron.module.css"
+import meCss from "../css/index/menu.module.css"
+import prCss from "../css/index/property.module.css"
+import shCss from "../css/index/showcase.module.css"
+import usCss from "../css/index/usp.module.css"
+import seCss from "../css/section.module.css"
 
 const Why = () => {
   const [opened, setOpened] = useState<"digital" | "realtime" | "integration">(
@@ -34,24 +34,24 @@ const Why = () => {
   }, [])
 
   return (
-    <section
-      className={clsx(sectionStyles.section, sectionStyles["section--odd"])}
-    >
-      <div className={clsx(sectionStyles["section--inner"], whyStyles.why)}>
+    <section className={clsx(seCss.section, seCss["section--odd"])}>
+      <div className={clsx(seCss["section--inner"], seCss["section--why"])}>
         <h2
           className={clsx(
-            sectionStyles.section__title,
-            whyStyles.why__title,
+            seCss.section__title,
+            seCss["section__title--why"],
             "text--center",
           )}
         >
           Why QuestDB?
         </h2>
 
-        <div className={whyStyles.why__footer}>
-          <div className={whyStyles.why__menu}>
+        <div
+          className={clsx(seCss.section__footer, seCss["section__footer--why"])}
+        >
+          <div className={meCss.menu__list}>
             <Button
-              className={whyStyles["why__menu--item"]}
+              className={meCss.menu__button}
               onClick={handleClickIs}
               size="small"
               variant={opened === "digital" ? "primary" : "tertiary"}
@@ -59,7 +59,7 @@ const Why = () => {
               Digital transformation
             </Button>
             <Button
-              className={whyStyles["why__menu--item"]}
+              className={meCss.menu__button}
               onClick={handleClickGoodFor}
               size="small"
               variant={opened === "realtime" ? "primary" : "tertiary"}
@@ -67,7 +67,7 @@ const Why = () => {
               Real-time insights
             </Button>
             <Button
-              className={whyStyles["why__menu--item"]}
+              className={meCss.menu__button}
               onClick={handleClickIsNot}
               size="small"
               variant={opened === "integration" ? "primary" : "tertiary"}
@@ -76,51 +76,41 @@ const Why = () => {
             </Button>
           </div>
 
-          <div className={whyStyles.why__content}>
+          <div className={meCss.menu__content}>
             <div
-              className={clsx(whyStyles.why__toggle, {
-                [whyStyles["why__toggle--active"]]: opened === "digital",
+              className={clsx(meCss.menu__panel, {
+                [meCss["menu__panel--active"]]: opened === "digital",
               })}
             >
-              <p className={whyStyles.why__item}>Reduce hardware costs</p>
-              <p className={whyStyles.why__item}>
-                Contain operational complexity
-              </p>
-              <p className={whyStyles.why__item}>Decrease development costs</p>
-              <p className={whyStyles.why__item}>
-                Cloud native (AWS, Azure, GCP)
-              </p>
-              <p className={whyStyles.why__item}>On premises or embedded</p>
+              <p className={prCss.property}>Reduce hardware costs</p>
+              <p className={prCss.property}>Contain operational complexity</p>
+              <p className={prCss.property}>Decrease development costs</p>
+              <p className={prCss.property}>Cloud native (AWS, Azure, GCP)</p>
+              <p className={prCss.property}>On premises or embedded</p>
             </div>
 
             <div
-              className={clsx(whyStyles.why__toggle, {
-                [whyStyles["why__toggle--active"]]: opened === "realtime",
+              className={clsx(meCss.menu__panel, {
+                [meCss["menu__panel--active"]]: opened === "realtime",
               })}
             >
-              <p className={whyStyles.why__item}>Streaming</p>
-              <p className={whyStyles.why__item}>
-                Operational analytics / OLAP
-              </p>
-              <p className={whyStyles.why__item}>
-                Monitoring and observability
-              </p>
-              <p className={whyStyles.why__item}>Predictive analytics</p>
+              <p className={prCss.property}>Streaming</p>
+              <p className={prCss.property}>Operational analytics / OLAP</p>
+              <p className={prCss.property}>Monitoring and observability</p>
+              <p className={prCss.property}>Predictive analytics</p>
             </div>
 
             <div
-              className={clsx(whyStyles.why__toggle, {
-                [whyStyles["why__toggle--active"]]: opened === "integration",
+              className={clsx(meCss.menu__panel, {
+                [meCss["menu__panel--active"]]: opened === "integration",
               })}
             >
-              <p className={whyStyles.why__item}>Active directory</p>
-              <p className={whyStyles.why__item}>
-                High performance replication
-              </p>
-              <p className={whyStyles.why__item}>High availability</p>
-              <p className={whyStyles.why__item}>Clustering</p>
-              <p className={whyStyles.why__item}>Enterprise security</p>
-              <p className={whyStyles.why__item}>Postgres compatible/API</p>
+              <p className={prCss.property}>Active directory</p>
+              <p className={prCss.property}>High performance replication</p>
+              <p className={prCss.property}>High availability</p>
+              <p className={prCss.property}>Clustering</p>
+              <p className={prCss.property}>Enterprise security</p>
+              <p className={prCss.property}>Postgres compatible/API</p>
             </div>
           </div>
         </div>
@@ -132,13 +122,12 @@ const Why = () => {
 const SeenOn = () => (
   <section
     className={clsx(
-      sectionStyles.section,
-      sectionStyles["section--inner"],
-      seenOnStyles.section,
+      seCss.section,
+      seCss["section--inner"],
+      seCss["section--seen-on"],
     )}
   >
     <a
-      className={seenOnStyles["product-hunt"]}
       href="https://www.producthunt.com/posts/questdb?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-questdb"
       rel="noopener noreferrer"
       target="_blank"
@@ -157,30 +146,25 @@ const Jumbotron = () => {
   const { siteConfig } = useDocusaurusContext()
 
   return (
-    <section
-      className={clsx(
-        sectionStyles["section--inner"],
-        jumbotronStyles.jumbotron,
-      )}
-    >
-      <div className={jumbotronStyles.jumbotron__left}>
-        <h1 className={clsx("jumbotron", jumbotronStyles.jumbotron__title)}>
+    <section className={clsx(seCss["section--inner"], juCss.jumbotron)}>
+      <div className={juCss.jumbotron__left}>
+        <h1 className={clsx("jumbotron", juCss.jumbotron__title)}>
           Fast SQL for time series
         </h1>
-        <p className={clsx("jumbotron", jumbotronStyles.jumbotron__subtitle)}>
+        <p className={clsx("jumbotron", juCss.jumbotron__subtitle)}>
           {siteConfig.tagline}
         </p>
-        <div className={jumbotronStyles.jumbotron__cta}>
+        <div className={juCss.jumbotron__cta}>
           <Button
-            className={jumbotronStyles.jumbotron__link}
+            className={juCss.jumbotron__link}
             href={`http://try.${siteConfig.customFields.domain}:9000`}
           >
             Live Demo
           </Button>
           <Button
             className={clsx(
-              jumbotronStyles.jumbotron__link,
-              jumbotronStyles["jumbotron__cta--github"],
+              juCss.jumbotron__link,
+              juCss["jumbotron__cta--github"],
             )}
             href={siteConfig.customFields.githubUrl}
             icon={
@@ -197,14 +181,14 @@ const Jumbotron = () => {
             GitHub
           </Button>
         </div>
-        <p className={jumbotronStyles.jumbotron__description}>
+        <p className={juCss.jumbotron__description}>
           Query our demo dataset with 1.6 billion rows in milliseconds
         </p>
       </div>
 
-      <div className={jumbotronStyles.jumbotron__right}>
-        <pre className={jumbotronStyles.jumbotron__docker}>
-          <code className={jumbotronStyles["jumbotron__docker--code"]}>
+      <div className={juCss.jumbotron__right}>
+        <pre className={juCss.jumbotron__docker}>
+          <code className={juCss["jumbotron__docker--code"]}>
             {`docker pull questdb/questdb
 docker run -p 9000:9000 questdb/questdb`}
           </code>
@@ -215,7 +199,7 @@ docker run -p 9000:9000 questdb/questdb`}
           >
             <img
               alt="Docker logo"
-              className={jumbotronStyles["jumbotron__docker-icon"]}
+              className={juCss["jumbotron__docker-icon"]}
               src="/img/pages/index/docker.svg"
               title="Docker"
               width="60"
@@ -227,88 +211,62 @@ docker run -p 9000:9000 questdb/questdb`}
   )
 }
 
-const Feature = () => (
-  <section
-    className={clsx(sectionStyles.section, sectionStyles["section--odd"])}
-  >
-    <div className={sectionStyles["section--inner"]}>
-      <div className={featureStyles.feature}>
+const Usp = () => (
+  <section className={clsx(seCss.section, seCss["section--odd"])}>
+    <div className={seCss["section--inner"]}>
+      <div className={usCss.usp}>
         <img
           alt="Speedometer"
-          className={featureStyles.feature__illustration}
+          className={usCss.usp__illustration}
           src="/img/pages/index/rawPower.svg"
         />
 
-        <h2 className={featureStyles.feature__title}>Built for performance</h2>
+        <h2 className={usCss.usp__title}>Built for performance</h2>
 
-        <p className={featureStyles.feature__description}>
-          SIMD optimised analytics
-        </p>
-        <p className={featureStyles.feature__description}>
-          Rows and columns based access
-        </p>
-        <p className={featureStyles.feature__description}>
-          Vectorized queries execution
-        </p>
-        <p className={featureStyles.feature__description}>
-          Tiny memory footprint
-        </p>
-        <p className={featureStyles.feature__description}>
-          C++ and zero-GC Java
-        </p>
+        <p className={usCss.usp__description}>SIMD optimised analytics</p>
+        <p className={usCss.usp__description}>Rows and columns based access</p>
+        <p className={usCss.usp__description}>Vectorized queries execution</p>
+        <p className={usCss.usp__description}>Tiny memory footprint</p>
+        <p className={usCss.usp__description}>C++ and zero-GC Java</p>
       </div>
 
-      <div className={featureStyles.feature}>
+      <div className={usCss.usp}>
         <img
           alt="A code editor with a chart that shows the result of the query"
-          className={featureStyles.feature__illustration}
+          className={usCss.usp__illustration}
           src="/img/pages/index/easyToUse.svg"
         />
 
-        <h2 className={featureStyles.feature__title}>
-          Optimized for time series
-        </h2>
+        <h2 className={usCss.usp__title}>Optimized for time series</h2>
 
-        <p className={featureStyles.feature__description}>
+        <p className={usCss.usp__description}>
           Relational model for time series
         </p>
-        <p className={featureStyles.feature__description}>
+        <p className={usCss.usp__description}>
           Data stored in chronological order
         </p>
-        <p className={featureStyles.feature__description}>Time partitioned</p>
-        <p className={featureStyles.feature__description}>Scalable ingestion</p>
-        <p className={featureStyles.feature__description}>
-          Immediate consistency
-        </p>
-        <p className={featureStyles.feature__description}>
-          Fast InfluxDB line protocol
-        </p>
+        <p className={usCss.usp__description}>Time partitioned</p>
+        <p className={usCss.usp__description}>Scalable ingestion</p>
+        <p className={usCss.usp__description}>Immediate consistency</p>
+        <p className={usCss.usp__description}>Fast InfluxDB line protocol</p>
       </div>
 
-      <div className={featureStyles.feature}>
+      <div className={usCss.usp}>
         <img
           alt="A code editor containing a SQL statement"
-          className={featureStyles.feature__illustration}
+          className={usCss.usp__illustration}
           src="/img/pages/index/featureRich.svg"
         />
 
-        <h2 className={featureStyles.feature__title}>Implemented with SQL</h2>
+        <h2 className={usCss.usp__title}>Implemented with SQL</h2>
 
-        <p className={featureStyles.feature__description}>
+        <p className={usCss.usp__description}>
           Time series and relational joins
         </p>
-        <p className={featureStyles.feature__description}>
-          Postgres compatibility
-        </p>
-        <p className={featureStyles.feature__description}>
-          Aggregations and down sampling
-        </p>
-        <p className={featureStyles.feature__description}>
-          Unlimited sub-queries
-        </p>
-        <p className={featureStyles.feature__description}>
-          Built-in SQL optimizer
-        </p>
+        <p className={usCss.usp__description}>Postgres compatibility</p>
+        <p className={usCss.usp__description}>Aggregations and down sampling</p>
+        <p className={usCss.usp__description}>Unlimited sub-queries</p>
+        <p className={usCss.usp__description}>Built-in SQL optimizer</p>
       </div>
     </div>
   </section>
@@ -317,65 +275,70 @@ const Feature = () => (
 const Cards = () => (
   <section
     className={clsx(
-      sectionStyles.section,
-      sectionStyles["section--inner"],
-      cardsStyles.cards,
+      seCss.section,
+      seCss["section--inner"],
+      seCss["section--feature-cards"],
     )}
   >
     <h3
       className={clsx(
-        sectionStyles.section__title,
-        cardsStyles.cards__title,
+        seCss.section__title,
+        feCss["section__title--feature-cards"],
         "text--center",
       )}
     >
       Why time series?
     </h3>
 
-    <div className={cardsStyles.cards__footer}>
-      <div className={cardsStyles.cards__wrapper}>
-        <h3 className={cardsStyles.cards__header}>DevOps monitoring</h3>
-        <p className={cardsStyles.cards__content}>
+    <div
+      className={clsx(
+        seCss.section__footer,
+        seCss["section__footer--feature-cards"],
+      )}
+    >
+      <div className={feCss["feature-card"]}>
+        <h3 className={feCss["feature-card__header"]}>DevOps monitoring</h3>
+        <p className={feCss["feature-card__content"]}>
           Collect metrics and events from your infrastructure (CPU, memory,
           networks, etc) and get real-time visibility into your entire stack.
         </p>
       </div>
 
-      <div className={cardsStyles.cards__wrapper}>
-        <h3 className={cardsStyles.cards__header}>Financial market data</h3>
-        <p className={cardsStyles.cards__content}>
+      <div className={feCss["feature-card"]}>
+        <h3 className={feCss["feature-card__header"]}>Financial market data</h3>
+        <p className={feCss["feature-card__content"]}>
           Store market data to identify historical trends and correlations using
           statistical methods and generate trading signals.
         </p>
       </div>
 
-      <div className={cardsStyles.cards__wrapper}>
-        <h3 className={cardsStyles.cards__header}>Connected devices</h3>
-        <p className={cardsStyles.cards__content}>
+      <div className={feCss["feature-card"]}>
+        <h3 className={feCss["feature-card__header"]}>Connected devices</h3>
+        <p className={feCss["feature-card__content"]}>
           Capture, store and respond to data from sensors at any resolution in
           industrial applications.
         </p>
       </div>
 
-      <div className={cardsStyles.cards__wrapper}>
-        <h3 className={cardsStyles.cards__header}>Application metrics</h3>
-        <p className={cardsStyles.cards__content}>
+      <div className={feCss["feature-card"]}>
+        <h3 className={feCss["feature-card__header"]}>Application metrics</h3>
+        <p className={feCss["feature-card__content"]}>
           Empower users of your application to track and visualise logs, api
           calls and any application activity in real-time.
         </p>
       </div>
 
-      <div className={cardsStyles.cards__wrapper}>
-        <h3 className={cardsStyles.cards__header}>CRUD for time series</h3>
-        <p className={cardsStyles.cards__content}>
+      <div className={feCss["feature-card"]}>
+        <h3 className={feCss["feature-card__header"]}>CRUD for time series</h3>
+        <p className={feCss["feature-card__content"]}>
           Allows easy changes in historical data through fully ACID support for
           CRUD APIs.
         </p>
       </div>
 
-      <div className={cardsStyles.cards__wrapper}>
-        <h3 className={cardsStyles.cards__header}>Integrated data</h3>
-        <p className={cardsStyles.cards__content}>
+      <div className={feCss["feature-card"]}>
+        <h3 className={feCss["feature-card__header"]}>Integrated data</h3>
+        <p className={feCss["feature-card__content"]}>
           Pull together all your application, device, and infrastructure data
           for a complete, 360º view of all aspects of your business.
         </p>
@@ -388,16 +351,12 @@ const Console = () => {
   const { siteConfig } = useDocusaurusContext()
 
   return (
-    <section
-      className={clsx(sectionStyles.section, sectionStyles["section--odd"])}
-    >
-      <div
-        className={clsx(sectionStyles["section--inner"], consoleStyles.console)}
-      >
+    <section className={clsx(seCss.section, seCss["section--odd"])}>
+      <div className={clsx(seCss["section--inner"], seCss["section--console"])}>
         <h2
           className={clsx(
-            sectionStyles.section__title,
-            consoleStyles.console__title,
+            seCss.section__title,
+            seCss["section__title--console"],
             "text--center",
           )}
         >
@@ -405,8 +364,8 @@ const Console = () => {
         </h2>
         <p
           className={clsx(
-            sectionStyles.section__subtitle,
-            consoleStyles.console__subtitle,
+            seCss.section__subtitle,
+            seCss["section__subtitle--console"],
             "text--center",
           )}
         >
@@ -420,15 +379,20 @@ const Console = () => {
 
         <img
           alt="Artistic view of QuestDB's Web Console split in 3 components: the navigation tree, the SQL code editor and data displayed as a chart"
-          className={consoleStyles.console__illustration}
+          className={seCss.section__illustration}
           src="/img/pages/index/console.svg"
         />
 
-        <div className={consoleStyles.console__footer}>
+        <div
+          className={clsx(
+            seCss.section__footer,
+            seCss["section__footer--console"],
+          )}
+        >
           <div
             className={clsx(
-              consoleStyles.console__highlight,
-              consoleStyles["console__highlight--primary"],
+              flCss["flashy-card"],
+              flCss["flashy-card--primary"],
             )}
           >
             <img
@@ -436,30 +400,30 @@ const Console = () => {
               src="/img/pages/index/pgwire.svg"
               title="Postgres"
             />
-            <h3 className={consoleStyles.console__label}>
+            <h3 className={flCss["flashy-card__title"]}>
               Postgres compatibility
             </h3>
-            <p className={consoleStyles.console__summary}>
+            <p className={flCss["flashy-card__content"]}>
               Interact with QuestDB using the Postgres layer and any tool that
               connects to it.
             </p>
           </div>
 
-          <div className={consoleStyles.console__highlight}>
+          <div className={flCss["flashy-card"]}>
             <img
               alt="Antenna"
               src="/img/pages/index/foss.svg"
               title="Open source"
             />
-            <h3 className={consoleStyles.console__label}>Open source</h3>
-            <p className={consoleStyles.console__summary}>
+            <h3 className={flCss["flashy-card__title"]}>Open source</h3>
+            <p className={flCss["flashy-card__content"]}>
               QuestDB is open source. Follow us on GitHub. Watch the repo to get
               notified of further releases and new features!
             </p>
 
-            <div className={consoleStyles.console__actions}>
+            <div className={flCss["flashy-card__links"]}>
               <a
-                className={consoleStyles.console__link}
+                className={flCss["flashy-card__link"]}
                 href={siteConfig.customFields.githubUrl}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -467,7 +431,7 @@ const Console = () => {
                 Go to GitHub&nbsp;&nbsp;&gt;
               </a>
               <a
-                className={consoleStyles.console__link}
+                className={flCss["flashy-card__link"]}
                 href={siteConfig.customFields.slackUrl}
               >
                 Join Slack&nbsp;&nbsp;&gt;
@@ -565,15 +529,12 @@ const QueryScroller = () => {
 
   return (
     <section
-      className={clsx(
-        sectionStyles["section--inner"],
-        queryScrollerStyles.queryScroller,
-      )}
+      className={clsx(seCss["section--inner"], seCss["section--showcase"])}
     >
       <h2
         className={clsx(
-          sectionStyles.section__title,
-          queryScrollerStyles.queryScroller__title,
+          seCss.section__title,
+          seCss["section__title--showcase"],
           "text--center",
         )}
       >
@@ -582,8 +543,8 @@ const QueryScroller = () => {
 
       <p
         className={clsx(
-          sectionStyles.section__subtitle,
-          queryScrollerStyles.queryScroller__subtitle,
+          seCss.section__subtitle,
+          seCss["section__subtitle--showcase"],
           "text--center",
         )}
       >
@@ -591,20 +552,20 @@ const QueryScroller = () => {
         stamped data
       </p>
 
-      <div className={queryScrollerStyles.queryScroller__scroller}>
-        <div className={queryScrollerStyles.queryScroller__inner}>
+      <div className={shCss.showcase}>
+        <div className={shCss.showcase__inner}>
           <div
-            className={clsx(queryScrollerStyles.queryScroller__chevron)}
+            className={clsx(shCss.showcase__chevron)}
             onClick={handleUpClick}
             style={{ visibility: index === 1 ? "hidden" : "visible" }}
           >
             <Chevron />
           </div>
-          <div className={clsx(queryScrollerStyles.queryScroller__left)}>
+          <div className={clsx(shCss.showcase__left)}>
             <div
               className={clsx(
-                queryScrollerStyles.queryScroller__offset,
-                queryScrollerStyles[`queryScroller__${index}`],
+                shCss.showcase__offset,
+                shCss[`showcase__${index}`],
               )}
               style={{ top: getTopByIndex(top, index) }}
             >
@@ -632,91 +593,87 @@ ${mergeQuery}`}
           </div>
           <div
             className={clsx(
-              queryScrollerStyles.queryScroller__chevron,
-              queryScrollerStyles["queryScroller__chevron--bottom"],
+              shCss.showcase__chevron,
+              shCss["showcase__chevron--bottom"],
             )}
             onClick={handleDownClick}
             style={{ visibility: index === 4 ? "hidden" : "visible" }}
           >
             <Chevron />
           </div>
-          <div className={queryScrollerStyles.queryScroller__right}>
+          <div className={shCss.showcase__right}>
             <div
-              className={clsx(queryScrollerStyles.queryScroller__button, {
-                [queryScrollerStyles["queryScroller__button--active"]]:
-                  index === 1,
+              className={clsx(shCss.showcase__button, {
+                [shCss["showcase__button--active"]]: index === 1,
               })}
               onClick={handleClick1}
             >
-              <h3 className={queryScrollerStyles.queryScroller__header}>
+              <h3 className={shCss.showcase__header}>
                 <img
                   alt="Magnifying glass icon"
-                  className={queryScrollerStyles.queryScroller__icon}
+                  className={shCss.showcase__icon}
                   src="/img/pages/index/searchTime.svg"
                 />
                 Search Time
               </h3>
-              <p className={queryScrollerStyles.queryScroller__description}>
+              <p className={shCss.showcase__description}>
                 Filter and search for specific timestamps with “where”
               </p>
             </div>
 
             <div
-              className={clsx(queryScrollerStyles.queryScroller__button, {
-                [queryScrollerStyles["queryScroller__button--active"]]:
-                  index === 2,
+              className={clsx(shCss.showcase__button, {
+                [shCss["showcase__button--active"]]: index === 2,
               })}
               onClick={handleClick2}
             >
-              <h3 className={queryScrollerStyles.queryScroller__header}>
+              <h3 className={shCss.showcase__header}>
                 <img
                   alt="Knife icon"
-                  className={queryScrollerStyles.queryScroller__icon}
+                  className={shCss.showcase__icon}
                   src="/img/pages/index/sliceTime.svg"
                 />
                 Slice Time
               </h3>
-              <p className={queryScrollerStyles.queryScroller__description}>
+              <p className={shCss.showcase__description}>
                 Create time buckets and aggregate by intervals with “sample by”
               </p>
             </div>
 
             <div
-              className={clsx(queryScrollerStyles.queryScroller__button, {
-                [queryScrollerStyles["queryScroller__button--active"]]:
-                  index === 3,
+              className={clsx(shCss.showcase__button, {
+                [shCss["showcase__button--active"]]: index === 3,
               })}
               onClick={handleClick3}
             >
-              <h3 className={queryScrollerStyles.queryScroller__header}>
+              <h3 className={shCss.showcase__header}>
                 <img
                   alt="Indication arrow icon"
-                  className={queryScrollerStyles.queryScroller__icon}
+                  className={shCss.showcase__icon}
                   src="/img/pages/index/navigateTime.svg"
                 />
                 Navigate Time
               </h3>
-              <p className={queryScrollerStyles.queryScroller__description}>
+              <p className={shCss.showcase__description}>
                 Search time series from most recent values to oldest with
                 “latest by”
               </p>
             </div>
             <div
-              className={clsx(queryScrollerStyles.queryScroller__button, {
-                [queryScrollerStyles["queryScroller__button--active"]]:
-                  index === 4,
+              className={clsx(shCss.showcase__button, {
+                [shCss["showcase__button--active"]]: index === 4,
               })}
               onClick={handleClick4}
             >
-              <h3 className={queryScrollerStyles.queryScroller__header}>
+              <h3 className={shCss.showcase__header}>
                 <img
                   alt="Two overlapping squares"
-                  className={queryScrollerStyles.queryScroller__icon}
+                  className={shCss.showcase__icon}
                   src="/img/pages/index/mergeTime.svg"
                 />
                 Merge Time
               </h3>
-              <p className={queryScrollerStyles.queryScroller__description}>
+              <p className={shCss.showcase__description}>
                 Join two tables based on timestamp where timestamps do not
                 exactly match with “asof join”
               </p>
@@ -739,7 +696,7 @@ const Home = () => {
           <link rel="canonical" href={siteConfig.url} />
         </DocusaurusHead>
         <Jumbotron />
-        <Feature />
+        <Usp />
         <QueryScroller />
         <Why />
         <Cards />

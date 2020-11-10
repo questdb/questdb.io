@@ -91,26 +91,25 @@ to read-only mode. You can do this by `http.security.readonly=true` in your
 Now that we have a data source and a dashboard, we can go ahead and add our
 first panel.
 
-<img
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
   alt="Screenshot of a new dashboard with a 'Add new panel' button"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/add-new-panel.png"
 />
 
 The new panel will look like this:
 
-<img
+<Screenshot
   alt="Screenshot of a blank panel after being created"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/blank-panel.png"
 />
 
 Toggle the query edit box to “text edit mode” by clicking on the pencil icon.
 Your edit box should look like this:
 
-<img
+<Screenshot
   alt="Screenshot showing how to toggle text edit mode"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/toggle-text-edit.png"
 />
 
@@ -152,9 +151,8 @@ Let’s add the new panel using these functions:
 
 And here we have our first panel!
 
-<img
+<Screenshot
   alt="Screenshot of our first panel, showing the average distance travelled."
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/first-panel.png"
 />
 As we would expect, we can see the cyclical nature of the taxi business, with a peak
@@ -192,14 +190,14 @@ SAMPLE BY $__interval
 
 And this is what the panel now looks like:
 
-<img
+<Screenshot
   alt="A panel showing the average distance travelled, filtered by taxi type and with dynamic sampling."
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-filtering-by-taxi-type.png"
 />
-We can see in this graph that the distance traveled by those paying with cards is
-longer than for those paying with cash. This could be due to the fact that users
-usually carry less cash than the balance in their card.{" "}
+
+We can see in this graph that the distance traveled by those paying with cards
+is longer than for those paying with cash. This could be due to the fact that
+users usually carry less cash than the balance in their card.{" "}
 
 Let’s add another panel:
 
@@ -214,21 +212,20 @@ SAMPLE BY $__interval;
 
 This is what it looks like when viewing it over a time range of 28 days:
 
-<img
+<Screenshot
   alt="A panel showing the number of trips over a month using dynamic sampling."
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-count-of-taxi-trips-in-whole-month.png"
 />
 
 If we zoom in and choose a single day as the time range, it looks like this:
 
-<img
+<Screenshot
   alt="A panel showing the number of trips in a day using dynamic sampling."
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-count-of-taxi-trips-in-a-day.png"
 />
-Here we see again the daily cycle, with rides peaking in the early evening and reaching
-a low in the middle of the night.
+
+Here we see again the daily cycle, with rides peaking in the early evening and
+reaching a low in the middle of the night.
 
 ## ASOF JOIN
 
@@ -249,32 +246,31 @@ SAMPLE BY $__interval;
 
 This is what it looks like for the whole month of February 2018:
 
-<img
+<Screenshot
   alt="A panel showing taxi fares plotted against rain fall"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-taxi-fares-and-rain.png"
 />
-In this graph, we have 2 series, in green we have the fare amount sampled dynamically,
-and in yellow we have the precipitation over the last hour in millimeters. From the
-graph, it’s hard to say whether there is a correlation between rain and the amount
-spent on taxi rides.
+
+In this graph, we have 2 series, in green we have the fare amount sampled
+dynamically, and in yellow we have the precipitation over the last hour in
+millimeters. From the graph, it’s hard to say whether there is a correlation
+between rain and the amount spent on taxi rides.
 
 If we zooming on a rainy day:
 
-<img
+<Screenshot
   alt="A panel showing taxi fares plotted against rain fall, zooming in on a rainy day"
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/panel-taxi-fares-and-rain-on-a-rainy-day.png"
 />
-Again, we see no obvious increase in the amount spent in taxi rides during the rainiest
-period of the day.
+
+Again, we see no obvious increase in the amount spent in taxi rides during the
+rainiest period of the day.
 
 Note that the graphs above have 2 Y-axis. To enable the right Y-axis, do this,
 click on the yellow line next to the rainH label:
 
-<img
+<Screenshot
   alt="Showing how to enable 2nd Y-axis by clicking on the line next to the series name."
-  className="screenshot--shadow screenshot--docs"
   src="/img/blog/2020-10-19/enabling-2nd-y-axis.png"
 />
 

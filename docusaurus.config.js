@@ -265,7 +265,7 @@ const config = {
           trailingSlash: true,
         },
         theme: {
-          customCss: require.resolve("./src/css/global.css"),
+          customCss: require.resolve("./src/css/_global.css"),
         },
       },
     ],

@@ -6,9 +6,11 @@ description: Official Web Console reference documentation.
 The Web Console allows you to interact with QuestDB. It provides you with tools
 to query data and visualize it in a table or using graphs.
 
-<img
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
   alt="Screenshot of the Web Console"
-  className="screenshot--shadow screenshot--docs screenshot--small"
+  small
   src="/img/docs/console/overview.png"
 />
 
@@ -19,9 +21,9 @@ running locally, this will be http://localhost:9000.
 
 ## Layout
 
-<img
+<Screenshot
   alt="Preview of the different sections in the Web Console"
-  className="screenshot--shadow screenshot--docs screenshot--small"
+  small
   src="/img/docs/console/layout.png"
 />
 
@@ -67,9 +69,9 @@ be useful to test the import functionality below.
 The import tab can be accessed by clicking this icon on the left-side navigation
 menu:
 
-<img
+<Screenshot
   alt="Screenshot of the Web Console showing the location of the Import tab"
-  className="screenshot--shadow screenshot--docs screenshot--small"
+  small
   src="/img/docs/console/importTab.png"
 />
 
@@ -107,9 +109,8 @@ column using the following steps:
 - Find and click on the column which type you want to change.
 - You will then need to [re-trigger the import](#custom-import).
 
-<img
+<Screenshot
   alt=" Change the schema in the Web Console when importing data"
-  className="screenshot--shadow screenshot--docs"
   src="/img/docs/console/amendType.jpg"
 />
 

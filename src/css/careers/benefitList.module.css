@@ -1,0 +1,15 @@
+.benefit-list {
+  padding: 0;
+  list-style: none;
+}
+
+.benefit-list__item {
+  margin-bottom: 0.5rem;
+  font-size: var(--font-size-large);
+}
+
+.benefit-list__item::before {
+  content: ">";
+  margin-right: 1rem;
+  color: var(--palette-pink);
+}

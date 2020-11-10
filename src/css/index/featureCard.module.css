@@ -1,18 +1,4 @@
-.cards {
-  flex-direction: column;
-  align-items: center;
-}
-
-.cards__title {
-  width: 100%;
-}
-
-.cards__footer {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.cards__wrapper {
+.feature-card {
   min-width: 260px;
   margin: 1.25rem;
   padding: 1.5rem;
@@ -22,12 +8,12 @@
   border-radius: var(--ifm-global-border-radius);
 }
 
-.cards__header {
+.feature-card__header {
   margin-bottom: 1rem;
   font-size: var(--font-size-large);
   font-weight: var(--ifm-font-weight-bold);
 }
 
-.cards__content {
+.feature-card__content {
   margin: 0;
 }
