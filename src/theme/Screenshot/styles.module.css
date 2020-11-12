@@ -7,6 +7,17 @@
   margin: 4rem auto;
 }
 
+.title {
+  margin-bottom: 2rem;
+}
+
 .small {
   max-width: 500px;
+}
+
+.caption {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-style: italic;
+  color: var(--palette-pale-blue);
 }

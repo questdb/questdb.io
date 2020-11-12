@@ -8,18 +8,25 @@ type Props = {
   shadow: boolean
   small: boolean
   src: string
+  title?: string
 }
 
-const Screenshot = ({ alt, margin, shadow, small, src }: Props) => (
-  <img
-    alt={alt}
-    className={clsx({
-      [styles.margin]: margin,
-      [styles.shadow]: shadow,
-      [styles.small]: small,
-    })}
-    src={src}
-  />
+const Screenshot = ({ alt, margin, shadow, small, src, title }: Props) => (
+  <figure>
+    <img
+      alt={alt}
+      className={clsx({
+        [styles.margin]: margin,
+        [styles.shadow]: shadow,
+        [styles.small]: small,
+        [styles.title]: title != null,
+      })}
+      src={src}
+    />
+    {title != null && (
+      <figcaption className={styles.caption}>{title}</figcaption>
+    )}
+  </figure>
 )
 
 Screenshot.defaultProps = {
