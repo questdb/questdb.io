@@ -10,8 +10,9 @@ import Button from "@theme/Button"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 import useWindowWidth from "@theme/useWindowWidth"
 
-import feCss from "../css/index/featureCard.module.css"
-import flCss from "../css/index/flashyCard.module.css"
+import doCss from "../css/index/docker.module.css"
+import feCss from "../css/index/feature.module.css"
+import flCss from "../css/index/flashy.module.css"
 import juCss from "../css/index/jumbotron.module.css"
 import meCss from "../css/index/menu.module.css"
 import prCss from "../css/index/property.module.css"
@@ -35,11 +36,11 @@ const Why = () => {
 
   return (
     <section className={clsx(seCss.section, seCss["section--odd"])}>
-      <div className={clsx(seCss["section--inner"], seCss["section--why"])}>
+      <div className={clsx(seCss["section--inner"], seCss["section--center"])}>
         <h2
           className={clsx(
             seCss.section__title,
-            seCss["section__title--why"],
+            seCss["section__title--wide"],
             "text--center",
           )}
         >
@@ -124,7 +125,7 @@ const SeenOn = () => (
     className={clsx(
       seCss.section,
       seCss["section--inner"],
-      seCss["section--seen-on"],
+      seCss["section--center"],
     )}
   >
     <a
@@ -142,18 +143,34 @@ const SeenOn = () => (
   </section>
 )
 
-const Jumbotron = () => {
+const Top = () => {
   const { siteConfig } = useDocusaurusContext()
 
   return (
-    <section className={clsx(seCss["section--inner"], juCss.jumbotron)}>
-      <div className={juCss.jumbotron__left}>
-        <h1 className={clsx("jumbotron", juCss.jumbotron__title)}>
+    <section
+      className={clsx(seCss["section--inner"], seCss["section--accent"])}
+    >
+      <div className={juCss.jumbotron}>
+        <h1
+          className={clsx(
+            seCss.section__title,
+            seCss["section__title--jumbotron"],
+            seCss["section__title--accent"],
+          )}
+        >
           Fast SQL for time series
         </h1>
-        <p className={clsx("jumbotron", juCss.jumbotron__subtitle)}>
+
+        <p
+          className={clsx(
+            seCss.section__subtitle,
+            seCss["section__subtitle--jumbotron"],
+            seCss["section__subtitle--accent"],
+          )}
+        >
           {siteConfig.tagline}
         </p>
+
         <div className={juCss.jumbotron__cta}>
           <Button
             className={juCss.jumbotron__link}
@@ -186,9 +203,9 @@ const Jumbotron = () => {
         </p>
       </div>
 
-      <div className={juCss.jumbotron__right}>
-        <pre className={juCss.jumbotron__docker}>
-          <code className={juCss["jumbotron__docker--code"]}>
+      <div className={doCss.docker}>
+        <pre className={doCss.docker__inner}>
+          <code className={doCss.docker__code}>
             {`docker pull questdb/questdb
 docker run -p 9000:9000 questdb/questdb`}
           </code>
@@ -199,7 +216,7 @@ docker run -p 9000:9000 questdb/questdb`}
           >
             <img
               alt="Docker logo"
-              className={juCss["jumbotron__docker-icon"]}
+              className={doCss.docker__icon}
               src="/img/pages/index/docker.svg"
               title="Docker"
               width="60"
@@ -277,13 +294,13 @@ const Cards = () => (
     className={clsx(
       seCss.section,
       seCss["section--inner"],
-      seCss["section--feature-cards"],
+      seCss["section--center"],
     )}
   >
     <h3
       className={clsx(
         seCss.section__title,
-        feCss["section__title--feature-cards"],
+        feCss["section__title--wide"],
         "text--center",
       )}
     >
@@ -296,49 +313,49 @@ const Cards = () => (
         seCss["section__footer--feature-cards"],
       )}
     >
-      <div className={feCss["feature-card"]}>
-        <h3 className={feCss["feature-card__header"]}>DevOps monitoring</h3>
-        <p className={feCss["feature-card__content"]}>
+      <div className={feCss.feature}>
+        <h3 className={feCss.feature__header}>DevOps monitoring</h3>
+        <p className={feCss.feature__content}>
           Collect metrics and events from your infrastructure (CPU, memory,
           networks, etc) and get real-time visibility into your entire stack.
         </p>
       </div>
 
-      <div className={feCss["feature-card"]}>
-        <h3 className={feCss["feature-card__header"]}>Financial market data</h3>
-        <p className={feCss["feature-card__content"]}>
+      <div className={feCss.feature}>
+        <h3 className={feCss.feature__header}>Financial market data</h3>
+        <p className={feCss.feature__content}>
           Store market data to identify historical trends and correlations using
           statistical methods and generate trading signals.
         </p>
       </div>
 
-      <div className={feCss["feature-card"]}>
-        <h3 className={feCss["feature-card__header"]}>Connected devices</h3>
-        <p className={feCss["feature-card__content"]}>
+      <div className={feCss.feature}>
+        <h3 className={feCss.feature__header}>Connected devices</h3>
+        <p className={feCss.feature__content}>
           Capture, store and respond to data from sensors at any resolution in
           industrial applications.
         </p>
       </div>
 
-      <div className={feCss["feature-card"]}>
-        <h3 className={feCss["feature-card__header"]}>Application metrics</h3>
-        <p className={feCss["feature-card__content"]}>
+      <div className={feCss.feature}>
+        <h3 className={feCss.feature__header}>Application metrics</h3>
+        <p className={feCss.feature__content}>
           Empower users of your application to track and visualise logs, api
           calls and any application activity in real-time.
         </p>
       </div>
 
-      <div className={feCss["feature-card"]}>
-        <h3 className={feCss["feature-card__header"]}>CRUD for time series</h3>
-        <p className={feCss["feature-card__content"]}>
+      <div className={feCss.feature}>
+        <h3 className={feCss.feature__header}>CRUD for time series</h3>
+        <p className={feCss.feature__content}>
           Allows easy changes in historical data through fully ACID support for
           CRUD APIs.
         </p>
       </div>
 
-      <div className={feCss["feature-card"]}>
-        <h3 className={feCss["feature-card__header"]}>Integrated data</h3>
-        <p className={feCss["feature-card__content"]}>
+      <div className={feCss.feature}>
+        <h3 className={feCss.feature__header}>Integrated data</h3>
+        <p className={feCss.feature__content}>
           Pull together all your application, device, and infrastructure data
           for a complete, 360º view of all aspects of your business.
         </p>
@@ -352,11 +369,11 @@ const Console = () => {
 
   return (
     <section className={clsx(seCss.section, seCss["section--odd"])}>
-      <div className={clsx(seCss["section--inner"], seCss["section--console"])}>
+      <div className={clsx(seCss["section--inner"], seCss["section--center"])}>
         <h2
           className={clsx(
             seCss.section__title,
-            seCss["section__title--console"],
+            seCss["section__title--wide"],
             "text--center",
           )}
         >
@@ -365,7 +382,7 @@ const Console = () => {
         <p
           className={clsx(
             seCss.section__subtitle,
-            seCss["section__subtitle--console"],
+            seCss["section__subtitle--narrow"],
             "text--center",
           )}
         >
@@ -389,41 +406,34 @@ const Console = () => {
             seCss["section__footer--console"],
           )}
         >
-          <div
-            className={clsx(
-              flCss["flashy-card"],
-              flCss["flashy-card--primary"],
-            )}
-          >
+          <div className={clsx(flCss.flashy, flCss["flashy--primary"])}>
             <img
               alt="Postgres logo"
               src="/img/pages/index/pgwire.svg"
               title="Postgres"
             />
-            <h3 className={flCss["flashy-card__title"]}>
-              Postgres compatibility
-            </h3>
-            <p className={flCss["flashy-card__content"]}>
+            <h3 className={flCss.flashy__title}>Postgres compatibility</h3>
+            <p className={flCss.flashy__content}>
               Interact with QuestDB using the Postgres layer and any tool that
               connects to it.
             </p>
           </div>
 
-          <div className={flCss["flashy-card"]}>
+          <div className={flCss.flashy}>
             <img
               alt="Antenna"
               src="/img/pages/index/foss.svg"
               title="Open source"
             />
-            <h3 className={flCss["flashy-card__title"]}>Open source</h3>
-            <p className={flCss["flashy-card__content"]}>
+            <h3 className={flCss.flashy__title}>Open source</h3>
+            <p className={flCss.flashy__content}>
               QuestDB is open source. Follow us on GitHub. Watch the repo to get
               notified of further releases and new features!
             </p>
 
-            <div className={flCss["flashy-card__links"]}>
+            <div className={flCss.flashy__links}>
               <a
-                className={flCss["flashy-card__link"]}
+                className={flCss.flashy__link}
                 href={siteConfig.customFields.githubUrl}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -431,7 +441,7 @@ const Console = () => {
                 Go to GitHub&nbsp;&nbsp;&gt;
               </a>
               <a
-                className={flCss["flashy-card__link"]}
+                className={flCss.flashy__link}
                 href={siteConfig.customFields.slackUrl}
               >
                 Join Slack&nbsp;&nbsp;&gt;
@@ -529,12 +539,16 @@ const QueryScroller = () => {
 
   return (
     <section
-      className={clsx(seCss["section--inner"], seCss["section--showcase"])}
+      className={clsx(
+        seCss["section--inner"],
+        seCss["section--center"],
+        seCss["section--showcase"],
+      )}
     >
       <h2
         className={clsx(
           seCss.section__title,
-          seCss["section__title--showcase"],
+          seCss["section__title--wide"],
           "text--center",
         )}
       >
@@ -544,7 +558,7 @@ const QueryScroller = () => {
       <p
         className={clsx(
           seCss.section__subtitle,
-          seCss["section__subtitle--showcase"],
+          seCss["section__subtitle--narrow"],
           "text--center",
         )}
       >
@@ -695,7 +709,7 @@ const Home = () => {
         <DocusaurusHead>
           <link rel="canonical" href={siteConfig.url} />
         </DocusaurusHead>
-        <Jumbotron />
+        <Top />
         <Usp />
         <QueryScroller />
         <Why />

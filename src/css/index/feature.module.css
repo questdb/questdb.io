@@ -1,4 +1,4 @@
-.feature-card {
+.feature {
   min-width: 260px;
   margin: 1.25rem;
   padding: 1.5rem;
@@ -8,12 +8,12 @@
   border-radius: var(--ifm-global-border-radius);
 }
 
-.feature-card__header {
+.feature__header {
   margin-bottom: 1rem;
   font-size: var(--font-size-large);
   font-weight: var(--ifm-font-weight-bold);
 }
 
-.feature-card__content {
+.feature__content {
   margin: 0;
 }

@@ -1,4 +1,4 @@
-.console-illustration {
+.illustration {
   width: 500px;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 996px) {
-  .console-illustration {
+  .illustration {
     width: 440px;
     max-width: 88%;
     margin-top: 1rem;

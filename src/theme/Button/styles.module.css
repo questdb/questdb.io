@@ -15,6 +15,11 @@
   cursor: pointer;
 }
 
+.button--plain {
+  height: auto;
+  padding: 0;
+}
+
 .button--primary {
   background-color: var(--palette-pink);
   color: var(--palette-white);
@@ -69,5 +74,9 @@
 
   .button--xsmall {
     padding: 0 1rem;
+  }
+
+  .button--plain {
+    padding: 0;
   }
 }

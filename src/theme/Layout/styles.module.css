@@ -1,15 +1,8 @@
 .wrapper {
-  margin-top: 3rem;
   flex: 1 0 auto;
 }
 
 .flex {
   display: flex;
   flex-direction: column;
-}
-
-@media (max-width: 996px) {
-  .wrapper {
-    margin-top: 2rem;
-  }
 }

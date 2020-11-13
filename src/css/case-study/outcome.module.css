@@ -1,0 +1,26 @@
+.outcome {
+  display: flex;
+  min-width: 300px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 0;
+  flex-direction: column;
+  align-items: start;
+  flex: 0;
+  font-size: var(--font-size-large);
+}
+
+.outcome__wrapper {
+  display: flex;
+  padding: 2.5rem 1rem;
+  flex-wrap: wrap;
+}
+
+.outcome__icon {
+  height: 1.75rem;
+  margin-bottom: 1rem;
+  padding: 0.35rem;
+  border-radius: 2px;
+  background: var(--palette-pink);
+}

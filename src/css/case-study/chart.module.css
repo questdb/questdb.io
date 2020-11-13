@@ -1,0 +1,5 @@
+.chart {
+  display: block;
+  margin: 2rem auto;
+  box-shadow: var(--image-shadow);
+}

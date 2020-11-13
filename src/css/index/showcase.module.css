@@ -47,8 +47,8 @@
 }
 
 .showcase__left :global(.prism-code) {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 
 .showcase__right {
@@ -140,8 +140,8 @@
 
 @media (max-width: 1113px) {
   .showcase {
-    padding: 4rem 1.75em;
     --active-font-size: calc(var(--font-size-llarge) - 2px);
+    padding: 4rem 1.75em;
   }
 
   .showcase__inner {
@@ -165,9 +165,9 @@
 
 @media (max-width: 800px) {
   .showcase {
+    --active-font-size: var(--font-size-large);
     padding: 3rem 1rem;
     font-size: var(--font-size-normal);
-    --active-font-size: var(--font-size-large);
   }
 
   .showcase__left {
@@ -188,9 +188,9 @@
 
 @media (max-width: 622px) {
   .showcase {
+    --active-font-size: var(--font-size-small);
     padding: 0;
     font-size: var(--font-size-small);
-    --active-font-size: var(--font-size-small);
   }
 
   .showcase__inner {

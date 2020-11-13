@@ -1,5 +1,5 @@
 .getQuestdb {
-  margin-left: 2rem;
+  margin-left: 40px;
   font-size: var(--font-size-small);
 }
 
@@ -13,22 +13,20 @@
   padding: 0 1rem;
 }
 
-:global(.navbar__item--slack) {
-  padding-left: 2.25rem;
-  background-image: url("/img/navbar/slack.svg");
-  background-position-x: 0.5rem;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
-}
-
+:global(.navbar__item--slack),
 :global(.navbar__item--github) {
-  padding-left: 2.25rem;
+  padding-left: 1.5rem;
   background-image: url("/img/navbar/github.svg");
-  background-position-x: 0.5rem;
+  background-position-x: 0;
   background-position-y: center;
   background-repeat: no-repeat;
   background-size: 20px 20px;
+}
+
+:global(.navbar__item--slack) {
+  margin-left: 20px;
+  background-image: url("/img/navbar/slack.svg");
+  background-size: 18px 18px;
 }
 
 /* Remove Algolia shorcuts */
@@ -38,7 +36,7 @@
 
 :global(.navbar__link),
 :global(.dropdown__link) {
-    font-size: var(--ifm-font-size-base);
+  font-size: var(--ifm-font-size-base);
 }
 
 @media (max-width: 768px) {
@@ -50,5 +48,34 @@
 
   :global(.DocSearch-Button) {
     margin: 0 !important;
+  }
+
+  :global(.navbar__brand) {
+    margin: 0;
+  }
+}
+
+@media (max-width: 996px) and (min-width: 768px) {
+  .getQuestdb {
+    margin-left: 1.7rem;
+  }
+}
+
+@media (max-width: 1150px) and (min-width: 996px) {
+  :global(.navbar__link) {
+    --ifm-navbar-item-padding-horizontal: 0.85rem;
+  }
+
+  :global(.navbar__brand) {
+    margin-right: 0.85rem;
+  }
+
+  :global(.navbar__item--slack),
+  :global(.DocSearch-Button) {
+    margin-left: 0.85rem;
+  }
+
+  .getQuestdb {
+    margin-left: 1.7rem;
   }
 }

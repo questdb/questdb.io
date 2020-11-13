@@ -1,0 +1,54 @@
+.docker {
+  position: relative;
+  display: flex;
+  margin-left: 4rem;
+  margin-top: 1.75rem;
+  min-height: 381px;
+  flex-direction: column;
+  align-items: end;
+  flex: 1 1 auto;
+  background-image: url("/img/pages/index/topEditor.svg");
+  background-repeat: no-repeat;
+  background-position-x: right;
+}
+
+.docker__inner {
+  position: absolute;
+  bottom: 95px;
+  right: 16px;
+  max-width: 568px;
+  width: 100%;
+  margin: 0;
+  padding: 2rem 3.5rem;
+  font-size: var(--font-size-large);
+  overflow: initial;
+}
+
+.docker__code {
+  display: block;
+}
+
+.docker__icon {
+  position: absolute;
+  left: -25px;
+  bottom: -25px;
+  border-radius: 50%;
+  transition: filter 100ms var(--transition-bezier);
+}
+
+.docker__icon:hover {
+  filter: brightness(0.9);
+  cursor: pointer;
+}
+
+@media (max-width: 996px) {
+  .docker {
+    display: none;
+  }
+}
+
+@media (max-width: 1026px) {
+  .docker__inner {
+    font-size: var(--font-size-normal);
+  }
+}

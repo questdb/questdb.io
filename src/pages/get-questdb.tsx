@@ -14,8 +14,8 @@ import { MetadataContextProvider } from "@theme/useMetadataContext"
 import Console from "../../static/img/pages/getQuestdb/console.png"
 import biCss from "../css/get-questdb/binary.module.css"
 import chCss from "../css/get-questdb/changelog.module.css"
-import ciCss from "../css/get-questdb/consoleIllustration.module.css"
-import dcCss from "../css/get-questdb/downloadCta.module.css"
+import ciCss from "../css/get-questdb/illustration.module.css"
+import ctCss from "../css/get-questdb/cta.module.css"
 import heCss from "../css/get-questdb/help.module.css"
 import seCss from "../css/section.module.css"
 import { getAssets, getOs, Os, Release } from "../utils"
@@ -241,13 +241,13 @@ brew install questdb`}
         </DocusaurusHead>
 
         <section
-          className={clsx(seCss["section--inner"], seCss["section--get"])}
+          className={clsx(seCss["section--inner"], seCss["section--accent"])}
         >
           <div className={seCss.section__header}>
             <h1
               className={clsx(
                 seCss.section__title,
-                seCss["section__title--get"],
+                seCss["section__title--accent"],
               )}
             >
               Download QuestDB
@@ -256,7 +256,7 @@ brew install questdb`}
             <p
               className={clsx(
                 seCss.section__subtitle,
-                seCss["section__subtitle--get"],
+                seCss["section__subtitle--accent"],
                 "text--center",
               )}
             >
@@ -270,15 +270,15 @@ brew install questdb`}
 
             <IdealImage
               alt="Screenshot of the Web Console showing various SQL statements and the result of one as a chart"
-              className={ciCss["console-illustration"]}
+              className={ciCss.illustration}
               img={Console}
               src="/img/pages/getQuestdb/console.png"
             />
 
-            <div className={dcCss.cta}>
+            <div className={ctCss.cta}>
               <p
-                className={clsx(dcCss.cta__details, {
-                  [dcCss["cata__details--download"]]: os !== "macos",
+                className={clsx(ctCss.cta__details, {
+                  [ctCss["cata__details--download"]]: os !== "macos",
                 })}
               >
                 Latest Release:&nbsp;

@@ -1,0 +1,55 @@
+.quote {
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto;
+  flex-direction: column;
+  font-size: var(--font-size-large);
+}
+
+.quote:not(:last-child) {
+  margin-bottom: 4rem;
+}
+
+.quote__company {
+  --brightness: 1;
+  --contrast: 1%;
+  margin-bottom: 1.5rem;
+  align-self: baseline;
+  filter: brightness(var(--brightness)) contrast(var(--contrast)) invert(1);
+  transition: filter 150ms ease-in-out;
+}
+
+.quote__company:hover {
+  --brightness: 1%;
+  --contrast: 1;
+}
+
+.quote__logo {
+  height: 24px;
+  align-self: flex-start;
+}
+
+.quote__logo--small {
+  height: 18px;
+}
+
+.quote__text:before,
+.quote__text:after {
+  position: relative;
+  top: 0.7rem;
+  font-size: var(--font-size-xlarge);
+  line-height: 0;
+  color: var(--palette-pink);
+}
+
+.quote__text:before {
+  left: -0.1rem;
+  margin-right: 0.25rem;
+  content: open-quote;
+}
+
+.quote__text:after {
+  right: -0.1rem;
+  margin-left: 0.25rem;
+  content: close-quote;
+}

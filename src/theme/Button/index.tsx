@@ -13,7 +13,7 @@ type Props = Readonly<{
   size: "normal" | "small" | "xsmall"
   to?: string
   uppercase: boolean
-  variant: "primary" | "secondary" | "tertiary"
+  variant: "primary" | "secondary" | "tertiary" | "plain"
 }>
 
 const Button = ({
@@ -34,6 +34,7 @@ const Button = ({
     [styles["button--secondary"]]: variant === "secondary",
     [styles["button--small"]]: size === "small",
     [styles["button--tertiary"]]: variant === "tertiary",
+    [styles["button--plain"]]: variant === "plain",
     [styles["button--uppercase"]]: uppercase,
     [styles["button--xsmall"]]: size === "xsmall",
   })

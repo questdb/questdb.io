@@ -1,0 +1,41 @@
+.card {
+  max-width: var(--ifm-container-width);
+  width: calc(100% - 2rem);
+  margin: 0 auto;
+  margin-top: 4.5rem;
+  padding: 4.5rem 0;
+  background: var(--palette-white-03);
+}
+
+.card__title,
+.card__subtitle {
+  display: inline-block;
+  margin: 0;
+  padding: 0 1.5rem;
+}
+
+.card__title {
+  margin-bottom: 2rem;
+  font-size: var(--font-size-llarge);
+}
+
+.card__subtitle {
+  color: var(--palette-pale-blue);
+  font-size: var(--font-size-large);
+}
+
+.card__quote {
+  position: relative;
+  top: 2px;
+  font-size: var(--font-size-xlarge);
+  color: var(--palette-pink);
+  line-height: 0;
+}
+
+.card__quote:first-child {
+  margin-right: 0.75rem;
+}
+
+.card__quote:last-child {
+  margin-left: 0.75rem;
+}

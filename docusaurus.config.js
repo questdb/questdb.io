@@ -170,14 +170,22 @@ const config = {
           ],
         },
         {
-          label: "Documentation",
+          label: "Resources",
           position: "left",
-          to: "/docs/introduction/",
-          activeBasePath: "docs",
+          items: [
+            {
+              label: "Customers",
+              to: "/customers",
+            },
+            {
+              label: "Blog",
+              to: "/blog",
+            },
+          ],
         },
         {
-          label: "Blog",
-          to: "/blog/",
+          label: "Documentation",
+          to: "/docs/introduction/",
           position: "left",
         },
         {
@@ -187,7 +195,7 @@ const config = {
           position: "right",
         },
         {
-          label: "Join Slack",
+          label: "Slack",
           className: "navbar__item--slack",
           href: customFields.slackUrl,
           position: "right",
@@ -199,6 +207,10 @@ const config = {
         {
           title: "QuestDB",
           items: [
+            {
+              label: "Customers",
+              to: "/customers/",
+            },
             {
               label: "Documentation",
               to: "/docs/introduction/",
