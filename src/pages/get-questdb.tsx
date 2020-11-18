@@ -14,9 +14,9 @@ import { MetadataContextProvider } from "@theme/useMetadataContext"
 import Console from "../../static/img/pages/getQuestdb/console.png"
 import biCss from "../css/get-questdb/binary.module.css"
 import chCss from "../css/get-questdb/changelog.module.css"
-import ciCss from "../css/get-questdb/illustration.module.css"
 import ctCss from "../css/get-questdb/cta.module.css"
 import heCss from "../css/get-questdb/help.module.css"
+import ilCss from "../css/get-questdb/illustration.module.css"
 import seCss from "../css/section.module.css"
 import { getAssets, getOs, Os, Release } from "../utils"
 
@@ -270,7 +270,7 @@ brew install questdb`}
 
             <IdealImage
               alt="Screenshot of the Web Console showing various SQL statements and the result of one as a chart"
-              className={ciCss.illustration}
+              className={ilCss.illustration}
               img={Console}
               src="/img/pages/getQuestdb/console.png"
             />
