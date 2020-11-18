@@ -18,7 +18,7 @@
 }
 
 .jumbotron__logo {
-  max-width: 100px;
+  width: 100px;
 }
 
 .jumbotron__name {
@@ -34,6 +34,8 @@
 .jumbotron__banner {
   display: flex;
   max-width: calc(var(--ifm-container-width) - 2rem);
+  width: 100%;
+  min-height: 370px;
   margin-top: 4.5rem;
   justify-content: center;
 }
