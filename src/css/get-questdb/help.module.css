@@ -21,7 +21,7 @@
 }
 
 .help__title {
-  font-size: var(--font-size-xlarge);
+  font-size: var(--font-size-big-3);
   font-weight: var(--ifm-font-weight-bold);
 }
 

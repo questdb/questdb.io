@@ -16,7 +16,7 @@
 
 .card__title {
   margin-bottom: 2rem;
-  font-size: var(--font-size-llarge);
+  font-size: var(--font-size-big-2);
 }
 
 .card__subtitle {
@@ -27,7 +27,7 @@
 .card__quote {
   position: relative;
   top: 2px;
-  font-size: var(--font-size-xlarge);
+  font-size: var(--font-size-big-3);
   color: var(--palette-pink);
   line-height: 0;
 }
