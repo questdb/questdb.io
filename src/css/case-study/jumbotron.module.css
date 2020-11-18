@@ -19,6 +19,12 @@
 
 .jumbotron__logo {
   width: 100px;
+  filter: brightness(0) invert(1);
+  transition: filter var(--ifm-transition-fast) ease-out;
+}
+
+.jumbotron__logo:hover {
+  filter: none;
 }
 
 .jumbotron__name {

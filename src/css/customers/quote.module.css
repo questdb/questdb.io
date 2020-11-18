@@ -37,7 +37,7 @@
 .quote__text:after {
   position: relative;
   top: 0.7rem;
-  font-size: var(--font-size-xlarge);
+  font-size: var(--font-size-big-3);
   line-height: 0;
   color: var(--palette-pink);
 }

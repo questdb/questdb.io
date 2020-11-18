@@ -140,7 +140,7 @@
 
 @media (max-width: 1113px) {
   .showcase {
-    --active-font-size: calc(var(--font-size-llarge) - 2px);
+    --active-font-size: calc(var(--font-size-big-2) - 2px);
     padding: 4rem 1.75em;
   }
 

@@ -38,11 +38,12 @@
 
   --font-size-small: 15px;
   --font-size-normal: 16px;
-  --font-size-large: 18px;
-  --font-size-llarge: 24px;
-  --font-size-xlarge: 32px;
-  --font-size-xxlarge: 46px;
-  --font-size-xxxlarge: 64px;
+  --font-size-large: 17px;
+  --font-size-big-1: 22px;
+  --font-size-big-2: 24px;
+  --font-size-big-3: 32px;
+  --font-size-big-4: 46px;
+  --font-size-big-5: 64px;
 
   --ifm-background-color: var(--palette-charade);
   --ifm-blockquote-color: var(--palette-pale-blue);
@@ -67,19 +68,21 @@
     "Liberation Mono", "Courier New", monospace;
   --ifm-font-size-base: var(--font-size-small);
   --ifm-global-border-radius: 8px;
-  --ifm-h1-font-size: var(--font-size-xxlarge);
-  --ifm-h2-font-size: var(--font-size-llarge);
+  --ifm-h1-font-size: var(--font-size-big-4);
+  --ifm-h2-font-size: var(--font-size-big-2);
+  --ifm-h3-font-size: var(--font-size-big-1);
   --ifm-h4-font-size: var(--font-size-large);
   --ifm-heading-margin-bottom: 1.5rem;
   --ifm-hr-border-color: var(--palette-white-20);
   --ifm-link-color: var(--palette-turquoise);
+  --ifm-list-paragraph-margin: 0.5rem;
   --ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
   --ifm-navbar-background-color: var(--palette-charade);
   --ifm-navbar-height: 80px;
   --ifm-navbar-item-padding-horizontal: 20px;
   --ifm-navbar-padding-horizontal: 0;
   --ifm-navbar-shadow: 0 1px 0 0 var(--palette-white-10);
-  --ifm-paragraph-margin-bottom: 1.25rem;
+  --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-pre-background: var(--palette-midnight);
   --ifm-table-cell-padding: 0.15rem 1rem;
   --ifm-toc-border-color: var(--palette-white-10);
@@ -232,6 +235,10 @@ body {
 
 .margin-auto {
   margin: 0 auto;
+}
+
+.font-size--large {
+  font-size: var(--font-size-large);
 }
 
 /**

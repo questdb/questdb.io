@@ -11,7 +11,7 @@
 
 .title {
   margin-bottom: 3rem;
-  font-size: var(--font-size-xlarge);
+  font-size: var(--font-size-big-3);
   text-align: center;
 }
 
@@ -23,6 +23,6 @@
 .link {
   display: block;
   margin-top: 3rem;
-  font-size: var(--font-size-llarge);
+  font-size: var(--font-size-big-2);
   text-align: center;
 }
