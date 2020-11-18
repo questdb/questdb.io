@@ -163,7 +163,7 @@ That's just getting us all the data, but let's narrow the search using some SQL
 clauses.
 
 Let's look for a specific `cust_id` and only balances of that customer that are
-in \$s.
+in $s.
 
 We are also only interested in times the customer was active
 
