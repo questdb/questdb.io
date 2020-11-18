@@ -1,6 +1,6 @@
 ---
 title:
-  What is time-series data, and why we are building a time-series database
+  What is time-series data, and why are we building a time-series database
   (TSDB)?
 author: Nicolas Hourcard
 author_title: QuestDB Team
@@ -76,8 +76,9 @@ performant ingestion (WRITE operations) is a cornerstone feature.
 
 Time-series data is typically found in very demanding enterprise use cases where
 requirements for ingesting data are usually around a million data points per
-second. The ability to deal with multiple sources of data is also paramount. For
-example, stock market events occurring on a microsecond (and nanosecond)
+second. The ability to deal with multiple sources of data is also paramount.
+
+For example, stock market events occurring on a microsecond (and nanosecond)
 frequency, or thousands of IoT sensors sending atmospheric data continuously
 from an offshore oil & gas rig. Most importantly, enterprises expect databases
 to handle bursts of data which are high volumes of data incoming at irregular
@@ -221,7 +222,7 @@ none of the results are cached or pre-calculated. The postmortem of QuestDB’s
 ShowHN on HackerNews can be found
 [on DZone](https://dzone.com/articles/we-put-a-sql-database-on-the-internet).
 
-### QuestDB would be nothing without its growing community
+### QuestDB and its growing community
 
 Pushing database performance higher and higher still while making it easy for
 developers to get started with our product is what motivates us every day. This
