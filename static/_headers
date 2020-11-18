@@ -6,7 +6,7 @@
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera 'none'; geolocation 'none'; microphone 'none';
+  Permissions-Policy: camera=(), geolocation=(), microphone=()
   Strict-Transport-Security: max-age=15768000
   Cache-Control: public, max-age=60
 
@@ -17,7 +17,7 @@
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera 'none'; geolocation 'none'; microphone 'none';
+  Permissions-Policy: camera=(), geolocation=(), microphone=()
   Strict-Transport-Security: max-age=15768000
   Cache-Control: public, max-age=60
 
