@@ -3,6 +3,7 @@ import DocusaurusHead from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
+import Button from "@theme/Button"
 import Layout from "@theme/Layout"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 
@@ -35,11 +36,16 @@ const Toggle = () => {
         >
           <div className={juCss.jumbotron__summary}>
             <div className={juCss.jumbotron__header}>
-              <img
-                alt="Toggle.global logo"
-                className={juCss.jumbotron__logo}
-                src="/img/pages/customers/logos/toggle.svg"
-              />
+              <Button
+                href="https://toggle.global/?utm_source=questdb"
+                variant="plain"
+              >
+                <img
+                  alt="Toggle.global logo"
+                  className={juCss.jumbotron__logo}
+                  src="/img/pages/customers/logos/toggle.svg"
+                />
+              </Button>
               <span className={juCss.jumbotron__name}>Case study</span>
             </div>
             <h1 className={seCss.section__title}>Migrating to QuestDB</h1>
@@ -49,8 +55,8 @@ const Toggle = () => {
                 juCss.jumbotron__description,
               )}
             >
-              Toggle switched from InfluxDB to QuestDB, it resulted in massive
-              cost reduction and performance improvements.
+              Toggle switched from InfluxDB to QuestDB, leading to massive cost
+              reduction and performance improvements.
             </p>
           </div>
 
