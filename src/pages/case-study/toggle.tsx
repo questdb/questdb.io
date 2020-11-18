@@ -136,7 +136,7 @@ const Toggle = () => {
             className={clsx(seCss["section--inner"], seCss["section--column"])}
           >
             <h3>Description of Toggle use case with QuestDB</h3>
-            <p>
+            <p className="font-size--large">
               Toggle uses AI & Machine Learning to help investors extract
               insights on their portfolio & investments. The system distills
               billions of data points into alerts like “Analyst expectations are
@@ -148,7 +148,7 @@ const Toggle = () => {
               that every step in the process is optimized.
             </p>
             <h3>Improvements versus InfluxDB</h3>
-            <p>
+            <p className="font-size--large">
               We utilized many databases, including Mongo, Cassandra, and
               TimescaleDB. After much testing, we settled on InfluxDB, as it had
               the best performance. That said, as we were growing, performance
@@ -160,11 +160,11 @@ const Toggle = () => {
               scaled.
             </p>
             <h3>Process to migrate data from InfluxDB to QuestDB</h3>
-            <p>
+            <p className="font-size--large">
               When evaluating a new solution, we knew we had to answer the
               following questions:
             </p>
-            <ul>
+            <ul className="font-size--large">
               <li>Can we move the data seamlessly and in a timely manner?</li>
               <li>
                 Can we query a sample of our data in at least the same response
@@ -177,12 +177,16 @@ const Toggle = () => {
                 imported all of our data?
               </li>
             </ul>
-            <p>
+            <p className="font-size--large">
               Of all the possible solutions evaluated, QuestDB was the only that
               met all of our criteria.
             </p>
-            <p>A side by side comparison of QuestDB vs InfluxDB</p>
-            <ul>
+
+            <p className="font-size--large">
+              A side by side comparison of QuestDB vs InfluxDB
+            </p>
+
+            <ul className="font-size--large">
               <li>
                 InfluxDB on our cluster of 4 x m4.2xlarge with 128GiB of RAM was
                 averaging a response time of over 5s
@@ -195,6 +199,10 @@ const Toggle = () => {
               <li>
                 The first day of QuestDB in production on a single m4.2xlarge
                 virtual machine, saw an average response time of 19ms
+              </li>
+              <li>
+                After a few weeks with QuestDB in production (still with a
+                single machine), the performance averaged 15ms
                 <img
                   alt="Chart showing the average transaction duration for QuestDB over 2 days"
                   className={chCss.chart}
@@ -202,19 +210,15 @@ const Toggle = () => {
                 />
               </li>
               <li>
-                After a few weeks with QuestDB in production (still with a
-                single machine), the performance averaged 15ms
-              </li>
-              <li>
                 When looking at the virtual machine’s statistics, it never seems
                 to be overtaxed (User: 17%, system: 4%)
               </li>
             </ul>
-            <p>
+            <p className="font-size--large">
               Direct cost reduction (¼ of the machines) and performance
               improvements means that we can do much more for less.
             </p>
-            <p>
+            <p className="font-size--large">
               The actual data migration was easy with a script to read from one
               side & ingest in the other. We imported over 600 million data
               points in a few minutes.
@@ -222,7 +226,7 @@ const Toggle = () => {
             <h3>
               Customer support experience from QuestDB’s team during the process
             </h3>
-            <p>
+            <p className="font-size--large">
               The QuestDB team assisted us in all steps along the way. They were
               proactive in supporting our changeover, helping to debug issues as
               they arose and optimize our deployment as we moved things into
