@@ -6,11 +6,11 @@
 }
 
 .card__title {
-  font-size: var(--font-size-xlarge);
+  font-size: var(--font-size-big-3);
 }
 
 .card__title--important {
-  font-size: var(--font-size-xxlarge);
+  font-size: var(--font-size-big-4);
 }
 
 .card__side {

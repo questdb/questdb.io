@@ -45,15 +45,15 @@
 
 .section--showcase {
   --ifm-pre-padding: 1rem 0;
-  --active-font-size: var(--font-size-llarge);
+  --active-font-size: var(--font-size-big-2);
 }
 
 .section__title {
-  font-size: var(--font-size-xxlarge);
+  font-size: var(--font-size-big-4);
 }
 
 .section__title--accent {
-  font-size: var(--font-size-xxxlarge);
+  font-size: var(--font-size-big-5);
 }
 
 .section__title--wide {
@@ -61,7 +61,7 @@
 }
 
 .section__subtitle {
-  font-size: var(--font-size-llarge);
+  font-size: var(--font-size-big-2);
   font-weight: var(--ifm-font-weight-normal);
   color: var(--palette-pale-blue);
 }
@@ -124,7 +124,7 @@
   }
 
   .section__title {
-    font-size: var(--font-size-xlarge);
+    font-size: var(--font-size-big-3);
   }
 
   .section__title--accent {
@@ -132,7 +132,7 @@
   }
 
   .section__title--jumbotron {
-    font-size: var(--font-size-xxlarge);
+    font-size: var(--font-size-big-4);
   }
 
   .section__subtitle {
@@ -145,7 +145,7 @@
   }
 
   .section__subtitle--jumbotron {
-    font-size: var(--font-size-llarge);
+    font-size: var(--font-size-big-2);
   }
 
   .section__illustration {

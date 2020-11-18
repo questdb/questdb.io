@@ -1,5 +1,6 @@
 .logo {
   display: flex;
+  min-height: 140px;
   padding-bottom: 0;
   align-items: center;
   flex-direction: row;
