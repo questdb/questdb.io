@@ -195,15 +195,15 @@ const Toggle = () => {
               <li>
                 The first day of QuestDB in production on a single m4.2xlarge
                 virtual machine, saw an average response time of 19ms
+              </li>
+              <li>
+                After a few weeks with QuestDB in production (still with a
+                single machine), the performance averaged 15ms
                 <img
                   alt="Chart showing the average transaction duration for QuestDB over 2 days"
                   className={chCss.chart}
                   src="/img/pages/case-study/toggle/questdb.png"
                 />
-              </li>
-              <li>
-                After a few weeks with QuestDB in production (still with a
-                single machine), the performance averaged 15ms
               </li>
               <li>
                 When looking at the virtual machine’s statistics, it never seems
