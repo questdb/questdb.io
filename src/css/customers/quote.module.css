@@ -16,7 +16,7 @@
   margin-bottom: 1.5rem;
   align-self: baseline;
   filter: brightness(var(--brightness)) contrast(var(--contrast)) invert(1);
-  transition: filter 150ms ease-in-out;
+  transition: filter var(--ifm-transition-fast) ease-out;
 }
 
 .quote__company:hover {

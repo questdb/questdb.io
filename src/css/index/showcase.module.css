@@ -80,7 +80,7 @@
 .showcase__offset {
   position: relative;
   transform: translateZ(0);
-  transition: top 100ms var(--transition-bezier);
+  transition: top var(--transition-fastest) var(--transition-bezier);
 }
 
 .showcase__offset > div {
@@ -97,7 +97,7 @@
   background: var(--palette-gray);
   border-radius: var(--ifm-global-border-radius);
   user-select: none;
-  transition: background 100ms var(--transition-bezier);
+  transition: background var(--transition-fastest) var(--transition-bezier);
 }
 
 .showcase__button:hover {
@@ -135,7 +135,7 @@
   padding-left: 2.5rem;
   font-size: var(--font-size-normal);
   opacity: 0;
-  transition: opacity, height 100ms var(--transition-bezier);
+  transition: opacity, height var(--transition-fastest) var(--transition-bezier);
 }
 
 @media (max-width: 1113px) {

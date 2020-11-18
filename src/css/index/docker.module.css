@@ -33,7 +33,7 @@
   left: -25px;
   bottom: -25px;
   border-radius: 50%;
-  transition: filter 100ms var(--transition-bezier);
+  transition: filter var(--transition-fastest) var(--transition-bezier);
 }
 
 .docker__icon:hover {

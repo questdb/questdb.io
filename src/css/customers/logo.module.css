@@ -14,7 +14,7 @@
   justify-content: center;
   flex: 1;
   filter: brightness(0) invert(1);
-  transition: filter 150ms ease-in-out;
+  transition: filter var(--ifm-transition-fast) ease-out;
 }
 
 .logo__wrapper:hover {

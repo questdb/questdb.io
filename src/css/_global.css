@@ -29,6 +29,7 @@
   --image-shadow: 0 15px 61px 5px rgba(20, 23, 37, 0.94);
 
   --transition-bezier: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  --transition-fastest: 100ms;
 
   --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Ubuntu, Cantarell, Helvetica, sans-serif, "Apple Color Emoji",

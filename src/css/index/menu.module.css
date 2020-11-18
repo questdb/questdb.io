@@ -31,7 +31,7 @@
   flex-wrap: wrap;
   flex-direction: column;
   opacity: 0;
-  transition: opacity 100ms var(--transition-bezier);
+  transition: opacity var(--transition-fastest) var(--transition-bezier);
 }
 
 .menu__panel--active {
