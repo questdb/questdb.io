@@ -12,10 +12,10 @@ import juCss from "../../css/case-study/jumbotron.module.css"
 import ouCss from "../../css/case-study/outcome.module.css"
 import seCss from "../../css/section.module.css"
 
-const GetQuestdbPage = () => {
-  const title = "Download QuestDB"
+const Toggle = () => {
+  const title = "Case Study: Toggle AI"
   const description =
-    "Download QuestDB, an open source time series SQL database for fast ingestion and queries"
+    "How Toggle switched from InfluxDB to QuestDB and benefited from massive cost reduction + performance improvements"
   const { siteConfig } = useDocusaurusContext()
 
   return (
@@ -235,4 +235,4 @@ const GetQuestdbPage = () => {
   )
 }
 
-export default GetQuestdbPage
+export default Toggle

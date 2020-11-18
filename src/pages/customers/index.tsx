@@ -13,10 +13,10 @@ import juCss from "../../css/customers/jumbotron.module.css"
 import quCss from "../../css/customers/quote.module.css"
 import seCss from "../../css/section.module.css"
 
-const GetQuestdbPage = () => {
-  const title = "Download QuestDB"
+const Customers = () => {
+  const title = "Customers"
   const description =
-    "Download QuestDB, an open source time series SQL database for fast ingestion and queries"
+    "Discover how QuestDB is powering the core infrastructure of companies dealing with time-series data"
   const { siteConfig } = useDocusaurusContext()
 
   return (
@@ -303,4 +303,4 @@ const GetQuestdbPage = () => {
   )
 }
 
-export default GetQuestdbPage
+export default Customers
