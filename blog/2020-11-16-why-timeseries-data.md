@@ -142,6 +142,7 @@ Further, we summarise how QuestDB addresses those needs.
   this as a prerequisite for fast and efficient READS.
 
 - **Time-series ingestion protocols**
+
   Being able to ingest unstructured time-series data succinctly is a must. QuestDB
   supports the
   [InfluxDB Line Protocol](https://questdb.io/blog/2020/07/22/influxdb-lp-on-tcp)
