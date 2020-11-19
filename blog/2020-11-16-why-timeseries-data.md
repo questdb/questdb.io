@@ -112,7 +112,7 @@ Further, we summarise how QuestDB addresses those needs.
   facilitate such queries, QuestDB built a native extension to ANSI SQL with the
   function [SAMPLE BY](https://questdb.io/docs/reference/sql/sample-by/#examples).
   Note: our
-  [Grafana tutorial](https://questdb.io/blog/2020/10/19/grafana-tutorial) shows
+  [Grafana tutorial](/blog/2020/10/19/grafana-tutorial) shows
   downsampling examples.
 
 - **Interval search**
