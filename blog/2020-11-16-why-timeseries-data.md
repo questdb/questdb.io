@@ -119,7 +119,7 @@ Further, we summarise how QuestDB addresses those needs.
   Fast retrieving data over arbitrary intervals. For example, zooming into a
   specific timeframe preceding a monitoring alert to better understand the
   underlying cause in real-time. QuestDB’s
-  [WHERE](https://questdb.io/docs/reference/sql/where#symbol-and-string) clause
+  [WHERE](/docs/reference/sql/where#symbol-and-string) clause
   for timestamp search is fast and efficient but requires a designated timestamp.
 
 - **Time series joins**
