@@ -123,6 +123,7 @@ Further, we summarise how QuestDB addresses those needs.
   for timestamp search is fast and efficient but requires a designated timestamp.
 
 - **Time series joins**
+
   Align join time-series data from two different tables, which do not have exactly
   matching timestamps. QuestDB supports
   [ASOF](https://questdb.io/docs/reference/sql/join/#asof-join) joins. QuestDB’s
