@@ -8,9 +8,8 @@
 }
 
 .inner {
-  max-width: var(--ifm-container-width);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 var(--ifm-spacing-horizontal);
 }
 
 :global(.navbar__item--slack),
@@ -77,5 +76,11 @@
 
   .getQuestdb {
     margin-left: 1.7rem;
+  }
+}
+
+@media (min-width: 1740px) {
+  .inner {
+    max-width: var(--ifm-container-width);
   }
 }
