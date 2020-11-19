@@ -110,7 +110,7 @@ Further, we summarise how QuestDB addresses those needs.
   view to a monthly view. This is typically done on the fly on a dashboard and
   requires very fast aggregation functions to be computed live. In order to
   facilitate such queries, QuestDB built a native extension to ANSI SQL with the
-  function [SAMPLE BY](https://questdb.io/docs/reference/sql/sample-by/#examples).
+  function [SAMPLE BY](/docs/reference/sql/sample-by/#examples).
   Note: our
   [Grafana tutorial](/blog/2020/10/19/grafana-tutorial) shows
   downsampling examples.
