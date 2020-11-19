@@ -126,7 +126,7 @@ Further, we summarise how QuestDB addresses those needs.
 
   Align join time-series data from two different tables, which do not have exactly
   matching timestamps. QuestDB supports
-  [ASOF](https://questdb.io/docs/reference/sql/join/#asof-join) joins. QuestDB’s
+  [ASOF](/docs/reference/sql/join/#asof-join) joins. QuestDB’s
   SQL query to match two tables (“bid” and “asks”) with unequal timestamps would
   look like:
 <Screenshot
