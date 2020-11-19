@@ -12,6 +12,20 @@ description:
   decided to build QuestDB
 ---
 
+<div
+  className="banner"
+  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
+>
+  <img
+    alt="An open lock with its key attached to it."
+    src="/img/blog/2020-11-16/banner.jpg"
+  />
+  <div>
+    Photo by <a href="https://unsplash.com/photos/uCMKx2H1Y38">AbsolutVision</a> on{" "}
+    <a href="https://unsplash.com">Unsplash</a>
+  </div>
+</div>
+
 Like all good superheroes, every company has its own origin story explaining why
 they were created and how they grew over time. This article covers the origin
 story of QuestDB and frames it with an introduction to time series databases to
@@ -106,36 +120,36 @@ Further, we summarise how QuestDB addresses those needs.
 
 - **Downsampling**
 
-  Representing the data with a lower frequency. For example, shifting from a daily
-  view to a monthly view. This is typically done on the fly on a dashboard and
-  requires very fast aggregation functions to be computed live. In order to
+  Representing the data with a lower frequency. For example, shifting from a
+  daily view to a monthly view. This is typically done on the fly on a dashboard
+  and requires very fast aggregation functions to be computed live. In order to
   facilitate such queries, QuestDB built a native extension to ANSI SQL with the
-  function [SAMPLE BY](/docs/reference/sql/sample-by/#examples).
-  Note: our
-  [Grafana tutorial](/blog/2020/10/19/grafana-tutorial) shows
-  downsampling examples.
+  function [SAMPLE BY](/docs/reference/sql/sample-by/#examples). Note: our
+  [Grafana tutorial](/blog/2020/10/19/grafana-tutorial) shows downsampling
+  examples.
 
 - **Interval search**
+
   Fast retrieving data over arbitrary intervals. For example, zooming into a
   specific timeframe preceding a monitoring alert to better understand the
   underlying cause in real-time. QuestDB’s
-  [WHERE](/docs/reference/sql/where#symbol-and-string) clause
-  for timestamp search is fast and efficient but requires a designated timestamp.
+  [WHERE](/docs/reference/sql/where#symbol-and-string) clause for timestamp
+  search is fast and efficient but requires a designated timestamp.
 
 - **Time series joins**
 
-  Align join time-series data from two different tables, which do not have exactly
-  matching timestamps. QuestDB supports
-  [ASOF](/docs/reference/sql/join/#asof-join) joins. QuestDB’s
-  SQL query to match two tables (“bid” and “asks”) with unequal timestamps would
-  look like:
-<Screenshot
-  alt="Example of an ASOF join query"
-  src="/img/blog/2020-11-16/asof.png"
-  title="Example of ASOF join query between the tables Bid and Ask"
-/>
+  Align join time-series data from two different tables, which do not have
+  exactly matching timestamps. QuestDB supports
+  [ASOF](/docs/reference/sql/join/#asof-join) joins. QuestDB’s SQL query to
+  match two tables (“bid” and “asks”) with unequal timestamps would look like:
+  <Screenshot
+    alt="Example of an ASOF join query"
+    src="/img/blog/2020-11-16/asof.png"
+    title="Example of ASOF join query between the tables Bid and Ask"
+  />
 
 - **Automated partitioning management**
+
   Time partitions created automatically as data arrives. In QuestDB, data is
   stored in columns and partitioned by time. This makes it possible to access
   one specific column for a given time partition instead of lifting the entire
@@ -144,21 +158,21 @@ Further, we summarise how QuestDB addresses those needs.
 
 - **Time-series ingestion protocols**
 
-  Being able to ingest unstructured time-series data succinctly is a must. QuestDB
-  supports the
-  [InfluxDB line protocol](/blog/2020/07/22/influxdb-lp-on-tcp)
-  that is the industry standard for observability use cases, with the ability to
-  create new columns on the fly without specifying a schema ahead of time.
+  Being able to ingest unstructured time-series data succinctly is a must.
+  QuestDB supports the
+  [InfluxDB line protocol](/blog/2020/07/22/influxdb-lp-on-tcp) that is the
+  industry standard for observability use cases, with the ability to create new
+  columns on the fly without specifying a schema ahead of time.
 
-- **Most recent first**  
+- **Most recent first**
 
-  With time-series data, the most recent data is often more likely to be analyzed.
-  Databases should be able to pull the latest record very fast, easily. QuestDB’s
-  SQL language extension includes
-  [LATEST BY](/docs/reference/sql/latest-by/#examples) to get the
-  most recent view of a record instantly. As data is ingested in chronological
-  order, QuestDB starts scanning from the bottom and can thus retrieve the data
-  point very quickly.
+  With time-series data, the most recent data is often more likely to be
+  analyzed. Databases should be able to pull the latest record very fast,
+  easily. QuestDB’s SQL language extension includes
+  [LATEST BY](/docs/reference/sql/latest-by/#examples) to get the most recent
+  view of a record instantly. As data is ingested in chronological order,
+  QuestDB starts scanning from the bottom and can thus retrieve the data point
+  very quickly.
 
 ## Part 2: Why we set out to build QuestDB
 
