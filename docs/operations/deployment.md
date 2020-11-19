@@ -3,7 +3,7 @@ title: Deployment
 description: Instructions and guides showing how to deploy QuestDB.
 ---
 
-## AMI
+## AWS AMI
 
 You can deploy QuestDB using an Amazon Machine Image (AMI) on your EC2
 instances. To facilitate the process, we maintain a
