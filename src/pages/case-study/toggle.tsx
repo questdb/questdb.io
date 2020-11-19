@@ -139,7 +139,11 @@ const Toggle = () => {
 
         <section className={seCss.section}>
           <div
-            className={clsx(seCss["section--inner"], seCss["section--column"])}
+            className={clsx(
+              "markdown",
+              seCss["section--inner"],
+              seCss["section--column"],
+            )}
           >
             <h3>Description of Toggle use case with QuestDB</h3>
             <p className="font-size--large">

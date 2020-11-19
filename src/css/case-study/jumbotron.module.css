@@ -48,12 +48,15 @@
 
 .jumbotron__banner > img {
   box-shadow: 0 5px 18px 3px var(--palette-black-10);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 @media (max-width: 996px) {
   .jumbotron__banner {
-    display: none;
+    min-height: 250px;
+    width: calc(100% + 2rem);
+    margin-top: 2.5rem;
+    margin-bottom: -4.5rem;
   }
 
   .jumbotron__left {

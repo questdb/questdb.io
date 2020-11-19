@@ -233,10 +233,6 @@ body {
   color: var(--palette-pink);
 }
 
-.margin-auto {
-  margin: 0 auto;
-}
-
 .font-size--large {
   font-size: var(--font-size-large);
 }
@@ -248,12 +244,12 @@ body {
  **/
 
 /* Make blog title white */
-main article header h2 a {
+.blog-wrapper article header h2 a {
   color: var(--palette-white-darker);
 }
 
 /* Remove banner image from blog post on /blog/ */
-main > article > section .banner {
+.blog-wrapper section .banner {
   display: none;
 }
 
@@ -263,7 +259,7 @@ main > article > section .banner {
  *
  **/
 
-/* @TODO: Remove this, this is a hack :( */
-.container.row {
-  padding: 0;
+.career {
+  align-self: center;
+  box-sizing: content-box;
 }

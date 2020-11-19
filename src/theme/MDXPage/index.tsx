@@ -5,18 +5,10 @@ import { MDXProvider } from "@mdx-js/react"
 import MDXComponents from "@theme/MDXComponents"
 import type { Props } from "@theme/MDXPage"
 
-const MDXPage = (
-  props: Props & {
-    content: {
-      frontMatter: {
-        wrapperClassname: string
-      }
-    }
-  },
-) => {
+const MDXPage = (props: Props) => {
   const { content: MDXPageContent } = props
   const { frontMatter, metadata } = MDXPageContent
-  const { title, description, wrapperClassname } = frontMatter
+  const { title, description, wrapperClassName } = frontMatter
   const { permalink } = metadata
 
   return (
@@ -24,8 +16,7 @@ const MDXPage = (
       title={title}
       description={description}
       permalink={permalink}
-      /* @ts-expect-error */
-      wrapperClassname={clsx("container", "row", wrapperClassname)}
+      wrapperClassName={clsx("container", "row", wrapperClassName)}
     >
       <main className="col col--8 col--offset-2">
         <div className="lg padding-vert--lg">
