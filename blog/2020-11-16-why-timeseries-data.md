@@ -116,6 +116,7 @@ Further, we summarise how QuestDB addresses those needs.
   downsampling examples.
 
 - **Interval search**
+
   Fast retrieving data over arbitrary intervals. For example, zooming into a
   specific timeframe preceding a monitoring alert to better understand the
   underlying cause in real-time. QuestDB’s
@@ -136,6 +137,7 @@ Further, we summarise how QuestDB addresses those needs.
 />
 
 - **Automated partitioning management**
+
   Time partitions created automatically as data arrives. In QuestDB, data is
   stored in columns and partitioned by time. This makes it possible to access
   one specific column for a given time partition instead of lifting the entire
