@@ -105,6 +105,7 @@ fly. We list some of the most interesting features of a time-series database.
 Further, we summarise how QuestDB addresses those needs.
 
 - **Downsampling**
+
   Representing the data with a lower frequency. For example, shifting from a daily
   view to a monthly view. This is typically done on the fly on a dashboard and
   requires very fast aggregation functions to be computed live. In order to
