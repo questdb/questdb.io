@@ -146,7 +146,7 @@ Further, we summarise how QuestDB addresses those needs.
 
   Being able to ingest unstructured time-series data succinctly is a must. QuestDB
   supports the
-  [InfluxDB line protocol](https://questdb.io/blog/2020/07/22/influxdb-lp-on-tcp)
+  [InfluxDB line protocol](/blog/2020/07/22/influxdb-lp-on-tcp)
   that is the industry standard for observability use cases, with the ability to
   create new columns on the fly without specifying a schema ahead of time.
 
