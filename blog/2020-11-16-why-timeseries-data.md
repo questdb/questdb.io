@@ -155,7 +155,7 @@ Further, we summarise how QuestDB addresses those needs.
   With time-series data, the most recent data is often more likely to be analyzed.
   Databases should be able to pull the latest record very fast, easily. QuestDB’s
   SQL language extension includes
-  [LATEST BY](https://questdb.io/docs/reference/sql/latest-by#examples) to get the
+  [LATEST BY](/docs/reference/sql/latest-by/#examples) to get the
   most recent view of a record instantly. As data is ingested in chronological
   order, QuestDB starts scanning from the bottom and can thus retrieve the data
   point very quickly.
