@@ -13,14 +13,14 @@
     "serve": "docusaurus serve"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.66",
-    "@docusaurus/module-type-aliases": "2.0.0-alpha.66",
-    "@docusaurus/plugin-ideal-image": "2.0.0-alpha.66",
-    "@docusaurus/plugin-pwa": "2.0.0-alpha.66",
-    "@docusaurus/preset-classic": "2.0.0-alpha.66",
+    "@docusaurus/core": "2.0.0-alpha.68",
+    "@docusaurus/module-type-aliases": "2.0.0-alpha.68",
+    "@docusaurus/plugin-ideal-image": "2.0.0-alpha.68",
+    "@docusaurus/plugin-pwa": "2.0.0-alpha.68",
+    "@docusaurus/preset-classic": "2.0.0-alpha.68",
     "@questdb/sql-grammar": "1.0.5",
     "@tsconfig/docusaurus": "1.0.2",
-    "@types/react": "16.9.53",
+    "@types/react": "16.9.56",
     "@types/react-helmet": "6.1.0",
     "@types/react-router-config": "5.0.1",
     "@types/react-router-dom": "5.1.6",
@@ -29,16 +29,16 @@
     "date-fns": "2.16.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "throttle-debounce": "2.3.0",
-    "typescript": "4.0.3",
+    "throttle-debounce": "3.0.1",
+    "typescript": "4.0.5",
     "unist-util-visit": "2.0.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "4.5.0",
-    "@typescript-eslint/parser": "4.5.0",
-    "eslint": "7.11.0",
-    "eslint-config-prettier": "6.14.0",
-    "eslint-config-standard": "15.0.0",
+    "@typescript-eslint/eslint-plugin": "4.8.1",
+    "@typescript-eslint/parser": "4.8.1",
+    "eslint": "7.13.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-config-standard": "16.0.2",
     "eslint-config-standard-with-typescript": "19.0.1",
     "eslint-import-resolver-typescript": "2.3.0",
     "eslint-plugin-babel": "5.3.1",
@@ -48,31 +48,27 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
-    "eslint-plugin-standard": "4.0.2",
-    "file-loader": "6.1.1",
-    "fork-ts-checker-webpack-plugin": "5.2.0",
+    "eslint-plugin-standard": "4.1.0",
+    "file-loader": "6.2.0",
+    "fork-ts-checker-webpack-plugin": "6.0.3",
     "glob": "7.1.6",
     "graceful-fs": "4.2.4",
     "husky": "4.3.0",
     "imagemin": "7.0.1",
     "imagemin-gifsicle": "7.0.0",
     "imagemin-svgo": "8.0.0",
-    "lint-staged": "10.4.2",
+    "lint-staged": "10.5.1",
     "make-dir": "3.1.0",
     "node-fetch": "2.6.1",
     "prettier": "2.1.2",
     "rimraf": "3.0.2",
-    "sharp": "0.26.2",
+    "sharp": "0.26.3",
     "url-loader": "4.1.1",
     "webpack": "4.44.2",
     "webpack-manifest-plugin": "2.2.0"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -88,6 +84,6 @@
     "static/img/**/*": "scripts/check-size"
   },
   "resolutions": {
-    "sharp": "0.26.2"
+    "sharp": "0.26.3"
   }
 }
