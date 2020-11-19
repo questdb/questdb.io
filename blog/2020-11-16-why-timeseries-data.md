@@ -150,6 +150,7 @@ Further, we summarise how QuestDB addresses those needs.
   create new columns on the fly without specifying a schema ahead of time.
 
 - **Most recent first**  
+
   With time-series data, the most recent data is often more likely to be analyzed.
   Databases should be able to pull the latest record very fast, easily. QuestDB’s
   SQL language extension includes
