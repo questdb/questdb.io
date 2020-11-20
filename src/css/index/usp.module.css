@@ -5,6 +5,7 @@
 }
 
 .usp__illustration {
+  min-height: 113px;
   margin-bottom: 3rem;
   align-self: start;
 }

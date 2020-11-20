@@ -1,5 +1,6 @@
 .card {
   display: flex;
+  min-height: 385px;
   box-shadow: 0 5px 18px 3px var(--palette-black-10);
   background: var(--palette-rock);
 }
@@ -21,6 +22,7 @@
 
 .card__logo--toggle {
   height: 20px;
+  min-height: 20px;
   margin-bottom: 2rem;
 }
 

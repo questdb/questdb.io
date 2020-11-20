@@ -54,8 +54,8 @@ const CareersPage = () => {
               )}
             >
               <img
-                alt="A code editor containing a SQL statement"
-                className={caCss.card__illustration}
+                alt="Illustration of team collaboration"
+                className={caCss["card__illustration--collaboration"]}
                 src="/img/pages/careers/teamCollaboration.svg"
               />
             </div>
@@ -69,8 +69,8 @@ const CareersPage = () => {
               )}
             >
               <img
-                alt="A code editor containing a SQL statement"
-                className={caCss.card__illustration}
+                alt="Illustration of team spirit"
+                className={caCss["card__illustration--team"]}
                 src="/img/pages/careers/teamSpirit.svg"
               />
             </div>

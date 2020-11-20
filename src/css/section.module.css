@@ -79,6 +79,7 @@
 
 .section__illustration {
   max-width: 600px;
+  min-height: 465px;
   width: 100%;
   margin-top: 6rem;
 }

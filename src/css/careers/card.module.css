@@ -28,6 +28,14 @@
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 30px 0px;
 }
 
+.card__illustration--collaboration {
+  min-height: 201px;
+}
+
+.card__illustration--team {
+  min-height: 230px;
+}
+
 .card__side--baseline {
   align-self: baseline;
 }
@@ -64,6 +72,14 @@
     width: 100%;
     max-width: 375px;
     margin: 2rem 0;
+  }
+
+  .card__illustration--collaboration {
+    min-height: 160px;
+  }
+
+  .card__illustration--team {
+    min-height: 180px;
   }
 
   .card__side--illustration {
