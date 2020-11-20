@@ -7,7 +7,7 @@
     "start": "docusaurus start",
     "pre-build": "FORCE=true node scripts/pre-build.js",
     "prebuild": "node scripts/pre-build.js",
-    "build": "PWA_SW_CUSTOM= docusaurus build",
+    "build": "USE_SIMPLE_CSS_MINIFIER=true PWA_SW_CUSTOM= docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve"
