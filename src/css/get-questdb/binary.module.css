@@ -60,7 +60,7 @@
 }
 
 .binary__logo {
-  height: 49px;
+  height: auto;
   align-self: baseline;
 }
 

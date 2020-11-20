@@ -10,8 +10,10 @@ import Screenshot from "@theme/Screenshot"
 
 <Screenshot
   alt="Screenshot of the Web Console"
+  height={375}
   small
   src="/img/docs/console/overview.png"
+  width={500}
 />
 
 ## Accessing the Web Console
@@ -23,8 +25,10 @@ running locally, this will be http://localhost:9000.
 
 <Screenshot
   alt="Preview of the different sections in the Web Console"
+  height={375}
   small
   src="/img/docs/console/layout.png"
+  width={500}
 />
 
 ## Code editor
@@ -71,8 +75,10 @@ menu:
 
 <Screenshot
   alt="Screenshot of the Web Console showing the location of the Import tab"
+  height={535}
   small
   src="/img/docs/console/importTab.png"
+  width={309}
 />
 
 ### Import details
@@ -111,7 +117,9 @@ column using the following steps:
 
 <Screenshot
   alt=" Change the schema in the Web Console when importing data"
+  height={525}
   src="/img/docs/console/amendType.jpg"
+  width={745}
 />
 
 ### Custom import

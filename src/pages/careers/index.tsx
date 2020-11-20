@@ -52,9 +52,10 @@ const CareersPage = () => {
             )}
           >
             <img
-              alt="A code editor containing a SQL statement"
-              className={caCss.card__illustration}
+              alt="Illustration of team collaboration"
+              height={201}
               src="/img/pages/careers/teamCollaboration.svg"
+              width={305}
             />
           </div>
         </div>
@@ -67,9 +68,10 @@ const CareersPage = () => {
             )}
           >
             <img
-              alt="A code editor containing a SQL statement"
-              className={caCss.card__illustration}
+              alt="Illustration of team spirit"
+              height={230}
               src="/img/pages/careers/teamSpirit.svg"
+              width={305}
             />
           </div>
           <div className={caCss.card__side}>
@@ -122,8 +124,9 @@ const CareersPage = () => {
                 Details&nbsp;
                 <img
                   alt="Right arrow"
+                  height={20}
                   src="/img/pages/careers/arrowRight.svg"
-                  width="20px"
+                  width={20}
                 />
               </span>
             </a>
@@ -134,8 +137,9 @@ const CareersPage = () => {
                 Details&nbsp;
                 <img
                   alt="Right arrow"
+                  height={20}
                   src="/img/pages/careers/arrowRight.svg"
-                  width="20px"
+                  width={20}
                 />
               </span>
             </a>

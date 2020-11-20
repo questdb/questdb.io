@@ -78,8 +78,7 @@
 }
 
 .section__illustration {
-  max-width: 600px;
-  width: 100%;
+  height: auto;
   margin-top: 6rem;
 }
 

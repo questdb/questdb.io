@@ -41,7 +41,12 @@ const Customers = () => {
             </p>
           </div>
           <div className={juCss.jumbotron__illustration}>
-            <img alt="Docker logo" src="/img/pages/customers/top.svg" />
+            <img
+              alt="People co-working on a dashboard"
+              height={274}
+              src="/img/pages/customers/top.svg"
+              width={250}
+            />
           </div>
         </div>
       </section>
@@ -54,8 +59,9 @@ const Customers = () => {
         >
           <img
             alt="Toggle.global logo"
-            className={clsx(loCss.logo__image, loCss["logo__image--small"])}
+            height={16}
             src="/img/pages/customers/logos/toggle.svg"
+            width={110}
           />
         </Button>
         <Button
@@ -65,8 +71,9 @@ const Customers = () => {
         >
           <img
             alt="YCombinator logo"
-            className={loCss.logo__image}
+            height={30}
             src="/img/pages/customers/logos/yc.png"
+            width={30}
           />
         </Button>
         <Button
@@ -76,8 +83,9 @@ const Customers = () => {
         >
           <img
             alt="Savvy logo"
-            className={loCss.logo__image}
+            height={30}
             src="/img/pages/customers/logos/savvy.png"
+            width={94}
           />
         </Button>
         <Button
@@ -87,8 +95,9 @@ const Customers = () => {
         >
           <img
             alt="7pc logo"
-            className={loCss.logo__image}
+            height={30}
             src="/img/pages/customers/logos/7pc.png"
+            width={30}
           />
         </Button>
         <Button
@@ -98,8 +107,9 @@ const Customers = () => {
         >
           <img
             alt="Episode 1 logo"
-            className={loCss.logo__image}
+            height={30}
             src="/img/pages/customers/logos/episode1.png"
+            width={90}
           />
         </Button>
         <Button
@@ -109,8 +119,9 @@ const Customers = () => {
         >
           <img
             alt="Chainslayer logo"
-            className={loCss.logo__image}
+            height={30}
             src="/img/pages/customers/logos/chainslayer.png"
+            width={144}
           />
         </Button>
         <Button
@@ -120,8 +131,9 @@ const Customers = () => {
         >
           <img
             alt="Kima logo"
-            className={loCss.logo__image}
+            height={30}
             src="/img/pages/customers/logos/kima.png"
+            width={54}
           />
         </Button>
         <Button
@@ -131,8 +143,9 @@ const Customers = () => {
         >
           <img
             alt="Seedcamp logo"
-            className={loCss.logo__image}
+            height={30}
             src="/img/pages/customers/logos/seedcamp.png"
+            width={103}
           />
         </Button>
       </section>
@@ -142,8 +155,10 @@ const Customers = () => {
           <p className={caCss.card__summary}>
             <img
               alt="Toggle.global logo"
-              className={clsx(caCss.card__logo, caCss["card__logo--toggle"])}
+              className={caCss.card__logo}
+              height={20}
               src="/img/pages/customers/logos/toggle.svg"
+              width={137.5}
             />
             “We switched from InfluxDB to QuestDB to get queries that are on
             average 300x faster utilizing 1/4 of the hardware, without ever
@@ -158,7 +173,9 @@ const Customers = () => {
           <div className={caCss.card__illustration}>
             <img
               alt="Comparison of AI and chess to investing"
+              height={453}
               src="/img/pages/case-study/toggle/summary.png"
+              width={600}
             />
           </div>
         </div>
@@ -179,8 +196,10 @@ const Customers = () => {
           >
             <img
               alt="Innova logo"
-              className={clsx(quCss.quote__logo, quCss["quote__logo--small"])}
+              height={18}
+              className={quCss.quote__logo}
               src="/img/pages/customers/logos/innova.png"
+              width={88}
             />
           </Button>
           <p className={quCss.quote__text}>
@@ -206,7 +225,9 @@ const Customers = () => {
             <img
               alt="Samtec logo"
               className={quCss.quote__logo}
+              height={24}
               src="/img/pages/customers/logos/samtec.png"
+              width={81}
             />
           </Button>
           <p className={quCss.quote__text}>
@@ -230,7 +251,9 @@ const Customers = () => {
             <img
               alt="Razorpay logo"
               className={quCss.quote__logo}
+              height={24}
               src="/img/pages/customers/logos/razorpay.svg"
+              width={113}
             />
           </Button>
           <p className={quCss.quote__text}>
@@ -254,7 +277,9 @@ const Customers = () => {
             <img
               alt="ChainSlayer logo"
               className={quCss.quote__logo}
+              height={24}
               src="/img/pages/customers/logos/chainslayer.png"
+              width={116}
             />
           </Button>
           <p className={quCss.quote__text}>
@@ -279,7 +304,9 @@ const Customers = () => {
             <img
               alt="FORRS logo"
               className={clsx(loCss.logo__image, loCss["logo__image--small"])}
+              height={16}
               src="/img/pages/customers/logos/forrs.svg"
+              width={70}
             />
           </Button>
           <p className={quCss.quote__text}>

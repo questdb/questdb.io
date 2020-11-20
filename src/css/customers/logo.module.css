@@ -1,6 +1,5 @@
 .logo {
   display: flex;
-  min-height: 140px;
   padding-bottom: 0;
   align-items: center;
   flex-direction: row;
@@ -9,7 +8,7 @@
 
 .logo__wrapper {
   display: flex;
-  min-width: 120px;
+  min-width: 168px;
   padding: 1rem 0.5rem;
   margin: 0.5rem;
   justify-content: center;
@@ -20,12 +19,4 @@
 
 .logo__wrapper:hover {
   filter: none;
-}
-
-.logo__image {
-  max-height: 30px;
-}
-
-.logo__image--small {
-  max-height: 16px;
 }

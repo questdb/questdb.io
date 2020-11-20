@@ -5,24 +5,37 @@ import styles from "./styles.module.css"
 
 type Props = {
   alt: string
+  height?: number
   margin: boolean
   shadow: boolean
   small: boolean
   src: string
   title?: string
+  width?: number
 }
 
-const Screenshot = ({ alt, margin, shadow, small, src, title }: Props) => (
+const Screenshot = ({
+  alt,
+  height,
+  margin,
+  shadow,
+  small,
+  src,
+  title,
+  width,
+}: Props) => (
   <figure>
     <img
       alt={alt}
-      className={clsx({
+      className={clsx(styles.image, {
         [styles.margin]: margin,
         [styles.shadow]: shadow,
         [styles.small]: small,
         [styles.title]: title != null,
       })}
+      height={height}
       src={src}
+      width={width}
     />
     {title != null && (
       <figcaption className={styles.caption}>{title}</figcaption>

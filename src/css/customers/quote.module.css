@@ -25,12 +25,7 @@
 }
 
 .quote__logo {
-  height: 24px;
   align-self: flex-start;
-}
-
-.quote__logo--small {
-  height: 18px;
 }
 
 .quote__text:before,

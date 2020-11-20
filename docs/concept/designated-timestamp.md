@@ -57,16 +57,22 @@ existing timestamp columns. Note that:
 - The `designated timestamp` column only allows ordered timestamps.
 - Any other `timestamp` column tolerates out-of-order timestamps.
 
+import Screenshot from "@theme/Screenshot"
+
 <Screenshot
   alt="Comparison between a designated timestamp and a normal timestamp"
+  height={620}
   src="/img/docs/concepts/designatedTimestamp.svg"
+  width={745}
 />
 
 Attempts to insert `out-of-order` timestamps will be rejected:
 
 <Screenshot
   alt="Diagram of an out of order insertion being rejected"
+  height={662}
   src="/img/docs/concepts/timestampReject.svg"
+  width={745}
 />
 
 ## Working with timestamp order constraint

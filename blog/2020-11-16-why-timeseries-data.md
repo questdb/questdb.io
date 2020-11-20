@@ -47,8 +47,10 @@ import Screenshot from "@theme/Screenshot"
 
 <Screenshot
   alt="AAPL stock price over the last 5 years"
+  height={284}
   src="/img/blog/2020-11-16/apple.png"
   title="Apple’s share price (daily) over the last 5 years: time-series data!"
+  width={650}
 />
 
 Time series databases were successfully adopted for use in financial
@@ -60,8 +62,10 @@ nearly all fields.
 
 <Screenshot
   alt="Example of time-series data use cases"
+  height={327}
   src="/img/blog/2020-11-16/useCases.png"
   title="Time-series data use cases"
+  width={650}
 />
 
 As a result, time series has been the fastest growing database category for the
@@ -70,8 +74,10 @@ past two years according to
 
 <Screenshot
   alt="Chart showing the popularity of time-series databases over the last 2 years - the data is from db-engines.com"
+  height={290}
   src="/img/blog/2020-11-16/popularity.png"
   title="Popularity by database category"
+  width={650}
 />
 
 ### Performance is the pillar of a time-series database
@@ -137,8 +143,10 @@ Further, we summarise how QuestDB addresses those needs.
   match two tables (“bid” and “asks”) with unequal timestamps would look like:
   <Screenshot
     alt="Example of an ASOF join query"
+    height={85}
     src="/img/blog/2020-11-16/asof.png"
     title="Example of ASOF join query between the tables Bid and Ask"
+    width={620}
   />
 
 - **Automated partitioning management**
@@ -221,8 +229,10 @@ minimal amount of data from disk for a given query.
 
 <Screenshot
   alt="Architecture of the storage model with column files and time partitions"
+  height={323}
   src="/img/blog/2020-11-16/model.png"
   title="Data stored in columns and partitioned by time"
+  width={650}
 />
 
 In order to showcase the capabilities of our database, we decided to put

@@ -133,8 +133,10 @@ const GetQuestdbPage = () => {
         logo={
           <img
             alt="BSD Logo"
+            height={49}
             className={biCss.binary__logo}
             src="/img/pages/getQuestdb/bsd.svg"
+            width={49}
           />
         }
         rt
@@ -156,7 +158,9 @@ const GetQuestdbPage = () => {
           <img
             alt="Linux Logo"
             className={biCss.binary__logo}
+            height={49}
             src="/img/pages/getQuestdb/linux.svg"
+            width={42}
           />
         }
         rt
@@ -178,7 +182,9 @@ const GetQuestdbPage = () => {
           <img
             alt="macOS Logo"
             className={biCss.binary__logo}
+            height={49}
             src="/img/pages/getQuestdb/macos.svg"
+            width={41}
           />
         }
         title="macOS (via Homebrew)"
@@ -203,7 +209,9 @@ brew install questdb`}
           <img
             alt="Windows Logo"
             className={biCss.binary__logo}
+            height={49}
             src="/img/pages/getQuestdb/windows.svg"
+            width={49}
           />
         }
         rt
@@ -319,7 +327,9 @@ brew install questdb`}
             <img
               alt="Docker logo"
               className={biCss.binary__logo}
+              height={49}
               src="/img/pages/getQuestdb/docker.svg"
+              width={69}
             />
           }
           title="Docker"
@@ -337,7 +347,9 @@ brew install questdb`}
             <img
               alt="Helm logo"
               className={biCss.binary__logo}
+              height={49}
               src="/img/pages/getQuestdb/helm.svg"
+              width={50}
             />
           }
           title="Kubernetes (via Helm)"
@@ -380,7 +392,9 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             <img
               alt="Planet with wings"
               className={biCss.binary__logo}
+              height={49}
               src="/img/pages/getQuestdb/nojre.svg"
+              width={75}
             />
           }
           size={assets.noJre.size}
@@ -396,7 +410,9 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             <img
               alt="Maven logo"
               className={biCss.binary__logo}
+              height={49}
               src="/img/pages/getQuestdb/maven.svg"
+              width={37}
             />
           }
           title="Maven"
@@ -418,7 +434,9 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
             <img
               alt="Gradle logo"
               className={biCss.binary__logo}
+              height={48}
               src="/img/pages/getQuestdb/gradle.svg"
+              width={67}
             />
           }
           title="Gradle"
@@ -437,7 +455,9 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
         <img
           alt="SQL statement in a code editor with an artistic view of the query result shown as a chart and a table"
           className={heCss.help__illustration}
+          height={468}
           src="/img/pages/getQuestdb/query.svg"
+          width={500}
         />
 
         <div className={heCss.help__text}>

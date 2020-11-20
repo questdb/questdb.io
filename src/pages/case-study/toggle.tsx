@@ -41,7 +41,9 @@ const Toggle = () => {
               <img
                 alt="Toggle.global logo"
                 className={juCss.jumbotron__logo}
+                height={15}
                 src="/img/pages/customers/logos/toggle.svg"
+                width={100}
               />
             </Button>
             <span className={juCss.jumbotron__name}>Case study</span>
@@ -61,7 +63,9 @@ const Toggle = () => {
         <div className={juCss.jumbotron__banner}>
           <img
             alt="Toggle.global background"
+            height={370}
             src="/img/pages/case-study/toggle/banner.png"
+            width={1110}
           />
         </div>
       </section>
@@ -198,7 +202,9 @@ const Toggle = () => {
               <img
                 alt="Chart showing the average transaction duration for InfluxDB over 2 days"
                 className={chCss.chart}
+                height={338}
                 src="/img/pages/case-study/toggle/influxdb.png"
+                width={792}
               />
             </li>
             <li>
@@ -211,7 +217,9 @@ const Toggle = () => {
               <img
                 alt="Chart showing the average transaction duration for QuestDB over 2 days"
                 className={chCss.chart}
+                height={338}
                 src="/img/pages/case-study/toggle/questdb.png"
+                width={791}
               />
             </li>
             <li>

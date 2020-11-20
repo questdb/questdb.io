@@ -98,8 +98,10 @@ function Navbar(): JSX.Element {
             <img
               alt={logo.alt}
               className="navbar__logo"
+              height={30}
               key={isClient.toString()}
               src={logo.src}
+              width={118.75}
             />
           </a>
           {leftItems.map((item, i) => (
@@ -139,7 +141,9 @@ function Navbar(): JSX.Element {
               alt={logo.alt}
               key={isClient.toString()}
               className="navbar__logo"
+              height={30}
               src={logo.src}
+              width={118.75}
             />
           </a>
         </div>

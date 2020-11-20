@@ -1,3 +1,7 @@
+.image {
+  height: auto;
+}
+
 .shadow {
   box-shadow: var(--image-shadow);
 }

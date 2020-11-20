@@ -25,7 +25,9 @@ import Screenshot from "@theme/Screenshot"
 
 <Screenshot
   alt="Architecture of the file storing a column"
+  height={435}
   src="/img/docs/concepts/columnRead.svg"
+  width={745}
 />
 
 ## Read model
@@ -37,7 +39,9 @@ mapped memory page, where the required value is read from.
 
 <Screenshot
   alt="Diagram showing how the data from a column file is mapped to the memory"
+  height={447}
   src="/img/docs/concepts/columnUpdate.svg"
+  width={745}
 />
 
 ## ACID properties
@@ -67,7 +71,9 @@ invoke msync() with a choice of synchronous or asynchronous IO.
 
 <Screenshot
   alt="Diagram of a commit across several column files"
+  height={426}
   src="/img/docs/concepts/commitModel.svg"
+  width={745}
 />
 
 ## Summary
@@ -80,7 +86,9 @@ a variety of reader implementations.
 
 <Screenshot
   alt="Architecture of the storage model with column files, readers/writers and the mapped memory"
+  height={596}
   src="/img/docs/concepts/storageSummarized.svg"
+  width={745}
 />
 
 <span />

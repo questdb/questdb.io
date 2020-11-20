@@ -28,6 +28,10 @@
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 30px 0px;
 }
 
+.card__side--illustration > img {
+  height: auto;
+}
+
 .card__side--baseline {
   align-self: baseline;
 }
@@ -62,11 +66,7 @@
 
   .card__side--illustration {
     width: 100%;
-    max-width: 375px;
     margin: 2rem 0;
-  }
-
-  .card__side--illustration {
     padding: 2rem 3rem;
   }
 

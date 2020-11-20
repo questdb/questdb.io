@@ -135,8 +135,8 @@ const SeenOn = () => (
       <img
         src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=224674&theme=dark&period=daily"
         alt="QuestDB - Fastest open source database for time-series and analytics | Product Hunt Embed"
-        width="250px"
-        height="54px"
+        width={250}
+        height={54}
       />
     </a>
   </section>
@@ -186,10 +186,10 @@ const Top = () => {
             icon={
               <img
                 alt="GitHub logo"
-                height="26"
+                height={26}
                 src="/img/github.svg"
                 title="GitHub"
-                width="26"
+                width={26}
               />
             }
             variant="secondary"
@@ -216,9 +216,10 @@ docker run -p 9000:9000 questdb/questdb`}
             <img
               alt="Docker logo"
               className={doCss.docker__icon}
+              height={60}
               src="/img/pages/index/docker.svg"
               title="Docker"
-              width="60"
+              width={60}
             />
           </a>
         </pre>
@@ -234,7 +235,9 @@ const Usp = () => (
         <img
           alt="Speedometer"
           className={usCss.usp__illustration}
+          height={113}
           src="/img/pages/index/rawPower.svg"
+          width={176}
         />
 
         <h2 className={usCss.usp__title}>Built for performance</h2>
@@ -250,7 +253,9 @@ const Usp = () => (
         <img
           alt="A code editor with a chart that shows the result of the query"
           className={usCss.usp__illustration}
+          height={113}
           src="/img/pages/index/easyToUse.svg"
+          width={205}
         />
 
         <h2 className={usCss.usp__title}>Optimized for time series</h2>
@@ -271,7 +276,9 @@ const Usp = () => (
         <img
           alt="A code editor containing a SQL statement"
           className={usCss.usp__illustration}
+          height={113}
           src="/img/pages/index/featureRich.svg"
+          width={176}
         />
 
         <h2 className={usCss.usp__title}>Implemented with SQL</h2>
@@ -396,7 +403,9 @@ const Console = () => {
         <img
           alt="Artistic view of QuestDB's Web Console split in 3 components: the navigation tree, the SQL code editor and data displayed as a chart"
           className={seCss.section__illustration}
+          height={467}
           src="/img/pages/index/console.svg"
+          width={600}
         />
 
         <div
@@ -408,8 +417,10 @@ const Console = () => {
           <div className={clsx(flCss.flashy, flCss["flashy--primary"])}>
             <img
               alt="Postgres logo"
+              height={76}
               src="/img/pages/index/pgwire.svg"
               title="Postgres"
+              width={76}
             />
             <h3 className={flCss.flashy__title}>Postgres compatibility</h3>
             <p className={flCss.flashy__content}>
@@ -421,8 +432,10 @@ const Console = () => {
           <div className={flCss.flashy}>
             <img
               alt="Antenna"
+              height={76}
               src="/img/pages/index/foss.svg"
               title="Open source"
+              width={76}
             />
             <h3 className={flCss.flashy__title}>Open source</h3>
             <p className={flCss.flashy__content}>
@@ -625,7 +638,9 @@ ${mergeQuery}`}
                 <img
                   alt="Magnifying glass icon"
                   className={shCss.showcase__icon}
+                  height={18}
                   src="/img/pages/index/searchTime.svg"
+                  width={19}
                 />
                 Search Time
               </h3>
@@ -644,7 +659,9 @@ ${mergeQuery}`}
                 <img
                   alt="Knife icon"
                   className={shCss.showcase__icon}
+                  height={22}
                   src="/img/pages/index/sliceTime.svg"
+                  width={23}
                 />
                 Slice Time
               </h3>
@@ -663,7 +680,9 @@ ${mergeQuery}`}
                 <img
                   alt="Indication arrow icon"
                   className={shCss.showcase__icon}
+                  height={18}
                   src="/img/pages/index/navigateTime.svg"
+                  width={19}
                 />
                 Navigate Time
               </h3>
@@ -682,7 +701,9 @@ ${mergeQuery}`}
                 <img
                   alt="Two overlapping squares"
                   className={shCss.showcase__icon}
+                  height={19}
                   src="/img/pages/index/mergeTime.svg"
+                  width={19}
                 />
                 Merge Time
               </h3>
