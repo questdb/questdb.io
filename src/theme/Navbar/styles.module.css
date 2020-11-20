@@ -14,18 +14,27 @@
 
 :global(.navbar__item--slack),
 :global(.navbar__item--github) {
-  padding-left: 1.5rem;
-  background-image: url("/img/navbar/github.svg");
-  background-position-x: 0;
-  background-position-y: center;
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-:global(.navbar__item--slack) {
-  margin-left: 20px;
-  background-image: url("/img/navbar/slack.svg");
-  background-size: 18px 18px;
+:global(.navbar__item--slack:before),
+:global(.navbar__item--github:before) {
+  position: relative;
+  content: " ";
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+}
+
+:global(.navbar__item--github:before) {
+  background: url("/img/navbar/github.svg") 0 center / 20px 20px no-repeat !important;
+}
+
+:global(.navbar__item--slack:before) {
+  background: url("/img/navbar/slack.svg") 0 center / 18px 18px no-repeat !important;
 }
 
 /* Remove Algolia shorcuts */
@@ -60,7 +69,22 @@
   }
 }
 
+@media (max-width: 996px) {
+  :global(.navbar-sidebar) .brand {
+    margin-left: 1.5rem;
+  }
+
+  :global(.navbar__item.navbar__item--slack),
+  :global(.navbar__item.navbar__item--github) {
+    display: none;
+  }
+}
+
 @media (max-width: 1150px) and (min-width: 996px) {
+  .getQuestdb {
+    margin-left: 1.7rem;
+  }
+
   :global(.navbar__link) {
     --ifm-navbar-item-padding-horizontal: 0.85rem;
   }
@@ -69,13 +93,8 @@
     margin-right: 0.85rem;
   }
 
-  :global(.navbar__item--slack),
   :global(.DocSearch-Button) {
     margin-left: 0.85rem;
-  }
-
-  .getQuestdb {
-    margin-left: 1.7rem;
   }
 }
 
