@@ -10,11 +10,9 @@ description:
   shows the capabilities of this system.
 ---
 
-<img
-  alt="Flock of birds flying in a harmonised way"
-  className="banner"
-  src="/img/blog/2020-03-15/header.png"
-/>
+import Banner from "@theme/Banner"
+
+<Banner alt="Flock of birds flying in a harmonised way" height={360} src="/img/blog/2020-03-15/header.png" width={650} />
 
 Inter-thread messaging is a fundamental part of any asynchronous system. It is
 the component responsible for transportation of data between threads. Messaging

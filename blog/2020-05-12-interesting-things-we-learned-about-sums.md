@@ -10,11 +10,9 @@ description:
   benchmark and comparison with Clickhouse.
 ---
 
-<img
-  alt="Wile E. Coyote and the Road Runner cartoon"
-  className="banner"
-  src="/img/blog/2020-05-12/banner.png"
-/>
+import Banner from "@theme/Banner"
+
+<Banner alt="Wile E. Coyote and the Road Runner cartoon" height={257} src="/img/blog/2020-05-12/banner.png" width={655} />
 
 In the world of databases, benchmarking performance has always been the hottest
 topic. Who is faster for data ingestion and queries? About a month ago we

@@ -11,19 +11,11 @@ description:
 image: /img/blog/2020-10-16/banner.jpg
 ---
 
-<div
-  className="banner"
-  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
->
-  <img
-    alt="Taxis in New York City stuck in traffic"
-    src="/img/blog/2020-10-16/banner.jpg"
-  />
-  <div>
-    Photo by <a href="https://unsplash.com/photos/K9cc-19hBKY">Kevin Lee</a> on{" "}
-    <a href="https://unsplash.com">Unsplash</a>
-  </div>
-</div>
+import Banner from "@theme/Banner"
+
+<Banner alt="Taxis in New York City stuck in traffic" height={600} src="/img/blog/2020-10-16/banner.jpg" width={400}>
+  Photo by <a href="https://unsplash.com/photos/K9cc-19hBKY">Kevin Lee</a> on <a href="https://unsplash.com">Unsplash</a>
+</Banner>
 
 Every cab I have ever ridden has been complaining about how hard it is to make
 ends meet as a driver. The public is generally quick to blame unfair competition

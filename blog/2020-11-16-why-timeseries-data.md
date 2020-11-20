@@ -13,19 +13,11 @@ description:
 image: /img/blog/2020-11-16/banner.jpg
 ---
 
-<div
-  className="banner"
-  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
->
-  <img
-    alt="An open lock with its key attached to it."
-    src="/img/blog/2020-11-16/banner.jpg"
-  />
-  <div>
-    Photo by <a href="https://unsplash.com/photos/uCMKx2H1Y38">AbsolutVision</a> on{" "}
-    <a href="https://unsplash.com">Unsplash</a>
-  </div>
-</div>
+import Banner from "@theme/Banner"
+
+<Banner alt="An open lock with its key attached to it." height={433} src="/img/blog/2020-11-16/banner.jpg" width={650}>
+  Photo by <a href="https://unsplash.com/photos/uCMKx2H1Y38">AbsolutVision</a> on <a href="https://unsplash.com">Unsplash</a>
+</Banner>
 
 Like all good superheroes, every company has its own origin story explaining why
 they were created and how they grew over time. This article covers the origin
