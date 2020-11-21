@@ -28,6 +28,10 @@
   flex: 0 0 auto;
 }
 
+.binary__architecture {
+  color: var(--palette-pink);
+}
+
 .binary__expand {
   flex: 1;
 }

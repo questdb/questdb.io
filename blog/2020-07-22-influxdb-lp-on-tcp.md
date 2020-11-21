@@ -11,18 +11,11 @@ tags: [influxdb line protocol]
 image: /img/blog/2020-07-22/banner.jpg
 ---
 
-<div
-  className="banner"
-  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
->
-  <img
-    alt="Blue sky surrounded by latice-work"
-    src="/img/blog/2020-07-22/banner.jpg"
-  />
-  Photo by <a href="https://unsplash.com/photos/z0l-3cWpKto">
-    Ricardo Gomez Angel
-  </a> on <a href="https://unsplash.com">Unsplash</a>
-</div>
+import Banner from "@theme/Banner"
+
+<Banner alt="Blue sky surrounded by latice-work" height={433} src="/img/blog/2020-07-22/banner.jpg" width={650}>
+  Photo by <a href="https://unsplash.com/photos/z0l-3cWpKto"> Ricardo Gomez Angel </a> on <a href="https://unsplash.com">Unsplash</a>
+</Banner>
 
 We've had a UDP version of the InfluxDB Line Protocol (ILP) reader in QuestDB
 for quite some time, but we've had customers ask for a TCP version of it, so we

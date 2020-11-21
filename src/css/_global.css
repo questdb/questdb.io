@@ -182,16 +182,6 @@ body {
   flex-direction: column;
 }
 
-/* Pagination */
-
-.pagination-nav__item--next .pagination-nav__link {
-  background: var(--palette-pink);
-}
-
-.pagination-nav__link {
-  background: var(--palette-white-05);
-}
-
 /**
  *
  * Scrollbars
@@ -229,10 +219,6 @@ body {
  *
  **/
 
-.color--pink {
-  color: var(--palette-pink);
-}
-
 .font-size--large {
   font-size: var(--font-size-large);
 }
@@ -243,14 +229,10 @@ body {
  *
  **/
 
-/* Make blog title white */
-.blog-wrapper article header h2 a {
-  color: var(--palette-white-darker);
-}
-
-/* Remove banner image from blog post on /blog/ */
-.blog-wrapper section .banner {
-  display: none;
+/* Change blog title color */
+.blog-wrapper header h2 a {
+  --ifm-link-color: var(--palette-white-darker);
+  --ifm-link-hover-color: var(--palette-white-darker);
 }
 
 /**
@@ -262,4 +244,18 @@ body {
 .career {
   align-self: center;
   box-sizing: content-box;
+}
+
+/**
+ *
+ * Pagination
+ *
+ **/
+
+.pagination-nav__item--next .pagination-nav__link {
+  background: var(--palette-pink);
+}
+
+.pagination-nav__link {
+  background: var(--palette-white-05);
 }
