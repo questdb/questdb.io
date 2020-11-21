@@ -10,11 +10,9 @@ description:
   Postgres.
 ---
 
-<img
-  alt="QuestDB release 4.2 banner"
-  className="banner"
-  src="/img/blog/2020-04-02/banner.png"
-/>
+import Banner from "@theme/Banner"
+
+<Banner alt="QuestDB release 4.2 banner" height={143} src="/img/blog/2020-04-02/banner.png" width={650}/>
 
 [SIMD instructions](https://en.wikipedia.org/wiki/SIMD) are specific CPU
 instruction sets for arithmetic calculations that use synthetic parallelisation.

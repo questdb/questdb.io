@@ -11,17 +11,11 @@ tags: [hackernews, story]
 image: /img/blog/2020-08-06/banner.jpg
 ---
 
-<div
-  className="banner"
-  style={{ fontSize: "14px", marginBottom: "1rem", textAlign: "center" }}
->
-  <img
-    alt="A path going into the morning mist"
-    src="/img/blog/2020-08-06/banner.jpg"
-  />
-  Photo by <a href="https://unsplash.com/photos/ptSJZoEjp3M">Wesley Tingey</a> on{" "}
-  <a href="https://unsplash.com">Unsplash</a>
-</div>
+import Banner from "@theme/Banner"
+
+<Banner alt="A path going into the morning mist" height={393} src="/img/blog/2020-08-06/banner.jpg" width={650}>
+  Photo by <a href="https://unsplash.com/photos/ptSJZoEjp3M">Wesley Tingey</a> on <a href="https://unsplash.com">Unsplash</a>
+</Banner>
 
 A few weeks ago, I posted
 [the story of how I started QuestDB on Hacker News](https://news.ycombinator.com/item?id=23975807).

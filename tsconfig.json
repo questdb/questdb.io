@@ -33,6 +33,7 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "./",
     "paths": {
+      "@theme/Banner": ["src/theme/Banner"],
       "@theme/Button": ["src/theme/Button"],
       "@theme/CareerEmailUs": ["src/theme/CareerEmailUs"],
       "@theme/Image": ["src/theme/Image"],

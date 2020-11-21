@@ -7,7 +7,6 @@ import CodeBlock from "@theme/CodeBlock"
 import Layout from "@theme/Layout"
 
 import Button from "@theme/Button"
-import { MetadataContextProvider } from "@theme/useMetadataContext"
 import useWindowWidth from "@theme/useWindowWidth"
 
 import doCss from "../css/index/docker.module.css"
@@ -704,20 +703,18 @@ const Home = () => {
   const title = "QuestDB"
 
   return (
-    <MetadataContextProvider>
-      <Layout description={siteConfig.customFields.description} title={title}>
-        <DocusaurusHead>
-          <link rel="canonical" href={siteConfig.url} />
-        </DocusaurusHead>
-        <Top />
-        <Usp />
-        <QueryScroller />
-        <Why />
-        <Cards />
-        <Console />
-        <SeenOn />
-      </Layout>
-    </MetadataContextProvider>
+    <Layout description={siteConfig.customFields.description} title={title}>
+      <DocusaurusHead>
+        <link rel="canonical" href={siteConfig.url} />
+      </DocusaurusHead>
+      <Top />
+      <Usp />
+      <QueryScroller />
+      <Why />
+      <Cards />
+      <Console />
+      <SeenOn />
+    </Layout>
   )
 }
 
