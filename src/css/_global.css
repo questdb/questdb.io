@@ -82,7 +82,6 @@
   --ifm-navbar-item-padding-horizontal: 20px;
   --ifm-navbar-padding-horizontal: 0;
   --ifm-navbar-shadow: 0 1px 0 0 var(--palette-white-10);
-  --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-pre-background: var(--palette-midnight);
   --ifm-table-cell-padding: 0.15rem 1rem;
   --ifm-toc-border-color: var(--palette-white-10);
@@ -132,6 +131,7 @@ nav {
   --ifm-h3-vertical-rhythm-top: 2;
   --ifm-heading-vertical-rhythm-top: 2; /* h4 */
   --ifm-heading-vertical-rhythm-bottom: 0.4;
+  --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-table-background: var(--palette-white-03);
   --ifm-table-border-color: var(--palette-charade);
   --ifm-table-border-width: 4px;
@@ -182,16 +182,6 @@ body {
   flex-direction: column;
 }
 
-/* Pagination */
-
-.pagination-nav__item--next .pagination-nav__link {
-  background: var(--palette-pink);
-}
-
-.pagination-nav__link {
-  background: var(--palette-white-05);
-}
-
 /**
  *
  * Scrollbars
@@ -229,10 +219,6 @@ body {
  *
  **/
 
-.color--pink {
-  color: var(--palette-pink);
-}
-
 .font-size--large {
   font-size: var(--font-size-large);
 }
@@ -243,14 +229,10 @@ body {
  *
  **/
 
-/* Make blog title white */
-.blog-wrapper article header h2 a {
-  color: var(--palette-white-darker);
-}
-
-/* Remove banner image from blog post on /blog/ */
-.blog-wrapper section .banner {
-  display: none;
+/* Change blog title color */
+.blog-wrapper header h2 a {
+  --ifm-link-color: var(--palette-white-darker);
+  --ifm-link-hover-color: var(--palette-white-darker);
 }
 
 /**
@@ -262,4 +244,18 @@ body {
 .career {
   align-self: center;
   box-sizing: content-box;
+}
+
+/**
+ *
+ * Pagination
+ *
+ **/
+
+.pagination-nav__item--next .pagination-nav__link {
+  background: var(--palette-pink);
+}
+
+.pagination-nav__link {
+  background: var(--palette-white-05);
 }

@@ -18,6 +18,10 @@
   margin-right: 1rem;
 }
 
+.cta__version {
+  color: var(--palette-pink);
+}
+
 @media (max-width: 996px) {
   .cta {
     margin-top: 1.5rem;
