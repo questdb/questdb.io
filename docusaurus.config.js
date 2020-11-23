@@ -62,13 +62,6 @@ const config = {
     require.resolve("./plugins/lint"),
     require.resolve("./plugins/manifest"),
     [
-      "@docusaurus/plugin-ideal-image",
-      {
-        quality: 100,
-        steps: 2, // the max number of images generated between min and max (inclusive)
-      },
-    ],
-    [
       "@docusaurus/plugin-pwa",
       {
         pwaHead: [

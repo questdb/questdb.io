@@ -36,9 +36,6 @@
 /img/*
   Cache-Control: public, max-age=172800
 
-/ideal-img/*
-  Cache-Control: public, max-age=172800
-
 /manifest.webmanifest
   Cache-Control: public, max-age=172800
 

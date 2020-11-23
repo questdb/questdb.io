@@ -64,15 +64,6 @@ declare module "@docusaurus/useGlobalData" {
   export { usePluginData }
 }
 
-declare module "@theme/IdealImage" {
-  const out: (props: {
-    alt: string
-    className?: string
-    img: string
-  }) => JSX.Element
-  export default out
-}
-
 declare module "*.png" {
   const img: string
   export default img

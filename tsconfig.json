@@ -36,7 +36,6 @@
       "@theme/Banner": ["src/theme/Banner"],
       "@theme/Button": ["src/theme/Button"],
       "@theme/CareerEmailUs": ["src/theme/CareerEmailUs"],
-      "@theme/Image": ["src/theme/Image"],
       "@theme/Screenshot": ["src/theme/Screenshot"],
       "@theme/useMetadataContext": ["src/theme/useMetadataContext"],
       "@theme/useWindowWidth": ["src/theme/useWindowWidth"]

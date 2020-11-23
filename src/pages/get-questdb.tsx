@@ -7,10 +7,8 @@ import React, { ReactNode, useEffect, useState } from "react"
 
 import Button from "@theme/Button"
 import CodeBlock from "@theme/CodeBlock"
-import IdealImage from "@theme/Image"
 import Layout from "@theme/Layout"
 
-import Console from "../../static/img/pages/getQuestdb/console.png"
 import biCss from "../css/get-questdb/binary.module.css"
 import chCss from "../css/get-questdb/changelog.module.css"
 import ctCss from "../css/get-questdb/cta.module.css"
@@ -272,11 +270,12 @@ brew install questdb`}
             <a href="/docs/get-started/homebrew/">Homebrew</a> to get started.
           </p>
 
-          <IdealImage
+          <img
             alt="Screenshot of the Web Console showing various SQL statements and the result of one as a chart"
             className={ilCss.illustration}
-            img={Console}
+            height={375}
             src="/img/pages/getQuestdb/console.png"
+            width={500}
           />
 
           <div className={ctCss.cta}>
