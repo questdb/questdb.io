@@ -51,6 +51,7 @@ const Customers = () => {
         >
           <img
             alt="Toggle.global logo"
+            className="responsive-image"
             height={16}
             src="/img/pages/customers/logos/toggle.svg"
             width={110}
@@ -63,6 +64,7 @@ const Customers = () => {
         >
           <img
             alt="YCombinator logo"
+            className="responsive-image"
             height={30}
             src="/img/pages/customers/logos/yc.png"
             width={30}
@@ -75,21 +77,10 @@ const Customers = () => {
         >
           <img
             alt="Savvy logo"
+            className="responsive-image"
             height={30}
             src="/img/pages/customers/logos/savvy.png"
             width={94}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="http://7pc.co/"
-          variant="plain"
-        >
-          <img
-            alt="7pc logo"
-            height={30}
-            src="/img/pages/customers/logos/7pc.png"
-            width={30}
           />
         </Button>
         <Button
@@ -99,9 +90,23 @@ const Customers = () => {
         >
           <img
             alt="Episode 1 logo"
+            className="responsive-image"
             height={30}
             src="/img/pages/customers/logos/episode1.png"
             width={90}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="http://7pc.co/"
+          variant="plain"
+        >
+          <img
+            alt="7pc logo"
+            className="responsive-image"
+            height={30}
+            src="/img/pages/customers/logos/7pc.png"
+            width={30}
           />
         </Button>
         <Button
@@ -111,6 +116,7 @@ const Customers = () => {
         >
           <img
             alt="Chainslayer logo"
+            className="responsive-image"
             height={30}
             src="/img/pages/customers/logos/chainslayer.png"
             width={144}
@@ -123,6 +129,7 @@ const Customers = () => {
         >
           <img
             alt="Kima logo"
+            className="responsive-image"
             height={30}
             src="/img/pages/customers/logos/kima.png"
             width={54}
@@ -135,6 +142,7 @@ const Customers = () => {
         >
           <img
             alt="Seedcamp logo"
+            className="responsive-image"
             height={30}
             src="/img/pages/customers/logos/seedcamp.png"
             width={103}

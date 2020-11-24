@@ -223,6 +223,10 @@ body {
   font-size: var(--font-size-large);
 }
 
+.responsive-image {
+  height: auto;
+}
+
 /**
  *
  * Blog
