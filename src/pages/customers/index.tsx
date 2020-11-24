@@ -212,7 +212,9 @@ const Customers = () => {
           <p>
             <strong>Erdem Aydemir</strong>
             <br />
-            Software Engineer |<strong> Innova</strong>
+            Software Engineer
+            <span className={quCss.quote__separator} />
+            <strong>Innova</strong>
           </p>
         </div>
 
@@ -238,7 +240,9 @@ const Customers = () => {
           <p>
             <strong>Nick Scolum</strong>
             <br />
-            Senior Software Engineer |<strong>Samtec</strong>
+            Senior Software Engineer
+            <span className={quCss.quote__separator} />
+            <strong>Samtec</strong>
           </p>
         </div>
 
@@ -264,7 +268,9 @@ const Customers = () => {
           <p>
             <strong>Venkatesan Vaidhyanathan</strong>
             <br />
-            Senior Technical Architect |<strong>Razorpay</strong>
+            Senior Technical Architect
+            <span className={quCss.quote__separator} />
+            <strong>Razorpay</strong>
           </p>
         </div>
 
@@ -291,7 +297,9 @@ const Customers = () => {
           <p>
             <strong>Tjerk Stroband</strong>
             <br />
-            CTO |<strong>ChainSlayer</strong>
+            CTO
+            <span className={quCss.quote__separator} />
+            <strong>ChainSlayer</strong>
           </p>
         </div>
 
@@ -319,7 +327,9 @@ const Customers = () => {
           <p>
             <strong>Marc Recht</strong>
             <br />
-            CTO |<strong>FORRS Partners</strong>
+            CTO
+            <span className={quCss.quote__separator} />
+            <strong>FORRS Partners</strong>
           </p>
         </div>
       </section>

@@ -28,6 +28,12 @@
   align-self: flex-start;
 }
 
+.quote__separator {
+  padding-right: 1rem;
+  margin-right: 1rem;
+  border-right: 1px solid var(--palette-white);
+}
+
 .quote__text:before,
 .quote__text:after {
   position: relative;
