@@ -1,10 +1,8 @@
 import clsx from "clsx"
-import DocusaurusHead from "@docusaurus/Head"
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { useCallback, useRef } from "react"
 
 import Button from "@theme/Button"
-import Layout from "@theme/Layout"
+import PageLayout from "@theme/PageLayout"
 
 import caCss from "../../css/careers/card.module.css"
 import joCss from "../../css/careers/job.module.css"
@@ -15,21 +13,13 @@ const CareersPage = () => {
   const title = "Careers at QuestDB"
   const description =
     "Join us at QuestDB to build breakthrough technology that will power the infrastructure of tomorrow."
-  const { siteConfig } = useDocusaurusContext()
   const titleRef = useRef<HTMLHeadingElement | null>(null)
   const handleClick = useCallback(() => {
     titleRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [titleRef])
 
   return (
-    <Layout description={description} title={title}>
-      <DocusaurusHead>
-        <link rel="canonical" href={`${siteConfig.url}/careers/`} />
-        <meta
-          name="description"
-          content="An open source time series SQL database for fast ingestion and queries"
-        />
-      </DocusaurusHead>
+    <PageLayout canonical="/careers" description={description} title={title}>
       <section
         className={clsx(seCss["section--inner"], seCss["section--center"])}
       >
@@ -146,7 +136,7 @@ const CareersPage = () => {
           </div>
         </div>
       </section>
-    </Layout>
+    </PageLayout>
   )
 }
 

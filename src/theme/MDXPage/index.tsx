@@ -1,9 +1,10 @@
 import clsx from "clsx"
-import React from "react"
-import Layout from "@theme/Layout"
 import { MDXProvider } from "@mdx-js/react"
+import React from "react"
+
 import MDXComponents from "@theme/MDXComponents"
 import type { Props } from "@theme/MDXPage"
+import PageLayout from "@theme/PageLayout"
 
 const MDXPage = (props: Props) => {
   const { content: MDXPageContent } = props
@@ -12,7 +13,7 @@ const MDXPage = (props: Props) => {
   const { permalink } = metadata
 
   return (
-    <Layout
+    <PageLayout
       title={title}
       description={description}
       permalink={permalink}
@@ -25,7 +26,7 @@ const MDXPage = (props: Props) => {
           </MDXProvider>
         </div>
       </main>
-    </Layout>
+    </PageLayout>
   )
 }
 

@@ -1,10 +1,9 @@
 import clsx from "clsx"
-import DocusaurusHead from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { useCallback, useEffect, useState } from "react"
 
 import CodeBlock from "@theme/CodeBlock"
-import Layout from "@theme/Layout"
+import PageLayout from "@theme/PageLayout"
 
 import Button from "@theme/Button"
 import useWindowWidth from "@theme/useWindowWidth"
@@ -724,10 +723,11 @@ const Home = () => {
   const title = "QuestDB"
 
   return (
-    <Layout description={siteConfig.customFields.description} title={title}>
-      <DocusaurusHead>
-        <link rel="canonical" href={siteConfig.url} />
-      </DocusaurusHead>
+    <PageLayout
+      canonical=""
+      description={siteConfig.customFields.description}
+      title={title}
+    >
       <Top />
       <Usp />
       <QueryScroller />
@@ -735,7 +735,7 @@ const Home = () => {
       <Cards />
       <Console />
       <SeenOn />
-    </Layout>
+    </PageLayout>
   )
 }
 

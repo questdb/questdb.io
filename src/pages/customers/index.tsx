@@ -1,10 +1,8 @@
 import clsx from "clsx"
-import DocusaurusHead from "@docusaurus/Head"
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
 import Button from "@theme/Button"
-import Layout from "@theme/Layout"
+import PageLayout from "@theme/PageLayout"
 
 import caCss from "../../css/customers/card.module.css"
 import loCss from "../../css/customers/logo.module.css"
@@ -16,15 +14,9 @@ const Customers = () => {
   const title = "Customers"
   const description =
     "Discover how QuestDB is powering the core infrastructure of companies dealing with time-series data"
-  const { siteConfig } = useDocusaurusContext()
 
   return (
-    <Layout description={description} title={title}>
-      <DocusaurusHead>
-        <link rel="canonical" href={`${siteConfig.url}get-questdb/`} />
-        <meta name="description" content={description} />
-      </DocusaurusHead>
-
+    <PageLayout canonical="/customers" description={description} title={title}>
       <section className={clsx(seCss.section, seCss["section--odd"])}>
         <div className={juCss.jumbotron}>
           <div className={juCss.jumbotron__left}>
@@ -323,7 +315,7 @@ const Customers = () => {
           </p>
         </div>
       </section>
-    </Layout>
+    </PageLayout>
   )
 }
 

@@ -1,13 +1,12 @@
 import clsx from "clsx"
 import { differenceInDays, format, formatDistanceToNowStrict } from "date-fns"
-import DocusaurusHead from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import { usePluginData } from "@docusaurus/useGlobalData"
 import React, { ReactNode, useEffect, useState } from "react"
 
 import Button from "@theme/Button"
 import CodeBlock from "@theme/CodeBlock"
-import Layout from "@theme/Layout"
+import PageLayout from "@theme/PageLayout"
 
 import biCss from "../css/get-questdb/binary.module.css"
 import chCss from "../css/get-questdb/changelog.module.css"
@@ -236,12 +235,11 @@ brew install questdb`}
   }, [])
 
   return (
-    <Layout description={description} title={title}>
-      <DocusaurusHead>
-        <link rel="canonical" href={`${siteConfig.url}get-questdb/`} />
-        <meta name="description" content={description} />
-      </DocusaurusHead>
-
+    <PageLayout
+      canonical="/get-questdb"
+      description={description}
+      title={title}
+    >
       <section
         className={clsx(seCss["section--inner"], seCss["section--accent"])}
       >
@@ -493,7 +491,7 @@ helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
           </p>
         </div>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }
 

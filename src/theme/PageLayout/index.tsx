@@ -1,11 +1,12 @@
 import clsx from "clsx"
-import React, { ReactNode } from "react"
+import React, { ComponentProps } from "react"
 import Head from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 
 import AnnouncementBar from "@theme/AnnouncementBar"
 import Footer from "@theme/Footer"
+import Layout from "@theme/Layout"
 import LayoutProviders from "@theme/LayoutProviders"
 import Navbar from "@theme/Navbar"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
@@ -14,18 +15,13 @@ import styles from "./styles.module.css"
 
 export type Props = {
   altFooter: boolean
-  children: ReactNode
-  description?: string
+  canonical?: string
   flex: boolean
-  image?: string
-  noFooter?: boolean
-  permalink?: string
-  title?: string
-  wrapperClassName?: string
-}
+} & ComponentProps<typeof Layout>
 
-const Layout = ({
+const PageLayout = ({
   altFooter,
+  canonical,
   children,
   description,
   flex,
@@ -55,11 +51,16 @@ const Layout = ({
           {permalink != null && (
             <link rel="canonical" href={`${siteUrl}${permalink}/`} />
           )}
+          {permalink == null && canonical != null && (
+            <link rel="canonical" href={`${siteUrl}${canonical}/`} />
+          )}
           <meta property="og:image" content={metaImageUrl} />
-          <meta
-            property="og:url"
-            content={`${siteUrl}${permalink != null ? permalink + "/" : ""}`}
-          />
+          {permalink != null && (
+            <meta property="og:url" content={`${siteUrl}${permalink}/`} />
+          )}
+          {permalink == null && canonical != null && (
+            <meta property="og:url" content={`${siteUrl}${canonical}/`} />
+          )}
           <meta property="og:title" content={metaTitle} />
           <meta name="twitter:image" content={metaImageUrl} />
           {description != null && (
@@ -89,6 +90,6 @@ const Layout = ({
   )
 }
 
-Layout.defaultProps = { altFooter: false, flex: false }
+PageLayout.defaultProps = { altFooter: false, flex: false }
 
-export default Layout
+export default PageLayout

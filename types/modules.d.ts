@@ -1,8 +1,10 @@
+/* eslint-disable */
 /// <reference types="@docusaurus/module-type-aliases" />
 /// <reference types="@docusaurus/theme-classic" />
 /// <reference types="@docusaurus/plugin-content-blog" />
 /// <reference types="@docusaurus/plugin-content-docs" />
 /// <reference types="@docusaurus/plugin-content-pages" />
+/* eslint-enable */
 
 declare module "@docusaurus/useDocusaurusContext" {
   import { DocusaurusConfig, DocusaurusSiteMetadata } from "@docusaurus/types"
@@ -62,9 +64,4 @@ declare module "@docusaurus/useGlobalData" {
   const out: typeof lib
   export default out
   export { usePluginData }
-}
-
-declare module "*.png" {
-  const img: string
-  export default img
 }

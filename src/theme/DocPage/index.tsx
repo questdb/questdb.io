@@ -7,9 +7,9 @@ import { MDXProvider } from "@mdx-js/react"
 
 import type { Props } from "@theme/DocPage"
 import DocSidebar from "@theme/DocSidebar"
-import Layout from "@theme/Layout"
 import MDXComponents from "@theme/MDXComponents"
 import NotFound from "@theme/NotFound"
+import PageLayout from "@theme/PageLayout"
 
 import styles from "./styles.module.css"
 
@@ -73,7 +73,7 @@ const DocPage = ({
   const sidebar = sidebarName != null ? docsSidebars[sidebarName] : []
 
   return (
-    <Layout
+    <PageLayout
       description={siteConfig.customFields.description}
       key={isClient.toString()}
       title="Introduction"
@@ -133,7 +133,7 @@ const DocPage = ({
           </div>
         </main>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }
 

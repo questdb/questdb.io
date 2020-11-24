@@ -1,10 +1,8 @@
 import clsx from "clsx"
-import DocusaurusHead from "@docusaurus/Head"
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React from "react"
 
 import Button from "@theme/Button"
-import Layout from "@theme/Layout"
+import PageLayout from "@theme/PageLayout"
 
 import caCss from "../../css/case-study/card.module.css"
 import chCss from "../../css/case-study/chart.module.css"
@@ -16,15 +14,13 @@ const Toggle = () => {
   const title = "Case Study: Toggle AI"
   const description =
     "How Toggle switched from InfluxDB to QuestDB and benefited from massive cost reduction + performance improvements"
-  const { siteConfig } = useDocusaurusContext()
 
   return (
-    <Layout description={description} title={title}>
-      <DocusaurusHead>
-        <link rel="canonical" href={`${siteConfig.url}get-questdb/`} />
-        <meta name="description" content={description} />
-      </DocusaurusHead>
-
+    <PageLayout
+      canonical="/case-study/toggle"
+      description={description}
+      title={title}
+    >
       <section
         className={clsx(
           seCss.section,
@@ -247,7 +243,7 @@ const Toggle = () => {
           </p>
         </div>
       </section>
-    </Layout>
+    </PageLayout>
   )
 }
 
