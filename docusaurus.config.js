@@ -53,6 +53,7 @@ const config = {
   tagline: "QuestDB is the fastest open source time series database",
   url: `https://${customFields.domain}`,
   baseUrl: "/",
+  baseUrlIssueBanner: false,
   favicon: "/img/favicon.png",
   organizationName: "QuestDB",
   projectName: "questdb",
