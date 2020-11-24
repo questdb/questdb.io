@@ -34,10 +34,9 @@ function Navbar(): JSX.Element {
   const {
     siteConfig: {
       themeConfig: {
-        navbar: { items, logo },
+        navbar: { items },
       },
     },
-    isClient,
   } = useDocusaurusContext()
   const [sidebarShown, setSidebarShown] = useState(false)
   const [isSearchBarExpanded, setIsSearchBarExpanded] = useState(false)
@@ -95,14 +94,7 @@ function Navbar(): JSX.Element {
             </svg>
           </div>
           <a className={clsx("navbar__brand", styles.brand)} href="/">
-            <img
-              alt={logo.alt}
-              className="navbar__logo"
-              height={30}
-              key={isClient.toString()}
-              src={logo.src}
-              width={118.75}
-            />
+            QuestDB
           </a>
           {leftItems.map((item, i) => (
             <NavbarItem {...item} key={i} />
@@ -137,14 +129,7 @@ function Navbar(): JSX.Element {
             href="/"
             onClick={hideSidebar}
           >
-            <img
-              alt={logo.alt}
-              key={isClient.toString()}
-              className="navbar__logo"
-              height={30}
-              src={logo.src}
-              width={118.75}
-            />
+            QuestDB
           </a>
         </div>
         <div className="navbar-sidebar__items">
