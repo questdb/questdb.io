@@ -86,7 +86,7 @@ module.exports = {
         {
           type: "category",
           label: "Clients",
-          items: ["reference/client/cli", "reference/client/web-console"],
+          items: ["reference/client/cli", "reference/client/web-console", "reference/client/grafana",],
         },
         {
           id: "reference/configuration",

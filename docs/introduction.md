@@ -60,6 +60,7 @@ This section contains the reference documentation for the following categories:
 
 - [CLI](/docs/reference/client/cli/)
 - [Web Console](/docs/reference/client/web-console/)
+- [Grafana](/docs/reference/client/grafana/) 
 
 ### Configuration
 
