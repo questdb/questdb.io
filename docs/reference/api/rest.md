@@ -81,10 +81,11 @@ _
 
 When the header row is missing, column names are generated automatically.
 
-### ACID compliance
+### Consistency guarantees
 
-`/imp` is fully ACID compliant, although Atomicity and Durability can be relaxed
-to meet convenience and performance demands.
+`/imp` benefits from the properties of the QuestDB [storage model](/docs/concept/storage-model/#consistency-and-durability),
+although Atomicity and Durability can be relaxed to meet convenience and
+performance demands.
 
 #### Atomicity
 
