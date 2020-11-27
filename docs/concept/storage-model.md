@@ -50,7 +50,7 @@ QuestDB ensures table level **isolation** and **consistency** by applying table 
 **atomically**. Updates to a table are applied in the context of a table transaction
 which is either committed or rolled back in an atomic operation. Queries that are concurrent
 with table updates are consistent in the sense that they will return data either as it
-was before or after the table transaction was committed, no intermediate uncommitted data
+was before or after the table transaction was committed — no intermediate uncommitted data
 will be show in a query result. 
 
 To guarantee **atomicity**, each table maintains a `last_committed_record_count`
