@@ -83,3 +83,11 @@ SELECT name a, length(name) b FROM names limit 4
 `!~(string, regex)` - checks if `string` value does not match regex
 
 `!~(symbol, regex)` - checks if `symbol` value does not match regex
+
+## to_lowercase
+
+`to_lowercase(string)` - converts all string characters to lowercase
+
+## to_uppercase
+
+`to_uppercase(string)` - converts all string characters to uppercase
