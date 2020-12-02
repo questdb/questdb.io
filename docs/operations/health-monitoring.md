@@ -45,6 +45,5 @@ curl -v http://127.0.0.1:9003/hello
 
 ## Configuration
 
-The `min` HTTP server
-[configuration is documented](reference/configuration.md#minimal-http-server) in
-the reference section
+The configuration section for the `min` HTTP server is available in the 
+[reference section](/docs/reference/configuration#minimal-http-server).
