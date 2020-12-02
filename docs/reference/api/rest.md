@@ -135,12 +135,6 @@ curl -F data=@ratings.csv http://localhost:9000/imp
 The HTTP status code will be set to `200` and the response will be:
 
 ```shell
-HTTP/1.1 200 OK
-Server: questDB/1.0
-Date: Fri, 28 Oct 2016 17:58:31 GMT
-Transfer-Encoding: chunked
-Content-Type: text/plain; charset=utf-8
-
 +-----------------------------------------------------------------------------------+
 |      Location:  |               /Users/info/dev/data/db/ratings.csv  |    Errors  |
 |   Partition by  |                                              NONE  |            |
@@ -166,18 +160,13 @@ Considering the query:
 curl \
   -F schema='[{"name":"userId", "type": "STRING"},{"name":"movieId", "type":"STRING"}]' \
   -F data=@ratings.csv \
+  -F "overwrite=true" \
   http://localhost:9000/imp
 ```
 
 The HTTP status code will be set to `200` and the response will be:
 
 ```shell
-HTTP/1.1 200 OK
-Server: questDB/1.0
-Date: Sun, 30 Oct 2016 1:20:7 GMT
-Transfer-Encoding: chunked
-Content-Type: text/plain; charset=utf-8
-
 +-----------------------------------------------------------------------------------+
 |      Location:  |               /Users/info/dev/data/db/ratings.csv  |    Errors  |
 |   Partition by  |                                              NONE  |            |
@@ -288,29 +277,15 @@ The parameters must be URL encoded.
 Considering the query:
 
 ```shell
-curl -Gv \
+curl -G \
   --data-urlencode "query=select AccidentIndex2, Date, Time from 'Accidents0514.csv'" \
   --data-urlencode "limit=5" \
-  http://localhost:9000/exec
+  http://localhost:9000/exp
 ```
 
 A HTTP status code of `200` is returned with the following response body:
 
 ```shell
-*   Trying 127.0.0.1...
-* Connected to localhost (127.0.0.1) port 9000 (#0)
-> GET /exp?query=select%20AccidentIndex%2C%20Date%2C%20Time%20from%20%27Accidents0514.csv%27&limit=5 HTTP/1.1
-> Host: localhost:9000
-> User-Agent: curl/7.49.1
-> Accept: */*
->
-< HTTP/1.1 200 OK
-< Server: questDB/1.0
-< Date: Wed, 9 Nov 2016 17:58:54 GMT
-< Transfer-Encoding: chunked
-< Content-Type: text/csv; charset=utf-8
-< Content-Disposition: attachment; filename="questdb-query-1478714334308.csv"
-<
 "AccidentIndex","Date","Time"
 200501BS00001,"2005-01-04T00:00:00.000Z",17:42
 200501BS00002,"2005-01-05T00:00:00.000Z",17:36
@@ -343,7 +318,7 @@ Considering the query:
 ```shell
 curl -G \
   --data-urlencode "query=SELECTT * FROM table;" \
-  http://localhost:9000/exec
+  http://localhost:9000/exp
 ```
 
 A HTTP status code of `200` is returned with the following response body:
