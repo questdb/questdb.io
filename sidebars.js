@@ -68,8 +68,8 @@ module.exports = {
       label: "Operations",
       type: "category",
       items: [
-	"operations/deployment",
-	"operations/health-monitoring"
+        "operations/deployment",
+        "operations/health-monitoring"
       ],
     },
     {

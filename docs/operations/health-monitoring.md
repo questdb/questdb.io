@@ -1,21 +1,28 @@
 ---
 title: Health monitoring
-description: Instructions and guides on how to setup health monitoring for QuestDB instance
+description:
+  Instructions and guides on how to setup health monitoring for QuestDB instance
 ---
 
 ## Overview
 
-Often REST API will be situated behind a loadbalancer, which will require a monitor URL for its configuration. Having loadbalancer monitor actual REST end point, typically running on port 9000, will cause logsto become excessively noisy on one hand. On the other, configuring per-URL logging in QuestDB would have negative impact on server's latency. Instead we opted to create `min` HTTP server. It runs embedded and has its own log and thread pool configuration.
+Often REST API will be situated behind a loadbalancer, which will require a
+monitor URL for its configuration. Having loadbalancer monitor actual REST end
+point, typically running on port 9000, will cause logsto become excessively
+noisy on one hand. On the other, configuring per-URL logging in QuestDB would
+have negative impact on server's latency. Instead we opted to create `min` HTTP
+server. It runs embedded and has its own log and thread pool configuration.
 
 ## Usage
 
-Out of box QuestDB will reply to any `HTTP GET` request to port `9003` with `HTTP 200`.
+Out of box QuestDB will reply to any `HTTP GET` request to port `9003` with
+`HTTP 200`.
 
-```
+```shell
 curl -v http://127.0.0.1:9003/hello
 ```
 
-```
+```shell
 *   Trying 127.0.0.1:9003...
 * TCP_NODELAY set
 * Connected to 127.0.0.1 (127.0.0.1) port 9003 (#0)
@@ -38,4 +45,6 @@ curl -v http://127.0.0.1:9003/hello
 
 ## Configuration
 
-The `min` HTTP server [configuration is documented](reference/configuration.md#minimal-http-server) in the reference section
+The `min` HTTP server
+[configuration is documented](reference/configuration.md#minimal-http-server) in
+the reference section
