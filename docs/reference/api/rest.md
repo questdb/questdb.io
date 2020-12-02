@@ -37,7 +37,8 @@ the rest of the data, automatic imports can yield errors.
 
 ### Overview
 
-`/imp` is expecting an HTTP POST request using the `multipart/form-data` Content-Type with following query parameters:
+`/imp` is expecting an HTTP POST request using the `multipart/form-data`
+Content-Type with following query parameters:
 
 | Parameter     | Required | Default          | Description                                                                                                                                                                                                          |
 | ------------- | -------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -82,7 +83,8 @@ When the header row is missing, column names are generated automatically.
 
 ### Consistency guarantees
 
-`/imp` benefits from the properties of the QuestDB [storage model](/docs/concept/storage-model/#consistency-and-durability),
+`/imp` benefits from the properties of the QuestDB
+[storage model](/docs/concept/storage-model/#consistency-and-durability),
 although Atomicity and Durability can be relaxed to meet convenience and
 performance demands.
 
@@ -206,13 +208,13 @@ closed.
 
 `/exec` is expecting an HTTP GET request with following query parameters:
 
-| Parameter | Required | Default | Description                                                                                                                                                                                                           |
-| --------- | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `count`   | No       | `false` | `true` or `false`. Counts the number of rows and returns this value.                                                                                                                                                  |
+| Parameter | Required | Default | Description                                                                                                                                                                                                              |
+| --------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `count`   | No       | `false` | `true` or `false`. Counts the number of rows and returns this value.                                                                                                                                                     |
 | `limit`   | No       |         | Paging parameter. For example, `limit=10,20` will return row numbers 10 through to 20 inclusive and `limit=20` will return first 20 rows, which is equivalent to `limit=0,20`. `limit=-20` will return the last 20 rows. |
-| `nm`      | No       | `false` | `true` or `false`. Skips the metadata section of the response when set to `true`.                                                                                                                                     |
-| `query`   | Yes      |         | URL encoded query text. It can be multi-line.                                                                                                                                                                         |
-| `timings` | No       | `false` | `true` or `false`. When set to `true`, QuestDB will also include a `timings` property in the response which gives details about the execution.                                                                        |
+| `nm`      | No       | `false` | `true` or `false`. Skips the metadata section of the response when set to `true`.                                                                                                                                        |
+| `query`   | Yes      |         | URL encoded query text. It can be multi-line.                                                                                                                                                                            |
+| `timings` | No       | `false` | `true` or `false`. When set to `true`, QuestDB will also include a `timings` property in the response which gives details about the execution.                                                                           |
 
 The parameters must be URL encoded.
 
@@ -267,16 +269,17 @@ A HTTP status code of `200` is returned with the following response body:
 
 ## /exp - Export data
 
-This endpoint allows you to pass url-encoded queries but the request body is returned in a tabular form to be saved and reused as opposed to JSON.
+This endpoint allows you to pass url-encoded queries but the request body is
+returned in a tabular form to be saved and reused as opposed to JSON.
 
 ### Overview
 
 `/exp` is expecting an HTTP GET request with following parameters:
 
-| Parameter | Required | Description                                                                                                                                                                                                               |
-| --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter | Required | Description                                                                                                                                                                                                                  |
+| --------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `limit`   | No       | Paging opp parameter. For example, `limit=10,20` will return row numbers 10 through to 20 inclusive and `limit=20` will return first 20 rows, which is equivalent to `limit=0,20`. `limit=-20` will return the last 20 rows. |
-| `query`   | Yes      | URL encoded query text. It can be multi-line.                                                                                                                                                                             |
+| `query`   | Yes      | URL encoded query text. It can be multi-line.                                                                                                                                                                                |
 
 The parameters must be URL encoded.
 
@@ -321,7 +324,8 @@ A HTTP status code of `200` is returned with the following response body:
 
 ### Malformed queries
 
-A successful call to `/exec` or `/exp` which also contains a malformed query will return response bodies with the following format:
+A successful call to `/exec` or `/exp` which also contains a malformed query
+will return response bodies with the following format:
 
 ```json
 {
@@ -331,7 +335,8 @@ A successful call to `/exec` or `/exp` which also contains a malformed query wil
 }
 ```
 
-The `position` field is the character number from the beginning of the string where the error was found.
+The `position` field is the character number from the beginning of the string
+where the error was found.
 
 Considering the query:
 
