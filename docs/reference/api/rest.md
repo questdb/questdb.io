@@ -292,7 +292,6 @@ A HTTP status code of `200` is returned with the following response body:
 200501BS00003,"2005-01-06T00:00:00.000Z",00:15
 200501BS00004,"2005-01-07T00:00:00.000Z",10:35
 200501BS00005,"2005-01-10T00:00:00.000Z",21:13
-* Connection #0 to host localhost left intact
 ```
 
 ## Error responses
