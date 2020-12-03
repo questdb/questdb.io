@@ -59,15 +59,15 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.ycombinator.com/"
+          href="https://www.datron.com"
           variant="plain"
         >
           <img
-            alt="YCombinator logo"
+            alt="Datron logo"
             className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/yc.png"
-            width={30}
+            height={24}
+            src="/img/pages/customers/logos/datron.png"
+            width={124}
           />
         </Button>
         <Button
@@ -85,32 +85,6 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.episode1.com/"
-          variant="plain"
-        >
-          <img
-            alt="Episode 1 logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/episode1.png"
-            width={90}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="http://7pc.co/"
-          variant="plain"
-        >
-          <img
-            alt="7pc logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/7pc.png"
-            width={30}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
           href="https://chainslayer.io/"
           variant="plain"
         >
@@ -120,6 +94,32 @@ const Customers = () => {
             height={30}
             src="/img/pages/customers/logos/chainslayer.png"
             width={144}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://www.ycombinator.com/"
+          variant="plain"
+        >
+          <img
+            alt="YCombinator logo"
+            className="responsive-image"
+            height={30}
+            src="/img/pages/customers/logos/yc.png"
+            width={30}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://www.episode1.com/"
+          variant="plain"
+        >
+          <img
+            alt="Episode 1 logo"
+            className="responsive-image"
+            height={30}
+            src="/img/pages/customers/logos/episode1.png"
+            width={90}
           />
         </Button>
         <Button
@@ -206,8 +206,8 @@ const Customers = () => {
             QuestDB allows us to query data while writing one million data
             points every 15 mins. It is an excellent database for time-based
             calculation of records with static columns and can store the data
-            very efficiently. QuestDB’s community is constantly growing and the
-            its popularity is on the rise.
+            very efficiently. QuestDB’s community is constantly growing and its
+            popularity is on the rise.
           </p>
           <p>
             <strong>Erdem Aydemir</strong>
@@ -215,6 +215,36 @@ const Customers = () => {
             Software Engineer
             <span className={quCss.quote__separator} />
             <strong>Innova</strong>
+          </p>
+        </div>
+
+        <div className={quCss.quote}>
+          <Button
+            className={quCss.quote__company}
+            href="https://www.datron.com/"
+            variant="plain"
+          >
+            <img
+              alt="Datron logo"
+              className={loCss.logo__image}
+              height={19}
+              src="/img/pages/customers/logos/datron.png"
+              width={100}
+            />
+          </Button>
+          <p className={quCss.quote__text}>
+            At DATRON, we record features of our industry machine components
+            (such as spindle RPM and temperature) at a very high frequency under
+            lab conditions. With QuestDB’s turnkey solution via Docker, we have
+            been able to quickly build a solid foundation for billions of
+            measurements per day.
+          </p>
+          <p>
+            <strong>Tim Borowski</strong>
+            <br />
+            Software Engineer
+            <span className={quCss.quote__separator} />
+            <strong>Datron AG</strong>
           </p>
         </div>
 
@@ -311,7 +341,7 @@ const Customers = () => {
           >
             <img
               alt="FORRS logo"
-              className={clsx(loCss.logo__image, loCss["logo__image--small"])}
+              className={quCss.quote__logo}
               height={16}
               src="/img/pages/customers/logos/forrs.svg"
               width={70}
