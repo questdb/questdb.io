@@ -11,7 +11,7 @@ topic and ingested directly to QuestDB by means of Kafka Connect.
 This article assumes that users have successfully set up an installation of
 Kafka using the Confluent platform. Detailed instructions on how to get up and
 running can be found on the
-[confluent.io documentation](https://docs.confluent.io/platform/current/quickstart/index.html).
+[official documentation](https://docs.confluent.io/platform/current/quickstart/index.html).
 
 ## Prerequisites
 
@@ -32,13 +32,13 @@ Create a new PostgreSQL database:
 initdb -D "/path/to/db/pgdata"
 ```
 
-Start PostgreSQL
+Start PostgreSQL:
 
 ```shell
 pg_ctl -D "/path/to/db/pgdata" start
 ```
 
-Connect to PostgreSQL
+Connect to PostgreSQL:
 
 ```shell
 psql -d postgres
@@ -89,7 +89,7 @@ Start Kafka Connect:
 bin/connect-standalone.sh config/connect-standalone.properties config/connect-jdbc.properties
 ```
 
-## Publishing Messages
+## Publishing messages
 
 If no topics exist, one can be created using the following command:
 
