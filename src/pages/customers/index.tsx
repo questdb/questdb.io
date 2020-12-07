@@ -72,6 +72,45 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
+          href="https://www.ycombinator.com/"
+          variant="plain"
+        >
+          <img
+            alt="YCombinator logo"
+            className="responsive-image"
+            height={34}
+            src="/img/pages/customers/logos/yc.png"
+            width={34}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://www.innova.com.tr/en"
+          variant="plain"
+        >
+          <img
+            alt="Innova logo"
+            className="responsive-image"
+            height={30}
+            src="/img/pages/customers/logos/innova.png"
+            width={90}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://seedcamp.com/"
+          variant="plain"
+        >
+          <img
+            alt="Seedcamp logo"
+            className="responsive-image"
+            height={34}
+            src="/img/pages/customers/logos/seedcamp.png"
+            width={117}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
           href="https://trysavvy.com/"
           variant="plain"
         >
@@ -98,54 +137,15 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.ycombinator.com/"
-          variant="plain"
-        >
-          <img
-            alt="YCombinator logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/yc.png"
-            width={30}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="https://www.episode1.com/"
-          variant="plain"
-        >
-          <img
-            alt="Episode 1 logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/episode1.png"
-            width={90}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
           href="https://www.kimaventures.com/"
           variant="plain"
         >
           <img
             alt="Kima logo"
             className="responsive-image"
-            height={30}
+            height={38}
             src="/img/pages/customers/logos/kima.png"
-            width={54}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="https://seedcamp.com/"
-          variant="plain"
-        >
-          <img
-            alt="Seedcamp logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/seedcamp.png"
-            width={103}
+            width={63}
           />
         </Button>
       </section>
@@ -191,36 +191,6 @@ const Customers = () => {
         <div className={quCss.quote}>
           <Button
             className={quCss.quote__company}
-            href="https://www.innova.com.tr/en"
-            variant="plain"
-          >
-            <img
-              alt="Innova logo"
-              height={18}
-              className={quCss.quote__logo}
-              src="/img/pages/customers/logos/innova.png"
-              width={88}
-            />
-          </Button>
-          <p className={quCss.quote__text}>
-            QuestDB allows us to query data while writing one million data
-            points every 15 mins. It is an excellent database for time-based
-            calculation of records with static columns and can store the data
-            very efficiently. QuestDB’s community is constantly growing and its
-            popularity is on the rise.
-          </p>
-          <p>
-            <strong>Erdem Aydemir</strong>
-            <br />
-            Software Engineer
-            <span className={quCss.quote__separator} />
-            <strong>Innova</strong>
-          </p>
-        </div>
-
-        <div className={quCss.quote}>
-          <Button
-            className={quCss.quote__company}
             href="https://www.datron.com/"
             variant="plain"
           >
@@ -244,7 +214,37 @@ const Customers = () => {
             <br />
             Software Engineer
             <span className={quCss.quote__separator} />
-            <strong>Datron AG</strong>
+            <strong>DATRON AG</strong>
+          </p>
+        </div>
+
+        <div className={quCss.quote}>
+          <Button
+            className={quCss.quote__company}
+            href="https://www.innova.com.tr/en"
+            variant="plain"
+          >
+            <img
+              alt="Innova logo"
+              height={18}
+              className={quCss.quote__logo}
+              src="/img/pages/customers/logos/innova.png"
+              width={88}
+            />
+          </Button>
+          <p className={quCss.quote__text}>
+            QuestDB allows us to query data while writing millions of data
+            points every few minutes. It is an excellent database for time-based
+            calculation of records with static columns and can store the data
+            very efficiently. QuestDB’s community is constantly growing and its
+            popularity is on the rise.
+          </p>
+          <p>
+            <strong>Erdem Aydemir</strong>
+            <br />
+            Software Engineer
+            <span className={quCss.quote__separator} />
+            <strong>Innova</strong>
           </p>
         </div>
 
