@@ -1,6 +1,8 @@
 ---
 title: Kafka Connect
-description: JDBC driver support in QuestDB allows for ingesting messages from a Kafka topic via Kafka Connect.
+description:
+  JDBC driver support in QuestDB allows for ingesting messages from a Kafka
+  topic via Kafka Connect.
 ---
 
 Support for the JDBC driver means that data can easily be exported from a Kafka
@@ -104,6 +106,8 @@ bin/windows/kafka-console-producer.sh --topic example-topic --bootstrap-server l
 Paste this message (as one line) to create a table. The table name will be the
 topic used in the kafka-console-producer topic
 
+<!-- prettier-ignore-start -->
 ```json
 {    "schema": {        "type": "struct",        "fields": [            {                "type": "boolean",                "optional": false,               "field": "flag"            },            {                "type": "int8",                "optional": false,                "field": "id8"           },           {                "type": "int16",                "optional": false,                "field": "id16"            },            {                "type":"int32",                "optional": false,                "field": "id32"            },          {                  "type": "int64",               "optional": false,                "field": "id64"            },            {                "type": "float",                "optional": false,                "field": "idFloat"            },            {                "type": "double",                "optional": false,                "field": "idDouble"            },              {                "type": "string",                "optional": true,                "field": "msg"            }      ],        "optional": false,        "name": "msgschema"    },    "payload": {        "flag": false,        "id8": 222,        "id16": 222,        "id32": 222,        "id64": 222,        "idFloat": 222.0,        "idDouble": 333.0,               "msg": "hi"  }}
 ```
+<!-- prettier-ignore-end -->
