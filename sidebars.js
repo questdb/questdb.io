@@ -65,7 +65,7 @@ module.exports = {
       ],
     },
     {
-      label: "Third-Party Tools",
+      label: "Third-party Tools",
       type: "category",
       items: [
         "third-party-tools/kafka"
