@@ -92,7 +92,7 @@ bin/connect-standalone.sh config/connect-standalone.properties config/connect-jd
 If no topics exist, one can be created using the following command:
 
 ```shell
-bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9099
+bin/kafka-topics.sh --create --topic example-topic --bootstrap-server localhost:9092
 ```
 
 At this point, a message can be published:
