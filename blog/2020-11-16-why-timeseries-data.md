@@ -6,11 +6,11 @@ author: Nicolas Hourcard
 author_title: QuestDB Team
 author_url: https://github.com/NicQuestDB
 author_image_url: https://avatars.githubusercontent.com/NicQuestDB
-tags: [story]
 description:
   A primer on time-series data and time-series databases (TSDB), and why we
   decided to build QuestDB
 image: /img/blog/2020-11-16/banner.jpg
+tags: [story]
 ---
 
 import Banner from "@theme/Banner"

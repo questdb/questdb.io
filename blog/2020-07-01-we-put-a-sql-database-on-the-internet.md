@@ -7,6 +7,12 @@ author_image_url: https://avatars.githubusercontent.com/davidgs
 description:
   What happens when you put a SQL database on the internet? Demo launch on
   HackerNews postmortem.
+keywords:
+  - hackernews
+  - postmortem
+  - sql database
+  - timeseries database
+  - questdb
 tags: [hackernews, postmorterm]
 ---
 

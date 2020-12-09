@@ -4,10 +4,19 @@ author: Tancrede Collard
 author_title: QuestDB Team
 author_url: https://github.com/TheTanc
 author_image_url: https://avatars.githubusercontent.com/TheTanc
-tags: [performance, deep-dive]
 description:
   What we learned implementing Kahan and Neumaier compensated sum algorithms,
   benchmark and comparison with Clickhouse.
+keywords:
+  - performance
+  - benchmarking
+  - deep-dive
+  - kahan
+  - neumaier
+  - databases
+  - simd
+  - clickhouse
+tags: [performance, deep-dive]
 ---
 
 import Banner from "@theme/Banner"

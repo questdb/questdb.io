@@ -4,8 +4,8 @@ author: Joan
 author_title: QuestDB Team
 author_url: https://github.com/jaugsburger
 author_image_url: https://avatars.githubusercontent.com/jaugsburger
-tags: [tutorial]
 description: How to use Grafana and QuestDB to build a monitoring dashboard.
+tags: [tutorial]
 ---
 
 In this tutorial you will learn how to use QuestDB as a data source for your

@@ -4,10 +4,16 @@ author: Vlad Ilyushchenko
 author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
-tags: [deep-dive]
 description:
   Detailed explanation of QuestDB's thread messaging system. A benchmark also
   shows the capabilities of this system.
+keywords:
+  - deep-dive
+  - inter-thread messaging
+  - questdb
+  - database
+  - infrastructure
+tags: [deep-dive]
 ---
 
 import Banner from "@theme/Banner"

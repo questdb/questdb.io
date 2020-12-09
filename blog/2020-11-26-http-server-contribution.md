@@ -7,8 +7,8 @@ author_image_url: https://avatars.githubusercontent.com/ideoma
 description:
   One of QuestDB’s major contributors, Alex Pelagenko, shares his experience on
   improving QuestDB’s HTTP server.
-tags: [community-written]
 image: /img/blog/2020-11-26/banner.jpg
+tags: [community-written]
 ---
 
 import Banner from "@theme/Banner"

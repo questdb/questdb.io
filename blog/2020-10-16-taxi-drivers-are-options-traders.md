@@ -4,11 +4,11 @@ author: Tancrede Collard
 author_title: QuestDB Team
 author_url: https://github.com/TheTanc
 author_image_url: https://avatars.githubusercontent.com/TheTanc
-tags: [deep-dive, story]
 description:
   An experiment analyzing the NYC taxi dataset through the eyes of an options
   trader.
 image: /img/blog/2020-10-16/banner.jpg
+tags: [deep-dive, story]
 ---
 
 import Banner from "@theme/Banner"
