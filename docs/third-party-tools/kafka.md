@@ -46,7 +46,7 @@ Postgres server is running on the default port `8812`.
 
 Create a file `config/connect-jdbc.properties` with the following contents:
 
-```
+```shell
 name=local-jdbc-sink
 connector.class=io.confluent.connect.jdbc.JdbcSinkConnector
 connection.url=jdbc:postgresql://127.0.0.1:8812/qdb?useSSL=false
