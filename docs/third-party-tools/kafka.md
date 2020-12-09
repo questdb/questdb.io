@@ -117,7 +117,7 @@ curl -G \
 The expected response based on the example JSON message published above will be
 the following:
 
-```
+```csv
 "flag","id8","id16","id32","id64","idFloat","idDouble","msg"
 false,-34,-34,222,222,222.0000,333.0,"hi"
 ```
