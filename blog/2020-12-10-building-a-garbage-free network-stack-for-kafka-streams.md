@@ -6,7 +6,7 @@ author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
 description:
   Our new sink for Kafka streams handles multiple TCP network connections on a
-  single thread without garbage-collection. This is how we built a network stack
+  single thread without garbage collection. This is how we built a network stack
   for reliable operation while decoupling functionality from the number of
   available threads.
 keywords:
@@ -75,7 +75,7 @@ the OS kernel level, IO notification utilities exist as `epoll` on Linux,
 implemented a dispatcher that operates exactly as these IO notification systems
 for enqueuing sockets, and we named it IODispatcher.
 
-## Java NIO and garbage-collection
+## Java NIO and garbage collection
 
 As you would expect from cross-platform languages, the IO Notification system
 must be abstracted away to make application code portable. In Java, this
