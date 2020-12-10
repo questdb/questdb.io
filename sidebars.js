@@ -68,6 +68,7 @@ module.exports = {
       label: "Third-party Tools",
       type: "category",
       items: [
+        "third-party-tools/grafana",
         "third-party-tools/kafka"
       ],
     },
@@ -96,7 +97,7 @@ module.exports = {
         {
           type: "category",
           label: "Clients",
-          items: ["reference/client/cli", "reference/client/web-console", "reference/client/grafana",],
+          items: ["reference/client/cli", "reference/client/web-console"],
         },
         {
           id: "reference/configuration",
