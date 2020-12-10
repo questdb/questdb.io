@@ -5,10 +5,9 @@ author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
 description:
-  Our new sink for Kafka streams handles multiple TCP network connections on a
-  single thread without garbage collection. This is how we built a network stack
-  for reliable operation while decoupling functionality from the number of
-  available threads.
+  Our new sink for Kafka is built on top of a network stack which reliably
+  handles multiple TCP connections on a single thread without garbage
+  collection.
 keywords:
   - kafka
   - jdbc
@@ -23,7 +22,7 @@ tags: [jdbc, kafka, postgres]
 
 import Banner from "@theme/Banner"
 
-<Banner alt="Steam network of a Pennsylvania coal power plant" height={391} src="/img/blog/2020-12-10/banner.jpg" width={650}>
+<Banner alt="Steam network of a Pennsylvania coal power plant" height={433} src="/img/blog/2020-12-10/banner.jpg" width={650}>
   Photo by <a href="https://unsplash.com/photos/a_PDPUPuNZ8">Martin Adams</a> on <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
@@ -188,8 +187,8 @@ implemented `epoll`, `kqueue`, and `select`s, so this works cross-platform. The
 appropriate implementation is automatically chosen at runtime based on the OS.
 The IODispatched API is message-driven via QuestDB's implementation of
 non-blocking and non-allocating queues. These queues are outside of the scope of
-this article, but you can read about them
-[here](https://questdb.io/blog/2020/11/26/http-server-contribution).
+this article, but you can read about them in our community
+[contribution from Alex Pelagenko](/blog/2020/11/26/http-server-contribution).
 
 import Screenshot from "@theme/Screenshot"
 
@@ -287,9 +286,10 @@ new connection from Kafka using the Postgres server in a QuestDB instance, not
 only do we avoid having to start a new process or thread, but we also reuse
 context objects as connection state.
 
-The implementation with Kafka Connect support is available to
-[try out now](https://questdb.io/docs/third-party-tools/kafka). We'd love to
-know your thoughts on how we implemented IODispatcher. If you like this content
-and the new functionality, or know of a better way to do what we've written
-about, share your thoughts in [our Slack Community]({@slackUrl@}) and drop us a
+The implementation with Kafka Connect support is now available to try out since
+version 5.0.5 and the steps for getting started can be found on the
+[Kafka integration](/docs/third-party-tools/kafka) page. We'd love to know your
+thoughts on how we implemented IODispatcher. If you like this content and the
+new functionality, or know of a better way to do what we've written about, share
+your thoughts in [our Slack Community]({@slackUrl@}) and drop us a
 [star️ on GitHub]({@githubUrl@}).
