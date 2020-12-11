@@ -13,10 +13,10 @@
     "serve": "docusaurus serve"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.69",
-    "@docusaurus/module-type-aliases": "2.0.0-alpha.69",
-    "@docusaurus/plugin-pwa": "2.0.0-alpha.69",
-    "@docusaurus/preset-classic": "2.0.0-alpha.69",
+    "@docusaurus/core": "2.0.0-alpha.b11c24b75",
+    "@docusaurus/module-type-aliases": "2.0.0-alpha.b11c24b75",
+    "@docusaurus/plugin-pwa": "2.0.0-alpha.b11c24b75",
+    "@docusaurus/preset-classic": "2.0.0-alpha.b11c24b75",
     "@questdb/sql-grammar": "1.0.5",
     "@tsconfig/docusaurus": "1.0.2",
     "@types/react": "16.9.56",
@@ -67,11 +67,7 @@
     "webpack-manifest-plugin": "2.2.0"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
