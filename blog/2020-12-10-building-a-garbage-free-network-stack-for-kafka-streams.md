@@ -5,7 +5,7 @@ author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
 description:
-  Our new sink for Kafka is built on top of a network stack which reliably
+  Our new sink for Kafka is built on top of a network stack that reliably
   handles multiple TCP connections on a single thread without garbage
   collection.
 keywords:
@@ -26,7 +26,7 @@ import Banner from "@theme/Banner"
   Photo by <a href="https://unsplash.com/photos/a_PDPUPuNZ8">Martin Adams</a> on <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
-We recently improved PostgreSQL wire protocol in QuestDB to support ingesting
+We recently improved the PostgreSQL wire protocol in QuestDB to support ingesting
 messages via Kafka streams. At its heart, the implementation uses an
 IODispatcher component, which we thought readers might find interesting to hear
 about. This component is a generic core subsystem that is now used to handle all
@@ -59,7 +59,7 @@ the receiver thread would be parked while no data is read. There's not much
 concern about this situation if it happens infrequently, but the park and unpark
 is a waste of resources and CPU cycles if the receiver is under heavy load.
 
-Let's assume the receiver gets 0-length data on a non-blocking socket indicating
+Let's assume the receiver gets 0-length data on a non-blocking socket, indicating
 no data has arrived from the sender; there are two options:
 
 1. Loop over reads continuously, waiting for data to arrive on a socket.
@@ -183,7 +183,7 @@ any moment in time.
 ## Introducing QuestDB's IODispatcher
 
 IODispatcher is QuestDB's implementation of the IO Notification loop. We have
-implemented `epoll`, `kqueue`, and `select`s, so this works cross-platform. The
+implemented `epoll`, `kqueue`, and `select`, so this works cross-platform. The
 appropriate implementation is automatically chosen at runtime based on the OS.
 The IODispatched API is message-driven via QuestDB's implementation of
 non-blocking and non-allocating queues. These queues are outside of the scope of
@@ -287,9 +287,9 @@ only do we avoid having to start a new process or thread, but we also reuse
 context objects as connection state.
 
 The implementation with Kafka Connect support is now available to try out since
-version 5.0.5 and the steps for getting started can be found on the
+version 5.0.5, and the steps for getting started can be found on the
 [Kafka integration](/docs/third-party-tools/kafka) page. We'd love to know your
 thoughts on how we implemented IODispatcher. If you like this content and the
-new functionality, or know of a better way to do what we've written about, share
+new functionality or know of a better way to do what we've written about, share
 your thoughts in [our Slack Community]({@slackUrl@}) and drop us a
 [star️ on GitHub]({@githubUrl@}).
