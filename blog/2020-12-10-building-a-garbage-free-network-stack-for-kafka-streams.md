@@ -5,9 +5,8 @@ author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
 description:
-  Our new sink for Kafka is built on top of a network stack that reliably
-  handles multiple TCP connections on a single thread without garbage
-  collection.
+  Our new network stack ingests time series data from Kafka topics reliably from
+  multiple TCP connections on a single thread without garbage collection.
 keywords:
   - kafka
   - jdbc
@@ -26,18 +25,27 @@ import Banner from "@theme/Banner"
   Photo by <a href="https://unsplash.com/photos/a_PDPUPuNZ8">Martin Adams</a> on <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
-We recently improved the PostgreSQL wire protocol in QuestDB to support ingesting
-messages via Kafka streams. At its heart, the implementation uses an
-IODispatcher component, which we thought readers might find interesting to hear
-about. This component is a generic core subsystem that is now used to handle all
-incoming network connections to QuestDB.
+At QuestDB, we're building an open source high-performance time series database
+used in IoT applications, financial trading, industrial monitoring, machine
+learning, and anywhere time series data lives. Our community showed a lot of
+interest in integrations with third-party tools, and after adding Grafana
+support earlier this year, ingesting data from Kafka topics was our next goal.
 
-In this article, you will find out how we achieved garbage-free execution and
-how we handle multiple TCP network connections on a single thread, allowing us
-to reliably run in multi-tenant mode and directly decouple functionality from
-the number of available threads.
+To build reliable support for Kafka, we improved our PostgreSQL wire protocol
+implementation and introduced functionality that we thought readers might like
+to hear about. As we fully avoid garbage collection, we bypassed Java's native
+non-blocking IO and built our own notification system. To do this, we built a
+configurable dispatcher that can delegate tasks to worker threads and uses
+queues for events and socket connections. The result is a new generic network
+stack used to handle all incoming network connections to QuestDB.
 
 <!--truncate-->
+
+Kafka Connect support is now available since version 5.0.5, and the QuestDB
+source is available to [browse on GitHub]({@githubUrl@}). If you like the
+content and the new functionality, if you know of a better way to approach what
+we built, we'd love to know your thoughts. Feel free to share your feedback
+[in our Slack Community]({@slackUrl@}).
 
 ## Flow control
 
@@ -59,8 +67,8 @@ the receiver thread would be parked while no data is read. There's not much
 concern about this situation if it happens infrequently, but the park and unpark
 is a waste of resources and CPU cycles if the receiver is under heavy load.
 
-Let's assume the receiver gets 0-length data on a non-blocking socket, indicating
-no data has arrived from the sender; there are two options:
+Let's assume the receiver gets 0-length data on a non-blocking socket,
+indicating no data has arrived from the sender; there are two options:
 
 1. Loop over reads continuously, waiting for data to arrive on a socket.
 2. Stop looping and consult our parser on two possible actions to take: park for
@@ -286,10 +294,6 @@ new connection from Kafka using the Postgres server in a QuestDB instance, not
 only do we avoid having to start a new process or thread, but we also reuse
 context objects as connection state.
 
-The implementation with Kafka Connect support is now available to try out since
-version 5.0.5, and the steps for getting started can be found on the
-[Kafka integration](/docs/third-party-tools/kafka) page. We'd love to know your
-thoughts on how we implemented IODispatcher. If you like this content and the
-new functionality or know of a better way to do what we've written about, share
-your thoughts in [our Slack Community]({@slackUrl@}) and drop us a
-[star️ on GitHub]({@githubUrl@}).
+To get started with QuestDB and Kafka Connect, check out our
+[integration page](/docs/third-party-tools/kafka) and if you like it, drop us a
+[star️ on GitHub]({@githubUrl@})!
