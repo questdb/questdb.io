@@ -210,21 +210,17 @@ import Screenshot from "@theme/Screenshot"
 
 IODispatcher is a synchronized job in context of QuestDB's thread model. It consumes
 queues on the left and publishes to the queue on the right. IODispatcher's main
-responsibility is to deliver socket handles, that are ready for the IO, to the worker
-threads. Considering that socket handles read or written to by one thread at a time the
+responsibility is to deliver socket handles (individual connection identifiers), that are ready for the IO to the worker
+threads. Considering that socket handles are read or written to by one thread at a time the
 underlying IO notification system works in ONESHOT mode. This means socket handle is
-removed from the IO notification system for the period of IO activity and re-introduced
-back when IO activity tapers off. Interacting with the IO notification system like that
-is expensive. Worker thread must reduce trips back to IODispatcher and this is the
-reason they will read or write socket until that time socket has no more to give.
-Additionally worker threads would also employ hysteresis, which we discuss later in
-this article.
+removed from the IO notification system while there is socket activity and re-introduced
+back when activity tapers off. Interacting with the IO notification system
+is expensive. Worker thread will only recurse back to the IODispatcher for enqueueing 
+if there has been zero data from the socket for the set period of time, which we call hysteresis.
 
-You can find source code for IO dispatcher for [epoll](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherLinux.java)
+You can find source code of the implementations of the IODispatcher for [epoll](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherLinux.java)
 , [kqueue](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherOsx.java) and
-[select](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherWindows.java)
-
-Let's take a look at the components in the diagram above with an outline of their purpose:
+[select](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherWindows.java) on GitHub. Let's take a look at the components in the diagram above with an outline of their purpose:
 
 **IO Event Queue:** Single publisher, multiple consumer queue. It is the
 recipient of the IO events from as in epoll, kqueue, select. The events are
@@ -300,9 +296,10 @@ anymore. In which case, the worker threads either express "interest" in further
 socket interaction or disconnects the socket. In this situation, IODispatcher is
 not on the execution path during most of the socket interaction.
 
-Threads will often use hysteresis, which means that they busy spin socket read
-or write until either socket responds or number of iterations elapses. This is
-sometimes useful when remote socket is able to respond with minimal delay.
+Threads will often use hysteresis, which means that they busy-spin socket read
+or write operations until either the socket responds or the number of iterations 
+has elapsed. This is sometimes useful when a remote socket is able to respond 
+with minimum delay.
 
 ## Summary
 
