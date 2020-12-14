@@ -23,6 +23,7 @@
   --palette-white-10: rgba(255, 255, 255, 0.1);
   --palette-white-20: rgba(255, 255, 255, 0.2);
   --palette-white-30: rgba(255, 255, 255, 0.3);
+  --palette-white-40: rgba(255, 255, 255, 0.4);
   --palette-white-darker: #d9d9d9;
   --palette-yellow: #ffd54f;
 
@@ -262,4 +263,28 @@ body {
 
 .pagination-nav__link {
   background: var(--palette-white-05);
+}
+
+/**
+ *
+ * Transitions
+ *
+ **/
+
+.item-enter {
+  opacity: 0;
+}
+
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.item-exit {
+  opacity: 1;
+}
+
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 200ms ease-in;
 }

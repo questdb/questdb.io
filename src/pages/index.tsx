@@ -6,6 +6,7 @@ import CodeBlock from "@theme/CodeBlock"
 import PageLayout from "@theme/PageLayout"
 
 import Button from "@theme/Button"
+import Chevron from "@theme/Chevron"
 import useWindowWidth from "@theme/useWindowWidth"
 
 import doCss from "../css/index/docker.module.css"
@@ -13,9 +14,9 @@ import feCss from "../css/index/feature.module.css"
 import flCss from "../css/index/flashy.module.css"
 import juCss from "../css/index/jumbotron.module.css"
 import meCss from "../css/index/menu.module.css"
-import prCss from "../css/index/property.module.css"
 import shCss from "../css/index/showcase.module.css"
 import usCss from "../css/index/usp.module.css"
+import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
 
 const Why = () => {
@@ -495,19 +496,6 @@ LATEST BY sensorName;`
 const mergeQuery = `SELECT sensors.timestamp ts, rain1H
 FROM sensors
 ASOF JOIN weather;`
-
-const Chevron = () => (
-  <svg
-    fill="currentColor"
-    focusable="false"
-    role="img"
-    viewBox="5.40 7.12 9.23 5.25"
-    width="26"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M6.582 12.141a.695.695 0 01-.978 0 .68.68 0 010-.969l3.908-3.83a.697.697 0 01.979 0l3.908 3.83a.68.68 0 010 .969.697.697 0 01-.979 0L10 9l-3.418 3.141z" />
-  </svg>
-)
 
 type Index = 1 | 2 | 3 | 4
 

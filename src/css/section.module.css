@@ -20,7 +20,7 @@
   padding-bottom: 7.5rem;
 }
 
-.section--binaries {
+.section--flex-wrap {
   display: flex;
   max-width: var(--ifm-container-width);
   margin: 0 auto;
@@ -70,6 +70,10 @@
   max-width: 860px;
 }
 
+.section__subtitle--accent {
+  max-width: 700px;
+}
+
 .section__header {
   display: flex;
   flex-direction: column;
@@ -112,7 +116,7 @@
     padding-top: 3.5rem;
   }
 
-  .section--binaries {
+  .section--flex-wrap {
     max-width: 100%;
   }
 
@@ -145,6 +149,11 @@
 
   .section__subtitle--jumbotron {
     font-size: var(--font-size-big-2);
+  }
+
+  .section__subtitle--accent {
+    max-width: 500px;
+    text-align: center;
   }
 
   .section__illustration {

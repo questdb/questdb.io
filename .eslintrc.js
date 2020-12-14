@@ -26,7 +26,6 @@ module.exports = {
   },
   plugins: ["@typescript-eslint", "babel", "prettier", "react", "standard"],
   rules: {
-    "react/jsx-no-bind": "error",
     "react/sort-comp": [
       "error",
       {

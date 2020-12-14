@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 901 395">
+  <defs/>
+  <path fill="#282A36" d="M0 33h490v343c0 3-2 6-6 6H6c-3 0-6-3-6-6V33z"/>
+  <path fill="#fff" d="M32 88v-2h3V76l-3 4-1-2 3-3h3v11h3v2h-8zM40 155h-9v-2l5-4 1-2 1-1-1-2-2-1-1 1-1 1h-2a5 5 0 012-2l1-1h3l2 1v1l1 1-1 2v1l-1 1-1 1-3 3h6v2z"/>
+  <path fill="#2F313C" d="M0 7c0-4 3-6 6-6h478c4 0 6 2 6 6v26H0V7z"/>
+  <circle cx="20.6" cy="16.7" r="5.4" fill="#6422F1"/>
+  <circle cx="35.6" cy="16.7" r="5.4" fill="#F46591"/>
+  <circle cx="50.7" cy="16.7" r="5.4" fill="#2BD38D"/>
+  <rect width="219.6" height="25.8" x="179" y="67" fill="#fff" fill-opacity=".2" rx="12.9"/>
+  <rect width="126" height="25.8" x="272" y="133" fill="#fff" fill-opacity=".2" rx="12.9"/>
+  <rect width="84.3" height="26.6" x="78" y="67" fill="#fff" fill-opacity=".2" rx="13.3"/>
+  <rect width="178.5" height="26.6" x="78" y="133" fill="#fff" fill-opacity=".2" rx="13.3"/>
+  <path stroke="url(#paint0_linear)" stroke-width="13" d="M641 202v0c17 0 30 13 30 30v82c0 22 18 40 40 40h13"/>
+  <path stroke="url(#paint1_linear)" stroke-width="13" d="M641 202v0c17 0 30-14 30-30V90c0-23 18-40 40-40h13"/>
+  <path fill="#282A36" d="M724 10h176v98c0 3-2 6-6 6H730c-3 0-6-3-6-6V10z"/>
+  <path fill="#fff" d="M733 25v-1h2v-4h-1l-1 2v-1l1-1h1v4h2v1h-4zM737 43h-4l2-2v-1-1h-1v1l-1-1a2 2 0 010-1h3v3l-1 1-1 1h3zM734 59l1-1v-1h-1l-1 1v-1h1v-1h1l1 1a1 1 0 010 1 1 1 0 010 1h-1a2 2 0 011 0v2l-1 1a3 3 0 01-1 0 2 2 0 01-1-1v-1l1 1h1l1-1h-1l-1-1zM735 80v-1h-2v-1l2-3h1v3h1v1h-1v1h-1zm-2-2h2v-2l-2 2zM736 94h-2v1h2a1 1 0 010 1l1 1h-1v1h-1v1a2 2 0 01-2-1v-1h1v1h1l1-1-1-1h-2v-3h3v1z"/>
+  <path fill="#2F313B" d="M724 7c0-4 3-6 6-6h164c4 0 6 2 6 6v3H724V7z"/>
+  <circle cx="730.1" cy="5" r="1.5" fill="#6422F1"/>
+  <circle cx="734.2" cy="5" r="1.5" fill="#F46591"/>
+  <circle cx="738.4" cy="5" r="1.5" fill="#2BD38D"/>
+  <rect width="86" height="7" x="745" y="19" fill="#3D3F4D" rx="3.5"/>
+  <rect width="52.5" height="7.2" x="766" y="37" fill="#EC779B" rx="3.6"/>
+  <rect width="16" height="7" x="745" y="37" fill="#EB92AE" rx="3.5"/>
+  <rect width="37.6" height="7.2" x="746" y="55" fill="#3D3F4D" rx="3.6"/>
+  <rect width="37.6" height="7.2" x="746" y="74" fill="#545669" rx="3.6"/>
+  <rect width="60" height="7" x="745" y="93" fill="#3D3F4D" rx="3.5"/>
+  <rect width="33.4" height="7.2" x="787" y="74" fill="#E7A5B9" rx="3.6"/>
+  <rect width="22.7" height="7.2" x="824" y="74" fill="#545669" rx="3.6"/>
+  <rect width="37.6" height="7.2" x="788" y="55" fill="#3D3F4D" rx="3.6"/>
+  <path fill="#282A36" d="M723 286v85l-15 24h171l-13-24v-85c0-3-2-4-4-4H727c-2 0-4 1-4 4z"/>
+  <rect width="33" height="33" x="745" y="313" fill="#545669" rx="3"/>
+  <rect width="61" height="19" x="785" y="326" fill="#3D3F4D" rx="3"/>
+  <rect width="58" height="99" x="724" y="147" fill="#282A36" rx="4"/>
+  <circle cx="753.4" cy="234.5" r="4" fill="#545669"/>
+  <rect width="39" height="23" x="734" y="164" fill="#545669" rx="2"/>
+  <rect width="39" height="8" x="734" y="197" fill="#3D3F4D" rx="4"/>
+  <rect width="39" height="8" x="734" y="209" fill="#E7A5B9" rx="4"/>
+  <path stroke="url(#paint2_linear)" stroke-width="13" d="M641 202h80"/>
+  <path stroke="url(#paint3_linear)" stroke-width="13" d="M490 202h52"/>
+  <rect width="107" height="31" x="534" y="147" fill="#282A36" rx="4"/>
+  <circle cx="549.9" cy="162" r="4.5" fill="#282A36" stroke="#D14671" stroke-width="2"/>
+  <rect width="107" height="31" x="534" y="186" fill="#282A36" rx="4"/>
+  <circle cx="549.9" cy="201" r="4.5" fill="#282A36" stroke="#D14671" stroke-width="2"/>
+  <rect width="107" height="31" x="534" y="225" fill="#282A36" rx="4"/>
+  <circle cx="549.9" cy="240" r="4.5" fill="#282A36" stroke="#D14671" stroke-width="2"/>
+  <rect width="107" height="31" x="534" y="264" fill="#282A36" rx="4"/>
+  <circle cx="549.9" cy="279" r="4.5" fill="#282A36" stroke="#D14671" stroke-width="2"/>
+  <rect width="33.4" height="7.2" x="785" y="313" fill="#E7A5B9" rx="3.6"/>
+  <g filter="url(#filter0_d)">
+    <rect width="159.9" height="124.3" x="26" y="207" fill="#D14671" rx="5"/>
+  </g>
+  <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity=".1" stroke-width="2.1" d="M43 256l16 13 13-17 15 12 10-12 9 11 22-11 7 17 15-8 20 9"/>
+  <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M38 289l19-19 13 12 15-34 16 6 17-22 3 61 10-31 11 14 11-17 21 8"/>
+  <circle cx="38.2" cy="289.4" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="56" cy="269.7" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="69.8" cy="281.5" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="85.6" cy="248" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="117.2" cy="232.2" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="176.4" cy="267.7" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="121.1" cy="293.4" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="101.4" cy="253.9" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="131" cy="261.8" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="152.7" cy="259.8" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <circle cx="142.8" cy="275.6" r="1.7" fill="#D14671" stroke="#fff" stroke-width=".6"/>
+  <path fill="#fff" d="M36 309h142v4H36z"/>
+  <defs>
+    <linearGradient id="paint0_linear" x1="641.4" x2="724.4" y1="277.5" y2="277.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EC779B"/>
+      <stop offset="1" stop-color="#EC779B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="641.4" x2="724.4" y1="125.5" y2="125.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EC779B"/>
+      <stop offset="1" stop-color="#EC779B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear" x1="641.4" x2="721.4" y1="201" y2="201" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EC779B"/>
+      <stop offset="1" stop-color="#EC779B" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="paint3_linear" x1="490.4" x2="542.4" y1="201" y2="201" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EC779B"/>
+      <stop offset="1" stop-color="#EC779B" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="filter0_d" width="167.9" height="132.3" x="22" y="207" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.17 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+  </defs>
+</svg>

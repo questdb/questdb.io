@@ -316,7 +316,7 @@ brew install questdb`}
         </div>
       </section>
 
-      <div className={seCss["section--binaries"]}>
+      <div className={seCss["section--flex-wrap"]}>
         <Binary
           basis="40px"
           grow={2.6}

@@ -3,6 +3,7 @@
   padding-left: 2.5rem;
   padding-right: 0.5rem;
   margin-bottom: 1rem;
+  list-style: none;
 }
 
 .property::before {
@@ -10,9 +11,14 @@
   height: 100%;
   width: 2.5rem;
   left: 0;
+  top: -2px;
   content: " ";
-  background-image: url("/img/pages/index/chevron.svg");
+  background-image: url("/img/pages/index/tick.svg");
   background-position-x: -6px;
   background-position-y: 0;
   background-repeat: no-repeat;
+}
+
+.property:last-child {
+  margin-bottom: 0;
 }

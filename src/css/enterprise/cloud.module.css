@@ -1,0 +1,28 @@
+.cloud {
+  margin-top: 2rem;
+}
+
+.cloud > img {
+  height: auto;
+}
+
+.cloud > img:not(:last-child) {
+  margin-right: 4rem;
+}
+
+@media (max-width: 996px) {
+  .cloud > img {
+    max-height: 28px;
+    width: auto;
+  }
+
+  .cloud > img:not(:last-child) {
+    margin-right: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cloud > img {
+    max-height: 24px;
+  }
+}

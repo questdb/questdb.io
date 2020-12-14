@@ -1,0 +1,13 @@
+.illustration {
+  height: auto;
+  margin-top: 4.75rem;
+  margin-bottom: 6.25rem;
+}
+
+@media (max-width: 996px) {
+  .illustration {
+    max-height: 260px;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+}

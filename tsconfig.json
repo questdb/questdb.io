@@ -35,10 +35,12 @@
     "paths": {
       "@theme/Banner": ["src/theme/Banner"],
       "@theme/Button": ["src/theme/Button"],
+      "@theme/Chevron": ["src/theme/Chevron"],
       "@theme/CareerEmailUs": ["src/theme/CareerEmailUs"],
       "@theme/PageLayout": ["src/theme/PageLayout"],
       "@theme/Screenshot": ["src/theme/Screenshot"],
       "@theme/useMetadataContext": ["src/theme/useMetadataContext"],
+      "@theme/useResizeObserver": ["src/theme/useResizeObserver"],
       "@theme/useWindowWidth": ["src/theme/useWindowWidth"]
     }
   },

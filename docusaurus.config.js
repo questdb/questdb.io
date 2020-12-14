@@ -172,8 +172,26 @@ const config = {
               to: "/customers",
             },
             {
+              label: "Enterprise",
+              to: "/enterprise",
+            },
+            {
               label: "Blog",
               to: "/blog",
+            },
+          ],
+        },
+        {
+          label: "Community",
+          position: "left",
+          items: [
+            {
+              label: "GitHub",
+              to: customFields.githubUrl,
+            },
+            {
+              label: "Slack",
+              to: customFields.slackUrl,
             },
           ],
         },
@@ -181,18 +199,6 @@ const config = {
           label: "Documentation",
           to: "/docs/introduction/",
           position: "left",
-        },
-        {
-          label: "GitHub",
-          className: "navbar__item--github",
-          href: customFields.githubUrl,
-          position: "right",
-        },
-        {
-          label: "Slack",
-          className: "navbar__item--slack",
-          href: customFields.slackUrl,
-          position: "right",
         },
       ],
     },
