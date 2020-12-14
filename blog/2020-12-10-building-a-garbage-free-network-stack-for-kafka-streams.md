@@ -43,8 +43,8 @@ stack used to handle all incoming network connections to QuestDB.
 
 Kafka Connect support is now available since version 5.0.5, and the QuestDB
 source is available to [browse on GitHub]({@githubUrl@}). If you like the
-content and the new functionality, if you know of a better way to approach what
-we built, we'd love to know your thoughts. Feel free to share your feedback
+content and the new functionality or if you know of a better way to approach what
+we built, we'd love to know your thoughts! Feel free to share your feedback
 [in our Slack Community]({@slackUrl@}).
 
 ## Flow control
