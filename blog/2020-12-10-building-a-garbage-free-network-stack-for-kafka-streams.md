@@ -208,15 +208,21 @@ import Screenshot from "@theme/Screenshot"
   width={650}
 />
 
-IODispatcher is a synchronized job. It consumes queues on the left and publishes
-to the queue on the right. IODispatcher's main responsibility is to deliver socket
-handles, that are ready for the IO, to the worker threads. Considering that socket
-handles read or written to by one thread at a time the underlying IO notification
-system works in ONESHOT mode. This means socket handle is removed from the IO notification
-system for the period of IO activity and re-introduced back when IO activity tapers off.
-Interacting with the IO notification system like that is expensive, which is the
-reason worker threads have to stay on the socket handle for as long as possible and
-have hysteresis, which we discuss later in this article.
+IODispatcher is a synchronized job in context of QuestDB's thread model. It consumes
+queues on the left and publishes to the queue on the right. IODispatcher's main
+responsibility is to deliver socket handles, that are ready for the IO, to the worker
+threads. Considering that socket handles read or written to by one thread at a time the
+underlying IO notification system works in ONESHOT mode. This means socket handle is
+removed from the IO notification system for the period of IO activity and re-introduced
+back when IO activity tapers off. Interacting with the IO notification system like that
+is expensive. Worker thread must reduce trips back to IODispatcher and this is the
+reason they will read or write socket until that time socket has no more to give.
+Additionally worker threads would also employ hysteresis, which we discuss later in
+this article.
+
+You can find source code for IO dispatcher for [epoll](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherLinux.java)
+, [kqueue](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherOsx.java) and
+[select](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherWindows.java)
 
 Let's take a look at the components in the diagram above with an outline of their purpose:
 
