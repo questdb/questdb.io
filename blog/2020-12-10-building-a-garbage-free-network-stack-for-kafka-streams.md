@@ -209,8 +209,16 @@ import Screenshot from "@theme/Screenshot"
 />
 
 IODispatcher is a synchronized job. It consumes queues on the left and publishes
-to the queue on the right. Let's take a look at the components in the diagram
-above with an outline of their purpose:
+to the queue on the right. IODispatcher's main responsibility is to deliver socket
+handles, that are ready for the IO, to the worker threads. Considering that socket
+handles read or written to by one thread at a time the underlying IO notification
+system works in ONESHOT mode. This means socket handle is removed from the IO notification
+system for the period of IO activity and re-introduced back when IO activity tapers off.
+Interacting with the IO notification system like that is expensive, which is the
+reason worker threads have to stay on the socket handle for as long as possible and
+have hysteresis, which we discuss later in this article.
+
+Let's take a look at the components in the diagram above with an outline of their purpose:
 
 **IO Event Queue:** Single publisher, multiple consumer queue. It is the
 recipient of the IO events from as in epoll, kqueue, select. The events are
@@ -276,7 +284,7 @@ file import.
 
 ### Worker Threads
 
-Worker threads are required to consume the IO event queue. You might see already
+Worker threads are required to consume the IO event queue. We already mentioned
 that the IODispatcher neither reads nor writes connected sockets itself. This is
 the responsibility of the worker threads.
 
@@ -285,6 +293,10 @@ must continue to work with the socket until the socket cannot read or write
 anymore. In which case, the worker threads either express "interest" in further
 socket interaction or disconnects the socket. In this situation, IODispatcher is
 not on the execution path during most of the socket interaction.
+
+Threads will often use hysteresis, which means that they busy spin socket read
+or write until either socket responds or number of iterations elapses. This is
+sometimes useful when remote socket is able to respond with minimal delay.
 
 ## Summary
 
