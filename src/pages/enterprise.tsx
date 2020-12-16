@@ -180,10 +180,10 @@ const Enterprise = () => {
           <ul className={caCss.card__list}>
             <li className={clsx(prCss.property, caCss.card__item)}>
               Enterprise support: 24x7 technical support from high-quality
-              engineers via phone, chat, and email.
+              engineers via phone, chat, and email
             </li>
             <li className={clsx(prCss.property, caCss.card__item)}>
-              On demand training.
+              On demand training
             </li>
           </ul>
         </div>

@@ -37,7 +37,7 @@
   .card {
     width: 100%;
     max-width: initial;
-    padding: 3rem 2rem;
+    padding: 2rem;
   }
 
   .card__title {
@@ -45,7 +45,8 @@
   }
 
   .card__image {
-    margin-bottom: 3rem;
+    height: auto;
+    margin-bottom: 1.5rem;
   }
 
   .card__image > img {
