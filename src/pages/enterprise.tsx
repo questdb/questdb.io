@@ -2,6 +2,7 @@ import clsx from "clsx"
 import React, { useCallback, useState } from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 
+import Button from "@theme/Button"
 import Chevron from "@theme/Chevron"
 import PageLayout from "@theme/PageLayout"
 import useResizeObserver from "@theme/useResizeObserver"
@@ -256,25 +257,38 @@ const Enterprise = () => {
       </section>
 
       <section className={seCss["section--inner"]}>
-        <div className={peCss.left}>
-          <h2 className={peCss.title}>Superior performance</h2>
-          <p className={peCss.item}>
-            <span className={peCss.bullet} />
+        <div className={peCss.performance__left}>
+          <h2 className={peCss.performance__title}>Superior performance</h2>
+          <p className={peCss.performance__item}>
+            <span className={peCss.performance__bullet} />
             Fast ingestion - O(1) complexity, heavy parallelization, out of
             order inserts
           </p>
-          <p className={clsx(peCss.item, peCss["item--important"])}>
+          <p
+            className={clsx(
+              peCss.performance__item,
+              peCss["performance__item--important"],
+            )}
+          >
             Downsize your instance, reduce hardware costs
           </p>
-          <p className={peCss.item}>
-            <span className={peCss.bullet} />
+          <p className={peCss.performance__item}>
+            <span className={peCss.performance__bullet} />
             SIMD accelerated SQL queries for lightning fast data retrieval
           </p>
-          <p className={clsx(peCss.item, peCss["item--important"])}>
+          <p
+            className={clsx(
+              peCss.performance__item,
+              peCss["performance__item--important"],
+            )}
+          >
             Real-time analytics, correlate events over time
           </p>
+          <Button className={peCss.performance__cta} href="/case-study/toggle/">
+            View case study
+          </Button>
         </div>
-        <div className={peCss.right}>
+        <div className={peCss.performance__right}>
           <img
             alt="Charts showing the performance improvments when using QuestDB"
             height={411}

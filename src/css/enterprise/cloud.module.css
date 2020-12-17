@@ -1,5 +1,7 @@
 .cloud {
+  display: flex;
   margin-top: 2rem;
+  align-items: center;
 }
 
 .cloud > img {
