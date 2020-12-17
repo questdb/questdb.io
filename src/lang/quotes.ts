@@ -28,7 +28,7 @@ const quotes: Quote[] = [
     company: "DATRON AG",
   },
   {
-    website: "https://www.innova.com.tr/en",
+    website: "https://www.innova.com.tr/en/about-us/about-innova",
     logo: {
       alt: "Innova logo",
       src: "/img/pages/customers/logos/innova.png",

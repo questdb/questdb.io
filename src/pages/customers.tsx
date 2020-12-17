@@ -86,7 +86,7 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.innova.com.tr/en"
+          href="https://www.innova.com.tr/en/about-us/about-innova"
           variant="plain"
         >
           <img
