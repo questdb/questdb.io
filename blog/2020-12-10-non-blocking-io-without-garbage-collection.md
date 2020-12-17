@@ -1,22 +1,23 @@
 ---
-title: Building a garbage-free network stack for Kafka streams
+title: Non-blocking IO without garbage collection
 author: Vlad Ilyushchenko
 author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
 description:
-  Our new network stack ingests time series data from Kafka topics reliably from
-  multiple TCP connections on a single thread without garbage collection.
+  Our database's network stack handles multiple TCP connections on a single
+  thread without garbage collection for reliably ingesting time series data.
 keywords:
-  - kafka
   - jdbc
   - postgres
   - tcp
+  - nio
+  - garbage
   - workerpool
   - timeseries
   - database
 image: /img/blog/2020-12-10/banner.jpg
-tags: [jdbc, kafka, postgres]
+tags: [jdbc, tcp, garbage collection]
 ---
 
 import Banner from "@theme/Banner"
@@ -25,29 +26,42 @@ import Banner from "@theme/Banner"
   Photo by <a href="https://unsplash.com/photos/a_PDPUPuNZ8">Martin Adams</a> on <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
-At QuestDB, we're building an open source high-performance time series database
-used in IoT applications, financial trading, industrial monitoring, machine
-learning, and anywhere time series data lives. Our community showed a lot of
-interest in integrations with third-party tools, and after adding Grafana
-support earlier this year, ingesting data from Kafka topics was our next goal.
-
-To build reliable support for Kafka, we improved our PostgreSQL wire protocol
-implementation and introduced functionality that we thought readers might like
-to hear about. As we fully avoid garbage collection, we bypassed Java's native
-non-blocking IO and built our own notification system. To do this, we built a
-configurable dispatcher that can delegate tasks to worker threads and uses
-queues for events and socket connections. The result is a new generic network
-stack used to handle all incoming network connections to QuestDB.
+Garbage collection is a type of automatic memory management that's used in many
+modern programming languages. The point of the garbage collector is to free up
+memory used by objects which are no longer being used by a program. Although
+it's convenient for developers not to think about manually deallocating memory,
+it can be a poisoned chalice that comes with several hard-to-predict downsides.
 
 <!--truncate-->
 
-Kafka Connect support is now available since version 5.0.5, and the QuestDB
-source is available to [browse on GitHub]({@githubUrl@}). If you like the
-content and the new functionality or if you know of a better way to approach what
-we built, we'd love to know your thoughts! Feel free to share your feedback
-[in our Slack Community]({@slackUrl@}).
+## When garbage adds up
 
-## Flow control
+Some garbage collectors completely halt the program's execution to make sure no
+new objects are created while it cleans up. To avoid these unpredictable
+**stop-the-world** pauses in a program, incremental and concurrent garbage
+collectors were developed. Although they provide great benefit in many cases,
+there's additional design choices that wind up back into development phases
+where you have to indirectly deal with memory allocation.
+
+Another issue is that garbage collectors themselves consume resources to decide
+what to free up, which can add considerable overhead. Environments dealing with
+real-time data are latency-sensitive and require high performance and
+efficiency. In these applications, unpredictable halting behavior combined with
+excess computation time or memory usage is not acceptable.
+
+As we're building an open source high-performance time series database, we have
+these environments in mind and use design patterns and tooling that focuses on
+writing code that's efficient and reliable. When we need additional
+functionality that would introduce performance knocks through standard
+libraries, we can leverage our own implementations using native methods. This is
+what prompted us to add a network stack that executes garbage-free.
+
+This component bypasses Java's native non-blocking IO with our own notification
+system. This component's job is to delegate tasks to worker threads and use
+queues for events and TCP socket connections. The result is a new generic
+network stack used to handle all incoming network connections.
+
+## TCP flow control
 
 When we have multiple nodes on a network, there are usually disparities in their
 performance in computing power and network bandwidth. Some nodes can read
@@ -70,17 +84,17 @@ is a waste of resources and CPU cycles if the receiver is under heavy load.
 Let's assume the receiver gets 0-length data on a non-blocking socket,
 indicating no data has arrived from the sender; there are two options:
 
-1. Loop over reads continuously, waiting for data to arrive on a socket.
+1. Loop over socket reads continuously, waiting for data to arrive.
 2. Stop looping and consult our parser on two possible actions to take: park for
    more reads or switch to write.
 
 The first option is quite wasteful, so we went with the second approach. To park
 socket read operations without blocking the thread, we need a dedicated system
-to enqueue the socket and notify us when the socket has more data to read. On
-the OS kernel level, IO notification utilities exist as `epoll` on Linux,
-`kqueue` on FreeBSD and OSX, and `select` on Windows. In QuestDB, we've
-implemented a dispatcher that operates exactly as these IO notification systems
-for enqueuing sockets, and we named it IODispatcher.
+for enqueuing and notifying us when the socket has more data to read. On the OS
+kernel level, IO notification utilities exist as `epoll` on Linux, `kqueue` on
+FreeBSD and OSX, and `select` on Windows. In QuestDB, we've implemented a
+dispatcher that operates exactly as these IO notification systems for enqueuing
+sockets, and we named it IODispatcher.
 
 ## Java NIO and garbage collection
 
@@ -208,19 +222,26 @@ import Screenshot from "@theme/Screenshot"
   width={650}
 />
 
-IODispatcher is a synchronized job in context of QuestDB's thread model. It consumes
-queues on the left and publishes to the queue on the right. IODispatcher's main
-responsibility is to deliver socket handles (individual connection identifiers), that are ready for the IO to the worker
-threads. Considering that socket handles are read or written to by one thread at a time the
-underlying IO notification system works in ONESHOT mode. This means socket handle is
-removed from the IO notification system while there is socket activity and re-introduced
-back when activity tapers off. Interacting with the IO notification system
-is expensive. Worker thread will only recurse back to the IODispatcher for enqueueing 
-if there has been zero data from the socket for the set period of time, which we call hysteresis.
+IODispatcher is a synchronized job in context of QuestDB's thread model. It
+consumes queues on the left and publishes to the queue on the right.
+IODispatcher's main responsibility is to deliver socket handles (individual
+connection identifiers), that are ready for the IO to the worker threads.
+Considering that socket handles are read or written to by one thread at a time
+the underlying IO notification system works in ONESHOT mode. This means socket
+handle is removed from the IO notification system while there is socket activity
+and re-introduced back when activity tapers off. Interacting with the IO
+notification system is expensive. Worker thread will only recurse back to the
+IODispatcher for enqueueing if there has been zero data from the socket for the
+set period of time, which we call hysteresis.
 
-You can find source code of the implementations of the IODispatcher for [epoll](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherLinux.java)
-, [kqueue](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherOsx.java) and
-[select](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherWindows.java) on GitHub. Let's take a look at the components in the diagram above with an outline of their purpose:
+You can find source code of the implementations of the IODispatcher for
+[epoll](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherLinux.java)
+,
+[kqueue](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherOsx.java)
+and
+[select](https://github.com/questdb/questdb/blob/master/core/src/main/java/io/questdb/network/IODispatcherWindows.java)
+on GitHub. Let's take a look at the components in the diagram above with an
+outline of their purpose:
 
 **IO Event Queue:** Single publisher, multiple consumer queue. It is the
 recipient of the IO events from as in epoll, kqueue, select. The events are
@@ -297,18 +318,16 @@ socket interaction or disconnects the socket. In this situation, IODispatcher is
 not on the execution path during most of the socket interaction.
 
 Threads will often use hysteresis, which means that they busy-spin socket read
-or write operations until either the socket responds or the number of iterations 
-has elapsed. This is sometimes useful when a remote socket is able to respond 
+or write operations until either the socket responds or the number of iterations
+has elapsed. This is sometimes useful when a remote socket is able to respond
 with minimum delay.
 
-## Summary
+## Take a look
 
 In this article, we've covered our approach to implementing non-blocking IO
-using what we think is a nice solution that's garbage-free. Each time there is a
-new connection from Kafka using the Postgres server in a QuestDB instance, not
-only do we avoid having to start a new process or thread, but we also reuse
-context objects as connection state.
-
-To get started with QuestDB and Kafka Connect, check out our
-[integration page](/docs/third-party-tools/kafka) and if you like it, drop us a
-[star️ on GitHub]({@githubUrl@})!
+using what we think is a nice solution that's garbage-free. This functionality
+is available since version 5.0.5, and the QuestDB source is open to
+[browse on GitHub]({@githubUrl@}). If you like this content and our approach to
+non-blocking and garbage-free IO, or if you know of a better way to approach
+what we built, we'd love to know your thoughts! Feel free to share your feedback
+[in our Slack Community]({@slackUrl@}).
