@@ -138,14 +138,14 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.kimaventures.com/"
+          href="https://www.biba.uni-bremen.de/en/institute/about-us.html"
           variant="plain"
         >
           <img
-            alt="Kima logo"
+            alt="BIBA logo"
             className="responsive-image"
-            height={38}
-            src="/img/pages/customers/logos/kima.png"
+            height={24}
+            src="/img/pages/customers/logos/biba.svg"
             width={63}
           />
         </Button>
