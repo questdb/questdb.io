@@ -193,6 +193,10 @@ const config = {
               label: "Slack",
               to: customFields.slackUrl,
             },
+            {
+              label: "Twitter",
+              to: customFields.twitterUrl,
+            },
           ],
         },
         {
@@ -207,6 +211,10 @@ const config = {
         {
           title: "QuestDB",
           items: [
+            {
+              label: "Enterprise",
+              to: "/enterprise/",
+            },
             {
               label: "Customers",
               to: "/customers/",
@@ -229,6 +237,10 @@ const config = {
           title: "Community",
           items: [
             {
+              label: "GitHub",
+              href: customFields.githubUrl,
+            },
+            {
               label: "Slack",
               href: customFields.slackUrl,
             },
@@ -244,10 +256,6 @@ const config = {
             {
               label: "Blog",
               to: "/blog/",
-            },
-            {
-              label: "GitHub",
-              href: customFields.githubUrl,
             },
           ],
         },
