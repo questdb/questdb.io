@@ -125,7 +125,7 @@ const config = {
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
-    image: "/img/og.png",
+    image: "/img/og.gif",
     gtag: {
       trackingID: "GTM-PVR7M2G",
       anonymizeIP: true,
