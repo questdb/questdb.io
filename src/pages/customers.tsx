@@ -112,28 +112,15 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://trysavvy.com/"
+          href="https://www.danieli.com/en/"
           variant="plain"
         >
           <img
-            alt="Savvy logo"
+            alt="Danieli SpA logo"
             className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/savvy.png"
-            width={94}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="https://chainslayer.io/"
-          variant="plain"
-        >
-          <img
-            alt="Chainslayer logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/chainslayer.png"
-            width={144}
+            height={19}
+            src="/img/pages/customers/logos/danieli.svg"
+            width={130}
           />
         </Button>
         <Button
@@ -147,6 +134,19 @@ const Customers = () => {
             height={24}
             src="/img/pages/customers/logos/biba.svg"
             width={63}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://trysavvy.com/"
+          variant="plain"
+        >
+          <img
+            alt="Savvy logo"
+            className="responsive-image"
+            height={30}
+            src="/img/pages/customers/logos/savvy.png"
+            width={94}
           />
         </Button>
       </section>
