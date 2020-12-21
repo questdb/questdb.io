@@ -44,7 +44,7 @@ Dynamic-timestamp
 
 
 sampleBy ::=
-someSelectStatement... 'SAMPLE' 'BY' n ( 's' | 'm' | 'h' | 'd' | 'M' | )
+someSelectStatement... 'SAMPLE' 'BY' n ( 'T' | 's' | 'm' | 'h' | 'd' | 'M' | )
 
 distinct
   ::= 'SELECT' 'DISTINCT' ( columnName (',' columnName)* ) 'FROM' tableName
