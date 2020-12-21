@@ -22,9 +22,9 @@ const quotes: Quote[] = [
       width: 100,
     },
     text:
-      "At DATRON, we record features of our industry machine components (such as spindle RPM and temperature) at a very high frequency under lab conditions. With QuestDB’s turnkey solution via Docker, we have been able to quickly build a solid foundation for billions of measurements per day.",
-    author: "Tim Borowski",
-    role: "Software Engineer",
+      "With QuestDB's Keyturn solution in Docker, we have been able to quickly build a solid foundation for our billions of measurement data acquisition.",
+    author: "Andreas Landmann",
+    role: "Director of Research and Technology",
     company: "DATRON AG",
   },
   {
