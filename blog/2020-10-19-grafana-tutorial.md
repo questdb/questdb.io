@@ -265,6 +265,8 @@ Grafana's `$__interval` property:
 The daily cycle of activity is visible, with rides peaking in the early evening
 and reaching a low in the middle of the night.
 
+<!-- TODO: uncomment when https://github.com/questdb/questdb/pull/736 is available on docker:latest
+
 ## ASOF JOIN
 
 `ASOF` joins allow us to join 2 tables based on timestamp where timestamps do
@@ -303,6 +305,8 @@ between rain and the amount spent on taxi rides.
   alt="A panel showing taxi fares plotted against rain fall"
   src="/img/blog/2020-10-19/panel-taxi-fares-and-rain.png"
 />
+
+-->
 
 ## Conclusion
 
