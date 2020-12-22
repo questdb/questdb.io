@@ -9,7 +9,7 @@ description:
 This page shows how to query data from QuestDB using different programming
 languages or tools.
 
-## First things first
+## Prerequisites
 
 Make sure you have QuestDB running and accessible, you can do so from
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
