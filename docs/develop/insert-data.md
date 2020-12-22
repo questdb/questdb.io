@@ -6,8 +6,8 @@ description:
   integration.
 ---
 
-This page shows how to get started with inserting data into QuestDB using
-different programming languages or tools.
+This page shows how to insert data into QuestDB using different programming
+languages and tools.
 
 ## Prerequisites
 
@@ -23,7 +23,6 @@ tools. The REST API is accessible on port `9000` and has the following
 entrypoints:
 
 - `/imp` - import data
-- `/exp` - export data
 - `/exec` - execute an SQL statement
 
 More details on the use of these entrypoints can be found on the
@@ -41,7 +40,7 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
-  { label: "Go", value: "go" }
+  { label: "Go", value: "go" },
 ]}>
 
 <!-- prettier-ignore-end -->
@@ -96,54 +95,54 @@ run()
 package main
 
 import (
-  "bytes"
-  "fmt"
-  "io"
-  "io/ioutil"
-  "log"
-  "mime/multipart"
-  "net/http"
-  "net/url"
-  "os"
+	"bytes"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"log"
+	"mime/multipart"
+	"net/http"
+	"net/url"
+	"os"
 )
 
 func main() {
-  u, err := url.Parse("http://localhost:9000")
-  checkErr(err)
-  u.Path += "imp"
-  url := fmt.Sprintf("%v", u)
-  fileName := "/path/to/data.csv"
-  file, err := os.Open(fileName)
-  checkErr(err)
+	u, err := url.Parse("http://localhost:9000")
+	checkErr(err)
+	u.Path += "imp"
+	url := fmt.Sprintf("%v", u)
+	fileName := "/path/to/data.csv"
+	file, err := os.Open(fileName)
+	checkErr(err)
 
-  defer file.Close()
+	defer file.Close()
 
-  buf := new(bytes.Buffer)
-  writer := multipart.NewWriter(buf)
-  uploadFile, _ := writer.CreateFormFile("data", "data.csv")
-  _, err = io.Copy(uploadFile, file)
-  checkErr(err)
-  writer.Close()
+	buf := new(bytes.Buffer)
+	writer := multipart.NewWriter(buf)
+	uploadFile, _ := writer.CreateFormFile("data", "data.csv")
+	_, err = io.Copy(uploadFile, file)
+	checkErr(err)
+	writer.Close()
 
-  req, err := http.NewRequest(http.MethodPut, url, buf)
-  checkErr(err)
-  req.Header.Add("Content-Type", writer.FormDataContentType())
+	req, err := http.NewRequest(http.MethodPut, url, buf)
+	checkErr(err)
+	req.Header.Add("Content-Type", writer.FormDataContentType())
 
-  client := &http.Client{}
-  res, err := client.Do(req)
-  checkErr(err)
+	client := &http.Client{}
+	res, err := client.Do(req)
+	checkErr(err)
 
-  defer res.Body.Close()
+	defer res.Body.Close()
 
-  body, err := ioutil.ReadAll(res.Body)
-  checkErr(err)
+	body, err := ioutil.ReadAll(res.Body)
+	checkErr(err)
 
-  log.Println(string(body))
+	log.Println(string(body))
 }
 
 func checkErr(err error) {
-  if err != nil {
-    panic(err)
+	if err != nil {
+		panic(err)
   }
 }
 ```
@@ -194,7 +193,7 @@ curl -G \
 
 <TabItem value="nodejs">
 
-The node-fetch module can be installed using `npm i node-fetch`
+The `node-fetch` package can be installed using `npm i node-fetch`.
 
 ```javascript
 const fetch = require("node-fetch")
@@ -202,7 +201,7 @@ const qs = require("querystring")
 
 const HOST = "http://localhost:9000"
 
-async function create_table() {
+async function createTable() {
   try {
     const queryData = {
       query: "CREATE TABLE trades (name STRING, value INT);",
@@ -217,7 +216,7 @@ async function create_table() {
   }
 }
 
-async function insert_data() {
+async function insertData() {
   try {
     const queryData = {
       query: "INSERT INTO trades VALUES('abc', 123456);",
@@ -232,8 +231,8 @@ async function insert_data() {
   }
 }
 
-create_table()
-insert_data()
+createTable()
+insertData()
 ```
 
 </TabItem>
@@ -244,47 +243,47 @@ insert_data()
 package main
 
 import (
-  "fmt"
-  "io/ioutil"
-  "log"
-  "net/http"
-  "net/url"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"net/url"
 )
 
 func main() {
-  u, err := url.Parse("http://localhost:9000")
-  checkErr(err)
+	u, err := url.Parse("http://localhost:9000")
+	checkErr(err)
 
-  u.Path += "exec"
-  params := url.Values{}
-  params.Add("query", `
-    CREATE TABLE
-      trades (name STRING, value INT);
-    INSERT INTO
-      trades
-    VALUES(
-      "abc",
-      123456
-    );
-  `)
-  u.RawQuery = params.Encode()
-  url := fmt.Sprintf("%v", u)
+	u.Path += "exec"
+	params := url.Values{}
+	params.Add("query", `
+		CREATE TABLE
+			trades (name STRING, value INT);
+		INSERT INTO
+			trades
+		VALUES(
+			"abc",
+			123456
+		);
+	`)
+	u.RawQuery = params.Encode()
+	url := fmt.Sprintf("%v", u)
 
-  res, err := http.Get(url)
-  checkErr(err)
+	res, err := http.Get(url)
+	checkErr(err)
 
-  defer res.Body.Close()
+	defer res.Body.Close()
 
-  body, err := ioutil.ReadAll(res.Body)
-  checkErr(err)
+	body, err := ioutil.ReadAll(res.Body)
+	checkErr(err)
 
-  log.Println(string(body))
+	log.Println(string(body))
 }
 
 func checkErr(err error) {
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 }
 ```
 
@@ -351,40 +350,40 @@ run()
 package main
 
 import (
-  "fmt"
-  "io/ioutil"
-  "net"
-  "time"
+	"fmt"
+	"io/ioutil"
+	"net"
+	"time"
 )
 
 func main() {
-  host := "127.0.0.1:9009"
-  tcpAddr, err := net.ResolveTCPAddr("tcp4", host)
-  checkErr(err)
-  rows := [2]string{
-    fmt.Sprintf("trades,name=test_ilp1 value=12.4 %d", time.Now().UnixNano()),
-    fmt.Sprintf("trades,name=test_ilp2 value=11.4 %d", time.Now().UnixNano()),
-  }
+	host := "127.0.0.1:9009"
+	tcpAddr, err := net.ResolveTCPAddr("tcp4", host)
+	checkErr(err)
+	rows := [2]string{
+		fmt.Sprintf("trades,name=test_ilp1 value=12.4 %d", time.Now().UnixNano()),
+		fmt.Sprintf("trades,name=test_ilp2 value=11.4 %d", time.Now().UnixNano()),
+	}
 
-  conn, err := net.DialTCP("tcp", nil, tcpAddr)
-  checkErr(err)
-  defer conn.Close()
+	conn, err := net.DialTCP("tcp", nil, tcpAddr)
+	checkErr(err)
+	defer conn.Close()
 
-  for _, s := range rows {
-    _, err = conn.Write([]byte(fmt.Sprintf("%s\n", s)))
-    checkErr(err)
-  }
+	for _, s := range rows {
+		_, err = conn.Write([]byte(fmt.Sprintf("%s\n", s)))
+		checkErr(err)
+	}
 
-  result, err := ioutil.ReadAll(conn)
-  checkErr(err)
+	result, err := ioutil.ReadAll(conn)
+	checkErr(err)
 
-  fmt.Println(string(result))
+	fmt.Println(string(result))
 }
 
 func checkErr(err error) {
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 }
 ```
 
@@ -450,38 +449,38 @@ start()
 package main
 
 import (
-        "database/sql"
-        "fmt"
-        _ "github.com/lib/pq"
+				"database/sql"
+				"fmt"
+				_ "github.com/lib/pq"
 )
 
 const (
-        host     = "localhost"
-        port     = 8812
-        user     = "admin"
-        password = "quest"
-        dbname   = "qdb"
+				host		 = "localhost"
+				port		 = 8812
+				user		 = "admin"
+				password = "quest"
+				dbname	 = "qdb"
 )
 
 func main() {
-        connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+				connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 
-        db, err := sql.Open("postgres", connStr)
-        if err != nil {
-                panic(err)
-        }
-        defer db.Close()
+				db, err := sql.Open("postgres", connStr)
+				if err != nil {
+								panic(err)
+				}
+				defer db.Close()
 
-        rows, err := db.Query("insert into trades values ('abc', 123)")
-        checkErr(err)
-        defer rows.Close()
-        fmt.Println("Done")
+				rows, err := db.Query("insert into trades values ('abc', 123)")
+				checkErr(err)
+				defer rows.Close()
+				fmt.Println("Done")
 }
 
 func checkErr(err error) {
-        if err != nil {
-                panic(err)
-        }
+				if err != nil {
+								panic(err)
+				}
 }
 
 ```

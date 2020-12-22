@@ -9,7 +9,7 @@ This page shows how to authenticate to QuestDB using different programming
 languages or tools over [InfluxDB line protocol](/docs/reference/api/influxdb/)
 for the TCP endpoint.
 
-## First things first
+## Prerequisites
 
 Make sure you have QuestDB running and accessible, you can do so from
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
