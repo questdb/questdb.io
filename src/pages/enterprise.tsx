@@ -161,8 +161,12 @@ const Enterprise = () => {
                       <Input
                         className={foCss.form__input}
                         name="email"
+                        pattern={
+                          "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$"
+                        }
                         placeholder="Work Email"
                         required
+                        title="Email address should be valid"
                         type="email"
                       />
                       <Button type="submit">
