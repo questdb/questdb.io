@@ -10,9 +10,11 @@ description:
 tags: [tutorial, grafana, postgres]
 ---
 
-In this tutorial you will learn how to use QuestDB as a data source for your
-Grafana dashboards and create visualizations using aggregate functions and
-sampling.
+In this tutorial, we will cover how to load demo data from `.CSV` files into
+QuestDB and to use this as a data source for a Grafana dashboard. The dashboard
+will have line charts as data visualizations that make use of aggregate SQL
+functions and Grafana global variables for sampling data based on dashboard
+settings.
 
 <!-- truncate -->
 
@@ -123,15 +125,17 @@ import Screenshot from "@theme/Screenshot"
   src="/img/blog/2020-10-19/add-new-panel.png"
 />
 
-The new panel has a graphing area on the top and a query builder in the bottom:
+The new panel has a graphing area on the top half of the window and a query
+builder in the bottom half:
 
 <Screenshot
   alt="Screenshot of a blank panel after being created"
   src="/img/blog/2020-10-19/blank-panel.png"
 />
 
-Toggle the query editor to **text edit mode** by clicking the pencil icon. The
-query editor will now accept SQL statements that we can input:
+Toggle the query editor to **text edit mode** by clicking the pencil icon or by
+clicking the **Edit SQL** button. The query editor will now accept SQL
+statements that we can input directly:
 
 <Screenshot
   alt="Screenshot showing how to toggle text edit mode"
@@ -148,6 +152,11 @@ WHERE $__timeFilter(pickupDatetime)
 SAMPLE BY $__interval
 ```
 
+Click the time range selector above the chart and set the following date range:
+
+- Set the **From** value to `2018-02-07 00:00:00`
+- Set the **To** value to `2018-02-14 23:59:59` and click **Apply time range**
+
 We have built our first panel with aggregations:
 
 <Screenshot
@@ -155,25 +164,35 @@ We have built our first panel with aggregations:
   src="/img/blog/2020-10-19/first-panel.png"
 />
 
-#### Query functions explained
+#### Query details
 
-To graph the average trip distance, we use the `avg()` function on the
+To graph the average trip distance above, we use the `avg()` function on the
 `tripDistance` column. This function aggregates data over the specified sampling
 interval. If the sampling interval is **1-hour**, we are calculating the average
 distance traveled during each 1-hour interval. You can find more information on
 QuestDB
 [aggregate functions on our documentation](/docs/reference/function/aggregation/).
 
-There are also 2 key Grafana-specific functions used which can be identified by
-the `$__` prefix:
+There are also 2 key Grafana-specific expressions used which can be identified
+by the `$__` prefix:
+
+`$__interval` This is a dynamic interval based on the time range applied to the
+dashboard. By using this function, the sampling interval changes automatically
+as the user zooms in and out of the panel.
 
 `$__timeFilter(pickupDatetime)` tells Grafana to send the start-time and
-end-time defined in the dashboard to the QuestDB server. Grafana translates this
-to: `pickupDatetime BETWEEN '2018-02-01T00:00:00Z' AND '2018-02-28T23:59:59Z'`.
+end-time defined in the dashboard to the QuestDB server. Given the settings we
+have configured so far with our date range, Grafana translates this to the
+following:
 
-`$__interval` This function calculates a dynamic interval based on the time
-range applied to the dashboard. By using this function, the sampling interval
-changes automatically as the user zooms in and out of the panel.
+```
+pickupDatetime BETWEEN '2018-02-01T00:00:00Z' AND '2018-02-28T23:59:59Z'
+```
+
+These are **global variables** which can be used in queries and elsewhere in
+panels and dashboards. To learn more about the use of these variables, refer to
+the
+[Grafana reference documentation on Global variables](https://grafana.com/docs/grafana/latest/variables/variable-types/global-variables/#global-variables).
 
 ### Adding multiple queries
 
@@ -249,52 +268,41 @@ and reaching a low in the middle of the night.
 ## ASOF JOIN
 
 `ASOF` joins allow us to join 2 tables based on timestamp where timestamps do
-not exactly match.
-
-Here we are joining the taxi trips data with weather data:
+not exactly match. To join the taxi trips data with weather data, enter the
+following query:
 
 ```
 SELECT
     pickupDatetime as "time",
-    avg(tripDistance) as tripDistance,
-    avg(rain24H) as rain24H
+    avg(fareAmount) as sumOfFares,
+    avg(rain1H) as rain1H
 FROM (('taxi_trips_feb_2018.csv' timestamp(pickupDatetime)) WHERE $__timeFilter(pickupDatetime))
 ASOF JOIN (weather.csv timestamp(timestamp))
 SAMPLE BY $__interval;
 ```
 
-This is what it looks like for the whole month of February 2018:
+To view a selected week in February 2018, select the time range picker above the
+chart:
 
-<Screenshot
-  alt="A panel showing taxi fares plotted against rain fall"
-  src="/img/blog/2020-10-19/panel-taxi-fares-and-rain.png"
-/>
-
-In this graph, we have 2 series, in green we have the fare amount sampled
-dynamically, and in yellow we have the precipitation over the last hour in
-millimeters. From the graph, it’s hard to say whether there is a correlation
-between rain and the amount spent on taxi rides.
-
-If we zoom in on a rainy day:
-
-<Screenshot
-  alt="A panel showing taxi fares plotted against rain fall, zooming in on a rainy day"
-  src="/img/blog/2020-10-19/panel-taxi-fares-and-rain-on-a-rainy-day.png"
-/>
-
-Again, we see no obvious increase in the amount spent in taxi rides during the
-rainiest period of the day.
-
-Note that the graphs above have 2 Y-axis. To enable the right Y-axis, do this,
-click on the yellow line next to the rainH label:
+- Set the **From** value to `2018-02-07 00:00:00`
+- Set the **To** value to `2018-02-14 23:59:59` and click **Apply time range**
+- Click on the yellow line beside the **rain1H** label and in the Y-Axis menu,
+  enable **use right Y-Axis**
 
 <Screenshot
   alt="Showing how to enable 2nd Y-axis by clicking on the line next to the series name."
   src="/img/blog/2020-10-19/enabling-2nd-y-axis.png"
 />
 
-In the pop-up, click on the Y-axis tab and enable use of the right axis for this
-series.
+In this graph, we have 2 series, in green we have the fare amount sampled
+dynamically, and in yellow we have the average precipitation per hour in
+millimeters. From the graph, it’s hard to say whether there is a correlation
+between rain and the amount spent on taxi rides.
+
+<Screenshot
+  alt="A panel showing taxi fares plotted against rain fall"
+  src="/img/blog/2020-10-19/panel-taxi-fares-and-rain.png"
+/>
 
 ## Conclusion
 
