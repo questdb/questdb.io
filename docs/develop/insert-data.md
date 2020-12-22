@@ -1,29 +1,39 @@
 ---
 title: Insert data
 description:
-  This page has instructions demonstrating how to insert into QuestDB from
-  NodeJS, Java, Go or cURL. The examples show the REST API as well as the
-  InfluxDB integration.
+  This page demonstrates how to insert data into QuestDB from NodeJS, Java, Go
+  and cURL. The examples show how to use the REST API as well as the InfluxDB
+  integration.
 ---
 
-This page shows how to insert data into QuestDB using different programming
-languages or tools.
+This page shows how to get started with inserting data into QuestDB using
+different programming languages or tools.
 
-## First things first
+## Prerequisites
 
-Make sure you have QuestDB running and accessible, you can do so from
+This page assumes that QuestDB is running and accessible. To get started, follow
+one of the guides to get up and running using either
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
 or [Homebrew](/docs/get-started/homebrew/) for macOS users.
 
 ## REST API
 
-You can query data using the [REST API](/docs/reference/api/rest/), this will
-work with a very wide range of libraries and tools. The REST API is accessible
-on port `9000`.
+QuestDB exposes a REST API for compatibility with a wide range of libraries and
+tools. The REST API is accessible on port `9000` and has the following
+entrypoints:
+
+- `/imp` - import data
+- `/exp` - export data
+- `/exec` - execute an SQL statement
+
+More details on the use of these entrypoints can be found on the
+[REST API reference](/docs/reference/api/rest/) page.
 
 ### `/imp` endpoint
 
-Using the `/imp` endpoint will allow you to import a CSV file directly.
+The `/imp` endpoint allows for importing a CSV file directly.
+
+<!-- prettier-ignore-start -->
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
@@ -31,12 +41,12 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
-  { label: "Go", value: "go" },
+  { label: "Go", value: "go" }
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="curl">
-
 
 ```shell
 curl -F data=@data.csv http://localhost:9000/imp
@@ -44,9 +54,7 @@ curl -F data=@data.csv http://localhost:9000/imp
 
 </TabItem>
 
-
 <TabItem value="nodejs">
-
 
 ```javascript
 const fetch = require("node-fetch")
@@ -82,75 +90,74 @@ run()
 
 </TabItem>
 
-
 <TabItem value="go">
-
 
 ```go
 package main
 
 import (
-	"bytes"
-	"fmt"
-	"io"
-	"io/ioutil"
-	"log"
-	"mime/multipart"
-	"net/http"
-	"net/url"
-	"os"
+  "bytes"
+  "fmt"
+  "io"
+  "io/ioutil"
+  "log"
+  "mime/multipart"
+  "net/http"
+  "net/url"
+  "os"
 )
 
 func main() {
-	u, err := url.Parse("http://localhost:9000")
-	checkErr(err)
-	u.Path += "imp"
-	url := fmt.Sprintf("%v", u)
-	fileName := "/path/to/data.csv"
-	file, err := os.Open(fileName)
-	checkErr(err)
+  u, err := url.Parse("http://localhost:9000")
+  checkErr(err)
+  u.Path += "imp"
+  url := fmt.Sprintf("%v", u)
+  fileName := "/path/to/data.csv"
+  file, err := os.Open(fileName)
+  checkErr(err)
 
-	defer file.Close()
+  defer file.Close()
 
-	buf := new(bytes.Buffer)
-	writer := multipart.NewWriter(buf)
-	uploadFile, _ := writer.CreateFormFile("data", "data.csv")
-	_, err = io.Copy(uploadFile, file)
-	checkErr(err)
-	writer.Close()
+  buf := new(bytes.Buffer)
+  writer := multipart.NewWriter(buf)
+  uploadFile, _ := writer.CreateFormFile("data", "data.csv")
+  _, err = io.Copy(uploadFile, file)
+  checkErr(err)
+  writer.Close()
 
-	req, err := http.NewRequest(http.MethodPut, url, buf)
-	checkErr(err)
-	req.Header.Add("Content-Type", writer.FormDataContentType())
+  req, err := http.NewRequest(http.MethodPut, url, buf)
+  checkErr(err)
+  req.Header.Add("Content-Type", writer.FormDataContentType())
 
-	client := &http.Client{}
-	res, err := client.Do(req)
-	checkErr(err)
+  client := &http.Client{}
+  res, err := client.Do(req)
+  checkErr(err)
 
-	defer res.Body.Close()
+  defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
-	checkErr(err)
+  body, err := ioutil.ReadAll(res.Body)
+  checkErr(err)
 
-	log.Println(string(body))
+  log.Println(string(body))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+  if err != nil {
+    panic(err)
+  }
 }
 ```
 
 </TabItem>
 
-
 </Tabs>
 
+### `/exec` endpoint
 
-### `/query` endpoint
+Alternatively, the `/exec` endpoint can be used to create a table and the
+`INSERT` statement can be used to populate it with values:
 
-Otherwise you can use `/query` and execute an `INSERT` statement.
+<!-- prettier-ignore-start -->
 
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
@@ -158,21 +165,36 @@ Otherwise you can use `/query` and execute an `INSERT` statement.
   { label: "Go", value: "go" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="curl">
 
-
 ```shell
+# Create Table
+curl -G \
+  --data-urlencode "query=create table trades(name STRING, value INT)" \
+  http://localhost:9000/exec
+
+# Insert a row
 curl -G \
   --data-urlencode "query=INSERT INTO trades VALUES('abc', 123456);" \
   http://localhost:9000/exec
 ```
 
-</TabItem>
+Note that these two queries can be combined into a single curl request:
 
+```shell
+curl -G \
+  --data-urlencode "query=create table trades(name STRING, value INT);\
+  INSERT INTO trades VALUES('abc', 123456);" \
+  http://localhost:9000/exec
+```
+
+</TabItem>
 
 <TabItem value="nodejs">
 
+The node-fetch module can be installed using `npm i node-fetch`
 
 ```javascript
 const fetch = require("node-fetch")
@@ -180,17 +202,10 @@ const qs = require("querystring")
 
 const HOST = "http://localhost:9000"
 
-async function run() {
+async function create_table() {
   try {
     const queryData = {
-      query: `
-        INSERT INTO
-          trades
-        VALUES(
-          "abc",
-          123456
-        );
-      `,
+      query: "CREATE TABLE trades (name STRING, value INT);",
     }
 
     const response = await fetch(`${HOST}/exec?${qs.encode(queryData)}`)
@@ -202,80 +217,97 @@ async function run() {
   }
 }
 
-run()
+async function insert_data() {
+  try {
+    const queryData = {
+      query: "INSERT INTO trades VALUES('abc', 123456);",
+    }
+
+    const response = await fetch(`${HOST}/exec?${qs.encode(queryData)}`)
+    const json = await response.json()
+
+    console.log(json)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+create_table()
+insert_data()
 ```
 
 </TabItem>
 
-
 <TabItem value="go">
-
 
 ```go
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"net/url"
+  "fmt"
+  "io/ioutil"
+  "log"
+  "net/http"
+  "net/url"
 )
 
 func main() {
-	u, err := url.Parse("http://localhost:9000")
-	checkErr(err)
+  u, err := url.Parse("http://localhost:9000")
+  checkErr(err)
 
-	u.Path += "exec"
-	params := url.Values{}
-	params.Add("query", `
-	  INSERT INTO
-	    test
-	  VALUES(
-	    "abc",
-	    123456
-	  );
-	`)
-	u.RawQuery = params.Encode()
-	url := fmt.Sprintf("%v", u)
+  u.Path += "exec"
+  params := url.Values{}
+  params.Add("query", `
+    CREATE TABLE
+      trades (name STRING, value INT);
+    INSERT INTO
+      trades
+    VALUES(
+      "abc",
+      123456
+    );
+  `)
+  u.RawQuery = params.Encode()
+  url := fmt.Sprintf("%v", u)
 
-	res, err := http.Get(url)
-	checkErr(err)
+  res, err := http.Get(url)
+  checkErr(err)
 
-	defer res.Body.Close()
+  defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
-	checkErr(err)
+  body, err := ioutil.ReadAll(res.Body)
+  checkErr(err)
 
-	log.Println(string(body))
+  log.Println(string(body))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+  if err != nil {
+    panic(err)
+  }
 }
 ```
 
 </TabItem>
 
-
 </Tabs>
-
 
 ## InfluxDB line protocol
 
 QuestDB implements the [InfluxDB line protocol](/docs/reference/api/influxdb/),
-this endpoint is accessible on port `9009`.
+this endpoint is accessible on port `9009`. These examples assume the `trades`
+table created in the section above exists already.
+
+<!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="nodejs">
-
 
 ```javascript
 const net = require("net")
@@ -288,8 +320,8 @@ const PORT = 9009
 function run() {
   client.connect(PORT, HOST, () => {
     const rows = [
-      `test,location=uk temperature=12.4 ${Date.now() * 1e6}`,
-      `test,location=uk temperature=11.4 ${Date.now() * 1e6}`,
+      `trades,name=test_ilp1 value=12.4 ${Date.now() * 1e6}`,
+      `trades,name=test_ilp2 value=11.4 ${Date.now() * 1e6}`,
     ]
 
     rows.forEach((row) => {
@@ -313,61 +345,60 @@ run()
 
 </TabItem>
 
-
 <TabItem value="go">
-
 
 ```go
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net"
-	"time"
+  "fmt"
+  "io/ioutil"
+  "net"
+  "time"
 )
 
 func main() {
-	host := "127.0.0.1:9009"
-	tcpAddr, err := net.ResolveTCPAddr("tcp4", host)
-	checkErr(err)
-	rows := [2]string{
-		fmt.Sprintf("test,location=uk temperature=12.4 %d", time.Now().UnixNano()),
-		fmt.Sprintf("test,location=uk temperature=11.4 %d", time.Now().UnixNano()),
-	}
+  host := "127.0.0.1:9009"
+  tcpAddr, err := net.ResolveTCPAddr("tcp4", host)
+  checkErr(err)
+  rows := [2]string{
+    fmt.Sprintf("trades,name=test_ilp1 value=12.4 %d", time.Now().UnixNano()),
+    fmt.Sprintf("trades,name=test_ilp2 value=11.4 %d", time.Now().UnixNano()),
+  }
 
-	conn, err := net.DialTCP("tcp", nil, tcpAddr)
-	checkErr(err)
-	defer conn.Close()
+  conn, err := net.DialTCP("tcp", nil, tcpAddr)
+  checkErr(err)
+  defer conn.Close()
 
-	for _, s := range rows {
-		_, err = conn.Write([]byte(fmt.Sprintf("%s\n", s)))
-		checkErr(err)
-	}
+  for _, s := range rows {
+    _, err = conn.Write([]byte(fmt.Sprintf("%s\n", s)))
+    checkErr(err)
+  }
 
-	result, err := ioutil.ReadAll(conn)
-	checkErr(err)
+  result, err := ioutil.ReadAll(conn)
+  checkErr(err)
 
-	fmt.Println(string(result))
+  fmt.Println(string(result))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+  if err != nil {
+    panic(err)
+  }
 }
 ```
 
 </TabItem>
 
-
 </Tabs>
-
 
 ## Postgres compatibility
 
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
-that QuestDB exposes. This is accessible via port `8812`.
+that QuestDB exposes. This is accessible via port `8812`. These examples assume
+the `trades` table created in the section above exists already.
+
+<!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
@@ -377,9 +408,9 @@ that QuestDB exposes. This is accessible via port `8812`.
   { label: "Python", value: "python" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="nodejs">
-
 
 ```javascript
 const { Client } = require("pg")
@@ -395,7 +426,7 @@ const start = async () => {
     })
     await client.connect()
 
-    const res = await client.query("INSERT INTO test VALUES($1, $2);", [
+    const res = await client.query("INSERT INTO trades VALUES($1, $2);", [
       "abc",
       "123",
     ])
@@ -441,7 +472,7 @@ func main() {
         }
         defer db.Close()
 
-        rows, err := db.Query("insert into x values ('abc', 123)")
+        rows, err := db.Query("insert into trades values ('abc', 123)")
         checkErr(err)
         defer rows.Close()
         fmt.Println("Done")
@@ -473,7 +504,7 @@ class App {
     properties.setProperty("sslmode", "disable");
 
     final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
-    try (PreparedStatement preparedStatement = connection.prepareStatement("insert into x (id, ref) values (?, ?)")) {
+    try (PreparedStatement preparedStatement = connection.prepareStatement("insert into trades (id, ref) values (?, ?)")) {
       preparedStatement.setString(1, "abc");
       preparedStatement.setInt(2, 123);
       preparedStatement.execute();
@@ -486,7 +517,6 @@ class App {
 ```
 
 </TabItem>
-
 
 <TabItem value="c">
 
@@ -509,7 +539,7 @@ int main() {
                 PQerrorMessage(conn));
         do_exit(conn);
     }
-    PGresult *res = PQexec(conn, "INSERT INTO x VALUES ('abc', 123);");
+    PGresult *res = PQexec(conn, "INSERT INTO trades VALUES ('abc', 123);");
     PQclear(res);
     PQfinish(conn);
     printf("Done\n");
@@ -518,7 +548,6 @@ int main() {
 ```
 
 </TabItem>
-
 
 <TabItem value="python">
 
@@ -531,7 +560,7 @@ try:
                                   port="8812",
                                   database="qdb")
     cursor = connection.cursor()
-    postgreSQL_select_Query = "INSERT INTO x VALUES ('abc', 123)"
+    postgreSQL_select_Query = "INSERT INTO trades VALUES ('abc', 123)"
     cursor.execute(postgreSQL_select_Query)
     print("Inserted row")
 finally:
@@ -546,7 +575,6 @@ finally:
 </TabItem>
 
 </Tabs>
-
 
 ## Web Console
 
