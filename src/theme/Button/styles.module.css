@@ -1,13 +1,15 @@
 .button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   height: 55px;
   padding: 0 2rem;
   border: none;
   border-radius: calc(var(--ifm-global-border-radius) / 2);
   font-weight: var(--ifm-font-weight-bold);
   font-size: var(--font-size-normal);
-  transition: background-color var(--transition-fastest) var(--transition-bezier);
+  transition: background-color var(--transition-fastest)
+    var(--transition-bezier);
 }
 
 .button:hover {

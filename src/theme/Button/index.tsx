@@ -12,6 +12,7 @@ type Props = Readonly<{
   onClick?: () => void
   size: "normal" | "small" | "xsmall"
   to?: string
+  type?: "button" | "submit"
   uppercase: boolean
   variant: "primary" | "secondary" | "tertiary" | "plain"
 }>
@@ -25,6 +26,7 @@ const Button = ({
   onClick,
   size,
   to,
+  type,
   uppercase,
   variant,
 }: Props) => {
@@ -68,7 +70,7 @@ const Button = ({
   }
 
   return (
-    <button className={classes} onClick={onClick}>
+    <button className={classes} onClick={onClick} type={type ?? "button"}>
       {icon}
       {children}
     </button>

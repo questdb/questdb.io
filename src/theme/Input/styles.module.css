@@ -1,0 +1,23 @@
+.input {
+  display: flex;
+  height: 55px;
+  padding: 0 2rem;
+  align-items: center;
+  border-radius: calc(var(--ifm-global-border-radius) / 2);
+  border: none;
+  background: var(--palette-rock);
+  font-size: var(--font-size-normal);
+  color: var(--palette-white);
+  border: 2px solid transparent;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--palette-white);
+}
+
+.input:placeholder {
+  color: var(--palette-pale-blue);
+  font-size: var(--font-size-normal);
+  font-weight: var(--ifm-font-weight-bold);
+}

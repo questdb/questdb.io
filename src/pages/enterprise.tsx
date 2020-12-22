@@ -1,14 +1,16 @@
 import clsx from "clsx"
-import React, { useCallback, useState } from "react"
+import React, { FormEvent, useCallback, useState } from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 import Button from "@theme/Button"
 import Chevron from "@theme/Chevron"
+import Input from "@theme/Input"
 import PageLayout from "@theme/PageLayout"
 import useResizeObserver from "@theme/useResizeObserver"
 
 import clCss from "../css/enterprise/cloud.module.css"
 import caCss from "../css/enterprise/card.module.css"
+import foCss from "../css/enterprise/form.module.css"
 import ilCss from "../css/enterprise/illustration.module.css"
 import peCss from "../css/enterprise/performance.module.css"
 import quCss from "../css/enterprise/quote.module.css"
@@ -75,6 +77,30 @@ const Enterprise = () => {
   const title = "QuestDB Enterprise"
   const description =
     "The fastest open source time-series database for organizations, on premise or on the cloud."
+  const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    setLoading(true)
+
+    const target = event.target as HTMLFormElement
+    const body = {}
+
+    for (const [key, value] of new FormData(target).entries()) {
+      body[key] = value
+    }
+
+    try {
+      await fetch("https://crast.questdb.io/contact/new", {
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      })
+    } catch (e) {}
+
+    setSent(true)
+  }
   const { ref, width } = useResizeObserver<HTMLDivElement>()
   // An "item" is a quote
   // Index in the array of quotes of the item that is "focused"
@@ -121,6 +147,47 @@ const Enterprise = () => {
             The fastest open source time-series database for organizations, on
             premise or on the cloud.
           </p>
+
+          <form className={foCss.form} onSubmit={handleSubmit}>
+            <TransitionGroup component={null}>
+              <CSSTransition
+                key={sent.toString()}
+                timeout={200}
+                classNames="item"
+              >
+                <div className={foCss.form__wrapper}>
+                  {!sent && (
+                    <>
+                      <Input
+                        className={foCss.form__input}
+                        name="email"
+                        placeholder="Work Email"
+                        required
+                        type="email"
+                      />
+                      <Button type="submit">
+                        {loading && <span className={foCss.form__loader} />}
+                        <span
+                          className={clsx({
+                            [foCss["form__button--hidden"]]: loading,
+                          })}
+                        >
+                          Contact&nbsp;Us
+                        </span>
+                      </Button>
+                    </>
+                  )}
+                  {sent && (
+                    <>
+                      <p className={foCss.form__success}>
+                        Thank you, we will be in touch soon!
+                      </p>
+                    </>
+                  )}
+                </div>
+              </CSSTransition>
+            </TransitionGroup>
+          </form>
 
           <img
             alt="Artistic view of the console with sub-queries"
