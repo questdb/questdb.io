@@ -4,7 +4,8 @@ author: Joan
 author_title: QuestDB Team
 author_url: https://github.com/jaugsburger
 author_image_url: https://avatars.githubusercontent.com/jaugsburger
-description: "Use Grafana with QuestDB to build a monitoring dashboard for visualization of
+description:
+  "Use Grafana with QuestDB to build a monitoring dashboard for visualization of
   time series data."
 tags: [tutorial, grafana, postgres]
 ---
@@ -43,7 +44,7 @@ Once the Grafana server has started, you can access it via port 3000
 ([http://locahost:3000](http://locahost:3000)). The default login credentials
 are as follows:
 
-```
+```shell
 user:admin
 password:admin
 ```
@@ -274,7 +275,7 @@ dynamically, and in yellow we have the precipitation over the last hour in
 millimeters. From the graph, it’s hard to say whether there is a correlation
 between rain and the amount spent on taxi rides.
 
-If we zooming on a rainy day:
+If we zoom in on a rainy day:
 
 <Screenshot
   alt="A panel showing taxi fares plotted against rain fall, zooming in on a rainy day"
@@ -297,6 +298,8 @@ series.
 
 ## Conclusion
 
-In summary, we have showed you how to visualize your data by harnessing the
-power of Grafana and QuestDB. For more information on QuestDB, please go to our
-[documentation page](https://questdb.io/docs/introduction/).
+We have learned how to import time series data into QuestDB and build a
+dashboard with multiple queries in Grafana. If you like this content and want to
+see more tutorials about third-party integrations, let us know
+[in our Slack Community]({@slackUrl@}) or drop us a
+[star on GitHub]({@githubUrl@}).
