@@ -1,0 +1,53 @@
+---
+title: Software Engineer, Frontend | Careers at QuestDB
+wrapperClassName: career
+---
+
+import CareerEmailUs from "@theme/CareerEmailUs"
+
+<h1>Software Engineer, Frontend</h1>
+
+<h2> About QuestDB</h2>
+
+QuestDB is the fastest open source time series database designed from the ground
+up to offer breakthrough performance for time series data. QuestDB was founded
+by a low-latency trading team and enables companies to leverage real-time data
+processing in a wide array of use cases and industries, from financial data to
+IoT or DevOps observability.
+
+We are based in London and backed by leading venture capital firms and
+YCombinator.
+
+<h2>Software Engineer, Frontend (Database)</h2>
+
+Databases are at the core of a company's infrastructure. We aim to empower
+developers around the world to solve their needs through QuestDB.
+
+Beside performance, QuestDB also empowers users to reach their objectives with
+ease. We strive to build an end-to-end integrated product. While front-end
+focused, the candidate will be actively involved in every step of the conception
+and development of the database engine.
+
+You will be instrumental in creating a product that looks and feels great as an
+integrated entity. You will work on the following aspects:
+
+- Development: Design and implementation of all internal and user-facing UI.
+- UX: Full flexibility to imagine, design, and implement smooth and powerful
+  user experience through all tools and website.
+- Features design: advise on new and existing features so their development is
+  consistent with the user experience you design.
+- Community development: engage with the community to both promote new features,
+  absorb and integrate feedback.
+
+<h2>Requirements</h2>
+
+- 5+ years of experience in front-end development
+- Innovative spirit with both the ability to generate ideas and to implement them
+- Passionate about open source and the developer community
+- Desire to get to know the back-end
+- Familiarity with cloud architectures and APIs
+- Database knowledge preferred
+- Strong knowledge of developer tools
+- Excellent spoken and written English
+
+<CareerEmailUs title="Software Engineer, Frontend" />
