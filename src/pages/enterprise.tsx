@@ -321,7 +321,7 @@ const Enterprise = () => {
               High performance UDP replication
             </li>
             <li className={clsx(prCss.property, caCss.card__item)}>
-              Horizontal scalability (sharding)
+              Horizontal scalability (high-performance clusters, sharding)
             </li>
           </ul>
         </div>
