@@ -1,5 +1,8 @@
 ---
-title: Non-blocking IO without garbage collection
+title: Building a garbage-free network stack for Kafka streams
+
+
+streams
 author: Vlad Ilyushchenko
 author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
@@ -11,13 +14,13 @@ keywords:
   - jdbc
   - postgres
   - tcp
-  - nio
+  - kafka
   - garbage
-  - workerpool
+  - java
   - timeseries
   - database
 image: /img/blog/2020-12-10/banner.jpg
-tags: [jdbc, tcp, garbage collection]
+tags: [postgres, kafka, garbage collection]
 ---
 
 import Banner from "@theme/Banner"
@@ -59,7 +62,10 @@ what prompted us to add a network stack that executes garbage-free.
 This component bypasses Java's native non-blocking IO with our own notification
 system. This component's job is to delegate tasks to worker threads and use
 queues for events and TCP socket connections. The result is a new generic
-network stack used to handle all incoming network connections.
+network stack used to handle all incoming network connections. Following our new
+support for Kafka, QuestDB's network stack now ingests time series data from
+Kafka topics reliably, without garbage collection.
+
 
 ## TCP flow control
 
@@ -325,8 +331,10 @@ with minimum delay.
 ## Take a look
 
 In this article, we've covered our approach to implementing non-blocking IO
-using what we think is a nice solution that's garbage-free. This functionality
-is available since version 5.0.5, and the QuestDB source is open to
+using what we think is a nice solution that's garbage-free. Kafka Connect
+support is now available since version 5.0.5. Our new network stack ingests time
+series data from Kafka topics reliably from multiple TCP connections on a single
+thread without garbage collection and the QuestDB source is open to
 [browse on GitHub]({@githubUrl@}). If you like this content and our approach to
 non-blocking and garbage-free IO, or if you know of a better way to approach
 what we built, we'd love to know your thoughts! Feel free to share your feedback
