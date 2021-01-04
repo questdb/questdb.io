@@ -1,8 +1,5 @@
 ---
 title: Building a garbage-free network stack for Kafka streams
-
-
-streams
 author: Vlad Ilyushchenko
 author_title: QuestDB Team
 author_url: https://github.com/bluestreak01
