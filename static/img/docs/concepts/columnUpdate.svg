@@ -27,7 +27,7 @@ column file</tspan>
 copy value
 </tspan>
 <tspan x="32.0156" y="31" textLength="61.0312">
-mov 0x1234], x</tspan>
+mov [0x1234], x</tspan>
 </text>
 <text x="0" font-family="sans-serif" y="0" text-anchor="middle" vectornator:text="Sliding&#x20;area&#x20;of&#x20;&#xA;file&#x20;mapped&#x20;to RAM" fill="#d14671" font-size="9" vectornator:width="82.0356" opacity="1" transform="matrix(1 0 0 1 197.317 100.232)">
 <tspan x="42.2681" y="9" textLength="60.0381">

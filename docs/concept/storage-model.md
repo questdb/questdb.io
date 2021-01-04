@@ -26,7 +26,7 @@ import Screenshot from "@theme/Screenshot"
 <Screenshot
   alt="Architecture of the file storing a column"
   height={435}
-  src="/img/docs/concepts/columnRead.svg"
+  src="/img/docs/concepts/columnUpdate.svg"
   width={745}
 />
 
@@ -40,7 +40,7 @@ mapped memory page, where the required value is read from.
 <Screenshot
   alt="Diagram showing how the data from a column file is mapped to the memory"
   height={447}
-  src="/img/docs/concepts/columnUpdate.svg"
+  src="/img/docs/concepts/columnRead.svg"
   width={745}
 />
 
