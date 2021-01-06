@@ -402,6 +402,7 @@ the `trades` table created in the section above exists already.
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
+  { label: "Rust", value: "rust" },
   { label: "Java", value: "java" },
   { label: "C", value: "c" },
   { label: "Python", value: "python" },
@@ -564,6 +565,41 @@ func checkErr(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+```
+
+</TabItem>
+
+<TabItem value="rust">
+
+The following example shows how to use parameterized queries and prepared statements:
+
+```rust
+use postgres::{Client, NoTls, Error};
+
+fn main() -> Result<(), Error> {
+    let mut client = Client::connect("postgresql://admin:quest@localhost:8812/qdb", NoTls)?;
+    let name = "abc";
+    let val = 123;
+
+    // Parameterized Query
+    client.execute(
+        "INSERT INTO trades (name, value) VALUES ($1, $2)",
+        &[&name, &val],
+    )?;
+
+    // Prepared statement
+    let mut txn = client.transaction()?;
+    let statement = txn.prepare("insert into trades values ($1,$2)")?;
+
+    for value in 0..100 {
+        txn.execute(&statement, &[&name, &value])?;
+    }
+    txn.commit()?;
+
+    println!("import finished");
+    Ok(())
+
 }
 ```
 
