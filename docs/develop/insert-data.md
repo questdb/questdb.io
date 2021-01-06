@@ -412,9 +412,11 @@ the `trades` table created in the section above exists already.
 <TabItem value="nodejs">
 
 These examples use the [`pg` package](https://www.npmjs.com/package/pg) which
-allows for quickly building queries:
+allows for quickly building queries using PostgreSQL wire protocol. Details on
+the use of this package can be found on the
+[node-postgres documentation](https://node-postgres.com/).
 
-```javascript
+```javascript title="Basic client connection"
 const { Client } = require("pg")
 
 const start = async () => {
@@ -438,10 +440,12 @@ const start = async () => {
 start()
 ```
 
-The package also provides support for connection pooling, parameterized queries
-and prepared statements:
+The following example demonstrates `pg` support for connection pooling,
+parameterized queries and prepared statements. For more details on the use of
+prepared statements with this package, see the
+[`node-postgres` documentation for queries](https://node-postgres.com/features/queries).
 
-```javascript
+```javascript title="Using a connection pool"
 const { Pool } = require("pg")
 
 config = {
