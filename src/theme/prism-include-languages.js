@@ -1,22 +1,8 @@
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment"
-import siteConfig from "@generated/docusaurus.config"
 import { constants, dataTypes, functions, keywords } from "@questdb/sql-grammar"
 
-
-const prismIncludeLanguages = PrismObject => {
+const prismIncludeLanguages = (Prism) => {
   if (ExecutionEnvironment.canUseDOM) {
-    const {
-      themeConfig: {
-        prism: {
-          additionalLanguages = []
-        } = {}
-      }
-    } = siteConfig;
-    window.Prism = PrismObject;
-    additionalLanguages.forEach(lang => {
-      require(`prismjs/components/prism-${lang}`); // eslint-disable-line
-
-    });
     Prism.languages["questdb-sql"] = {
       comment: {
         pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
@@ -43,7 +29,6 @@ const prismIncludeLanguages = PrismObject => {
       operator: /[\+|\-|\/|\/\/|%|<@>|@>|<@|&|\^|~|<|>|<=|=>|==|!=|<>|=|!~]/i,
       punctuation: /[;[\]()`,.]/,
     }
-    delete window.Prism;
   }
 }
 
