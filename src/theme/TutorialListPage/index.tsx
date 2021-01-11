@@ -46,7 +46,7 @@ function TutorialListPage(props: Props) {
       content.frontMatter.featured == null || !content.frontMatter.featured,
   )
   const description =
-    "A list of great resources to help you learn and master QuestDB"
+    "Resources from our community contributors and the QuestDB Team for learning and mastering QuestDB."
 
   return (
     <PageLayout
@@ -77,7 +77,7 @@ function TutorialListPage(props: Props) {
       <div className="container margin-vert--lg">
         {featured.length > 0 && (
           <>
-            <h2 className={styles.cards__title}>Featured content</h2>
+            <h2 className={styles.cards__title}>Featured tutorials</h2>
             <div className="row">
               <main className={clsx("col", styles.cards__container)}>
                 {renderCards(featured)}
