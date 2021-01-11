@@ -151,11 +151,6 @@
     font-size: var(--font-size-big-2);
   }
 
-  .section__subtitle--accent {
-    max-width: 500px;
-    text-align: center;
-  }
-
   .section__illustration {
     margin-top: 3rem;
   }

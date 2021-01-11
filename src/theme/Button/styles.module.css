@@ -20,6 +20,8 @@
 .button--plain {
   height: auto;
   padding: 0;
+  font-weight: unset;
+  font-size: unset;
 }
 
 .button--primary {

@@ -62,6 +62,7 @@ const config = {
     require.resolve("./plugins/fetch-release"),
     require.resolve("./plugins/lint"),
     require.resolve("./plugins/manifest"),
+    require.resolve("./plugins/tutorial/compiled/index"),
     [
       "@docusaurus/plugin-pwa",
       {
@@ -178,6 +179,10 @@ const config = {
             {
               label: "Blog",
               to: "/blog",
+            },
+            {
+              label: "Tutorials",
+              to: "/tutorial",
             },
           ],
         },
