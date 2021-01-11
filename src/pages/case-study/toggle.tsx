@@ -155,18 +155,18 @@ const Toggle = () => {
           </p>
           <h3>Improvements versus InfluxDB</h3>
           <p className="font-size--large">
-            We utilized many databases, including Mongo, Cassandra, and
-            TimescaleDB. After much testing, we settled on InfluxDB, as it had
-            the best performance. That said, as we were growing, performance
+            Toggle utilized many databases, including Mongo, Cassandra, and
+            TimescaleDB. After much testing, they settled on InfluxDB, as it had
+            the best performance. That said, as the company was growing, performance
             started to degrade and it became expensive to run. After a short
-            time, we had a small cluster of 4 x m4.2xlarge machines, and memory
+            time, they had a small cluster of 4 x m4.2xlarge machines, and memory
             on all 4 was often at least 80%, hitting 100% a few times per week.
-            Modeling out our future infrastructure spend based on this baseline,
-            we knew InfluxDB wasn’t a viable option as we scaled.
+            Modeling out the future infrastructure spend based on this baseline,
+            InfluxDB wasn’t a viable option as the company scaled.
           </p>
           <h3>Process to migrate data from InfluxDB to QuestDB</h3>
           <p className="font-size--large">
-            When evaluating a new solution, we knew we had to answer the
+            When evaluating a new solution, Toggle knew that they had to answer the
             following questions:
           </p>
           <ul className="font-size--large">
@@ -188,12 +188,12 @@ const Toggle = () => {
           </p>
 
           <p className="font-size--large">
-            A side by side comparison of QuestDB vs InfluxDB
+          <h3>A side by side comparison of QuestDB vs InfluxDB</h3>
           </p>
 
           <ul className="font-size--large">
             <li>
-              InfluxDB on our cluster of 4 x m4.2xlarge with 128GiB of RAM was
+              InfluxDB on a cluster of 4 x m4.2xlarge with 128GiB of RAM was
               averaging a response time of over 5s
               <img
                 alt="Chart showing the average transaction duration for InfluxDB over 2 days"
@@ -202,10 +202,6 @@ const Toggle = () => {
                 src="/img/pages/case-study/toggle/influxdb.png"
                 width={792}
               />
-            </li>
-            <li>
-              The first day of QuestDB in production on a single m4.2xlarge
-              virtual machine, saw an average response time of 19ms
             </li>
             <li>
               After a few weeks with QuestDB in production (still with a single
@@ -225,19 +221,19 @@ const Toggle = () => {
           </ul>
           <p className="font-size--large">
             Direct cost reduction (¼ of the machines) and performance
-            improvements means that we can do much more for less.
+            improvements means that Toggle can do much more for less.
           </p>
           <p className="font-size--large">
             The actual data migration was easy with a script to read from one
-            side & ingest in the other. We imported over 600 million data points
+            side & ingest in the other. Toggle imported over 600 million data points
             in a few minutes.
           </p>
           <h3>
             Customer support experience from QuestDB’s team during the process
           </h3>
           <p className="font-size--large">
-            The QuestDB team assisted us in all steps along the way. They were
-            proactive in supporting our changeover, helping to debug issues as
+            Armenak, Toggle's CTO: The QuestDB team assisted us in all steps along the way. 
+            They were proactive in supporting our changeover, helping to debug issues as
             they arose and optimize our deployment as we moved things into
             production.
           </p>
