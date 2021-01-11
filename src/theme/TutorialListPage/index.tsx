@@ -67,7 +67,7 @@ function TutorialListPage(props: Props) {
             >
               {description}
             </p>
-            <Button className={styles.jumbotron__cta} href="https://github.com">
+            <Button className={styles.jumbotron__cta} href="https://github.com/questdb/questdb.io/issues/new?template=submit-a-tutorial.md">
               Submit a tutorial
             </Button>
           </div>
