@@ -171,7 +171,7 @@ Alternatively, the `/exec` endpoint can be used to create a table and the
 ```shell
 # Create Table
 curl -G \
-  --data-urlencode "query=create table trades(name STRING, value INT)" \
+  --data-urlencode "query=CREATE TABLE IF NOT EXISTS trades(name STRING, value INT)" \
   http://localhost:9000/exec
 
 # Insert a row
@@ -184,7 +184,7 @@ Note that these two queries can be combined into a single curl request:
 
 ```shell
 curl -G \
-  --data-urlencode "query=create table trades(name STRING, value INT);\
+  --data-urlencode "query=CREATE TABLE IF NOT EXISTS trades(name STRING, value INT);\
   INSERT INTO trades VALUES('abc', 123456);" \
   http://localhost:9000/exec
 ```
@@ -204,7 +204,7 @@ const HOST = "http://localhost:9000"
 async function createTable() {
   try {
     const queryData = {
-      query: "CREATE TABLE trades (name STRING, value INT);",
+      query: "CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);",
     }
 
     const response = await fetch(`${HOST}/exec?${qs.encode(queryData)}`)
@@ -257,7 +257,7 @@ func main() {
 	u.Path += "exec"
 	params := url.Values{}
 	params.Add("query", `
-		CREATE TABLE
+		CREATE TABLE IF NOT EXISTS
 			trades (name STRING, value INT);
 		INSERT INTO
 			trades
@@ -391,12 +391,10 @@ func checkErr(err error) {
 
 </Tabs>
 
-## Postgres compatibility
+## PostgreSQL wire protocol
 
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
-that QuestDB exposes. This is accessible via port `8812`. These examples assume
-the `trades` table created in the section above exists already.
-
+that QuestDB exposes. This is accessible via port `8812`.
 <!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nodejs" values={[
@@ -471,7 +469,7 @@ func main() {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("insert into trades values ('abc', 123)")
+	rows, err := db.Query("INSERT INTO trades VALUES ('abc', 123)")
 	checkErr(err)
 	defer rows.Close()
 	fmt.Println("Done")
@@ -502,7 +500,7 @@ class App {
     properties.setProperty("sslmode", "disable");
 
     final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
-    try (PreparedStatement preparedStatement = connection.prepareStatement("insert into trades (id, ref) values (?, ?)")) {
+    try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO TRADES (id, ref) VALUES (?, ?)")) {
       preparedStatement.setString(1, "abc");
       preparedStatement.setInt(2, 123);
       preparedStatement.execute();
