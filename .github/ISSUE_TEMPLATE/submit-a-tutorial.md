@@ -8,9 +8,12 @@ assignees: ''
 ---
 
 <!--
+
 Hi 👋, thank you for submitting a tutorial to QuestDB!
 
-Don't forget to add a short title for this issue that describes the topic of your tutorial!
+Don't forget to replace the title of this issue with a short
+sentence that describes the topic of your tutorial!
+
 -->
 
 ## My tutorial idea
@@ -26,7 +29,7 @@ Examples:
 > * "with an ML library..."
 > * "for monitoring an application..."
 
-Are there any particular tools, concepts, languages or platforms that readers will learn?
+Are there any particular tools, concepts, languages or platforms that readers will learn about?
 
 💡 ...
 
