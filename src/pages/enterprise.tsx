@@ -318,7 +318,7 @@ const Enterprise = () => {
           <h2 className={caCss.card__title}>Unlimited scale</h2>
           <ul className={caCss.card__list}>
             <li className={clsx(prCss.property, caCss.card__item)}>
-              High performance UDP replication
+              High throughput replication
             </li>
             <li className={clsx(prCss.property, caCss.card__item)}>
               Horizontal scalability (high-performance clusters, sharding)
