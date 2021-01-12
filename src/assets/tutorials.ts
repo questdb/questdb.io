@@ -24,7 +24,7 @@ const tutorials: FlatTutorial[] = [
     author: "Kovid Rathee",
     date: "2020-12-17",
     content:
-      "How to ingest data into QuestDB using a Python script and QuestDB’s InfluxDB line protocol ingestion feature.",
+      "How to ingest schemaless data into QuestDB from Python using QuestDB's InfluxDB line protocol support.",
     link:
       "https://towardsdatascience.com/schemaless-ingestion-in-questdb-using-influxdb-line-protocol-18850e69b453?gi=113183e2c22b",
     title: "Schemaless ingestion in QuestDB using InfluxDB Line Protocol",
@@ -34,15 +34,15 @@ const tutorials: FlatTutorial[] = [
   {
     author: "Chankey Pathak",
     date: "2020-10-20",
-    content: "Access QuestDB using Python via a Jupyter Notebook.",
+    content: "Learn how to create tables in QuestDB, insert data, and plot charts with matplotlib in Python via a Jupyter Notebook.",
     link: "https://tutswiki.com/setup-access-questdb-python-notebook/",
-    title: "Setup and access QuestDB using Python",
+    title: "Setup and access QuestDB in Python using a Jupyter Notebook",
   },
   {
     author: "Suresh Regmi",
     date: "2020-08-31",
     content:
-      "We decided to check out Quest DB, an open-source Time Series database.",
+      "An overview of the features of QuestDB with a list of benefits and example use cases describing when it's appropriate to use a time-series database.",
     link: "https://www.turtle-techies.com/checking-out-quest-db/",
     title: "Checking Out QuestDB",
   },
@@ -50,7 +50,7 @@ const tutorials: FlatTutorial[] = [
     author: "David G. Simmons",
     date: "2020-08-25",
     content:
-      "In this video David is showing us how to setup and use QuestDB for an IoT use-case.",
+      "In this video, David describes why a performant time-series database is critical for IoT use cases and shows how to set up and use QuestDB for ingesting sensor data from Arduino boards.",
     link: "https://www.youtube.com/watch?v=5IsPIpcVCoE",
     title: "Sending IoT Data from Arduino to QuestDB",
   },
@@ -58,7 +58,7 @@ const tutorials: FlatTutorial[] = [
     author: "David McKay",
     date: "2020-08-24",
     content:
-      "How to setup QuestDB with Kubernetes and write data using InfluxDB line protocol ingestion feature.",
+      "How to setup QuestDB with Kubernetes and write data using the InfluxDB line protocol ingestion feature.",
     link: "https://rawkode.com/articles/questdb-on-kubernetes/",
     title: "QuestDB on Kubernetes",
   },
@@ -66,7 +66,7 @@ const tutorials: FlatTutorial[] = [
     author: "David G. Simmons",
     date: "2020-08-13",
     content:
-      "How do you get the most out of your IoT data? Listen and watch as David Simmons, answers this question and more during this Virtual Lunch & Learn session!",
+      "How do you get the most out of your IoT data? Listen and watch as David Simmons answers this question and more during this Virtual Lunch & Learn session!",
     link: "https://www.youtube.com/watch?v=RseiLoBRcAg",
     title: "QuestDB virtual lunch and learn",
   },
@@ -74,14 +74,14 @@ const tutorials: FlatTutorial[] = [
     author: "David G. Simmons",
     date: "2020-06-26",
     content:
-      "It’s one thing to send data to your database, but being able to visualize that data is the next logical step. So let’s dive right in to doing that.",
+      "It's one thing to send data to your database, but being able to visualize that data is the next logical step. So let's dive right into doing that.",
     link: "https://dev.to/davidgs/a-questdb-dashboard-with-node-red-524h",
     title: "A QuestDB Dashboard with Node-Red",
   },
   {
     author: "David G. Simmons",
     date: "2020-06-20",
-    content: "Tutorial for Querying data from QuestDB in a Jupyter Notebook.",
+    content: "Tutorial for creating tables in QuestDB, generating data, using Pandas to read dataframes, and plotting charts using matplotlib via a Jupyter Notebook.",
     link: "https://dzone.com/articles/questdb-tutorial-for-python",
     title: "QuestDB Tutorial for Python",
   },
@@ -89,9 +89,9 @@ const tutorials: FlatTutorial[] = [
     author: "David G. Simmons",
     date: "2020-06-19",
     content:
-      "In this stream, we will learn about QuestDb on Raspberry Pi and explore the what, why, and how of it.",
-    link: "https://www.youtube.com/watch?v=wjkDbgi_mec&t=1s",
-    title: "Let's Learn QuestDb on RaspberryPi and K8s Networking",
+      "In this video, David shows how to set up QuestDB on a Raspberry Pi and ingest and query IoT sensor data.",
+    link: "https://www.youtube.com/watch?v=wjkDbgi_mec",
+    title: "Running QuestDB on Raspberry Pi and K8s Networking",
   },
 ]
 
