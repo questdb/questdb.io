@@ -62,7 +62,12 @@ const config = {
     require.resolve("./plugins/fetch-release"),
     require.resolve("./plugins/lint"),
     require.resolve("./plugins/manifest"),
-    require.resolve("./plugins/tutorial/compiled/index"),
+    [
+      require.resolve("./plugins/tutorial/compiled/index"),
+      {
+        remarkPlugins: [variable],
+      },
+    ],
     [
       "@docusaurus/plugin-pwa",
       {

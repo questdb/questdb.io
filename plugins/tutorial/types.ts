@@ -11,6 +11,7 @@ export interface TutorialContent {
 export interface TutorialPluginOptions {
   id?: string
   path: string
+  remarkPlugins: []
   routeBasePath: string
   include: string[]
   truncateMarker: RegExp

@@ -208,6 +208,7 @@ export default function pluginContentTutorial(
                 {
                   loader: require.resolve("@docusaurus/mdx-loader"),
                   options: {
+                    remarkPlugins: options.remarkPlugins,
                     staticDir: path.join(siteDir, STATIC_DIR_NAME),
                     metadataPath: (mdxPath: string) => {
                       const aliasedPath = aliasedSitePath(mdxPath, siteDir)
