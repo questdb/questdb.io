@@ -628,10 +628,13 @@ use postgres::{Client, NoTls, Error};
 
 fn main() -> Result<(), Error> {
     let mut client = Client::connect("postgresql://admin:quest@localhost:8812/qdb", NoTls)?;
+
+    // Basic query
+    client.batch_execute("CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);")?;
+
+    // Parameterized query
     let name = "abc";
     let val = 123;
-
-    // Parameterized Query
     client.execute(
         "INSERT INTO trades (name, value) VALUES ($1, $2)",
         &[&name, &val],
@@ -648,7 +651,6 @@ fn main() -> Result<(), Error> {
 
     println!("import finished");
     Ok(())
-
 }
 ```
 
