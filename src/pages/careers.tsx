@@ -4,10 +4,10 @@ import React, { useCallback, useRef } from "react"
 import Button from "@theme/Button"
 import PageLayout from "@theme/PageLayout"
 
-import caCss from "../../css/careers/card.module.css"
-import joCss from "../../css/careers/job.module.css"
-import liCss from "../../css/careers/list.module.css"
-import seCss from "../../css/section.module.css"
+import caCss from "../css/careers/card.module.css"
+import joCss from "../css/careers/job.module.css"
+import liCss from "../css/careers/list.module.css"
+import seCss from "../css/section.module.css"
 
 const CareersPage = () => {
   const title = "Careers at QuestDB"

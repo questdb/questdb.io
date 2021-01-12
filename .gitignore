@@ -3,6 +3,7 @@ node_modules
 
 # Production
 /build
+plugins/*/compiled
 
 # Generated files
 .docusaurus

@@ -63,6 +63,12 @@ const config = {
     require.resolve("./plugins/lint"),
     require.resolve("./plugins/manifest"),
     [
+      require.resolve("./plugins/tutorial/compiled/index"),
+      {
+        remarkPlugins: [variable],
+      },
+    ],
+    [
       "@docusaurus/plugin-pwa",
       {
         pwaHead: [
@@ -179,6 +185,10 @@ const config = {
             {
               label: "Blog",
               to: "/blog",
+            },
+            {
+              label: "Tutorials",
+              to: "/tutorial",
             },
           ],
         },
