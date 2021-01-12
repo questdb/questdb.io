@@ -418,6 +418,7 @@ the use of this package can be found on the
 ```javascript title="Basic client connection"
 const { Client } = require("pg");
 
+
 const start = async () => {
   try {
     const client = new Client({
@@ -536,6 +537,90 @@ preparedStatement();
 pool.end().then(() => console.log("pool has ended"));
 ```
 
+The following example demonstrates `pg` support for connection pooling,
+parameterized queries and prepared statements. For more details on the use of
+prepared statements with this package, see the
+[`node-postgres` documentation for queries](https://node-postgres.com/features/queries).
+
+```javascript title="Using a connection pool"
+const { Pool } = require("pg")
+
+config = {
+  database: "qdb",
+  host: "127.0.0.1",
+  password: "quest",
+  port: 8812,
+  user: "admin",
+}
+
+// The config is passed to every client instance when the pool creates a client
+const pool = new Pool(config)
+
+function runQuery(query) {
+  pool.connect((err, client, release) => {
+    if (err) {
+      return console.error("Error acquiring client", err.stack)
+    }
+    client.query(query, (err, result) => {
+      console.log(result.rows)
+      release()
+      if (err) {
+        return console.error("Error executing query", err.stack)
+      }
+    })
+  })
+}
+// Pass a basic text-only query
+runQuery("SELECT * FROM trades")
+
+function parameterizedQuery() {
+  pool.connect((err, client, release) => {
+    if (err) {
+      return console.error("Error acquiring client", err.stack)
+    }
+    // Construct a parameterized query
+    const text = "INSERT INTO trades VALUES($1, $2);"
+    const values = ["abc", 123]
+    client.query(text, values, (err, result) => {
+      release()
+      if (err) {
+        return console.error("Error executing query", err.stack)
+      }
+      console.log(`Inserted ${result.rowCount} row from parameterized query`)
+    })
+  })
+}
+
+function preparedStatement() {
+  for (let rows = 0; rows < 10; rows++) {
+    pool.connect((err, client, release) => {
+      if (err) {
+        return console.error("Error acquiring client", err.stack)
+      }
+      // Providing a 'name' field allows for prepared statements
+      const query = {
+        name: "insert-values",
+        text: "INSERT INTO trades VALUES($1, $2);",
+        values: ["abc", rows],
+      }
+      client.query(query, (err, result) => {
+        if (err) {
+          return console.error("Error executing query", err.stack)
+        }
+        release()
+        console.log(`Inserted ${result.rowCount} row from prepared statement`)
+      })
+    })
+  }
+}
+
+parameterizedQuery()
+preparedStatement()
+
+// Drain pool, disconnect clients, and shut down internal timers
+pool.end().then(() => console.log("pool has ended"))
+```
+
 </TabItem>
 
 <TabItem value="go">
@@ -614,6 +699,41 @@ func main() {
 	createTable()
 	preparedStatement()
 	readTable()
+}
+```
+
+</TabItem>
+
+<TabItem value="rust">
+
+The following example shows how to use parameterized queries and prepared statements:
+
+```rust
+use postgres::{Client, NoTls, Error};
+
+fn main() -> Result<(), Error> {
+    let mut client = Client::connect("postgresql://admin:quest@localhost:8812/qdb", NoTls)?;
+    let name = "abc";
+    let val = 123;
+
+    // Parameterized Query
+    client.execute(
+        "INSERT INTO trades (name, value) VALUES ($1, $2)",
+        &[&name, &val],
+    )?;
+
+    // Prepared statement
+    let mut txn = client.transaction()?;
+    let statement = txn.prepare("insert into trades values ($1,$2)")?;
+
+    for value in 0..100 {
+        txn.execute(&statement, &[&name, &value])?;
+    }
+    txn.commit()?;
+
+    println!("import finished");
+    Ok(())
+
 }
 ```
 
