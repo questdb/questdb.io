@@ -416,7 +416,7 @@ the use of this package can be found on the
 [node-postgres documentation](https://node-postgres.com/).
 
 ```javascript title="Basic client connection"
-const { Client } = require("pg")
+const { Client } = require("pg");
 
 const start = async () => {
   try {
@@ -426,17 +426,29 @@ const start = async () => {
       password: "quest",
       port: 8812,
       user: "admin",
-    })
-    await client.connect()
-    const res = await client.query("SELECT * FROM trades")
-    console.log(res)
-    await client.end()
-  } catch (e) {
-    console.log(e)
-  }
-}
+    });
+    await client.connect();
 
-start()
+    const createTable = await client.query(
+      "CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);"
+    );
+    console.log(createTable);
+
+    const insertData = await client.query(
+      "INSERT INTO trades VALUES('abc', 123456);"
+    );
+    console.log(insertData);
+
+    const readAll = await client.query("SELECT * FROM trades");
+    console.log(readAll.rows);
+
+    await client.end();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+start();
 ```
 
 The following example demonstrates `pg` support for connection pooling,
@@ -445,7 +457,7 @@ prepared statements with this package, see the
 [`node-postgres` documentation for queries](https://node-postgres.com/features/queries).
 
 ```javascript title="Using a connection pool"
-const { Pool } = require("pg")
+const { Pool } = require("pg");
 
 config = {
   database: "qdb",
@@ -453,74 +465,75 @@ config = {
   password: "quest",
   port: 8812,
   user: "admin",
-}
+};
 
 // The config is passed to every client instance when the pool creates a client
-const pool = new Pool(config)
+const pool = new Pool(config);
 
 function runQuery(query) {
   pool.connect((err, client, release) => {
     if (err) {
-      return console.error("Error acquiring client", err.stack)
+      return console.error("Error acquiring client", err.stack);
     }
     client.query(query, (err, result) => {
-      console.log(result.rows)
-      release()
+      console.log(`Query successful:\n  ${query}\n`, result);
+      release();
       if (err) {
-        return console.error("Error executing query", err.stack)
+        return console.error(`Error executing query:\n ${query}`, err.stack);
       }
-    })
-  })
+    });
+  });
 }
-// Pass a basic text-only query
-runQuery("SELECT * FROM trades")
+// Passing basic text-only queries
+runQuery("CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);");
+runQuery("INSERT INTO trades VALUES('abc', 123456);");
 
 function parameterizedQuery() {
   pool.connect((err, client, release) => {
     if (err) {
-      return console.error("Error acquiring client", err.stack)
+      return console.error("Error acquiring client", err.stack);
     }
     // Construct a parameterized query
-    const text = "INSERT INTO trades VALUES($1, $2);"
-    const values = ["abc", 123]
+    const text = "INSERT INTO trades VALUES($1, $2);";
+    const values = ["abc", 123];
     client.query(text, values, (err, result) => {
-      release()
+      release();
       if (err) {
-        return console.error("Error executing query", err.stack)
+        return console.error("Error executing query", err.stack);
       }
-      console.log(`Inserted ${result.rowCount} row from parameterized query`)
-    })
-  })
+      console.log(`Inserted ${result.rowCount} row from parameterized query`);
+    });
+  });
 }
 
 function preparedStatement() {
   for (let rows = 0; rows < 10; rows++) {
     pool.connect((err, client, release) => {
       if (err) {
-        return console.error("Error acquiring client", err.stack)
+        return console.error("Error acquiring client", err.stack);
       }
       // Providing a 'name' field allows for prepared statements
       const query = {
         name: "insert-values",
         text: "INSERT INTO trades VALUES($1, $2);",
         values: ["abc", rows],
-      }
+      };
       client.query(query, (err, result) => {
         if (err) {
-          return console.error("Error executing query", err.stack)
+          return console.error("Error executing query", err.stack);
         }
-        release()
-        console.log(`Inserted ${result.rowCount} row from prepared statement`)
-      })
-    })
+        release();
+        console.log(`Inserted ${result.rowCount} row from prepared statement`);
+      });
+    });
   }
 }
 
-parameterizedQuery()
-preparedStatement()
+parameterizedQuery();
+preparedStatement();
 
 // Drain pool, disconnect clients, and shut down internal timers
-pool.end().then(() => console.log("pool has ended"))
+pool.end().then(() => console.log("pool has ended"));
 ```
 
 </TabItem>
@@ -531,38 +544,76 @@ pool.end().then(() => console.log("pool has ended"))
 package main
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
-	_ "github.com/lib/pq"
+	"log"
+
+	"github.com/jackc/pgx/v4"
 )
 
-const (
-	host		 = "localhost"
-	port		 = 8812
-	user		 = "admin"
-	password = "quest"
-	dbname	 = "qdb"
-)
+func createTable() {
+	ctx := context.Background()
+	conn, err := pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
+	defer conn.Close(ctx)
 
-func main() {
-	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
-
-	db, err := sql.Open("postgres", connStr)
+	query, err := conn.Query(ctx, "CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);")
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
-	defer db.Close()
 
-	rows, err := db.Query("INSERT INTO trades VALUES ('abc', 123)")
-	checkErr(err)
-	defer rows.Close()
-	fmt.Println("Done")
+	// Parameterized Query
+	rows, _ := conn.Query(ctx, "INSERT INTO trades(name,value) VALUES($1,$2)", "first row", 123)
+	fmt.Println(rows)
+
+	defer query.Close()
+	err = conn.Close(ctx)
 }
 
-func checkErr(err error) {
+func preparedStatement() {
+	ctx := context.Background()
+	conn, err := pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
+	defer conn.Close(ctx)
+
+	// Prepared statement has the name 'ps1'
+	_, err = conn.Prepare(ctx, "ps1", "insert into trades values ($1, $2)")
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
+
+	for i := 0; i < 20; i++ {
+		// Execute 'ps1' statement with a string and the loop iterator value
+		_, err = conn.Exec(ctx, "ps1", "prep abc", i)
+		if err != nil {
+			log.Fatalln(err)
+		}
+	}
+}
+
+func readTable() {
+	ctx := context.Background()
+	conn, err := pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer conn.Close(ctx)
+
+	rows, err := conn.Query(ctx, "SELECT * FROM trades")
+	defer rows.Close()
+
+	for rows.Next() {
+		var value int
+		var name string
+		err = rows.Scan(&name, &value)
+		fmt.Println(name, value)
+	}
+
+	err = conn.Close(ctx)
+}
+
+func main() {
+	createTable()
+	preparedStatement()
+	readTable()
 }
 ```
 
