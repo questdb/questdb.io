@@ -16,7 +16,7 @@ import peCss from "../css/enterprise/performance.module.css"
 import quCss from "../css/enterprise/quote.module.css"
 import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
-import _quotes from "../lang/quotes"
+import _quotes from "../assets/quotes"
 
 const quotes = _quotes.map(({ author, company, logo, role, text }) => {
   const Quote = () => (
@@ -318,7 +318,7 @@ const Enterprise = () => {
           <h2 className={caCss.card__title}>Unlimited scale</h2>
           <ul className={caCss.card__list}>
             <li className={clsx(prCss.property, caCss.card__item)}>
-              High performance UDP replication
+              High throughput replication
             </li>
             <li className={clsx(prCss.property, caCss.card__item)}>
               Horizontal scalability (high-performance clusters, sharding)

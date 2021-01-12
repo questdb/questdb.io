@@ -1,14 +1,18 @@
 ---
 title: Build a monitoring dashboard with QuestDB and Grafana
 author: Joan
-author_title: QuestDB Team
-author_url: https://github.com/jaugsburger
-author_image_url: https://avatars.githubusercontent.com/jaugsburger
 description:
   "Use Grafana with QuestDB to build a monitoring dashboard for visualization of
   time series data."
-tags: [tutorial, grafana, postgres]
+image: /img/tutorial/2020-10-19/banner.jpg
+featured: true
 ---
+
+import Banner from "@theme/Banner"
+
+<Banner alt="A dashboard showing several graphs with operationnal data" height={365} src="/img/tutorial/2020-10-19/banner.jpg" width={650}>
+  Photo by <a href="https://unsplash.com/photos/JKUTrJ4vK00">Luke Chesser</a> on <a href="https://unsplash.com">Unsplash</a>
+</Banner>
 
 In this tutorial, we will cover how to load demo data from `.CSV` files into
 QuestDB and to use this as a data source for a Grafana dashboard. The dashboard
@@ -122,7 +126,7 @@ import Screenshot from "@theme/Screenshot"
 
 <Screenshot
   alt="Screenshot of a new dashboard with a 'Add new panel' button"
-  src="/img/blog/2020-10-19/add-new-panel.png"
+  src="/img/tutorial/2020-10-19/add-new-panel.png"
 />
 
 The new panel has a graphing area on the top half of the window and a query
@@ -130,7 +134,7 @@ builder in the bottom half:
 
 <Screenshot
   alt="Screenshot of a blank panel after being created"
-  src="/img/blog/2020-10-19/blank-panel.png"
+  src="/img/tutorial/2020-10-19/blank-panel.png"
 />
 
 Toggle the query editor to **text edit mode** by clicking the pencil icon or by
@@ -139,7 +143,7 @@ statements that we can input directly:
 
 <Screenshot
   alt="Screenshot showing how to toggle text edit mode"
-  src="/img/blog/2020-10-19/toggle-text-edit.png"
+  src="/img/tutorial/2020-10-19/toggle-text-edit.png"
 />
 
 Paste the following query into the editor:
@@ -161,7 +165,7 @@ We have built our first panel with aggregations:
 
 <Screenshot
   alt="A panel showing the average distance traveled, filtered by taxi type and with dynamic sampling."
-  src="/img/blog/2020-10-19/first-panel.png"
+  src="/img/tutorial/2020-10-19/first-panel.png"
 />
 
 #### Query details
@@ -229,7 +233,7 @@ yellow line for card payments:
 
 <Screenshot
   alt="A panel showing the average distance travelled, filtered by taxi type and with dynamic sampling."
-  src="/img/blog/2020-10-19/panel-filtering-by-taxi-type.png"
+  src="/img/tutorial/2020-10-19/panel-filtering-by-taxi-type.png"
 />
 
 We can see in this graph that the distance traveled by those paying with cards
@@ -251,7 +255,7 @@ This is what our query looks like when viewing a time range of 28 days:
 
 <Screenshot
   alt="A panel showing the number of trips over a month using dynamic sampling."
-  src="/img/blog/2020-10-19/panel-count-of-taxi-trips-in-whole-month.png"
+  src="/img/tutorial/2020-10-19/panel-count-of-taxi-trips-in-whole-month.png"
 />
 
 Zooming in to a single day shows more detailed data points as we are sampling by
@@ -259,7 +263,7 @@ Grafana's `$__interval` property:
 
 <Screenshot
   alt="A panel showing the number of trips in a day using dynamic sampling."
-  src="/img/blog/2020-10-19/panel-count-of-taxi-trips-in-a-day.png"
+  src="/img/tutorial/2020-10-19/panel-count-of-taxi-trips-in-a-day.png"
 />
 
 The daily cycle of activity is visible, with rides peaking in the early evening
@@ -293,7 +297,7 @@ chart:
 
 <Screenshot
   alt="Showing how to enable 2nd Y-axis by clicking on the line next to the series name."
-  src="/img/blog/2020-10-19/enabling-2nd-y-axis.png"
+  src="/img/tutorial/2020-10-19/enabling-2nd-y-axis.png"
 />
 
 In this graph, we have 2 series, in green we have the fare amount sampled
@@ -303,7 +307,7 @@ between rain and the amount spent on taxi rides.
 
 <Screenshot
   alt="A panel showing taxi fares plotted against rain fall"
-  src="/img/blog/2020-10-19/panel-taxi-fares-and-rain.png"
+  src="/img/tutorial/2020-10-19/panel-taxi-fares-and-rain.png"
 />
 
 -->

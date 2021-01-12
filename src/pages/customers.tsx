@@ -9,7 +9,7 @@ import loCss from "../css/customers/logo.module.css"
 import juCss from "../css/customers/jumbotron.module.css"
 import quCss from "../css/customers/quote.module.css"
 import seCss from "../css/section.module.css"
-import quotes from "../lang/quotes"
+import quotes from "../assets/quotes"
 
 const Customers = () => {
   const title = "Customers"
