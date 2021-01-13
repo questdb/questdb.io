@@ -418,7 +418,6 @@ the use of this package can be found on the
 ```javascript title="Basic client connection"
 const { Client } = require("pg");
 
-
 const start = async () => {
   try {
     const client = new Client({
@@ -431,12 +430,12 @@ const start = async () => {
     await client.connect();
 
     const createTable = await client.query(
-      "CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);"
+      "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);"
     );
     console.log(createTable);
 
     const insertData = await client.query(
-      "INSERT INTO trades VALUES('abc', 123456);"
+      "INSERT INTO trades VALUES('2021-01-13T09:44:57.382000Z', 'abc', 123456);"
     );
     console.log(insertData);
 
