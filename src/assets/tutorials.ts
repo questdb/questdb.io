@@ -50,14 +50,6 @@ const tutorials: FlatTutorial[] = [
     title: "Setup and access QuestDB in Python using a Jupyter Notebook",
   },
   {
-    author: "Suresh Regmi",
-    date: "2020-08-31",
-    content:
-      "An overview of the features of QuestDB with a list of benefits and example use cases describing when it's appropriate to use a time-series database.",
-    link: "https://www.turtle-techies.com/checking-out-quest-db/",
-    title: "Checking Out QuestDB",
-  },
-  {
     author: "David G. Simmons",
     date: "2020-08-25",
     content:
