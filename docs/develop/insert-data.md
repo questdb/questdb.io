@@ -391,7 +391,7 @@ func checkErr(err error) {
 
 </Tabs>
 
-## PostgreSQL wire protocol
+## Postgres compatibility
 
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
 that QuestDB exposes. This is accessible via port `8812`.
@@ -435,7 +435,7 @@ const start = async () => {
     console.log(createTable);
 
     const insertData = await client.query(
-      "INSERT INTO trades VALUES('2021-01-13T09:44:57.382000Z', 'abc', 123456);"
+      `INSERT INTO trades VALUES(${Date.now() * 1000}, 'abc', 123456);`
     );
     console.log(insertData);
 
@@ -575,7 +575,7 @@ func preparedStatement() {
 	defer conn.Close(ctx)
 
 	// Prepared statement has the name 'ps1'
-	_, err = conn.Prepare(ctx, "ps1", "insert into trades values ($1, $2)")
+	_, err = conn.Prepare(ctx, "ps1", "INSERT INTO trades VALUES ($1, $2)")
 	if err != nil {
 		log.Fatalln(err)
 	}
