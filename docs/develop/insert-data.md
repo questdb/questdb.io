@@ -721,6 +721,7 @@ int main() {
 
 ```python
 import psycopg2
+import datetime
 try:
     connection = psycopg2.connect(user="admin",
                                   password="quest",
@@ -728,9 +729,21 @@ try:
                                   port="8812",
                                   database="qdb")
     cursor = connection.cursor()
-    postgreSQL_select_Query = "INSERT INTO trades VALUES ('abc', 123)"
-    cursor.execute(postgreSQL_select_Query)
-    print("Inserted row")
+
+    cursor.execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")
+
+    now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')
+    cursor.execute("""
+        INSERT INTO trades (ts, name, value)
+        VALUES (to_timestamp(%s, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'), %s, %s);
+        """, (now, "abc", 123))
+    connection.commit()
+
+    cursor.execute("SELECT * FROM trades;")
+    records = cursor.fetchall()
+    for row in records:
+        print(row, "\n")
+
 finally:
     #closing database connection.
     if (connection):
