@@ -10,7 +10,7 @@ type FlatTutorial = FrontMatter &
 
 const tutorials: FlatTutorial[] = [
   {
-    author: "Gabor Boros",
+    author: "Gábor Boros",
     date: "2021-01-13",
     content:
       "This detailed tutorial shows how to use QuestDB in a robust application status page and includes a repository with the example code ready to deploy.",
