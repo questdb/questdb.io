@@ -662,24 +662,26 @@ try:
 
     cursor.execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")
 
-    now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')
-    cursor.execute("""
+    for x in range(10):
+      now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')
+      cursor.execute("""
         INSERT INTO trades (ts, name, value)
         VALUES (to_timestamp(%s, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'), %s, %s);
-        """, (now, "abc", 123))
+        """, (now, "py-abc", 123))
+
     connection.commit()
 
     cursor.execute("SELECT * FROM trades;")
     records = cursor.fetchall()
     for row in records:
-        print(row, "\n")
+        print(row)
 
 finally:
-    #closing database connection.
     if (connection):
         cursor.close()
         connection.close()
         print("PostgreSQL connection is closed")
+
 
 ```
 
