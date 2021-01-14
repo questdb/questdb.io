@@ -435,9 +435,24 @@ const start = async () => {
     console.log(createTable);
 
     const insertData = await client.query(
-      `INSERT INTO trades VALUES(${Date.now() * 1000}, 'abc', 123456);`
+      "INSERT INTO trades VALUES($1, $2, $3);",
+      [Date.now() * 1000, "abc", 123]
     );
+    await client.query("COMMIT");
+
     console.log(insertData);
+
+    for (let rows = 0; rows < 10; rows++) {
+      // Providing a 'name' field allows for prepared statements / bind variables
+      const query = {
+        name: "insert-values",
+        text: "INSERT INTO trades VALUES($1, $2, $3);",
+        values: [Date.now() * 1000, "prep statement", rows],
+      };
+      const preparedStatement = await client.query(query);
+    }
+
+    await client.query("COMMIT");
 
     const readAll = await client.query("SELECT * FROM trades");
     console.log(readAll.rows);
@@ -449,91 +464,6 @@ const start = async () => {
 };
 
 start();
-```
-
-The following example demonstrates `pg` support for connection pooling,
-parameterized queries and prepared statements. For more details on the use of
-prepared statements with this package, see the
-[`node-postgres` documentation for queries](https://node-postgres.com/features/queries).
-
-```javascript title="Using a connection pool"
-const { Pool } = require("pg");
-
-config = {
-  database: "qdb",
-  host: "127.0.0.1",
-  password: "quest",
-  port: 8812,
-  user: "admin",
-};
-
-// The config is passed to every client instance when the pool creates a client
-const pool = new Pool(config);
-
-function runQuery(query) {
-  pool.connect((err, client, release) => {
-    if (err) {
-      return console.error("Error acquiring client", err.stack);
-    }
-    client.query(query, (err, result) => {
-      console.log(`Query successful:\n  ${query}\n`, result);
-      release();
-      if (err) {
-        return console.error(`Error executing query:\n ${query}`, err.stack);
-      }
-    });
-  });
-}
-// Passing basic text-only queries
-runQuery("CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);");
-runQuery("INSERT INTO trades VALUES('abc', 123456);");
-
-function parameterizedQuery() {
-  pool.connect((err, client, release) => {
-    if (err) {
-      return console.error("Error acquiring client", err.stack);
-    }
-    // Construct a parameterized query
-    const text = "INSERT INTO trades VALUES($1, $2);";
-    const values = ["abc", 123];
-    client.query(text, values, (err, result) => {
-      release();
-      if (err) {
-        return console.error("Error executing query", err.stack);
-      }
-      console.log(`Inserted ${result.rowCount} row from parameterized query`);
-    });
-  });
-}
-
-function preparedStatement() {
-  for (let rows = 0; rows < 10; rows++) {
-    pool.connect((err, client, release) => {
-      if (err) {
-        return console.error("Error acquiring client", err.stack);
-      }
-      // Providing a 'name' field allows for prepared statements
-      const query = {
-        name: "insert-values",
-        text: "INSERT INTO trades VALUES($1, $2);",
-        values: ["abc", rows],
-      };
-      client.query(query, (err, result) => {
-        if (err) {
-          return console.error("Error executing query", err.stack);
-        }
-        release();
-        console.log(`Inserted ${result.rowCount} row from prepared statement`);
-      });
-    });
-  }
-}
-
-parameterizedQuery();
-preparedStatement();
-
-// Drain pool, disconnect clients, and shut down internal timers
-pool.end().then(() => console.log("pool has ended"));
 ```
 
 </TabItem>
