@@ -477,73 +477,52 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/jackc/pgx/v4"
 )
 
-func createTable() {
-	ctx := context.Background()
-	conn, err := pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
-	defer conn.Close(ctx)
+var conn *pgx.Conn
+var err error
 
-	query, err := conn.Query(ctx, "CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);")
+func main() {
+	ctx := context.Background()
+	conn, _ = pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
+	defer conn.Close(ctx)
+	// text-based query
+	_, err := conn.Exec(ctx, "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	// Parameterized Query
-	rows, _ := conn.Query(ctx, "INSERT INTO trades(name,value) VALUES($1,$2)", "first row", 123)
-	fmt.Println(rows)
-
-	defer query.Close()
-	err = conn.Close(ctx)
-}
-
-func preparedStatement() {
-	ctx := context.Background()
-	conn, err := pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
-	defer conn.Close(ctx)
-
 	// Prepared statement has the name 'ps1'
-	_, err = conn.Prepare(ctx, "ps1", "INSERT INTO trades VALUES ($1, $2)")
+	_, err = conn.Prepare(ctx, "ps1", "INSERT INTO trades VALUES(to_timestamp($1, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'),$2, $3)")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
 	for i := 0; i < 20; i++ {
+		timestamp := time.Now().Format("2006-01-02T15:04:05.000000")
 		// Execute 'ps1' statement with a string and the loop iterator value
-		_, err = conn.Exec(ctx, "ps1", "prep abc", i)
+		_, err = conn.Exec(ctx, "ps1", timestamp, "go prepared statement", i+1)
 		if err != nil {
 			log.Fatalln(err)
 		}
 	}
-}
-
-func readTable() {
-	ctx := context.Background()
-	conn, err := pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer conn.Close(ctx)
 
 	rows, err := conn.Query(ctx, "SELECT * FROM trades")
-	defer rows.Close()
 
+	fmt.Println("Reading from trades table:")
 	for rows.Next() {
-		var value int
 		var name string
-		err = rows.Scan(&name, &value)
-		fmt.Println(name, value)
+		var value int64
+		var ts time.Time
+		err = rows.Scan(&ts, &name, &value)
+		fmt.Println(ts, name, value)
 	}
 
 	err = conn.Close(ctx)
-}
 
-func main() {
-	createTable()
-	preparedStatement()
-	readTable()
 }
 ```
 
@@ -681,8 +660,6 @@ finally:
         cursor.close()
         connection.close()
         print("PostgreSQL connection is closed")
-
-
 ```
 
 </TabItem>
