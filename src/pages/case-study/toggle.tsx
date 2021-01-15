@@ -203,7 +203,7 @@ const Toggle = () => {
               <img
                 alt="Chart showing the average transaction duration for QuestDB on a given day"
                 className={chCss.chart}
-                height={338}
+                height={433}
                 src="/img/pages/case-study/toggle/chart.png"
                 width={791}
               />
