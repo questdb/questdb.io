@@ -603,31 +603,66 @@ class App {
 
 <TabItem value="c">
 
-```c
-// compile with
-// g++ libpq_example.c -o libpq_example.exe  -I pgsql\include -L dev\pgsql\lib
-// -std=c++17  -lpthread -lpq
+
+```c title="Compiling the example"
 #include <libpq-fe.h>
 #include <stdio.h>
 #include <stdlib.h>
-void do_exit(PGconn *conn) {
+#include <sys/time.h>
+#include <string.h>
+
+void do_exit(PGconn* conn)
+{
     PQfinish(conn);
     exit(1);
 }
-int main() {
-    PGconn *conn = PQconnectdb(
-            "host=localhost user=admin password=quest port=8812 dbname=testdb");
+int main()
+{
+    PGconn* conn = PQconnectdb(
+        "host=localhost user=admin password=quest port=8812 dbname=qdb");
     if (PQstatus(conn) == CONNECTION_BAD) {
         fprintf(stderr, "Connection to database failed: %s\n",
-                PQerrorMessage(conn));
+            PQerrorMessage(conn));
         do_exit(conn);
     }
-    PGresult *res = PQexec(conn, "INSERT INTO trades VALUES ('abc', 123);");
+    // Simple query
+    PGresult* res = PQexec(conn,
+        "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);");
     PQclear(res);
-    PQfinish(conn);
+
+    int i;
+    for (i = 0; i < 5; ++i) {
+        char timestamp[30];
+        char milis[7];
+        struct timeval tv;
+        time_t curtime;
+        gettimeofday(&tv, NULL);
+        strftime(timestamp, 30, "%Y-%m-%dT%H:%M:%S.", localtime(&tv.tv_sec));
+        snprintf(milis, 7, "%d", tv.tv_usec);
+        strcat(timestamp, milis);
+
+        const char* values[1] = { timestamp };
+        int lengths[1] = { strlen(timestamp) };
+        int binary[1] = { 0 };
+
+        res = PQexecParams(conn,
+            "INSERT INTO trades VALUES (to_timestamp($1, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'), 'timestamp', 123);",
+            1, NULL, values, lengths, binary, 0);
+    }
+    res = PQexec(conn, "COMMIT");
     printf("Done\n");
+    PQclear(res);
+    do_exit(conn);
     return 0;
 }
+```
+
+```shell title="Compiling the example"
+# g++ on win
+g++ libpq_example.c -o run_example.exe -I pgsql\include -L dev\pgsql\lib -std=c++17 -lpthread -lpq
+
+# gcc on MacOS with homebrew postgres install
+gcc libpq_example.c -o run_example.c -I pgsql/include -L /usr/local/Cellar/postgresql/13.1/lib/postgresql -lpthread -lpq
 ```
 
 </TabItem>
