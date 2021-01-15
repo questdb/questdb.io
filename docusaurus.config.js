@@ -230,14 +230,6 @@ const config = {
               to: "/customers/",
             },
             {
-              label: "Documentation",
-              to: "/docs/introduction/",
-            },
-            {
-              label: "Roadmap",
-              href: `${customFields.githubUrl}/projects/3`,
-            },
-            {
               label: "Careers",
               to: "/careers/",
             },
@@ -264,8 +256,20 @@ const config = {
           title: "More",
           items: [
             {
+              label: "Documentation",
+              to: "/docs/introduction/",
+            },
+            {
+              label: "Tutorials",
+              to: "/tutorial/",
+            },
+            {
               label: "Blog",
               to: "/blog/",
+            },
+            {
+              label: "Roadmap",
+              href: `${customFields.githubUrl}/projects/3`,
             },
           ],
         },
