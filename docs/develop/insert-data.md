@@ -603,8 +603,7 @@ class App {
 
 <TabItem value="c">
 
-
-```c title="Compiling the example"
+```c
 #include <libpq-fe.h>
 #include <stdio.h>
 #include <stdlib.h>
