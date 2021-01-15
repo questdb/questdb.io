@@ -534,27 +534,33 @@ The following example shows how to use parameterized queries and prepared statem
 
 ```rust
 use postgres::{Client, NoTls, Error};
+use chrono::{DateTime, Utc};
 
 fn main() -> Result<(), Error> {
     let mut client = Client::connect("postgresql://admin:quest@localhost:8812/qdb", NoTls)?;
 
     // Basic query
-    client.batch_execute("CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);")?;
+    client.batch_execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")?;
 
     // Parameterized query
-    let name = "abc";
-    let val = 123;
+    let name: &str = "rust example";
+    let val: i32 = 123;
+    let now: DateTime<Utc> = Utc::now();
+    let timestamp = now.format("%Y-%m-%dT%H:%M:%S%.6f").to_string();
+
     client.execute(
-        "INSERT INTO trades (name, value) VALUES ($1, $2)",
-        &[&name, &val],
+        "INSERT INTO trades VALUES(to_timestamp($1, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'),$2,$3)",
+        &[&timestamp, &name, &val],
     )?;
 
     // Prepared statement
     let mut txn = client.transaction()?;
-    let statement = txn.prepare("insert into trades values ($1,$2)")?;
+    let statement = txn.prepare("insert into trades values (to_timestamp($1, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'),$2, $3)")?;
 
-    for value in 0..100 {
-        txn.execute(&statement, &[&name, &value])?;
+    for value in 0..10 {
+        let now: DateTime<Utc> = Utc::now();
+        let timestamp = now.format("%Y-%m-%dT%H:%M:%S%.6f").to_string();
+        txn.execute(&statement, &[&timestamp, &name, &value])?;
     }
     txn.commit()?;
 
