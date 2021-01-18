@@ -1,0 +1,7 @@
+#!/bin/sh
+
+tsc \
+    --esModuleInterop \
+    --outDir \
+    plugins/tutorial/compiled \
+    plugins/tutorial/index.ts plugins/tutorial/markdownLoader.ts
