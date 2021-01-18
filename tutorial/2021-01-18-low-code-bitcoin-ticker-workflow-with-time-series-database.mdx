@@ -80,7 +80,19 @@ This command mounts a volume with `-v` so that user configurations will be saved
 at `~/.n8n`. QuestDB can be started with the following docker command:
 
 ```
-docker run -p 9000:9000 -p 8812:8812 questdb/questdb
+docker run -p 9000:9000 -p 8812:8812 --name questdb questdb/questdb
+```
+
+By giving the container a name with `--name questdb`, we can reuse it at a later point and
+the data that we have ingested will be persisted. If we want to re-run the same
+image after killing the running docker container, we can use the following
+commands:
+
+```shell
+# bring the container up
+docker start questdb
+# shut the container down
+docker stop questdb
 ```
 
 ## Import an example workflow
@@ -208,7 +220,7 @@ tables. We are also using the **cron** node with an interval of 1 minute, so
 improvements would be to use a node that can provide much higher rates of
 ingestion to leverage the performance benefits of QuestDB.
 
-For inspiration and troubleshooting workflow automations using n8n, take a look at the [n8n community](https://community.n8n.io/) forum.
-If you like this content, we'd love to know your
-thoughts! Feel free to share your feedback or just come and say hello in the 
-[QuestDB Community Slack]({@slackUrl@}).
+For inspiration and troubleshooting workflow automations using n8n, take a look
+at the [n8n community](https://community.n8n.io/) forum. If you like this
+content, we'd love to know your thoughts! Feel free to share your feedback or
+just come and say hello in the [QuestDB Community Slack]({@slackUrl@}).
