@@ -1,23 +1,27 @@
 ---
 title: Querying data in a Jupyter Notebook
-author: David G Simmons
-author_title: QuestDB Team
-author_url: https://github.com/davidgs
-author_image_url: https://avatars.githubusercontent.com/davidgs
+author: David G. Simmons
 description:
-  Querying data from QuestDB in a Jupyter notebook in a Python application.
-keywords:
-  - python
-  - docker
-  - jupyter notebook
-  - questdb
-  - databases
-  - timeseries
-  - tutorial
-tags: [python, tutorial]
+  Use a Jupyter notebook to insert and query data and graph query results using
+  Python.
 ---
 
-A short tutorial for Querying data from QuestDB in a Jupyter Notebook.
+import Banner from "@theme/Banner"
+
+<Banner
+  alt="A software developer typing code on a laptop"
+  height={365}
+  src="/img/tutorial/2020-06-15/banner.jpg"
+  width={650}
+>
+  Photo by{" "}
+  <a href="https://unsplash.com/@glenncarstenspeters">Glenn Carstens-Peters</a>
+  on <a href="https://unsplash.com">Unsplash</a>
+</Banner>
+
+This tutorial shows how to use QuestDB with a Jupyter notebook. We will learn
+how to create a database, query data and read table contents into a Pandas
+dataframe, and use `matplotlib` to create charts of our table data.
 
 <!-- truncate -->
 
@@ -26,14 +30,13 @@ A short tutorial for Querying data from QuestDB in a Jupyter Notebook.
 To get started, you'll need a few things installed and set up. This should be
 quick.
 
-**QuestDB:** To download QuestDB, you can check [Get QuestDB](/get-questdb/).
-You can also find complete instructions for [Docker](/docs/get-started/docker/),
-[Homebrew](/docs/get-started/homebrew/) on macOS or the
+**QuestDB:** To download QuestDB, you can find complete instructions for getting
+started with [Docker](/docs/get-started/docker/),
+[Homebrew](/docs/get-started/homebrew/) on macOS, or the
 [binaries](/docs/get-started/binaries/).
 
 **Jupyter Notebooks:** These are interactive Python environments that will help
-you run a complete version of this tutorial interactively. To run it, you
-should:
+you run a complete version of this tutorial. To run it, you should:
 
 - make sure you are running Python 3.x and not Python 2.7. If you're in doubt,
   `python --version` will tell you.
@@ -56,30 +59,31 @@ using 2.7 or 3.x
 ## Create a database
 
 We will need someplace to store our data, so let's create a test database where
-we can put some random data.
+we can put some random data. We will create a simple table with 5 columns, one
+of which is a timestamp.
 
-We will create a simple table with 5 columns, one of which is a timestamp.
-
-The Create operation in QuestDB appends records to the bottom of a table. If the
-table has a designated new record, time stamps must be superior or equal to the
+The create operation in QuestDB appends records to the bottom of a table. If the
+table has a designated new record, timestamps must be great than or equal to the
 latest timestamp. Attempts to add a timestamp in middle of a table will result
 in a timestamp out of order error.
 
-`cust_id` is the customer identifier. It uniquely identifies a customer.
+- `cust_id` is the customer identifier. It uniquely identifies a customer.
 
-`balance_ccy` balance currency. We use char in this example, but in general for
-text entries we would use SYMBOL to avoid storing text against each record to
-save space and increase database performance.
+- `balance_ccy` balance currency. We use char in this example, but we could use
+  `SYMBOL` to avoid storing text against each record to save space and increase
+  database performance.
 
-`balance` is the current balance for customer and currency tuple.
+- `balance` is the current balance for customer and currency tuple.
 
-`inactive` is used to flag deleted records.
+- `inactive` is used to flag deleted records.
 
-`timestamp` timestamp in microseconds of the record. Note that if you receive
-the timestamp data as a string, it could also be inserted using `to_timestamp`.
+- `timestamp` timestamp in microseconds of the record. Note that if you receive
+  the timestamp data as a string, it could also be inserted using
+  `to_timestamp`.
 
 This should return a `200` status the first time you run it. If you run it more
-than once, subsequent runs will return 400 because the database already exists.
+than once, subsequent runs will return `400` because the database already
+exists.
 
 ```python
 import requests import urllib.parse as par
@@ -97,11 +101,9 @@ import requests import urllib.parse as par
 ## Generate some data
 
 Since we have a new setup, we should add some data to QuestDB so that we can
-have something to query.
-
-We will add some random data, for now. You can re-run this section as many times
-as you want to add 100 entries at a time, or simply change the `range(100)` to
-add as many datapoints as you wish.
+have something to query. We will add some random data, for now. You can re-run
+this section as many times as you want to add 100 entries at a time, or simply
+change the `range(100)` to add as many datapoints as you wish.
 
 ```python
 import requests
@@ -151,12 +153,11 @@ print(rawData)
 
 So you'll notice that the returned data is just a massive CSV string. If you'd
 rather have JSON data, then you would change the endpoint to
-http://localhost:9000/exec ... But since we're going to use Pandas to frame our
+`http://localhost:9000/exec`, but since we're going to use Pandas to frame our
 data, we'll stick with CSV.
 
-We are also telling pandas to parse the `timestamp` field as a date.
-
-This is important since we're dealing with Time Series data.
+We are also telling pandas to parse the `timestamp` field as a date. This is
+important since we're dealing with Time Series data.
 
 ```python
 import pandas as pd
@@ -168,19 +169,13 @@ print(pData)
 ## Narrow the search
 
 That's just getting us all the data, but let's narrow the search using some SQL
-clauses.
+clauses. Let's look for a specific `cust_id` and only balances of that customer
+that are in USD.
 
-Let's look for a specific `cust_id` and only balances of that customer that are
-in $s.
-
-We are also only interested in times the customer was active
-
-Since this is SQL, you can make this query as simple, or as complex, as you'd
-like.
-
-Since all of the data was generated randomly, this exact query may return no
-results, so you may have to adjust the `cust_id` below until you get results
-back.
+We are also only interested in times the customer was active. Since this is SQL,
+you can make this query as simple, or as complex, as you'd like. All of the data
+was generated randomly, so this exact query may return no results, you may have
+to adjust the `cust_id` below until you get results back.
 
 **Note:** The query string must be URL-encoded before it is sent.
 
@@ -216,7 +211,7 @@ rawData.plot("timestamp", ["balance"], subplots=True)
 
 From that query we should get a nice little plot of our data, like this:
 
-![Graph of the balance from the query](/img/blog/2020-06-15/graph.png)
+![Graph of the balance from the query](/img/tutorial/2020-06-15/graph.png)
 
 ## Clean up
 
@@ -231,9 +226,7 @@ else:
 ```
 
 You can now stop your QuestDB instance, if you'd like, or leave it running and
-find some great uses for it!
-
-If you enjoyed this tutorial, please
+find some great uses for it! If you enjoyed this tutorial, please
 [follow us](https://twitter.com/intent/follow?screen_name=QuestDB) on Twitter,
 and make sure you give our
 [GitHub repository](https://github.com/questdb/questdb) a star!
