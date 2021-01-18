@@ -83,9 +83,9 @@ at `~/.n8n`. QuestDB can be started with the following docker command:
 docker run -p 9000:9000 -p 8812:8812 --name questdb-n8n questdb/questdb
 ```
 
-By giving the container a name with `--name questdb-n8n`, we can reuse it at a later point and
-the data that we have ingested will be persisted. If we want to re-run the same
-image after killing the running docker container, we can use the following
+By giving the container a name with `--name questdb`, we have an easy way to
+refer to the container created by `run` later on. If we want to re-use the same
+container (and its data!) after it has been stopped, we can use the following
 commands:
 
 ```shell
