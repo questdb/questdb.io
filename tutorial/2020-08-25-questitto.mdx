@@ -1,22 +1,31 @@
 ---
-title: Light-weight, blazing fast stack for your IoT application
+title: A Lightweight, blazing fast stack fo your IoT application
 author: Shan Desai
-author_title: QuestDB Contributor
-author_url: https://github.com/shantanoo-desai
-author_image_url: https://avatars.githubusercontent.com/shantanoo-desai
 description:
-  Create a simple IoT stack with Mosquitto MQTT Broker, Telegraf and QuestDB.
-tags: [iot, docker, community-written]
+  How to create a simple IoT stack that uses a Mosquitto MQTT Broker, Telegraf
+  and QuestDB.
 ---
 
-Note: I wanted you to know that this post is written by one of our contributors,
-Shan Desai. Shan is a research scientist working for the Bremen Institute for
-Production and Logistics ([BIBA](http://www.biba.uni-bremen.de/)). His work
-involves the use of IoT devices in order to improve product tracking and
-transparency in a B2B marketplace. You can find more details on
-[Shan's personnal website](https://shantanoo-desai.github.io/).
+import Banner from "@theme/Banner"
 
-Thanks a lot for your contribution Shan!
+<Banner
+  alt="A software developer typing code on a laptop"
+  height={365}
+  src="/img/tutorial/2020-08-25/banner.jpg"
+  width={650}
+>
+  Photo by <a href="https://unsplash.com/photos/wGqz5YSqsfk">Zan</a> via{" "}
+  <a href="https://unsplash.com">Unsplash</a>
+</Banner>
+
+This tutorial is written by one of our community contributors, Shan Desai. Shan
+is a research scientist working for the Bremen Institute for Production and
+Logistics ([BIBA](http://www.biba.uni-bremen.de/)). His work involves using
+IoT devices to improve product tracking and transparency in a B2B
+marketplace. You can find more details on
+[Shan's personal website](https://shantanoo-desai.github.io/).
+
+Thanks a lot for your contribution, Shan!
 
 <!--truncate-->
 
@@ -25,13 +34,16 @@ Thanks a lot for your contribution Shan!
 > QuestDB is the fastest open-source Time-Series Database out there in terms of
 > performance.
 
-The developers were kind enough to welcome me into their community and I wanted
+The QuestDB team was kind enough to welcome me into their community and I wanted
 to make things easier for people trying things out with QuestDB.
 
 Lo! and behold [Questitto][1] an _out-of-the-box_ repository for your initial
 IoT Applications. The repository is an altered version for my repository
 [tiguitto][2] which helps users deploy the highly used **TIG+Mosquitto
 (Telegraf, InfluxDB, Grafana) + Mosquitto MQTT Broker** stack in no time.
+
+[1]: https://github.com/shantanoo-desai/questitto
+[2]: https://github.com/shantanoo-desai/tiguitto
 
 ## Motivation
 
@@ -46,7 +58,7 @@ sockets too!
 ## Stack
 
 `questitto` currently comes with basic user authentication support for Mosquitto
-MQTT broker. The Broker allows only specific users to publish / subscribe data
+MQTT broker. The broker allows only specific users to publish / subscribe data
 hence reducing misuse. Telegraf writes the incoming data via subscribing to the
 MQTT Broker and pushes the data to QuestDB.
 
@@ -109,13 +121,9 @@ username1:password1
 username2:password2
 ```
 
-:::note
-
-Mosquitto Broker requires the the credentials to be encrypted and hence you
+The mosquitto broker requires the the credentials to be encrypted and hence you
 bring the stack up with encrypting the passwords, the broker container will fail
 to start
-
-:::
 
 Let's encrypt the passwords using the following command:
 
@@ -164,14 +172,8 @@ We then let `telegraf` translate the location of `sensor1` for us using the
 `telegraf` subscribes to the MQTT Broker using the `subclient` credential
 mentioned above.
 
-:::note
-
-If you change the user credentials, make sure to encrypt the password and change
-the `questitto.env` file with the actual credentials for `telegraf`
-
-:::
-
-Let's look at how `telegraf` can add our sensor's location for us.
+__Note:__ if you change the user credentials, make sure to encrypt the password and change
+the `questitto.env` file with the actual credentials for `telegraf`. Let's look at how `telegraf` can add our sensor's location for us.
 
 We use the `inputs.mqtt_consumer` plugin to connect to our broker and subscribe
 to it via the credentials in the `.env` file:
@@ -277,6 +279,8 @@ docker-compose up -d
 As a simple Example I used [MQTT.fx][3] as a client to publish information in
 line Protocol to the following Topic:
 
+[3]: https://mqttfx.org
+
 ```json
 {
   "topic": "IOT/sensor1/acc",
@@ -290,11 +294,11 @@ line Protocol to the following Topic:
 
 with the `pubclient:questitto` credentials and on the QuestDB UI you can see:
 
-![Automatic table creation based on InfluxDB line protocol measurement name](/img/blog/2020-08-25/tables.png)
+![Automatic table creation based on InfluxDB line protocol measurement name](/img/tutorial/2020-08-25/tables.png)
 
 With the `location` and other `tags` from the line protocol inserted:
 
-![Columns created by QuestDB for acceleration Table](/img/blog/2020-08-25/schema.png)
+![Columns created by QuestDB for acceleration Table](/img/tutorial/2020-08-25/schema.png)
 
 A simple query where I would like to know the acceleration value in the
 `kitchen` for the **X-axis** is as simple as:
@@ -316,15 +320,12 @@ docker kill --signal=SIGHUP mosquitto
 docker kill --signal=SIGHUP telegraf
 ```
 
-See [my blog post][4] for a detailed write up.
+See [my blog post][4] for more details on this configuration.
+
+[4]: https://shantanoo-desai.github.io/posts/technology/nugget_mqtt_iot/
 
 ## Repository
 
 You can find the [repository on GitHub][1]. Please feel free to open Issues/PRs
 and [join]({@slackUrl@}) the Slack Community, the developers are really helpful
 there!
-
-[1]: https://github.com/shantanoo-desai/questitto
-[2]: https://github.com/shantanoo-desai/tiguitto
-[3]: https://mqttfx.org
-[4]: https://shantanoo-desai.github.io/posts/technology/nugget_mqtt_iot/
