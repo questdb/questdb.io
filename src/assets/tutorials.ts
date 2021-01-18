@@ -43,13 +43,6 @@ const tutorials: FlatTutorial[] = [
     image: "/img/tutorial/2020-12-17/banner.jpg",
   },
   {
-    author: "Chankey Pathak",
-    date: "2020-10-20",
-    content: "Learn how to create tables in QuestDB, insert data, and plot charts with matplotlib in Python via a Jupyter Notebook.",
-    link: "https://tutswiki.com/setup-access-questdb-python-notebook/",
-    title: "Setup and access QuestDB in Python using a Jupyter Notebook",
-  },
-  {
     author: "David G. Simmons",
     date: "2020-08-25",
     content:
@@ -80,13 +73,6 @@ const tutorials: FlatTutorial[] = [
       "It's one thing to send data to your database, but being able to visualize that data is the next logical step. So let's dive right into doing that.",
     link: "https://dev.to/davidgs/a-questdb-dashboard-with-node-red-524h",
     title: "A QuestDB Dashboard with Node-Red",
-  },
-  {
-    author: "David G. Simmons",
-    date: "2020-06-20",
-    content: "Tutorial for creating tables in QuestDB, generating data, using Pandas to read dataframes, and plotting charts using matplotlib via a Jupyter Notebook.",
-    link: "https://dzone.com/articles/questdb-tutorial-for-python",
-    title: "QuestDB Tutorial for Python",
   },
   {
     author: "David G. Simmons",
