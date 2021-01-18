@@ -18,6 +18,7 @@ const customFields = {
   linkedInUrl: "https://www.linkedin.com/company/questdb/",
   oneLiner: "Fast SQL open source database for time series - QuestDB",
   slackUrl: `https://slack.${domain}`,
+  stackoverflowUrl: "https://stackoverflow.com/questions/tagged/questdb",
   twitterUrl: "https://twitter.com/questdb",
   version: "5.0.5",
 }
@@ -206,6 +207,10 @@ const config = {
             {
               label: "Twitter",
               to: customFields.twitterUrl,
+            },
+            {
+              label: "Stack Overflow",
+              to: customFields.stackoverflowUrl,
             },
           ],
         },
