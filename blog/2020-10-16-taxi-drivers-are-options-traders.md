@@ -18,28 +18,19 @@ import Banner from "@theme/Banner"
 </Banner>
 
 Every cab I have ever ridden has been complaining about how hard it is to make
-ends meet as a driver. The public is generally quick to blame unfair competition
-from the likes of Uber. However, additional forces are also to blame.
-
-Going through more than 10 years worth of NYC taxi data, I analyse how the
-antiquated meter system impacts the livelihood of NYC cabbies by drawing an
-analogy with stock options trading. Interestingly, this approach allows us to
-show that drivers have progressively been worse-off, independently of
-competition from Uber.
-
-In order to do so, we have loaded a dataset into our database QuestDB. This
-dataset includes over 1.6 billion taxi rides, 700 million FHV rides (Uber, Lyft
-etc), and 10 years of weather and gas prices data.
+ends meet as a driver. Using a dataset of over 1.6 billion taxi rides, 700
+million FHV rides (Uber, Lyft, etc.), and 10 years of weather and gas prices
+data, I examine whether the antiquated meter system impacts NYC cabbies'
+livelihood, rather than competition from the likes of Uber.
 
 <!--truncate-->
 
 A few of months ago, I was putting together data for QuestDB's demo that we
-shared on [ShowHN](https://news.ycombinator.com/item?id=23616878).
-
-It has been a while since I left derivatives trading, and was not expecting to
-end up writing about options pricing. Much to my surprise, the economics of a
-taxi meter are very similar to options. This provides an interesting perspective
-into the fate of taxi drivers.
+shared on [ShowHN](https://news.ycombinator.com/item?id=23616878). It has been a
+while since I left derivatives trading, and was not expecting to end up writing
+about options pricing. Much to my surprise, the economics of a taxi meter are
+very similar to options. This provides an interesting perspective into the fate
+of taxi drivers.
 
 ## The economics of the taxi meter
 
@@ -51,14 +42,14 @@ surcharges depending on a variety of factors such as the route taken or the time
 of the day.
 
 Most of the driver's earnings come from the `fare`, which consists of a
-`flat fare` $2.50 for entering the cab, and a `variable fare`. The variable
+`flat fare` \$2.50 for entering the cab, and a `variable fare`. The variable
 fare is a function of speed, time and distance. It is calculated as follows:
 
-- When the cab drives above 12mph, $2.50 per mile
-- Otherwise, $0.50 per minute
+- When the cab drives above 12mph, \$2.50 per mile
+- Otherwise, \$0.50 per minute
 
 This post focuses on the variable fare, i.e the output of the meter excluding
-the $2.50 start fee and extras. To be able to compare rides with one another,
+the \$2.50 start fee and extras. To be able to compare rides with one another,
 we normalize it as an `hourly rate` of driving a customer around.
 
 ## Modelling variable earnings for taxi drivers
@@ -67,7 +58,7 @@ Let's assume a cab is driving a customer at a constant speed during one hour. At
 the end of the hour, the driver can expect to pocket `variable earnings` of:
 
 - $30 if they drove below 12mph ($0.50 a minute)
-- $2.50 x their average speed if they drove above 12mph
+- \$2.50 x their average speed if they drove above 12mph
 
 Let's plot the hourly earnings in function of speed. This instantly reminds me
 of an old friend: call options!
@@ -88,7 +79,7 @@ Interestingly, the above notation breaks down the hourly variable fare into two
 components.
 
 - A `guaranteed` component `30`: whenever driving a customer, a cab will make at
-  least $30 an hour.
+  least \$30 an hour.
 - An `optional` component `max(0, Speed - 12)`: driving customers faster earns
   the driver more.
 
@@ -139,7 +130,7 @@ since we know all `possible outcomes` and their
 | 6          | 16.66%      | 4      | 0.6664         |
 
 By summing all the potential payouts weighed by their probability, we compute
-the expected value of playing this game: $1.666.
+the expected value of playing this game: \$1.666.
 
 - If we pay less to play the game, we will make money over time.
 - If we pay more, we lose in the long run.
@@ -353,7 +344,7 @@ incentive becomes apparent if we look at it over time as follows:
 
 So, are there any reasons left for cabs to drive customers around faster?
 
-The start fee of $2.50 provides another incentive. But it's efficacy depends on
+The start fee of \$2.50 provides another incentive. But it's efficacy depends on
 the waiting time between two rides. If the expected wait between customers is 5
 minutes or less, then drivers remain incentivized. Otherwise, it is economically
 more efficient to drive slowly and make the most of the current customer. A
@@ -368,7 +359,7 @@ fair to say that it lost a good part of it.
 If drivers are uncertain about their likelihood of finding the next ride, and if
 the optional fare component has become an insignificant fraction of their
 earnings, then it makes more sense to drive slow, and to hold on to the current
-customer for as long as possible. In the end, $30 per hour is better than 0.
+customer for as long as possible. In the end, \$30 per hour is better than 0.
 
 ## Your turn to explore the data
 
