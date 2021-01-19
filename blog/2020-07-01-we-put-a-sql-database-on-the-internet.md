@@ -16,20 +16,15 @@ keywords:
 tags: [hackernews, postmorterm]
 ---
 
-What happens when you put a SQL database on the internet? It's probably not what
-you'd expect.
-
-But we did it. And then we posted it to Hacker News.
+If you listen to, well, pretty much anyone rational, they will tell you in no
+uncertain terms that the last thing you ever want to do is put your SQL Database
+on the public internet. Even if you're crazy enough to do that, you certainly
+should never post the address to it on a place like Hacker News. We did it
+anyway, and this post describes why we did it, what we learned and what people
+tried to do with it.
 
 <!-- truncate -->
 
-If you listen to, well, pretty much anyone rational, they will tell you in no
-uncertain terms that the last thing you ever want to do is put your SQL Database
-on the internet. And even if you're crazy enough to do that, you certainly would
-never go post the address to it on a place like Hacker News. Not unless you were
-a masochist anyway.
-
-We did it though, and we're not even a little bit sorry about it.
 
 ## The idea
 

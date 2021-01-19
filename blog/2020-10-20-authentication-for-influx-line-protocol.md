@@ -15,10 +15,11 @@ import Banner from "@theme/Banner"
   Photo by <a href="https://unsplash.com/photos/hRXIKdxoaPo">Vanna Phon</a> on <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
-InfluxDB line protocol is a simple and convenient way to add data points to
-QuestDB. Now with
-[authentication](/docs/reference/api/influxdb/#authentication), your endpoint is
-more secure.
+QuestDB supports ingesting records using InfluxDB line protocol. This means that
+you can benefit from a simple, lightweight, and convenient message format to add
+data points to tables. We've further improved support for this feature by adding
+authentication, so your endpoint is more secure. This post describes how we
+added this functionality and how to enable it via QuestDB configuration.
 
 <!--truncate-->
 
