@@ -20,9 +20,9 @@ import Banner from "@theme/Banner"
 
 This tutorial is written by one of our community contributors, Shan Desai. Shan
 is a research scientist working for the Bremen Institute for Production and
-Logistics ([BIBA](http://www.biba.uni-bremen.de/)). His work involves using
-IoT devices to improve product tracking and transparency in a B2B
-marketplace. You can find more details on
+Logistics ([BIBA](http://www.biba.uni-bremen.de/)). His work involves using IoT
+devices to improve product tracking and transparency in a B2B marketplace. You
+can find more details on
 [Shan's personal website](https://shantanoo-desai.github.io/).
 
 Thanks a lot for your contribution, Shan!
@@ -172,8 +172,9 @@ We then let `telegraf` translate the location of `sensor1` for us using the
 `telegraf` subscribes to the MQTT Broker using the `subclient` credential
 mentioned above.
 
-__Note:__ if you change the user credentials, make sure to encrypt the password and change
-the `questitto.env` file with the actual credentials for `telegraf`. Let's look at how `telegraf` can add our sensor's location for us.
+**Note:** if you change the user credentials, make sure to encrypt the password
+and change the `questitto.env` file with the actual credentials for `telegraf`.
+Let's look at how `telegraf` can add our sensor's location for us.
 
 We use the `inputs.mqtt_consumer` plugin to connect to our broker and subscribe
 to it via the credentials in the `.env` file:
