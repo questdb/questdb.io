@@ -63,9 +63,9 @@ we can put some random data. We will create a simple table with 5 columns, one
 of which is a timestamp.
 
 The create operation in QuestDB appends records to the bottom of a table. If the
-table has a designated new record, timestamps must be great than or equal to the
-latest timestamp. Attempts to add a timestamp in middle of a table will result
-in a timestamp out of order error.
+table has a designated new record, timestamps must be greater than, or equal to
+the latest timestamp. Attempts to add a timestamp in middle of a table will
+result in a timestamp out of order error.
 
 - `cust_id` is the customer identifier. It uniquely identifies a customer.
 
@@ -157,7 +157,7 @@ rather have JSON data, then you would change the endpoint to
 data, we'll stick with CSV.
 
 We are also telling pandas to parse the `timestamp` field as a date. This is
-important since we're dealing with Time Series data.
+important since we're dealing with time series data.
 
 ```python
 import pandas as pd
