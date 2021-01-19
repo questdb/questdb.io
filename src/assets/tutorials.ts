@@ -10,17 +10,6 @@ type FlatTutorial = FrontMatter &
 
 const tutorials: FlatTutorial[] = [
   {
-    author: "Gábor Boros",
-    date: "2021-01-13",
-    content:
-      "This detailed tutorial shows how to use QuestDB in a robust application status page and includes a repository with the example code ready to deploy.",
-    link:
-      "https://gabor-boros.medium.com/monitoring-the-uptime-of-an-application-with-python-nuxt-js-and-questdb-cbe7c050072d",
-    title: "Monitoring the uptime of an application with Python, Nuxt.js and QuestDB",
-    featured: true,
-    image: "/img/tutorial/2021-01-13/banner.jpg",
-  },
-  {
     author: "Kovid Rathee",
     date: "2021-01-11",
     content:
