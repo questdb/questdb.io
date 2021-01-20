@@ -13,7 +13,7 @@ Specifies fill behavior for missing data for as part of a
 
 ### Options
 
-There are as many `fillOption` as there are `aggreate` columns in your query.
+There are as many `fillOption` as there are `aggregate` columns in your query.
 
 | fillOption | Description                                                                                                                                           |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -18,28 +18,19 @@ import Banner from "@theme/Banner"
 </Banner>
 
 Every cab I have ever ridden has been complaining about how hard it is to make
-ends meet as a driver. The public is generally quick to blame unfair competition
-from the likes of Uber. However, additional forces are also to blame.
-
-Going through more than 10 years worth of NYC taxi data, I analyse how the
-antiquated meter system impacts the livelihood of NYC cabbies by drawing an
-analogy with stock options trading. Interestingly, this approach allows us to
-show that drivers have progressively been worse-off, independently of
-competition from Uber.
-
-In order to do so, we have loaded a dataset into our database QuestDB. This
-dataset includes over 1.6 billion taxi rides, 700 million FHV rides (Uber, Lyft
-etc), and 10 years of weather and gas prices data.
+ends meet as a driver. Using a dataset of over 1.6 billion taxi rides, 700
+million FHV rides (Uber, Lyft, etc.), and 10 years of weather and gas prices
+data, I examine whether the antiquated meter system impacts NYC cabbies'
+livelihood, rather than competition from the likes of Uber.
 
 <!--truncate-->
 
 A few of months ago, I was putting together data for QuestDB's demo that we
-shared on [ShowHN](https://news.ycombinator.com/item?id=23616878).
-
-It has been a while since I left derivatives trading, and was not expecting to
-end up writing about options pricing. Much to my surprise, the economics of a
-taxi meter are very similar to options. This provides an interesting perspective
-into the fate of taxi drivers.
+shared on [ShowHN](https://news.ycombinator.com/item?id=23616878). It has been a
+while since I left derivatives trading, and was not expecting to end up writing
+about options pricing. Much to my surprise, the economics of a taxi meter are
+very similar to options. This provides an interesting perspective into the fate
+of taxi drivers.
 
 ## The economics of the taxi meter
 
