@@ -255,6 +255,10 @@ const config = {
               label: "Twitter",
               href: customFields.twitterUrl,
             },
+            {
+              label: "Stack Overflow",
+              to: customFields.stackoverflowUrl,
+            },
           ],
         },
         {
