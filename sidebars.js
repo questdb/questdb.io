@@ -77,6 +77,7 @@ module.exports = {
       type: "category",
       items: [
         "operations/deployment",
+        "operations/data-retention",
         "operations/health-monitoring"
       ],
     },
