@@ -534,7 +534,7 @@ The following example shows how to use parameterized queries and prepared statem
 
 ```rust
 use postgres::{Client, NoTls, Error};
-use chrono::{DateTime, Utc};
+use chrono::{Utc};
 
 fn main() -> Result<(), Error> {
     let mut client = Client::connect("postgresql://admin:quest@localhost:8812/qdb", NoTls)?;
@@ -545,22 +545,18 @@ fn main() -> Result<(), Error> {
     // Parameterized query
     let name: &str = "rust example";
     let val: i32 = 123;
-    let now: DateTime<Utc> = Utc::now();
-    let timestamp = now.format("%Y-%m-%dT%H:%M:%S%.6f").to_string();
-
+    let utc = Utc::now();
     client.execute(
-        "INSERT INTO trades VALUES(to_timestamp($1, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'),$2,$3)",
-        &[&timestamp, &name, &val],
+        "INSERT INTO trades VALUES($1,$2,$3)",
+        &[&utc.naive_local(), &name, &val],
     )?;
 
     // Prepared statement
     let mut txn = client.transaction()?;
-    let statement = txn.prepare("insert into trades values (to_timestamp($1, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'),$2, $3)")?;
-
+    let statement = txn.prepare("insert into trades values ($1,$2,$3)")?;
     for value in 0..10 {
-        let now: DateTime<Utc> = Utc::now();
-        let timestamp = now.format("%Y-%m-%dT%H:%M:%S%.6f").to_string();
-        txn.execute(&statement, &[&timestamp, &name, &value])?;
+        let utc = Utc::now();
+        txn.execute(&statement, &[&utc.naive_local(), &name, &value])?;
     }
     txn.commit()?;
 
