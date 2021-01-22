@@ -18,6 +18,7 @@ const customFields = {
   linkedInUrl: "https://www.linkedin.com/company/questdb/",
   oneLiner: "Fast SQL open source database for time series - QuestDB",
   slackUrl: `https://slack.${domain}`,
+  stackoverflowUrl: "https://stackoverflow.com/questions/tagged/questdb",
   twitterUrl: "https://twitter.com/questdb",
   version: "5.0.5",
 }
@@ -208,6 +209,10 @@ const config = {
               label: "Twitter",
               to: customFields.twitterUrl,
             },
+            {
+              label: "Stack Overflow",
+              to: customFields.stackoverflowUrl,
+            },
           ],
         },
         {
@@ -231,14 +236,6 @@ const config = {
               to: "/customers/",
             },
             {
-              label: "Documentation",
-              to: "/docs/introduction/",
-            },
-            {
-              label: "Roadmap",
-              href: `${customFields.githubUrl}/projects/3`,
-            },
-            {
               label: "Careers",
               to: "/careers/",
             },
@@ -259,14 +256,30 @@ const config = {
               label: "Twitter",
               href: customFields.twitterUrl,
             },
+            {
+              label: "Stack Overflow",
+              to: customFields.stackoverflowUrl,
+            },
           ],
         },
         {
           title: "More",
           items: [
             {
+              label: "Documentation",
+              to: "/docs/introduction/",
+            },
+            {
+              label: "Tutorials",
+              to: "/tutorial/",
+            },
+            {
               label: "Blog",
               to: "/blog/",
+            },
+            {
+              label: "Roadmap",
+              href: `${customFields.githubUrl}/projects/3`,
             },
           ],
         },

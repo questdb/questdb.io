@@ -1,37 +1,34 @@
 ---
 title: InfluxDB line protocol on QuestDB
 author: David G. Simmons
-author_title: QuestDB Team
-author_url: https://github.com/davidgs
-author_image_url: https://avatars.githubusercontent.com/davidgs
 description:
-  How to use InfluxDB line protocol with QuestDB, this example shows an IoT
-  application.
-keywords:
-  - influxdb line protocol
-  - timeseries
-  - databases
-  - questdb
-  - TCP
-  - ILP
-image: /img/blog/2020-07-22/banner.jpg
-tags: [influxdb line protocol]
+  This tutorial shows an example IoT application using InfluxDB line protocol
+  with QuestDB.
+image: /img/tutorial/2020-07-22/banner.jpg
+featured: true
 ---
 
 import Banner from "@theme/Banner"
 
-<Banner alt="Blue sky surrounded by latice-work" height={433} src="/img/blog/2020-07-22/banner.jpg" width={650}>
-  Photo by <a href="https://unsplash.com/photos/z0l-3cWpKto"> Ricardo Gomez Angel </a> on <a href="https://unsplash.com">Unsplash</a>
+<Banner
+  alt="Blue sky surrounded by latice-work"
+  height={433}
+  src="/img/tutorial/2020-07-22/banner.jpg"
+  width={650}
+>
+  Photo by{" "}
+  <a href="https://unsplash.com/photos/z0l-3cWpKto"> Ricardo Gomez Angel </a> via{" "}
+  <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
 We've had a UDP version of the InfluxDB Line Protocol (ILP) reader in QuestDB
 for quite some time, but we've had customers ask for a TCP version of it, so we
 delivered!
 
-Using it, and configuring it, are relatively simple so don't expect this to be a
-long post but I'll walk you through the basics of how to set it up and use it.
-For an added bonus I'll show you how to migrate from using InfluxDB to using
-QuestDB with a less than a line of configuration.
+Using and configuring it are relatively simple, so this tutorial will walk
+you through the basics of setting it up and using it. For an added bonus, we'll
+see how to migrate from using InfluxDB to using QuestDB with a single-line
+configuration change.
 
 <!--truncate -->
 
@@ -40,14 +37,14 @@ QuestDB with a less than a line of configuration.
 Here's the best part, at least for a basic implementation that you don't need to
 performance tune at all: It's already set up.
 
-That's right, as soon as you start QuestDB both the UDP and TCP ILP listeners
-start automatically on port 9009. Yes, TCP and UDP both use the same port. No,
+That's right, as soon as you start QuestDB, both the UDP and TCP ILP listeners
+start automatically on port `9009`. Yes, TCP and UDP both use the same port. No,
 that's not a problem since one is UDP and one is TCP.
 
-There are a bunch of configuration options you can tune in your
-`conf/server.conf` file if you're interested. I won't go through them here, but
-you can read all about them in our [docs](/docs/reference/api/influxdb/). I hope
-they are relatively self-explanatory.
+There are many configuration options you can tune in your `conf/server.conf`
+file if you're interested. I won't go through them here, but you can read all
+about them in our [docs](/docs/reference/api/influxdb/). I hope they are
+relatively self-explanatory.
 
 ## InfluxDB line protocol refresher
 
@@ -60,7 +57,7 @@ this will tell you how you should write your data to QuestDB.
 table_name,tagset valueset timestamp
 ```
 
-Pretty basic. So let's dive into what each element actually is, and how to
+Pretty basic. So let's dive into what each element actually is and how to
 structure a line of ILP for writing.
 
 The first element is the `table_name` portion, which tells the ILP writer which
@@ -83,7 +80,7 @@ Finally comes your `timestamp` value, typically in µSeconds.
 ### Example ILP
 
 Let's use an example of writing some environmental data to QuestDB. I have a
-sensor that reads temperature, atmospheric pressure, humidity, and the altitude.
+sensor that reads the temperature, atmospheric pressure, humidity, and altitude.
 
 | Reading     | Value       |
 | ----------- | ----------- |
@@ -111,11 +108,11 @@ And yes, I rounded those values. But you'll notice that I did not add a
 `timestamp` value. In this case, it's because I am sending the values from a
 small, embedded sensor device that really doesn't have a great sense of time. By
 sending the ILP without a `timestamp` I'm telling the database itself to add one
-for me, using the arrival time as the `timestamp`.
+for me, using the `timestamp`s arrival time.
 
 ## Database structure
 
-One of the cool features of using the ILP reader (well, QuestDB in general
+One of the cool features of using the ILP reader (well, QuestDB in general,
 really) is the ability to do 'Schema on Write'.
 
 What that means is that if an ILP message arrives, QuestDB will automatically
@@ -123,8 +120,8 @@ create tables and columns to fit the incoming ILP. So if you need to add a `tag`
 later, you can add it to the new device's tagset and start writing. The new tag
 will get added to the schema.
 
-If you leave a tag value off, and it exists in the database, it will get filled
-with a `null` value.
+If you leave a tag value off, and it exists in the database, it will fill a
+`null` value.
 
 When I start writing the above ILP to QuestDB, I'll get a table that looks like
 this:
@@ -138,7 +135,7 @@ this:
 
 This is what that table looks like in the QuestDB Web Console:
 
-![Table in QuestDB Web Console](/img/blog/2020-07-22/tableShot.png)
+![Table in QuestDB Web Console](/img/tutorial/2020-07-22/tableShot.png)
 
 ## But how did you write that?
 
@@ -160,13 +157,13 @@ be written to QuestDB.
 
 ## Can I do batch writes?
 
-Of course you can! Just put each line of ILP on a separate 'line', separated by
-a newline `\n` and then when you have all your batch built up, write the whole
+Of course, you can! Put each line of ILP on a separate 'line', separated by a
+newline `\n`, and then when you have all your batch built up, write the whole
 thing to QuestDB.
 
-Of course, if you're relying on QuestDB to add `timestamps` for you, then just
-be aware that the entire batch will be given sequential timestamps based on when
-they are read/written to the database.
+Of course, if you're relying on QuestDB to add `timestamps` for you, then be
+aware that QuestDB will give the entire batch sequential timestamps based on
+when they are read/written to the database.
 
 ## Conclusions
 
@@ -174,9 +171,9 @@ InfluxDB Line Protocol (ILP) is a simple, well-known, and relatively compact
 data format for sending Time Series data to a database. That's why we decided to
 support it.
 
-As I told you in the beginning, I'm now going to give you a simple,
-less-than-one-line configuration change to migrate from using InfluxDB to using
-QuestDB. If you're using Telegraf as a data collector, that is.
+As I initially mentioned, I'm now going to give you a simple, less-than-one-line
+configuration change to migrate from using InfluxDB to using QuestDB. If you're
+using Telegraf as a data collector, that is.
 
 Edit your `/etc/telegraf.conf` file (it may be in different places, depending on
 your operating system) and change the line:
@@ -193,5 +190,5 @@ to be:
   urls = ["tcp://127.0.0.1:9009"]
 ```
 
-That's it. That's the migration. Now all data that was previously being written
-to InfluxDB will now be written to QuestDB.
+That's it. That's the migration. All data that was previously being written to
+InfluxDB will now be written to QuestDB.
