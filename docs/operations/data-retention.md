@@ -84,3 +84,5 @@ ALTER TABLE my_table
 DROP PARTITION
 WHERE timestamp < to_timestamp('2021-01-04', 'yyyy-MM-dd');
 ```
+
+The syntax reference for dropping partitions can be found on the [ALTER TABLE DROP PARTITION](/docs/reference/sql/alter-table-drop-partition) page.
