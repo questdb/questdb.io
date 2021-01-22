@@ -146,34 +146,34 @@ const Toggle = () => {
             Toggle uses AI & Machine Learning to help investors extract insights
             on their portfolio & investments. The system distills billions of
             data points into alerts like “Analyst expectations are turning
-            negative for AAPL, historically this led to stock’s outperformance.”
-            As you can imagine, this sort of system requires a tremendous amount
-            of timeseries data — prices, fundamentals, sentiment, etc. All of
-            this data is stored as series and needs to be easily accessible for
-            analysis by our models. It is critical that every step in the
-            process is optimized.
+            negative for AAPL; historically, this led to stock’s
+            outperformance.” As you can imagine, this sort of system requires a
+            tremendous amount of timeseries data — prices, fundamentals,
+            sentiment, etc. All of this data is stored as a series and needs to
+            be easily accessible for analysis by our models. It is critical that
+            every step in the process is optimized.
           </p>
 
-          <h3>Improvements versus InfluxDB</h3>
+          <h3>Improvements over InfluxDB</h3>
           <p className="font-size--large">
             Toggle utilized many databases, including Mongo, Cassandra, and
             TimescaleDB. After much testing, they settled on InfluxDB, as it had
-            the best performance. That said, as the company was growing,
-            performance started to degrade and it became expensive to run. After
-            a short time, they had a small cluster of 4 x m4.2xlarge machines,
-            and memory on all 4 was often at least 80%, hitting 100% a few times
-            per week. Modeling out the future infrastructure spend based on this
-            baseline, InfluxDB wasn’t a viable option as the company scaled.
+            the best performance. As the company was growing, performance
+            started to degrade, and it became expensive to run. They had a small
+            cluster of 4 x m4.2xlarge machines after a short time, and memory on
+            all 4 was often at least 80%, hitting 100% a few times per week.
+            Modeling out the future infrastructure spend based on this baseline,
+            InfluxDB wasn’t a viable option as the company scaled.
           </p>
 
-          <h3>Process to migrate data from InfluxDB to QuestDB</h3>
+          <h3>The process to migrate data from InfluxDB to QuestDB</h3>
           <p className="font-size--large">
             When evaluating a new solution, Toggle knew that they had to answer
             the following questions:
           </p>
 
           <ul className="font-size--large">
-            <li>Can we move the data seamlessly and in a timely manner?</li>
+            <li>Can we move the data seamlessly and promptly?</li>
             <li>
               Can we query a sample of our data in at least the same response
               times of influx?
@@ -186,44 +186,38 @@ const Toggle = () => {
             </li>
           </ul>
           <p className="font-size--large">
-            Of all the possible solutions evaluated, QuestDB was the only that
-            met all of our criteria.
+            Of all the possible solutions evaluated, QuestDB was the only one
+            that met all of our criteria.
           </p>
 
-          <h3>A side by side comparison of QuestDB vs InfluxDB</h3>
+          <h3>A side by side comparison of QuestDB vs. InfluxDB</h3>
           <ul className="font-size--large">
             <li>
-              InfluxDB on a cluster of 4 x m4.2xlarge with 128GiB of RAM was
-              averaging a response time of over 5s
-              <img
-                alt="Chart showing the average transaction duration for InfluxDB over 2 days"
-                className={chCss.chart}
-                height={338}
-                src="/img/pages/case-study/toggle/influxdb.png"
-                width={792}
-              />
+              InfluxDB on a cluster of 4 machines (m4.2xlarge with 128GiB of
+              RAM) was averaging a response time of over 5 seconds.
             </li>
             <li>
               After a few weeks with QuestDB in production (still with a single
-              machine), the performance averaged 15ms
+              machine), the performance averaged 15 milliseconds, i.e., more
+              than 300x faster queries.
               <img
-                alt="Chart showing the average transaction duration for QuestDB over 2 days"
+                alt="Chart showing the average transaction duration for QuestDB on a given day"
                 className={chCss.chart}
-                height={338}
-                src="/img/pages/case-study/toggle/questdb.png"
+                height={433}
+                src="/img/pages/case-study/toggle/chart.png"
                 width={791}
               />
             </li>
             <li>
-              When looking at the virtual machine’s statistics, it never seems
-              to be overtaxed (User: 17%, system: 4%)
+              The virtual machine’s stats indicated that the servers were never
+              overtaxed (User: 17%, system: 4%).
+            </li>
+            <li>
+              Direct cost reduction (¼ of the machines) and performance
+              improvements means that Toggle can do much more for less.
             </li>
           </ul>
 
-          <p className="font-size--large">
-            Direct cost reduction (¼ of the machines) and performance
-            improvements means that Toggle can do much more for less.
-          </p>
           <p className="font-size--large">
             The actual data migration was easy with a script to read from one
             side & ingest in the other. Toggle imported over 600 million data
@@ -234,9 +228,9 @@ const Toggle = () => {
             Customer support experience from QuestDB’s team during the process
           </h3>
           <p className="font-size--large">
-            Armenak, Toggle&apos;s CTO: The QuestDB team assisted us in all
-            steps along the way. They were proactive in supporting our
-            changeover, helping to debug issues as they arose and optimize our
+            <b>Armenak, Toggle&apos;s CTO:</b> The QuestDB team assisted us in
+            all steps along the way. They were proactive in supporting our
+            changeover, helping to debug issues as they arose, and optimize our
             deployment as we moved things into production.
           </p>
         </div>

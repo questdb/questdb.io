@@ -80,7 +80,7 @@ function TutorialPostItem({
       ) : (
         <article className="margin-bottom--xl">
           <header>
-            <h2 className="margin-bottom--sm">{title}</h2>
+            <h1 className="margin-bottom--sm">{title}</h1>
           </header>
 
           <section className="markdown">

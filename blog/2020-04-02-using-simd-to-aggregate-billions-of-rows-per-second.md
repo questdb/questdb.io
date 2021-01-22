@@ -21,9 +21,15 @@ import Banner from "@theme/Banner"
 <Banner alt="QuestDB release 4.2 banner" height={143} src="/img/blog/2020-04-02/banner.png" width={650}/>
 
 [SIMD instructions](https://en.wikipedia.org/wiki/SIMD) are specific CPU
-instruction sets for arithmetic calculations that use synthetic parallelisation.
+instruction sets for arithmetic calculations that use synthetic parallelization.
+This approach allows us to perform the same calculations and operations on
+numerous data points simultaneously. This post describes how SIMD works with
+typical operation performance and describes additional optimizations we managed
+to achieve.
 
 <!--truncate-->
+
+## About SIMD operations
 
 The parallelisation is synthetic because instead of spreading the work across
 CPU cores, SIMD performs vector operations on multiple items using a **single**
