@@ -17,35 +17,81 @@ data by date. For more details on partitioning, see the
 
 ## Strategy for data retention
 
-A simple approach to removing stale data is to drop data which has been
-partitioned by time. The caveat is that this can only be achieved if a table has
-been partitioned during a `CREATE TABLE` operation.
+A simple approach to removing stale data is to drop data that has been
+partitioned by time. A table must have a
+[designated timestamp](/docs/concept/designated-timestamp) assigned and a
+partitioning strategy specified during a CREATE TABLE operation to achieve this.
 
-Tables can be partitioned by either:
+:::note
 
-- Day
-- Month
-- Year
+Users cannot alter the partitioning strategy after a table is created!
 
-```
+:::
+
+Tables can be partitioned by one of the following:
+
+- `DAY`
+- `MONTH`
+- `YEAR`
+
+```questdb-sql title="Creating a table and partitioning by DAY"
 CREATE TABLE my_table(ts TIMESTAMP, symb SYMBOL, price DOUBLE) timestamp(ts)
 PARTITION BY DAY;
 ```
 
-:::note
+### Dropping partitions
 
-The partitioning strategy cannot be changed after table is created!
+:::caution
+
+Use `DROP PARTITION` with care as QuestDB **cannot recover data from dropped
+partitions**!
 
 :::
 
+To drop partitions, users can use the
+[ALTER TABLE DROP PARTITION](/docs/reference/sql/alter-table-drop-partition)
+syntax. Partitions may be dropped by:
+
+- `DROP PARTITION LIST` specifying a comma-separated list of partitions to drop
+
+  ```questdb-sql
+  --Delete a partition
+  ALTER TABLE my_table DROP PARTITION LIST '2021-01-01';
+
+  --Delete a list of two partitions
+  ALTER TABLE my_table DROP PARTITION LIST '2021-01-01', '2021-01-02';
+  ```
+
+- `WHERE timestamp =` - exact date matching by timestamp
+
+  ```questdb-sql
+  ALTER TABLE my_table DROP PARTITION
+  WHERE timestamp = to_timestamp('2021-01-01', 'yyyy-MM-dd');
+  ```
+
+- `WHERE timestamp <` - using a comparison operator (`<` / `>`) to delete
+  relative to a timestamp. Note that the `now()` function may be used to
+  automate dropping of partitions relative to the current time, i.e.:
+
+  ```questdb-sql
+  --Drop partitions older than 30 days
+  WHERE timestamp < dateadd('d', -30, now())
+  ```
+
+**Usage notes:**
+
+- The most chronologically recent partition cannot be deleted
+- Arbitrary partitions may be dropped, which means they may not be the oldest
+  chronologically. Depending on the types of queries users are performing on a
+  dataset, it may not be desirable to have gaps caused by dropped partitions.
+
 ### Example
 
-The following example demonstrates creating tables with partitioning and
-dropping partitions based on time. To have example data for illustration
-purposes, this example produces 5 days' worth of data with one incrementing
-`LONG` value inserted per hour.
+The following example demonstrates how to create a table with partitioning and
+to drop partitions based on time. This example produces 5 days' worth of data
+with one incrementing `LONG` value inserted per hour.
 
-```questdb-sql title="Creating a table and generating data"
+```questdb-sql title="Create a partitioned table and generate data"
 CREATE TABLE my_table (timestamp TIMESTAMP, x LONG) timestamp(timestamp)
 PARTITION BY DAY;
 
@@ -73,16 +119,10 @@ my_table
 └── 2021-01-05
 ```
 
-Partitions can then be dropped using the following queries:
+Partitions can be dropped using the following queries:
 
 ```
---Delete a specific DAY partition
-ALTER TABLE my_table DROP PARTITION LIST '2021-01-01';
-
---Drop days before 2021-01-04
-ALTER TABLE my_table
-DROP PARTITION
-WHERE timestamp < to_timestamp('2021-01-04', 'yyyy-MM-dd');
+--Delete days before 2021-01-03
+ALTER TABLE my_table DROP PARTITION
+WHERE timestamp < to_timestamp('2021-01-03', 'yyyy-MM-dd');
 ```
-
-The syntax reference for dropping partitions can be found on the [ALTER TABLE DROP PARTITION](/docs/reference/sql/alter-table-drop-partition) page.
