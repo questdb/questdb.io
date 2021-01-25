@@ -19,10 +19,10 @@ options are applied to aggregates based on order of appearance in the query.
 | fillOption | Description                                                                                                                                        |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `NONE`     | No fill applied. If there is no data, the time chunk will be skipped in the results. This means your table could potentially be missing intervals. |
-| `NULL`     | Fills with `null`                                                                                                                                  |
+| `NULL`     | Fills with `NULL`                                                                                                                                  |
 | `PREV`     | Fills using the previous value                                                                                                                     |
 | `LINEAR`   | Fills by linear interpolation of the 2 surrounding points                                                                                          |
-| `x`        | Fills with the constant defined (replace the `x` by the value you want. For example `FILL 100.05`                                                  |
+| `x`        | Fills with a constant value - where `x` is the desired value, for example `FILL(100.05)`                                                  |
 
 ## Examples
 
@@ -81,7 +81,7 @@ This query returns the following results:
 | --------- | ------ | ---- | ------- |
 | ts1       | min1   | max1 | avg1    |
 | ts2       | min2   | max2 | avg2    |
-| `ts3`     | `NULL` | `0`  | `avg2`  |
+| `ts3`     | `null` | `0`  | `avg2`  |
 | ts4       | min4   | max4 | avg4    |
 | ...       | ...    | ...  | ...     |
 | tsn       | minn   | maxn | avgn    |
