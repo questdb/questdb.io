@@ -120,7 +120,7 @@ my_table
 └── 2021-01-05
 ```
 
-Partitions can be dropped using the following queries:
+Partitions can be dropped using the following query:
 
 ```
 --Delete days before 2021-01-03
