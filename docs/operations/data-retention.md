@@ -1,7 +1,7 @@
 ---
 title: Data retention
 description:
-  How manage data retention of a QuestDB instance for saving disk space
+  How to employ a data retention strategy to delete old data and save disk space
 ---
 
 ## Background
@@ -52,7 +52,8 @@ To drop partitions, users can use the
 [ALTER TABLE DROP PARTITION](/docs/reference/sql/alter-table-drop-partition)
 syntax. Partitions may be dropped by:
 
-- `DROP PARTITION LIST` specifying a comma-separated list of partitions to drop
+- `DROP PARTITION LIST` - specifying a comma-separated list of partitions to
+  drop
 
   ```questdb-sql
   --Delete a partition
@@ -69,8 +70,8 @@ syntax. Partitions may be dropped by:
   WHERE timestamp = to_timestamp('2021-01-01', 'yyyy-MM-dd');
   ```
 
-- `WHERE timestamp <` - using a comparison operator (`<` / `>`) to delete
-  relative to a timestamp. Note that the `now()` function may be used to
+- `WHERE timestamp <` - using comparison operators (`<` / `>`) to delete by time
+  range relative to a timestamp. Note that the `now()` function may be used to
   automate dropping of partitions relative to the current time, i.e.:
 
   ```questdb-sql
