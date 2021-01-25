@@ -430,13 +430,13 @@ const start = async () => {
     await client.connect();
 
     const createTable = await client.query(
-      "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);"
+      "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);"
     );
     console.log(createTable);
 
     const insertData = await client.query(
-      "INSERT INTO trades VALUES($1, $2, $3);",
-      [Date.now() * 1000, "abc", 123]
+      "INSERT INTO trades VALUES($1, $2, $3, $4);",
+      [Date.now() * 1000, Date.now(), "node pg example", 123]
     );
     await client.query("COMMIT");
 
@@ -446,8 +446,8 @@ const start = async () => {
       // Providing a 'name' field allows for prepared statements / bind variables
       const query = {
         name: "insert-values",
-        text: "INSERT INTO trades VALUES($1, $2, $3);",
-        values: [Date.now() * 1000, "prep statement", rows],
+        text: "INSERT INTO trades VALUES($1, $2, $3, $4);",
+        values: [Date.now() * 1000, Date.now(), "node pg prep statement", rows],
       };
       const preparedStatement = await client.query(query);
     }
