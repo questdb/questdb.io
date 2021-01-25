@@ -171,7 +171,7 @@ Alternatively, the `/exec` endpoint can be used to create a table and the
 ```shell
 # Create Table
 curl -G \
-  --data-urlencode "query=create table trades(name STRING, value INT)" \
+  --data-urlencode "query=CREATE TABLE IF NOT EXISTS trades(name STRING, value INT)" \
   http://localhost:9000/exec
 
 # Insert a row
@@ -184,7 +184,7 @@ Note that these two queries can be combined into a single curl request:
 
 ```shell
 curl -G \
-  --data-urlencode "query=create table trades(name STRING, value INT);\
+  --data-urlencode "query=CREATE TABLE IF NOT EXISTS trades(name STRING, value INT);\
   INSERT INTO trades VALUES('abc', 123456);" \
   http://localhost:9000/exec
 ```
@@ -204,7 +204,7 @@ const HOST = "http://localhost:9000"
 async function createTable() {
   try {
     const queryData = {
-      query: "CREATE TABLE trades (name STRING, value INT);",
+      query: "CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);",
     }
 
     const response = await fetch(`${HOST}/exec?${qs.encode(queryData)}`)
@@ -257,7 +257,7 @@ func main() {
 	u.Path += "exec"
 	params := url.Values{}
 	params.Add("query", `
-		CREATE TABLE
+		CREATE TABLE IF NOT EXISTS
 			trades (name STRING, value INT);
 		INSERT INTO
 			trades
@@ -394,9 +394,7 @@ func checkErr(err error) {
 ## Postgres compatibility
 
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
-that QuestDB exposes. This is accessible via port `8812`. These examples assume
-the `trades` table created in the section above exists already.
-
+that QuestDB exposes. This is accessible via port `8812`.
 <!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nodejs" values={[
@@ -418,7 +416,7 @@ the use of this package can be found on the
 [node-postgres documentation](https://node-postgres.com/).
 
 ```javascript title="Basic client connection"
-const { Client } = require("pg")
+const { Client } = require("pg");
 
 const start = async () => {
   try {
@@ -428,101 +426,44 @@ const start = async () => {
       password: "quest",
       port: 8812,
       user: "admin",
-    })
-    await client.connect()
-    const res = await client.query("SELECT * FROM trades")
-    console.log(res)
-    await client.end()
-  } catch (e) {
-    console.log(e)
-  }
-}
+    });
+    await client.connect();
 
-start()
-```
+    const createTable = await client.query(
+      "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);"
+    );
+    console.log(createTable);
 
-The following example demonstrates `pg` support for connection pooling,
-parameterized queries and prepared statements. For more details on the use of
-prepared statements with this package, see the
-[`node-postgres` documentation for queries](https://node-postgres.com/features/queries).
+    const insertData = await client.query(
+      "INSERT INTO trades VALUES($1, $2, $3);",
+      [Date.now() * 1000, "abc", 123]
+    );
+    await client.query("COMMIT");
 
-```javascript title="Using a connection pool"
-const { Pool } = require("pg")
+    console.log(insertData);
 
-config = {
-  database: "qdb",
-  host: "127.0.0.1",
-  password: "quest",
-  port: 8812,
-  user: "admin",
-}
-
-// The config is passed to every client instance when the pool creates a client
-const pool = new Pool(config)
-
-function runQuery(query) {
-  pool.connect((err, client, release) => {
-    if (err) {
-      return console.error("Error acquiring client", err.stack)
-    }
-    client.query(query, (err, result) => {
-      console.log(result.rows)
-      release()
-      if (err) {
-        return console.error("Error executing query", err.stack)
-      }
-    })
-  })
-}
-// Pass a basic text-only query
-runQuery("SELECT * FROM trades")
-
-function parameterizedQuery() {
-  pool.connect((err, client, release) => {
-    if (err) {
-      return console.error("Error acquiring client", err.stack)
-    }
-    // Construct a parameterized query
-    const text = "INSERT INTO trades VALUES($1, $2);"
-    const values = ["abc", 123]
-    client.query(text, values, (err, result) => {
-      release()
-      if (err) {
-        return console.error("Error executing query", err.stack)
-      }
-      console.log(`Inserted ${result.rowCount} row from parameterized query`)
-    })
-  })
-}
-
-function preparedStatement() {
-  for (let rows = 0; rows < 10; rows++) {
-    pool.connect((err, client, release) => {
-      if (err) {
-        return console.error("Error acquiring client", err.stack)
-      }
-      // Providing a 'name' field allows for prepared statements
+    for (let rows = 0; rows < 10; rows++) {
+      // Providing a 'name' field allows for prepared statements / bind variables
       const query = {
         name: "insert-values",
-        text: "INSERT INTO trades VALUES($1, $2);",
-        values: ["abc", rows],
-      }
-      client.query(query, (err, result) => {
-        if (err) {
-          return console.error("Error executing query", err.stack)
-        }
-        release()
-        console.log(`Inserted ${result.rowCount} row from prepared statement`)
-      })
-    })
+        text: "INSERT INTO trades VALUES($1, $2, $3);",
+        values: [Date.now() * 1000, "prep statement", rows],
+      };
+      const preparedStatement = await client.query(query);
+    }
+
+    await client.query("COMMIT");
+
+    const readAll = await client.query("SELECT * FROM trades");
+    console.log(readAll.rows);
+
+    await client.end();
+  } catch (e) {
+    console.log(e);
   }
-}
+};
 
-parameterizedQuery()
-preparedStatement()
-
-// Drain pool, disconnect clients, and shut down internal timers
-pool.end().then(() => console.log("pool has ended"))
+start();
 ```
 
 </TabItem>
@@ -533,38 +474,55 @@ pool.end().then(() => console.log("pool has ended"))
 package main
 
 import (
-	"database/sql"
+	"context"
 	"fmt"
-	_ "github.com/lib/pq"
+	"log"
+	"time"
+
+	"github.com/jackc/pgx/v4"
 )
 
-const (
-	host		 = "localhost"
-	port		 = 8812
-	user		 = "admin"
-	password = "quest"
-	dbname	 = "qdb"
-)
+var conn *pgx.Conn
+var err error
 
 func main() {
-	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
-
-	db, err := sql.Open("postgres", connStr)
+	ctx := context.Background()
+	conn, _ = pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
+	defer conn.Close(ctx)
+	// text-based query
+	_, err := conn.Exec(ctx, "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
-	defer db.Close()
 
-	rows, err := db.Query("insert into trades values ('abc', 123)")
-	checkErr(err)
-	defer rows.Close()
-	fmt.Println("Done")
-}
-
-func checkErr(err error) {
+	// Prepared statement has the name 'ps1'
+	_, err = conn.Prepare(ctx, "ps1", "INSERT INTO trades VALUES(to_timestamp($1, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'),$2, $3)")
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
+
+	for i := 0; i < 20; i++ {
+		timestamp := time.Now().Format("2006-01-02T15:04:05.000000")
+		// Execute 'ps1' statement with a string and the loop iterator value
+		_, err = conn.Exec(ctx, "ps1", timestamp, "go prepared statement", i+1)
+		if err != nil {
+			log.Fatalln(err)
+		}
+	}
+
+	rows, err := conn.Query(ctx, "SELECT * FROM trades")
+
+	fmt.Println("Reading from trades table:")
+	for rows.Next() {
+		var name string
+		var value int64
+		var ts time.Time
+		err = rows.Scan(&ts, &name, &value)
+		fmt.Println(ts, name, value)
+	}
+
+	err = conn.Close(ctx)
+
 }
 ```
 
@@ -576,30 +534,34 @@ The following example shows how to use parameterized queries and prepared statem
 
 ```rust
 use postgres::{Client, NoTls, Error};
+use chrono::{Utc};
 
 fn main() -> Result<(), Error> {
     let mut client = Client::connect("postgresql://admin:quest@localhost:8812/qdb", NoTls)?;
-    let name = "abc";
-    let val = 123;
 
-    // Parameterized Query
+    // Basic query
+    client.batch_execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")?;
+
+    // Parameterized query
+    let name: &str = "rust example";
+    let val: i32 = 123;
+    let utc = Utc::now();
     client.execute(
-        "INSERT INTO trades (name, value) VALUES ($1, $2)",
-        &[&name, &val],
+        "INSERT INTO trades VALUES($1,$2,$3)",
+        &[&utc.naive_local(), &name, &val],
     )?;
 
     // Prepared statement
     let mut txn = client.transaction()?;
-    let statement = txn.prepare("insert into trades values ($1,$2)")?;
-
-    for value in 0..100 {
-        txn.execute(&statement, &[&name, &value])?;
+    let statement = txn.prepare("insert into trades values ($1,$2,$3)")?;
+    for value in 0..10 {
+        let utc = Utc::now();
+        txn.execute(&statement, &[&utc.naive_local(), &name, &value])?;
     }
     txn.commit()?;
 
     println!("import finished");
     Ok(())
-
 }
 ```
 
@@ -621,7 +583,7 @@ class App {
     properties.setProperty("sslmode", "disable");
 
     final Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:8812/qdb", properties);
-    try (PreparedStatement preparedStatement = connection.prepareStatement("insert into trades (id, ref) values (?, ?)")) {
+    try (PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO TRADES (id, ref) VALUES (?, ?)")) {
       preparedStatement.setString(1, "abc");
       preparedStatement.setInt(2, 123);
       preparedStatement.execute();
@@ -638,30 +600,64 @@ class App {
 <TabItem value="c">
 
 ```c
-// compile with
-// g++ libpq_example.c -o libpq_example.exe  -I pgsql\include -L dev\pgsql\lib
-// -std=c++17  -lpthread -lpq
 #include <libpq-fe.h>
 #include <stdio.h>
 #include <stdlib.h>
-void do_exit(PGconn *conn) {
+#include <sys/time.h>
+#include <string.h>
+
+void do_exit(PGconn* conn)
+{
     PQfinish(conn);
     exit(1);
 }
-int main() {
-    PGconn *conn = PQconnectdb(
-            "host=localhost user=admin password=quest port=8812 dbname=testdb");
+int main()
+{
+    PGconn* conn = PQconnectdb(
+        "host=localhost user=admin password=quest port=8812 dbname=qdb");
     if (PQstatus(conn) == CONNECTION_BAD) {
         fprintf(stderr, "Connection to database failed: %s\n",
-                PQerrorMessage(conn));
+            PQerrorMessage(conn));
         do_exit(conn);
     }
-    PGresult *res = PQexec(conn, "INSERT INTO trades VALUES ('abc', 123);");
+    // Simple query
+    PGresult* res = PQexec(conn,
+        "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);");
     PQclear(res);
-    PQfinish(conn);
+
+    int i;
+    for (i = 0; i < 5; ++i) {
+        char timestamp[30];
+        char milis[7];
+        struct timeval tv;
+        time_t curtime;
+        gettimeofday(&tv, NULL);
+        strftime(timestamp, 30, "%Y-%m-%dT%H:%M:%S.", localtime(&tv.tv_sec));
+        snprintf(milis, 7, "%d", tv.tv_usec);
+        strcat(timestamp, milis);
+
+        const char* values[1] = { timestamp };
+        int lengths[1] = { strlen(timestamp) };
+        int binary[1] = { 0 };
+
+        res = PQexecParams(conn,
+            "INSERT INTO trades VALUES (to_timestamp($1, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'), 'timestamp', 123);",
+            1, NULL, values, lengths, binary, 0);
+    }
+    res = PQexec(conn, "COMMIT");
     printf("Done\n");
+    PQclear(res);
+    do_exit(conn);
     return 0;
 }
+```
+
+```shell title="Compiling the example"
+# g++ on win
+g++ libpq_example.c -o run_example.exe -I pgsql\include -L dev\pgsql\lib -std=c++17 -lpthread -lpq
+
+# gcc on MacOS with homebrew postgres install
+gcc libpq_example.c -o run_example.c -I pgsql/include -L /usr/local/Cellar/postgresql/13.1/lib/postgresql -lpthread -lpq
 ```
 
 </TabItem>
@@ -670,6 +666,7 @@ int main() {
 
 ```python
 import psycopg2
+import datetime
 try:
     connection = psycopg2.connect(user="admin",
                                   password="quest",
@@ -677,16 +674,28 @@ try:
                                   port="8812",
                                   database="qdb")
     cursor = connection.cursor()
-    postgreSQL_select_Query = "INSERT INTO trades VALUES ('abc', 123)"
-    cursor.execute(postgreSQL_select_Query)
-    print("Inserted row")
+
+    cursor.execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")
+
+    for x in range(10):
+      now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')
+      cursor.execute("""
+        INSERT INTO trades (ts, name, value)
+        VALUES (to_timestamp(%s, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'), %s, %s);
+        """, (now, "py-abc", 123))
+
+    connection.commit()
+
+    cursor.execute("SELECT * FROM trades;")
+    records = cursor.fetchall()
+    for row in records:
+        print(row)
+
 finally:
-    #closing database connection.
     if (connection):
         cursor.close()
         connection.close()
         print("PostgreSQL connection is closed")
-
 ```
 
 </TabItem>
