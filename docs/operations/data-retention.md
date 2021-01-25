@@ -19,7 +19,7 @@ data by date. For more details on partitioning, see the
 
 A simple approach to removing stale data is to drop data that has been
 partitioned by time. A table must have a
-[designated timestamp](/docs/concept/designated-timestamp) assigned and a
+[designated timestamp](/docs/concept/designated-timestamp/) assigned and a
 partitioning strategy specified during a CREATE TABLE operation to achieve this.
 
 :::note
@@ -49,7 +49,7 @@ partitions**!
 :::
 
 To drop partitions, users can use the
-[ALTER TABLE DROP PARTITION](/docs/reference/sql/alter-table-drop-partition)
+[ALTER TABLE DROP PARTITION](/docs/reference/sql/alter-table-drop-partition/)
 syntax. Partitions may be dropped by:
 
 - `DROP PARTITION LIST` - specifying a comma-separated list of partitions to
