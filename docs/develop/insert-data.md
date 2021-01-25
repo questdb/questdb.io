@@ -534,28 +534,31 @@ The following example shows how to use parameterized queries and prepared statem
 ```rust
 use postgres::{Client, NoTls, Error};
 use chrono::{Utc};
+use std::time::SystemTime;
 
 fn main() -> Result<(), Error> {
     let mut client = Client::connect("postgresql://admin:quest@localhost:8812/qdb", NoTls)?;
 
     // Basic query
-    client.batch_execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")?;
+    client.batch_execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);")?;
 
     // Parameterized query
     let name: &str = "rust example";
     let val: i32 = 123;
     let utc = Utc::now();
+    let sys_time = SystemTime::now();
     client.execute(
-        "INSERT INTO trades VALUES($1,$2,$3)",
-        &[&utc.naive_local(), &name, &val],
+        "INSERT INTO trades VALUES($1,$2,$3,$4)",
+        &[&utc.naive_local(), &sys_time, &name, &val],
     )?;
 
     // Prepared statement
     let mut txn = client.transaction()?;
-    let statement = txn.prepare("insert into trades values ($1,$2,$3)")?;
+    let statement = txn.prepare("insert into trades values ($1,$2,$3,$4)")?;
     for value in 0..10 {
         let utc = Utc::now();
-        txn.execute(&statement, &[&utc.naive_local(), &name, &value])?;
+        let sys_time = SystemTime::now();
+        txn.execute(&statement, &[&utc.naive_local(), &sys_time, &name, &value])?;
     }
     txn.commit()?;
 
