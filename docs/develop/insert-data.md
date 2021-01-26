@@ -395,6 +395,7 @@ func checkErr(err error) {
 
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
 that QuestDB exposes. This is accessible via port `8812`.
+
 <!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nodejs" values={[
@@ -410,13 +411,13 @@ that QuestDB exposes. This is accessible via port `8812`.
 
 <TabItem value="nodejs">
 
-These examples use the [`pg` package](https://www.npmjs.com/package/pg) which
+This example uses the [`pg` package](https://www.npmjs.com/package/pg) which
 allows for quickly building queries using PostgreSQL wire protocol. Details on
 the use of this package can be found on the
 [node-postgres documentation](https://node-postgres.com/).
 
 ```javascript title="Basic client connection"
-const { Client } = require("pg");
+const { Client } = require("pg")
 
 const start = async () => {
   try {
@@ -426,21 +427,21 @@ const start = async () => {
       password: "quest",
       port: 8812,
       user: "admin",
-    });
-    await client.connect();
+    })
+    await client.connect()
 
     const createTable = await client.query(
-      "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);"
-    );
-    console.log(createTable);
+      "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);",
+    )
+    console.log(createTable)
 
     const insertData = await client.query(
       "INSERT INTO trades VALUES($1, $2, $3, $4);",
-      [Date.now() * 1000, Date.now(), "node pg example", 123]
-    );
-    await client.query("COMMIT");
+      [Date.now() * 1000, Date.now(), "node pg example", 123],
+    )
+    await client.query("COMMIT")
 
-    console.log(insertData);
+    console.log(insertData)
 
     for (let rows = 0; rows < 10; rows++) {
       // Providing a 'name' field allows for prepared statements / bind variables
@@ -448,27 +449,31 @@ const start = async () => {
         name: "insert-values",
         text: "INSERT INTO trades VALUES($1, $2, $3, $4);",
         values: [Date.now() * 1000, Date.now(), "node pg prep statement", rows],
-      };
-      const preparedStatement = await client.query(query);
+      }
+      const preparedStatement = await client.query(query)
     }
 
-    await client.query("COMMIT");
+    await client.query("COMMIT")
 
-    const readAll = await client.query("SELECT * FROM trades");
-    console.log(readAll.rows);
+    const readAll = await client.query("SELECT * FROM trades")
+    console.log(readAll.rows)
 
-    await client.end();
+    await client.end()
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
-};
+}
 
-start();
+start()
 ```
 
 </TabItem>
 
 <TabItem value="go">
+
+This example uses the [pgx](https://github.com/jackc/pgx) driver and toolkit for
+postgres in Go. More details on the use of this toolkit can be found on the
+[GitHub repository for pgx](https://github.com/jackc/pgx/wiki/Getting-started-with-pgx).
 
 ```go
 package main
@@ -529,7 +534,8 @@ func main() {
 
 <TabItem value="rust">
 
-The following example shows how to use parameterized queries and prepared statements:
+The following example shows how to use parameterized queries and prepared
+statements:
 
 ```rust
 use postgres::{Client, NoTls, Error};
@@ -666,28 +672,34 @@ gcc libpq_example.c -o run_example.c -I pgsql/include -L /usr/local/Cellar/postg
 
 <TabItem value="python">
 
+This example uses the [psychopg2](https://github.com/psycopg/psycopg2) database
+adapter which does not support prepared statements (bind variables). This
+functionality is on the roadmap for the antecedent
+[psychopg3](https://github.com/psycopg/psycopg3/projects/1) adapter.
+
 ```python
-import psycopg2
-from datetime import datetime
+import psycopg2 as pg
+import datetime as dt
+
 try:
-    connection = psycopg2.connect(user="admin",
-                                  password="quest",
-                                  host="127.0.0.1",
-                                  port="8812",
-                                  database="qdb")
+    connection = pg.connect(user="admin",
+                            password="quest",
+                            host="127.0.0.1",
+                            port="8812",
+                            database="qdb")
     cursor = connection.cursor()
 
-    # Basic text query
+    # text-only query
     cursor.execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);")
 
     # insert 10 records
     for x in range(10):
-      now = datetime.utcnow()
-      date = datetime.now().date()
+      now = dt.datetime.utcnow()
+      date = dt.datetime.now().date()
       cursor.execute("""
         INSERT INTO trades
         VALUES (%s, %s, %s, %s);
-        """, (now, date, "python prep statement", x))
+        """, (now, date, "python example", x))
     # commit records
     connection.commit()
 
