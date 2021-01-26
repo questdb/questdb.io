@@ -668,7 +668,7 @@ gcc libpq_example.c -o run_example.c -I pgsql/include -L /usr/local/Cellar/postg
 
 ```python
 import psycopg2
-import datetime
+from datetime import datetime
 try:
     connection = psycopg2.connect(user="admin",
                                   password="quest",
@@ -677,15 +677,18 @@ try:
                                   database="qdb")
     cursor = connection.cursor()
 
-    cursor.execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, name STRING, value INT) timestamp(ts);")
+    # Basic text query
+    cursor.execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);")
 
+    # insert 10 records
     for x in range(10):
-      now = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%f')
+      now = datetime.utcnow()
+      date = datetime.now().date()
       cursor.execute("""
-        INSERT INTO trades (ts, name, value)
-        VALUES (to_timestamp(%s, 'yyyy-MM-ddTHH:mm:ss.SSSUUU'), %s, %s);
-        """, (now, "py-abc", 123))
-
+        INSERT INTO trades
+        VALUES (%s, %s, %s, %s);
+        """, (now, date, "python prep statement", x))
+    # commit records
     connection.commit()
 
     cursor.execute("SELECT * FROM trades;")
