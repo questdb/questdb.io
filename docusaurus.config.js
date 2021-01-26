@@ -21,6 +21,7 @@ const customFields = {
   stackoverflowUrl: "https://stackoverflow.com/questions/tagged/questdb",
   twitterUrl: "https://twitter.com/questdb",
   version: "5.0.5",
+  youtubeUrl: "https://www.youtube.com/channel/UChqKEmOyiD9c6QFx2mjKwiA"
 }
 
 function variable() {
@@ -205,12 +206,16 @@ const config = {
               to: customFields.slackUrl,
             },
             {
+              label: "Stack Overflow",
+              to: customFields.stackoverflowUrl,
+            },
+            {
               label: "Twitter",
               to: customFields.twitterUrl,
             },
             {
-              label: "Stack Overflow",
-              to: customFields.stackoverflowUrl,
+              label: "YouTube",
+              to: customFields.youtubeUrl,
             },
           ],
         },
@@ -252,12 +257,16 @@ const config = {
               href: customFields.slackUrl,
             },
             {
+              label: "Stack Overflow",
+              to: customFields.stackoverflowUrl,
+            },
+            {
               label: "Twitter",
               href: customFields.twitterUrl,
             },
             {
-              label: "Stack Overflow",
-              to: customFields.stackoverflowUrl,
+              label: "YouTube",
+              to: customFields.youtubeUrl,
             },
           ],
         },
