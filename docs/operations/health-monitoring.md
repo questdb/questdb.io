@@ -7,16 +7,16 @@ description:
 
 ## Overview
 
-Often, REST APIs will be situated behind a load balancer, which will require a
-monitor URL for its configuration. Having a load balancer query the actual
-QuestDB REST endpoints (on port `9000` by default) will cause internal logs to
-become excessively noisy. Additionally, configuring per-URL logging would
-increase server latency.
+REST APIs will often be situated behind a load balancer that uses a monitor URL
+for its configuration. Having a load balancer query the QuestDB REST endpoints
+(on port `9000` by default) will cause internal logs to become excessively
+noisy. Additionally, configuring per-URL logging would increase server latency.
 
-To provide a dedicated health check feature that would have no performance
-knock, we opted to decouple health checks from the REST endpoints used for
-querying and ingesting. For this purpose, a `min` HTTP server runs embedded in
-QuestDB and has a separate log and thread pool configuration.
+To provide a dedicated health check feature that would have no performance knock
+on other system components, we opted to decouple health checks from the REST
+endpoints used for querying and ingesting data. For this purpose, a `min` HTTP
+server runs embedded in a QuestDB instance and has a separate log and thread
+pool configuration.
 
 ## Usage
 
