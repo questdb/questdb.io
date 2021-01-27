@@ -11,7 +11,7 @@ Postgres wire protocol via multiple programming languages.
 
 ## Prerequisites
 
-QuestDB must running and accessible, you can do so from
+QuestDB must be running and accessible, you can do so from
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
 or [Homebrew](/docs/get-started/homebrew/) for macOS users.
 
@@ -64,7 +64,7 @@ Console has the following additional components:
 - An Import tab for uploading datasets as CSV files
 
 For more details on these components and general use of the console, see the
-[Web Console reference](/docs/reference/client/web-console/) page
+[Web Console reference](/docs/reference/client/web-console/) page.
 
 ## REST API
 
