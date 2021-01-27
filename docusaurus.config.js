@@ -21,7 +21,7 @@ const customFields = {
   stackoverflowUrl: "https://stackoverflow.com/questions/tagged/questdb",
   twitterUrl: "https://twitter.com/questdb",
   version: "5.0.5",
-  youtubeUrl: "https://www.youtube.com/channel/UChqKEmOyiD9c6QFx2mjKwiA"
+  videosUrl: "https://www.youtube.com/channel/UChqKEmOyiD9c6QFx2mjKwiA"
 }
 
 function variable() {
@@ -191,6 +191,10 @@ const config = {
               label: "Tutorials",
               to: "/tutorial",
             },
+            {
+              label: "Videos",
+              to: customFields.videosUrl,
+            },
           ],
         },
         {
@@ -212,10 +216,6 @@ const config = {
             {
               label: "Twitter",
               to: customFields.twitterUrl,
-            },
-            {
-              label: "YouTube",
-              to: customFields.youtubeUrl,
             },
           ],
         },
@@ -264,10 +264,6 @@ const config = {
               label: "Twitter",
               href: customFields.twitterUrl,
             },
-            {
-              label: "YouTube",
-              to: customFields.youtubeUrl,
-            },
           ],
         },
         {
@@ -284,6 +280,10 @@ const config = {
             {
               label: "Blog",
               to: "/blog/",
+            },
+            {
+              label: "Videos",
+              to: customFields.videosUrl,
             },
             {
               label: "Roadmap",
