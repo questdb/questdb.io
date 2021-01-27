@@ -242,8 +242,7 @@ func main() {
 	checkErr(err)
 	defer db.Close()
 
-
-		// Currently, we do not support queries with bind parameters in Go
+	// Currently, we do not support queries with bind parameters in Go
 	rows, err := db.Query("SELECT x FROM long_sequence(5);")
 	checkErr(err)
 	defer rows.Close()
@@ -264,6 +263,7 @@ func checkErr(err error) {
 		panic(err)
 	}
 }
+
 ```
 
 </TabItem>
