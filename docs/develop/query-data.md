@@ -129,38 +129,38 @@ run()
 package main
 
 import (
-  "fmt"
-  "io/ioutil"
-  "log"
-  "net/http"
-  "net/url"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"net/url"
 )
 
 func main() {
-  u, err := url.Parse("http://localhost:9000")
-  checkErr(err)
+	u, err := url.Parse("http://localhost:9000")
+	checkErr(err)
 
-  u.Path += "exec"
-  params := url.Values{}
-  params.Add("query", "SELECT x FROM long_sequence(5);")
-  u.RawQuery = params.Encode()
-  url := fmt.Sprintf("%v", u)
+	u.Path += "exec"
+	params := url.Values{}
+	params.Add("query", "SELECT x FROM long_sequence(5);")
+	u.RawQuery = params.Encode()
+	url := fmt.Sprintf("%v", u)
 
-  res, err := http.Get(url)
-  checkErr(err)
+	res, err := http.Get(url)
+	checkErr(err)
 
-  defer res.Body.Close()
+	defer res.Body.Close()
 
-  body, err := ioutil.ReadAll(res.Body)
-  checkErr(err)
+	body, err := ioutil.ReadAll(res.Body)
+	checkErr(err)
 
-  log.Println(string(body))
+	log.Println(string(body))
 }
 
 func checkErr(err error) {
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 }
 ```
 
@@ -173,9 +173,17 @@ func checkErr(err error) {
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
 that QuestDB exposes. This is accessible via port `8812`.
 
-<Tabs defaultValue="nodejs" values={[ { label: "NodeJS", value: "nodejs" }, {
-label: "Go", value: "go" }, { label: "Java", value: "java" }, { label: "C",
-value: "c" }, { label: "Python", value: "python" }, ]}>
+<!-- prettier-ignore-start -->
+
+<Tabs defaultValue="nodejs" values={[
+  { label: "NodeJS", value: "nodejs" },
+  { label: "Go", value: "go" },
+  { label: "Java", value: "java" },
+  { label: "C", value: "c" },
+  { label: "Python", value: "python" },
+]}>
+
+<!-- prettier-ignore-end -->
 
 <TabItem value="nodejs">
 
@@ -214,47 +222,47 @@ start()
 package main
 
 import (
-  "database/sql"
-  "fmt"
+	"database/sql"
+	"fmt"
 
-  _ "github.com/lib/pq"
+	_ "github.com/lib/pq"
 )
 
 const (
-  host     = "localhost"
-  port     = 8812
-  user     = "admin"
-  password = "quest"
-  dbname   = "qdb"
+	host		 = "localhost"
+	port		 = 8812
+	user		 = "admin"
+	password = "quest"
+	dbname	 = "qdb"
 )
 
 func main() {
-  connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
-  db, err := sql.Open("postgres", connStr)
-  checkErr(err)
-  defer db.Close()
+	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+	db, err := sql.Open("postgres", connStr)
+	checkErr(err)
+	defer db.Close()
 
 
-    // Currently, we do not support queries with bind parameters in Go
-  rows, err := db.Query("SELECT x FROM long_sequence(5);")
-  checkErr(err)
-  defer rows.Close()
+		// Currently, we do not support queries with bind parameters in Go
+	rows, err := db.Query("SELECT x FROM long_sequence(5);")
+	checkErr(err)
+	defer rows.Close()
 
-  for rows.Next() {
-    var num string
-    err = rows.Scan(&num)
-    checkErr(err)
-    fmt.Println(num)
-  }
+	for rows.Next() {
+		var num string
+		err = rows.Scan(&num)
+		checkErr(err)
+		fmt.Println(num)
+	}
 
-  err = rows.Err()
-  checkErr(err)
+	err = rows.Err()
+	checkErr(err)
 }
 
 func checkErr(err error) {
-  if err != nil {
-    panic(err)
-  }
+	if err != nil {
+		panic(err)
+	}
 }
 ```
 
