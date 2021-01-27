@@ -127,7 +127,7 @@ column of an imported dataset using the following steps:
 
 ### Custom import
 
-You can amend the import behavior with the following options. This will trigger
+You can amend the import behaviour with the following options. This will trigger
 to import the data again.
 
 | Option | Name                         | Description                                                        |
