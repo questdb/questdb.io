@@ -1,25 +1,78 @@
 ---
 title: Query data
 description:
-  This page has instructions demonstrating how to query data from QuestDB with
-  NodeJS, Java, Go or cURL. The examples show the REST API as well as the
-  InfluxDB and Postgres integrations.
+  This page describes how to query data from QuestDB with NodeJS, Java, Go, and
+  cURL. The examples show the Web Console, REST API, and Postgres wire protocol.
 ---
 
-This page shows how to query data from QuestDB using different programming
-languages or tools.
+This page describes how to query data from QuestDB using the embedded Web
+Console, make requests towards the REST API endpoints that QuestDB exposes, and
+Postgres wire protocol via multiple programming languages.
 
 ## Prerequisites
 
-Make sure you have QuestDB running and accessible, you can do so from
+QuestDB must be running and accessible, you can do so from
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
 or [Homebrew](/docs/get-started/homebrew/) for macOS users.
+
+## Web Console
+
+QuestDB has an embedded Web Console available at http://[server-address]:9000.
+When running locally, this is accessible at
+[http://localhost:9000](http://localhost:9000). To query data from the web
+console, SQL statements can be written in the code editor and executed by
+clicking **RUN**.
+
+To generate some data and query the results to demonstrate the functionality of
+the code editor, the following example SQL can be used:
+
+```questdb-sql title="Creating and querying a table partitioned by day"
+CREATE TABLE my_table (timestamp TIMESTAMP, x LONG) timestamp(timestamp) PARTITION BY DAY;
+
+INSERT INTO my_table
+SELECT timestamp_sequence(
+    to_timestamp('2021-01-01T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),100000L * 36000), x
+FROM long_sequence(120);
+
+--`SELECT * FROM` is optional syntax
+my_table;
+```
+
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="Screenshot of the Web Console"
+  height={375}
+  small
+  src="/img/docs/console/exampleQuery.png"
+  width={500}
+/>
+
+:::info
+
+The new table has a designated timestamp and is partitioned by day so that stale
+data can be deleted to save disk space. More details on this approach can be
+found on the [Data retention](/docs/operations/data-retention/) page.
+
+:::
+
+Aside from the Code Editor for writing and executing SQL queries, the Web
+Console has the following additional components:
+
+- A Schema Explorer which displays tables and their schemas
+- A Visualization panel for viewing query results as tables or graphs
+- An Import tab for uploading datasets as CSV files
+
+For more details on these components and general use of the console, see the
+[Web Console reference](/docs/reference/client/web-console/) page.
 
 ## REST API
 
 You can query data using the [REST API](/docs/reference/api/rest/), this will
 work with a very wide range of libraries and tools. The REST API is accessible
 on port `9000`.
+
+<!-- prettier-ignore-start -->
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
@@ -30,9 +83,9 @@ import TabItem from "@theme/TabItem"
   { label: "Go", value: "go" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="curl">
-
 
 ```shell
 curl -G \
@@ -42,9 +95,7 @@ curl -G \
 
 </TabItem>
 
-
 <TabItem value="nodejs">
-
 
 ```javascript
 const fetch = require("node-fetch")
@@ -72,9 +123,7 @@ run()
 
 </TabItem>
 
-
 <TabItem value="go">
-
 
 ```go
 package main
@@ -117,14 +166,14 @@ func checkErr(err error) {
 
 </TabItem>
 
-
 </Tabs>
-
 
 ## Postgres compatibility
 
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
 that QuestDB exposes. This is accessible via port `8812`.
+
+<!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
@@ -134,9 +183,9 @@ that QuestDB exposes. This is accessible via port `8812`.
   { label: "Python", value: "python" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="nodejs">
-
 
 ```javascript
 const { Client } = require("pg")
@@ -167,9 +216,7 @@ start()
 
 </TabItem>
 
-
 <TabItem value="go">
-
 
 ```go
 package main
@@ -182,11 +229,11 @@ import (
 )
 
 const (
-	host     = "localhost"
-	port     = 8812
-	user     = "admin"
+	host		 = "localhost"
+	port		 = 8812
+	user		 = "admin"
 	password = "quest"
-	dbname   = "qdb"
+	dbname	 = "qdb"
 )
 
 func main() {
@@ -195,8 +242,7 @@ func main() {
 	checkErr(err)
 	defer db.Close()
 
-
-    // Currently, we do not support queries with bind parameters in Go
+	// Currently, we do not support queries with bind parameters in Go
 	rows, err := db.Query("SELECT x FROM long_sequence(5);")
 	checkErr(err)
 	defer rows.Close()
@@ -217,13 +263,12 @@ func checkErr(err error) {
 		panic(err)
 	}
 }
+
 ```
 
 </TabItem>
 
-
 <TabItem value="c">
-
 
 ```c
 // compile with
@@ -262,9 +307,7 @@ int main() {
 
 </TabItem>
 
-
 <TabItem value="java">
-
 
 ```java
 package com.myco;
@@ -295,9 +338,7 @@ public class App {
 
 </TabItem>
 
-
 <TabItem value="python">
-
 
 ```python
 import psycopg2
@@ -327,6 +368,5 @@ finally:
 ```
 
 </TabItem>
-
 
 </Tabs>
