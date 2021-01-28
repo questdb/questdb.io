@@ -16,6 +16,55 @@ one of the guides to get up and running using either
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
 or [Homebrew](/docs/get-started/homebrew/) for macOS users.
 
+## Web Console
+
+By default, QuestDB has an embedded Web Console running at http://[server-address]:9000.
+When running locally, this is accessible at
+[http://localhost:9000](http://localhost:9000).
+
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="Screenshot of the Web Console"
+  height={375}
+  small
+  src="/img/docs/console/exampleQuery.png"
+  width={500}
+/>
+
+To generate some data and query the results to demonstrate the functionality of
+the code editor, the following example SQL can be used:
+
+```questdb-sql title="Creating and querying a table partitioned by day"
+CREATE TABLE my_table (timestamp TIMESTAMP, x LONG) timestamp(timestamp) PARTITION BY DAY;
+
+INSERT INTO my_table
+SELECT timestamp_sequence(
+    to_timestamp('2021-01-01T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),100000L * 36000), x
+FROM long_sequence(120);
+
+--`SELECT * FROM` is optional syntax
+my_table;
+```
+
+:::info
+
+The new table has a designated timestamp and is partitioned by day so that stale
+data can be deleted to save disk space. More details on this approach can be
+found on the [Data retention](/docs/operations/data-retention/) page.
+
+:::
+
+Aside from the Code Editor for writing and executing SQL queries, the Web
+Console has the following additional components:
+
+- A Schema Explorer which displays tables and their schemas
+- A Visualization panel for viewing query results as tables or graphs
+- An Import tab for uploading datasets as CSV files
+
+For details on importing from CSV and using these components, refer to the
+[Web Console reference](/docs/reference/client/web-console/) page.
+
 ## REST API
 
 QuestDB exposes a REST API for compatibility with a wide range of libraries and
@@ -573,8 +622,3 @@ finally:
 </TabItem>
 
 </Tabs>
-
-## Web Console
-
-Our Web Console has an import function. You can find out more about this on the
-[dedicated page](/docs/reference/client/web-console/#import).
