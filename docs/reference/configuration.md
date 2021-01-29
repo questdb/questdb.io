@@ -98,14 +98,17 @@ the java option `-Debug` or setting the environment variable `QDB_DEBUG=true`.
 
 ### Minimal HTTP server
 
-This server is useful for doing health checks on QuestDB over http. It will respond to every request with HTTP 200 unless QuestDB process dies.
+This server runs embedded in a QuestDB instance by default and enables health
+checks of an instance via HTTP. It responds to all requests with a HTTP status code
+of `200` unless the QuestDB process dies.
 
-| Property                                       | Default        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| http.min.enabled                               | true           | Enable Minimal HTTP server.                                                                                    
-| http.min.bind.to                               | 0.0.0.0:9003   | IPv4 address and port of the server. 0 means it will bind to all network interfaces. Otherwise IP address must by one of the existing network adaptors
+Examples of how to use this server, along with expected responses, can be found
+on the [health monitoring page](/docs/operations/health-monitoring/).
 
-
+| Property         | Default      | Description                                                                                                                                            |
+| ---------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| http.min.enabled | true         | Enable Minimal HTTP server.                                                                                                                            |
+| http.min.bind.to | 0.0.0.0:9003 | IPv4 address and port of the server. 0 means it will bind to all network interfaces. Otherwise IP address must by one of the existing network adaptors |
 
 ### HTTP server
 

@@ -22,7 +22,7 @@ const quotes: Quote[] = [
       width: 100,
     },
     text:
-      "With QuestDB's Keyturn solution in Docker, we have been able to quickly build a solid foundation for our billions of measurement data acquisition.",
+      "With QuestDB's turnkey solution in Docker, we quickly built a solid foundation for a data acquisition pipeline with billions of measurements.",
     author: "Andreas Landmann",
     role: "Director of Research and Technology",
     company: "DATRON AG",

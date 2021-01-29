@@ -95,55 +95,55 @@ run()
 package main
 
 import (
-	"bytes"
-	"fmt"
-	"io"
-	"io/ioutil"
-	"log"
-	"mime/multipart"
-	"net/http"
-	"net/url"
-	"os"
+  "bytes"
+  "fmt"
+  "io"
+  "io/ioutil"
+  "log"
+  "mime/multipart"
+  "net/http"
+  "net/url"
+  "os"
 )
 
 func main() {
-	u, err := url.Parse("http://localhost:9000")
-	checkErr(err)
-	u.Path += "imp"
-	url := fmt.Sprintf("%v", u)
-	fileName := "/path/to/data.csv"
-	file, err := os.Open(fileName)
-	checkErr(err)
+  u, err := url.Parse("http://localhost:9000")
+  checkErr(err)
+  u.Path += "imp"
+  url := fmt.Sprintf("%v", u)
+  fileName := "/path/to/data.csv"
+  file, err := os.Open(fileName)
+  checkErr(err)
 
-	defer file.Close()
+  defer file.Close()
 
-	buf := new(bytes.Buffer)
-	writer := multipart.NewWriter(buf)
-	uploadFile, _ := writer.CreateFormFile("data", "data.csv")
-	_, err = io.Copy(uploadFile, file)
-	checkErr(err)
-	writer.Close()
+  buf := new(bytes.Buffer)
+  writer := multipart.NewWriter(buf)
+  uploadFile, _ := writer.CreateFormFile("data", "data.csv")
+  _, err = io.Copy(uploadFile, file)
+  checkErr(err)
+  writer.Close()
 
-	req, err := http.NewRequest(http.MethodPut, url, buf)
-	checkErr(err)
-	req.Header.Add("Content-Type", writer.FormDataContentType())
+  req, err := http.NewRequest(http.MethodPut, url, buf)
+  checkErr(err)
+  req.Header.Add("Content-Type", writer.FormDataContentType())
 
-	client := &http.Client{}
-	res, err := client.Do(req)
-	checkErr(err)
+  client := &http.Client{}
+  res, err := client.Do(req)
+  checkErr(err)
 
-	defer res.Body.Close()
+  defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
-	checkErr(err)
+  body, err := ioutil.ReadAll(res.Body)
+  checkErr(err)
 
-	log.Println(string(body))
+  log.Println(string(body))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+  if err != nil {
+    panic(err)
+  }
 }
 ```
 
@@ -243,47 +243,47 @@ insertData()
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"net/url"
+  "fmt"
+  "io/ioutil"
+  "log"
+  "net/http"
+  "net/url"
 )
 
 func main() {
-	u, err := url.Parse("http://localhost:9000")
-	checkErr(err)
+  u, err := url.Parse("http://localhost:9000")
+  checkErr(err)
 
-	u.Path += "exec"
-	params := url.Values{}
-	params.Add("query", `
-		CREATE TABLE IF NOT EXISTS
-			trades (name STRING, value INT);
-		INSERT INTO
-			trades
-		VALUES(
-			"abc",
-			123456
-		);
-	`)
-	u.RawQuery = params.Encode()
-	url := fmt.Sprintf("%v", u)
+  u.Path += "exec"
+  params := url.Values{}
+  params.Add("query", `
+    CREATE TABLE IF NOT EXISTS
+      trades (name STRING, value INT);
+    INSERT INTO
+      trades
+    VALUES(
+      "abc",
+      123456
+    );
+  `)
+  u.RawQuery = params.Encode()
+  url := fmt.Sprintf("%v", u)
 
-	res, err := http.Get(url)
-	checkErr(err)
+  res, err := http.Get(url)
+  checkErr(err)
 
-	defer res.Body.Close()
+  defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
-	checkErr(err)
+  body, err := ioutil.ReadAll(res.Body)
+  checkErr(err)
 
-	log.Println(string(body))
+  log.Println(string(body))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+  if err != nil {
+    panic(err)
+  }
 }
 ```
 
@@ -350,40 +350,40 @@ run()
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net"
-	"time"
+  "fmt"
+  "io/ioutil"
+  "net"
+  "time"
 )
 
 func main() {
-	host := "127.0.0.1:9009"
-	tcpAddr, err := net.ResolveTCPAddr("tcp4", host)
-	checkErr(err)
-	rows := [2]string{
-		fmt.Sprintf("trades,name=test_ilp1 value=12.4 %d", time.Now().UnixNano()),
-		fmt.Sprintf("trades,name=test_ilp2 value=11.4 %d", time.Now().UnixNano()),
-	}
+  host := "127.0.0.1:9009"
+  tcpAddr, err := net.ResolveTCPAddr("tcp4", host)
+  checkErr(err)
+  rows := [2]string{
+    fmt.Sprintf("trades,name=test_ilp1 value=12.4 %d", time.Now().UnixNano()),
+    fmt.Sprintf("trades,name=test_ilp2 value=11.4 %d", time.Now().UnixNano()),
+  }
 
-	conn, err := net.DialTCP("tcp", nil, tcpAddr)
-	checkErr(err)
-	defer conn.Close()
+  conn, err := net.DialTCP("tcp", nil, tcpAddr)
+  checkErr(err)
+  defer conn.Close()
 
-	for _, s := range rows {
-		_, err = conn.Write([]byte(fmt.Sprintf("%s\n", s)))
-		checkErr(err)
-	}
+  for _, s := range rows {
+    _, err = conn.Write([]byte(fmt.Sprintf("%s\n", s)))
+    checkErr(err)
+  }
 
-	result, err := ioutil.ReadAll(conn)
-	checkErr(err)
+  result, err := ioutil.ReadAll(conn)
+  checkErr(err)
 
-	fmt.Println(string(result))
+  fmt.Println(string(result))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+  if err != nil {
+    panic(err)
+  }
 }
 ```
 
@@ -479,54 +479,54 @@ postgres in Go. More details on the use of this toolkit can be found on the
 package main
 
 import (
-	"context"
-	"fmt"
-	"log"
-	"time"
+  "context"
+  "fmt"
+  "log"
+  "time"
 
-	"github.com/jackc/pgx/v4"
+  "github.com/jackc/pgx/v4"
 )
 
 var conn *pgx.Conn
 var err error
 
 func main() {
-	ctx := context.Background()
-	conn, _ = pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
-	defer conn.Close(ctx)
+  ctx := context.Background()
+  conn, _ = pgx.Connect(ctx, "postgresql://admin:quest@localhost:8812/qdb")
+  defer conn.Close(ctx)
 
-	// text-based query
-	_, err := conn.Exec(ctx, "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);")
-	if err != nil {
-		log.Fatalln(err)
-	}
+  // text-based query
+  _, err := conn.Exec(ctx, "CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);")
+  if err != nil {
+    log.Fatalln(err)
+  }
 
-	// Prepared statement given the name 'ps1'
-	_, err = conn.Prepare(ctx, "ps1", "INSERT INTO trades VALUES($1,$2,$3,$4)")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	for i := 0; i < 10; i++ {
-		// Execute 'ps1' statement with a string and the loop iterator value
-		_, err = conn.Exec(ctx, "ps1", time.Now(), time.Now(), "go prepared statement", i+1)
-		if err != nil {
-			log.Fatalln(err)
-		}
-	}
+  // Prepared statement given the name 'ps1'
+  _, err = conn.Prepare(ctx, "ps1", "INSERT INTO trades VALUES($1,$2,$3,$4)")
+  if err != nil {
+    log.Fatalln(err)
+  }
+  for i := 0; i < 10; i++ {
+    // Execute 'ps1' statement with a string and the loop iterator value
+    _, err = conn.Exec(ctx, "ps1", time.Now(), time.Now(), "go prepared statement", i+1)
+    if err != nil {
+      log.Fatalln(err)
+    }
+  }
 
-	// Read all rows from table
-	rows, err := conn.Query(ctx, "SELECT * FROM trades")
-	fmt.Println("Reading from trades table:")
-	for rows.Next() {
-		var name string
-		var value int64
-		var ts time.Time
-		var date time.Time
-		err = rows.Scan(&ts, &date, &name, &value)
-		fmt.Println(ts, date, name, value)
-	}
+  // Read all rows from table
+  rows, err := conn.Query(ctx, "SELECT * FROM trades")
+  fmt.Println("Reading from trades table:")
+  for rows.Next() {
+    var name string
+    var value int64
+    var ts time.Time
+    var date time.Time
+    err = rows.Scan(&ts, &date, &name, &value)
+    fmt.Println(ts, date, name, value)
+  }
 
-	err = conn.Close(ctx)
+  err = conn.Close(ctx)
 }
 ```
 
