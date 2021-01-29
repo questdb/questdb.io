@@ -42,8 +42,15 @@ queries.
 
 ## Operations
 
-In this section you will find resources regarding the
-[deployment](/docs/operations/deployment/) of QuestDB.
+This section contains resources for managing QuestDB instances and has dedicated
+pages for the following topics:
+
+- [Deployment](/docs/operations/deployment/) details with information for
+  running locally, on Kubernetes or the AWS AMI
+- [Data retention](/docs/operations/data-retention/) strategy to delete old data
+  and save disk space
+- [Health monitoring](/docs/operations/health-monitoring/) endpoint for
+  determining the status of the instance
 
 ## Reference
 

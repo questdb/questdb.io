@@ -1,25 +1,48 @@
 ---
 title: Query data
 description:
-  This page has instructions demonstrating how to query data from QuestDB with
-  NodeJS, Java, Go or cURL. The examples show the REST API as well as the
-  InfluxDB and Postgres integrations.
+  This page describes how to query data from QuestDB with NodeJS, Java, Go, and
+  cURL. The examples show the Web Console, REST API, and Postgres wire protocol.
 ---
 
-This page shows how to query data from QuestDB using different programming
-languages or tools.
+This page describes how to query data from QuestDB using the embedded Web
+Console, make requests towards the REST API endpoints that QuestDB exposes, and
+Postgres wire protocol via multiple programming languages.
 
 ## Prerequisites
 
-Make sure you have QuestDB running and accessible, you can do so from
+QuestDB must be running and accessible, you can do so from
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
 or [Homebrew](/docs/get-started/homebrew/) for macOS users.
+
+## Web Console
+
+Details for inserting data with the Web Console is covered on the
+[insert data](/docs/develop/insert-data#web-console) page. To query data from
+the web console, SQL statements can be written in the code editor and executed
+by clicking **RUN**.
+
+```questdb-sql title="Listing tables and querying a table"
+SHOW TABLES;
+SELECT * FROM my_table;
+
+--Note that `SELECT * FROM` is optional
+my_table;
+```
+
+Aside from the Code Editor, the Web Console includes a Visualization panel for
+viewing query results as tables or graphs and an Import tab for uploading
+datasets as CSV files. For more details on these components and general use of
+the console, see the
+[Web Console reference](/docs/reference/client/web-console/) page.
 
 ## REST API
 
 You can query data using the [REST API](/docs/reference/api/rest/), this will
 work with a very wide range of libraries and tools. The REST API is accessible
 on port `9000`.
+
+<!-- prettier-ignore-start -->
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
@@ -30,9 +53,9 @@ import TabItem from "@theme/TabItem"
   { label: "Go", value: "go" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="curl">
-
 
 ```shell
 curl -G \
@@ -42,9 +65,7 @@ curl -G \
 
 </TabItem>
 
-
 <TabItem value="nodejs">
-
 
 ```javascript
 const fetch = require("node-fetch")
@@ -72,59 +93,57 @@ run()
 
 </TabItem>
 
-
 <TabItem value="go">
-
 
 ```go
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"net/url"
+  "fmt"
+  "io/ioutil"
+  "log"
+  "net/http"
+  "net/url"
 )
 
 func main() {
-	u, err := url.Parse("http://localhost:9000")
-	checkErr(err)
+  u, err := url.Parse("http://localhost:9000")
+  checkErr(err)
 
-	u.Path += "exec"
-	params := url.Values{}
-	params.Add("query", "SELECT x FROM long_sequence(5);")
-	u.RawQuery = params.Encode()
-	url := fmt.Sprintf("%v", u)
+  u.Path += "exec"
+  params := url.Values{}
+  params.Add("query", "SELECT x FROM long_sequence(5);")
+  u.RawQuery = params.Encode()
+  url := fmt.Sprintf("%v", u)
 
-	res, err := http.Get(url)
-	checkErr(err)
+  res, err := http.Get(url)
+  checkErr(err)
 
-	defer res.Body.Close()
+  defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
-	checkErr(err)
+  body, err := ioutil.ReadAll(res.Body)
+  checkErr(err)
 
-	log.Println(string(body))
+  log.Println(string(body))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+  if err != nil {
+    panic(err)
+  }
 }
 ```
 
 </TabItem>
 
-
 </Tabs>
-
 
 ## Postgres compatibility
 
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
 that QuestDB exposes. This is accessible via port `8812`.
+
+<!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
@@ -134,9 +153,9 @@ that QuestDB exposes. This is accessible via port `8812`.
   { label: "Python", value: "python" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="nodejs">
-
 
 ```javascript
 const { Client } = require("pg")
@@ -167,63 +186,59 @@ start()
 
 </TabItem>
 
-
 <TabItem value="go">
-
 
 ```go
 package main
 
 import (
-	"database/sql"
-	"fmt"
+  "database/sql"
+  "fmt"
 
-	_ "github.com/lib/pq"
+  _ "github.com/lib/pq"
 )
 
 const (
-	host     = "localhost"
-	port     = 8812
-	user     = "admin"
-	password = "quest"
-	dbname   = "qdb"
+  host     = "localhost"
+  port     = 8812
+  user     = "admin"
+  password = "quest"
+  dbname   = "qdb"
 )
 
 func main() {
-	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
-	db, err := sql.Open("postgres", connStr)
-	checkErr(err)
-	defer db.Close()
+  connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+  db, err := sql.Open("postgres", connStr)
+  checkErr(err)
+  defer db.Close()
 
+  // Currently, we do not support queries with bind parameters in Go
+  rows, err := db.Query("SELECT x FROM long_sequence(5);")
+  checkErr(err)
+  defer rows.Close()
 
-    // Currently, we do not support queries with bind parameters in Go
-	rows, err := db.Query("SELECT x FROM long_sequence(5);")
-	checkErr(err)
-	defer rows.Close()
+  for rows.Next() {
+    var num string
+    err = rows.Scan(&num)
+    checkErr(err)
+    fmt.Println(num)
+  }
 
-	for rows.Next() {
-		var num string
-		err = rows.Scan(&num)
-		checkErr(err)
-		fmt.Println(num)
-	}
-
-	err = rows.Err()
-	checkErr(err)
+  err = rows.Err()
+  checkErr(err)
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+  if err != nil {
+    panic(err)
+  }
 }
+
 ```
 
 </TabItem>
 
-
 <TabItem value="c">
-
 
 ```c
 // compile with
@@ -262,9 +277,7 @@ int main() {
 
 </TabItem>
 
-
 <TabItem value="java">
-
 
 ```java
 package com.myco;
@@ -295,9 +308,7 @@ public class App {
 
 </TabItem>
 
-
 <TabItem value="python">
-
 
 ```python
 import psycopg2
@@ -327,6 +338,5 @@ finally:
 ```
 
 </TabItem>
-
 
 </Tabs>
