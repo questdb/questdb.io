@@ -1,19 +1,21 @@
 ---
 title: Telegraf
-description: Learn how to use Telegraf to send data to QuestDB.
+description:
+  Learn how to use Telegraf to collect system metrics and send this data to
+  QuestDB.
 ---
 
-Telegraf is a client for collecting metrics from many types of inputs and has
-support for and sending it on to various outputs. It is plugin-driven for the
-collection and delivery of data, so it is easily configurable and customizable.
-Telegraf is compiled as a standalone binary, which means there are no external
-dependencies required to manage.
+Telegraf is a client for collecting metrics from many inputs and has support for
+and sending it on to various outputs. It is plugin-driven for the collection and
+delivery of data, so it is easily configurable and customizable. Telegraf is
+compiled as a standalone binary, which means there are no external dependencies
+required to manage.
 
 ## Prerequisites
 
-- **QuestDB** must be running and accessible, you can do so from
+- **QuestDB** must be running and accessible. You can do so from
   [Docker](/docs/get-started/docker/), the
-  [binaries](/docs/get-started/binaries/) or
+  [binaries](/docs/get-started/binaries/), or
   [Homebrew](/docs/get-started/homebrew/) for macOS users.
 
 - **Telegraf** can be installed using
@@ -24,19 +26,19 @@ dependencies required to manage.
 
 ## Configuring Telegraf
 
-As Telegraf is a plugin-driven agent, the configutation file provided when
+As Telegraf is a plugin-driven agent, the configuration file provided when
 Telegraf is launched will determine which metrics to collect, if and how
-processing of the metrics should be performed and the destination outputs.
+processing of the metrics should be performed, and the destination outputs.
 
 The default location that Telegraf can pick up configuration files is
-`/usr/local/etc/` on MacOS and `/etc/telegraf/` on Linux. After installation,
+`/usr/local/etc/` on macOS and `/etc/telegraf/` on Linux. After installation,
 default configuration files are in the following locations:
 
 - Homebrew install: `/usr/local/etc/telegraf.conf`
 - Linux, Deb and RPM: `/etc/telegraf/telegraf.conf`
 
-Full configurations files for writing over TCP and UDP are provided below and
-can be placed in these directories and picked up by Telegraf. To view a
+Full configuration files for writing over TCP and UDP are provided below and can
+be placed in these directories and picked up by Telegraf. To view a
 comprehensive configuration file with example inputs and outputs, the following
 command can generate an example:
 
@@ -168,14 +170,17 @@ Telegraf should report the following
 
 ## Verifying the integration
 
-1. Navigate to the QuestDB Web Console at [http://127.0.0.1:9000/](http://127.0.0.1:9000/).
-The Schema Navigator in the top left should display two new tables:
-  * `cpu` generated from `inputs.cpu`
-  * `mem` generated from `inputs.mem`
-2. Type `cpu` in the query editor and click __RUN__
+1. Navigate to the QuestDB Web Console at
+   [http://127.0.0.1:9000/](http://127.0.0.1:9000/). The Schema Navigator in the
+   top left should display two new tables:
 
-The `cpu` table will have a column for each metric collected by the Telegraf plugin for monitoring memory:
+- `cpu` generated from `inputs.cpu`
+- `mem` generated from `inputs.mem`
 
+2. Type `cpu` in the query editor and click **RUN**
+
+The `cpu` table will have a column for each metric collected by the Telegraf
+plugin for monitoring memory:
 
 import Screenshot from "@theme/Screenshot"
 
@@ -187,25 +192,24 @@ import Screenshot from "@theme/Screenshot"
   width={500}
 />
 
-
 ### Graphing system CPU
 
-To create a graph which visualizes CPU usage over time, run the following example query:
+To create a graph that visualizes CPU usage over time, run the following example
+query:
 
 ```
-SELECT 
+SELECT
 avg(usage_system) cpu_average,
 max(usage_system) cpu_max,
-timestamp 
+timestamp
 FROM cpu SAMPLE BY 1m;
 ```
 
-Select the __Chart__ tab and set the following values:
+Select the **Chart** tab and set the following values:
 
 - Chart type **line**
 - Labels **timestamp**
 - Series **cpu_average** and **cpu_max**
-
 
 <Screenshot
   alt="Screenshot of the Web Console"
@@ -214,4 +218,3 @@ Select the __Chart__ tab and set the following values:
   src="/img/docs/telegraf/cpu_stats_chart.png"
   width={500}
 />
-
