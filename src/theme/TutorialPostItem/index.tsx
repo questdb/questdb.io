@@ -27,7 +27,7 @@ function TutorialPostItem({
 }: Props) {
   const { permalink } = metadata
   const { content, description, title, image, keywords } = frontMatter
-  const imageUrl = useBaseUrl(image ?? "/img/og.png")
+  const imageUrl = useBaseUrl(image ?? "/img/tutorial/placeholder.png")
 
   return (
     <>
@@ -56,10 +56,7 @@ function TutorialPostItem({
         >
           <img
             alt={title}
-            className={clsx(
-              { [styles["article__image--contain"]]: image == null },
-              styles.article__image,
-            )}
+            className={clsx(styles.article__image)}
             src={imageUrl}
           />
 

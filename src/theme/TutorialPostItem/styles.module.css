@@ -32,7 +32,3 @@
   border-top-right-radius: var(--ifm-global-border-radius);
   background: var(--palette-questdb-black);
 }
-
-.article__image--contain {
-  object-fit: contain;
-}

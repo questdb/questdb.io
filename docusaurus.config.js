@@ -76,11 +76,6 @@ const config = {
         pwaHead: [
           {
             tagName: "link",
-            rel: "icon",
-            href: "/img/favicon.png",
-          },
-          {
-            tagName: "link",
             rel: "manifest",
             href: "/manifest.webmanifest",
           },
@@ -97,27 +92,6 @@ const config = {
           {
             tagName: "meta",
             name: "apple-mobile-web-app-status-bar-style",
-            content: "#21222c",
-          },
-          {
-            tagName: "link",
-            rel: "apple-touch-icon",
-            href: "/img/favicon.png",
-          },
-          {
-            tagName: "link",
-            rel: "mask-icon",
-            href: "/img/favicon.png",
-            content: "#fff",
-          },
-          {
-            tagName: "meta",
-            name: "msapplication-TileImage",
-            content: "/img/favicon.png",
-          },
-          {
-            tagName: "meta",
-            name: "msapplication-TileColor",
             content: "#21222c",
           },
         ],
@@ -140,7 +114,7 @@ const config = {
     },
     prism: {
       defaultLanguage: "questdb-sql",
-      additionalLanguages: ['rust'],
+      additionalLanguages: ["rust"],
       theme: require("./src/internals/prism-dracula"),
     },
     algolia: {
