@@ -190,11 +190,10 @@ plugin for monitoring memory:
 import Screenshot from "@theme/Screenshot"
 
 <Screenshot
-  alt="Screenshot of the Web Console"
-  height={375}
-  small
+  alt="Querying CPU metrics using the QuestDB Web Console"
   src="/img/docs/telegraf/select_from_cpu.png"
-  width={500}
+  width={745}
+  height={375}
 />
 
 ### Graphing system CPU
@@ -217,9 +216,8 @@ Select the **Chart** tab and set the following values:
 - Series **cpu_average** and **cpu_max**
 
 <Screenshot
-  alt="Screenshot of the Web Console"
-  height={375}
-  small
+  alt="Graphing CPU metrics using the QuestDB Web Console"
   src="/img/docs/telegraf/cpu_stats_chart.png"
-  width={500}
+  width={745}
+  height={375}
 />
