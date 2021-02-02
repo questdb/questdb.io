@@ -80,8 +80,7 @@ WHERE date_time > sysdate() - 60000000L;
 ### Description
 
 Calculates `UTC timestamp` using system's real time clock. 
-Unlike sysdatetime() it does not change within the query execution should be used in 
-WHERE clause to filter designated timestamp column relative to current time.
+Unlike sysdatetime() it does not change within the query execution timeframe and should be used in WHERE clause to filter designated timestamp column relative to current time.
 ```SELECT now() FROM long_sequence(200)``` will return same timestamp for all rows while
 ```SELECT systimestamp() FROM long_sequence(200)``` will have different values.
 
