@@ -33,7 +33,6 @@ VALUES(systimestamp(), 123.5);
 | --------------------------- | ------- |
 | 2020-01-02T19:28:48.727516Z | 123.5   |
 
-
 ## sysdate
 
 `sysdate()` - returns the timestamp of the host system as a `date` with
@@ -71,7 +70,7 @@ WHERE date_time > sysdate() - 60000000L;
 
 ## now
 
-`now()` - offset from UTC Epoch in microseconds. 
+`now()` - offset from UTC Epoch in microseconds.
 
 ### Arguments
 
@@ -79,11 +78,13 @@ WHERE date_time > sysdate() - 60000000L;
 
 ### Description
 
-Calculates `UTC timestamp` using system's real time clock. 
-Unlike sysdatetime() it does not change within the query execution should be used in 
-WHERE clause to filter designated timestamp column relative to current time.
-```SELECT now() FROM long_sequence(200)``` will return same timestamp for all rows while
-```SELECT systimestamp() FROM long_sequence(200)``` will have different values.
+Calculates `UTC timestamp` using system's real time clock. Unlike `sysdatetime()`,
+it does not change within the query execution if it is used in a `WHERE` clause to
+filter designated timestamp column relative to the current time.
+
+`SELECT now() FROM long_sequence(200)` will return the same timestamp for all rows
+while `SELECT systimestamp() FROM long_sequence(200)` will have different
+values.
 
 ### Return value
 
@@ -100,7 +101,6 @@ WHERE created > dateadd('d', -1, now());
 | --------------------------- | ------ |
 | 2021-02-01T21:51:34.443726Z | 1      |
 
-
 ```questdb-sql title="Query returns same timestamp in every row"
 SELECT now() FROM long_sequence(3)
 ```
@@ -110,7 +110,6 @@ SELECT now() FROM long_sequence(3)
 | 2021-02-01T21:51:34.443726Z |
 | 2021-02-01T21:51:34.443726Z |
 | 2021-02-01T21:51:34.443726Z |
-
 
 ```questdb-sql title="Query based on last minute"
 SELECT * FROM readings
@@ -350,7 +349,6 @@ from long_sequence(1);
 | 4        |
 
 ````questdb-sql title="Difference in months"
-```questdb-sql
 select datediff(
     'M',
     to_timestamp('2020-01-23','yyyy-MM-dd'),
