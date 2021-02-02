@@ -5,16 +5,20 @@ description:
   cURL. The examples show the Web Console, REST API, and Postgres wire protocol.
 ---
 
-This page describes how to query data from QuestDB using the embedded Web
-Console, make requests towards the REST API endpoints that QuestDB exposes, and
-Postgres wire protocol via multiple programming languages.
+This page describes how to query data from QuestDB using different programming
+languages and tools. To query data in a running instance, there are three main
+methods that can be used:
+
+- [Postgres wire](#postgres-compatibility) protocol for compatibility with a
+  range of clients
+- [Rest API](#rest-api) which can be queried via HTTP
+- [Web Console](#web-console) which provides a code editor for convenience
 
 ## Prerequisites
 
 QuestDB must be running and accessible, you can do so from
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
 or [Homebrew](/docs/get-started/homebrew/) for macOS users.
-
 
 ## Postgres compatibility
 
@@ -224,6 +228,10 @@ finally:
 You can query data using the [REST API](/docs/reference/api/rest/), this will
 work with a very wide range of libraries and tools. The REST API is accessible
 on port `9000`.
+
+More information on the available endpoints alongside possible parameters and
+usage examples can be found on the
+[REST API reference](/docs/reference/api/rest/) page.
 
 <!-- prettier-ignore-start -->
 
