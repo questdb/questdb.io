@@ -161,7 +161,12 @@ allows for quickly building queries using PostgreSQL wire protocol. Details on
 the use of this package can be found on the
 [node-postgres documentation](https://node-postgres.com/).
 
-```javascript title="Basic client connection"
+This example uses naive `Date.now() * 1000` inserts for Timestamp types in
+microsecond resolution. For accurate microsecond timestamps, the
+[node-microtime](https://github.com/wadey/node-microtime) package can be used
+which makes system calls to `tv_usec` from C++.
+
+```javascript
 const { Client } = require("pg")
 
 const start = async () => {
@@ -180,11 +185,9 @@ const start = async () => {
     )
     console.log(createTable)
 
-    var microtime = require("microtime")
-
     const insertData = await client.query(
       "INSERT INTO trades VALUES($1, $2, $3, $4);",
-      [microtime.now(), Date.now(), "node pg example", 123],
+      [Date.now() * 1000, Date.now(), "node pg example", 123],
     )
     await client.query("COMMIT")
 
@@ -195,7 +198,7 @@ const start = async () => {
       const query = {
         name: "insert-values",
         text: "INSERT INTO trades VALUES($1, $2, $3, $4);",
-        values: [microtime.now(), Date.now(), "node pg prep statement", rows],
+        values: [Date.now() * 1000, Date.now(), "node pg prep statement", rows],
       }
       const preparedStatement = await client.query(query)
     }
@@ -282,7 +285,8 @@ func main() {
 <TabItem value="rust">
 
 The following example shows how to use parameterized queries and prepared
-statements:
+statements using the [rust-postgres](https://docs.rs/postgres/0.19.0/postgres/)
+client.
 
 ```rust
 use postgres::{Client, NoTls, Error};
