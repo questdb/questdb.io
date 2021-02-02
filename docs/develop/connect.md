@@ -29,7 +29,7 @@ import TabItem from "@theme/TabItem"
   { label: "C", value: "c" },
   { label: "Python", value: "python" },
   { label: "psql", value: "psql" },
-  { label: ".NET", value: "csharp" },
+  { label: "C#", value: "csharp" },
 ]}>
 
 
