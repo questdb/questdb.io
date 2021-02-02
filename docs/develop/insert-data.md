@@ -16,6 +16,55 @@ one of the guides to get up and running using either
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
 or [Homebrew](/docs/get-started/homebrew/) for macOS users.
 
+## Web Console
+
+By default, QuestDB has an embedded Web Console running at
+http://[server-address]:9000. When running locally, this is accessible at
+[http://localhost:9000](http://localhost:9000).
+
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="Screenshot of the Web Console"
+  height={375}
+  small
+  src="/img/docs/console/exampleQuery.png"
+  width={500}
+/>
+
+To generate some data and query the results to demonstrate the functionality of
+the code editor, the following example SQL can be used:
+
+```questdb-sql title="Creating and querying a table partitioned by day"
+CREATE TABLE my_table (timestamp TIMESTAMP, x LONG) timestamp(timestamp) PARTITION BY DAY;
+
+INSERT INTO my_table
+SELECT timestamp_sequence(
+    to_timestamp('2021-01-01T00:00:00', 'yyyy-MM-ddTHH:mm:ss'),100000L * 36000), x
+FROM long_sequence(120);
+
+--`SELECT * FROM` is optional syntax
+my_table;
+```
+
+:::info
+
+The new table has a designated timestamp and is partitioned by day so that stale
+data can be deleted to save disk space. More details on this approach can be
+found on the [Data retention](/docs/operations/data-retention/) page.
+
+:::
+
+Aside from the Code Editor for writing and executing SQL queries, the Web
+Console has the following additional components:
+
+- A Schema Explorer which displays tables and their schemas
+- A Visualization panel for viewing query results as tables or graphs
+- An Import tab for uploading datasets as CSV files
+
+For details on importing from CSV and using these components, refer to the
+[Web Console reference](/docs/reference/client/web-console/) page.
+
 ## REST API
 
 QuestDB exposes a REST API for compatibility with a wide range of libraries and
@@ -95,55 +144,55 @@ run()
 package main
 
 import (
-	"bytes"
-	"fmt"
-	"io"
-	"io/ioutil"
-	"log"
-	"mime/multipart"
-	"net/http"
-	"net/url"
-	"os"
+    "bytes"
+    "fmt"
+    "io"
+    "io/ioutil"
+    "log"
+    "mime/multipart"
+    "net/http"
+    "net/url"
+    "os"
 )
 
 func main() {
-	u, err := url.Parse("http://localhost:9000")
-	checkErr(err)
-	u.Path += "imp"
-	url := fmt.Sprintf("%v", u)
-	fileName := "/path/to/data.csv"
-	file, err := os.Open(fileName)
-	checkErr(err)
+    u, err := url.Parse("http://localhost:9000")
+    checkErr(err)
+    u.Path += "imp"
+    url := fmt.Sprintf("%v", u)
+    fileName := "/path/to/data.csv"
+    file, err := os.Open(fileName)
+    checkErr(err)
 
-	defer file.Close()
+    defer file.Close()
 
-	buf := new(bytes.Buffer)
-	writer := multipart.NewWriter(buf)
-	uploadFile, _ := writer.CreateFormFile("data", "data.csv")
-	_, err = io.Copy(uploadFile, file)
-	checkErr(err)
-	writer.Close()
+    buf := new(bytes.Buffer)
+    writer := multipart.NewWriter(buf)
+    uploadFile, _ := writer.CreateFormFile("data", "data.csv")
+    _, err = io.Copy(uploadFile, file)
+    checkErr(err)
+    writer.Close()
 
-	req, err := http.NewRequest(http.MethodPut, url, buf)
-	checkErr(err)
-	req.Header.Add("Content-Type", writer.FormDataContentType())
+    req, err := http.NewRequest(http.MethodPut, url, buf)
+    checkErr(err)
+    req.Header.Add("Content-Type", writer.FormDataContentType())
 
-	client := &http.Client{}
-	res, err := client.Do(req)
-	checkErr(err)
+    client := &http.Client{}
+    res, err := client.Do(req)
+    checkErr(err)
 
-	defer res.Body.Close()
+    defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
-	checkErr(err)
+    body, err := ioutil.ReadAll(res.Body)
+    checkErr(err)
 
-	log.Println(string(body))
+    log.Println(string(body))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+    if err != nil {
+        panic(err)
+    }
 }
 ```
 
@@ -243,47 +292,47 @@ insertData()
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"net/url"
+    "fmt"
+    "io/ioutil"
+    "log"
+    "net/http"
+    "net/url"
 )
 
 func main() {
-	u, err := url.Parse("http://localhost:9000")
-	checkErr(err)
+    u, err := url.Parse("http://localhost:9000")
+    checkErr(err)
 
-	u.Path += "exec"
-	params := url.Values{}
-	params.Add("query", `
-		CREATE TABLE
-			trades (name STRING, value INT);
-		INSERT INTO
-			trades
-		VALUES(
-			"abc",
-			123456
-		);
-	`)
-	u.RawQuery = params.Encode()
-	url := fmt.Sprintf("%v", u)
+    u.Path += "exec"
+    params := url.Values{}
+    params.Add("query", `
+        CREATE TABLE
+            trades (name STRING, value INT);
+        INSERT INTO
+            trades
+        VALUES(
+            "abc",
+            123456
+        );
+    `)
+    u.RawQuery = params.Encode()
+    url := fmt.Sprintf("%v", u)
 
-	res, err := http.Get(url)
-	checkErr(err)
+    res, err := http.Get(url)
+    checkErr(err)
 
-	defer res.Body.Close()
+    defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
-	checkErr(err)
+    body, err := ioutil.ReadAll(res.Body)
+    checkErr(err)
 
-	log.Println(string(body))
+    log.Println(string(body))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+    if err != nil {
+        panic(err)
+    }
 }
 ```
 
@@ -350,40 +399,40 @@ run()
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
-	"net"
-	"time"
+    "fmt"
+    "io/ioutil"
+    "net"
+    "time"
 )
 
 func main() {
-	host := "127.0.0.1:9009"
-	tcpAddr, err := net.ResolveTCPAddr("tcp4", host)
-	checkErr(err)
-	rows := [2]string{
-		fmt.Sprintf("trades,name=test_ilp1 value=12.4 %d", time.Now().UnixNano()),
-		fmt.Sprintf("trades,name=test_ilp2 value=11.4 %d", time.Now().UnixNano()),
-	}
+    host := "127.0.0.1:9009"
+    tcpAddr, err := net.ResolveTCPAddr("tcp4", host)
+    checkErr(err)
+    rows := [2]string{
+        fmt.Sprintf("trades,name=test_ilp1 value=12.4 %d", time.Now().UnixNano()),
+        fmt.Sprintf("trades,name=test_ilp2 value=11.4 %d", time.Now().UnixNano()),
+    }
 
-	conn, err := net.DialTCP("tcp", nil, tcpAddr)
-	checkErr(err)
-	defer conn.Close()
+    conn, err := net.DialTCP("tcp", nil, tcpAddr)
+    checkErr(err)
+    defer conn.Close()
 
-	for _, s := range rows {
-		_, err = conn.Write([]byte(fmt.Sprintf("%s\n", s)))
-		checkErr(err)
-	}
+    for _, s := range rows {
+        _, err = conn.Write([]byte(fmt.Sprintf("%s\n", s)))
+        checkErr(err)
+    }
 
-	result, err := ioutil.ReadAll(conn)
-	checkErr(err)
+    result, err := ioutil.ReadAll(conn)
+    checkErr(err)
 
-	fmt.Println(string(result))
+    fmt.Println(string(result))
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+    if err != nil {
+        panic(err)
+    }
 }
 ```
 
@@ -449,38 +498,38 @@ start()
 package main
 
 import (
-	"database/sql"
-	"fmt"
-	_ "github.com/lib/pq"
+    "database/sql"
+    "fmt"
+    _ "github.com/lib/pq"
 )
 
 const (
-	host		 = "localhost"
-	port		 = 8812
-	user		 = "admin"
-	password = "quest"
-	dbname	 = "qdb"
+    host         = "localhost"
+    port         = 8812
+    user         = "admin"
+    password = "quest"
+    dbname   = "qdb"
 )
 
 func main() {
-	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+    connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
 
-	db, err := sql.Open("postgres", connStr)
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
+    db, err := sql.Open("postgres", connStr)
+    if err != nil {
+        panic(err)
+    }
+    defer db.Close()
 
-	rows, err := db.Query("insert into trades values ('abc', 123)")
-	checkErr(err)
-	defer rows.Close()
-	fmt.Println("Done")
+    rows, err := db.Query("insert into trades values ('abc', 123)")
+    checkErr(err)
+    defer rows.Close()
+    fmt.Println("Done")
 }
 
 func checkErr(err error) {
-	if err != nil {
-		panic(err)
-	}
+    if err != nil {
+        panic(err)
+    }
 }
 ```
 
@@ -573,8 +622,3 @@ finally:
 </TabItem>
 
 </Tabs>
-
-## Web Console
-
-Our Web Console has an import function. You can find out more about this on the
-[dedicated page](/docs/reference/client/web-console/#import).

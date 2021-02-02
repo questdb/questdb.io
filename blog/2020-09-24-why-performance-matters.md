@@ -10,16 +10,16 @@ description:
 tags: [story]
 ---
 
-Thoughts on why speed and performance are crucial to time-series databases
-ingestion and analysis, originally posted in
-[The New Stack](https://thenewstack.io/why-performance-matters-in-time-series-data/).
+Good data from the past helps us make better decisions in the present. Most of
+today's data were created within the past ten years, and human data output will
+only grow exponentially from here on. This sudden pervasiveness of data means
+that we need new ways to store and process information focusing on efficiency
+and sustainability. This article describes why speed and performance in a
+time-series database is the key to staying afloat in a sea of data.
 
 <!--truncate-->
 
-Good data from the past helps us make better decisions in the present.
-
-Most of the data that exist today were created within the past ten years, and
-human data output is only going to grow aggressively from there. The
+The
 [International Data Corporation predicts](https://www.seagate.com/files/www-content/our-story/trends/files/idc-seagate-dataage-whitepaper.pdf)
 that the total collected sum of human data will reach 175 zettabytes by 2025.
 One zettabyte is a billion terabytes of course, or a trillion gigabytes,

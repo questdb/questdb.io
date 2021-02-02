@@ -25,18 +25,16 @@ import Banner from "@theme/Banner"
 </Banner>
 
 How does QuestDB get the kind of performance it does, and how are we continuing
-to squeeze another 50-60% out of it? We are constantly learning more about the
-fundamental concepts of memory performance, and this is one example of how what
-we at first thought would be _worse_ for performance ended up bringing us a
-rather substantial boost in overall memory performance.
-
-We will walk you through how some of our initial thoughts on storage and
-memory-mapping evolved to bring us better performance overall.
-
-If you like QuestDB, please do give us a star on
-[GitHub](https://github.com/questdb/questdb)
+to squeeze another 50-60% out of it? This post will look at a code change we
+thought would create a negative performance impact, which actually brought a
+substantial boost in the system's overall performance and demonstrates that we
+are constantly learning more about performance improvements.
 
 <!--truncate-->
+
+If you like this content, show it with a star on
+[GitHub](https://github.com/questdb/questdb) or come say hi in our
+[community Slack]({@slackUrl@}) workspace.
 
 ## How the performance improvements started
 

@@ -24,7 +24,9 @@ import Banner from "@theme/Banner"
 
 We've been upping our SWAG game a lot lately, and we want to share it with you,
 the valuable members of our community! We want to give you the chance to show
-off your projects, show off your love for QuestDB, and to show just off!
+off your projects, show off your love for QuestDB, and to just show off! Whether
+it's large or small projects, follow the steps in this post so we can send some
+swag your way!
 
 <!-- truncate -->
 

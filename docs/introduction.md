@@ -40,10 +40,23 @@ both covered in the [insert data](/docs/develop/insert-data/) page. Finally, you
 can check the [query data](/docs/develop/query-data/) page in order to run your
 queries.
 
+## Third-party tools
+
+- [Grafana](/docs/third-party-tools/grafana/) instructions for connecting QuestDB as a datasource for building visualizations and dashboards
+- [Kafka](/docs/third-party-tools/kafka/) guide for ingesting data from topics into QuestDB by means of Kafka Connect
+- [Telegraf](/docs/third-party-tools/telegraf/) guide for collecting system metrics, specifying QuestDB as an output and visualizing the results
+
 ## Operations
 
-In this section you will find resources regarding the
-[deployment](/docs/operations/deployment/) of QuestDB.
+This section contains resources for managing QuestDB instances and has dedicated
+pages for the following topics:
+
+- [Deployment](/docs/operations/deployment/) details with information for
+  running locally, on Kubernetes or the AWS AMI
+- [Data retention](/docs/operations/data-retention/) strategy to delete old data
+  and save disk space
+- [Health monitoring](/docs/operations/health-monitoring/) endpoint for
+  determining the status of the instance
 
 ## Reference
 
@@ -60,11 +73,6 @@ This section contains the reference documentation for the following categories:
 
 - [CLI](/docs/reference/client/cli/)
 - [Web Console](/docs/reference/client/web-console/)
-
-### Third-party tools
-
-- [Grafana](/docs/third-party-tools/grafana/)
-- [Kafka](/docs/third-party-tools/kafka/)
 
 ### Configuration
 
@@ -117,9 +125,10 @@ properties that can be used to customize QuestDB.
 ## Support
 
 We are happy to help with any question you may have, particularly to help you
-optimise the performance of your application. Feel free to reach out using the
+optimize the performance of your application. Feel free to reach out using the
 following channels:
 
-- [Ask a question on Slack]({@slackUrl@})
 - [Raise an issue on GitHub]({@githubUrl@}/issues)
+- [Join the Community Slack]({@slackUrl@})
+- [QuestDB on Stack Overflow]({@stackoverflowUrl@})
 - or send us an email at [hello@questdb.io](mailto:hello@questdb.io)

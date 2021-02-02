@@ -17,17 +17,17 @@ import Banner from "@theme/Banner"
   width={650}
 >
   Photo by{" "}
-  <a href="https://unsplash.com/photos/z0l-3cWpKto"> Ricardo Gomez Angel </a> via{" "}
-  <a href="https://unsplash.com">Unsplash</a>
+  <a href="https://unsplash.com/photos/z0l-3cWpKto"> Ricardo Gomez Angel </a>{" "}
+  via <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
 We've had a UDP version of the InfluxDB Line Protocol (ILP) reader in QuestDB
 for quite some time, but we've had customers ask for a TCP version of it, so we
 delivered!
 
-Using and configuring it are relatively simple, so this tutorial will walk
-you through the basics of setting it up and using it. For an added bonus, we'll
-see how to migrate from using InfluxDB to using QuestDB with a single-line
+Using and configuring it are relatively simple, so this tutorial will walk you
+through the basics of setting it up and using it. For an added bonus, we'll see
+how to migrate from using InfluxDB to using QuestDB with a single-line
 configuration change.
 
 <!--truncate -->
@@ -171,12 +171,11 @@ InfluxDB Line Protocol (ILP) is a simple, well-known, and relatively compact
 data format for sending Time Series data to a database. That's why we decided to
 support it.
 
-As I initially mentioned, I'm now going to give you a simple, less-than-one-line
-configuration change to migrate from using InfluxDB to using QuestDB. If you're
-using Telegraf as a data collector, that is.
-
-Edit your `/etc/telegraf.conf` file (it may be in different places, depending on
-your operating system) and change the line:
+I'm now going to give you a simple configuration change to migrate from using
+InfluxDB to using QuestDB. If you're using Telegraf as a data collector, we have
+[documentation for integrating with QuestDB](/docs/third-party-tools/telegraf/)
+for more details, but to summarize the migration, edit `telegraf.conf` (it may
+be in different places, depending on your operating system) and change the line:
 
 ```shell
 [[outputs.influxdb]]
@@ -186,8 +185,8 @@ your operating system) and change the line:
 to be:
 
 ```shell
-[[outputs.influxdb]]
-  urls = ["tcp://127.0.0.1:9009"]
+[[outputs.socket_writer]]
+  address = "tcp://127.0.0.1:9009"
 ```
 
 That's it. That's the migration. All data that was previously being written to

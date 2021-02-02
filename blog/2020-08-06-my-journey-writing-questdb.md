@@ -28,8 +28,11 @@ import Banner from "@theme/Banner"
 
 A few weeks ago, I posted
 [the story of how I started QuestDB on Hacker News](https://news.ycombinator.com/item?id=23975807).
-As it seems several people found the story interesting, I thought I would post
-it here.
+Several people found the story interesting, so I thought I would post it here
+and describe the passage from working at a large energy trading company,
+discovering memory-mapping approaches in Java, the beginnings of building the
+system as a side-project, and how we got to where we are today with companies
+relying on production instances of our time-series database.
 
 <!-- truncate -->
 

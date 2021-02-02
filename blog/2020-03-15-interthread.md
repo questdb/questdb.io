@@ -21,13 +21,11 @@ import Banner from "@theme/Banner"
 <Banner alt="Flock of birds flying in a harmonised way" height={360} src="/img/blog/2020-03-15/header.png" width={650} />
 
 Inter-thread messaging is a fundamental part of any asynchronous system. It is
-the component responsible for transportation of data between threads. Messaging
-forms the infrastructure, the scaffolding of multi-threaded application and just
-like real-world transport infrastructure we want it to be inexpensive, fast,
-reliable and clean.
-
-For QuestDB we wrote our own messaging system and this post is about how it
-works and how fast it is.
+the component responsible for the transportation of data between threads.
+Messaging forms the infrastructure, scaffolding multi-threaded applications, and
+just like real-world transport infrastructure, we want it to be inexpensive,
+fast, reliable, and clean. For QuestDB, we wrote our own messaging system, and
+this post is about how it works and how fast it is.
 
 <!--truncate-->
 
