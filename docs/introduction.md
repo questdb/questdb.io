@@ -40,6 +40,12 @@ both covered in the [insert data](/docs/develop/insert-data/) page. Finally, you
 can check the [query data](/docs/develop/query-data/) page in order to run your
 queries.
 
+## Third-party tools
+
+- [Grafana](/docs/third-party-tools/grafana/) instructions for connecting QuestDB as a datasource for building visualizations and dashboards
+- [Kafka](/docs/third-party-tools/kafka/) guide for ingesting data from topics into QuestDB by means of Kafka Connect
+- [Telegraf](/docs/third-party-tools/telegraf/) guide for collecting system metrics, specifying QuestDB as an output and visualizing the results
+
 ## Operations
 
 This section contains resources for managing QuestDB instances and has dedicated
@@ -67,11 +73,6 @@ This section contains the reference documentation for the following categories:
 
 - [CLI](/docs/reference/client/cli/)
 - [Web Console](/docs/reference/client/web-console/)
-
-### Third-party tools
-
-- [Grafana](/docs/third-party-tools/grafana/)
-- [Kafka](/docs/third-party-tools/kafka/)
 
 ### Configuration
 
