@@ -69,7 +69,8 @@ module.exports = {
       type: "category",
       items: [
         "third-party-tools/grafana",
-        "third-party-tools/kafka"
+        "third-party-tools/kafka",
+        "third-party-tools/telegraf"
       ],
     },
     {
