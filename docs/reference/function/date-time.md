@@ -79,12 +79,11 @@ WHERE date_time > sysdate() - 60000000L;
 ### Description
 
 Calculates `UTC timestamp` using system's real time clock. Unlike `sysdatetime()`,
-it does not change within the query execution if it is used in a `WHERE` clause to
-filter designated timestamp column relative to the current time.
+it does not change within the query execution timeframe and should be used in
+WHERE clause to filter designated timestamp column relative to current time, i.e.:
 
-`SELECT now() FROM long_sequence(200)` will return the same timestamp for all rows
-while `SELECT systimestamp() FROM long_sequence(200)` will have different
-values.
+* `SELECT now() FROM long_sequence(200)` will return the same timestamp for all rows
+* `SELECT systimestamp() FROM long_sequence(200)` will have new timestamp values for each row
 
 ### Return value
 
@@ -348,13 +347,13 @@ from long_sequence(1);
 | -------- |
 | 4        |
 
-````questdb-sql title="Difference in months"
+```questdb-sql title="Difference in months"
 select datediff(
     'M',
     to_timestamp('2020-01-23','yyyy-MM-dd'),
     to_timestamp('2020-02-24','yyyy-MM-dd'))
 from long_sequence(1);
-````
+```
 
 | datediff |
 | -------- |
