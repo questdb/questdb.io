@@ -29,9 +29,9 @@ QuestDB implements InfluxDB line protocol which is accessible by default on TCP
 port `9009`. This allows using QuestDB as a drop-in replacement for InfluxDB and
 others implementing the protocol. Configuration settings for ingestion using
 this protocol can be set for for
-[Influx line over UDP](/docs/reference/configuration#influxdb-line-protocol-udp)
+[Influx line over TCP](/docs/reference/configuration#influxdb-line-protocol-tcp)
 and
-[Influx line over TCP](/docs/reference/configuration#influxdb-line-protocol-tcp).
+[Influx line over UDP](/docs/reference/configuration#influxdb-line-protocol-udp).
 
 More information on the InfluxDB line protocol implementation with details on
 message format, ports, authentication and examples can be found on the
