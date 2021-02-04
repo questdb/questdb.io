@@ -153,7 +153,7 @@ public class LineTCPSenderMain {
 
         Gradle:
 
-            compile group: 'org.questdb', name: 'questdb', version: '5.0.6'
+            compile group: 'org.questdb', name: 'questdb', version: '{@version@}'
 
      */
     public static void main(String[] args) {
