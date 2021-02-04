@@ -86,7 +86,7 @@ const Why = () => {
               <p className={prCss.property}>Contain operational complexity</p>
               <p className={prCss.property}>Decrease development costs</p>
               <p className={prCss.property}>Cloud native (AWS, Azure, GCP)</p>
-              <p className={prCss.property}>On premises or embedded</p>
+              <p className={prCss.property}>On-premises or embedded</p>
             </div>
 
             <div
@@ -106,11 +106,11 @@ const Why = () => {
               })}
             >
               <p className={prCss.property}>Active directory</p>
-              <p className={prCss.property}>High performance replication</p>
-              <p className={prCss.property}>High availability</p>
+              <p className={prCss.property}>High-performance replication</p>
+              <p className={prCss.property}>High-availability</p>
               <p className={prCss.property}>Clustering</p>
               <p className={prCss.property}>Enterprise security</p>
-              <p className={prCss.property}>Postgres compatible/API</p>
+              <p className={prCss.property}>Postgres compatible</p>
             </div>
           </div>
         </div>
@@ -242,9 +242,9 @@ const Usp = () => (
 
         <h2 className={usCss.usp__title}>Built for performance</h2>
 
-        <p className={usCss.usp__description}>SIMD optimised analytics</p>
-        <p className={usCss.usp__description}>Rows and columns based access</p>
-        <p className={usCss.usp__description}>Vectorized queries execution</p>
+        <p className={usCss.usp__description}>SIMD-optimized analytics</p>
+        <p className={usCss.usp__description}>Row- and column-based access</p>
+        <p className={usCss.usp__description}>Vectorized query execution</p>
         <p className={usCss.usp__description}>Tiny memory footprint</p>
         <p className={usCss.usp__description}>C++ and zero-GC Java</p>
       </div>
@@ -287,7 +287,7 @@ const Usp = () => (
           Time series and relational joins
         </p>
         <p className={usCss.usp__description}>Postgres compatibility</p>
-        <p className={usCss.usp__description}>Aggregations and down sampling</p>
+        <p className={usCss.usp__description}>Aggregations and downsampling</p>
         <p className={usCss.usp__description}>Unlimited sub-queries</p>
         <p className={usCss.usp__description}>Built-in SQL optimizer</p>
       </div>
@@ -323,7 +323,7 @@ const Cards = () => (
         <h3 className={feCss.feature__header}>DevOps monitoring</h3>
         <p className={feCss.feature__content}>
           Collect metrics and events from your infrastructure (CPU, memory,
-          networks, etc) and get real-time visibility into your entire stack.
+          networks, etc.) and get real-time visibility into your entire stack.
         </p>
       </div>
 
@@ -346,8 +346,8 @@ const Cards = () => (
       <div className={feCss.feature}>
         <h3 className={feCss.feature__header}>Application metrics</h3>
         <p className={feCss.feature__content}>
-          Empower users of your application to track and visualise logs, api
-          calls and any application activity in real-time.
+          Empower your application users to track and visualize logs, API calls,
+          and any application activity in real-time.
         </p>
       </div>
 
@@ -632,7 +632,7 @@ ${mergeQuery}`}
                 Search Time
               </h3>
               <p className={shCss.showcase__description}>
-                Filter and search for specific timestamps with “where”
+                Filter and search for specific timestamps with “WHERE”
               </p>
             </div>
 
@@ -653,7 +653,7 @@ ${mergeQuery}`}
                 Slice Time
               </h3>
               <p className={shCss.showcase__description}>
-                Create time buckets and aggregate by intervals with “sample by”
+                Create time buckets and aggregate by intervals with “SAMPLE BY”
               </p>
             </div>
 
@@ -675,7 +675,7 @@ ${mergeQuery}`}
               </h3>
               <p className={shCss.showcase__description}>
                 Search time series from most recent values to oldest with
-                “latest by”
+                “LATEST BY”
               </p>
             </div>
             <div
@@ -696,7 +696,7 @@ ${mergeQuery}`}
               </h3>
               <p className={shCss.showcase__description}>
                 Join two tables based on timestamp where timestamps do not
-                exactly match with “asof join”
+                exactly match with “ASOF JOIN”
               </p>
             </div>
           </div>
