@@ -148,7 +148,7 @@ public class LineTCPSenderMain {
             <dependency>
                 <groupId>org.questdb</groupId>
                 <artifactId>questdb</artifactId>
-                <version>5.0.6</version>
+                <version>{@version@}</version>
             </dependency>
 
         Gradle:
