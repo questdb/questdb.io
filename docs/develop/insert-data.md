@@ -163,11 +163,14 @@ public class LineTCPSenderMain {
 
         try (LineProtoSender sender = new LineTCPProtoSender(Net.parseIPv4(hostIPv4), port, bufferCapacity)) {
             sender
-                    .metric("weather")
-                    .tag("location", "london")
-                    .tag("by", "quest")
-                    .field("temp", 12.3)
-                    .field("ok", "fast")
+                    .metric("trades")
+                    .tag("name", "test_ilp1")
+                    .field("value", 12.4)
+                    .$(Os.currentTimeNanos());
+            sender
+                    .metric("trades")
+                    .tag("name", "test_ilp2")
+                    .field("value", 11.4)
                     .$(Os.currentTimeNanos());
 
             sender.flush();
