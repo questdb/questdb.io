@@ -6,9 +6,9 @@ description:
 ---
 
 [Telegraf](https://docs.influxdata.com/telegraf/v1.17/) is a client for
-collecting metrics from many inputs and has support for and sending it on to
-various outputs. It is plugin-driven for the collection and delivery of data, so
-it is easily configurable and customizable. Telegraf is compiled as a standalone
+collecting metrics from many inputs and has support for sending it on to various
+outputs. It is plugin-driven for the collection and delivery of data, so it is
+easily configurable and customizable. Telegraf is compiled as a standalone
 binary, which means there are no external dependencies required to manage.
 
 QuestDB supports ingesting from Telegraf over both TCP and UDP. This page

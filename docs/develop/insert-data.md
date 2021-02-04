@@ -29,9 +29,9 @@ QuestDB implements InfluxDB line protocol which is accessible by default on TCP
 port `9009`. This allows using QuestDB as a drop-in replacement for InfluxDB and
 others implementing the protocol. Configuration settings for ingestion using
 this protocol can be set for for
-[Influx line over UDP](/docs/reference/configuration#influxdb-line-protocol-udp)
+[Influx line over TCP](/docs/reference/configuration#influxdb-line-protocol-tcp)
 and
-[Influx line over TCP](/docs/reference/configuration#influxdb-line-protocol-tcp).
+[Influx line over UDP](/docs/reference/configuration#influxdb-line-protocol-udp).
 
 More information on the InfluxDB line protocol implementation with details on
 message format, ports, authentication and examples can be found on the
@@ -45,6 +45,7 @@ this protocol can be found on the
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
+  { label: "Java", value: "java" }
 ]}>
 
 <!-- prettier-ignore-end -->
@@ -132,6 +133,53 @@ func checkErr(err error) {
 
 </TabItem>
 
+<TabItem value="java">
+
+```java
+import io.questdb.cutlass.line.LineProtoSender;
+import io.questdb.cutlass.line.tcp.LineTCPProtoSender;
+import io.questdb.network.Net;
+import io.questdb.std.Os;
+
+public class LineTCPSenderMain {
+    /*
+        Maven:
+
+            <dependency>
+                <groupId>org.questdb</groupId>
+                <artifactId>questdb</artifactId>
+                <version>{@version@}</version>
+            </dependency>
+
+        Gradle:
+
+            compile group: 'org.questdb', name: 'questdb', version: '{@version@}'
+
+     */
+    public static void main(String[] args) {
+        String hostIPv4 = "127.0.0.1";
+        int port = 9009;
+        int bufferCapacity = 256 * 1024;
+
+        try (LineProtoSender sender = new LineTCPProtoSender(Net.parseIPv4(hostIPv4), port, bufferCapacity)) {
+            sender
+                    .metric("trades")
+                    .tag("name", "test_ilp1")
+                    .field("value", 12.4)
+                    .$(Os.currentTimeNanos());
+            sender
+                    .metric("trades")
+                    .tag("name", "test_ilp2")
+                    .field("value", 11.4)
+                    .$(Os.currentTimeNanos());
+
+            sender.flush();
+        }
+    }
+}
+```
+
+</TabItem>
 </Tabs>
 
 ## Postgres compatibility
