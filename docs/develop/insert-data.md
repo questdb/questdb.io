@@ -45,6 +45,7 @@ this protocol can be found on the
 <Tabs defaultValue="nodejs" values={[
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
+  { label: "Java", value: "java" }
 ]}>
 
 <!-- prettier-ignore-end -->
@@ -132,6 +133,50 @@ func checkErr(err error) {
 
 </TabItem>
 
+<TabItem value="java">
+
+```java
+import io.questdb.cutlass.line.LineProtoSender;
+import io.questdb.cutlass.line.tcp.LineTCPProtoSender;
+import io.questdb.network.Net;
+import io.questdb.std.Os;
+
+public class LineTCPSenderMain {
+    /*
+        Maven:
+
+            <dependency>
+                <groupId>org.questdb</groupId>
+                <artifactId>questdb</artifactId>
+                <version>5.0.6</version>
+            </dependency>
+
+        Gradle:
+
+            compile group: 'org.questdb', name: 'questdb', version: '5.0.6'
+
+     */
+    public static void main(String[] args) {
+        String hostIPv4 = "127.0.0.1";
+        int port = 9009;
+        int bufferCapacity = 256 * 1024;
+
+        try (LineProtoSender sender = new LineTCPProtoSender(Net.parseIPv4(hostIPv4), port, bufferCapacity)) {
+            sender
+                    .metric("weather")
+                    .tag("location", "london")
+                    .tag("by", "quest")
+                    .field("temp", 12.3)
+                    .field("ok", "fast")
+                    .$(Os.currentTimeNanos());
+
+            sender.flush();
+        }
+    }
+}
+```
+
+</TabItem>
 </Tabs>
 
 ## Postgres compatibility
