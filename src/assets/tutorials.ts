@@ -18,7 +18,7 @@ const tutorials: FlatTutorial[] = [
       "https://towardsdatascience.com/sql-extensions-for-time-series-data-in-questdb-f6b53acf3213",
     title: "SQL Extensions for Time-Series Data in QuestDB",
     featured: true,
-    image: "/img/tutorial/shared/og_sql.png",
+    image: "/img/tutorial/shared/og-sql.png",
   },
   {
     author: "Kovid Rathee",
@@ -29,7 +29,7 @@ const tutorials: FlatTutorial[] = [
       "https://towardsdatascience.com/schemaless-ingestion-in-questdb-using-influxdb-line-protocol-18850e69b453?gi=113183e2c22b",
     title: "Schemaless ingestion in QuestDB using InfluxDB Line Protocol",
     featured: true,
-    image: "/img/tutorial/shared/og_influx_line_protocol.png",
+    image: "/img/tutorial/shared/og-influx-line-protocol.png",
   },
   {
     author: "David G. Simmons",
@@ -37,7 +37,7 @@ const tutorials: FlatTutorial[] = [
     content:
       "In this video, David describes why a performant time-series database is critical for IoT use cases and shows how to set up and use QuestDB for ingesting sensor data from Arduino boards.",
     link: "https://www.youtube.com/watch?v=5IsPIpcVCoE",
-    image: "/img/tutorial/shared/og_arduino.png",
+    image: "/img/tutorial/shared/og-arduino.png",
     title: "Sending IoT Data from Arduino to QuestDB",
   },
   {
@@ -46,7 +46,7 @@ const tutorials: FlatTutorial[] = [
     content:
       "How to setup QuestDB with Kubernetes and write data using the InfluxDB line protocol ingestion feature.",
     link: "https://rawkode.com/articles/questdb-on-kubernetes/",
-    image: "/img/tutorial/shared/og_kubernetes.png",
+    image: "/img/tutorial/shared/og-kubernetes.png",
     title: "QuestDB on Kubernetes",
   },
   {
@@ -55,7 +55,7 @@ const tutorials: FlatTutorial[] = [
     content:
       "How do you get the most out of your IoT data? Listen and watch as David Simmons answers this question and more during this Virtual Lunch & Learn session!",
     link: "https://www.youtube.com/watch?v=RseiLoBRcAg",
-    image: "/img/tutorial/shared/og_youtube.png",
+    image: "/img/tutorial/shared/og-youtube.png",
     title: "QuestDB virtual lunch and learn",
   },
   {
@@ -72,7 +72,7 @@ const tutorials: FlatTutorial[] = [
     content:
       "In this video, David shows how to set up QuestDB on a Raspberry Pi and ingest and query IoT sensor data.",
     link: "https://www.youtube.com/watch?v=wjkDbgi_mec",
-    image: "/img/tutorial/shared/og_youtube.png",
+    image: "/img/tutorial/shared/og-youtube.png",
     title: "Running QuestDB on Raspberry Pi and K8s Networking",
   },
   {
@@ -80,8 +80,9 @@ const tutorials: FlatTutorial[] = [
     date: "2020-05-20",
     content:
       "In this tutorial, Michael Beale writes about how he managed to simplify his ETL pipeline",
-    link: "https://towardsdatascience.com/bypassing-pandas-memory-limitations-9abb574fdf76",
-    image: "/img/tutorial/shared/og_python.png",
+    link:
+      "https://towardsdatascience.com/bypassing-pandas-memory-limitations-9abb574fdf76",
+    image: "/img/tutorial/shared/og-python.png",
     title: "Bypassing Pandas Memory Limitations",
   },
 ]

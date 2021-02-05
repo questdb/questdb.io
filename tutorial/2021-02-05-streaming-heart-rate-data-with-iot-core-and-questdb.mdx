@@ -4,7 +4,7 @@ author: Yitaek Hwang
 description:
   An end-to-end demo of a simple IoT system to stream and visualize heart rate
   data in Grafana via Google Cloud Platform
-image: /img/tutorial/shared/og_iot.png
+image: /img/tutorial/shared/og-iot.png
 featured: true
 ---
 
@@ -39,7 +39,7 @@ import Screenshot from "@theme/Screenshot"
 <Screenshot
   alt="A diagram with Raspberry Pi sending data to Google Cloud Platform services"
   height={138}
-  src="/img/tutorial/2021-02-05/gcp_diagram.png"
+  src="/img/tutorial/2021-02-05/gcp-diagram.png"
   title="Example stack with Google Cloud Platform services"
   width={650}
 />
@@ -55,7 +55,7 @@ end-to-end demo, I used Grafana to pull and visualize data from QuestDB.
 <Screenshot
   alt="A diagram showing a Raspberry Pi sending data to QuestDB via Google Cloud Platform services"
   height={284}
-  src="/img/tutorial/2021-02-05/quest_diagram.png"
+  src="/img/tutorial/2021-02-05/quest-diagram.png"
   title="The stack used here with QuestDB replacing Dataflow and adding Grafana for visualization"
   width={650}
 />
@@ -94,7 +94,7 @@ and enable the following APIs:
 <Screenshot
   alt="A screenshot of enabling APIs in Google Cloud Platform"
   height={142}
-  src="/img/tutorial/2021-02-05/enable_apis.png"
+  src="/img/tutorial/2021-02-05/enable-apis.png"
   width={650}
 />
 
@@ -109,7 +109,7 @@ Region based on the geographic region closest to you (for me it was
 <Screenshot
   alt="A screenshot of creating an IoT Core Device Registry in Google Cloud Platform"
   height={310}
-  src="/img/tutorial/2021-02-05/create_registry.png"
+  src="/img/tutorial/2021-02-05/create-registry.png"
   width={500}
 />
 
@@ -120,7 +120,7 @@ Topic ID `heartratedata`:
 <Screenshot
   alt="A screenshot of creating a Pub/Sub topic in Google Cloud Platform"
   height={267}
-  src="/img/tutorial/2021-02-05/create_topic.png"
+  src="/img/tutorial/2021-02-05/create-topic.png"
   width={650}
 />
 
@@ -136,7 +136,7 @@ Engine -> Create**.
 <Screenshot
   alt="A screenshot of creating a VM instance in Google Cloud Platform"
   height={293}
-  src="/img/tutorial/2021-02-05/create_vm_instance.png"
+  src="/img/tutorial/2021-02-05/create-vm-instance.png"
   width={650}
 />
 
@@ -168,7 +168,7 @@ topic. Give the subscription the name `questdb` and click **Create**.
 <Screenshot
   alt="A screenshot of creating a Pub/Sub subscription in Google Cloud Platform"
   height={82}
-  src="/img/tutorial/2021-02-05/heartrate_topic.png"
+  src="/img/tutorial/2021-02-05/heartrate-topic.png"
   width={650}
 />
 
@@ -182,7 +182,7 @@ Authentication** dropdown:
 <Screenshot
   alt="A screenshot of adding a device to IoT Core in Google Cloud Platform"
   height={330}
-  src="/img/tutorial/2021-02-05/device_metadata.png"
+  src="/img/tutorial/2021-02-05/device-metadata.png"
   width={500}
 />
 
@@ -339,7 +339,7 @@ Now run our NodeJS code and we should see data populated in QuestDB:
 <Screenshot
   alt="A screenshot of the QuestDB Web Console returning query results on sensor data"
   height={353}
-  src="/img/tutorial/2021-02-05/select_from_heartrate.png"
+  src="/img/tutorial/2021-02-05/select-from-heartrate.png"
   title="Querying heart rate data in QuestDB"
   width={650}
 />
@@ -362,7 +362,7 @@ search for Postgres:
 <Screenshot
   alt="A screenshot of adding QuestDB as a data source in Grafana"
   height={377}
-  src="/img/tutorial/2021-02-05/add_postgres.png"
+  src="/img/tutorial/2021-02-05/add-postgres.png"
   width={650}
 />
 
@@ -372,7 +372,7 @@ disabled and click **Save and Test**:
 <Screenshot
   alt="A screenshot of authenticating QuestDB within Grafana using Postgres"
   height={263}
-  src="/img/tutorial/2021-02-05/postgres_credentials.png"
+  src="/img/tutorial/2021-02-05/postgres-credentials.png"
   width={650}
 />
 
@@ -391,7 +391,7 @@ If all is working as expected, we can now see the sample heart rate data:
 <Screenshot
   alt="A screenshot of a chart in Grafana showing sensor data plotted over time"
   height={261}
-  src="/img/tutorial/2021-02-05/chart_heartrate.png"
+  src="/img/tutorial/2021-02-05/chart-heartrate.png"
   title="Sensor data visualized in Grafana"
   width={650}
 />
@@ -402,7 +402,7 @@ data points there for comparison using the **Chart** feature:
 <Screenshot
   alt="A screenshot of a chart in QuestDB showing sensor data plotted over time"
   height={220}
-  src="/img/tutorial/2021-02-05/heart_rate_graph.png"
+  src="/img/tutorial/2021-02-05/heart-rate-graph.png"
   title="Sensor data visualized in QuestDB"
   width={650}
 />
