@@ -14,46 +14,35 @@ image: /img/blog/2020-12-10/banner.jpg
 tags: [postgres, release, grafana]
 ---
 
-We've just released software version 5.0.6 with plenty of additional features
-and functionality, a refactoring of PostgreSQL wire support, and plenty of fixes
-to improve the stability of the system. Here's a roundup of recent changes that
-have just landed.
+We've just released software version 5.0.6 and it comes with plenty of
+additional features and functionality, a full refactoring of PostgreSQL wire
+support, and multiple fixes to improve the stability of the system. Here's a
+roundup of recent changes that have just landed.
 
 <!--truncate-->
 
 ## PostgreSQL wire protocol
 
-The complete refactoring of PostgreSQL wire support, including binary support
-means there is now improved support for many popular libraries to make use of
-prepared statements (bind variables) which allows for better performance on bulk
-queries.
+The complete refactoring of PostgreSQL wire protocol, including binary support,
+means improved usability for many popular libraries and languages.
 
-The documentation pages have code examples which describe how to
-[insert data](/docs/develop/insert-data#postgres-compatibility) and
-[query Data](/docs/develop/query-data#postgres-compatibility) using popular
-tools and frameworks in Node, Go, Rust, Java and Python.
+```python title="Parameterized queries in Python"
+# insert 10 records
+for x in range(10):
+  now = dt.datetime.utcnow()
+  date = dt.datetime.now().date()
+  cursor.execute("""
+    INSERT INTO trades
+    VALUES (%s, %s, %s, %s);
+    """, (now, date, "python example", x))
+# commit records
+connection.commit()
+```
 
-```rust title="Inserting data using Rust"
-use postgres::{Client, NoTls, Error};
-use chrono::{Utc};
-use std::time::SystemTime;
+Users can now use prepared statements (bind variables), which allows for better
+efficiency on repeated queries:
 
-fn main() -> Result<(), Error> {
-    let mut client = Client::connect("postgresql://admin:quest@localhost:8812/qdb", NoTls)?;
-
-    // Basic query
-    client.batch_execute("CREATE TABLE IF NOT EXISTS trades (ts TIMESTAMP, date DATE, name STRING, value INT) timestamp(ts);")?;
-
-    // Parameterized query
-    let name: &str = "rust example";
-    let val: i32 = 123;
-    let utc = Utc::now();
-    let sys_time = SystemTime::now();
-    client.execute(
-        "INSERT INTO trades VALUES($1,$2,$3,$4)",
-        &[&utc.naive_local(), &sys_time, &name, &val],
-    )?;
-
+```rust title="Prepared statement in Rust"
     // Prepared statement
     let mut txn = client.transaction()?;
     let statement = txn.prepare("insert into trades values ($1,$2,$3,$4)")?;
@@ -64,28 +53,25 @@ fn main() -> Result<(), Error> {
     }
     txn.commit()?;
 
-    println!("import finished");
-    Ok(())
-}
 ```
 
-concurrent CSV imports,
-
-preventing data corruption when disk space is full
-
-and multiple SQL fixes.
+The documentation pages have more complete code examples which show how to
+[insert data](/docs/develop/insert-data#postgres-compatibility) and
+[query Data](/docs/develop/query-data#postgres-compatibility) using popular
+tools and frameworks in Node, Go, Rust, Java and Python.
 
 ## Grafana alerts
 
-support enables alerting via Grafana,
+Support for the RFC339Nano timestamp format enables the use of alerting via
+Grafana. This helps identify unintended changes, minimize disruptions and stay
+on top of your system or infrastructure:
 
 ![Alerts being triggered in Grafana based on data in QuestDB](/img/blog/2021-02-05/grafana_alerts.png)
 
-
 ## Build function
 
-Ther's now a function built-in provides the current server version number and commit hash for
-troubleshooting. It can be run with the following command:
+There's now a function built-in that provides the current server version number
+and commit hash for troubleshooting. It can be run with the following command:
 
 ```questdb-sql
 SELECT build();
@@ -93,36 +79,35 @@ SELECT build();
 
 ![A screenshot of running a function inside the QuestDB Web Console](/img/blog/2021-02-05/build_function.png)
 
-
-
-<!-- import Screenshot from "@theme/Screenshot";
-
-<Screenshot
-  alt="A screenshot of running a function inside the QuestDB Web Console"
-  height={138}
-  src="/img/blog/2021-02-05/build_function.png"
-  title="Example stack with Google Cloud Platform services"
-  width={650}
-/>
-
-
- -->
-
-
-
-
-
-
-
 ## CREATE TABLE IF NOT EXISTS
 
-## Take a look
+This language feature adds more flexibility in cases where `CREATE TABLE`
+queries are run and tables already exist:
 
-The release is available to browse
-[on GitHub](https://github.com/questdb/questdb/releases/tag/5.0.6) with Our new
-network stack ingests time series data from Kafka topics reliably from multiple
-TCP connections on a single thread without garbage collection and the QuestDB
-source is open to [browse on GitHub]({@githubUrl@}). If you like this content
-and our approach to non-blocking and garbage-free IO, or if you know of a better
-way to approach what we built, we'd love to know your thoughts! Feel free to
-share your feedback [in our Slack Community]({@slackUrl@}).
+```questdb-sql
+CREATE TABLE IF NOT EXISTS my_table (ts TIMESTAMP, value INT) timestamp(ts);
+```
+
+More full examples using this statement in multiple languages can be found on
+the
+[Insert data](http://localhost:3000/docs/develop/insert-data#postgres-compatibility)
+page.
+
+## Error prevention when disk full
+
+Even better than good error reporting is error prevention! This fix enhances the the
+resilience of the system by preventing data loss in QuestDB instances if disk
+space unexpectedly runs out.
+
+## See the full release
+
+These have been our top picks from the 5.0.6 release which cover what our users
+have been most excited about recently but there are a lot more changes that have
+been omitted here. For a full list of the fixes, features and improvements that
+we've added, take a look
+[on the GitHub Release](https://github.com/questdb/questdb/releases/tag/5.0.6).
+
+If you like our new additions or have a burning suggestion for upcoming changes,
+we'd love to know your thoughts! Feel free to share your feedback
+[in our Slack Community]({@slackUrl@}) and don't forget to drop us a star
+[on GitHub]({@githubUrl@}).
