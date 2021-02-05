@@ -95,9 +95,9 @@ page.
 
 ## Error prevention when disk full
 
-Even better than good error reporting is error prevention! This fix enhances the the
-resilience of the system by preventing data loss in QuestDB instances if disk
-space unexpectedly runs out.
+Even better than good error reporting is error prevention! This fix enhances the
+the resilience of the system by preventing data loss in QuestDB instances if
+disk space unexpectedly runs out.
 
 ## See the full release
 
