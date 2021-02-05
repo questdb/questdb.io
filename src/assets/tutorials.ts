@@ -18,7 +18,7 @@ const tutorials: FlatTutorial[] = [
       "https://towardsdatascience.com/sql-extensions-for-time-series-data-in-questdb-f6b53acf3213",
     title: "SQL Extensions for Time-Series Data in QuestDB",
     featured: true,
-    image: "/img/tutorial/2021-01-11/banner.jpg",
+    image: "/img/tutorial/shared/og_sql.png",
   },
   {
     author: "Kovid Rathee",
@@ -29,7 +29,7 @@ const tutorials: FlatTutorial[] = [
       "https://towardsdatascience.com/schemaless-ingestion-in-questdb-using-influxdb-line-protocol-18850e69b453?gi=113183e2c22b",
     title: "Schemaless ingestion in QuestDB using InfluxDB Line Protocol",
     featured: true,
-    image: "/img/tutorial/2020-12-17/banner.jpg",
+    image: "/img/tutorial/shared/og_influx_line_protocol.png",
   },
   {
     author: "David G. Simmons",
