@@ -37,7 +37,7 @@ const tutorials: FlatTutorial[] = [
     content:
       "In this video, David describes why a performant time-series database is critical for IoT use cases and shows how to set up and use QuestDB for ingesting sensor data from Arduino boards.",
     link: "https://www.youtube.com/watch?v=5IsPIpcVCoE",
-    image: "/img/tutorial/shared/og_youtube.png",
+    image: "/img/tutorial/shared/og_arduino.png",
     title: "Sending IoT Data from Arduino to QuestDB",
   },
   {
