@@ -12,6 +12,7 @@ keywords:
   - grafana
   - timeseries
   - database
+image: /img/blog/2020-02-05/og.png
 tags: [postgres, release, grafana]
 ---
 
