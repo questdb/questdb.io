@@ -4,13 +4,14 @@ author: Brian Smith
 author_title: QuestDB Team
 author_url: https://github.com/bsmth
 author_image_url: https://avatars.githubusercontent.com/bsmth
-description: We've released version 5.0.6 this week and here are the highlights
+description:
+  We've released version 5.0.6 and here's the highlights including PostgreSQL
+  wire improvements, SQL additions and new functions for troubleshooting
 keywords:
   - postgres
   - grafana
   - timeseries
   - database
-image: /img/blog/2020-12-10/banner.jpg
 tags: [postgres, release, grafana]
 ---
 
