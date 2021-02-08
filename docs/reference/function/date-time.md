@@ -7,22 +7,19 @@ description: Date and time functions reference documentation.
 ## systimestamp
 
 `systimestamp()` - offset from UTC Epoch in microseconds.
-
-### Arguments
-
-- `systimestamp()` does not require arguments.
-
-### Description
-
 Calculates `UTC timestamp` using system's real time clock. The value is affected
 by discontinuous jumps in the system time (e.g., if the system administrator
 manually changes the system time).
 
-### Return value
+__Parameters:__
+
+- `systimestamp()` does not accept parameters.
+
+__Return value:__
 
 Return value type is `timestamp`.
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Insert current system timestamp"
 INSERT INTO readings
@@ -38,21 +35,19 @@ VALUES(systimestamp(), 123.5);
 `sysdate()` - returns the timestamp of the host system as a `date` with
 `millisecond` precision.
 
-### Arguments
-
-- `sysdate()` does not require arguments.
-
-### Description
-
 Calculates `UTC date` with millisecond precision using system's real time clock.
 The value is affected by discontinuous jumps in the system time (e.g., if the
 system administrator manually changes the system time).
 
-### Return value
+__Parameters:__
+
+- `sysdate()` does not accept parameters.
+
+__Return value:__
 
 Return value type is `date`.
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Insert current system date along with a value"
 INSERT INTO readings
@@ -72,12 +67,6 @@ WHERE date_time > sysdate() - 60000000L;
 
 `now()` - offset from UTC Epoch in microseconds.
 
-### Arguments
-
-- `now()` does not require arguments.
-
-### Description
-
 Calculates `UTC timestamp` using system's real time clock. Unlike `sysdatetime()`,
 it does not change within the query execution timeframe and should be used in
 WHERE clause to filter designated timestamp column relative to current time, i.e.:
@@ -85,11 +74,15 @@ WHERE clause to filter designated timestamp column relative to current time, i.e
 * `SELECT now() FROM long_sequence(200)` will return the same timestamp for all rows
 * `SELECT systimestamp() FROM long_sequence(200)` will have new timestamp values for each row
 
-### Return value
+__Parameters:__
+
+- `now()` does not accept parameters.
+
+__Return value:__
 
 Return value type is `timestamp`.
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Filter records to created within last day"
 SELECT created, origin FROM telemetry
@@ -120,14 +113,6 @@ WHERE date_time > now() - 60000000L;
 `to_timestamp(string, format)` - converts string to `timestamp` by using the
 supplied `format` to extract the value.
 
-### Arguments
-
-- `string` is any string that represents a date and/or time.
-- `format` is a string that describes the `timestamp format` in which `string`
-  is expressed.
-
-### Description
-
 Will convert a `string` to `timestamp` using the format definition passed as a
 parameter. When the `format` definition does not match the `string` input, the
 result will be `null`.
@@ -135,11 +120,17 @@ result will be `null`.
 For more information about recognized timestamp formats, see the
 [date and timestamp format section](#date-and-timestamp-format).
 
-### Return value
+__Parameters:__
+
+- `string` is any string that represents a date and/or time.
+- `format` is a string that describes the `timestamp format` in which `string`
+  is expressed.
+
+__Return value:__
 
 Return value type is `timestamp`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="string matches format"
 SELECT to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')
@@ -173,14 +164,6 @@ values(to_timestamp('2019-12-12T12:15', 'yyyy-MM-ddTHH:mm'), 123.5);
 `to_date(string, format)` - converts string to `date` by using the supplied
 `format` to extract the value.
 
-### Arguments
-
-- `string` is any string that represents a date and/or time.
-- `format` is a string that describes the `date format` in which `string` is
-  expressed.
-
-### Description
-
 Will convert a `string` to `date` using the format definition passed as a
 parameter. When the `format` definition does not match the `string` input, the
 result will be `null`.
@@ -188,11 +171,18 @@ result will be `null`.
 For more information about recognized timestamp formats, see the
 [date and timestamp format section](#date-and-timestamp-format).
 
-### Return value
+
+__Parameters:__
+
+- `string` is any string that represents a date and/or time.
+- `format` is a string that describes the `date format` in which `string` is
+  expressed.
+
+__Return value:__
 
 Return value type is `date`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="string matches format"
 SELECT to_date('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')
@@ -226,13 +216,6 @@ values(to_date('2019-12-12T12:15', 'yyyy-MM-ddTHH:mm'), 123.5);
 `to_str(value, format)` - converts date or timestamp value to a string in the
 specified format
 
-### Arguments
-
-- `value` is any `date` or `timestamp`
-- `format` is a timestamp format.
-
-### Description
-
 Will convert a date or timestamp value to a string using the format definition
 passed as a parameter. When elements in the `format` definition are
 unrecognized, they will be passed-through as string.
@@ -240,11 +223,17 @@ unrecognized, they will be passed-through as string.
 For more information about recognized timestamp formats, see the
 [date and timestamp format section](#date-and-timestamp-format).
 
-### Return value
+
+__Parameters:__
+
+- `value` is any `date` or `timestamp`
+- `format` is a timestamp format.
+
+__Return value:__
 
 Return value type is `string`
 
-### Examples
+__Examples:__
 
 - Basic example
 
@@ -268,24 +257,21 @@ SELECT to_str(systimestamp(), 'yyyy-MM-dd gooD DAY 123') FROM long_sequence(1);
 
 ## dateadd
 
-`dateadd(period, n, startDate)` - adds time to a date or timestamp
+`dateadd(period, n, startDate)` - adds `n` `period` to `startDate`.
 
-### Arguments
+__Parameters:__
 
 - `period` is a char. Period to be added. Available periods are `s`, `m`, `h`,
   `d`, `M`, `y`.
 - `n` is an int. Number of periods to add.
 - `startDate` is a timestamp or date. Timestamp to add the periods to.
 
-### Description
 
-Adds `n` `period` to `startDate`.
-
-### Return value
+__Return value:__
 
 Return value type is `timestamp`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Adding hours"
 SELECT systimestamp(), dateadd('h', 2, systimestamp())
@@ -316,24 +302,20 @@ FROM long_sequence(1);
 
 ## datediff
 
-`datediff(period, date1, date2)` - returns the difference between two dates or
-timestamps
+`datediff(period, date1, date2)` - returns the absolute number of `period` between `date1` and `date2`.
 
-### Arguments
+__Parameters:__
 
 - `period` is a char. Period to be added. Available periods are `s`, `m`, `h`,
   `d`, `M`, `y`.
 - `date1` and `date2` are date or timestamp. Dates to compare
 
-### Description
 
-Returns the absolute number of `period` between `date1` and `date2`.
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Difference in days"
 select datediff(
@@ -361,22 +343,18 @@ from long_sequence(1);
 
 ## millis
 
-`millis(value)` - milliseconds of the second on a 0-999 scale
+`millis(value)` - returns the `millis` of the second for a given date or timestamp
+from `0` to `999`
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`millis(value)` returns the `millis` of the second for a given date or timestamp
-from 0 to 999
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Millis of the second"
 SELECT millis(
@@ -402,22 +380,18 @@ select millis(ts), count() from transactions;
 
 ## micros
 
-`micros(value)` - microseconds of the millisecond on a 0-999 scale
+`micros(value)` - returns the `micros` of the millisecond for a given date or
+timestamp from `0` to `999`
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`micros(value)` returns the `micros` of the millisecond for a given date or
-timestamp from 0 to 999
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Micros of the second"
 SELECT micros(to_timestamp('2020-03-01:15:43:21.123456', 'yyyy-MM-dd:HH:mm:ss.SSSUUU'))
@@ -442,22 +416,18 @@ select micros(ts), count() from transactions;
 
 ## second
 
-`second(value)` - second of the minute on a 0-59 scale
+`second(value)` - returns the `second` of the minute for a given date or timestamp
+from `0` to `59`
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`second(value)` returns the `second` of the minute for a given date or timestamp
-from 0 to 59
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Second of the minute"
 SELECT second(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
@@ -482,22 +452,18 @@ select second(ts), count() from transactions;
 
 ## minute
 
-`minute(value)` - minute of hour on a 0-59 scale
+`minute(value)` - returns the `minute` of the hour for a given date or timestamp
+from `0` to `59`
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`minute(value)` returns the `minute` of the hour for a given date or timestamp
-from 0 to 59
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Minute of the hour"
 SELECT minute(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
@@ -522,22 +488,18 @@ select minute(ts), count() from transactions;
 
 ## hour
 
-`hour(value)` - hour of day on a 0-23 scale
+`hour(value)` - returns the `hour` of day for a given date or timestamp from `0` to
+`23`
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`hour(value)` returns the `hour` of day for a given date or timestamp from 0 to
-23
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Hour of the day"
 SELECT hour(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
@@ -562,22 +524,18 @@ select hour(ts), count() from transactions;
 
 ## day
 
-`day(value)` - day of month on a 1 to 31 scale
+`day(value)` - returns the `day` of month for a given date or timestamp from `0` to
+`23`
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`day(value)` returns the `day` of month for a given date or timestamp from 0 to
-23
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Day of the month"
 SELECT day(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
@@ -602,22 +560,18 @@ select day(ts), count() from transactions;
 
 ## month
 
-`month(value)` - month of year on a 1-12 scale
+`month(value)` - returns the `month` of year for a given date or timestamp from `1`
+to `12`
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`month(value)` returns the `month` of year for a given date or timestamp from 1
-to 12
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Month of the year"
 SELECT month(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
@@ -642,21 +596,17 @@ select month(ts), count() from transactions;
 
 ## year
 
-`year(value)` - year of a timestamp
+`year(value)` - returns the `year` for a given date or timestamp
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`year(value)` returns the `year` for a given date or timestamp
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql title="Year"
 SELECT year(to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'))
@@ -679,22 +629,18 @@ select month(ts), count() from transactions;
 
 ## is_leap_year
 
-`is_leap_year(value)` - flags a leap year
+`is_leap_year(value)` - returns `true` if the `year` of `value` is a leap year,
+`false` otherwise.
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`is_leap_year(value)` returns `true` if the `year` of `value` is a leap year,
-`false` otherwise.
-
-### Return value
+__Return value:__
 
 Return value type is `boolean`
 
-### Examples
+__Examples:__
 
 ```questdb-sql
 select year(ts), is_leap_year(ts) from myTable;
@@ -711,21 +657,17 @@ select year(ts), is_leap_year(ts) from myTable;
 
 ## days_in_month
 
-`days_in_month(value)` - counts days in month
+`days_in_month(value)` - returns the number of days in a month from a provided timestamp or date.
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`days_in_month(value)` returns the count of days in a the month.
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql
 select month(ts), days_in_month(ts) from myTable;
@@ -741,22 +683,18 @@ select month(ts), days_in_month(ts) from myTable;
 
 ## day_of_week
 
-`day_of_week(value)` - day number in the week starting on Monday
+`day_of_week(value)` - returns the day number in a week from `1` (Monday) to `7`
+(Sunday)
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`day_of_week(value)` returns the day number in a week from 1 (Monday) to 7
-(Sunday)
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql
 select to_str(ts,'EE'),day_of_week(ts) from myTable;
@@ -774,22 +712,18 @@ select to_str(ts,'EE'),day_of_week(ts) from myTable;
 
 ## day_of_week_sunday_first
 
-`day_of_week_sunday_first(value)` - day number in the week starting on Sunday
+`day_of_week_sunday_first(value)` - returns the day number in a week from `1`
+(Sunday) to `7` (Saturday)
 
-### Parameters
+__Parameters:__
 
 - `value` is any `timestamp` or `date`
 
-### Description
-
-`day_of_week_sunday_first(value)` returns the day number in a week from 1
-(Sunday) to 7 (Saturday)
-
-### Return value
+__Return value:__
 
 Return value type is `int`
 
-### Examples
+__Examples:__
 
 ```questdb-sql
 select to_str(ts,'EE'),day_of_week_sunday_first(ts) from myTable;
