@@ -6,21 +6,18 @@ description: Aggregation functions reference documentation.
 
 ## avg
 
-`avg(value)` calculates simple average of values
+`avg(value)` calculates simple average of values ignoring missing data (e.g
+`null` values).
 
-### Arguments
+**Parameters:**
 
 - `value` is any numeric value.
 
-### Description
-
-`avg(value)` averages values ignoring missing data (e.g `null` values).
-
-### Return value
+**Return value:**
 
 Return value type is `double`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Average transaction amount"
 SELECT avg(amount) FROM transactions;
@@ -42,21 +39,17 @@ SELECT payment_type, avg(amount) FROM transactions;
 
 ## count
 
-`count()` or `count(*)` - counts rows.
+`count()` or `count(*)` - counts rows irrespective of underlying data.
 
-### Arguments
+**Parameters:**
 
 - `count` does not require arguments.
 
-### Description
-
-`count()` counts rows, irrespective of underlying data.
-
-### Return value
+**Return value:**
 
 Return value type is `long`.
 
-### Examples
+**Examples:**
 
 - Count of rows in the transactions table.
 
@@ -88,25 +81,20 @@ SELECT payment_type, count() FROM transactions;
 
 ## haversine_dist_deg
 
-`haversine_dist_deg(lat, lon, ts)` - traveled distance for a series of lat/lon
-points.
+`haversine_dist_deg(lat, lon, ts)` - calculates the traveled distance for a
+series of latitude and longitude points.
 
-### Arguments
+**Parameters:**
 
 - `lat` is the latitude expressed as degrees in decimal format (`double`)
 - `lon` is the longitude expressed as degrees in decimal format (`double`)
 - `ts` is the `timestamp` for the data point
 
-### Description
-
-This is an aggregatation function that calculates the traveled distance for a
-series of lat/lon points.
-
-### Return value
+**Return value:**
 
 Return value type is `double`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Calculate the aggregate traveled distance for each car_id"
 SELECT car_id, haversine_dist_deg(lat, lon, k)
@@ -115,25 +103,21 @@ SELECT car_id, haversine_dist_deg(lat, lon, k)
 
 ## ksum
 
-`ksum(value)` - adds values using Kahan algorithm.
-
-### Arguments
-
-- `value` is any numeric value.
-
-### Description
-
-`ksum(value)` adds values ignoring missing data (e.g `null` values). Values are
-added using the
+`ksum(value)` - adds values ignoring missing data (e.g `null` values). Values
+are added using the
 
 [Kahan compensated sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm).
 This is only beneficial for floating-point values such as `float` or `double`.
 
-### Return value
+**Parameters:**
+
+- `value` is any numeric value.
+
+**Return value:**
 
 Return value type is the same as the type of the argument.
 
-### Examples
+**Examples:**
 
 ```questdb-sql
 SELECT ksum(a)
@@ -146,21 +130,18 @@ FROM (SELECT rnd_double() a FROM long_sequence(100));
 
 ## max
 
-`max(value)` - finds the highest value.
+`max(value)` - returns the highest value ignoring missing data (e.g `null`
+values).
 
-### Arguments
+**Parameters:**
 
 - `value` is any numeric value
 
-### Description
-
-`max(value)` finds the highest value ignoring missing data (e.g `null` values).
-
-### Return value
+**Return value:**
 
 Return value type is the same as the type of the argument.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Highest transaction amount"
 SELECT max(amount) FROM transactions;
@@ -182,21 +163,18 @@ SELECT payment_type, max(amount) FROM transactions;
 
 ## min
 
-`min(value)` - finds the lowest value.
+`min(value)` - returns the lowest value ignoring missing data (e.g `null`
+values).
 
-### Arguments
+**Parameters:**
 
 - `value` is any numeric value
 
-### Description
-
-`min(value)` finds the lowest value ignoring missing data (e.g `null` values).
-
-### Return value
+**Return value:**
 
 Return value type is the same as the type of the argument.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Lowest transaction amount"
 SELECT min(amount) FROM transactions;
@@ -218,56 +196,20 @@ SELECT payment_type, min(amount) FROM transactions;
 
 ## nsum
 
-`nsum(value)` - adds values using Neumaier algorithm.
-
-### Arguments
-
-- `value` is any numeric value.
-
-### Description
-
-`nsum(value)` adds values ignoring missing data (e.g `null` values). Values are
-added using the
-
+`nsum(value)` - adds values ignoring missing data (e.g `null` values). Values
+are added using the
 [Neumaier sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements).
 This is only beneficial for floating-point values such as `float` or `double`.
 
-### Return value
-
-Return value type is the same as the type of the argument.
-
-### Examples
-
-```questdb-sql
-SELECT nsum(a)
-FROM (SELECT rnd_double() a FROM long_sequence(100));
-```
-
-| nsum             |
-| ---------------- |
-| 49.5442334742831 |
-
-## nsum
-
-`nsum(value)` - adds values using Neumaier algorithm.
-
-### Arguments
+**Parameters:**
 
 - `value` is any numeric value.
 
-### Description
-
-`nsum(value)` adds values ignoring missing data (e.g `null` values). Values are
-added using the
-
-[Neumaier sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements).
-This is only beneficial for floating-point values such as `float` or `double`.
-
-### Return value
+**Return value:**
 
 Return value type is the same as the type of the argument.
 
-### Examples
+**Examples:**
 
 ```questdb-sql
 SELECT nsum(a)
@@ -280,21 +222,17 @@ FROM (SELECT rnd_double() a FROM long_sequence(100));
 
 ## sum
 
-`sum(value)` - adds values.
+`sum(value)` - adds values ignoring missing data (e.g `null` values).
 
-### Arguments
+**Parameters:**
 
 - `value` is any numeric value.
 
-### Description
-
-`sum(value)` adds values ignoring missing data (e.g `null` values).
-
-### Return value
+**Return value:**
 
 Return value type is the same as the type of the argument.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Sum all quantities in the transactions table"
 SELECT sum(quantity) FROM transactions;

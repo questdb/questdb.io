@@ -6,30 +6,28 @@ description: Timestamp generator function reference documentation.
 
 ## timestamp_sequence
 
-- `timestamp_sequence(startTimestamp, step)` - generates increasing timestamps.
+- `timestamp_sequence(startTimestamp, step)` generates a sequence of `timestamp`
+  starting at `startTimestamp`, and incrementing by a `step` set as a `long`
+  value in microseconds. This `step` can be either;
 
-### Arguments
+  - a static value, in which case the growth will be monotonic, or
+
+  - a randomized value, in which case the growth will be randomized. This is
+    done using
+    [random value generator functions](/docs/reference/function/random-value-generator/).
+
+**Arguments:**
 
 - `startTimestamp`: is a `timestamp` representing the starting (i.e lowest)
   generated timestamp in the sequence.
 - `step`: is a `long` representing the interval between 2 consecutive generated
   timestamps in `microseconds`.
 
-### Description
-
-- `timestamp_sequence(startTimestamp, step)` generates a sequence of `timestamp`
-  starting at `startTimestamp`, and incrementing by a `step` set as a `long`
-  value in microseconds. This `step` can be.
-- a static value, in which case the growth will be monotonic.
-- a randomized value, in which case the growth will be randomized. This is done
-  using
-  [random value generator functions](/docs/reference/function/random-value-generator/).
-
-### Return value
+**Return value:**
 
 Return value type is `timestamp`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Monotonic timestamp increase"
 SELECT x, timestamp_sequence(

@@ -6,21 +6,17 @@ description: Table and database metadata function reference documentation.
 
 ## all_tables
 
-`all_tables()` returns a list of tables.
+`all_tables()` returns all tables in the database.
 
-### Arguments
+**Parameters:**
 
 - `all_tables()` does not require arguments.
 
-### Description
-
-Returns all tables in the database.
-
-### Return value
+**Return value:**
 
 Returns a `table`.
 
-### Examples
+**Examples:**
 
 - Get all tables in the database
 
@@ -64,22 +60,18 @@ all_tables() ORDER BY tableName DESC;
 
 `table_columns('tableName')` returns the schema of a table
 
-### Arguments
+**Parameters:**
 
 - `tableName` is the name of an existing table as a string
 
-### Description
-
-Returns the schema of the target table.
-
-### Return value
+**Return value:**
 
 Returns a `table` with two columns:
 
 - `columnName` - name of the available columns in the table
 - `columnType` - type of the column
 
-### Examples
+**Examples:**
 
 - Get all columns in the table
 
