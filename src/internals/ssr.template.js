@@ -1,21 +1,21 @@
 module.exports = ({ customFields, favicon, organizationName, url }) => `
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0" />
     <meta httpEquiv="x-ua-compatible" content="ie=edge" />
     <meta property="og:type" content="website" />
-    <meta name="author" content="${organizationName}">
+    <meta name="author" content="${organizationName}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@questdb" />
-    <meta name="generator" content="Docusaurus v<%= it.version %>">
+    <meta name="generator" content="Docusaurus v<%= it.version %>" />
     <link href="https://www.googletagmanager.com" rel="dns-prefetch" />
     <link href="https://www.google-analytics.com" rel="dns-prefetch" />
-    <link rel="icon" href="/favicon.ico">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/img/icons/apple-180x180.png" sizes="180x180">
-    <meta name="msapplication-config" content="/browserconfig.xml">
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/img/icons/apple-180x180.png" sizes="180x180" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <%~ it.headTags %>
     <% it.metaAttributes.forEach((metaAttribute) => { %>
