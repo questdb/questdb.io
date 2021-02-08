@@ -1,5 +1,5 @@
 ---
-title: QuestDB changelog January 2021
+title: QuestDB release January 2021
 author: Brian Smith
 author_title: QuestDB Team
 author_url: https://github.com/bsmth
