@@ -1,5 +1,5 @@
 ---
-title: Release 5.0.6 changelog
+title: QuestDB changelog January 2021
 author: Brian Smith
 author_title: QuestDB Team
 author_url: https://github.com/bsmth
