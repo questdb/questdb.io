@@ -68,7 +68,7 @@ Support for the RFC339Nano timestamp format enables the use of alerting via
 Grafana. This helps identify unintended changes, minimize disruptions and stay
 on top of your system or infrastructure:
 
-![Alerts being triggered in Grafana based on data in QuestDB](/img/blog/2021-02-05/grafana_alerts.png)
+![Alerts being triggered in Grafana based on data in QuestDB](/img/blog/2021-02-05/grafana-alerts.png)
 
 ## Build function
 
@@ -79,7 +79,7 @@ and commit hash for troubleshooting. It can be run with the following command:
 SELECT build();
 ```
 
-![A screenshot of running a function inside the QuestDB Web Console](/img/blog/2021-02-05/build_function.png)
+![A screenshot of running a function inside the QuestDB Web Console](/img/blog/2021-02-05/build-function.png)
 
 ## CREATE TABLE IF NOT EXISTS
 
@@ -90,10 +90,8 @@ queries are run and tables already exist:
 CREATE TABLE IF NOT EXISTS my_table (ts TIMESTAMP, value INT) timestamp(ts);
 ```
 
-More full examples using this statement in multiple languages can be found on
-the
-[Insert data](http://localhost:3000/docs/develop/insert-data#postgres-compatibility)
-page.
+Full examples using this statement in multiple languages can be found on the
+[Insert data](/docs/develop/insert-data#postgres-compatibility) page.
 
 ## Error prevention when disk full
 
