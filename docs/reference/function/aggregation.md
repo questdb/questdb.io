@@ -9,7 +9,7 @@ description: Aggregation functions reference documentation.
 `avg(value)` calculates simple average of values ignoring missing data (e.g
 `null` values).
 
-**Parameters:**
+**Arguments:**
 
 - `value` is any numeric value.
 
@@ -41,7 +41,7 @@ SELECT payment_type, avg(amount) FROM transactions;
 
 `count()` or `count(*)` - counts rows irrespective of underlying data.
 
-**Parameters:**
+**Arguments:**
 
 - `count` does not require arguments.
 
@@ -84,7 +84,7 @@ SELECT payment_type, count() FROM transactions;
 `haversine_dist_deg(lat, lon, ts)` - calculates the traveled distance for a
 series of latitude and longitude points.
 
-**Parameters:**
+**Arguments:**
 
 - `lat` is the latitude expressed as degrees in decimal format (`double`)
 - `lon` is the longitude expressed as degrees in decimal format (`double`)
@@ -109,7 +109,7 @@ are added using the
 [Kahan compensated sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm).
 This is only beneficial for floating-point values such as `float` or `double`.
 
-**Parameters:**
+**Arguments:**
 
 - `value` is any numeric value.
 
@@ -133,7 +133,7 @@ FROM (SELECT rnd_double() a FROM long_sequence(100));
 `max(value)` - returns the highest value ignoring missing data (e.g `null`
 values).
 
-**Parameters:**
+**Arguments:**
 
 - `value` is any numeric value
 
@@ -166,7 +166,7 @@ SELECT payment_type, max(amount) FROM transactions;
 `min(value)` - returns the lowest value ignoring missing data (e.g `null`
 values).
 
-**Parameters:**
+**Arguments:**
 
 - `value` is any numeric value
 
@@ -201,7 +201,7 @@ are added using the
 [Neumaier sum algorithm](https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements).
 This is only beneficial for floating-point values such as `float` or `double`.
 
-**Parameters:**
+**Arguments:**
 
 - `value` is any numeric value.
 
@@ -224,7 +224,7 @@ FROM (SELECT rnd_double() a FROM long_sequence(100));
 
 `sum(value)` - adds values ignoring missing data (e.g `null` values).
 
-**Parameters:**
+**Arguments:**
 
 - `value` is any numeric value.
 

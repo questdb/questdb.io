@@ -8,7 +8,7 @@ description: Table and database metadata function reference documentation.
 
 `all_tables()` returns all tables in the database.
 
-**Parameters:**
+**Arguments:**
 
 - `all_tables()` does not require arguments.
 
@@ -60,7 +60,7 @@ all_tables() ORDER BY tableName DESC;
 
 `table_columns('tableName')` returns the schema of a table
 
-**Parameters:**
+**Arguments:**
 
 - `tableName` is the name of an existing table as a string
 
