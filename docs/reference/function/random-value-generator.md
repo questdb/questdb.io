@@ -4,8 +4,6 @@ sidebar_label: Random value generator
 description: Random value generator function reference documentation.
 ---
 
-## Overview
-
 The following functions have been created to help with our test suite. They are
 also useful for users testing QuestDB on specific workloads in order to quickly
 generate large test datasets that mimic the structure of their actual data.
@@ -33,7 +31,7 @@ QuestDB supports the following random generation functions:
 - [rnd_str](#rnd_str)
 - [rnd_bin](#rnd_bin)
 
-### Usage
+## Usage
 
 Random functions should be used for populating test tables only. They do not
 hold values in memory and calculations should not be performed at the same time
@@ -46,12 +44,12 @@ bad practice and will return inconsistent results.
 A better approach would be to populate a table and then run the query. So for
 example
 
-- `CREATE TABLE test(val double);` (create)
-- `INSERT INTO test SELECT * FROM (SELECT rnd_double() FROM long_sequence(10));`
-  (populate)
-- `SELECT round(val,2) FROM test;` (query)
+1. **create** - `CREATE TABLE test(val double);`
+2. **populate** -
+   `INSERT INTO test SELECT * FROM (SELECT rnd_double() FROM long_sequence(10));`
+3. **query** - `SELECT round(val,2) FROM test;`
 
-### Generating sequences
+## Generating sequences
 
 This page describes the functions to generate values. To generate sequences of
 values, please refer the page about
@@ -59,18 +57,14 @@ values, please refer the page about
 
 ## rnd_boolean
 
-`rnd_boolean()` - generates a random `boolean` value.
+`rnd_boolean()` - generates a random `boolean` value, either `true` or `false`,
+both having equal probability.
 
-### Description
-
-- `rnd_boolean()` is used to generate a random boolean, either `true` or
-  `false`, both having equal probability.
-
-### Return value
+**Return value:**
 
 Return value type is `boolean`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random boolean"
 SELECT
@@ -86,27 +80,23 @@ FROM (SELECT rnd_boolean() value FROM long_sequence(100));
 
 ## rnd_byte
 
-- `rnd_byte()` - generates a random `byte` value.
-- `rnd_byte(min, max)` - generates a random `byte` value within a range.
+- `rnd_byte()` - returns a random integer which can take any value between `0`
+  and `127`.
+- `rnd_byte(min, max)` - generates byte values in a specific range (for example
+  only positive, or between 1 and 10).
 
-### Arguments
+**Arguments:**
 
 - `min`: is a `byte` representing the lowest possible generated value
   (inclusive).
 - `max`: is a `byte` representing the highest possible generated value
   (inclusive).
 
-### Description
-
-`rnd_byte()` is used to return a random integer which can take any value between
-`0` and `127`. `rnd_int(min, max)` is used to generate byte values between in a
-specific range (for example only positive, or between 1 and 10).
-
-### Return value
+**Return value:**
 
 Return value type is `byte`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random byte"
 SELECT rnd_byte() FROM long_sequence(5);
@@ -120,29 +110,24 @@ SELECT rnd_byte(-1,1) FROM long_sequence(5);
 
 ## rnd_short
 
-- `rnd_short()` - generates a random `short` value.
-- `rnd_short(min, max)` - generates a random `short` value within a range.
+- `rnd_short()` - returns a random integer which can take any value between
+  `-32768` and `32767`.
+- `rnd_short(min, max)` - returns short values in a specific range (for example
+  only positive, or between 1 and 10). Supplying `min` above `max` will result
+  in an `invalid range` error.
 
-### Arguments
+**Arguments:**
 
 - `min`: is a `short` representing the lowest possible generated value
   (inclusive).
 - `max`: is a `short` representing the highest possible generated value
   (inclusive).
 
-### Description
-
-- `rnd_short()` is used to return a random integer which can take any value
-  between `-32768` and `32767`.
-- `rnd_int(min, max, nanRate)` is used to generate short values in a specific
-  range (for example only positive, or between 1 and 10). Supplying `min` above
-  `max` will result in an `invalid range` error.
-
-### Return value
+**Return value:**
 
 Return value type is `short`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random short"
 SELECT rnd_short() FROM long_sequence(5);
@@ -156,11 +141,13 @@ SELECT rnd_short(-1,1) FROM long_sequence(5);
 
 ## rnd_int
 
-- `rnd_int()` - generates a random `int` value.
-- `rnd_int(min, max, nanRate)` - generates a random `int` between `min` and
-  `max` (both included) with a proportion of `NaN` values defined by `nanRate`.
+- `rnd_int()` is used to return a random integer which can take any value
+  between `-2147483648` and `2147483647`.
+- `rnd_int(min, max, nanRate)` is used to generate int values in a specific
+  range (for example only positive, or between 1 and 10), or to get occasional
+  `NaN` values along with int values.
 
-### Arguments
+**Arguments:**
 
 - `min`: is an `int` representing the lowest possible generated value
   (inclusive).
@@ -171,19 +158,11 @@ SELECT rnd_short(-1,1) FROM long_sequence(5);
   - `1`: Will only return `NaN`.
   - `N > 1`: On average, one in N generated values will be NaN.
 
-### Description
-
-- `rnd_int()` is used to return a random integer which can take any value
-  between `-2147483648` and `2147483647`.
-- `rnd_int(min, max, nanRate)` is used to generate int values in a specific
-  range (for example only positive, or between 1 and 10), or to get occasional
-  `NaN` values along with int values.
-
-### Return value
+**Return value:**
 
 Return value type is `int`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random int"
 SELECT rnd_int() FROM long_sequence(5)
@@ -201,11 +180,13 @@ null,null,null,null,null
 
 ## rnd_long
 
-- `rnd_long()` - generates a random `long` value.
-- `rnd_long(min, max, nanRate)` - generates a random `long` value within a range
-  which can be `NaN`.
+- `rnd_long()` is used to return a random signed integer between
+  `0x8000000000000000L` and `0x7fffffffffffffffL`.
+- `rnd_long(min, max, nanRate)` is used to generate long values in a specific
+  range (for example only positive, or between 1 and 10), or to get occasional
+  `NaN` values along with int values.
 
-### Arguments
+**Arguments:**
 
 - `min`: is a `long` representing the lowest possible generated value
   (inclusive).
@@ -216,19 +197,11 @@ null,null,null,null,null
   - `1`: Will only return `NaN`.
   - `N > 1`: On average, one in N generated values will be `NaN`.
 
-### Description
-
-- `rnd_long()` is used to return a random signed integer between
-  `0x8000000000000000L` and `0x7fffffffffffffffL`.
-- `rnd_long(min, max, nanRate)` is used to generate long values in a specific
-  range (for example only positive, or between 1 and 10), or to get occasional
-  `NaN` values along with int values.
-
-### Return value
+**Return value:**
 
 Return value type is `long`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random long"
 SELECT rnd_long() FROM long_sequence(5);
@@ -246,9 +219,9 @@ null,null,null,null,null
 
 ## rnd_long256
 
-- `rnd_long256()` - generates a random `long256` value.
+- `rnd_long256()` - generates a random `long256` value between 0 and 2^256.
 
-### Arguments
+**Arguments:**
 
 - `min`: is a `long256` representing the lowest possible generated value
   (inclusive).
@@ -259,16 +232,11 @@ null,null,null,null,null
   - `1`: Will only return `NaN`.
   - `N > 1`: On average, one in N generated values will be `NaN`.
 
-### Description
-
-- `rnd_long256()` is used to return a random `long256` value between 0 and
-  2^256.
-
-### Return value
+**Return value:**
 
 Return value type is `long256`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random long256"
 SELECT rnd_long256() FROM long_sequence(5);
@@ -284,27 +252,22 @@ SELECT rnd_long256() FROM long_sequence(5);
 
 ## rnd_float
 
-- `rnd_float()` - generates a random `float`.
-- `rnd_float(nanRate)` - generates a random `float` which can be `NaN`.
+- `rnd_float()` - generates a random **positive** `float` between 0 and 1.
+- `rnd_float(nanRate)` - generates a random **positive** `float` between 0 and 1
+  which will be `NaN` at a frequency defined by `nanRate`.
 
-### Arguments
+**Arguments:**
 
 - `nanRate` is an `int` defining the frequency of occurrence of `NaN` values:
 - `0`: No `NaN` will be returned.
 - `1`: Will only return `NaN`.
 - `N > 1`: On average, one in N generated values will be `NaN`.
 
-### Description
-
-- `rnd_float()` - generates a random **positive** `float` between 0 and 1.
-- `rnd_float(nanRate)` - generates a random **positive** `float` between 0 and 1
-  which will be `NaN` at a frequency defined by `nanRate`.
-
-### Return value
+**Return value:**
 
 Return value type is `float`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random float"
 SELECT rnd_float() FROM long_sequence(5);
@@ -318,27 +281,22 @@ SELECT rnd_float(2) FROM long_sequence(6);
 
 ## rnd_double
 
-- `rnd_double()` - generates a random `double`.
-- `rnd_double(nanRate)` - generates a random `double` which can be `NaN`.
+- `rnd_double()` - generates a random **positive** `double` between 0 and 1.
+- `rnd_double(nanRate)` - generates a random **positive** `double` between 0 and
+  1 which will be `NaN` at a frequency defined by `nanRate`.
 
-### Arguments
+**Arguments:**
 
 - `nanRate` is an `int` defining the frequency of occurrence of `NaN` values:
 - `0`: No `NaN` will be returned.
 - `1`: Will only return `NaN`.
 - `N > 1`: On average, one in N generated values will be `NaN`.
 
-### Description
-
-- `rnd_double()` - generates a random **positive** `double` between 0 and 1.
-- `rnd_double(nanRate)` - generates a random **positive** `double` between 0 and
-  1 which will be `NaN` at a frequency defined by `nanRate`.
-
-### Return value
+**Return value:**
 
 Return value type is `double`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random double"
 SELECT rnd_double() FROM long_sequence(5);
@@ -352,9 +310,13 @@ SELECT rnd_double(2) FROM long_sequence(5);
 
 ## rnd_date()
 
-- `rnd_date(start, end, nanRate)` - generates a random date.
+- `rnd_date()` generates a random date between `start` and `end` dates (both
+  inclusive). IT will also generate `NaN` values at a frequency defined by
+  `nanRate`. When `start` or `end` are invalid dates, or when `start` is
+  superior to `end`, it will return `invalid range` error. When `nanRate` is
+  inferior to 0, it will return `invalid NAN rate` error.
 
-### Arguments
+**Arguments:**
 
 - `start` is a `date` defining the minimum possible generated date (inclusive)
 - `end` is a `date` defining the maximum possible generated date (inclusive)
@@ -363,19 +325,11 @@ SELECT rnd_double(2) FROM long_sequence(5);
   - `1`: Will only return `NaN`.
   - `N > 1`: On average, one in N generated values will be NaN.
 
-### Description
-
-- `rnd_date()` generates a random date between `start` and `end` dates (both
-  inclusive). IT will also generate `NaN` values at a frequency defined by
-  `nanRate`. When `start` or `end` are invalid dates, or when `start` is
-  superior to `end`, it will return `invalid range` error. When `nanRate` is
-  inferior to 0, it will return `invalid NAN rate` error.
-
-### Return value
+**Return value:**
 
 Return value type is `date`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random date"
 SELECT rnd_date(
@@ -393,9 +347,14 @@ FROM long_sequence(5);
 
 ## rnd_timestamp()
 
-- `rnd_timestamp(start, end, nanRate)` - generates a random timestamp.
+- `rnd_timestamp(start, end, nanRate)` generates a random timestamp between
+  `start` and `end` timestamps (both inclusive). It will also generate `NaN`
+  values at a frequency defined by `nanRate`. When `start` or `end` are invalid
+  timestamps, or when `start` is superior to `end`, it will return
+  `invalid range` error. When `nanRate` is inferior to 0, it will return
+  `invalid NAN rate` error.
 
-### Arguments
+**Arguments:**
 
 - `start` is a `timestamp` defining the minimum possible generated timestamp
   (inclusive)
@@ -406,20 +365,11 @@ FROM long_sequence(5);
   - `1`: Will only return `NaN`.
   - `N > 1`: On average, one in N generated values will be NaN.
 
-### Description
-
-- `rnd_timestamp(start, end, nanRate)` generates a random timestamp between
-  `start` and `end` timestamps (both inclusive). IT will also generate `NaN`
-  values at a frequency defined by `nanRate`. When `start` or `end` are invalid
-  timestamps, or when `start` is superior to `end`, it will return
-  `invalid range` error. When `nanRate` is inferior to 0, it will return
-  `invalid NAN rate` error.
-
-### Return value
+**Return value:**
 
 Return value type is `timestamp`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random timestamp"
 SELECT rnd_timestamp(
@@ -442,19 +392,15 @@ To generate increasing timestamps, please refer the page about
 
 ## rnd_char
 
-- `rnd_char()` generates a random printable character.
-
-### Description
-
 - `rnd_char()` is used to generate a random `char` which will be an uppercase
   character from the 26-letter A to Z alphabet. Letters from A to Z will be
   generated with equal probability.
 
-### Return value
+**Return value:**
 
 Return value type is `char`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random char"
 SELECT rnd_char() FROM long_sequence(5);
@@ -465,27 +411,6 @@ G, P, E, W, K
 ```
 
 ## rnd_symbol
-
-- `rnd_symbol(symbolList)` - chooses a `symbol` at random from a list.
-- `rnd_symbol(list_size, minLength, maxLength, nullRate)` - generates a random
-  `symbol`.
-
-### Arguments
-
-- `symbolList` is a variable-length list of possible `symbol` values expressed
-  as a comma-separated list of strings. For example,
-  `'a', 'bcd', 'efg123', '行'`
-- `list_size` is the number of distinct `symbol` values to generated
-- `minLength` is an `int` defining the minimum length for of a generated symbol
-  (inclusive)
-- `maxLength` is an `int` defining the maximum length for of a generated symbol
-  (inclusive)
-- `nullRate` is an `int` defining the frequency of occurrence of `null` values:
-  - `0`: No `null` will be returned.
-  - `1`: Will only return `null`.
-  - `N > 1`: On average, one in N generated values will be `null`.
-
-### Description
 
 - `rnd_symbol(symbolList)` is used to choose a random `symbol` from a list
   defined by the user. It is useful when looking to generate specific symbols
@@ -500,11 +425,26 @@ G, P, E, W, K
   `minLength` and `maxLength` (both inclusive). The function will also generate
   `null` values at a a rate defined by `nullRate`.
 
-### Return value
+**Arguments:**
+
+- `symbolList` is a variable-length list of possible `symbol` values expressed
+  as a comma-separated list of strings. For example,
+  `'a', 'bcd', 'efg123', '行'`
+- `list_size` is the number of distinct `symbol` values to generated
+- `minLength` is an `int` defining the minimum length for of a generated symbol
+  (inclusive)
+- `maxLength` is an `int` defining the maximum length for of a generated symbol
+  (inclusive)
+- `nullRate` is an `int` defining the frequency of occurrence of `null` values:
+  - `0`: No `null` will be returned.
+  - `1`: Will only return `null`.
+  - `N > 1`: On average, one in N generated values will be `null`.
+
+**Return value:**
 
 Return value type is `symbol`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random symbol from a list"
 SELECT rnd_symbol('ABC','def', '123')
@@ -526,11 +466,18 @@ FROM long_sequence(5);
 
 ## rnd_str
 
-- `rnd_str(stringList)` - chooses a `string` at random from a list.
-- `rnd_str(list_size, minLength, maxLength, nullRate)` - generates a random
-  `string`.
+- `rnd_str(stringList)` is used to choose a random `string` from a list defined
+  by the user. It is useful when looking to generate specific strings from a
+  finite list (e.g `BUY, SELL` or `AUTUMN, WINTER, SPRING, SUMMER`. Strings are
+  randomly chosen from the list with equal probability. When only one string is
+  provided in the list, this string will be chosen with 100% probability.
+- `rnd_str(count, minLength, maxLength, null)` generated a finite list of
+  distinct random string and chooses one string from the list at random. The
+  finite list is of size `list_size`. The generated strings length is between
+  `minLength` and `maxLength` (both inclusive). The function will also generate
+  `null` values at a a rate defined by `nullRate`.
 
-### Arguments
+**Arguments:**
 
 - `strList` is a variable-length list of possible `string` values expressed as a
   comma-separated list of strings. For example, `'a', 'bcd', 'efg123', '行'`
@@ -544,24 +491,11 @@ FROM long_sequence(5);
   - `1`: Will only return `null`.
   - `N > 1`: On average, one in N generated values will be `null`.
 
-### Description
-
-- `rnd_str(stringList)` is used to choose a random `string` from a list defined
-  by the user. It is useful when looking to generate specific strings from a
-  finite list (e.g `BUY, SELL` or `AUTUMN, WINTER, SPRING, SUMMER`. Strings are
-  randomly chosen from the list with equal probability. When only one string is
-  provided in the list, this string will be chosen with 100% probability.
-- `rnd_str(count, minLength, maxLength, null)` generated a finite list of
-  distinct random string and chooses one string from the list at random. The
-  finite list is of size `list_size`. The generated strings length is between
-  `minLength` and `maxLength` (both inclusive). The function will also generate
-  `null` values at a a rate defined by `nullRate`.
-
-### Return value
+**Return value:**
 
 Return value type is `string`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random string from a list"
 SELECT rnd_str('ABC','def', '123')
@@ -583,11 +517,12 @@ FROM long_sequence(8);
 
 ## rnd_bin
 
-- `rnd_bin()` generates random binary data.
-- `rnd_bin(minBytes, maxBytes, nullRate)` generates random binary data of a
-  custom-set size.
+- `rnd_bin()` generates random binary data of a size up to `32` bytes.
+- `rnd_bin(minBytes, maxBytes, nullRate)` generates random binary data of a size
+  between `minBytes` and `maxBytes` and returns `null` at a rate defined by
+  `nullRate`.
 
-### Arguments
+**Arguments:**
 
 - `minBytes` is a `long` defining the minimum size in bytes for of a generated
   binary (inclusive)
@@ -598,18 +533,11 @@ FROM long_sequence(8);
   - `1`: Will only return `null`.
   - `N > 1`: On average, one in N generated values will be `null`.
 
-### Description
-
-- `rnd_bin()` generates random binary data of a size up to `32` bytes.
-- `rnd_bin(minBytes, maxBytes, nullRate)` generates random binary data of a size
-  between `minBytes` and `maxBytes` and returns `null` at a rate defined by
-  `nullRate`.
-
-### Return value
+**Return value:**
 
 Return value type is `binary`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Random binary"
 SELECT rnd_bin() FROM long_sequence(5);

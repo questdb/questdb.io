@@ -9,14 +9,12 @@ description: Row generator function reference documentation.
 - `long_sequence(iterations)` - generates rows
 - `long_sequence(iterations, seed1, seed2)` - generates rows deterministically
 
-### Arguments
+**Arguments:**
 
 -`iterations`: is a `long` representing the number of rows to generate. -`seed1`
 and `seed2` are `long64` representing both parts of a `long128` seed.
 
-### Description
-
-#### Row generation
+### Row generation
 
 `long_sequence(iterations)` is used to:
 
@@ -31,7 +29,7 @@ of rows or more if your disk allows.
 
 :::
 
-#### Random number seed
+### Random number seed
 
 When `long_sequence` is used conjointly with
 [random generators](/docs/reference/function/random-value-generator/), these
@@ -47,7 +45,7 @@ all random functions.
 
 :::
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Generating multiple rows"
 SELECT x, rnd_double()

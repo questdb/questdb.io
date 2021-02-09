@@ -4,12 +4,44 @@ sidebar_label: Numeric
 description: Numeric function reference documentation.
 ---
 
+## abs
+
+`abs(value)` return the absolute value. The behavior of `abs` is as follows:
+
+- When the input `value` is positive, `abs` returns `value`
+- When the input `value` is negative, `abs` returns `- value`
+- When the input `value` is `0`, `abs` returns `0`
+
+**Arguments:**
+
+- `value` is any numeric value.
+
+**Return value:**
+
+Return value type is `double`.
+
+**Examples:**
+
+```questdb-sql
+SELECT
+    x - 2 a,
+    abs(x -2)
+FROM long_sequence(3);
+```
+
+| a   | abs |
+| --- | --- |
+| -1  | 1   |
+| 0   | 0   |
+| 1   | 1   |
+
 ## round
 
-`round(value, scale)` rounds a value to the specified scale using the "half up"
-method.
+`round(value, scale)` returns the **closest** value in the specified scale. It
+uses the "half up" tie-breaking method when the value is exactly halfway between
+the `round_up` and `round_down` values.
 
-### Arguments
+**Arguments:**
 
 - `value` is any numeric value.
 - `scale` is the number of decimal points returned. A negative scale means the
@@ -17,17 +49,11 @@ method.
   -1 means the number will be rounded to the nearest tens and +1 to the nearest
   tenths.
 
-### Description
-
-`round(value, scale)` returns the **closest** value in the specified scale. It
-uses the "half up" tie-breaking method when the value is exactly halfway between
-the `round_up` and `round_down` values.
-
-### Return value
+**Return value:**
 
 Return value type is `double`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql
 SELECT
@@ -55,7 +81,7 @@ FROM dbl;
 
 `round_down(value, scale)` - rounds a value down to the specified scale
 
-### Arguments
+**Arguments:**
 
 - `value` is any numeric value.
 - `scale` is the number of decimal points returned. A negative scale means the
@@ -63,15 +89,11 @@ FROM dbl;
   -1 means the number will be rounded to the nearest tens and +1 to the nearest
   tenths.
 
-### Description
-
-`round_up(value, scale)` rounds a value down to the specified scale.
-
-### Return value
+**Return value:**
 
 Return value type is `double`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql
 SELECT
@@ -95,56 +117,13 @@ FROM dbl;
 | 86.91359825  | 0        | 80       | 86      | 86.9    | 86.91   |
 | 376.3807766  | 400      | 370      | 376     | 376.3   | 376.38  |
 
-## round_up
-
-`round_up(value, scale)` - rounds a value up to the specified scale
-
-### Arguments
-
-- `value` is any numeric value.
-- `scale` is the number of decimal points returned. A negative scale means the
-  rounding will occur to a digit to the left of the decimal point. For example,
-  -1 means the number will be rounded to the nearest tens and +1 to the nearest
-  tenths.
-
-### Description
-
-`round_up(value, scale)` rounds a value up to the specified scale
-
-### Return value
-
-Return value type is `double`.
-
-### Examples
-
-```questdb-sql
-SELECT
-    d,
-    round_up(d, -2),
-    round_up(d, -1),
-    round_up(d,0),
-    round_up(d,1),
-    round_up(d,2)
-FROM dbl;
-```
-
-| d            | r_up-2 | r_up-1 | r_up0 | r_up1  | r_up2   |
-| ------------ | ------ | ------ | ----- | ------ | ------- |
-| -0.811905406 | -100   | -10    | -1    | -0.9   | -0.82   |
-| -5.002768547 | -100   | -10    | -6    | -5.1   | -5.01   |
-| -64.75487334 | -100   | -70    | -65   | -64.8  | -64.76  |
-| -926.531695  | -1000  | -930   | -927  | -926.6 | -926.54 |
-| 0.069361448  | 100    | 10     | 1     | 0.1    | 0.07    |
-| 4.003627053  | 100    | 10     | 5     | 4.1    | 4.01    |
-| 86.91359825  | 100    | 90     | 87    | 87     | 86.92   |
-| 376.3807766  | 400    | 380    | 377   | 376.4  | 376.39  |
-
 ## round_half_even
 
 `round_half_even(value, scale)` - returns the **closest** value in the specified
-scale using the "half to even" behaviour
+scale. It uses the "half up" tie-breaking method when the value is exactly
+halfway between the `round_up` and `round_down` values.
 
-### Arguments
+**Arguments:**
 
 - `value` is any numeric value.
 - `scale` is the number of decimal points returned. A negative scale means the
@@ -152,17 +131,11 @@ scale using the "half to even" behaviour
   -1 means the number will be rounded to the nearest tens and +1 to the nearest
   tenths.
 
-### Description
-
-`round_half_even(value, scale)` returns the **closest** value in the specified
-scale. It uses the "half up" tie-breaking method when the value is exactly
-halfway between the `round_up` and `round_down` values.
-
-### Return value
+**Return value:**
 
 Return value type is `double`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql title="Tie-breaker behavior"
 SELECT
@@ -197,37 +170,42 @@ FROM dbl;
 | 86.91359825  | 100     | 90      | 87     | 86.9   | 86.91   |
 | 376.3807766  | 400     | 380     | 376    | 376.4  | 376.38  |
 
-## abs
+## round_up
 
-`abs(value)` return the absolute value.
+`round_up(value, scale)` - rounds a value up to the specified scale
 
-### Arguments
+**Arguments:**
 
 - `value` is any numeric value.
+- `scale` is the number of decimal points returned. A negative scale means the
+  rounding will occur to a digit to the left of the decimal point. For example,
+  -1 means the number will be rounded to the nearest tens and +1 to the nearest
+  tenths.
 
-### Description
-
-`abs(value)` behaves as follow
-
-- When the input `value` is positive, `abs` returns `value`
-- When the input `value` is negative, `abs` returns `- value`
-- When the input `value` is `0`, `abs` returns `0`
-
-### Return value
+**Return value:**
 
 Return value type is `double`.
 
-### Examples
+**Examples:**
 
 ```questdb-sql
 SELECT
-    x - 2 a,
-    abs(x -2)
-FROM long_sequence(3);
+    d,
+    round_up(d, -2),
+    round_up(d, -1),
+    round_up(d,0),
+    round_up(d,1),
+    round_up(d,2)
+FROM dbl;
 ```
 
-| a   | abs |
-| --- | --- |
-| -1  | 1   |
-| 0   | 0   |
-| 1   | 1   |
+| d            | r_up-2 | r_up-1 | r_up0 | r_up1  | r_up2   |
+| ------------ | ------ | ------ | ----- | ------ | ------- |
+| -0.811905406 | -100   | -10    | -1    | -0.9   | -0.82   |
+| -5.002768547 | -100   | -10    | -6    | -5.1   | -5.01   |
+| -64.75487334 | -100   | -70    | -65   | -64.8  | -64.76  |
+| -926.531695  | -1000  | -930   | -927  | -926.6 | -926.54 |
+| 0.069361448  | 100    | 10     | 1     | 0.1    | 0.07    |
+| 4.003627053  | 100    | 10     | 5     | 4.1    | 4.01    |
+| 86.91359825  | 100    | 90     | 87    | 87     | 86.92   |
+| 376.3807766  | 400    | 380    | 377   | 376.4  | 376.39  |
