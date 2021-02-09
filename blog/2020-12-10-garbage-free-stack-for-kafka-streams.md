@@ -212,7 +212,7 @@ appropriate implementation is automatically chosen at runtime based on the OS.
 The IODispatched API is message-driven via QuestDB's implementation of
 non-blocking and non-allocating queues. These queues are outside of the scope of
 this article, but you can read about them in our community
-[contribution from Alex Pelagenko](/blog/2020/11/26/http-server-contribution).
+[contribution from Alex Pelagenko](/blog/2020/11/16/http-server-contribution).
 
 import Screenshot from "@theme/Screenshot"
 
