@@ -45,7 +45,7 @@ all random functions.
 
 :::
 
-## Examples
+**Examples:**
 
 ```questdb-sql title="Generating multiple rows"
 SELECT x, rnd_double()

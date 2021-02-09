@@ -184,7 +184,9 @@ null,null,null,null,null
   `0x8000000000000000L` and `0x7fffffffffffffffL`.
 - `rnd_long(min, max, nanRate)` is used to generate long values in a specific
   range (for example only positive, or between 1 and 10), or to get occasional
-  `NaN` values along with int values. **Arguments:**
+  `NaN` values along with int values.
+
+**Arguments:**
 
 - `min`: is a `long` representing the lowest possible generated value
   (inclusive).
