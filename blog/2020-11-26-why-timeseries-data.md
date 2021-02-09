@@ -9,13 +9,13 @@ author_image_url: https://avatars.githubusercontent.com/NicQuestDB
 description:
   A primer on time-series data and time-series databases (TSDB), and why we
   decided to build QuestDB
-image: /img/blog/2020-11-16/banner.jpg
+image: /img/blog/2020-11-26/banner.jpg
 tags: [story]
 ---
 
 import Banner from "@theme/Banner"
 
-<Banner alt="An open lock with its key attached to it." height={433} src="/img/blog/2020-11-16/banner.jpg" width={650}>
+<Banner alt="An open lock with its key attached to it." height={433} src="/img/blog/2020-11-26/banner.jpg" width={650}>
   Photo by <a href="https://unsplash.com/photos/uCMKx2H1Y38">AbsolutVision</a> on <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
@@ -48,7 +48,7 @@ import Screenshot from "@theme/Screenshot"
 <Screenshot
   alt="AAPL stock price over the last 5 years"
   height={284}
-  src="/img/blog/2020-11-16/apple.png"
+  src="/img/blog/2020-11-26/apple.png"
   title="Apple’s share price (daily) over the last 5 years: time-series data!"
   width={650}
 />
@@ -63,7 +63,7 @@ nearly all fields.
 <Screenshot
   alt="Example of time-series data use cases"
   height={327}
-  src="/img/blog/2020-11-16/useCases.png"
+  src="/img/blog/2020-11-26/useCases.png"
   title="Time-series data use cases"
   width={650}
 />
@@ -75,7 +75,7 @@ past two years according to
 <Screenshot
   alt="Chart showing the popularity of time-series databases over the last 2 years - the data is from db-engines.com"
   height={290}
-  src="/img/blog/2020-11-16/popularity.png"
+  src="/img/blog/2020-11-26/popularity.png"
   title="Popularity by database category"
   width={650}
 />
@@ -140,10 +140,11 @@ Further, we summarise how QuestDB addresses those needs.
   exactly matching timestamps. QuestDB supports
   [ASOF](/docs/reference/sql/join/#asof-join) joins. QuestDB’s SQL query to
   match two tables (“bid” and “asks”) with unequal timestamps would look like:
+
   <Screenshot
     alt="Example of an ASOF join query"
     height={85}
-    src="/img/blog/2020-11-16/asof.png"
+    src="/img/blog/2020-11-26/asof.png"
     title="Example of ASOF join query between the tables Bid and Ask"
     width={620}
   />
@@ -229,7 +230,7 @@ minimal amount of data from disk for a given query.
 <Screenshot
   alt="Architecture of the storage model with column files and time partitions"
   height={323}
-  src="/img/blog/2020-11-16/model.png"
+  src="/img/blog/2020-11-26/model.png"
   title="Data stored in columns and partitioned by time"
   width={650}
 />
