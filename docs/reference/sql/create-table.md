@@ -255,7 +255,7 @@ type of `sym` to [symbol](/docs/concept/symbol/) and created an
 #### Create a new table using SQL structure and data
 
 Let's assume we imported a text file into the table `taxi_trips_unordered` and
-now we want to turn this data into time series though ordering trips by
+now we want to turn this data into time series through ordering trips by
 `pickup_time`, assign dedicated timestamp and partition by month:
 
 ```questdb-sql title="Create table as select with data manipulation"
