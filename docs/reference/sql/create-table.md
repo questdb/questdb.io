@@ -51,15 +51,16 @@ still apply.
 
 ### typeDef
 
-`typeDef` - column [type definition](/docs/reference/sql/datatypes/) with additional
-options for `symbol` type.
+`typeDef` - column [type definition](/docs/reference/sql/datatypes/) with
+additional options for `symbol` type.
 
 ![Flow chart showing the syntax of the different column types](/img/docs/diagrams/columnTypeDef.svg)
 
 #### Symbol
 
 Optional keywords and parameters may follow the `symbol` type which allow for
-further optimization on the handling of this type.
+further optimization on the handling of this type. For more information on the
+benefits of using this type, see the [symbol](/docs/concept/symbol/) overview.
 
 **Capacity:**
 
@@ -145,7 +146,12 @@ created.
 ### partition
 
 `partition by` - the [partitioning strategy](/docs/concept/partitions/) for the
-table.
+table. The default partitioning strategy of table is `NONE` and tables can be
+partitioned by one of the following:
+
+- `DAY`
+- `MONTH`
+- `YEAR`
 
 :::caution
 
