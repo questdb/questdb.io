@@ -110,6 +110,7 @@ module.exports = {
           label: "Functions",
           items: [
             "reference/function/aggregation",
+            "reference/function/conditional",
             "reference/function/date-time",
             "reference/function/meta",
             "reference/function/numeric",
