@@ -240,15 +240,15 @@ PostreSQL wire protocol.
 | Property                            | Default      | Description |
 | ----------------------------------- | ------------ | ----------- |
 | pg.enabled                          | true         |             |
-| pg.net.active.connection.limit      | 10           |             |
-| pg.net.bind.to                      | 0.0.0.0:8812 |             |
-| pg.net.event.capacity               | 1024         |             |
-| pg.net.io.queue.capacity            | 1024         |             |
-| pg.net.idle.timeout                 | 300000       |             |
-| pg.net.interest.queue.capacity      | 1024         |             |
-| pg.net.listen.backlog               | 50000        |             |
-| pg.net.recv.buf.size                | -1           |             |
-| pg.net.send.buf.size                | -1           |             |
+| pg.net.active.connection.limit      | 10           |    The number of simultaneous PostgreSQL connections to the server. This value is intended to control server memory consumption.         |
+| pg.net.bind.to                      | 0.0.0.0:8812 |    IP address and port of PostgreSQL server. 0 means that the server will bind to all network interfaces. You can specify IP address of any individual network interface on your system         |
+| pg.net.event.capacity               | 1024         |    Internal IO event queue capacity (EPoll, KQqueu, Select). Size of these queues **must be larger than** `active.connection.limit`         |
+| pg.net.io.queue.capacity            | 1024         |    Internal IO queue of the server. The size of this queue **must be larger than** the `active.connection.limit`. A queue size smaller than active connection max will substantially slow down the server by increasing wait times. A queue larger than connection max reduces wait time to 0.        |
+| pg.net.idle.timeout                 | 300000       |    Connection idle timeout in milliseconds. Connections are closed by the server when this timeout lapses.         |
+| pg.net.interest.queue.capacity      | 1024         |    Internal queue size. This is also related to `active.connection.limit` in a way that sizes larger than connection max remove any waiting.         |
+| pg.net.listen.backlog               | 50000        |    Backlog argument value for [listen()](https://man7.org/linux/man-pages/man2/listen.2.html) call.         |
+| pg.net.recv.buf.size                | -1           |    Maximum send buffer size on each TCP socket. If value is -1 socket send buffer remains unchanged from OS default.         |
+| pg.net.send.buf.size                | -1           |    Maximum receive buffer size on each TCP socket. If value is -1, the socket receive buffer remains unchanged from OS default.         |
 | pg.character.store.capacity         | 4096         |             |
 | pg.character.store.pool.capacity    | 64           |             |
 | pg.connection.pool.capacity         | 64           |             |
@@ -277,14 +277,14 @@ line protocol over TCP.
 | ------------------------------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | line.tcp.auth.db.path                |              | Path which points to the authentication db file.                                                                                              |
 | line.tcp.enabled                     | true         | Enable or disable line protocol over TCP.                                                                                                     |
-| line.tcp.net.active.connection.limit | 10           |                                                                                                                                               |
-| line.tcp.net.bind.to                 | 0.0.0.0:9009 | IP address of the network interface to bind listener to and port. By default TCP receiver listens on all network interfaces.                  |
-| line.tcp.net.event.capacity          | 1024         |                                                                                                                                               |
-| line.tcp.net.io.queue.capacity       | 1024         |                                                                                                                                               |
-| line.tcp.net.idle.timeout            | 300000       |                                                                                                                                               |
-| line.tcp.net.interest.queue.capacity | 1024         |                                                                                                                                               |
-| line.tcp.net.listen.backlog          | 50000        |                                                                                                                                               |
-| line.tcp.net.recv.buf.size           | -1           |                                                                                                                                               |
+| line.tcp.net.active.connection.limit | 10           |  The number of simultaneous connections to the server. This value is intended to control server memory consumption.                                                                                                                                                                      |                  |
+| line.tcp.net.bind.to                 | 0.0.0.0:9009 |  Internal IO event queue capacity (EPoll, KQqueu, Select). Size of these queues **must be larger than** `active.connection.limit`.                                                                                                                                                           |                  |
+| line.tcp.net.event.capacity          | 1024         |  Internal IO queue of the server. The size of this queue **must be larger than** the `active.connection.limit`. A queue size smaller than active connection max will substantially slow down the server by increasing wait times. A queue larger than connection max reduces wait time to 0. |                  |
+| line.tcp.net.io.queue.capacity       | 1024         |  Connection idle timeout in milliseconds. Connections are closed by the server when this timeout lapses.                                                                                                                                                                                   |                  |
+| line.tcp.net.idle.timeout            | 300000       |  Internal queue size. This is also related to `active.connection.limit` in a way that sizes larger than connection max remove any waiting.                                                                                                                                               |                  |
+| line.tcp.net.interest.queue.capacity | 1024         |  Backlog argument value for [listen()](https://man7.org/linux/man-pages/man2/listen.2.html) call.                                                                                                                                                                                        |                  |
+| line.tcp.net.listen.backlog          | 50000        |  Maximum send buffer size on each TCP socket. If value is -1 socket send buffer remains unchanged from OS default.                                                                                                                                                                       |                  |
+| line.tcp.net.recv.buf.size           | -1           |  Maximum receive buffer size on each TCP socket. If value is -1, the socket receive buffer remains unchanged from OS default.                                                                                                                                                            |                  |
 | line.tcp.connection.pool.capacity    | 64           |                                                                                                                                               |
 | line.tcp.timestamp                   | n            | Input timestamp resolution. Possible values are `n`, `u`, `ms`, `s` and `h`.                                                                  |
 | line.tcp.msg.buffer.size             | 2048         | Size of the buffer read from queue. Maximum size of write request, regardless of the number of measurements.                                  |
