@@ -49,8 +49,8 @@ page.
 
 ### Writer page size
 
-The default page size for writers is 16Mb. In cases where there are a large
-number of small tables, using 16Mb to write a maximum of 1Mb of data, for
+The default page size for writers is 16MB. In cases where there are a large
+number of small tables, using 16MB to write a maximum of 1Mb of data, for
 example, is a waste of OS resources. To changes the default value, set the
 `append.page.size` value in `server.conf` which is a rounded (ceiling) of the
 multiple of OS page sizes:
@@ -59,11 +59,11 @@ multiple of OS page sizes:
 cairo.sql.append.page.size=1
 ```
 
-### Influx over TCP
+### InfluxDB over TCP
 
 This section describes methods for optimizing ingestion of InfluxDB line
 protocol messages over TCP. For all configuration settings available for this
-subsystem, see the [influx line over TCP](#influxdb-line-protocol-tcp)
+subsystem, see the [InfluxDB line over TCP](#influxdb-line-protocol-tcp)
 configuration reference.
 
 #### Message length
@@ -81,7 +81,7 @@ line.tcp.msg.buffer.size=2048
 
 #### CPU affinity
 
-Given a single client sending data to QuestDB via Influx line protocol over TCP,
+Given a single client sending data to QuestDB via InfluxDB line protocol over TCP,
 the following configuration can be applied which sets a dedicated worker and
 pins it with `affinity` to a CPU by core ID:
 
@@ -133,9 +133,9 @@ line.tcp.max.uncommitted.rows=1000
 line.tcp.maintenance.job.hysteresis.in.ms=1000
 ```
 
-### Influx over UDP
+### InfluxDB over UDP
 
-Given a single client sending data to QuestDB via Influx line protocol over UDP,
+Given a single client sending data to QuestDB via InfluxDB line protocol over UDP,
 the following configuration can be applied which dedicates a thread for a UDP
 writer and specifies a CPU core by ID:
 
@@ -167,7 +167,7 @@ to enforce a data retention policy to save disk space, and for optimizations on
 the number of concurrent file reads performed by the system. For more
 information on this topic, see the following resources:
 
-- [partitions](/docs/concept/partitions) page which provides a general overview
+- [partitions](/docs/concept/partitions/) page which provides a general overview
   of this concept
 - [data retention](/docs/operations/data-retention/) guide provides further
   details on partitioning tables with examples on how to drop partitions by time
@@ -201,7 +201,7 @@ VALUES(systemtimestamp(), 123.4)
 When using InfluxDB line protocol, omitting a timestamp value from incoming
 records has the same effect of an implicit `systemtimestamp()` function:
 
-```bash title="Influx line protocol without a timestamp"
+```bash title="InfluxDB line protocol without a timestamp"
 readings,city=London,temperature=23.5,humidity=0.343
 ```
 
@@ -212,7 +212,7 @@ based on the storage space that types occupy in QuestDB.
 
 #### Symbols
 
-[Symbols](/docs/concept/symbol) are a data type that is recommended to be used
+[Symbols](/docs/concept/symbol/) are a data type that is recommended to be used
 for strings that are repeated often in a dataset. The benefit of using this data
 type is lower storage requirements than regular strings and faster performance
 on queries as symbols are internally stored as `int` values.
@@ -258,7 +258,7 @@ exceed the limit for that particular type, savings on disk space can be made.
 
 ## Network Configuration
 
-For InfluxDB line, PostgreSQL wire and HTTP protocols, there are a set of
+For InfluxDB line, Postgres wire and HTTP protocols, there are a set of
 configuration settings relating to the number of clients that may connect, the
 internal IO capacity and connection timeout settings. These settings are
 configured in the `server.conf` file in the format:
@@ -301,7 +301,7 @@ line.tcp.net.recv.buf.size=-1
 ```
 
 For reference on the defaults of the `http` and `pg` protocols, refer to the
-[server configuration page](/docs/reference/configuration)
+[server configuration page](/docs/reference/configuration/)
 
 ## OS configuration
 
