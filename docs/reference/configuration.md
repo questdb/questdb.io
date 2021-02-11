@@ -3,104 +3,96 @@ title: Configuration
 description: Server configuration keys reference documentation.
 ---
 
-QuestDB's configuration can be set either:
+This page describes methods for configuring QuestDB server settings.
+Configuration can be set either:
 
 - In the `server.conf` configuration file available in the
-  [root directory](/docs/concept/root-directory-structure)
+  [root directory](/docs/concept/root-directory-structure/)
 - Using environment variables
-  [see below](/docs/reference/configuration/#about-environment-variables)
 
 When a key is absent from both the configuration file and the environment
-variables, the default value is used.
+variables, the default value is used. Configuration of logging is handled
+separately and details of configuring this behavior can be found at the
+[logging section](#logging) below.
 
-## About environment variables
+## Environment variables
 
-All options in the configuration file can be overridden using environment
-variables with the syntax:
+All settings in the configuration file can be set or overridden using
+environment variables. If a key is set in both the `server.conf` file and via an
+environment variable, the environment variable will take precedence and the
+value in the server configuration file will be ignored.
+
+To make these configuration settings available to QuestDB via environment
+variables, they must be in the following format:
 
 ```shell
 QDB_<KEY_OF_THE_PROPERTY>
 ```
 
-Where `<KEY_OF_THE_PROPERTY>` is equal to the key name in uppercase characters,
-with all occurrences of `.` replaced with `_`. For example, the key
-`shared.worker.count` becomes `QDB_SHARED_WORKER_COUNT`.
+Where `<KEY_OF_THE_PROPERTY>` is equal to the configuration key name. To
+properly format a `server.conf` key as an environment variable it must have:
 
-If a key is set in both the `server.conf` file and via an environment variable,
-the latter will take precedence and the value in `server.conf` will be ignored.
+- `QDB_` prefix
+- uppercase characters
+- all `.` period characters replaced with `_` underscore
 
-## Examples
+For example, the server configuration key for shared workers must be passed as
+described below:
+
+| `server.conf` key     | env var                   |
+| --------------------- | ------------------------- |
+| `shared.worker.count` | `QDB_SHARED_WORKER_COUNT` |
+
+## Example
 
 ```shell title="Customizing the worker count via server.conf"
 shared.worker.count=5
 ```
 
-```shell title="Same as above using an environment variable"
+```shell title="Customizing the worker count via environment variable"
 export QBD_SHARED_WORKER_COUNT=5
 ```
 
 :::note
 
-After changing the configuration, you will need to restart QuestDB in order for
-your modifications to take effect
+QuestDB applies these configuration changes on startup and a running instance
+must be restarted in order for configuration changes to take effect
 
 :::
 
-## Logging
+## Keys and default values
 
-### Configuration file
-
-Logs can be controlled via a dedicated file, for example:
-
-```shell title="qlog.conf"
-# list of configured writers
-writers=file,stdout
-
-# file writer
-#w.file.class=io.questdb.log.LogFileWriter
-#w.file.location=questdb-debug.log
-#w.file.level=INFO,ERROR
-
-# stdout
-w.stdout.class=io.questdb.log.LogConsoleWriter
-w.stdout.level=INFO,ERROR
-```
-
-QuestDB will look for `/qlog.conf` on the classpath unless this name is
-overridden via a "system" property: `-DquestdbLog=/something_else.conf`.
-
-### Environment variables
-
-Values in that file can be overridden with environment variables. For example:
-
-```shell title="Value set in qlog.conf"
-w.stdout.level=INFO
-```
-
-```shell title="Overriding the value using an environment variable"
-export QDB_LOG_W_STDOUT_LEVEL=ERROR
-```
-
-### Debug
-
-QuestDB logging can be quickly forced globally to `DEBUG` via either providing
-the java option `-Debug` or setting the environment variable `QDB_DEBUG=true`.
-
-## Available keys and default values
+This section lists the configuration keys available to QuestDB by topic or
+subsystem.
 
 ### Shared worker
+
+Shared worker threads service SQL execution subsystems and (in the default
+configuration) every other subsystem.
 
 | Property                  | Default | Description                                                                                                                                                  |
 | ------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | shared.worker.count       | 2       | Number of worker threads shared across the application. Increasing this number will increase parallelism in the application at the expense of CPU resources. |
-| shared.worker.affinity    |         | Comma-delimited list of CPU ids, one per thread specified in "shared.worker.count". By default, threads have no CPU affinity.                                |
+| shared.worker.affinity    |         | Comma-delimited list of CPU ids, one per thread specified in `shared.worker.count`. By default, threads have no CPU affinity.                                |
 | shared.worker.haltOnError | false   | Toggle whether worker should stop on error.                                                                                                                  |
+
+#### Load balancing
+
+This section describes configuration settings for the distribution of work by
+writer threads in a QuestDB instance.
+
+| Property                                  | Default | Description                                                                                                                                              |
+| ----------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| line.tcp.n.updates.per.load.balance       | 10000   | Maximum number of updates in a given table since the last load balancing before triggering a new load balancing job.                                     |
+| line.tcp.max.load.ratio                   | 1.9     | Maximum load ratio (max loaded worker/min loaded worker) before QuestDB will attempt to rebalance the load between the writer workers.                   |
+| line.tcp.max.uncommitted.rows             | 1000    | Maximum number of uncommitted rows, note that rows will always be committed if they have been received line.tcp.maintenance.job.hysteresis.in.ms ms ago. |
+| line.tcp.maintenance.job.hysteresis.in.ms | 1000    | Maximum amount of time in between maintenance jobs, these will commit any uncommited data.                                                               |
 
 ### Minimal HTTP server
 
 This server runs embedded in a QuestDB instance by default and enables health
-checks of an instance via HTTP. It responds to all requests with a HTTP status code
-of `200` unless the QuestDB process dies.
+checks of an instance via HTTP. It responds to all requests with a HTTP status
+code of `200` unless the QuestDB process dies.
 
 Examples of how to use this server, along with expected responses, can be found
 on the [health monitoring page](/docs/operations/health-monitoring/).
@@ -111,6 +103,10 @@ on the [health monitoring page](/docs/operations/health-monitoring/).
 | http.min.bind.to | 0.0.0.0:9003 | IPv4 address and port of the server. 0 means it will bind to all network interfaces. Otherwise IP address must by one of the existing network adaptors |
 
 ### HTTP server
+
+This section describes configuration settings for the Web Console available by
+default on port `9000`. For details on the use of this component, refer to the
+[web console documentation](docs/reference/client/web-console/) page.
 
 | Property                                       | Default        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ---------------------------------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -165,6 +161,9 @@ on the [health monitoring page](/docs/operations/health-monitoring/).
 | http.version                                   | HTTP/1.1       | Protocol version, other supported value is `HTTP/1.0`.                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 ### Cairo engine
+
+This section describes configuration settings for the Cairo SQL engine in
+QuestDB.
 
 | Property                                     | Default           | Description                                                                                                                                                                                                              |
 | -------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -235,6 +234,9 @@ on the [health monitoring page](/docs/operations/health-monitoring/).
 
 ### Postgres wire protocol
 
+This section describes configuration settings for client connections using
+PostreSQL wire protocol.
+
 | Property                            | Default      | Description |
 | ----------------------------------- | ------------ | ----------- |
 | pg.enabled                          | true         |             |
@@ -266,24 +268,10 @@ on the [health monitoring page](/docs/operations/health-monitoring/).
 | pg.halt.on.error                    | false        |             |
 | pg.daemon.pool                      | true         |             |
 
-### InfluxDB line protocol (UDP)
-
-| Property                     | Default        | Description                                                                                                                                                                                                                      |
-| ---------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| line.udp.join                | "232.1.2.3"    | Multicast address receiver joins. This values is ignored when receiver is in "unicast" mode.                                                                                                                                     |
-| line.udp.bind.to             | "0.0.0.0:9009" | IP address of the network interface to bind listener to and port. By default UDP receiver listens on all network interfaces.                                                                                                     |
-| line.udp.commit.rate         | 1000000        | For packet bursts the number of continuously received messages after which receiver will force commit. Receiver will commit irrespective of this parameter when there are no messages.                                           |
-| line.udp.msg.buffer.size     | 2048           | Buffer used to receive single message. This value should be roughly equal to your MTU size.                                                                                                                                      |
-| line.udp.msg.count           | 10000          | Only for Linux. On Linix QuestDB will use recvmmsg(). This is the max number of messages to receive at once.                                                                                                                     |
-| line.udp.receive.buffer.size | 8388608        | UDP socket buffer size. Larger size of the buffer will help reduce message loss during bursts.                                                                                                                                   |
-| line.udp.enabled             | true           | Flag to enable or disable UDP receiver.                                                                                                                                                                                          |
-| line.udp.own.thread          | false          | When "true" UDP receiver will use its own thread and busy spin that for performance reasons. "false" makes receiver use worker threads that do everything else in QuestDB.                                                       |
-| line.udp.own.thread.affinity | -1             | -1 does not set thread affinity. OS will schedule thread and it will be liable to run on random cores and jump between the. 0 or higher pins thread to give core. This property is only valid when UDP receiver uses own thread. |
-| line.udp.unicast             | false          | When true, UDP will me unicast. Otherwise multicast.                                                                                                                                                                             |
-| line.udp.timestamp           | n              | Input timestamp resolution. Possible values are `n`, `u`, `ms`, `s` and `h`.                                                                                                                                                     |
-| line.udp.commit.mode         | "nosync"       | Commit durability. Available values are "nosync", "sync" and "async".                                                                                                                                                            |
-
 ### InfluxDB line protocol (TCP)
+
+This section describes ingestion settings for incoming messages using InfluxDB
+line protocol over TCP.
 
 | Property                             | Default      | Description                                                                                                                                   |
 | ------------------------------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -306,21 +294,80 @@ on the [health monitoring page](/docs/operations/health-monitoring/).
 | line.tcp.worker.affinity             | 0            | Comma-separated list of thread numbers which should be pinned for line protocol ingestion over TCP. Example `line.tcp.worker.affinity=1,3,4`. |
 | line.tcp.halt.on.error               | false        |                                                                                                                                               |
 
-#### Load balancing
+### InfluxDB line protocol (UDP)
 
-| Property                                  | Default | Description                                                                                                                                              |
-| ----------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| line.tcp.n.updates.per.load.balance       | 10000   | Maximum number of updates in a given table since the last load balancing before triggering a new load balancing job.                                     |
-| line.tcp.max.load.ratio                   | 1.9     | Maximum load ratio (max loaded worker/min loaded worker) before QuestDB will attempt to rebalance the load between the writer workers.                   |
-| line.tcp.max.uncommitted.rows             | 1000    | Maximum number of uncommitted rows, note that rows will always be committed if they have been received line.tcp.maintenance.job.hysteresis.in.ms ms ago. |
-| line.tcp.maintenance.job.hysteresis.in.ms | 1000    | Maximum amount of time in between maintenance jobs, these will commit any uncommited data.                                                               |
+This section describes ingestion settings for incoming messages using InfluxDB
+line protocol over UDP.
+
+| Property                     | Default      | Description                                                                                                                                                                                                                      |
+| ---------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| line.udp.join                | 232.1.2.3    | Multicast address receiver joins. This values is ignored when receiver is in "unicast" mode.                                                                                                                                     |
+| line.udp.bind.to             | 0.0.0.0:9009 | IP address of the network interface to bind listener to and port. By default UDP receiver listens on all network interfaces.                                                                                                     |
+| line.udp.commit.rate         | 1000000      | For packet bursts the number of continuously received messages after which receiver will force commit. Receiver will commit irrespective of this parameter when there are no messages.                                           |
+| line.udp.msg.buffer.size     | 2048         | Buffer used to receive single message. This value should be roughly equal to your MTU size.                                                                                                                                      |
+| line.udp.msg.count           | 10000        | Only for Linux. On Linix QuestDB will use recvmmsg(). This is the max number of messages to receive at once.                                                                                                                     |
+| line.udp.receive.buffer.size | 8388608      | UDP socket buffer size. Larger size of the buffer will help reduce message loss during bursts.                                                                                                                                   |
+| line.udp.enabled             | true         | Flag to enable or disable UDP receiver.                                                                                                                                                                                          |
+| line.udp.own.thread          | false        | When "true" UDP receiver will use its own thread and busy spin that for performance reasons. "false" makes receiver use worker threads that do everything else in QuestDB.                                                       |
+| line.udp.own.thread.affinity | -1           | -1 does not set thread affinity. OS will schedule thread and it will be liable to run on random cores and jump between the. 0 or higher pins thread to give core. This property is only valid when UDP receiver uses own thread. |
+| line.udp.unicast             | false        | When true, UDP will me unicast. Otherwise multicast.                                                                                                                                                                             |
+| line.udp.timestamp           | n            | Input timestamp resolution. Possible values are `n`, `u`, `ms`, `s` and `h`.                                                                                                                                                     |
+| line.udp.commit.mode         | nosync       | Commit durability. Available values are `nosync`, `sync` and `async`.                                                                                                                                                            |
 
 ### Telemetry
 
-QuestDB sends telemetry data with information about usage which helps us improve
-the product over time. We do not collect any personally-identifying information,
-and we do not share any of this data with third parties.
+QuestDB sends anonymized telemetry data with information about usage which helps
+us improve the product over time. We do not collect any personally-identifying
+information, and we do not share any of this data with third parties.
 
 | Property          | Default | Description                                          |
 | ----------------- | ------- | ---------------------------------------------------- |
 | telemetry.enabled | true    | Enable / disable anonymous usage metrics collection. |
+
+## Logging
+
+The logging behavior of QuestDB may be set in dedicated configuration files or
+by environment variables. This section describes how to configure logging using
+these methods.
+
+### Configuration file
+
+Logs may be configured via a dedicated file named `qlog.conf`.
+
+```shell title="qlog.conf"
+# list of configured writers
+writers=file,stdout
+
+# file writer
+#w.file.class=io.questdb.log.LogFileWriter
+#w.file.location=questdb-debug.log
+#w.file.level=INFO,ERROR
+
+# stdout
+w.stdout.class=io.questdb.log.LogConsoleWriter
+w.stdout.level=INFO,ERROR
+```
+
+QuestDB will look for `/qlog.conf` on the classpath unless this name is
+overridden via a "system" property: `-DquestdbLog=/something_else.conf`.
+
+### Environment variables
+
+Values in the `qlog.conf` file can be overridden with environment variables.
+All configuration keys must be formatted as described in the [environment variables](#environment-variables) section above.
+
+For example, to set logging on `ERROR` level only:
+
+```shell title="Setting log level to ERROR in qlog.conf"
+w.stdout.level=ERROR
+```
+
+```shell title="Setting log level to ERROR via environment variable"
+export QDB_LOG_W_STDOUT_LEVEL=ERROR
+```
+
+
+### Debug
+
+QuestDB logging can be quickly forced globally to `DEBUG` via either providing
+the java option `-Debug` or setting the environment variable `QDB_DEBUG=true`.

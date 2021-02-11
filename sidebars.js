@@ -77,6 +77,7 @@ module.exports = {
       label: "Operations",
       type: "category",
       items: [
+        "operations/capacity-planning",
         "operations/deployment",
         "operations/data-retention",
         "operations/health-monitoring"
