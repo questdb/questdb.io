@@ -24,11 +24,10 @@ The return value is the first non-null argument passed
 **Examples:**
 
 The following example demonstrates how to use `coalesce()` to return a default
-value of `1` from an aggregate query if the `rating` column contains `null`
+value of `1` from an aggregate query if the `amount` column contains `null`
 values:
 
 ```questdb-sql
-SELECT avg(coalesce(rating, 1)) 
-FROM ratings
-SAMPLE BY 1d
+SELECT avg(coalesce(amount, 1))
+FROM transactions
 ```
