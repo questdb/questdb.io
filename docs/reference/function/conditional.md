@@ -11,7 +11,7 @@ list of arguments in cases where null values should not appear in query results.
 
 This function is an implementation of the `COALESCE` expression in PostgreSQL
 and as such, should follow the expected behavior described in the
-[coalesce PostgreSQL documentation](https://www.postgresql.org/docs/13/functions-conditional.html#FUNCTIONS-COALESCE-NVL-IFNULL)
+[coalesce PostgreSQL documentation](https://www.postgresql.org/docs/current/functions-conditional.html#FUNCTIONS-COALESCE-NVL-IFNULL)
 
 **Arguments:**
 
