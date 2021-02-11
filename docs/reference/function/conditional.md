@@ -15,8 +15,7 @@ described in the
 **Arguments:**
 
 - `coalesce(value [, ...])` `value` and subsequent comma-separated list of
-  arguments may be
-  - 
+  arguments which may be of any type except binary.
 
 **Return value:**
 
@@ -24,10 +23,12 @@ The return value is the first non-null argument passed
 
 **Examples:**
 
-```questdb-sql
-SELECT coalesce(CAST(NULL as INT), 1, 2);
-```
+The following example demonstrates how to use `coalesce()` to return a default
+value of `1` from an aggregate query if the `rating` column contains `null`
+values:
 
-| coalesce |
-| -------- |
-| 1        |
+```questdb-sql
+SELECT avg(coalesce(rating, 1)) 
+FROM ratings
+SAMPLE BY 1d
+```
