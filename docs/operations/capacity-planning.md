@@ -106,10 +106,9 @@ load balance refers to the number of updates (per table) between attempts to
 redistribute the load between writer workers.
 
 The maximum load ratio defaults to `1.9` and this figure is the ratio of least
-busy worker to most busy worker. When this ratio is reached, load is
-redistributed between worker threads. This value of `1.9` essentially means
-redistribution of work will occur when a thread is performing almost twice as
-much work as a thread with least amount of work.
+busy worker to most busy worker. This value of `1.9` means redistribution of
+work will occur when a thread is performing almost twice as much work as a
+thread with least amount of work.
 
 ```bash title="server.conf"
 # for balancing work when writers spread across multiple tables
@@ -256,6 +255,53 @@ exceed the limit for that particular type, savings on disk space can be made.
 | byte  | 8 bits            | -128 to 127               |
 | short | 16 bits           | -32768 to 32767           |
 | int   | 32 bits           | -2147483648 to 2147483647 |
+
+## Network Configuration
+
+For InfluxDB line, PostgreSQL wire and HTTP protocols, there are a set of
+configuration settings relating to the number of clients that may connect, the
+internal IO capacity and connection timeout settings. These settings are
+configured in the `server.conf` file in the format:
+
+```bash
+<protocol>.net.<config>
+```
+
+Where `<protocol>` is one of:
+
+- `http` - HTTP connections
+- `pg` - PostgreSQL wire protocol
+- `line.tcp` - InfluxDB line protocol over TCP
+
+And `<config>` is one of the following settings:
+
+| key                       | description                                                                                                                                                                                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `active.connection.limit` | The number of simultaneous connections to the server. This value is intended to control server memory consumption.                                                                                                                                                                      |
+| `event.capacity`          | Internal IO event queue capacity (EPoll, KQqueu, Select). Size of these queues **must be larger than** `active.connection.limit`.                                                                                                                                                           |
+| `io.queue.capacity`       | Internal IO queue of the server. The size of this queue **must be larger than** the `active.connection.limit`. A queue size smaller than active connection max will substantially slow down the server by increasing wait times. A queue larger than connection max reduces wait time to 0. |
+| `idle.connection.timeout` | Connection idle timeout in milliseconds. Connections are closed by the server when this timeout lapses.                                                                                                                                                                                   |
+| `interest.queue.capacity` | Internal queue size. This is also related to `active.connection.limit` in a way that sizes larger than connection max remove any waiting.                                                                                                                                               |
+| `listen.backlog`          | Backlog argument value for [listen()](https://man7.org/linux/man-pages/man2/listen.2.html) call.                                                                                                                                                                                        |
+| `snd.buf.size`            | Maximum send buffer size on each TCP socket. If value is -1 socket send buffer remains unchanged from OS default.                                                                                                                                                                       |
+| `rcv.buf.size`            | Maximum receive buffer size on each TCP socket. If value is -1, the socket receive buffer remains unchanged from OS default.                                                                                                                                                            |
+
+For example, the default network configuration for InfluxDB line protocol is the
+following:
+
+```bash title="server.conf InfluxDB line protocol network defaults"
+line.tcp.net.active.connection.limit=10
+line.tcp.net.bind.to=0.0.0.0:9009
+line.tcp.net.event.capacity=1024
+line.tcp.net.io.queue.capacity=1024
+line.tcp.net.idle.timeout=0
+line.tcp.net.interest.queue.capacity=1024
+line.tcp.net.listen.backlog=50000
+line.tcp.net.recv.buf.size=-1
+```
+
+For reference on the defaults of the `http` and `pg` protocols, refer to the
+[server configuration page](/docs/reference/configuration)
 
 ## OS configuration
 
