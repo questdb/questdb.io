@@ -29,7 +29,7 @@ results, and `n` is the number of time chunks that will be summarised together.
 
 Assume the following table
 
-| timestamp | buysell | quantity | price |
+| ts | buysell | quantity | price |
 | --------- | ------- | -------- | ----- |
 | ts1       | B       | q1       | p1    |
 | ts2       | S       | q2       | p2    |
@@ -40,7 +40,7 @@ Assume the following table
 The following will return the number of trades per hour:
 
 ```questdb-sql title="trades - hourly interval"
-SELECT timestamp, count()
+SELECT ts, count()
 FROM TRADES
 SAMPLE BY 1h;
 ```
@@ -48,7 +48,7 @@ SAMPLE BY 1h;
 The following will return the trade volume in 30 minute intervals
 
 ```questdb-sql title="trades - 30 minute interval"
-SELECT timestamp, sum(quantity*price)
+SELECT ts, sum(quantity*price)
 FROM TRADES
 SAMPLE BY 30m;
 ```
@@ -57,7 +57,7 @@ The following will return the average trade notional (where notional is = q \*
 p) by day:
 
 ```questdb-sql title="trades - daily interval"
-SELECT timestamp, avg(quantity*price)
+SELECT ts, avg(quantity*price)
 FROM TRADES
 SAMPLE BY 1d;
 ```
