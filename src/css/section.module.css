@@ -102,7 +102,7 @@
 .section__footer--why {
   width: 100%;
   margin-top: 3rem;
-  align-items: center;
+  margin-bottom: 2rem;
   justify-content: space-around;
 }
 
@@ -163,6 +163,8 @@
 
   .section__footer--why {
     margin-top: 2rem;
+    margin-bottom: 5.5rem;
     flex-direction: column;
+    align-items: center;
   }
 }

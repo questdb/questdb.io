@@ -2,16 +2,16 @@ import clsx from "clsx"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import React, { useCallback, useEffect, useState } from "react"
 
-import CodeBlock from "@theme/CodeBlock"
-import PageLayout from "@theme/PageLayout"
-
 import Button from "@theme/Button"
 import Chevron from "@theme/Chevron"
+import CodeBlock from "@theme/CodeBlock"
+import PageLayout from "@theme/PageLayout"
 import useWindowWidth from "@theme/useWindowWidth"
 
 import doCss from "../css/index/docker.module.css"
 import feCss from "../css/index/feature.module.css"
 import flCss from "../css/index/flashy.module.css"
+import inCss from "../css/index/integration.module.css"
 import juCss from "../css/index/jumbotron.module.css"
 import meCss from "../css/index/menu.module.css"
 import shCss from "../css/index/showcase.module.css"
@@ -112,6 +112,10 @@ const Why = () => {
               <p className={prCss.property}>Enterprise security</p>
               <p className={prCss.property}>Postgres compatible</p>
             </div>
+
+            <Button className={meCss.menu__cta} to="/enterprise">
+              Enterprise &gt;
+            </Button>
           </div>
         </div>
       </div>
@@ -119,7 +123,7 @@ const Why = () => {
   )
 }
 
-const SeenOn = () => (
+const Integration = () => (
   <section
     className={clsx(
       seCss.section,
@@ -127,18 +131,85 @@ const SeenOn = () => (
       seCss["section--center"],
     )}
   >
-    <a
-      href="https://www.producthunt.com/posts/questdb?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-questdb"
-      rel="noopener noreferrer"
-      target="_blank"
+    <h2
+      className={clsx(
+        seCss.section__title,
+        seCss["section__title--wide"],
+        "text--center",
+      )}
     >
-      <img
-        src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=224674&theme=dark&period=daily"
-        alt="QuestDB - Fastest open source database for time-series and analytics | Product Hunt Embed"
-        width={250}
-        height={54}
-      />
-    </a>
+      Integration with the tools you love
+    </h2>
+
+    <p className={clsx(seCss.section__subtitle, "text--center")}>
+      All handled through our Postgres API
+    </p>
+
+    <div className={inCss.integration}>
+      <p className={inCss.integration__item}>
+        <img
+          src="/img/pages/index/integrations/pg.svg"
+          alt="Postgres logo"
+          width={90}
+          height={94}
+        />
+        Postgres
+      </p>
+      <p className={inCss.integration__item}>
+        <img
+          src="/img/pages/index/integrations/grafana.svg"
+          alt="Grafana logo"
+          width={84}
+          height={91}
+        />
+        Grafana
+      </p>
+      <p className={inCss.integration__item}>
+        <img
+          src="/img/pages/index/integrations/kafka.svg"
+          alt="Kafka logo"
+          width={56}
+          height={91}
+        />
+        Kafka
+      </p>
+      <p className={inCss.integration__item}>
+        <img
+          src="/img/pages/index/integrations/python.svg"
+          alt="Python logo"
+          width={90}
+          height={89}
+        />
+        Python
+      </p>
+      <p className={inCss.integration__item}>
+        <img
+          src="/img/pages/index/integrations/pandas.svg"
+          alt="Pandas logo"
+          width={63}
+          height={99}
+        />
+        Pandas
+      </p>
+      <p className={inCss.integration__item}>
+        <img
+          src="/img/pages/index/integrations/dbeaver.svg"
+          alt="DBeaver logo"
+          width={73}
+          height={89}
+        />
+        DBeaver
+      </p>
+      <p className={inCss.integration__item}>
+        <img
+          src="/img/pages/index/integrations/tableau.svg"
+          alt="Tableau logo"
+          width={102}
+          height={100}
+        />
+        Tableau
+      </p>
+    </div>
   </section>
 )
 
@@ -352,10 +423,13 @@ const Cards = () => (
       </div>
 
       <div className={feCss.feature}>
-        <h3 className={feCss.feature__header}>CRUD for time series</h3>
+        <h3 className={feCss.feature__header}>
+          Machine learning with time-series data
+        </h3>
         <p className={feCss.feature__content}>
-          Allows easy changes in historical data through fully ACID support for
-          CRUD APIs.
+          Use QuestDB with popular Python frameworks and tools for leveraging
+          anomaly detection algorithms, machine learning libraries, statistical
+          analysis with Pandas, Jupyter notebooks, and more.
         </p>
       </div>
 
@@ -722,7 +796,7 @@ const Home = () => {
       <Why />
       <Cards />
       <Console />
-      <SeenOn />
+      <Integration />
     </PageLayout>
   )
 }
