@@ -19,7 +19,7 @@ import usCss from "../css/index/usp.module.css"
 import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
 
-const Why = () => {
+const FeatureTabs = () => {
   const [opened, setOpened] = useState<"digital" | "realtime" | "integration">(
     "digital",
   )
@@ -47,7 +47,10 @@ const Why = () => {
         </h2>
 
         <div
-          className={clsx(seCss.section__footer, seCss["section__footer--why"])}
+          className={clsx(
+            seCss.section__footer,
+            seCss["section__footer--feature-tabs"],
+          )}
         >
           <div className={meCss.menu__list}>
             <Button
@@ -141,10 +144,6 @@ const Integration = () => (
       Integration with the tools you love
     </h2>
 
-    <p className={clsx(seCss.section__subtitle, "text--center")}>
-      All handled through our Postgres API
-    </p>
-
     <div className={inCss.integration}>
       <p className={inCss.integration__item}>
         <img
@@ -193,12 +192,12 @@ const Integration = () => (
       </p>
       <p className={inCss.integration__item}>
         <img
-          src="/img/pages/index/integrations/dbeaver.svg"
-          alt="DBeaver logo"
-          width={73}
-          height={89}
+          src="/img/pages/index/integrations/influxdata.svg"
+          alt="Telegraf logo"
+          height={100}
+          width={99}
         />
-        DBeaver
+        Telegraf
       </p>
       <p className={inCss.integration__item}>
         <img
@@ -367,78 +366,74 @@ const Usp = () => (
 )
 
 const Cards = () => (
-  <section
-    className={clsx(
-      seCss.section,
-      seCss["section--inner"],
-      seCss["section--center"],
-    )}
-  >
-    <h3
-      className={clsx(
-        seCss.section__title,
-        feCss["section__title--wide"],
-        "text--center",
-      )}
-    >
-      Why time series?
-    </h3>
+  <section className={clsx(seCss.section, seCss["section--odd"])}>
+    <div className={clsx(seCss["section--inner"], seCss["section--center"])}>
+      <h3
+        className={clsx(
+          seCss.section__title,
+          feCss["section__title--wide"],
+          "text--center",
+        )}
+      >
+        FeatureTabs time series?
+      </h3>
 
-    <div
-      className={clsx(
-        seCss.section__footer,
-        seCss["section__footer--feature-cards"],
-      )}
-    >
-      <div className={feCss.feature}>
-        <h3 className={feCss.feature__header}>DevOps monitoring</h3>
-        <p className={feCss.feature__content}>
-          Collect metrics and events from your infrastructure (CPU, memory,
-          networks, etc.) and get real-time visibility into your entire stack.
-        </p>
-      </div>
+      <div
+        className={clsx(
+          seCss.section__footer,
+          seCss["section__footer--feature-cards"],
+        )}
+      >
+        <div className={feCss.feature}>
+          <h3 className={feCss.feature__header}>DevOps monitoring</h3>
+          <p className={feCss.feature__content}>
+            Collect metrics and events from your infrastructure (CPU, memory,
+            networks, etc.) and get real-time visibility into your entire stack.
+          </p>
+        </div>
 
-      <div className={feCss.feature}>
-        <h3 className={feCss.feature__header}>Financial market data</h3>
-        <p className={feCss.feature__content}>
-          Store market data to identify historical trends and correlations using
-          statistical methods and generate trading signals.
-        </p>
-      </div>
+        <div className={feCss.feature}>
+          <h3 className={feCss.feature__header}>Financial market data</h3>
+          <p className={feCss.feature__content}>
+            Store market data to identify historical trends and correlations
+            using statistical methods and generate trading signals.
+          </p>
+        </div>
 
-      <div className={feCss.feature}>
-        <h3 className={feCss.feature__header}>Connected devices</h3>
-        <p className={feCss.feature__content}>
-          Capture, store and respond to data from sensors at any resolution in
-          industrial applications.
-        </p>
-      </div>
+        <div className={feCss.feature}>
+          <h3 className={feCss.feature__header}>Connected devices</h3>
+          <p className={feCss.feature__content}>
+            Capture, store and respond to data from sensors at any resolution in
+            industrial applications.
+          </p>
+        </div>
 
-      <div className={feCss.feature}>
-        <h3 className={feCss.feature__header}>Application metrics</h3>
-        <p className={feCss.feature__content}>
-          Empower your application users to track and visualize logs, API calls,
-          and any application activity in real-time.
-        </p>
-      </div>
+        <div className={feCss.feature}>
+          <h3 className={feCss.feature__header}>Application metrics</h3>
+          <p className={feCss.feature__content}>
+            Empower your application users to track and visualize logs, API
+            calls, and any application activity in real-time.
+          </p>
+        </div>
 
-      <div className={feCss.feature}>
-        <h3 className={feCss.feature__header}>
-          Machine learning with time-series data
-        </h3>
-        <p className={feCss.feature__content}>
-          Use QuestDB with popular Python frameworks and tools for leveraging
-          anomaly detection algorithms, machine learning libraries, statistical
-          analysis with Pandas, Jupyter notebooks, and more.
-        </p>
-      </div>
+        <div className={feCss.feature}>
+          <h3 className={feCss.feature__header}>
+            Machine learning with time-series data
+          </h3>
+          <p className={feCss.feature__content}>
+            Use QuestDB with popular Python frameworks and tools for leveraging
+            anomaly detection algorithms, machine learning libraries,
+            statistical analysis with Pandas, Jupyter notebooks, and more.
+          </p>
+        </div>
 
-      <div className={feCss.feature}>
-        <h3 className={feCss.feature__header}>Integrated data</h3>
-        <p className={feCss.feature__content}>
-          Pull together all your application, device, and infrastructure data
-          for a complete, 360º view of all aspects of your business.
-        </p>
+        <div className={feCss.feature}>
+          <h3 className={feCss.feature__header}>Integrated data</h3>
+          <p className={feCss.feature__content}>
+            Pull together all your application, device, and infrastructure data
+            for a complete, 360º view of all aspects of your business.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -448,91 +443,95 @@ const Console = () => {
   const { siteConfig } = useDocusaurusContext()
 
   return (
-    <section className={clsx(seCss.section, seCss["section--odd"])}>
-      <div className={clsx(seCss["section--inner"], seCss["section--center"])}>
-        <h2
-          className={clsx(
-            seCss.section__title,
-            seCss["section__title--wide"],
-            "text--center",
-          )}
-        >
-          Interactive Console
-        </h2>
-        <p
-          className={clsx(
-            seCss.section__subtitle,
-            seCss["section__subtitle--narrow"],
-            "text--center",
-          )}
-        >
-          Interactive console to import data (drag and drop) and start querying
-          right away. Check our{" "}
-          <a href="/docs/reference/client/web-console/">
-            Web Console documentation
-          </a>{" "}
-          to get started.
-        </p>
+    <section
+      className={clsx(
+        seCss.section,
+        seCss["section--inner"],
+        seCss["section--center"],
+      )}
+    >
+      <h2
+        className={clsx(
+          seCss.section__title,
+          seCss["section__title--wide"],
+          "text--center",
+        )}
+      >
+        Interactive Console
+      </h2>
+      <p
+        className={clsx(
+          seCss.section__subtitle,
+          seCss["section__subtitle--narrow"],
+          "text--center",
+        )}
+      >
+        Interactive console to import data (drag and drop) and start querying
+        right away. Check our{" "}
+        <a href="/docs/reference/client/web-console/">
+          Web Console documentation
+        </a>{" "}
+        to get started.
+      </p>
 
-        <img
-          alt="Artistic view of QuestDB's Web Console split in 3 components: the navigation tree, the SQL code editor and data displayed as a chart"
-          className={seCss.section__illustration}
-          height={467}
-          src="/img/pages/index/console.svg"
-          width={600}
-        />
+      <img
+        alt="Artistic view of QuestDB's Web Console split in 3 components: the navigation tree, the SQL code editor and data displayed as a chart"
+        className={seCss.section__illustration}
+        height={467}
+        src="/img/pages/index/console.svg"
+        width={600}
+      />
 
-        <div
-          className={clsx(
-            seCss.section__footer,
-            seCss["section__footer--console"],
-          )}
-        >
-          <div className={clsx(flCss.flashy, flCss["flashy--primary"])}>
-            <img
-              alt="Postgres logo"
-              height={76}
-              src="/img/pages/index/pgwire.svg"
-              title="Postgres"
-              width={76}
-            />
-            <h3 className={flCss.flashy__title}>Postgres compatibility</h3>
-            <p className={flCss.flashy__content}>
-              Interact with QuestDB using the Postgres layer and any tool that
-              connects to it.
-            </p>
-          </div>
+      <div
+        className={clsx(
+          seCss.section__footer,
+          seCss["section__footer--console"],
+        )}
+      >
+        <div className={clsx(flCss.flashy, flCss["flashy--primary"])}>
+          <img
+            alt="Postgres logo"
+            height={76}
+            src="/img/pages/index/pgwire.svg"
+            title="Postgres"
+            width={76}
+          />
+          <h3 className={flCss.flashy__title}>Postgres compatibility</h3>
+          <p className={flCss.flashy__content}>
+            Interact with QuestDB using the Postgres layer and any tool that
+            connects to it.
+          </p>
+        </div>
 
-          <div className={flCss.flashy}>
-            <img
-              alt="Antenna"
-              height={76}
-              src="/img/pages/index/foss.svg"
-              title="Open source"
-              width={76}
-            />
-            <h3 className={flCss.flashy__title}>Open source</h3>
-            <p className={flCss.flashy__content}>
-              QuestDB is open source. Follow us on GitHub. Watch the repo to get
-              notified of further releases and new features!
-            </p>
+        <div className={flCss.flashy}>
+          <img
+            alt="Antenna"
+            height={76}
+            src="/img/pages/index/foss.svg"
+            title="Open source"
+            width={76}
+          />
+          <h3 className={flCss.flashy__title}>Open source</h3>
+          <p className={flCss.flashy__content}>
+            QuestDB is open source. Follow us on GitHub. Watch the repo to get
+            notified of further releases and new features!
+          </p>
 
-            <div className={flCss.flashy__links}>
-              <a
-                className={flCss.flashy__link}
-                href={siteConfig.customFields.githubUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Go to GitHub&nbsp;&nbsp;&gt;
-              </a>
-              <a
-                className={flCss.flashy__link}
-                href={siteConfig.customFields.slackUrl}
-              >
-                Join Slack&nbsp;&nbsp;&gt;
-              </a>
-            </div>
+          <div className={flCss.flashy__links}>
+            <a
+              className={flCss.flashy__link}
+              href={siteConfig.customFields.githubUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Go to GitHub&nbsp;&nbsp;&gt;
+            </a>
+            <a
+              className={flCss.flashy__link}
+              href={siteConfig.customFields.slackUrl}
+            >
+              Join Slack&nbsp;&nbsp;&gt;
+            </a>
           </div>
         </div>
       </div>
@@ -613,6 +612,7 @@ const QueryScroller = () => {
   return (
     <section
       className={clsx(
+        seCss.section,
         seCss["section--inner"],
         seCss["section--center"],
         seCss["section--showcase"],
@@ -792,11 +792,11 @@ const Home = () => {
     >
       <Top />
       <Usp />
+      <Integration />
+      <FeatureTabs />
       <QueryScroller />
-      <Why />
       <Cards />
       <Console />
-      <Integration />
     </PageLayout>
   )
 }

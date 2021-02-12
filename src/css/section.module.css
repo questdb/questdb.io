@@ -99,7 +99,7 @@
   flex-wrap: wrap;
 }
 
-.section__footer--why {
+.section__footer--feature-tabs {
   width: 100%;
   margin-top: 3rem;
   margin-bottom: 2rem;
@@ -161,7 +161,7 @@
     align-items: center;
   }
 
-  .section__footer--why {
+  .section__footer--feature-tabs {
     margin-top: 2rem;
     margin-bottom: 5.5rem;
     flex-direction: column;
