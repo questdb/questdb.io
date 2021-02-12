@@ -28,13 +28,13 @@ options are applied to aggregates based on order of appearance in the query.
 
 Consider an example table named `prices`:
 
-| ts  | price |
-| --- | ----- |
+| ts                          | price |
+| --------------------------- | ----- |
 | 2021-01-01T12:00:00.000000Z | p1    |
 | 2021-01-01T13:00:00.000000Z | p2    |
 | 2021-01-01T14:00:00.000000Z | p3    |
-| ... | ...   |
-| tsn | pn    |
+| ...                         | ...   |
+| tsn                         | pn    |
 
 The following query returns the minimum, maximum and average price per hour:
 
@@ -46,24 +46,24 @@ SAMPLE BY 1h;
 
 The returned results look like this:
 
-| ts  | min  | max  | average |
-| --- | ---- | ---- | ------- |
+| ts                          | min  | max  | average |
+| --------------------------- | ---- | ---- | ------- |
 | 2021-01-01T12:00:00.000000Z | min1 | max1 | avg1    |
-| ... | ...  | ...  | ...     |
-| tsn | minn | maxn | avgn    |
+| ...                         | ...  | ...  | ...     |
+| tsn                         | minn | maxn | avgn    |
 
 In the below example, there is no `price` data during the entire third hour. As
 there are missing values, an average aggregate cannot be calculated for this
 hour at `2021-01-01T14:00:00.000000Z`:
 
-| ts    | min    | max    | average |
-| ----- | ------ | ------ | ------- |
-| 2021-01-01T12:00:00.000000Z   | min1   | max1   | avg1    |
-| 2021-01-01T13:00:00.000000Z   | min2   | max2   | avg2    |
+| ts                          | min    | max    | average |
+| --------------------------- | ------ | ------ | ------- |
+| 2021-01-01T12:00:00.000000Z | min1   | max1   | avg1    |
+| 2021-01-01T13:00:00.000000Z | min2   | max2   | avg2    |
 | 2021-01-01T14:00:00.000000Z | `null` | `null` | `null`  |
-| 2021-01-01T15:00:00.000000Z   | min4   | max4   | avg4    |
-| ...   | ...    | ...    | ...     |
-| tsn   | minn   | maxn   | avgn    |
+| 2021-01-01T15:00:00.000000Z | min4   | max4   | avg4    |
+| ...                         | ...    | ...    | ...     |
+| tsn                         | minn   | maxn   | avgn    |
 
 Based on this example, the following `FILL` strategies can be employed,
 demonstrating filling with `NULL`, a constant value, and the previous value:
@@ -77,14 +77,14 @@ FILL(NULL, 0, PREV);
 
 This query returns the following results:
 
-| ts    | min    | max  | average |
-| ----- | ------ | ---- | ------- |
+| ts                            | min    | max  | average |
+| ----------------------------- | ------ | ---- | ------- |
 | 2021-01-01T12:00:00.000000Z   | min1   | max1 | avg1    |
 | 2021-01-01T13:00:00.000000Z   | min2   | max2 | avg2    |
 | `2021-01-01T14:00:00.000000Z` | `null` | `0`  | `avg2`  |
 | 2021-01-01T15:00:00.000000Z   | min4   | max4 | avg4    |
-| ...   | ...    | ...  | ...     |
-| tsn   | minn   | maxn | avgn    |
+| ...                           | ...    | ...  | ...     |
+| tsn                           | minn   | maxn | avgn    |
 
 This query demonstrates the remaining `fillOptions` using a constant value and
 linear interpolation:
@@ -98,11 +98,11 @@ FILL(25.5, LINEAR);
 
 The results of this query look like the following:
 
-| ts    | min    | average         |
-| ----- | ------ | --------------- |
+| ts                            | min    | average         |
+| ----------------------------- | ------ | --------------- |
 | 2021-01-01T12:00:00.000000Z   | min1   | avg1            |
 | 2021-01-01T13:00:00.000000Z   | min2   | avg2            |
 | `2021-01-01T14:00:00.000000Z` | `25.5` | `(avg2+avg4)/2` |
 | 2021-01-01T15:00:00.000000Z   | min4   | avg4            |
-| ...   | ...    | ...             |
-| tsn   | minn   | avgn            |
+| ...                           | ...    | ...             |
+| tsn                           | minn   | avgn            |

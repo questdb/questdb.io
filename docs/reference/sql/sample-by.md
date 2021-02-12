@@ -8,8 +8,8 @@ description: SAMPLE BY SQL keyword reference documentation.
 aggregates of homogeneous time chunks as part of a
 [SELECT statement](/docs/reference/sql/select/).
 
-Users performing `SAMPLE BY` queries on datasets __with missing data__ may make use
-of the [FILL](/docs/reference/sql/fill/) keyword to specify a fill behavior.
+Users performing `SAMPLE BY` queries on datasets **with missing data** may make
+use of the [FILL](/docs/reference/sql/fill/) keyword to specify a fill behavior.
 
 :::note
 
@@ -29,13 +29,13 @@ results, and `n` is the number of time chunks that will be summarised together.
 
 Assume the following table
 
-| ts | buysell | quantity | price |
-| --------- | ------- | -------- | ----- |
-| ts1       | B       | q1       | p1    |
-| ts2       | S       | q2       | p2    |
-| ts3       | S       | q3       | p3    |
-| ...       | ...     | ...      | ...   |
-| tsn       | B       | qn       | pn    |
+| ts  | buysell | quantity | price |
+| --- | ------- | -------- | ----- |
+| ts1 | B       | q1       | p1    |
+| ts2 | S       | q2       | p2    |
+| ts3 | S       | q3       | p3    |
+| ... | ...     | ...      | ...   |
+| tsn | B       | qn       | pn    |
 
 The following will return the number of trades per hour:
 
