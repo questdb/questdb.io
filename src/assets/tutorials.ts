@@ -37,7 +37,7 @@ const tutorials: FlatTutorial[] = [
     content:
       "In this video, David describes why a performant time-series database is critical for IoT use cases and shows how to set up and use QuestDB for ingesting sensor data from Arduino boards.",
     link: "https://www.youtube.com/watch?v=5IsPIpcVCoE",
-    image: "/img/tutorial/shared/og-arduino.png",
+    image: "/img/tutorial/shared/og-youtube.png",
     title: "Sending IoT Data from Arduino to QuestDB",
   },
   {
@@ -82,7 +82,7 @@ const tutorials: FlatTutorial[] = [
       "In this tutorial, Michael Beale writes about how he managed to simplify his ETL pipeline",
     link:
       "https://towardsdatascience.com/bypassing-pandas-memory-limitations-9abb574fdf76",
-    image: "/img/tutorial/shared/og-python.png",
+    image: "/img/tutorial/shared/og-pandas.png",
     title: "Bypassing Pandas Memory Limitations",
   },
 ]
