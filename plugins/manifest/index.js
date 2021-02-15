@@ -2,7 +2,7 @@ const ManifestPlugin = require("webpack-manifest-plugin")
 
 module.exports = () => ({
   name: "manifest",
-  configureWebpack: (config, isServer) => {
+  configureWebpack: (_, isServer) => {
     return {
       plugins: isServer
         ? []
