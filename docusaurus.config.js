@@ -61,9 +61,10 @@ const config = {
   projectName: "questdb",
   customFields,
   plugins: [
-    require.resolve("./plugins/fetch-release"),
-    require.resolve("./plugins/lint"),
-    require.resolve("./plugins/manifest"),
+    require.resolve("./plugins/fetch-release/index"),
+    require.resolve("./plugins/webpack-ts/index"),
+    require.resolve("./plugins/optimize/index"),
+    require.resolve("./plugins/manifest/index"),
     [
       require.resolve("./plugins/tutorial/compiled/index"),
       {
