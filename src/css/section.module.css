@@ -96,6 +96,8 @@
 }
 
 .section__footer--feature-cards {
+  margin: -1.25rem;
+  margin-top: 0;
   flex-wrap: wrap;
 }
 

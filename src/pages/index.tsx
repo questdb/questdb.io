@@ -302,64 +302,72 @@ const Usp = () => (
   <section className={clsx(seCss.section, seCss["section--odd"])}>
     <div className={seCss["section--inner"]}>
       <div className={usCss.usp}>
-        <img
-          alt="Speedometer"
-          className={usCss.usp__illustration}
-          height={113}
-          src="/img/pages/index/rawPower.svg"
-          width={176}
-        />
+        <div className={usCss.usp__inner}>
+          <img
+            alt="Speedometer"
+            className={usCss.usp__illustration}
+            height={113}
+            src="/img/pages/index/rawPower.svg"
+            width={176}
+          />
 
-        <h2 className={usCss.usp__title}>Built for performance</h2>
+          <h2 className={usCss.usp__title}>Built for performance</h2>
 
-        <p className={usCss.usp__description}>SIMD-optimized analytics</p>
-        <p className={usCss.usp__description}>Row- and column-based access</p>
-        <p className={usCss.usp__description}>Vectorized query execution</p>
-        <p className={usCss.usp__description}>Tiny memory footprint</p>
-        <p className={usCss.usp__description}>C++ and zero-GC Java</p>
+          <p className={usCss.usp__description}>SIMD-optimized analytics</p>
+          <p className={usCss.usp__description}>Row- and column-based access</p>
+          <p className={usCss.usp__description}>Vectorized query execution</p>
+          <p className={usCss.usp__description}>Tiny memory footprint</p>
+          <p className={usCss.usp__description}>C++ and zero-GC Java</p>
+        </div>
+      </div>
+
+      <div className={clsx(usCss.usp, usCss["usp--wide"])}>
+        <div className={usCss.usp__inner}>
+          <img
+            alt="A code editor with a chart that shows the result of the query"
+            className={usCss.usp__illustration}
+            height={113}
+            src="/img/pages/index/easyToUse.svg"
+            width={205}
+          />
+
+          <h2 className={usCss.usp__title}>Optimized for time series</h2>
+
+          <p className={usCss.usp__description}>
+            Relational model for time series
+          </p>
+          <p className={usCss.usp__description}>
+            Data stored in chronological order
+          </p>
+          <p className={usCss.usp__description}>Time partitioned</p>
+          <p className={usCss.usp__description}>Scalable ingestion</p>
+          <p className={usCss.usp__description}>Immediate consistency</p>
+          <p className={usCss.usp__description}>Fast InfluxDB line protocol</p>
+        </div>
       </div>
 
       <div className={usCss.usp}>
-        <img
-          alt="A code editor with a chart that shows the result of the query"
-          className={usCss.usp__illustration}
-          height={113}
-          src="/img/pages/index/easyToUse.svg"
-          width={205}
-        />
+        <div className={usCss.usp__inner}>
+          <img
+            alt="A code editor containing a SQL statement"
+            className={usCss.usp__illustration}
+            height={113}
+            src="/img/pages/index/featureRich.svg"
+            width={176}
+          />
 
-        <h2 className={usCss.usp__title}>Optimized for time series</h2>
+          <h2 className={usCss.usp__title}>Implemented with SQL</h2>
 
-        <p className={usCss.usp__description}>
-          Relational model for time series
-        </p>
-        <p className={usCss.usp__description}>
-          Data stored in chronological order
-        </p>
-        <p className={usCss.usp__description}>Time partitioned</p>
-        <p className={usCss.usp__description}>Scalable ingestion</p>
-        <p className={usCss.usp__description}>Immediate consistency</p>
-        <p className={usCss.usp__description}>Fast InfluxDB line protocol</p>
-      </div>
-
-      <div className={usCss.usp}>
-        <img
-          alt="A code editor containing a SQL statement"
-          className={usCss.usp__illustration}
-          height={113}
-          src="/img/pages/index/featureRich.svg"
-          width={176}
-        />
-
-        <h2 className={usCss.usp__title}>Implemented with SQL</h2>
-
-        <p className={usCss.usp__description}>
-          Time series and relational joins
-        </p>
-        <p className={usCss.usp__description}>Postgres compatibility</p>
-        <p className={usCss.usp__description}>Aggregations and downsampling</p>
-        <p className={usCss.usp__description}>Unlimited sub-queries</p>
-        <p className={usCss.usp__description}>Built-in SQL optimizer</p>
+          <p className={usCss.usp__description}>
+            Time series and relational joins
+          </p>
+          <p className={usCss.usp__description}>Postgres compatibility</p>
+          <p className={usCss.usp__description}>
+            Aggregations and downsampling
+          </p>
+          <p className={usCss.usp__description}>Unlimited sub-queries</p>
+          <p className={usCss.usp__description}>Built-in SQL optimizer</p>
+        </div>
       </div>
     </div>
   </section>
@@ -375,7 +383,7 @@ const Cards = () => (
           "text--center",
         )}
       >
-        FeatureTabs time series?
+        Why time series?
       </h3>
 
       <div

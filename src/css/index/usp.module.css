@@ -4,10 +4,19 @@
   flex: 1;
 }
 
+.usp--wide {
+  flex: 1.75;
+  align-items: center;
+}
+
+.usp__inner {
+  display: flex;
+  flex-direction: column;
+}
+
 .usp__illustration {
   height: auto;
   margin-bottom: 3rem;
-  align-self: start;
 }
 
 .usp__title {
@@ -32,6 +41,14 @@
 
   .usp:not(:last-child) {
     margin-bottom: 3rem;
+  }
+
+  .usp--wide {
+    flex: 1;
+  }
+
+  .usp__inner {
+    width: 280px;
   }
 
   .usp__illustration {
