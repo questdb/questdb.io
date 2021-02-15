@@ -15,46 +15,40 @@ type Asset = {
   size?: string
 }
 
-export const getAssets = (
-  release: Release,
-): { bsd: Asset; linux: Asset; noJre: Asset; windows: Asset } => {
-  const bsdRaw = release.assets.find(({ name }) => name.indexOf("bsd") !== -1)
-  const linuxRaw = release.assets.find(
-    ({ name }) => name.indexOf("linux") !== -1,
-  )
-  const noJreRaw = release.assets.find(
-    ({ name }) => name.indexOf("no-jre") !== -1,
-  )
-  const windowsRaw = release.assets.find(
-    ({ name }) => name.indexOf("win") !== -1,
-  )
+export const getAssets = ({
+  assets,
+}: Release): { bsd: Asset; linux: Asset; noJre: Asset; windows: Asset } => {
+  const bsdRaw = assets.find(({ name }) => name.includes("bsd"))
+  const linuxRaw = assets.find(({ name }) => name.includes("linux"))
+  const noJreRaw = assets.find(({ name }) => name.includes("no-jre"))
+  const windowsRaw = assets.find(({ name }) => name.includes("win"))
   let bsd = {}
   let linux = {}
   let noJre = {}
   let windows = {}
 
-  if (bsdRaw) {
+  if (bsdRaw != null) {
     bsd = {
       href: bsdRaw.browser_download_url,
       size: `${(bsdRaw.size / 1e6).toPrecision(3)} MB`,
     }
   }
 
-  if (linuxRaw) {
+  if (linuxRaw != null) {
     linux = {
       href: linuxRaw.browser_download_url,
       size: `${(linuxRaw.size / 1e6).toPrecision(3)} MB`,
     }
   }
 
-  if (noJreRaw) {
+  if (noJreRaw != null) {
     noJre = {
       href: noJreRaw.browser_download_url,
       size: `${(noJreRaw.size / 1e6).toPrecision(2)} MB`,
     }
   }
 
-  if (windowsRaw) {
+  if (windowsRaw != null) {
     windows = {
       href: windowsRaw.browser_download_url,
       size: `${(windowsRaw.size / 1e6).toPrecision(3)} MB`,
