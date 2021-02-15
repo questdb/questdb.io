@@ -1,19 +1,19 @@
 export type Os = "linux" | "bsd" | "macos" | "windows"
 
 export const getOs = (): Os => {
-  if (navigator.platform.indexOf("Win") !== -1) {
+  if (navigator.platform.includes("Win")) {
     return "windows"
   }
 
-  if (navigator.platform.indexOf("Mac") !== -1) {
+  if (navigator.platform.includes("Mac")) {
     return "macos"
   }
 
-  if (navigator.platform.indexOf("Linux") !== -1) {
+  if (navigator.platform.includes("Linux")) {
     return "linux"
   }
 
-  if (navigator.platform.indexOf("BSD") !== -1) {
+  if (navigator.platform.includes("BSD")) {
     return "bsd"
   }
 

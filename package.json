@@ -4,10 +4,10 @@
   "private": true,
   "license": "Apache-2.0",
   "scripts": {
-    "prestart": "plugins/compile.sh",
+    "prestart": "plugins/ts-compile.sh",
     "start": "docusaurus start",
-    "pre-build": "FORCE=true node scripts/pre-build.js",
-    "prebuild": "node scripts/pre-build.js && npm run prestart",
+    "pre-build": "FORCE=true node scripts/optimise-images.js",
+    "prebuild": "node scripts/optimise-images.js && npm run prestart",
     "build": "USE_SIMPLE_CSS_MINIFIER=true PWA_SW_CUSTOM= docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -84,7 +84,7 @@
     }
   },
   "lint-staged": {
-    "static/img/**/*": "scripts/check-size"
+    "static/img/**/*": "scripts/check-size-hook.sh"
   },
   "resolutions": {
     "sharp": "0.26.3"
