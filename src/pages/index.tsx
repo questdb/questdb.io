@@ -340,7 +340,6 @@ const Usp = () => (
             Data stored in chronological order
           </p>
           <p className={usCss.usp__description}>Time partitioned</p>
-          <p className={usCss.usp__description}>Scalable ingestion</p>
           <p className={usCss.usp__description}>Immediate consistency</p>
           <p className={usCss.usp__description}>Fast InfluxDB line protocol</p>
         </div>
@@ -431,7 +430,7 @@ const Cards = () => (
           <p className={feCss.feature__content}>
             Use QuestDB with popular Python frameworks and tools for leveraging
             anomaly detection algorithms, machine learning libraries,
-            statistical analysis with Pandas, Jupyter notebooks, and more.
+            statistical analysis with Pandas, or Jupyter notebooks.
           </p>
         </div>
 
