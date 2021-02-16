@@ -243,7 +243,7 @@ const Top = () => {
         <div className={juCss.jumbotron__cta}>
           <Button
             className={juCss.jumbotron__link}
-            href={`http://try.${siteConfig.customFields.domain}:9000`}
+            href={siteConfig.customFields.demoUrl}
           >
             Live Demo
           </Button>
