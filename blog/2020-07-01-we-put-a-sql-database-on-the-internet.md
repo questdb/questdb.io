@@ -25,7 +25,6 @@ tried to do with it.
 
 <!-- truncate -->
 
-
 ## The idea
 
 QuestDB has built what we think is the fastest Open Source SQL Database in
@@ -220,7 +219,7 @@ right away.
 ## Try it yourself
 
 Want to try it yourself? You've read this far, you really should! got to
-[http://try.questdb.io:9000/](http://try.questdb.io:9000/) to give it a whirl.
+[{@demoUrl@}]({@demoUrl@}) to give it a whirl.
 
 We'd love to have you join us on our [community Slack]({@slackUrl@}) channel,
 give us a [star](https://github.com/questdb/questdb) on GitHub, and

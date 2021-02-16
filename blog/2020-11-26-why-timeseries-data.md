@@ -236,12 +236,12 @@ minimal amount of data from disk for a given query.
 />
 
 In order to showcase the capabilities of our database, we decided to put
-together an [online demo](http://try.questdb.io:9000/), which features a 1.6
-billion rows dataset with more than 10 years of NYC taxi and weather data
-(350GB). The hardware powering the demo is a c5.metal instance (AWS) with 24
-physical cores and 192 GB of memory. The data is stored and accessed from disk,
-none of the results are cached or pre-calculated. The postmortem of QuestDB’s
-ShowHN on HackerNews can be found
+together an [online demo]({@demoUrl@}), which features a 1.6 billion rows
+dataset with more than 10 years of NYC taxi and weather data (350GB). The
+hardware powering the demo is a c5.metal instance (AWS) with 24 physical cores
+and 192 GB of memory. The data is stored and accessed from disk, none of the
+results are cached or pre-calculated. The postmortem of QuestDB’s ShowHN on
+HackerNews can be found
 [on DZone](https://dzone.com/articles/we-put-a-sql-database-on-the-internet).
 
 ### QuestDB and its growing community
