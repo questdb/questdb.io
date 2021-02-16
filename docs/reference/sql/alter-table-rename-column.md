@@ -14,12 +14,17 @@ Rename a column in an existing table.
 
 Renames a column in an existing table.
 
+:::caution
+
+- New column names may only consist of letters, numbers and underscores `_`
+
+:::
 
 ## Example
 
-The following example renames an existing column called `rating` to `movie_rating` from the table
-`ratings`.
+The following example renames an existing column called `sensor` to
+`hum_sensor_1` from the table `measurements`.
 
 ```questdb-sql title="Renaming a column"
-ALTER TABLE ratings RENAME COLUMN rating TO movie_rating;
+ALTER TABLE measurements RENAME COLUMN sensor TO hum_sensor_1;
 ```
