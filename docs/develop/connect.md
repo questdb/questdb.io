@@ -26,10 +26,10 @@ import TabItem from "@theme/TabItem"
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
   { label: "Java", value: "java" },
+  { label: "C#", value: "csharp" },
   { label: "C", value: "c" },
   { label: "Python", value: "python" },
   { label: "psql", value: "psql" },
-  { label: "C#", value: "csharp" },
 ]}>
 
 
@@ -206,18 +206,9 @@ string database = "qdb";
 int port = 8812;
 var connectionString = $"host=localhost;port={port};username={username};password={password};
 database={database};ServerCompatibilityMode=NoTypeLoading;";
+
 await using NpgsqlConnection connection = new(connectionString);
 await connection.OpenAsync();
-var sql = "SELECT * FROM RheinPegel WHERE station = 'Worms'";
-await using NpgsqlCommand command = new (sql, connection);
-await using (var reader = await command.ExecuteReaderAsync()) {
-    while (await reader.ReadAsync())
-    {
-        var station = reader.GetString(0);
-        var height = double.Parse(reader.GetString(1));
-        var timestamp = reader.GetString(2);
-    }
-}
 ```
 
 </TabItem>
