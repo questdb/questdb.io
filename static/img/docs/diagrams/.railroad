@@ -1,113 +1,117 @@
 createTableDef
   ::= 'CREATE' 'TABLE' tableName
-(
-(
-'(' columnName typeDef (',' columnName typeDef)* ')'
-) | (
-'as' '(' selectSql ')'  (',' castDef)* (',' indexDef)*
-)
-) (
-('timestamp' columnRef) ('partition' 'by' ('NONE' | 'DAY' | 'MONTH' | 'YEAR'))?
-)?
+  (
+  (
+  '(' columnName typeDef (',' columnName typeDef)* ')'
+  ) | (
+  'as' '(' selectSql ')'  (',' castDef)* (',' indexDef)*
+  )
+  ) (
+  ('timestamp' columnRef) ('partition' 'by' ('NONE' | 'DAY' | 'MONTH' | 'YEAR'))?
+  )?
 
-castDef ::= 'cast' '(' columnRef 'as' typeDef ')'
+castDef 
+  ::= 'cast' '(' columnRef 'as' typeDef ')'
 
-inlineIndexDef ::= 'index' (indexCapacityDef)?
+inlineIndexDef 
+  ::= 'index' (indexCapacityDef)?
 
-typeDef ::= (
-'boolean' | 'byte' | 'short' | 'char' | 'int' | 'float' |
-('symbol' ('capacity' distinctValueEstimate)? ('CACHE' | 'NOCACHE')? inlineIndexDef?) |
-'string' | 'long' | 'date' | 'timestamp' | 'double' | 'binary' | 'long256'
-)
+typeDef 
+  ::= (
+  'boolean' | 'byte' | 'short' | 'char' | 'int' | 'float' |
+  ('symbol' ('capacity' distinctValueEstimate)? ('CACHE' | 'NOCACHE')? inlineIndexDef?) |
+  'string' | 'long' | 'date' | 'timestamp' | 'double' | 'binary' | 'long256'
+  )
 
-indexDef ::= 'index' '(' columnRef (indexCapacityDef)? ')'
+indexDef 
+  ::= 'index' '(' columnRef (indexCapacityDef)? ')'
 
-indexCapacityDef ::= 'capacity' valueBlockSize
+indexCapacityDef 
+  ::= 'capacity' valueBlockSize
 
 insertInto
   ::= 'INSERT' 'INTO' tableName (('('columnName (',' columnName)*) ')')? ('VALUES' '(' value (',' value)* ')' | 'SELECT' queryDef )
 
 Backup
-::= 'BACKUP' ( 'TABLE' tableName ( ',' tableName )* | 'DATABASE' ) ';'
+  ::= 'BACKUP' ( 'TABLE' tableName ( ',' tableName )* | 'DATABASE' ) ';'
 
 case
-::= 'CASE' ('WHEN' condition 'THEN' value)* ( | 'ELSE' value ) 'END'
+  ::= 'CASE' ('WHEN' condition 'THEN' value)* ( | 'ELSE' value ) 'END'
 
 Copy
-::= 'COPY' tableName 'FROM' fileName  (| 'WITH' 'HEADER' (true|false) ) ';'
+  ::= 'COPY' tableName 'FROM' fileName  (| 'WITH' 'HEADER' (true|false) ) ';'
 
 Create Table timestamp
-::= 'CREATE' someCreateTableStatement 'timestamp' '(' columnName ')'
+  ::= 'CREATE' someCreateTableStatement 'timestamp' '(' columnName ')'
 
 Dynamic-timestamp
-         ::= 'SELECT' someSelectStatement 'timestamp' '(' columnName ')'
+  ::= 'SELECT' someSelectStatement 'timestamp' '(' columnName ')'
 
-
-sampleBy ::=
-someSelectStatement... 'SAMPLE' 'BY' n ( 'T' | 's' | 'm' | 'h' | 'd' | 'M' | )
+sampleBy 
+  ::= someSelectStatement... 'SAMPLE' 'BY' n ( 'T' | 's' | 'm' | 'h' | 'd' | 'M' | )
 
 distinct
   ::= 'SELECT' 'DISTINCT' ( columnName (',' columnName)* ) 'FROM' tableName
 
 latestBy
-::= 'SELECT' ( columnName (',' columnName)* ) 'FROM' tableName 'LATEST' 'BY' ( columnName (',' columnName)* )
+  ::= 'SELECT' ( columnName (',' columnName)* ) 'FROM' tableName 'LATEST' 'BY' ( columnName (',' columnName)* )
 
 limit
   ::= 'SELECT' someSelectStatement 'LIMIT' ( numberOfRecords | (upperBound ',' lowerBound) ) ';'
 
-fill     ::= someSampleBySelectQuery 'FILL' ( ( 'NONE' | 'NULL' | 'PREV' | 'LINEAR' | 'x' ) ',' )*
+fill
+  ::= someSampleBySelectQuery 'FILL' ( ( 'NONE' | 'NULL' | 'PREV' | 'LINEAR' | 'x' ) ',' )*
 
 orderBy
   ::= someSelectQuery 'ORDER' 'BY' ( columnName (asc | desc) ? (',' columnName (asc | desc) ?)* )
 
 timestampSearch
-         ::= 'WHERE' timestampColumn ( '=' | '>' | '<' | '>=' | '<=' ) "'" timestamp "'"
+  ::= 'WHERE' timestampColumn ( '=' | '>' | '<' | '>=' | '<=' ) "'" timestamp "'"
 
 timestampIntervalSearch
-         ::= 'WHERE' timestampColumn '=' "'" timestamp ';' interval (s | m | h | d | M | y) "'"
+  ::= 'WHERE' timestampColumn '=' "'" timestamp ';' interval (s | m | h | d | M | y) "'"
 
 timestampInSearch
-::= 'WHERE' timestampColumn 'in' '(' "'timestamp1'" ';' "'timestamp2'" ')'
+  ::= 'WHERE' timestampColumn 'in' '(' "'timestamp1'" ';' "'timestamp2'" ')'
 
 exactStringOrSymbolSearch
-         ::= 'WHERE' column '=' "'" string "'"
+  ::= 'WHERE' column '=' "'" string "'"
 
 regexMatch
-         ::= 'WHERE' '~=' '(' column ';' regex ')'
+  ::= 'WHERE' '~=' '(' column ';' regex ')'
 
 listMatch
-         ::= 'WHERE' 'NOT'? columnName 'in' '(' string (',' string)* ')'
+  ::= 'WHERE' 'NOT'? columnName 'in' '(' string (',' string)* ')'
 
 whereNumericValue
-         ::= 'WHERE' column ('=' | '!=' | '>' | '>=' | '<' | '<=') value
+  ::= 'WHERE' column ('=' | '!=' | '>' | '>=' | '<' | '<=') value
 
 whereEqDoubleProximityPrecision
-         ::= 'WHERE' 'eq' '(' column ',' value ',' precision  ')'
+  ::= 'WHERE' 'eq' '(' column ',' value ',' precision  ')'
 
 complexWhere
-         ::= 'WHERE' ('('? ( 'AND' | 'OR' | 'NOT' )? boolean ')'?)*
+  ::= 'WHERE' ('('? ( 'AND' | 'OR' | 'NOT' )? boolean ')'?)*
 
 booleanWhere
-         ::= 'WHERE' 'NOT'? columnName
+  ::= 'WHERE' 'NOT'? columnName
 
 timestampExact
-         ::= 'WHERE' column '=' timestamp
+  ::= 'WHERE' column '=' timestamp
 
 timestampPartial
-         ::= 'WHERE' timestampColumn '=' ( 'yyyy' | 'yyyy-MM' | 'YYYY-MM-dd' | 'yyyy-MM-ddThh' | 'yyyy-MM-ddThh:mm' | 'yyyy-MM-ddThh:mm:ss' )
+  ::= 'WHERE' timestampColumn '=' ( 'yyyy' | 'yyyy-MM' | 'YYYY-MM-dd' | 'yyyy-MM-ddThh' | 'yyyy-MM-ddThh:mm' | 'yyyy-MM-ddThh:mm:ss' )
 
 timestampExplicitRange
-         ::= 'WHERE' timestamp 'in' '(' lower_bound ',' upper_bound ')'
+  ::= 'WHERE' timestamp 'in' '(' lower_bound ',' upper_bound ')'
 
 union
-         ::= selectStatement ('UNION' 'ALL'? otherSelectStatement)*
+  ::= selectStatement ('UNION' 'ALL'? otherSelectStatement)*
 
 renameTable
-         ::= 'RENAME' 'TABLE' oldName 'TO' newName
+  ::= 'RENAME' 'TABLE' oldName 'TO' newName
 
 cast
-         ::= 'CAST' '(' expression 'AS' type ')'
-
+  ::= 'CAST' '(' expression 'AS' type ')'
 
 InfluxLineProtocolOverTCP
   ::= (user_1 | user_2 | '...') 'TCP requests' network_IO_thread 'write_queue' ((worker_1 'write' (table_1|table_2|'...')) | (worker_2 'write' (table_3|table_4|'...')))
@@ -121,12 +125,5 @@ groupBy
 with
   ::= 'WITH' ( subQueryName 'AS' '(' subQuery ')' ( ',' subQueryName 'AS' '(' subQuery ')' )*) mainQuery
 
-
-
-
-
-
-
-
-
-
+renameColumn
+  ::= 'ALTER' 'TABLE' tableName 'RENAME' 'COLUMN' columnName 'TO' columnName

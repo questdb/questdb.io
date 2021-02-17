@@ -86,7 +86,7 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.innova.com.tr/en/about-us/about-innova"
+          href="https://www.innova.com.tr/en"
           variant="plain"
         >
           <img
@@ -99,33 +99,33 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://seedcamp.com/"
+          href="https://www.ably.io/"
           variant="plain"
         >
           <img
-            alt="Seedcamp logo"
+            alt="Ably logo"
             className="responsive-image"
             height={34}
-            src="/img/pages/customers/logos/seedcamp.png"
+            src="/img/pages/customers/logos/ably.svg"
             width={117}
           />
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.danieli.com/en/"
+          href="https://www.viesgo.com/en/"
           variant="plain"
         >
           <img
-            alt="Danieli SpA logo"
+            alt="Viesgo logo"
             className="responsive-image"
             height={19}
-            src="/img/pages/customers/logos/danieli.svg"
+            src="/img/pages/customers/logos/viesgo.svg"
             width={130}
           />
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.biba.uni-bremen.de/en/institute/about-us.html"
+          href="https://www.biba.uni-bremen.de/en.html"
           variant="plain"
         >
           <img

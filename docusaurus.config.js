@@ -8,19 +8,20 @@ const customFields = {
   artifactHubUrl: "https://artifacthub.io/packages/helm/questdb/questdb",
   copyright: `Copyright © ${new Date().getFullYear()} QuestDB`,
   crunchbaseUrl: "https://www.crunchbase.com/organization/quest-db",
+  demoUrl: `https://demo.${domain}`,
   description:
     "QuestDB is an open source database designed to make time-series lightning fast and easy. It exposes a high performance REST API and is Postgres compatible.",
   dockerUrl: "https://hub.docker.com/r/questdb/questdb",
   domain,
   githubOrgUrl,
   githubUrl: `${githubOrgUrl}/questdb`,
-  helmVersion: "0.2.7",
+  helmVersion: "0.2.8",
   linkedInUrl: "https://www.linkedin.com/company/questdb/",
   oneLiner: "Fast SQL open source database for time series - QuestDB",
   slackUrl: `https://slack.${domain}`,
   stackoverflowUrl: "https://stackoverflow.com/questions/tagged/questdb",
   twitterUrl: "https://twitter.com/questdb",
-  version: "5.0.6",
+  version: "5.0.6.1",
   videosUrl: "https://www.youtube.com/channel/UChqKEmOyiD9c6QFx2mjKwiA",
 }
 
@@ -61,9 +62,10 @@ const config = {
   projectName: "questdb",
   customFields,
   plugins: [
-    require.resolve("./plugins/fetch-release"),
-    require.resolve("./plugins/lint"),
-    require.resolve("./plugins/manifest"),
+    require.resolve("./plugins/fetch-release/index"),
+    require.resolve("./plugins/webpack-ts/index"),
+    require.resolve("./plugins/optimize/index"),
+    require.resolve("./plugins/manifest/index"),
     [
       require.resolve("./plugins/tutorial/compiled/index"),
       {
@@ -74,11 +76,6 @@ const config = {
       "@docusaurus/plugin-pwa",
       {
         pwaHead: [
-          {
-            tagName: "link",
-            rel: "icon",
-            href: "/img/favicon.png",
-          },
           {
             tagName: "link",
             rel: "manifest",
@@ -97,27 +94,6 @@ const config = {
           {
             tagName: "meta",
             name: "apple-mobile-web-app-status-bar-style",
-            content: "#21222c",
-          },
-          {
-            tagName: "link",
-            rel: "apple-touch-icon",
-            href: "/img/favicon.png",
-          },
-          {
-            tagName: "link",
-            rel: "mask-icon",
-            href: "/img/favicon.png",
-            content: "#fff",
-          },
-          {
-            tagName: "meta",
-            name: "msapplication-TileImage",
-            content: "/img/favicon.png",
-          },
-          {
-            tagName: "meta",
-            name: "msapplication-TileColor",
             content: "#21222c",
           },
         ],
@@ -140,7 +116,7 @@ const config = {
     },
     prism: {
       defaultLanguage: "questdb-sql",
-      additionalLanguages: ['rust'],
+      additionalLanguages: ["rust"],
       theme: require("./src/internals/prism-dracula"),
     },
     algolia: {

@@ -26,6 +26,7 @@ const PageLayout = ({
   description,
   flex,
   image,
+  keywords,
   noFooter,
   permalink,
   title,
@@ -74,6 +75,9 @@ const PageLayout = ({
           )}
           <meta name="twitter:title" content={metaTitle} />
           <meta name="twitter:image:alt" content={`Image for "${metaTitle}"`} />
+          {keywords != null && keywords.length > 0 && (
+            <meta name="keywords" content={keywords.join(",")} />
+          )}
         </Head>
         <AnnouncementBar />
         <Navbar />

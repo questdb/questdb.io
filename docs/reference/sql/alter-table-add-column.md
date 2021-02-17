@@ -1,7 +1,7 @@
 ---
 title: ALTER TABLE ADD COLUMN keywords
 sidebar_label: ALTER TABLE ADD COLUMN
-description: ALTER TABLE ADD COLUMN SQL keword reference documentation.
+description: ALTER TABLE ADD COLUMN SQL keyword reference documentation.
 ---
 
 Adds a new column to an existing table.

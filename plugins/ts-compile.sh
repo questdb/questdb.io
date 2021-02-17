@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Compile "tutorial" plugin
 tsc \
     --esModuleInterop \
     --outDir \

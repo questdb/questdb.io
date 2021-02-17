@@ -123,10 +123,9 @@ It made it possible to implement more recent innovations like our
 [own version of Google SwissTable](https://github.com/questdb/questdb/blob/master/core/src/main/c/share/rosti.h).
 I published more details when we released a demo server a few weeks ago on
 [ShowHN](https://news.ycombinator.com/item?id=23616878). This
-[demo](http://try.questdb.io:9000/) is still available to try online with a
-pre-loaded dataset of 1.6 billion rows. Although it was hard and discouraging at
-first, this rewrite turned out to be the second best thing that happened to
-QuestDB.
+[demo]({@demoUrl@}) is still available to try online with a pre-loaded dataset
+of 1.6 billion rows. Although it was hard and discouraging at first, this
+rewrite turned out to be the second best thing that happened to QuestDB.
 
 The best thing was that people started to contribute to the project. I am really
 humbled that Tanc and Nic left our previous employer to build QuestDB. A few

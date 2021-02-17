@@ -8,13 +8,17 @@ import type { Tutorial } from "../../assets/tutorials"
 
 function TutorialPostPage({ content }: Tutorial) {
   const { frontMatter, metadata } = content
-  const { title, description } = frontMatter
+  const { description, title, image, keywords } = frontMatter
+  const _keywords = [...(keywords ?? [])]
+  const imageUrl = image ?? "/img/tutorial/placeholder.png"
   const Content = (content as any) as React.ElementType
 
   return (
     <Layout
-      title={title}
       description={description}
+      image={imageUrl}
+      keywords={_keywords}
+      title={title}
       wrapperClassName="blog-wrapper"
     >
       <div className="container margin-vert--lg">

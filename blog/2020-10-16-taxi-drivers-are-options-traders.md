@@ -364,7 +364,7 @@ customer for as long as possible. In the end, $30 per hour is better than 0.
 ## Your turn to explore the data
 
 We made this dataset and the database available online and you can query it
-directly from your browser via [QuestDB demo](http://try.questdb.io:9000/).
+directly from your browser via [QuestDB demo]({@demoUrl@}).
 
 Feel free to explore it, come up with more analysis, and let me know your
 findings.
