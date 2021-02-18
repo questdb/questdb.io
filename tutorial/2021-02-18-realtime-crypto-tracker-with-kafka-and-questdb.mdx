@@ -108,11 +108,11 @@ index analysis, feel free to
 
 Before pulling data from Coinbase, we need a running instance of a Kafka cluster
 and QuestDB. In the repo, I have a working docker-compose file with Confluent
-Kafka components (i.e. zookeeper, broker, Kafka Connect) and QuestDB. If you
-would like to run this on the cloud or run it locally, follow the instructions
-on the
+Kafka components (i.e. Zookeeper, Kafka Connect, Kafka Broker) and QuestDB. If
+you would like to run this on the cloud or run it locally, follow the
+instructions on the
 [Confluent website](https://docs.confluent.io/platform/current/quickstart/index.html).
-Otherwise simply apply the docker-compose file:
+Otherwise simply run the docker-compose file:
 
 ```bash
 cd docker-compose
@@ -297,8 +297,8 @@ sink via curl with topic set as `topic<crypto>_ma_25`.
 
 ## Wrapping up
 
-To stop streaming data, simply stop the Python scripts. To destroy the Kafka
-cluster and QuestDB, run:
+To stop streaming data, simply stop the Python scripts. To stop and remove the
+Kafka cluster / QuestDB services, run:
 
 ```bash
 docker-compose down
@@ -307,8 +307,8 @@ docker-compose down
 While this is a simple example, you can extend this to optimize the data format
 with Avro, connect it with your Coinbase account to execute trades based on
 trading signals, or test out different statistical methods on the raw data. Feel
-free to [submit a PR](https://github.com/Yitaek/kafka-crypto-questdb) to make
-this repo more useful!
+free to [submit a PR](https://github.com/Yitaek/kafka-crypto-questdb) if you
+have a suggestion or improvements to make!
 
 If you like this content, we'd love to know your thoughts! Feel free to share
 your feedback or just come and say hello in the
