@@ -13,11 +13,11 @@ The Web Console is the official Web client relying on the REST API. Find out
 more in the section
 [using the Web Console](/docs/reference/client/web-console/).
 
-## Available methods
+**Available methods**
 
-- [`/imp` to import data](#imp---import-data)
-- [`/exec` to execute a SQL statement](#exec---execute-queries)
-- [`/exp` to export data](#exp---export-data)
+- [`/imp`](#imp---import-data) for importing data from `.CSV` files
+- [`/exec`](#exec---execute-queries) to execute a SQL statement
+- [`/exp`](#exp---export-data) to export data
 
 ## /imp - Import data
 
@@ -25,20 +25,28 @@ more in the section
 pipe (`|`) delimited inputs with optional headers. There are no restrictions on
 data size. Data types and structures are detected automatically, without
 additional configuration. In some cases, additional configuration can be
-provided to improve the automatic detection.
+provided to improve the automatic detection as described in
+[user-defined schema](#user-defined-schema).
 
 :::note
 
-The structure detection algorithm analyses the chunk in the beginning and relies
-on relative uniformity of data. When the first chunk is non-representative of
-the rest of the data, automatic imports can yield errors.
+The structure detection algorithm analyses the chunk in the beginning of the
+file and relies on relative uniformity of data. When the first chunk is
+non-representative of the rest of the data, automatic imports can yield errors.
+
+If the data follows a uniform pattern, the number of lines which are analyzed
+for schema detection can be reduced to improve performance during uploads using
+the `http.text.analysis.max.lines` key. Usage of this setting is described in
+the
+[HTTP server configuration](/docs/reference/configuration#minimal-http-server)
+documentation.
 
 :::
 
-### Overview
+### URL parameters
 
 `/imp` is expecting an HTTP POST request using the `multipart/form-data`
-Content-Type with following query parameters:
+Content-Type with following optional URL parameters which must be URL encoded:
 
 | Parameter     | Required | Default          | Description                                                                                                                                                                                                          |
 | ------------- | -------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -52,7 +60,14 @@ Content-Type with following query parameters:
 | `skipLev`     | No       | `false`          | `true` or `false`. Skip “Line Extra Values”, when set to true, the parser will ignore those extra values rather than ignoring entire line. An extra value is something in addition to what is defined by the header. |
 | `timestamp`   | No       |                  | Name of the column that will be used as a [designated timestamp](/docs/concept/designated-timestamp/).                                                                                                               |
 
-The parameters must be URL encoded.
+```shell title="Example usage"
+curl -F data=@weather.csv \
+'http://localhost:9000/imp?overwrite=true&name=new_table&timestamp=ts&partitionBy=MONTH'
+```
+
+Further example queries with context on the source CSV file contents relative
+and the generated tables are provided in the [examples section](#examples)
+below.
 
 ### Names
 
@@ -60,7 +75,7 @@ Table and column names are subject to restrictions, the following list of
 characters are automatically removed:
 
 ```plain
-[space]
+[whitespace]
 .
 ?
 ,
@@ -122,63 +137,141 @@ flushed to physical device.
 
 #### Automatic schema detection
 
-The following examples upload `ratings.csv`. This file can be found at
-[grouplens.org](https://grouplens.org/datasets/movielens). When column types are
-correct, error count will be `0`.
+The following example uploads a file `ratings.csv` which has the following
+contents:
 
-Considering the query:
+| ts                          | visMiles       | tempF | dewpF |
+| --------------------------- | -------------- | ----- | ----- |
+| 2010-01-01T00:00:00.000000Z | 8.8            | 34    | 30    |
+| 2010-01-01T00:51:00.000000Z | 9.100000000000 | 34    | 30    |
+| 2010-01-01T01:36:00.000000Z | 8.0            | 34    | 30    |
+| ...                         | ...            | ...   | ...   |
+
+An import can be performed with automatic schema detection with the following
+request:
 
 ```shell
-curl -F data=@ratings.csv http://localhost:9000/imp
+curl -F data=@weather.csv 'http://localhost:9000/imp'
 ```
 
-The HTTP status code will be set to `200` and the response will be:
+A HTTP status code of `200` will be returned and the response will be:
 
 ```shell
-+-----------------------------------------------------------------------------------+
-|      Location:  |               /Users/info/dev/data/db/ratings.csv  |    Errors  |
-|   Partition by  |                                              NONE  |            |
-+-----------------------------------------------------------------------------------+
-|   Rows handled  |                                          22884377  |            |
-|  Rows imported  |                                          22884377  |            |
-+-----------------------------------------------------------------------------------+
-|              0  |                                     userId INT(4)  |         0  |
-|              1  |                                    movieId INT(4)  |         0  |
-|              2  |                                  rating DOUBLE(8)  |         0  |
-|              3  |                                  timestamp INT(4)  |         0  |
-+-----------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------+
+|      Location:  |     weather.csv  |        Pattern  | Locale  |      Errors  |
+|   Partition by  |            NONE  |                 |         |              |
+|      Timestamp  |            NONE  |                 |         |              |
++-------------------------------------------------------------------------------+
+|   Rows handled  |           49976  |                 |         |              |
+|  Rows imported  |           49976  |                 |         |              |
++-------------------------------------------------------------------------------+
+|              0  |              ts  |                TIMESTAMP  |           0  |
+|              1  |        visMiles  |                   DOUBLE  |           0  |
+|              2  |           tempF  |                      INT  |           0  |
+|              3  |           dewpF  |                      INT  |           0  |
++-------------------------------------------------------------------------------+
 ```
 
 #### User-defined schema
 
-This example overrides the types of `userId` and `movieId` by including a
-`schema` parameter. The schema is passed as a JSON.
-
-Considering the query:
+To specify the schema of a table, a schema object can be provided:
 
 ```shell
 curl \
-  -F schema='[{"name":"userId", "type": "STRING"},{"name":"movieId", "type":"STRING"}]' \
-  -F data=@ratings.csv \
-  -F "overwrite=true" \
-  http://localhost:9000/imp
+-F schema='[{"name":"dewpF", "type": "STRING"}]' \
+-F data=@weather.csv 'http://localhost:9000/imp'
 ```
 
-The HTTP status code will be set to `200` and the response will be:
+```shell title="Response"
++------------------------------------------------------------------------------+
+|      Location:  |    weather.csv  |        Pattern  | Locale  |      Errors  |
+|   Partition by  |           NONE  |                 |         |              |
+|      Timestamp  |           NONE  |                 |         |              |
++------------------------------------------------------------------------------+
+|   Rows handled  |          49976  |                 |         |              |
+|  Rows imported  |          49976  |                 |         |              |
++------------------------------------------------------------------------------+
+|              0  |             ts  |                TIMESTAMP  |           0  |
+|              1  |       visMiles  |                   DOUBLE  |           0  |
+|              2  |          tempF  |                      INT  |           0  |
+|              3  |          dewpF  |                   STRING  |           0  |
++------------------------------------------------------------------------------+
+```
+
+**Non-standard timestamp formats**
+
+Given a file `weather.csv` with the following contents which contains a
+timestamp with a non-standard format:
+
+| ts                    | visMiles       | tempF | dewpF |
+| --------------------- | -------------- | ----- | ----- |
+| 2010-01-01 - 00:00:00 | 8.8            | 34    | 30    |
+| 2010-01-01 - 00:51:00 | 9.100000000000 | 34    | 30    |
+| 2010-01-01 - 01:36:00 | 8.0            | 34    | 30    |
+| ...                   | ...            | ...   | ...   |
+
+The file can be imported as usual with the following request:
+
+```shell title="Importing CSV with non-standard timestamp"
+curl -F data=@weather.csv 'http://localhost:9000/imp'
+```
+
+A HTTP status code of `200` will be returned and the import will be successful,
+but the timestamp column is detected as a `STRING` type:
+
+```shell title="Response with timestamp as STRING type"
++-------------------------------------------------------------------------------+
+|      Location:  |     weather.csv  |        Pattern  | Locale  |      Errors  |
+|   Partition by  |            NONE  |                 |         |              |
+|      Timestamp  |            NONE  |                 |         |              |
++-------------------------------------------------------------------------------+
+|   Rows handled  |           49976  |                 |         |              |
+|  Rows imported  |           49976  |                 |         |              |
++-------------------------------------------------------------------------------+
+|              0  |              ts  |                   STRING  |           0  |
+|              1  |        visMiles  |                   DOUBLE  |           0  |
+|              2  |           tempF  |                      INT  |           0  |
+|              3  |           dewpF  |                      INT  |           0  |
++-------------------------------------------------------------------------------+
+```
+
+To amend the timestamp column type, this example curl can be used which has a
+`schema` JSON object to specify that the `ts` column is of `TIMESTAMP` type with
+the pattern `yyyy-MM-dd - HH:mm:ss`
+
+Additionally, URL parameters are provided:
+
+- `overwrite=true` to overwrite the existing table
+- `timestamp=ts` to specify that the `ts` column is the designated timestamp
+  column for this table
+- `partitionBy=MONTH` to set a
+  [partitioning strategy](/docs/operations/data-retention/) on the table by
+  `MONTH`
+
+```shell title="Providing a user-defined schema"
+curl \
+-F schema='[{"name":"ts", "type": "TIMESTAMP", "pattern": "yyyy-MM-dd - HH:mm:ss"}]' \
+-F data=@weather.csv \
+'http://localhost:9000/imp?overwrite=true&timestamp=ts&partitionBy=MONTH'
+```
+
+The HTTP status code will be set to `200` and the response will show `0` errors
+parsing the timestamp column:
 
 ```shell
-+-----------------------------------------------------------------------------------+
-|      Location:  |               /Users/info/dev/data/db/ratings.csv  |    Errors  |
-|   Partition by  |                                              NONE  |            |
-+-----------------------------------------------------------------------------------+
-|   Rows handled  |                                          22884377  |            |
-|  Rows imported  |                                          22884377  |            |
-+-----------------------------------------------------------------------------------+
-|              0  |                                 userId STRING(16)  |         0  |
-|              1  |                                movieId STRING(16)  |         0  |
-|              2  |                                  rating DOUBLE(8)  |         0  |
-|              3  |                                  timestamp INT(4)  |         0  |
-+-----------------------------------------------------------------------------------+
++------------------------------------------------------------------------------+
+|      Location:  |    weather.csv  |        Pattern  | Locale  |      Errors  |
+|   Partition by  |          MONTH  |                 |         |              |
+|      Timestamp  |             ts  |                 |         |              |
++------------------------------------------------------------------------------+
+|   Rows handled  |          49976  |                 |         |              |
+|  Rows imported  |          49976  |                 |         |              |
++------------------------------------------------------------------------------+
+|              0  |             ts  |                TIMESTAMP  |           0  |
+|              1  |       visMiles  |                   DOUBLE  |           0  |
+|              2  |          tempF  |                      INT  |           0  |
+|              3  |          dewpF  |                      INT  |           0  |
++------------------------------------------------------------------------------+
 ```
 
 ## /exec - Execute queries
