@@ -558,8 +558,21 @@ import TabItem from "@theme/TabItem"
 
 <TabItem value="curl">
 
-```shell
+This example imports a CSV file with automatic schema detection.
+
+```shell title="Basic import"
 curl -F data=@data.csv http://localhost:9000/imp
+```
+
+This example overwrites an existing table, specifies a timestamp format and a
+designated timestamp column. For more information on the optional parameters for specifying timestamp
+formats, partitioning and renaming tables, see the
+[REST API documentation](/docs/reference/api/rest#examples).
+
+```bash title="Providing a user-defined schema"
+curl \
+-F schema='[{"name":"ts", "type": "TIMESTAMP", "pattern": "yyyy-MM-dd - HH:mm:ss"}]' \
+-F data=@weather.csv 'http://localhost:9000/imp?overwrite=true&timestamp=ts'
 ```
 
 </TabItem>
