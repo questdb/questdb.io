@@ -108,37 +108,4 @@ to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss') + 0.323;
 | ------ | -------- | --------------------------- | ---------------- |
 | 1801   | 1234.567 | 2019-10-17T00:00:00.000323Z | 1571270400000000 |
 
-When inserting into a table, QuestDB will cast data implicitly to match the type
-of the destination column.
 
-```questdb-sql title="Example"
--- We create a table with one column of type long
-CREATE TABLE my_table(my_number long);
-
--- We then insert a value into this table. Note that the value is of timestamp type
--- but that we are trying to insert into a long type column:
-INSERT INTO my_table values((to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss')));
-
--- As timestamp can be converted to long without loss, QuestDB performs an implicit
--- cast on the value before inserting it. Therefore the value is now stored as a long:
-SELECT * FROM my_table;
-```
-
-| my_number        |
-| ---------------- |
-| 1571270400000000 |
-
-The above insert would have been equivalent to running with explicit cast, but
-QuestDB took care of this step automatically.
-
-```questdb-sql title="Example"
-INSERT INTO my_table values
-            (cast(
-                to_timestamp('2019-10-17T00:00:00', 'yyyy-MM-ddTHH:mm:ss')
-                AS LONG
-            ));
-```
-
-| my_number        |
-| ---------------- |
-| 1571270400000000 |
