@@ -51,8 +51,8 @@ import Screenshot from "@theme/Screenshot"
 />
 
 As someone interested in the future of DeFi
-([distributed finance](https://yitaek.medium.com/intro-to-defi-b4ab2ec0f156)), I
-wanted to better track the price of different cryptocurrencies and store them
+([decentralized finance](https://yitaek.medium.com/intro-to-defi-b4ab2ec0f156)),
+I wanted to better track the price of different cryptocurrencies and store them
 into a timeseries database for further analysis. I found an interesting talk by
 Ludvig Sandman and Bruce Zulu at Kafka Summit London 2019,
 [Using Kafka Streams to Analyze Live Trading Activity for Crypto Exchanges](https://www.confluent.io/kafka-summit-lon19/using-kafka-streams-analyze-trading-crypto-exchanges/),
@@ -121,10 +121,13 @@ docker-compose up
 
 The docker-compose file runs the following services:
 
-- Zookeeper
-- Kafka Broker
-- Kafka Connect with JDBC driver
 - QuestDB
+- [Zookeeper](https://cwiki.apache.org/confluence/display/ZOOKEEPER) for Kafka
+  config information, distributed sync, and group services
+- [Kafka Broker](https://kafka.apache.org/documentation/#intro_nutshell) for
+  receiving and storing messages and for consumers to fetch messages by topic
+- [Kafka Connect](https://kafka.apache.org/documentation/#connect) with JDBC
+  driver for streaming data between Apache Kafka and other systems
 
 The Kafka Connect image is based on `confluentinc/cp-kafka-connect-base:6.1.0`.
 If you wish to modify this image (e.g. add a new connector or modify the bootup
@@ -186,7 +189,7 @@ Some important fields to note:
   [Avro](https://docs.oracle.com/database/nosql-12.1.3.0/GettingStartedGuide/avroschemas.html)
   or raw JSON. If you would like to override the default configuration, you can
   refer to
-  [Kafka Sink Connector Guide](https://docs.mongodb.com/kafka-connector/v1.3/kafka-sink-data-formats/)
+  [the Kafka sink connector guide](https://docs.mongodb.com/kafka-connector/v1.3/kafka-sink-data-formats/)
   from MongoDB
 
 ## Polling Coinbase
