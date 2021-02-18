@@ -245,7 +245,7 @@ Additionally, URL parameters are provided:
 - `timestamp=ts` to specify that the `ts` column is the designated timestamp
   column for this table
 - `partitionBy=MONTH` to set a
-  [partitioning strategy](/docs/operations/data-retention) on the table by
+  [partitioning strategy](/docs/operations/data-retention/) on the table by
   `MONTH`
 
 ```shell title="Providing a user-defined schema"
