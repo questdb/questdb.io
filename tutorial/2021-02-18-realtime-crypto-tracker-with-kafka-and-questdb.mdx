@@ -1,5 +1,5 @@
 ---
-title: Realtime Crypto Tracker with Kafka and QuestDB
+title: Realtime crypto tracker with Kafka and QuestDB
 author: Yitaek Hwang
 description:
   Use Python to send real-time cryptocurrency metrics to Kafka topics, ingest to
@@ -60,16 +60,16 @@ so I decided to leverage Kafka and modify it for my own use.
 
 ## Prerequisites
 
-- [Docker](https://docs.docker.com/get-docker/) with at least 4GB memory.
+- [Docker](https://docs.docker.com/get-docker/) with at least 4GB memory
 - [Python 3.7+](https://www.python.org/downloads/) and
   [pip](https://pypi.org/project/pip/)
-- [Github repository](https://github.com/Yitaek/kafka-crypto-questdb) which
-  contains the source for the examples below.
+- [GitHub repository](https://github.com/Yitaek/kafka-crypto-questdb) which
+  contains the source for the examples below
 
 **Note:** Memory can be increased on Docker Desktop in **Settings -> Resources
 -> Memory** and increasing the default limit from `2GB` to `4GB`.
 
-## Project Setup
+## Project setup
 
 At a high level, this project polls the public Coinbase API for the price of
 Bitcoin, Ethereum, and Chainlink. This information is then published onto
@@ -102,7 +102,7 @@ The codebase is organized into three parts:
 If you would like to analyze different cryptocurrencies or extend the simple
 moving average example with a more complicated algorithm like relative strength
 index analysis, feel free to
-[fork the repo on Github](https://github.com/Yitaek/kafka-crypto-questdb).
+[fork the repo on GitHub](https://github.com/Yitaek/kafka-crypto-questdb).
 
 ## Setting up Kafka & QuestDB
 
@@ -135,17 +135,17 @@ and build it locally.
 Wait for the Kafka cluster to come up and check the logs in the `connect`
 container until you see the following messages:
 
-```
+```log
 [2021-02-...] INFO [Worker clientId=connect-1 ... ] Starting connectors and tasks using config offset -1 (org.apache.kafka.connect.runtime.distributed.DistributedHerder)
 [2021-02-...] INFO [Worker clientId=connect-1 ... ] Finished starting connectors and tasks (org.apache.kafka.connect.runtime.distributed.DistributedHerder)
 [2021-02-...] INFO [Worker clientId=connect-1 ... ] Session key updated (org.apache.kafka.connect.runtime.distributed.DistributedHerder)
 ```
 
-## Postgres Sink
+## Postgres sink
 
 At this point, we have a healthy Kafka cluster and a running instance of
 QuestDB, but they are not connected. Since QuestDB supports the Kafka Connect
-JDBC driver, we can leverage the PostgreSQL sink to populate our database
+JDBC driver, we can leverage the Postgres sink to populate our database
 automatically. Post this connector definition to our Kafka Connect container:
 
 ```bash title="From ./docker-compose directory"
@@ -183,10 +183,11 @@ Some important fields to note:
 - **connection:** Using default credentials for QuestDB (`admin`/`quest`) on
   port `8812`
 - **value.converter:** This example uses JSON with schema, but you can also use
-  Avro or raw JSON. If you would like to override the default configuration, you
-  can refer to
+  [Avro](https://docs.oracle.com/database/nosql-12.1.3.0/GettingStartedGuide/avroschemas.html)
+  or raw JSON. If you would like to override the default configuration, you can
+  refer to
   [Kafka Sink Connector Guide](https://docs.mongodb.com/kafka-connector/v1.3/kafka-sink-data-formats/)
-  from MongoDB.
+  from MongoDB
 
 ## Polling Coinbase
 
@@ -254,7 +255,7 @@ rate data to QuestDB under the
 [Visualizing Data with Grafana](/tutorial/2021/02/05/streaming-heart-rate-data-with-iot-core-and-questdb#visualizing-data-with-grafana)
 section.
 
-## Calculate Moving Average
+## Calculate moving average
 
 While we store the raw data on QuestDB for more sophisticated analysis, we can
 also consume from the same topics to calculate a quick moving average. This may
@@ -270,7 +271,7 @@ python movingAverage.py
 It will print out the moving average of 25 data points and post it to
 `topic_<crypto>_ma_25` :
 
-```
+```log
 Starting Apache Kafka consumers and producer
 Initializing Kafka producer at 2021-02-17 16:28:33.584649
 Initialized Kafka producer at 2021-02-17 16:28:33.699208Consume record from topic 'topic_BTC' at time 2021-02-17 16:28:34.933318
@@ -289,9 +290,9 @@ Produce record to topic 'topic_BTC_ma_25' at time 2021-02-17 16:28:35.103512
 If you wish to also populate these data points into QuestDB, supplement the JSON
 data with schema information in `movingAverage.py` similar to the way it is
 defined in the new data JSON block in `getData.py`. Then create another Postgres
-sink via curl with topic set as `topic<crypto>_ma_25` .
+sink via curl with topic set as `topic<crypto>_ma_25`.
 
-## Wrapping Up
+## Wrapping up
 
 To stop streaming data, simply stop the Python scripts. To destroy the Kafka
 cluster and QuestDB, run:
