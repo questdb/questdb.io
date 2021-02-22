@@ -40,6 +40,14 @@ guide on the Telegraf agent for collecting and sending metrics to QuestDB via
 this protocol can be found on the
 [Telegraf guide](/docs/third-party-tools/telegraf/).
 
+:::info
+
+The following examples add a timestamp property to each line protocol message.
+This property is optional and can be omitted to allow the server to
+automatically assign the the server's system time as the row's timestamp value.
+
+:::
+
 <!-- prettier-ignore-start -->
 
 <Tabs defaultValue="nodejs" values={[
