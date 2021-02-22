@@ -62,7 +62,7 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  padding-top: 1.25rem;
+  padding: 1.25rem;
 }
 
 .showcase__chevron svg {
@@ -188,9 +188,9 @@
 
 @media (max-width: 622px) {
   .showcase {
-    --active-font-size: var(--font-size-small);
+    --active-font-size: var(--font-size-normal);
     padding: 0;
-    font-size: var(--font-size-small);
+    font-size: var(--font-size-normal);
   }
 
   .showcase__inner {

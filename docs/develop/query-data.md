@@ -31,6 +31,7 @@ that QuestDB exposes. This is accessible via port `8812`.
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
   { label: "Java", value: "java" },
+  { label: "C#", value: "csharp" },
   { label: "C", value: "c" },
   { label: "Python", value: "python" },
 ]}>
@@ -186,6 +187,35 @@ public class App {
     }
 }
 
+```
+
+</TabItem>
+
+<TabItem value="csharp">
+
+
+```csharp
+using Npgsql;
+string username = "admin";
+string password = "quest";
+string database = "qdb";
+int port = 8812;
+var connectionString = $"host=localhost;port={port};username={username};password={password};
+database={database};ServerCompatibilityMode=NoTypeLoading;";
+await using NpgsqlConnection connection = new(connectionString);
+await connection.OpenAsync();
+
+var sql = "SELECT x FROM long_sequence(5);";
+
+await using NpgsqlCommand command = new (sql, connection);
+await using (var reader = await command.ExecuteReaderAsync()) {
+    while (await reader.ReadAsync())
+    {
+        var station = reader.GetString(0);
+        var height = double.Parse(reader.GetString(1));
+        var timestamp = reader.GetString(2);
+    }
+}
 ```
 
 </TabItem>

@@ -1,7 +1,7 @@
 ---
 title: ALTER TABLE COLUMN ADD INDEX keywords
 sidebar_label: ALTER TABLE COLUMN ADD INDEX
-description: ADD INDEX SQL keword reference documentation.
+description: ADD INDEX SQL keyword reference documentation.
 ---
 
 Adds an index to an existing column.

@@ -1,7 +1,7 @@
 ---
 title: ALTER TABLE DROP COLUMN keywords
 sidebar_label: ALTER TABLE DROP COLUMN
-description: DROP COLUMN SQL keword reference documentation.
+description: DROP COLUMN SQL keyword reference documentation.
 ---
 
 Drops a column from an existing table.

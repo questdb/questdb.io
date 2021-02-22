@@ -99,9 +99,9 @@ const CareersPage = () => {
             </h2>
             <p className={caCss.card__content}>
               We are always interested in hiring new talent, so if you are
-              looking for a role that does is not listed, you can contact us
-              anyway! Send your CV with any relevant links (GitHub, LinkedIn,
-              personal website, etc.) to{" "}
+              looking for a role that is not listed, you can contact us anyway!
+              Send your CV with any relevant links (GitHub, LinkedIn, personal
+              website, etc.) to{" "}
               <a href="mailto:careers@questdb.io">careers@questdb.io</a>, we
               will review your application and be in touch.
             </p>

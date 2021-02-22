@@ -63,7 +63,7 @@ LATEST BY cust_id, balance_ccy;
 The below queries illustrate how to change the execution order in a query by
 using brackets. Assume the following table
 
-| cust_id | balance_ccy | balance | inactive | timestamp                   |
+| cust_id | balance_ccy | balance | inactive | ts                          |
 | ------- | ----------- | ------- | -------- | --------------------------- |
 | 1       | USD         | 1500    | FALSE    | 2020-04-22T16:11:22.704665Z |
 | 1       | EUR         | 650.5   | FALSE    | 2020-04-22T16:11:32.904234Z |
@@ -88,7 +88,7 @@ Since the latest USD balance for customer 1 is equal to 330.5, it is filtered
 out in the first step. Therefore, the returned balance is 1500, which is the
 latest possible balance above 800.
 
-| cust_id | balance_ccy | balance | inactive | timestamp                   |
+| cust_id | balance_ccy | balance | inactive | ts                          |
 | ------- | ----------- | ------- | -------- | --------------------------- |
 | 1       | USD         | 1500    | FALSE    | 2020-04-22T16:11:22.704665Z |
 | 2       | USD         | 900.75  | FALSE    | 2020-04-22T16:12:43.504432Z |
@@ -108,7 +108,7 @@ then filters out those below 800. The steps are
 - Filter out balances below 800. Since the latest balance for customer 1 is
   equal to 330.5, it is filtered out in the second step.
 
-| cust_id | balance_ccy | balance | inactive | timestamp                   |
+| cust_id | balance_ccy | balance | inactive | ts                          |
 | ------- | ----------- | ------- | -------- | --------------------------- |
 | 2       | USD         | 900.75  | FALSE    | 2020-04-22T16:12:43.504432Z |
 | 2       | EUR         | 880.2   | FALSE    | 2020-04-22T16:18:34.404665Z |
