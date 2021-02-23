@@ -8,6 +8,7 @@ Rename a column in an existing table.
 
 ## Syntax
 
+![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)
 ![Flow chart showing the syntax of the ALTER TABLE RENAME COLUMN keywords](/img/docs/diagrams/alterTableRenameColumn.svg)
 
 ## Description

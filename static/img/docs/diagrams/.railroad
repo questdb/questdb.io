@@ -11,7 +11,7 @@ createTableDef
   )?
 
 alterTable 
-  ::= 'ALTER' 'TABLE' tableName ( 'ADD' | 'DROP' | 'ALTER' | 'ATTACH' )
+  ::= 'ALTER' 'TABLE' tableName ( 'ADD' | 'DROP' | 'ALTER' | 'ATTACH' | 'RENAME' )
 
 castDef 
   ::= 'cast' '(' columnRef 'as' typeDef ')'
@@ -128,9 +128,6 @@ groupBy
 with
   ::= 'WITH' ( subQueryName 'AS' '(' subQuery ')' ( ',' subQueryName 'AS' '(' subQuery ')' )*) mainQuery
 
-renameColumn
-  ::= 'ALTER' 'TABLE' tableName 'RENAME' 'COLUMN' columnName 'TO' columnName
-
 addIndex
  ::= 'ALTER' 'COLUMN' columnName 'ADD' 'INDEX'
 
@@ -142,3 +139,6 @@ addColumn
 
 dropPartition
  ::= 'DROP' 'PARTITION' partitionName (',' partitionName)*
+
+renameColumn  
+  ::= 'RENAME' columnName 'TO' columnName
