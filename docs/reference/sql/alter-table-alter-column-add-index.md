@@ -1,6 +1,6 @@
 ---
 title: ALTER TABLE COLUMN ADD INDEX keywords
-sidebar_label: ALTER TABLE COLUMN ADD INDEX
+sidebar_label: ADD INDEX
 description: ADD INDEX SQL keyword reference documentation.
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: ALTER TABLE DROP COLUMN keywords
-sidebar_label: ALTER TABLE DROP COLUMN
+sidebar_label: DROP COLUMN
 description: DROP COLUMN SQL keyword reference documentation.
 ---
 

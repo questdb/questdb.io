@@ -1,6 +1,6 @@
 ---
 title: ALTER TABLE DROP PARTITION keywords
-sidebar_label: ALTER TABLE DROP PARTITION
+sidebar_label: DROP PARTITION
 description: DROP PARTITION SQL keyword reference documentation.
 ---
 
@@ -22,8 +22,7 @@ failure and will not continue with the list.
 
 :::note
 
-The last partition (active partition) cannot be removed. This will be
-implemented in a future release.
+The last partition (active partition) cannot be removed.
 
 :::
 

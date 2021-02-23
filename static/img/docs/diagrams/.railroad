@@ -10,6 +10,9 @@ createTableDef
   ('timestamp' columnRef) ('partition' 'by' ('NONE' | 'DAY' | 'MONTH' | 'YEAR'))?
   )?
 
+alterTable 
+  ::= 'ALTER' 'TABLE' tableName ( 'ADD' | 'DROP' | 'ALTER' | 'ATTACH' )
+
 castDef 
   ::= 'cast' '(' columnRef 'as' typeDef ')'
 
@@ -127,3 +130,15 @@ with
 
 renameColumn
   ::= 'ALTER' 'TABLE' tableName 'RENAME' 'COLUMN' columnName 'TO' columnName
+
+addIndex
+ ::= 'ALTER' 'COLUMN' columnName 'ADD' 'INDEX'
+
+dropColumn
+ ::= 'DROP' 'COLUMN' columnName (',' columnName)*
+
+addColumn
+ ::= 'ADD' 'COLUMN' columnName typeDef (',' columnName typeDef)*
+
+dropPartition
+ ::= 'DROP' 'PARTITION' partitionName (',' partitionName)*

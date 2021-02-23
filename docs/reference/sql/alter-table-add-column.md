@@ -1,6 +1,6 @@
 ---
 title: ALTER TABLE ADD COLUMN keywords
-sidebar_label: ALTER TABLE ADD COLUMN
+sidebar_label: ADD COLUMN
 description: ALTER TABLE ADD COLUMN SQL keyword reference documentation.
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: ALTER TABLE RENAME COLUMN keywords
-sidebar_label: ALTER TABLE RENAME COLUMN
+sidebar_label: RENAME COLUMN
 description: RENAME COLUMN SQL keyword reference documentation.
 ---
 
