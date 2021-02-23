@@ -5,52 +5,78 @@ description:
   analytics on time series data.
 ---
 
-QuestDB is a relational column-oriented database designed for real-time
-analytics on time series and event data. It uses the SQL language with some
-extensions for time series. This documentation will help you to get familiar
-with QuestDB.
+QuestDB is a relational column-oriented database designed for time series and
+event data. It uses SQL with extensions for time series to assist with real-time
+analytics. These pages cover core concepts of QuestDB, including setup steps,
+usage guides, and reference documentation for syntax, APIs and configuration.
 
 ## Concepts
 
 This section describes the architecture of QuestDB, how it stores and queries
-data, and introduces features and capabilities specific to QuestDB.
+data, and introduces features and capabilities unique to the system.
 
-As a start, we suggest you read about the
-[storage model](/docs/concept/storage-model/) and about the
-[designated timestamp](/docs/concept/designated-timestamp/). To make the most of
-QuestDB, you should also get familiar with our
-[SQL extensions](/docs/concept/sql-extensions/) which allow to make the most of
-time series capabilities with an efficient non-verbose syntax. You will also
-find the [symbol](/docs/concept/symbol/) concept interesting to store and
-retrieve repetitive strings efficiently.
+- [Designated timestamp](/docs/concept/designated-timestamp/) is a core feature
+  that enables time-oriented language capabilities and partitioning
+- [Symbol](/docs/concept/symbol/) type makes storing and retrieving repetitive
+  strings efficient
+- [Storage model](/docs/concept/storage-model/) describes how QuestDB stores
+  records and partitions within tables
+- [Indexes](/docs/concept/indexes/) can be used for faster read access on
+  specific columns
+- [Partitions](/docs/concept/partitions/) can be used for significant
+  performance benefits on calculations and queries
+- [SQL extensions](/docs/concept/sql-extensions/) allow performant time series
+  analysis with a concise syntax
+- [Root directory](/docs/concept/root-directory-structure/) describes the
+  directory contents of QuestDB for storage and configuration
 
 ## Get started
 
-This section explains how to install and run QuestDB. There are dedicated pages
-for [Docker](/docs/get-started/docker/), the
-[binaries](/docs/get-started/binaries/) or
-[Homebrew](/docs/get-started/homebrew/). Once QuestDB is running you can follow
-the guide to [create your first database](/docs/get-started/first-database/).
+This section explains how to install and run QuestDB using one of the following
+methods:
+
+- [Docker](/docs/get-started/docker/) for repeatable, portable and scalable
+  installations
+- [Binaries](/docs/get-started/binaries/) for direct downloads to run on Linux,
+  macOS or Windows
+- [Homebrew](/docs/get-started/homebrew/) for running QuestDB on macOS
+
+Once QuestDB is running, a guide is provided to
+[create your first database](/docs/get-started/first-database/).
 
 ## Develop
 
-In this section you will learn how to [connect](/docs/develop/connect/) to
-QuestDB using popular tools and languages. Importing and/or inserting data are
-both covered in the [insert data](/docs/develop/insert-data/) page. Finally, you
-can check the [query data](/docs/develop/query-data/) page in order to run your
-queries.
+This section describes how to connect to QuestDB using a variety of tools and
+programming languages.
+
+- [Connect](/docs/develop/connect/) using Postgres or InfluxDB clients in a
+  variety of languages
+- [Insert data](/docs/develop/insert-data/) from popular languages using
+  Postgres clients or InfluxDB line protocol, or in bulk via REST API
+- [Query data](/docs/develop/query-data/) using Postgres clients, REST API, or
+  the Web Console
+- [Authenticate](/docs/develop/authenticate/) via an additional step before
+  inserting records using InfluxDB line protocol
 
 ## Third-party tools
 
-- [Grafana](/docs/third-party-tools/grafana/) instructions for connecting QuestDB as a datasource for building visualizations and dashboards
-- [Kafka](/docs/third-party-tools/kafka/) guide for ingesting data from topics into QuestDB by means of Kafka Connect
-- [Telegraf](/docs/third-party-tools/telegraf/) guide for collecting system metrics, specifying QuestDB as an output and visualizing the results
+This section describes how to integrate QuestDB with third-party tools and
+utilities for collecting metrics and visualizing data:
+
+- [Grafana](/docs/third-party-tools/grafana/) instructions for connecting
+  QuestDB as a datasource for building visualizations and dashboards
+- [Kafka](/docs/third-party-tools/kafka/) guide for ingesting data from topics
+  into QuestDB by means of Kafka Connect
+- [Telegraf](/docs/third-party-tools/telegraf/) guide for collecting system
+  metrics, specifying QuestDB as an output and visualizing the results
 
 ## Operations
 
 This section contains resources for managing QuestDB instances and has dedicated
 pages for the following topics:
 
+- [Capacity planning](/docs/operations/capacity-planning/) for configuring
+  server settings and system resources for common scenarios and edge cases
 - [Deployment](/docs/operations/deployment/) details with information for
   running locally, on Kubernetes or the AWS AMI
 - [Data retention](/docs/operations/data-retention/) strategy to delete old data
