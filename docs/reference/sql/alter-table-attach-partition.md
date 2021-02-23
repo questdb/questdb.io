@@ -1,5 +1,5 @@
 ---
-title: ALTER TABLE ATTACH PARTITION keywords
+title: ALTER TABLE ATTACH PARTITION
 sidebar_label: ATTACH PARTITION
 description: ATTACH PARTITION SQL keyword reference documentation.
 ---

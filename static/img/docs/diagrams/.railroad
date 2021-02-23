@@ -138,7 +138,10 @@ addColumn
  ::= 'ADD' 'COLUMN' columnName typeDef (',' columnName typeDef)*
 
 dropPartition
- ::= 'DROP' 'PARTITION' partitionName (',' partitionName)*
+ ::= 'DROP' 'PARTITION' 'LIST' partitionName (',' partitionName)*
+
+attachPartition
+ ::= 'ATTACH' 'PARTITION' 'LIST' partitionName (',' partitionName)*
 
 renameColumn  
   ::= 'RENAME' columnName 'TO' columnName
