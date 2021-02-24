@@ -23,7 +23,6 @@ columns**!
 
 :::
 
-
 ## Syntax
 
 ![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)

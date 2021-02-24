@@ -38,8 +38,8 @@ unique to this type. These keywords are described in the
 [Symbol type](/docs/reference/sql/create-table/#symbol) section of the
 `CREATE TABLE` documentation.
 
-The following example shows how to add a new
-`SYMBOL` column with `NOCACHE` and `INDEX` keywords:
+The following example shows how to add a new `SYMBOL` column with `NOCACHE` and
+`INDEX` keywords:
 
 ```questdb-sql title="New symbol column"
 ALTER TABLE ratings ADD COLUMN comment SYMBOL NOCACHE INDEX;

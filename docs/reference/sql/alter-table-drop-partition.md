@@ -4,12 +4,12 @@ sidebar_label: DROP PARTITION
 description: DROP PARTITION SQL keyword reference documentation.
 ---
 
-Drops one or more partitions from an existing table. 
+Drops one or more partitions from an existing table.
 
-Similar to dropping columns, dropping of partitions is a non-blocking and non-waiting operation.
-While atomic for single partitions, dropping multiple partitions is in itself
-non-atomic. The operation will exit on the first failure and will not continue
-through a list of partitions if one fails to be dropped.
+Similar to dropping columns, dropping of partitions is a non-blocking and
+non-waiting operation. While atomic for single partitions, dropping multiple
+partitions is in itself non-atomic. The operation will exit on the first failure
+and will not continue through a list of partitions if one fails to be dropped.
 
 :::info
 
