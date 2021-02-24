@@ -136,7 +136,6 @@ module.exports = {
                 "reference/sql/alter-table-add-column",
                 "reference/sql/alter-table-rename-column",
                 "reference/sql/alter-table-drop-column",
-                "reference/sql/alter-table-attach-partition",
                 "reference/sql/alter-table-drop-partition",
               ],
             },
