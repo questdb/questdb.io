@@ -11,7 +11,7 @@ createTableDef
   )?
 
 alterTable 
-  ::= 'ALTER' 'TABLE' tableName ( 'ADD' | 'DROP' | 'ALTER' | 'ATTACH' | 'RENAME' )
+  ::= 'ALTER' 'TABLE' tableName ( 'ADD' | 'ALTER' | 'DROP' | 'RENAME' )
 
 castDef 
   ::= 'cast' '(' columnRef 'as' typeDef ')'
@@ -139,9 +139,6 @@ addColumn
 
 dropPartition
  ::= 'DROP' 'PARTITION' 'LIST' partitionName (',' partitionName)*
-
-attachPartition
- ::= 'ATTACH' 'PARTITION' 'LIST' partitionName (',' partitionName)*
 
 renameColumn  
   ::= 'RENAME' columnName 'TO' columnName
