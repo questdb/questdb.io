@@ -30,7 +30,7 @@ first failure. It is therefore possible to add some columns and not others.
 Add a new column called `comment` of type `STRING` type to the table `ratings`
 
 ```questdb-sql title="New column"
-ALTER TABLE ratings ADD COLUMN comment STRING
+ALTER TABLE ratings ADD COLUMN comment STRING;
 ```
 
 When adding a column of `Symbol` type, optional keywords may be passed which are
@@ -38,9 +38,9 @@ unique to this type. These keywords are described in the
 [Symbol type](/docs/reference/sql/create-table/#symbol) section of the
 `CREATE TABLE` documentation.
 
-The following example shows how to add a new
-`SYMBOL` column with `NOCACHE` and `INDEX` keywords:
+The following example shows how to add a new `SYMBOL` column with `NOCACHE` and
+`INDEX` keywords:
 
 ```questdb-sql title="New symbol column"
-ALTER TABLE ratings ADD COLUMN comment SYMBOL NOCACHE INDEX
+ALTER TABLE ratings ADD COLUMN comment SYMBOL NOCACHE INDEX;
 ```

@@ -140,8 +140,8 @@ addColumn
 dropPartition
  ::= 'DROP' 'PARTITION' 'LIST' partitionName (',' partitionName)*
 
-attachPartition
- ::= 'ATTACH' 'PARTITION' 'LIST' partitionName (',' partitionName)*
-
 renameColumn  
   ::= 'RENAME' columnName 'TO' columnName
+
+attachPartition
+ ::= 'ATTACH' 'PARTITION' 'LIST' partitionName (',' partitionName)*
