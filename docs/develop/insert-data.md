@@ -583,6 +583,7 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
   { label: "Go", value: "go" },
 ]}>
 
@@ -641,6 +642,23 @@ async function run() {
 }
 
 run()
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import requests
+
+csv = {'data': ('my_table', open('./data.csv', 'r'))}
+host = 'http://localhost:9000'
+
+try:
+  response = requests.post(host + '/imp', files=csv)
+  print(response.text)
+except requests.exceptions.RequestException as e:
+  print("Error: %s" % (e))
 ```
 
 </TabItem>
