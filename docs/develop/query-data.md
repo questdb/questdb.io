@@ -193,7 +193,6 @@ public class App {
 
 <TabItem value="csharp">
 
-
 ```csharp
 using Npgsql;
 string username = "admin";
@@ -271,6 +270,7 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
   { label: "Go", value: "go" },
 ]}>
 
@@ -310,6 +310,30 @@ async function run() {
 }
 
 run()
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import requests
+import json
+
+host = 'http://localhost:9000'
+
+sql_query = "select * from long_sequence(5)"
+query_params = {'query': sql_query, 'fmt' : 'json'}
+
+try:
+  response = requests.post(host + '/exec', params=query_params)
+  json_response = json.loads(response.text)
+  rows = json_response['dataset']
+  for row in rows:
+    print(row)
+except requests.exceptions.RequestException as e:
+  print("Error: %s" % (e))
+
 ```
 
 </TabItem>
