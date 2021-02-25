@@ -61,9 +61,15 @@ questdb.exe [start|stop|status|install|remove] \
 | `-f`                | Force re-deploying the Web Console. Without this option, the Web Console is cached deployed only when missing.                                |
 | `-j (Windows only)` | Specify a path to `JAVA_HOME`.                                                                                                                |
 
-<Tabs defaultValue="nix" values={[ { label: "Linux/FreeBSD", value: "nix" }, {
-label: "macOS (Homebrew)", value: "macos" }, { label: "Windows", value:
-"windows" }, ]}>
+<!-- prettier-ignore-start -->
+
+<Tabs defaultValue="nix" values={[
+  { label: "Linux/FreeBSD", value: "nix" },
+  { label: "macOS (Homebrew)", value: "macos" },
+  { label: "Windows", value: "windows" },
+]}>
+
+<!-- prettier-ignore-end -->
 
 <TabItem value="nix">
 
@@ -96,8 +102,15 @@ questdb.exe start
 By default, QuestDB's [root directory](/docs/concept/root-directory-structure/)
 will be the following:
 
-<Tabs defaultValue="nix" values={[ { label: "Linux/FreeBSD", value: "nix" }, {
-label: "macOS", value: "macos" }, { label: "Windows", value: "windows" }, ]}>
+<!-- prettier-ignore-start -->
+
+<Tabs defaultValue="nix" values={[
+  { label: "Linux/FreeBSD", value: "nix" },
+  { label: "macOS (Homebrew)", value: "macos" },
+  { label: "Windows", value: "windows" },
+]}>
+
+<!-- prettier-ignore-end -->
 
 <TabItem value="nix">
 
@@ -133,8 +146,15 @@ C:\Windows\System32\questdb
 | ------ | ---------------------------------------------------------------- |
 | `-t`   | Specify a service tag, if omitted, the default will be `questdb` |
 
-<Tabs defaultValue="nix" values={[ { label: "Linux/FreeBSD", value: "nix" }, {
-label: "macOS", value: "macos" }, { label: "Windows", value: "windows" }, ]}>
+<!-- prettier-ignore-start -->
+
+<Tabs defaultValue="nix" values={[
+  { label: "Linux/FreeBSD", value: "nix" },
+  { label: "macOS (Homebrew)", value: "macos" },
+  { label: "Windows", value: "windows" },
+]}>
+
+<!-- prettier-ignore-end -->
 
 <TabItem value="nix">
 
@@ -170,8 +190,15 @@ questdb.exe stop
 | ------ | ---------------------------------------------------------------- |
 | `-t`   | Specify a service tag, if omitted, the default will be `questdb` |
 
-<Tabs defaultValue="nix" values={[ { label: "Linux/FreeBSD", value: "nix" }, {
-label: "macOS", value: "macos" }, { label: "Windows", value: "windows" }, ]}>
+<!-- prettier-ignore-start -->
+
+<Tabs defaultValue="nix" values={[
+  { label: "Linux/FreeBSD", value: "nix" },
+  { label: "macOS (Homebrew)", value: "macos" },
+  { label: "Windows", value: "windows" },
+]}>
+
+<!-- prettier-ignore-end -->
 
 <TabItem value="nix">
 
