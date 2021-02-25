@@ -132,8 +132,8 @@ module.exports = {
               type: "category",
               label: "ALTER TABLE",
               items: [
-                "reference/sql/alter-table-alter-column-add-index",
                 "reference/sql/alter-table-add-column",
+                "reference/sql/alter-table-alter-column-add-index",
                 "reference/sql/alter-table-rename-column",
                 "reference/sql/alter-table-drop-column",
                 "reference/sql/alter-table-attach-partition",
