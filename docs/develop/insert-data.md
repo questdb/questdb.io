@@ -583,6 +583,7 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
   { label: "Go", value: "go" },
 ]}>
 
@@ -641,6 +642,23 @@ async function run() {
 }
 
 run()
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import requests
+
+csv = {'data': ('my_table', open('./data.csv', 'r'))}
+host = 'http://localhost:9000'
+
+try:
+  response = requests.post(host + '/imp', files=csv)
+  print(response.text)
+except requests.exceptions.RequestException as e:
+  print("Error: %s" % (e))
 ```
 
 </TabItem>
@@ -717,6 +735,7 @@ Alternatively, the `/exec` endpoint can be used to create a table and the
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
   { label: "Go", value: "go" },
 ]}>
 
@@ -791,6 +810,30 @@ createTable()
 insertData()
 ```
 
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import requests
+import json
+
+host = 'http://localhost:9000'
+
+def run_query(sql_query):
+  query_params = {'query': sql_query, 'fmt' : 'json'}
+  try:
+    response = requests.post(host + '/exec', params=query_params)
+    json_response = json.loads(response.text)
+    print(json_response)
+  except requests.exceptions.RequestException as e:
+    print("Error: %s" % (e))
+
+# create table
+run_query("CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);")
+# insert row
+run_query("INSERT INTO trades VALUES('abc', 123456);")
+```
 </TabItem>
 
 <TabItem value="go">
