@@ -23,23 +23,49 @@ types
 ![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)
 ![Flow chart showing the syntax of ALTER TABLE with ATTACH PARTITION keyword](/img/docs/diagrams/alterTableAttachPartition.svg)
 
-
 ### Examples
 
-```bash title=""
+Assuming a backup exists for a table `measurements` which was partitioned by
+`YEAR`, the following example demonstrates how to attach the 2020 partition to a
+new table named `sensor_data`:
 
-
+```bash title="Copying the 2020 partition to the sensor_data table"
+cp -r ~/Desktop/2021-01-01/measurements/2020 /path/to/questdb/db/sensor_data/
 ```
 
-```questdb-sql title="ATTACH a partition by name"
+The following SQL query will attach the partition to the `sensor_data` table:
+
+```questdb-sql
+ALTER TABLE sensor_data ATTACH PARTITION LIST '2020';
+```
+
+:::info
+
+Details of creating backups can be found on the
+[BACKUP syntax](/docs/reference/sql/backup/) reference page.
+
+:::
+
+Partitions may be referred to by `YEAR`, `MONTH` or `DAY`:
+
+```questdb-sql title="Attach a partition by name"
 --DAY
-ALTER TABLE measurements ATTACH PARTITION LIST '2019-05-18';
+ALTER TABLE sensor_data ATTACH PARTITION LIST '2019-05-18';
 --MONTH
-ALTER TABLE measurements ATTACH PARTITION LIST '2019-05';
+ALTER TABLE sensor_data ATTACH PARTITION LIST '2019-05';
 --YEAR
-ALTER TABLE measurements ATTACH PARTITION LIST '2019';
+ALTER TABLE sensor_data ATTACH PARTITION LIST '2019';
 ```
 
-```questdb-sql title="ATTACH multiple partitions"
-ALTER TABLE measurements ATTACH PARTITION LIST '2019','2020';
+Multiple partitions may be copied and attached to a table:
+
+```bash title="Copying multiple partitions to the sensor_data table"
+cp -r ~/Desktop/2021-01-01/measurements/2020 /path/to/questdb/db/sensor_data/
+cp -r ~/Desktop/2021-01-01/measurements/2019 /path/to/questdb/db/sensor_data/
+```
+
+The partitions are attached by providing a comma-separated list of partitions:
+
+```questdb-sql title="Attach multiple partitions"
+ALTER TABLE sensor_data ATTACH PARTITION LIST '2019','2020';
 ```
