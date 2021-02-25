@@ -1,25 +1,29 @@
 ---
-title: CLI
-description: Official CLI reference documentation.
+title: Command-line options
+description: Command-line options reference documentation.
 ---
 
-The CLI allows you to start, stop and interact with QuestDB. On Windows, QuestDB
-can also be [started interactively](#use-interactively-windows).
+QuestDB may be started, stopped and passed several configuration options from
+the command line. On Windows, QuestDB can also be
+[started interactively](#use-interactively-windows).
+
+## Options
+
+<!-- prettier-ignore-start -->
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
-## General
-
-<Tabs defaultValue="nix" values={[
-  { label: "Linux/FreeBSD", value: "nix" },
-  { label: "macOS (Homebrew)", value: "macos" },
+<Tabs defaultValue="nix" 
+values={[ 
+  { label: "Linux/FreeBSD", value: "nix" }, 
+  { label: "macOS (Homebrew)", value: "macos" }, 
   { label: "Windows", value: "windows" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="nix">
-
 
 ```shell
 ./questdb.sh [start|stop|status] [-d dir] [-f] [-t tag]
@@ -27,9 +31,7 @@ import TabItem from "@theme/TabItem"
 
 </TabItem>
 
-
 <TabItem value="macos">
-
 
 ```shell
 questdb [start|stop|status] [-d dir] [-f] [-t tag]
@@ -37,9 +39,7 @@ questdb [start|stop|status] [-d dir] [-f] [-t tag]
 
 </TabItem>
 
-
 <TabItem value="windows">
-
 
 ```shell
 questdb.exe [start|stop|status|install|remove] \
@@ -48,9 +48,7 @@ questdb.exe [start|stop|status|install|remove] \
 
 </TabItem>
 
-
 </Tabs>
-
 
 ### Start
 
@@ -63,15 +61,11 @@ questdb.exe [start|stop|status|install|remove] \
 | `-f`                | Force re-deploying the Web Console. Without this option, the Web Console is cached deployed only when missing.                                |
 | `-j (Windows only)` | Specify a path to `JAVA_HOME`.                                                                                                                |
 
-<Tabs defaultValue="nix" values={[
-  { label: "Linux/FreeBSD", value: "nix" },
-  { label: "macOS (Homebrew)", value: "macos" },
-  { label: "Windows", value: "windows" },
-]}>
-
+<Tabs defaultValue="nix" values={[ { label: "Linux/FreeBSD", value: "nix" }, {
+label: "macOS (Homebrew)", value: "macos" }, { label: "Windows", value:
+"windows" }, ]}>
 
 <TabItem value="nix">
-
 
 ```shell
 ./questdb.sh start
@@ -79,9 +73,7 @@ questdb.exe [start|stop|status|install|remove] \
 
 </TabItem>
 
-
 <TabItem value="macos">
-
 
 ```shell
 questdb start
@@ -89,9 +81,7 @@ questdb start
 
 </TabItem>
 
-
 <TabItem value="windows">
-
 
 ```shell
 questdb.exe start
@@ -99,24 +89,17 @@ questdb.exe start
 
 </TabItem>
 
-
 </Tabs>
-
 
 #### Default root directory
 
 By default, QuestDB's [root directory](/docs/concept/root-directory-structure/)
 will be the following:
 
-<Tabs defaultValue="nix" values={[
-  { label: "Linux/FreeBSD", value: "nix" },
-  { label: "macOS", value: "macos" },
-  { label: "Windows", value: "windows" },
-]}>
-
+<Tabs defaultValue="nix" values={[ { label: "Linux/FreeBSD", value: "nix" }, {
+label: "macOS", value: "macos" }, { label: "Windows", value: "windows" }, ]}>
 
 <TabItem value="nix">
-
 
 ```shell
 $HOME/.questdb
@@ -124,9 +107,7 @@ $HOME/.questdb
 
 </TabItem>
 
-
 <TabItem value="macos">
-
 
 ```shell
 /usr/local/var/questdb
@@ -134,9 +115,7 @@ $HOME/.questdb
 
 </TabItem>
 
-
 <TabItem value="windows">
-
 
 ```shell
 C:\Windows\System32\questdb
@@ -144,9 +123,7 @@ C:\Windows\System32\questdb
 
 </TabItem>
 
-
 </Tabs>
-
 
 ### Stop
 
@@ -156,15 +133,10 @@ C:\Windows\System32\questdb
 | ------ | ---------------------------------------------------------------- |
 | `-t`   | Specify a service tag, if omitted, the default will be `questdb` |
 
-<Tabs defaultValue="nix" values={[
-  { label: "Linux/FreeBSD", value: "nix" },
-  { label: "macOS", value: "macos" },
-  { label: "Windows", value: "windows" },
-]}>
-
+<Tabs defaultValue="nix" values={[ { label: "Linux/FreeBSD", value: "nix" }, {
+label: "macOS", value: "macos" }, { label: "Windows", value: "windows" }, ]}>
 
 <TabItem value="nix">
-
 
 ```shell
 ./questdb.sh stop
@@ -172,9 +144,7 @@ C:\Windows\System32\questdb
 
 </TabItem>
 
-
 <TabItem value="macos">
-
 
 ```shell
 questdb stop
@@ -182,9 +152,7 @@ questdb stop
 
 </TabItem>
 
-
 <TabItem value="windows">
-
 
 ```shell
 questdb.exe stop
@@ -192,9 +160,7 @@ questdb.exe stop
 
 </TabItem>
 
-
 </Tabs>
-
 
 ### Status
 
@@ -204,15 +170,10 @@ questdb.exe stop
 | ------ | ---------------------------------------------------------------- |
 | `-t`   | Specify a service tag, if omitted, the default will be `questdb` |
 
-<Tabs defaultValue="nix" values={[
-  { label: "Linux/FreeBSD", value: "nix" },
-  { label: "macOS", value: "macos" },
-  { label: "Windows", value: "windows" },
-]}>
-
+<Tabs defaultValue="nix" values={[ { label: "Linux/FreeBSD", value: "nix" }, {
+label: "macOS", value: "macos" }, { label: "Windows", value: "windows" }, ]}>
 
 <TabItem value="nix">
-
 
 ```shell
 ./questdb.sh status
@@ -220,9 +181,7 @@ questdb.exe stop
 
 </TabItem>
 
-
 <TabItem value="macos">
-
 
 ```shell
 questdb status
@@ -230,9 +189,7 @@ questdb status
 
 </TabItem>
 
-
 <TabItem value="windows">
-
 
 ```shell
 questdb.exe status
@@ -240,9 +197,7 @@ questdb.exe status
 
 </TabItem>
 
-
 </Tabs>
-
 
 ### Install
 

@@ -130,6 +130,6 @@ kubectl port-forward my-questdb-0 9000
 You can use the following ports:
 
 - 9000: [REST API](/docs/reference/api/rest/) and
-  [Web Console](/docs/reference/client/web-console/)
+  [Web Console](/docs/reference/web-console/)
 - 8812: [Postgres](/docs/reference/api/postgres/)
 - 9009: [InfluxDB line protocol](/docs/reference/api/influxdb/)

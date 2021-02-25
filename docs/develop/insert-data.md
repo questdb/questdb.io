@@ -854,4 +854,4 @@ http://[server-address]:9000. When running locally, this is accessible at
 [http://localhost:9000](http://localhost:9000). The Web Console can be used to
 explore table schemas, visualizing query results as tables or graphs, and
 importing datasets from CSV files. For details on these components, refer to the
-[Web Console reference](/docs/reference/client/web-console/) page.
+[Web Console reference](/docs/reference/web-console/) page.

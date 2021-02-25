@@ -97,7 +97,7 @@ module.exports = {
             "reference/api/java-embedded",
           ],
         },
-        "reference/client/cli",
+        "reference/command-line-options",
         {
           id: "reference/configuration",
           type: "doc",
@@ -160,7 +160,7 @@ module.exports = {
             "reference/sql/with",
           ],
         },
-        "reference/client/web-console",
+        "reference/web-console",
       ],
     },
   ].filter(Boolean),

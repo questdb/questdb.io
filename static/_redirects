@@ -11,3 +11,5 @@
 /blog/2020/08/25/questitto /tutorial/2020/08/25/questitto
 /blog/2020/11/26/http-server-contribution /blog/2020/11/16/http-server-contribution
 /blog/2020/11/16/why-timeseries-data /blog/2020/11/26/why-timeseries-data
+/docs/reference/client/cli /docs/reference/command-line-options
+/docs/reference/client/web-console /docs/reference/web-console

@@ -95,15 +95,18 @@ This section contains the reference documentation for the following categories:
 - [InfluxDB](/docs/reference/api/influxdb/)
 - [Java (embedded)](/docs/reference/api/java-embedded/)
 
-### Clients
-
-- [CLI](/docs/reference/client/cli/)
-- [Web Console](/docs/reference/client/web-console/)
-
 ### Configuration
 
 The [configuration](/docs/reference/configuration/) page shows all the
 properties that can be used to customize QuestDB.
+
+### Command-line options
+
+The following resource provides info on options that may be passed to QuestDB
+when starting services:
+
+- [Command-line options](/docs/reference/command-line-options/) for starting and
+  running QuestDB from an executable
 
 ### Functions
 
@@ -147,6 +150,13 @@ properties that can be used to customize QuestDB.
 - [UNION](/docs/reference/sql/union/)
 - [WHERE](/docs/reference/sql/where/)
 - [WITH](/docs/reference/sql/with/)
+
+### Web console
+
+QuestDB is bundled with a user interface which runs by default on port 9000. The
+following is reference documentation which describes how to use this UI:
+
+- [Web console](/docs/reference/web-console/) reference for using the bundled UI
 
 ## Support
 
