@@ -3,11 +3,14 @@ title: Command-line options
 description: Command-line options reference documentation.
 ---
 
-QuestDB may be started, stopped and passed several configuration options from
-the command line. On Windows, QuestDB can also be
-[started interactively](#use-interactively-windows).
+QuestDB may be started, stopped and passed configuration options from the
+command line. On Windows, the QuestDB server can also start an
+[interactive session](#interactive-session-windows).
 
 ## Options
+
+The following sections describe the options that may be passed to QuestDB when
+starting the server from the command line.
 
 <!-- prettier-ignore-start -->
 
@@ -52,20 +55,22 @@ questdb.exe [start|stop|status|install|remove] \
 
 ### Start
 
-`start` - starts a service.
+`start` - starts QuestDB as a service.
 
-| Option              | Description                                                                                                                                   |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-d root_directory` | Specify QuestDB's root directory. See [below](#default-root-directory) for the default values.                                                |
-| `-t my-tag`         | Specify a service tag. You can use this option to run several services and manage them separately. If omitted, the default will be `questdb`. |
-| `-f`                | Force re-deploying the Web Console. Without this option, the Web Console is cached deployed only when missing.                                |
-| `-j (Windows only)` | Specify a path to `JAVA_HOME`.                                                                                                                |
+| Option | Description                                                                                                                                                                                                          |
+| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `-d`   | Expects a `dir` directory value which is a folder that will be used as QuestDB's root directory. For more information and the default values, see the [default root](#default-root-directory) section below.         |
+| `-t`   | Expects a `tag` string value which will be as a tag for the service. This option allows users to run several QuestDB services and manage them separately. If this option omitted, the default tag will be `questdb`. |
+| `-f`   | Force re-deploying the Web Console. Without this option, the Web Console is cached and deployed only when missing.                                                                                                   |
+| `-j`   | **Windows only!** This option allows to specify a path to `JAVA_HOME`.                                                                                                                                               |
 
 <!-- prettier-ignore-start -->
 
-<Tabs defaultValue="nix" values={[
-  { label: "Linux/FreeBSD", value: "nix" },
-  { label: "macOS (Homebrew)", value: "macos" },
+
+<Tabs defaultValue="nix" 
+values={[ 
+  { label: "Linux/FreeBSD", value: "nix" }, 
+  { label: "macOS (Homebrew)", value: "macos" }, 
   { label: "Windows", value: "windows" },
 ]}>
 
@@ -74,7 +79,7 @@ questdb.exe [start|stop|status|install|remove] \
 <TabItem value="nix">
 
 ```shell
-./questdb.sh start
+./questdb.sh start [-d dir] [-f] [-t tag]
 ```
 
 </TabItem>
@@ -82,7 +87,7 @@ questdb.exe [start|stop|status|install|remove] \
 <TabItem value="macos">
 
 ```shell
-questdb start
+questdb start [-d dir] [-f] [-t tag]
 ```
 
 </TabItem>
@@ -90,7 +95,7 @@ questdb start
 <TabItem value="windows">
 
 ```shell
-questdb.exe start
+questdb.exe start [-d dir] [-f] [-j JAVA_HOME] [-t tag]
 ```
 
 </TabItem>
@@ -142,9 +147,9 @@ C:\Windows\System32\questdb
 
 `stop` - stops a service.
 
-| Option | Description                                                      |
-| ------ | ---------------------------------------------------------------- |
-| `-t`   | Specify a service tag, if omitted, the default will be `questdb` |
+| Option | Description                                                                                                        |
+| ------ | ------------------------------------------------------------------------------------------------------------------ |
+| `-t`   | Expects a `tag` string value which to stop a service by tag. If this is omitted, the default tag will be `questdb` |
 
 <!-- prettier-ignore-start -->
 
@@ -186,9 +191,9 @@ questdb.exe stop
 
 `status` - shows the status for a service.
 
-| Option | Description                                                      |
-| ------ | ---------------------------------------------------------------- |
-| `-t`   | Specify a service tag, if omitted, the default will be `questdb` |
+| Option | Description                                                                                                    |
+| ------ | -------------------------------------------------------------------------------------------------------------- |
+| `-t`   | Expects a `tag` string value which to stop a service by tag. If this is omitted, the default will be `questdb` |
 
 <!-- prettier-ignore-start -->
 
@@ -226,32 +231,29 @@ questdb.exe status
 
 </Tabs>
 
-### Install
+### Install (Windows)
 
-`install` - installs the Windows QuestDB service. It will start automatically at
-startup. This command is only available on Windows.
+`install` - installs the Windows QuestDB service. The service will start
+automatically at startup.
 
 ```shell
 questdb.exe install
 ```
 
-### Remove
+### Remove (Windows)
 
 `remove` - removes the Windows QuestDB service. It will no longer start at
-startup. This command is only available on Windows.
+startup.
 
 ```shell
 questdb.exe remove
 ```
 
-## Use interactively (Windows)
+## Interactive session (Windows)
 
-You can start QuestDB interactively by running `questdb.exe`.
-
-### Behaviour
-
-This will launch QuestDB interactively in the active `Shell` window. QuestDB
-will be stopped when the Shell is closed.
+You can start QuestDB interactively by running `questdb.exe`. This will launch
+QuestDB interactively in the active `Shell` window. QuestDB will be stopped when
+the Shell is closed.
 
 ### Default root directory
 
