@@ -107,8 +107,8 @@ const CareersPage = () => {
             </p>
           </div>
           <div className={clsx(caCss.card__side, caCss["card__side--center"])}>
-            <a className={joCss.job} href="senior-devops-engineer/">
-              <h3 className={joCss.job__title}>Senior DevOps Engineer</h3>
+            <a className={joCss.job} href="senior-cloud-architect/">
+              <h3 className={joCss.job__title}>Senior Cloud Architect</h3>
               <p className={joCss.job__location}>Remote</p>
               <span className={joCss.job__cta}>
                 Details&nbsp;
