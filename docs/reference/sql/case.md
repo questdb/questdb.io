@@ -20,7 +20,7 @@ syntax. The user can define a return value when no condition is met using
 
 Assume the following data
 
-| Name  | Age |
+| name  | age |
 | ----- | --- |
 | Tom   | 4   |
 | Jerry | 19  |
@@ -29,7 +29,7 @@ Assume the following data
 
 ```questdb-sql title="CASE with ELSE"
 select
-Name,
+name,
 case
     when age > 18 then 'major'
     else 'minor'
@@ -39,7 +39,7 @@ from table
 
 Result
 
-| Name  | case  |
+| name  | case  |
 | ----- | ----- |
 | Tom   | minor |
 | Jerry | major |
@@ -57,7 +57,7 @@ from table
 
 Result
 
-| Name  | case  |
+| name  | case  |
 | ----- | ----- |
 | Tom   | null  |
 | Jerry | major |

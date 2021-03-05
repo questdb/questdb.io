@@ -58,6 +58,8 @@ folder.
 
 The file is named:
 
+<!-- prettier-ignore-start -->
+
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
 
@@ -67,9 +69,9 @@ import TabItem from "@theme/TabItem"
   { label: "Windows", value: "windows" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="linux">
-
 
 ```shell
 questdb-{@version@}-rt-linux-amd64.tar.gz
@@ -77,9 +79,7 @@ questdb-{@version@}-rt-linux-amd64.tar.gz
 
 </TabItem>
 
-
 <TabItem value="bsd">
-
 
 ```shell
 questdb-{@version@}-rt-freebsd-amd64.tar.gz
@@ -87,9 +87,7 @@ questdb-{@version@}-rt-freebsd-amd64.tar.gz
 
 </TabItem>
 
-
 <TabItem value="windows">
-
 
 ```shell
 questdb-{@version@}-rt-windows-amd64.tar.gz
@@ -97,9 +95,7 @@ questdb-{@version@}-rt-windows-amd64.tar.gz
 
 </TabItem>
 
-
 </Tabs>
-
 
 This binary weights around 20MB, this depends on your operating system.
 
@@ -108,16 +104,18 @@ runtime is packaged directly with QuestDB.
 
 ## Extract the tarball
 
-<Tabs defaultValue="any"  values={[
+<!-- prettier-ignore-start -->
+
+<Tabs defaultValue="any" values={[
   { label: "Any (no JVM)", value: "any" },
   { label: "Linux", value: "linux" },
   { label: "FreeBSD", value: "bsd" },
   { label: "Windows", value: "windows" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="any">
-
 
 ```shell
 tar -xvf questdb-{@version@}-no-jre-bin.tar.gz
@@ -125,9 +123,7 @@ tar -xvf questdb-{@version@}-no-jre-bin.tar.gz
 
 </TabItem>
 
-
 <TabItem value="linux">
-
 
 ```shell
 tar -xvf questdb-{@version@}-rt-linux-amd64.tar.gz
@@ -135,9 +131,7 @@ tar -xvf questdb-{@version@}-rt-linux-amd64.tar.gz
 
 </TabItem>
 
-
 <TabItem value="bsd">
-
 
 ```shell
 tar -xvf questdb-{@version@}-rt-freebsd-amd64.tar.gz
@@ -145,9 +139,7 @@ tar -xvf questdb-{@version@}-rt-freebsd-amd64.tar.gz
 
 </TabItem>
 
-
 <TabItem value="windows">
-
 
 ```shell
 tar -xvf questdb-{@version@}-rt-windows-amd64.tar.gz
@@ -155,11 +147,10 @@ tar -xvf questdb-{@version@}-rt-windows-amd64.tar.gz
 
 </TabItem>
 
-
 </Tabs>
-
 
 ## Next steps
 
 Once you extracted the tarball, you are ready to use QuestDB. Navigate to our
-[CLI](/docs/reference/client/cli/) page to learn more about its usage.
+[command-line options](/docs/reference/command-line-options/) page to learn more
+about its usage.

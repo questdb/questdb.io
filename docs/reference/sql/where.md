@@ -222,7 +222,7 @@ designated timestamp can be applied
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z';
 ```
 
-| timestamp                | score |
+| ts                       | score |
 | ------------------------ | ----- |
 | 2010-01-12T00:02:26.000Z | 2.4   |
 | 2010-01-12T00:02:26.000Z | 3.1   |
@@ -232,7 +232,7 @@ SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z';
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000000Z';
 ```
 
-| timestamp                   | score |
+| ts                          | score |
 | --------------------------- | ----- |
 | 2010-01-12T00:02:26.000000Z | 2.4   |
 | 2010-01-12T00:02:26.000000Z | 3.1   |
@@ -250,7 +250,7 @@ Return results within a defined range
 SELECT * FROM scores WHERE ts = '2018';
 ```
 
-| timestamp                   | score |
+| ts                          | score |
 | --------------------------- | ----- |
 | 2018-01-01T00:0000.000000Z  | 123.4 |
 | ...                         | ...   |
@@ -260,7 +260,7 @@ SELECT * FROM scores WHERE ts = '2018';
 SELECT * FROM scores WHERE ts = '2018-05-23T12:15';
 ```
 
-| timestamp                   | score |
+| ts                          | score |
 | --------------------------- | ----- |
 | 2018-05-23T12:15:00.000000Z | 123.4 |
 | ...                         | ...   |
@@ -288,7 +288,7 @@ SELECT * FROM scores WHERE ts = '2018;1M';
 The range is 2018. The modifier extends the upper bound (originally 31 Dec 2018)
 by one month.
 
-| timestamp                   | score |
+| ts                          | score |
 | --------------------------- | ----- |
 | 2018-01-01T00:00:00.000000Z | 123.4 |
 | ...                         | ...   |
@@ -301,7 +301,7 @@ SELECT * FROM scores WHERE ts = '2018-01;-3d';
 The range is Jan 2018. The modifier reduces the upper bound (originally 31
 Dec 2018) by 3 days.
 
-| timestamp                   | score |
+| ts                          | score |
 | --------------------------- | ----- |
 | 2018-01-01T00:00:00.000000Z | 123.4 |
 | ...                         | ...   |
@@ -324,7 +324,7 @@ SELECT * FROM scores
 WHERE ts in('2018-01-01T00:00:23.000000Z' , '2018-01-01T00:00:23.500000Z');
 ```
 
-| timestamp                   | value |
+| ts                          | value |
 | --------------------------- | ----- |
 | 2018-01-01T00:00:23.000000Z | 123.4 |
 | ...                         | ...   |

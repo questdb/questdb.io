@@ -36,7 +36,7 @@ docker run -p 9000:9000 -p 8812:8812 questdb/questdb
 This parameter will publish a port to the host, you can specify:
 
 - `-p 9000:9000`: [REST API](/docs/reference/api/rest/) and
-  [Web Console](/docs/reference/client/web-console/)
+  [Web Console](/docs/reference/web-console/)
 - `-p 8812:8812`: [Postgres](/docs/reference/api/postgres/)
 - `-p 9009:9009`: [InfluxDB line protocol](/docs/reference/api/influxdb/)
 
@@ -44,6 +44,8 @@ This parameter will publish a port to the host, you can specify:
 
 The QuestDB [root_directory](/docs/concept/root-directory-structure/) will be in
 the following location:
+
+<!-- prettier-ignore-start -->
 
 import Tabs from "@theme/Tabs"
 import TabItem from "@theme/TabItem"
@@ -53,9 +55,9 @@ import TabItem from "@theme/TabItem"
   { label: "Windows", value: "windows" },
 ]}>
 
+<!-- prettier-ignore-end -->
 
 <TabItem value="linux">
-
 
 ```shell
 /root/.questdb/db
@@ -63,9 +65,7 @@ import TabItem from "@theme/TabItem"
 
 </TabItem>
 
-
 <TabItem value="windows">
-
 
 ```shell
 C:\questdb\db
@@ -73,9 +73,7 @@ C:\questdb\db
 
 </TabItem>
 
-
 </Tabs>
-
 
 ## Container status
 

@@ -21,9 +21,8 @@ of sensors.
 
 :::info
 
-All commands are run through the
-[Web Console](/docs/reference/client/web-console/) accessible at
-http://localhost:9000.
+All commands are run through the [Web Console](/docs/reference/web-console/)
+accessible at http://localhost:9000.
 
 You can also run the same SQL via the
 [Postgres endpoint](/docs/reference/api/postgres/) or the

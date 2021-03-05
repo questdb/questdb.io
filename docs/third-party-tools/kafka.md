@@ -41,7 +41,7 @@ cp postgresql-42.2.10.jar /path/to/kafka_2.13-2.6.0/libs
 A configuration file `/path/to/kafka/config/connect-jdbc.properties` must be
 created for Kafka Connect in standalone mode. The Postgres connection URL must
 match the destination QuestDB instance and a topic can be specified under the
-`topics={mytopic}` key. This example guide uses a topic `example-events` and the
+`topics={mytopic}` key. This example guide uses a topic `example-topic` and the
 Postgres server is running on the default port `8812`.
 
 Create a file `config/connect-jdbc.properties` with the following contents:
@@ -53,7 +53,7 @@ connection.url=jdbc:postgresql://127.0.0.1:8812/qdb?useSSL=false
 connection.user=admin
 connection.password=quest
 
-topics=example-events
+topics=example-topic
 insert.mode=insert
 dialect.name=PostgreSqlDatabaseDialect
 pk.mode=none

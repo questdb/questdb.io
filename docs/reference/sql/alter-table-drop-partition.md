@@ -1,37 +1,38 @@
 ---
-title: ALTER TABLE DROP PARTITION keywords
-sidebar_label: ALTER TABLE DROP PARTITION
+title: ALTER TABLE DROP PARTITION
+sidebar_label: DROP PARTITION
 description: DROP PARTITION SQL keyword reference documentation.
 ---
 
 Drops one or more partitions from an existing table.
+
+Similar to dropping columns, dropping of partitions is a non-blocking and
+non-waiting operation. While atomic for single partitions, dropping multiple
+partitions is in itself non-atomic. The operation will exit on the first failure
+and will not continue through a list of partitions if one fails to be dropped.
+
+:::info
+
+The most recent (i.e. currently active) partition cannot be removed
+
+:::
+
+:::caution
+
+Use `DROP PARTITION` with care as QuestDB **cannot recover data from dropped
+partitions**!
+
+:::
 
 ## Syntax
 
 ![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)
 ![Flow chart showing the syntax of ALTER TABLE with DROP PARTITION keyword](/img/docs/diagrams/alterTableDropPartition.svg)
 
-## Description
-
-Drops one or more table partitions.
-
-Just like with columns dropping of partitions is a non-blocking and non-waiting
-operation. While being atomic for a single partitions, dropping of multiple
-partitions is in itself non-atomic. Drop partition will bail on the first
-failure and will not continue with the list.
-
-:::note
-
-The last partition (active partition) cannot be removed. This will be
-implemented in a future release.
-
-:::
-
 ## Drop partition by name
 
-Partition name must match the name of the directory for the given partition.
-
-Naming convention for partition directories is as follows:
+The partition name must match the name of the directory for the given partition.
+The naming convention for partition directories is as follows:
 
 | Table Partition | Partition format |
 | --------------- | ---------------- |

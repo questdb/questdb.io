@@ -31,6 +31,7 @@ that QuestDB exposes. This is accessible via port `8812`.
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
   { label: "Java", value: "java" },
+  { label: "C#", value: "csharp" },
   { label: "C", value: "c" },
   { label: "Python", value: "python" },
 ]}>
@@ -190,6 +191,34 @@ public class App {
 
 </TabItem>
 
+<TabItem value="csharp">
+
+```csharp
+using Npgsql;
+string username = "admin";
+string password = "quest";
+string database = "qdb";
+int port = 8812;
+var connectionString = $"host=localhost;port={port};username={username};password={password};
+database={database};ServerCompatibilityMode=NoTypeLoading;";
+await using NpgsqlConnection connection = new(connectionString);
+await connection.OpenAsync();
+
+var sql = "SELECT x FROM long_sequence(5);";
+
+await using NpgsqlCommand command = new (sql, connection);
+await using (var reader = await command.ExecuteReaderAsync()) {
+    while (await reader.ReadAsync())
+    {
+        var station = reader.GetString(0);
+        var height = double.Parse(reader.GetString(1));
+        var timestamp = reader.GetString(2);
+    }
+}
+```
+
+</TabItem>
+
 <TabItem value="python">
 
 ```python
@@ -241,6 +270,7 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
   { label: "Go", value: "go" },
 ]}>
 
@@ -280,6 +310,30 @@ async function run() {
 }
 
 run()
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import requests
+import json
+
+host = 'http://localhost:9000'
+
+sql_query = "select * from long_sequence(5)"
+query_params = {'query': sql_query, 'fmt' : 'json'}
+
+try:
+  response = requests.post(host + '/exec', params=query_params)
+  json_response = json.loads(response.text)
+  rows = json_response['dataset']
+  for row in rows:
+    print(row)
+except requests.exceptions.RequestException as e:
+  print("Error: %s" % (e))
+
 ```
 
 </TabItem>
@@ -347,5 +401,4 @@ my_table;
 Aside from the Code Editor, the Web Console includes a Visualization panel for
 viewing query results as tables or graphs and an Import tab for uploading
 datasets as CSV files. For more details on these components and general use of
-the console, see the
-[Web Console reference](/docs/reference/client/web-console/) page.
+the console, see the [Web Console reference](/docs/reference/web-console/) page.

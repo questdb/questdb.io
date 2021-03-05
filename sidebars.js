@@ -77,6 +77,7 @@ module.exports = {
       label: "Operations",
       type: "category",
       items: [
+        "operations/capacity-planning",
         "operations/deployment",
         "operations/data-retention",
         "operations/health-monitoring"
@@ -96,11 +97,7 @@ module.exports = {
             "reference/api/java-embedded",
           ],
         },
-        {
-          type: "category",
-          label: "Clients",
-          items: ["reference/client/cli", "reference/client/web-console"],
-        },
+        "reference/command-line-options",
         {
           id: "reference/configuration",
           type: "doc",
@@ -110,6 +107,7 @@ module.exports = {
           label: "Functions",
           items: [
             "reference/function/aggregation",
+            "reference/function/conditional",
             "reference/function/date-time",
             "reference/function/meta",
             "reference/function/numeric",
@@ -126,10 +124,17 @@ module.exports = {
           items: [
             "concept/sql-execution-order",
             "reference/sql/datatypes",
-            "reference/sql/alter-table-add-column",
-            "reference/sql/alter-table-alter-column-add-index",
-            "reference/sql/alter-table-drop-column",
-            "reference/sql/alter-table-drop-partition",
+            {
+              type: "category",
+              label: "ALTER TABLE",
+              items: [
+                "reference/sql/alter-table-alter-column-add-index",
+                "reference/sql/alter-table-add-column",
+                "reference/sql/alter-table-rename-column",
+                "reference/sql/alter-table-drop-column",
+                "reference/sql/alter-table-drop-partition",
+              ],
+            },
             "reference/sql/backup",
             "reference/sql/case",
             "reference/sql/cast",
@@ -155,6 +160,7 @@ module.exports = {
             "reference/sql/with",
           ],
         },
+        "reference/web-console",
       ],
     },
   ].filter(Boolean),

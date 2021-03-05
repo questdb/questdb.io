@@ -26,6 +26,7 @@ import TabItem from "@theme/TabItem"
   { label: "NodeJS", value: "nodejs" },
   { label: "Go", value: "go" },
   { label: "Java", value: "java" },
+  { label: "C#", value: "csharp" },
   { label: "C", value: "c" },
   { label: "Python", value: "python" },
   { label: "psql", value: "psql" },
@@ -190,6 +191,24 @@ finally:
         cursor.close()
         connection.close()
         print("PostgreSQL connection is closed")
+```
+
+</TabItem>
+
+<TabItem value="csharp">
+
+
+```csharp
+using Npgsql;
+string username = "admin";
+string password = "quest";
+string database = "qdb";
+int port = 8812;
+var connectionString = $"host=localhost;port={port};username={username};password={password};
+database={database};ServerCompatibilityMode=NoTypeLoading;";
+
+await using NpgsqlConnection connection = new(connectionString);
+await connection.OpenAsync();
 ```
 
 </TabItem>
