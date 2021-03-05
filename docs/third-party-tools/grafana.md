@@ -1,18 +1,19 @@
 ---
 title: Grafana
-description: Grafana with QuestDB reference documentation.
+description: Guide for time series data visualization with QuestDB and Grafana
 ---
 
-[Grafana](https://grafana.com/) is widely used to visualize data via an
-extensive ecosystem of widgets and plugins. QuestDB connects to Grafana using
-its [Postgres](/docs/reference/api/postgres/) endpoint.
+[Grafana](https://grafana.com/) is a popular observability and monitoring
+application used to visualize data and has an extensive ecosystem of widgets and
+plugins. QuestDB supports connecting to Grafana via the
+[Postgres](/docs/reference/api/postgres/) endpoint.
 
 ## Prerequisites
 
-[Install](https://grafana.com/grafana/download) Grafana for your platform. You
-will need QuestDB to be running and accessible, you can do so from
-[Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
-or [Homebrew](/docs/get-started/homebrew/) for macOS users.
+- [Grafana](https://grafana.com/grafana/download) should be installed and running.
+- QuestDB should be installed and running via [Docker](/docs/get-started/docker/), the
+  [binaries](/docs/get-started/binaries/) or
+  [Homebrew](/docs/get-started/homebrew/) for macOS users.
 
 ## Add a data source
 
@@ -29,29 +30,30 @@ password: quest
 SSL mode: disable
 ```
 
-5. When adding a panel, use the “text edit mode” by clicking on the pencil icon
-   and add your query
+5. When adding a panel, use the "text edit mode" by clicking the pencil icon and
+   adding a query
 
-## Macros
+## Global variables
 
-To simplify syntax and to allow for dynamic parts, like date range filters, the
-query can contain macros.
+To simplify queries which have dynamic elements such as date range filters, the
+query can contain global variables which are documented in the
+[Grafana reference documentation](https://grafana.com/docs/grafana/latest/variables/variable-types/global-variables/#global-variables).
 
 ### `$__timeFilter(timestamp)`
 
-This macro tells Grafana to send the start-time and end-time defined in the
-dashboard to the QuestDB server. It translates to:
+This variable allows filtering results by sending a start-time and end-time to
+QuestDB. This expression evaluates to:
 
-```
+```questdb-sql
 timestamp BETWEEN
     '2018-02-01T00:00:00Z' AND '2018-02-28T23:59:59Z'
 ```
 
 ### `$__interval`
 
-This macro calculates a dynamic interval based on the time range applied to the
-dashboard. By using this function, the sampling interval changes automatically
-as the user zooms in and out of the panel.
+This variable calculates a dynamic interval based on the time range applied to
+the dashboard. By using this function, the sampling interval changes
+automatically as the user zooms in and out of the panel.
 
 ## Example query
 
