@@ -6,16 +6,16 @@ description:
   functionality for time-series.
 ---
 
-QuestDB offers the option to elect a column as `designated timestamp`. This
+QuestDB offers the option to elect a column as *designated timestamp*. This
 allows you to leverage the high-performance time series functions of QuestDB,
 but introduces a constraint on the column in question that will reject
 out-of-order inserts.
 
 ## Properties
 
-- Only a `timestamp` column can be `designated timestamp`.
-- Only `one` column can be elected for a given table.
-- `Designated timestamp` can be elected either:
+- Only a `timestamp` column can be designated timestamp.
+- Only one column can be elected for a given table.
+- Designated timestamp can be elected either:
   - during table creation.
   - on the fly on sub-tables created within a query.
 
@@ -28,21 +28,21 @@ To elect a timestamp column on the fly, please refer to the
 
 ## Out-of-order policy
 
-Once a column is elected as `designated timestamp`, it will enforce an order
-policy on this column. Inserts in `designated timestamp` need to be incrementing
+Once a column is elected as designated timestamp, it will enforce an order
+policy on this column. Inserts in designated timestamp need to be incrementing
 and out-of-order timestamps inserts will be rejected. This does not affect the
 behaviour of other columns.
 
 :::tip
 
-New timestamps need to be `greater or equal` to the latest timestamp in the
+New timestamps need to be greater or equal to the latest timestamp in the
 column.
 
 :::
 
 ## Advantages
 
-Electing a `designated timestamp` allows you to:
+Electing a designated timestamp allows you to:
 
 - Leverage timestamp partitions. For more information, refer to the
   [partitions section](/docs/concept/partitions/).
@@ -51,10 +51,10 @@ Electing a `designated timestamp` allows you to:
 
 ## Examples
 
-Representation of `designated timestamp` as a special column alongside other
+Representation of designated timestamp as a special column alongside other
 existing timestamp columns. Note that:
 
-- The `designated timestamp` column only allows ordered timestamps.
+- The designated timestamp column only allows ordered timestamps.
 - Any other `timestamp` column tolerates out-of-order timestamps.
 
 import Screenshot from "@theme/Screenshot"
@@ -66,7 +66,7 @@ import Screenshot from "@theme/Screenshot"
   width={745}
 />
 
-Attempts to insert `out-of-order` timestamps will be rejected:
+Attempts to insert out-of-order timestamps will be rejected:
 
 <Screenshot
   alt="Diagram of an out of order insertion being rejected"
@@ -89,7 +89,7 @@ supports out-of-order insertion.
 
 :::
 
-- Use the `database host clock` as `designated timestamp` by using
+- Use the database host clock as designated timestamp by using
   `systimestamp()`:
 
 ```questdb-sql

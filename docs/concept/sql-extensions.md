@@ -18,7 +18,7 @@ semantics of time series queries.
 ### LATEST BY
 
 [LATEST BY](/docs/reference/sql/latest-by/) is a clause introduced to help
-perform UPDATE and DELETE operations within an append-only framework.
+perform `UPDATE` and `DELETE` operations within an append-only framework.
 
 ### SAMPLE BY
 
@@ -57,7 +57,7 @@ In standard SQL, users might write a query like the below.
 SELECT a, b, c, d, sum(e) FROM tab GROUP BY a, b, c, d;
 ```
 
-However, enumerating subset of `SELECT` columns in the `GROUP BY` clause
+However, enumerating subset of `SELECT` columns in the `GROUP BY` clause is
 redundant and therefore unnecessary. The same SQL in QuestDB SQL-dialect can be
 written as:
 
@@ -67,7 +67,7 @@ SELECT a, b, c, d, sum(e) FROM tab;
 
 ### Implicit HAVING
 
-Let's look at another more complex example using HAVING in standard SQL.
+Let's look at another more complex example using `HAVING` in standard SQL.
 
 ```questdb-sql
 SELECT a, b, c, d, sum(e)

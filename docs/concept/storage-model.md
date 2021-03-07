@@ -61,14 +61,14 @@ transaction size is only limited by the available disk space.
 
 Once all data is appended, QuestDB `commit()` ensures that the `tx_count` is
 updated atomically both in multi-threaded and multi-process environments. It
-does so `lock-free` to ensure minimal impact on concurrent reads.
+does so lock-free to ensure minimal impact on concurrent reads.
 
 The **consistency** assurance of the data stored is limited to QuestDB
 auto-repairing abnormally terminated transactions. We do not yet support
 user-defined constraints, checks and triggers.
 
 Data **durability** can be configured with `commit()` optionally being able to
-invoke msync() with a choice of synchronous or asynchronous IO.
+invoke `msync()` with a choice of synchronous or asynchronous IO.
 
 <Screenshot
   alt="Diagram of a commit across several column files"

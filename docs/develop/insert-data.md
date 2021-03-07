@@ -28,7 +28,7 @@ using either [Docker](/docs/get-started/docker/), the
 QuestDB implements InfluxDB line protocol which is accessible by default on TCP
 port `9009`. This allows using QuestDB as a drop-in replacement for InfluxDB and
 others implementing the protocol. Configuration settings for ingestion using
-this protocol can be set for for
+this protocol can be set for
 [Influx line over TCP](/docs/reference/configuration#influxdb-line-protocol-tcp)
 and
 [Influx line over UDP](/docs/reference/configuration#influxdb-line-protocol-udp).
@@ -44,7 +44,7 @@ this protocol can be found on the
 
 The following examples add a timestamp property to each line protocol message.
 This property is optional and can be omitted to allow the server to
-automatically assign the the server's system time as the row's timestamp value.
+automatically assign the server's system time as the row's timestamp value.
 
 :::
 
