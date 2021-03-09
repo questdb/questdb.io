@@ -20,11 +20,11 @@ data by date. For more details on partitioning, see the
 A simple approach to removing stale data is to drop data that has been
 partitioned by time. A table must have a
 [designated timestamp](/docs/concept/designated-timestamp/) assigned and a
-partitioning strategy specified during a CREATE TABLE operation to achieve this.
+partitioning strategy specified during a `CREATE TABLE` operation to achieve this.
 
 :::note
 
-Users cannot alter the partitioning strategy after a table is created!
+Users cannot alter the partitioning strategy after a table is created.
 
 :::
 
@@ -44,7 +44,7 @@ PARTITION BY DAY;
 :::caution
 
 Use `DROP PARTITION` with care as QuestDB **cannot recover data from dropped
-partitions**!
+partitions**.
 
 :::
 

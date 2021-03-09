@@ -195,11 +195,11 @@ equal to the time of ingestion:
 
 ```questdb-sql title="Using server time for new inserts"
 INSERT INTO readings
-VALUES(systemtimestamp(), 123.4)
+VALUES(systimestamp(), 123.4)
 ```
 
 When using InfluxDB line protocol, omitting a timestamp value from incoming
-records has the same effect of an implicit `systemtimestamp()` function:
+records has the same effect of an implicit `systimestamp()` function:
 
 ```bash title="InfluxDB line protocol without a timestamp"
 readings,city=London,temperature=23.5,humidity=0.343

@@ -27,11 +27,11 @@ import Screenshot from "@theme/Screenshot"
 
 ## Requirements
 
-Partition is only available on tables with a `designated timestamp`. The main
+Partition is only available on tables with a designated timestamp. The main
 benefit of using a designated timestamp is that the field in question will
 enforce an increasing policy on timestamp value. This allows you to leverage
 specific high-performance time series functions. For more information on
-`designated timestamp`, refer to the
+designated timestamp, refer to the
 [designated timestamp section](/docs/concept/designated-timestamp/).
 
 ## Advantages
