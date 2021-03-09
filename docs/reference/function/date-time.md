@@ -292,7 +292,7 @@ FROM long_sequence(1);
 | 2020-04-17T00:30:51.380499Z | 2020-04-19T00:30:51.380499Z |
 
 ```questdb-sql title="Adding months"
-SELECT systimestamp(), dateadd(`M`, 2, systimestamp())
+SELECT systimestamp(), dateadd('M', 2, systimestamp())
 FROM long_sequence(1);
 ```
 
