@@ -322,18 +322,16 @@ import json
 
 host = 'http://localhost:9000'
 
-sql_query = "select * from long_sequence(5)"
-query_params = {'query': sql_query, 'fmt' : 'json'}
+sql_query = "select * from long_sequence(10)"
 
 try:
-  response = requests.post(host + '/exec', params=query_params)
+  response = requests.post(host + '/exec', params={'query': sql_query})
   json_response = json.loads(response.text)
   rows = json_response['dataset']
   for row in rows:
-    print(row)
+    print(row[0])
 except requests.exceptions.RequestException as e:
   print("Error: %s" % (e))
-
 ```
 
 </TabItem>
