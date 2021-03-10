@@ -35,7 +35,7 @@ and read large amounts of measurements that change over time.
 
 In this tutorial, you will learn how to read data from a REST API and stream it
 to QuestDB, an open-source time series database. We will use Grafana to
-visualize the data and notify Slack on changes that interest us. We use Python
+visualize the data and notify Slack of changes that interest us. We use Python
 to fetch data from the API and stream it to QuestDB, and you can easily
 customize the scripts to check different stocks or even APIs.
 
@@ -45,7 +45,7 @@ Before getting started with the tutorial, you will need the following:
 
 - [Docker](https://www.docker.com/products/docker-desktop) to run Grafana and
   QuestDB with Docker Compose
-- [IexFinance account](https://iextrading.com/developers/) which offers a free
+- [IexFinance account](https://iextrading.com/developers/), which offers a free
   tier for 50,000 API calls per month to poll stock prices
 - [Slack workspace](https://slack.com/intl/en-gb/help/articles/206845317-Create-a-Slack-workspace)
   to deliver alerts via Grafana
@@ -60,7 +60,7 @@ cd questdb-slack-grafana-alerts
 docker-compose up
 ```
 
-Running `docker-compose up` brings up two containers that are networked:
+Running `docker-compose up` brings up two networked containers:
 
 - Grafana on [localhost:3000](http://localhost:3000)
 - QuestDB on [localhost:9000](http://localhost:9000) as well as a port open on
@@ -69,8 +69,8 @@ Running `docker-compose up` brings up two containers that are networked:
 Running `docker-compose up` will also
 [provision Grafana](https://github.com/bsmth/questdb-slack-grafana-alerts/tree/main/grafana)
 with the default connection credentials to QuestDB for Postgres authentication.
-This means you can use QuestDB as a default data source in Grafana right away
-without manual configuration steps.
+By provisioning credentials, you can use QuestDB as a default data source in
+Grafana right away without manual configuration steps.
 
 Verify QuestDB and Grafana are running by visiting the URLs listed above or use
 `docker-compose ps` from the repository root which will show you the running
@@ -93,8 +93,8 @@ pip install -r requirements.txt
 ```
 
 We will use the [IexFinance API](https://pypi.org/project/iexfinance/) to fetch
-live stock prices, but first we can verify the configuration is correct by using
-a test script which generates dummy data. The mock script generates random
+realtime stock prices, but first, we can verify the configuration is correct by
+using a test script that generates dummy data. The mock script generates random
 prices so that we don't deplete the API call limit during testing.
 
 To start sending mock data to QuestDB, run the mock data script in the `python`
@@ -115,8 +115,8 @@ data to this table. The columns that we have are:
 | `createdDateTime` | timestamp at which stockPrice was ingested in QuestDB |
 
 One feature of QuestDB that we are using for the stock name is the `symbol` data
-type which is optimized for text columns that have repetitive values. More
-information on this type can be found on the QuestDB
+type optimized for text columns with repetitive values. More information on this
+type can be found on the QuestDB
 [documentation for symbol type](https://questdb.io/docs/concept/symbol/).
 
 To verify if data is arriving in QuestDB:
@@ -139,11 +139,11 @@ import Screenshot from "@theme/Screenshot"
   width={650}
 />
 
-## Query live stock prices
+## Query realtime stock prices
 
 Once you have tested the ingestion using the mock data script, we can start
-making requests to an API for live market data and query stock prices in
-real-time. To configure IexFinance API authentication:
+making requests to an API for live market data and query realtime stock prices.
+To configure IexFinance API authentication:
 
 1. On the [IexFinance console](https://iexcloud.io/console/tokens), create an
    API token
@@ -156,11 +156,11 @@ real-time. To configure IexFinance API authentication:
   width={650}
 />
 
-Now we can add this token to our project so the Python scripts have programmatic
-access to the IexFinance API. To store project secrets, we are using the
-[Python dotenv](https://pypi.org/project/python-dotenv/) package which allows
-passing configuration to Python scripts as environment variables. We can
-explicitly pass a token to each API call to IexFinance, or we can use the
+Now we can add this token to our project, so the Python scripts have
+programmatic access to the IexFinance API. To store project secrets, we are
+using the [Python dotenv](https://pypi.org/project/python-dotenv/) package,
+which allows passing configuration to Python scripts as environment variables.
+We can explicitly pass a token to each API call to IexFinance, or we can use the
 `IEX_TOKEN` environment variable that the Python library will check implicitly.
 To add the token:
 
@@ -183,8 +183,8 @@ Inserting into 'stock_prices': TSLA 673.58 2021-03-10 12:37:23.147258
 
 ## Slack incoming webhook
 
-The next step is to create an incoming webhook in Slack which we can sent alerts
-as HTTP(S) requests from Grafana. To set up the webhook:
+The next step is to create an incoming webhook in Slack which to send alerts as
+HTTP(S) requests from Grafana. To set up the webhook:
 
 1. Navigate to [new Slack app](https://api.slack.com/apps?new_app=1) and create
    an app called **Price Alerts** for your workspace
@@ -230,7 +230,7 @@ Your Slack workspace should display a test notification coming from Grafana:
 
 ## Grafana alerts
 
-Next up, we can create a new panel on Grafana and configure alerting based on
+Next up, we can create a new panel on Grafana and configure alerts based on
 queries we're interested in:
 
 1. Navigate to [Create new Dashboard](http://localhost:3000/dashboard/new) and
@@ -246,7 +246,7 @@ WHERE stock = 'TSLA'
 SAMPLE BY 5s;
 ```
 
-We now have a visualization of five second averages of Tesla's stock price:
+We now have a visualization of five-second averages of Tesla's stock price:
 
 <Screenshot
   alt="A dashboard in Grafana showing Tesla stock price over time"
@@ -283,10 +283,10 @@ For more information on the conditions of alerting, see the Grafana
 ### Create an alert
 
 The example alert we are using in this tutorial will be triggered if the minimum
-value of the query named `5-second Avg. of TSLA` is below `762` and we will set
+value of the query named `5-second Avg. of TSLA` is below `762`, and we will set
 the time range for alerting to the last thirty seconds. To set up this alert:
 
-1. Edit the query we built and select the **Alert** tab
+1. Edit the query and select the **Alert** tab
 2. Click **Create Alert** and give it the name `Tesla Stock Price alert`
 3. In the **Rule** section:
    - Set **Evaluate every** to `10 seconds`
@@ -294,7 +294,7 @@ the time range for alerting to the last thirty seconds. To set up this alert:
 4. In the **Conditions** section:
    - Set **WHEN** to `min()`
    - Set **OF** to `query(5-second Avg. of TSLA, 30s, now())`
-   - Click **IS ABOVE**, change this to **IS BELOW** and set the value to `762`
+   - Click **IS ABOVE**, change this to **IS BELOW**, and set the value to `762`
 5. Use the default values in the **No Data & Error Handling** section
 6. In **Notifications -> Send to**, choose the `Stock Price Alerts` notification
    channel
@@ -324,7 +324,7 @@ for data visualization and alerting. We learned how to ingest live ticker data
 from a REST API into QuestDB and how to visualize this data in a Grafana
 dashboard and set up alerts based on predefined conditions.
 
-The next steps for improvements to the Python scripts could be command line
+The next steps for improvements to the Python scripts could be command-line
 arguments for multiple stock symbols, and better error handling if markets are
 not open. Feel free to
 [submit a PR](https://github.com/bsmth/questdb-slack-grafana-alerts) if you have
