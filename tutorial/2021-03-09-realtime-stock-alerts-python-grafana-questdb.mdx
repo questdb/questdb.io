@@ -1,5 +1,5 @@
 ---
-title: Slack alerting on realtime stock price data with QuestDB and Grafana
+title: Realtime stock price alerts using Python, Grafana and QuestDB
 author: Kovid Rathee
 description:
   Use Python to query stock prices via REST API, stream the results to QuestDB,
@@ -21,8 +21,8 @@ import Banner from "@theme/Banner"
 </Banner>
 
 This submission comes from one of our community contributors
-[Kovid Rathee](https://kovidrathee.medium.com/) who written a great guide for
-setting up Slack alerts via Grafana.
+[Kovid Rathee](https://kovidrathee.medium.com/) who has written a great guide for
+setting up alerting via Grafana.
 
 Thanks for your contribution, Kovid!
 
@@ -48,7 +48,14 @@ Before getting started with the tutorial, you will need the following:
 - [IexFinance account](https://iextrading.com/developers/), which offers a free
   tier for 50,000 API calls per month to poll stock prices
 - [Slack workspace](https://slack.com/intl/en-gb/help/articles/206845317-Create-a-Slack-workspace)
-  to deliver alerts via Grafana
+  (optional)
+
+This tutorial uses Slack as an example notification channel to deliver alerts
+via Grafana, but it's simple to choose another channel you would like alerts
+delivered to, such as your own REST API via webhook, Kafka, email, Pagerduty and
+more. For more details on the available notification channels, see the Grafana
+documentation for the
+[list supported of notifiers](https://grafana.com/docs/grafana/latest/alerting/notifications/#list-of-supported-notifiers).
 
 ## Start QuestDB and Grafana
 
