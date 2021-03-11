@@ -1,9 +1,9 @@
 ---
-title: Realtime stock price alerts using Python, Grafana and QuestDB
+title: Real-time stock price alerts using Python, Grafana and QuestDB
 author: Kovid Rathee
 description:
   Use Python to query stock prices via REST API, stream the results to QuestDB,
-  and configure Slack alerts based on changes in time series data using Grafana
+  and configure Slack alerts based on changes in time series data using Grafana.
 image: /img/tutorial/shared/og-grafana.png
 featured: true
 ---
@@ -21,8 +21,8 @@ import Banner from "@theme/Banner"
 </Banner>
 
 This submission comes from one of our community contributors
-[Kovid Rathee](https://kovidrathee.medium.com/) who has written a great guide for
-setting up alerting via Grafana.
+[Kovid Rathee](https://kovidrathee.medium.com/) who has written a great guide
+for setting up alerting via Grafana.
 
 Thanks for your contribution, Kovid!
 
@@ -55,14 +55,14 @@ via Grafana, but it's simple to choose another channel you would like alerts
 delivered to, such as your own REST API via webhook, Kafka, email, Pagerduty and
 more. For more details on the available notification channels, see the Grafana
 documentation for the
-[list supported of notifiers](https://grafana.com/docs/grafana/latest/alerting/notifications/#list-of-supported-notifiers).
+[list of supported notifiers](https://grafana.com/docs/grafana/latest/alerting/notifications/#list-of-supported-notifiers).
 
 ## Start QuestDB and Grafana
 
 To clone the GitHub repository and start the example project:
 
 ```bash
-git clone git@github.com:bsmth/questdb-slack-grafana-alerts.git
+git clone https://github.com/questdb/questdb-slack-grafana-alerts.git
 cd questdb-slack-grafana-alerts
 docker-compose up
 ```
@@ -100,7 +100,7 @@ pip install -r requirements.txt
 ```
 
 We will use the [IexFinance API](https://pypi.org/project/iexfinance/) to fetch
-realtime stock prices, but first, we can verify the configuration is correct by
+real-time stock prices, but first, we can verify the configuration is correct by
 using a test script that generates dummy data. The mock script generates random
 prices so that we don't deplete the API call limit during testing.
 
@@ -118,7 +118,7 @@ data to this table. The columns that we have are:
 | column            | description                                           |
 | ----------------- | ----------------------------------------------------- |
 | `stockListed`     | name of the stock, e.g., `TSLA` for Tesla             |
-| `stockPrice`      | price of the stock in USD in double                   |
+| `stockPrice`      | price of the stock in USD as `double`                 |
 | `createdDateTime` | timestamp at which stockPrice was ingested in QuestDB |
 
 One feature of QuestDB that we are using for the stock name is the `symbol` data
@@ -146,10 +146,10 @@ import Screenshot from "@theme/Screenshot"
   width={650}
 />
 
-## Query realtime stock prices
+## Query real-time stock prices
 
 Once you have tested the ingestion using the mock data script, we can start
-making requests to an API for live market data and query realtime stock prices.
+making requests to an API for live market data and query real-time stock prices.
 To configure IexFinance API authentication:
 
 1. On the [IexFinance console](https://iexcloud.io/console/tokens), create an
@@ -180,7 +180,7 @@ cd python
 python stock_data_TSLA_example.py
 ```
 
-If the markets are open, realtime prices will be sent to QuestDB:
+If the markets are open, real-time prices will be sent to QuestDB:
 
 ```log
 Inserting rows into table 'stock_prices' - press Ctrl-C to stop
@@ -190,14 +190,15 @@ Inserting into 'stock_prices': TSLA 673.58 2021-03-10 12:37:23.147258
 
 ## Slack incoming webhook
 
-The next step is to create an incoming webhook in Slack which to send alerts as
+The next step is to create an incoming webhook in Slack to send alerts as
 HTTP(S) requests from Grafana. To set up the webhook:
 
-1. Navigate to [new Slack app](https://api.slack.com/apps?new_app=1) and create
-   an app called **Price Alerts** for your workspace
+1. Navigate to the
+   [create a new Slack app](https://api.slack.com/apps?new_app=1) page and
+   create an app called **Price Alerts** for your workspace
 2. Click **Incoming Webhooks** in the features section
 3. Activate incoming webhooks and click **Add New Webhook to Workspace**
-4. Select the Slack channel you want to receive alerts and click **Allow**
+4. Select the Slack channel you want to receive alerts in and click **Allow**
 5. Copy the Webhook URL which is in the following format
 
 ```bash
@@ -209,10 +210,10 @@ https://hooks.slack.com/services/T123/B0123/2Fb...
 The final step in connecting Slack and Grafana is to create a notification
 channel. To configure a Slack notification channel to send alerts to:
 
-1. Log into Grafana at [localhost:3000](http://localhost:3000) using the default
-   credentials:
+1. Log in to Grafana at [localhost:3000](http://localhost:3000) using the
+   default credentials:
 
-```
+```txt
 user:admin
 pass:admin
 ```
@@ -222,9 +223,10 @@ pass:admin
    click **Add channel**
 3. Give it the name **Stock Price Alert** and choose the `Slack` type
 4. Paste the webhook URL in the **Url** field
-5. In the **Notification settings** dropdown, check the **Include image**
+5. In the **Notification settings** dropdown, enable the **Include image**
    checkbox
-6. Click **Test** to verify that the configuration is correct and click **Save**
+6. Click **Test** to verify that the configuration is correct and then click
+   **Save**
 
 Your Slack workspace should display a test notification coming from Grafana:
 
@@ -282,7 +284,7 @@ The **Conditions** section has the following settings:
 - `WHEN` sets an aggregate function on a series
 - `OF` is the query to alert on over a time range in the format
   `query(query_name, from, until)`
-- `IS ...` allows specifying a comparison to a value or a range
+- `IS ...` allows specifying a comparison to a value or range
 
 For more information on the conditions of alerting, see the Grafana
 [alert conditions documentation](https://grafana.com/docs/grafana/latest/alerting/create-alerts/#conditions).
@@ -326,15 +328,15 @@ arriving in the channel that we have configured:
 
 ## Summary
 
-In this tutorial, we have learned how Grafana and QuestDB can be quite powerful
-for data visualization and alerting. We learned how to ingest live ticker data
-from a REST API into QuestDB and how to visualize this data in a Grafana
-dashboard and set up alerts based on predefined conditions.
+In this tutorial, we've shown how Grafana and QuestDB can be quite powerful for
+data visualization and alerting. We learned how to ingest live ticker data from
+a REST API into QuestDB and how to visualize this data in a Grafana dashboard
+and set up alerts based on predefined conditions.
 
 The next steps for improvements to the Python scripts could be command-line
 arguments for multiple stock symbols, and better error handling if markets are
 not open. Feel free to
-[submit a PR](https://github.com/bsmth/questdb-slack-grafana-alerts) if you have
+[submit a PR](https://github.com/questdb/questdb-slack-grafana-alerts) if you have
 a suggestion or improvements to make!
 
 If you like this content, we'd love to know your thoughts! Feel free to share
