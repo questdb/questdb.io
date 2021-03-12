@@ -161,11 +161,11 @@ const DATRON = () => {
           <p className="font-size--large">
             Initially, DATRON was experimenting with InfluxDB as a datastore but
             immediately encountered problems ingesting high-throughput
-            workloads. A recurring fault which surfaced was that InfluxDB ran
-            out of RAM and would not keep up with significant ingestion rates as
-            memory caches needed to be flushed. QuestDB was a capable drop-in
-            replacement in this scenario and allowed DATRON to do more with less
-            hardware, more efficiently.
+            workloads. A recurring fault which surfaced was that InfluxDB
+            consumed too much system RAM and could not keep up with significant
+            ingestion rates while causing frequent memory cache flushing
+            occurred. QuestDB was a capable drop-in replacement in this scenario
+            and allowed DATRON to do more with less hardware, more efficiently.
           </p>
 
           <h3>Simplifying the integration</h3>
