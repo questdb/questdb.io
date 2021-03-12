@@ -44,7 +44,7 @@ const Toggle = () => {
             </Button>
             <span className={juCss.jumbotron__name}>Case study</span>
           </div>
-          <h1 className={seCss.section__title}>Migrating to QuestDB</h1>
+          <h1 className={seCss.section__title}>Toggle migration to QuestDB</h1>
           <p
             className={clsx(
               seCss.section__subtitle,
@@ -224,14 +224,13 @@ const Toggle = () => {
             points in a few minutes.
           </p>
 
-          <h3>
-            Customer support experience from QuestDB’s team during the process
-          </h3>
-          <p className="font-size--large">
-            <b>Armenak, Toggle&apos;s CTO:</b> The QuestDB team assisted us in
-            all steps along the way. They were proactive in supporting our
-            changeover, helping to debug issues as they arose, and optimize our
-            deployment as we moved things into production.
+          <p className={caCss.card__title}>
+            <span className={caCss.card__quote}>&ldquo;</span>The QuestDB team
+            assisted us in all steps along the way. They were proactive in
+            supporting our changeover, helping to debug issues as they arose,
+            and optimize our deployment as we moved things into production.
+            <span className={caCss.card__quote}>&rdquo;</span>
+            <b> - Armenak, Toggle&apos;s CTO</b>
           </p>
         </div>
       </section>
