@@ -13,7 +13,7 @@ import seCss from "../../css/section.module.css"
 const DATRON = () => {
   const title = "Case Study: DATRON"
   const description =
-    "How DATRON switched from InfluxDB to QuestDB and benefited from massive cost reduction and performance improvements"
+    "How DATRON switched from InfluxDB to QuestDB and benefited from massive cost reduction and performance improvements."
 
   return (
     <PageLayout
@@ -35,7 +35,7 @@ const DATRON = () => {
               variant="plain"
             >
               <img
-                alt="DATRON.global logo"
+                alt="A CNC machine built by DATRON milling aluminium"
                 className={juCss.jumbotron__logo}
                 height={24}
                 src="/img/pages/customers/logos/datron.png"
