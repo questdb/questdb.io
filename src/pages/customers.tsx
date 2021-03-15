@@ -154,7 +154,7 @@ const Customers = () => {
         <div className={caCss.card}>
           <div className={caCss.card__illustration}>
             <img
-              alt="TODO"
+              alt="A CNC milling machine built by DATRON"
               height={360}
               src="/img/pages/case-study/datron/summary.png"
               width={640}

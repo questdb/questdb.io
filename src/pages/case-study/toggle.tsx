@@ -13,7 +13,7 @@ import seCss from "../../css/section.module.css"
 const Toggle = () => {
   const title = "Toggle AI - time series data for machine learning in FinTech"
   const description =
-    "Toggle switched from InfluxDB to QuestDB for and benefited from faster queries, massive cost reduction, and performance improvements on ingestion."
+    "Toggle switched from InfluxDB to QuestDB and benefited from faster queries, massive cost reduction, and performance improvements on ingestion."
 
   return (
     <PageLayout

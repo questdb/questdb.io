@@ -82,7 +82,7 @@ const DATRON = () => {
               className={ouCss.outcome__icon}
               src="/img/pages/case-study/icons/workflow.svg"
             />
-            Wide compatiblility and simple configuration
+            Wide compatibility and simple configuration
           </p>
           <p className={ouCss.outcome}>
             <img
@@ -168,19 +168,19 @@ const DATRON = () => {
             too much system RAM and an inability to keep up with ingestion
             rates, causing frequent memory cache flushing. QuestDB was a capable
             drop-in replacement in this scenario and allowed DATRON to do more
-            with less hardware, more efficiently.
+            with less hardware.
           </p>
 
           <h3>Simplifying the integration</h3>
           <p className="font-size--large">
             DATRON use the QuestDB Docker image, which is a turnkey,
-            out-of-the-box solution. Using ILP (InfluxDB Line Protocol), the
+            out-of-the-box solution. Using ILP (InfluxDB line protocol), the
             data is inserted and read out via REST API to other software for
             analysis. Inserting and reading the information is possible with
             popular high-level protocols and little programming effort, a
             definite advantage over hand-crafted or bespoke solutions.
             <img
-              alt="Chart showing the average transaction duration for QuestDB on a given day"
+              alt="A diagram showing the architecture of how DATRON ingest and query sensor data."
               className={chCss.chart}
               height={347}
               src="/img/pages/case-study/datron/chart.png"
@@ -190,12 +190,12 @@ const DATRON = () => {
 
           <h3>Feedback from a thriving community</h3>
           <p className="font-size--large">
-            The developer and community support meant that questions get
+            The developer and community support means that questions get
             answered quicker, leading to faster integration and troubleshooting
             through shorter feedback loops. Using Slack as a communication tool
             is an additional convenience that bridges the gap between ideas and
             implementation and adds to the agility of the project to deliver a
-            feature addition or a bug fix.
+            feature addition or bug fix.
           </p>
           <div
             className={clsx(
