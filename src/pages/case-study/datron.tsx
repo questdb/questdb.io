@@ -151,21 +151,24 @@ const DATRON = () => {
           </p>
           <p className="font-size--large">
             DATRON rigorously tests their installed assemblies in long-term
-            studies over several months. The tests are designed to look for
-            unusual vibrations, wear, and temperature deviations. These
-            measurements are recorded in the two-digit kHz range, and during the
-            testing phase, multiple terabytes of data are stored. Recording and
-            storing these measurements using traditional databases requires
-            powerful and expensive hardware.
+            studies over several months, which detect unusual vibrations, wear,
+            and temperature deviations. The metrics collected are the
+            environmental temperature alongside the machine&apos;s spindle RPM,
+            while an accelerometer measures the spindle position in three axes.
+            An Arduino polls the spindle sensors at a frequency in the two-digit
+            kHz range, meaning that the testing phase generates multiple
+            terabytes of data. Storing these measurements requires a stable,
+            high-performance database that can write and query time series data
+            efficiently.
           </p>
           <p className="font-size--large">
             Initially, DATRON was experimenting with InfluxDB as a datastore but
             immediately encountered problems ingesting high-throughput
-            workloads. A recurring fault which surfaced was that InfluxDB
-            consumed too much system RAM and could not keep up with significant
-            ingestion rates while causing frequent memory cache flushing
-            occurred. QuestDB was a capable drop-in replacement in this scenario
-            and allowed DATRON to do more with less hardware, more efficiently.
+            workloads. A recurring issue that surfaced was InfluxDB consuming
+            too much system RAM and an inability to keep up with ingestion
+            rates, causing frequent memory cache flushing. QuestDB was a capable
+            drop-in replacement in this scenario and allowed DATRON to do more
+            with less hardware, more efficiently.
           </p>
 
           <h3>Simplifying the integration</h3>
@@ -194,6 +197,14 @@ const DATRON = () => {
             implementation and adds to the agility of the project to deliver a
             feature addition or a bug fix.
           </p>
+        </div>
+        <div
+          className={clsx(
+            "markdown",
+            seCss["section--inner"],
+            seCss["section--column"],
+          )}
+        >
           <p className={caCss.card__title}>
             <span className={caCss.card__quote}>&ldquo;</span>QuestDB offers new
             possibilities while reducing costs and simplifying data analysis.

@@ -223,7 +223,14 @@ const Toggle = () => {
             side & ingest in the other. Toggle imported over 600 million data
             points in a few minutes.
           </p>
-
+        </div>
+        <div
+          className={clsx(
+            "markdown",
+            seCss["section--inner"],
+            seCss["section--column"],
+          )}
+        >
           <p className={caCss.card__title}>
             <span className={caCss.card__quote}>&ldquo;</span>The QuestDB team
             assisted us in all steps along the way. They were proactive in
