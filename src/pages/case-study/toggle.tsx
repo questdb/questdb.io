@@ -11,9 +11,9 @@ import ouCss from "../../css/case-study/outcome.module.css"
 import seCss from "../../css/section.module.css"
 
 const Toggle = () => {
-  const title = "Case Study: Toggle AI"
+  const title = "Toggle AI - time series data for machine learning in FinTech"
   const description =
-    "How Toggle switched from InfluxDB to QuestDB and benefited from massive cost reduction + performance improvements"
+    "Toggle switched from InfluxDB to QuestDB for and benefited from faster queries, massive cost reduction, and performance improvements on ingestion."
 
   return (
     <PageLayout
@@ -223,22 +223,24 @@ const Toggle = () => {
             side & ingest in the other. Toggle imported over 600 million data
             points in a few minutes.
           </p>
-        </div>
-        <div
-          className={clsx(
-            "markdown",
-            seCss["section--inner"],
-            seCss["section--column"],
-          )}
-        >
-          <p className={caCss.card__title}>
-            <span className={caCss.card__quote}>&ldquo;</span>The QuestDB team
-            assisted us in all steps along the way. They were proactive in
-            supporting our changeover, helping to debug issues as they arose,
-            and optimize our deployment as we moved things into production.
-            <span className={caCss.card__quote}>&rdquo;</span>
-            <b> - Armenak, Toggle&apos;s CTO</b>
-          </p>
+          <div
+            className={clsx(
+              "markdown",
+              seCss["section--inner"],
+              seCss["section--column"],
+            )}
+          >
+            <p className={caCss.card__title}>
+              <span className={caCss.card__quote}>&ldquo;</span>The QuestDB team
+              assisted us in all steps along the way. They were proactive in
+              supporting our changeover, helping to debug issues as they arose,
+              and optimize our deployment as we moved things into production.
+              <span className={caCss.card__quote}>&rdquo;</span>
+            </p>
+            <p className={caCss.card__title}>
+              <b>Armenak, Toggle&apos;s CTO</b>
+            </p>
+          </div>
         </div>
       </section>
     </PageLayout>

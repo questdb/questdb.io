@@ -11,9 +11,9 @@ import ouCss from "../../css/case-study/outcome.module.css"
 import seCss from "../../css/section.module.css"
 
 const DATRON = () => {
-  const title = "Case Study: DATRON"
+  const title = "DATRON - high-volume time series for industrial sensor data"
   const description =
-    "How DATRON switched from InfluxDB to QuestDB and benefited from massive cost reduction and performance improvements."
+    "DATRON migrated from InfluxDB to QuestDB for high-throughput time series data workloads and benefited from reliability and massive performance improvements."
 
   return (
     <PageLayout
@@ -197,20 +197,23 @@ const DATRON = () => {
             implementation and adds to the agility of the project to deliver a
             feature addition or a bug fix.
           </p>
-        </div>
-        <div
-          className={clsx(
-            "markdown",
-            seCss["section--inner"],
-            seCss["section--column"],
-          )}
-        >
-          <p className={caCss.card__title}>
-            <span className={caCss.card__quote}>&ldquo;</span>QuestDB offers new
-            possibilities while reducing costs and simplifying data analysis.
-            <span className={caCss.card__quote}>&rdquo;</span>
-            <b> - Tim Borowski</b>
-          </p>
+          <div
+            className={clsx(
+              "markdown",
+              seCss["section--inner"],
+              seCss["section--column"],
+            )}
+          >
+            <p className={caCss.card__title}>
+              <span className={caCss.card__quote}>&ldquo;</span>QuestDB offers
+              new possibilities while reducing costs and simplifying data
+              analysis at DATRON.
+              <span className={caCss.card__quote}>&rdquo;</span>
+            </p>
+            <p className={caCss.card__title}>
+              <b>Tim Borowski</b>
+            </p>
+          </div>
         </div>
       </section>
     </PageLayout>
