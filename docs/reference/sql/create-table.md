@@ -25,10 +25,11 @@ both ASCII and Unicode characters.
   exists with the requested name.
 
 - Table names containing spaces or period `.` character must be enclosed in
-  **single quotes**, for example:
+  **double quotes**, for example:
 
   ```questdb-sql
-  CREATE TABLE 'example out of.space' (a INT);
+  CREATE TABLE "example out of.space" (a INT);
+  INSERT INTO "example out of.space" values (1);
   ```
 
 :::
