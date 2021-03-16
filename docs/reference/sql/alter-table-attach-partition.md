@@ -27,7 +27,7 @@ types
 ![Flow chart showing the syntax of the ALTER TABLE keyword](/img/docs/diagrams/alterTable.svg)
 ![Flow chart showing the syntax of ALTER TABLE with ATTACH PARTITION keyword](/img/docs/diagrams/alterTableAttachPartition.svg)
 
-### Examples
+## Examples
 
 Assuming a backup directory `~/backup/` exists for a table `sensor_data` which
 was partitioned by `YEAR`, the following example demonstrates how to attach the
