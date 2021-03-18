@@ -1,5 +1,5 @@
 import * as Joi from "joi"
-import { RemarkPluginsSchema } from '@docusaurus/utils-validation'
+import { RemarkPluginsSchema } from "@docusaurus/utils-validation"
 
 import { TutorialPluginOptions } from "./types"
 

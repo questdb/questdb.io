@@ -834,6 +834,7 @@ run_query("CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);")
 # insert row
 run_query("INSERT INTO trades VALUES('abc', 123456);")
 ```
+
 </TabItem>
 
 <TabItem value="go">

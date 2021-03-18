@@ -20,9 +20,9 @@ import Banner from "@theme/Banner"
   via <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
-This submission comes from one of our community contributors [Gábor Boros](https://github.com/gabor-boros) who has
-built an extremely robust statuspage application which uses QuestDB as a data
-sink.
+This submission comes from one of our community contributors
+[Gábor Boros](https://github.com/gabor-boros) who has built an extremely robust
+statuspage application which uses QuestDB as a data sink.
 
 Thanks for your contribution, Gábor!
 
@@ -667,48 +667,49 @@ Let's begin with `<scripts>`.
 <!-- template ... -->
 
 <script>
-const LIMIT = 60
+  const LIMIT = 60
 
-async function fetchSignals($axios, limit) {
-  const signals = await $axios.$get(
-    `http://localhost:8000/signals?limit=${limit}`,
-  )
-  return signals
-}
+  async function fetchSignals($axios, limit) {
+    const signals = await $axios.$get(
+      `http://localhost:8000/signals?limit=${limit}`,
+    )
+    return signals
+  }
 
-export default {
-  data() {
-    return {
-      signals: [],
-    }
-  },
-
-  // Handle initial call
-  async asyncData({ $axios }) {
-    const signals = await fetchSignals($axios, LIMIT)
-    return { signals }
-  },
-
-  methods: {
-    // Calculate uptime based on the signals belongs to a URL
-    uptime: (records) => {
-      let availableRecords = records.filter((record) => record.available).length
-      return ((availableRecords / records.length) * 100).toFixed(2)
+  export default {
+    data() {
+      return {
+        signals: [],
+      }
     },
-  },
 
-  // Set up periodic calls when the component is mounted
-  mounted() {
-    let that = this
-    const axios = this.$axios
+    // Handle initial call
+    async asyncData({ $axios }) {
+      const signals = await fetchSignals($axios, LIMIT)
+      return { signals }
+    },
 
-    setInterval(() => {
-      Promise.resolve(fetchSignals(axios, LIMIT)).then((signals) => {
-        that.signals = signals
-      })
-    }, 1000 * LIMIT)
-  },
-}
+    methods: {
+      // Calculate uptime based on the signals belongs to a URL
+      uptime: (records) => {
+        let availableRecords = records.filter((record) => record.available)
+          .length
+        return ((availableRecords / records.length) * 100).toFixed(2)
+      },
+    },
+
+    // Set up periodic calls when the component is mounted
+    mounted() {
+      let that = this
+      const axios = this.$axios
+
+      setInterval(() => {
+        Promise.resolve(fetchSignals(axios, LIMIT)).then((signals) => {
+          that.signals = signals
+        })
+      }, 1000 * LIMIT)
+    },
+  }
 </script>
 ```
 

@@ -146,8 +146,8 @@ const Toggle = () => {
             Toggle uses AI & Machine Learning to help investors extract insights
             on their portfolio & investments. The system distills billions of
             data points into alerts like “Analyst expectations are turning
-            negative for AAPL; historically, this led to outperformance
-            of the stock.” As you can imagine, this sort of system requires a
+            negative for AAPL; historically, this led to outperformance of the
+            stock.” As you can imagine, this sort of system requires a
             tremendous amount of timeseries data — prices, fundamentals,
             sentiment, etc. All of this data is stored as a series and needs to
             be easily accessible for analysis by our models. It is critical that
@@ -160,10 +160,10 @@ const Toggle = () => {
             TimescaleDB. After much testing, they settled on InfluxDB, as it had
             the best performance. As the company was growing, performance
             started to degrade, and it became expensive to run. They had a small
-            cluster of 4 x m4.2xlarge machines, and memory on
-            all 4 was often at least 80%, hitting 100% a few times per week.
-            Modeling out the future infrastructure spend based on this baseline,
-            InfluxDB wasn’t a viable option as the company scaled.
+            cluster of 4 x m4.2xlarge machines, and memory on all 4 was often at
+            least 80%, hitting 100% a few times per week. Modeling out the
+            future infrastructure spend based on this baseline, InfluxDB wasn’t
+            a viable option as the company scaled.
           </p>
 
           <h3>The process to migrate data from InfluxDB to QuestDB</h3>
@@ -175,8 +175,8 @@ const Toggle = () => {
           <ul className="font-size--large">
             <li>Can we move the data seamlessly and promptly?</li>
             <li>
-              Can we query a sample of our data with at least the response
-              times of InfluxDB?
+              Can we query a sample of our data with at least the response times
+              of InfluxDB?
             </li>
             <li>Can we ingest new data seamlessly?</li>
             <li>Can we create time series on the fly?</li>

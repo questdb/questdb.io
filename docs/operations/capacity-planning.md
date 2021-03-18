@@ -81,9 +81,9 @@ line.tcp.msg.buffer.size=2048
 
 #### CPU affinity
 
-Given a single client sending data to QuestDB via InfluxDB line protocol over TCP,
-the following configuration can be applied which sets a dedicated worker and
-pins it with `affinity` to a CPU by core ID:
+Given a single client sending data to QuestDB via InfluxDB line protocol over
+TCP, the following configuration can be applied which sets a dedicated worker
+and pins it with `affinity` to a CPU by core ID:
 
 ```bash title="server.conf"
 line.tcp.worker.count=1
@@ -135,9 +135,9 @@ line.tcp.maintenance.job.hysteresis.in.ms=1000
 
 ### InfluxDB over UDP
 
-Given a single client sending data to QuestDB via InfluxDB line protocol over UDP,
-the following configuration can be applied which dedicates a thread for a UDP
-writer and specifies a CPU core by ID:
+Given a single client sending data to QuestDB via InfluxDB line protocol over
+UDP, the following configuration can be applied which dedicates a thread for a
+UDP writer and specifies a CPU core by ID:
 
 ```bash title="server.conf"
 line.udp.own.thread=true
@@ -275,16 +275,16 @@ Where `<protocol>` is one of:
 
 And `<config>` is one of the following settings:
 
-| key                       | description                                                                                                                                                                                                                                                                             |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `active.connection.limit` | The number of simultaneous connections to the server. This value is intended to control server memory consumption.                                                                                                                                                                      |
+| key                       | description                                                                                                                                                                                                                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `active.connection.limit` | The number of simultaneous connections to the server. This value is intended to control server memory consumption.                                                                                                                                                                          |
 | `event.capacity`          | Internal IO event queue capacity (EPoll, KQqueu, Select). Size of these queues **must be larger than** `active.connection.limit`.                                                                                                                                                           |
 | `io.queue.capacity`       | Internal IO queue of the server. The size of this queue **must be larger than** the `active.connection.limit`. A queue size smaller than active connection max will substantially slow down the server by increasing wait times. A queue larger than connection max reduces wait time to 0. |
-| `idle.connection.timeout` | Connection idle timeout in milliseconds. Connections are closed by the server when this timeout lapses.                                                                                                                                                                                   |
-| `interest.queue.capacity` | Internal queue size. This is also related to `active.connection.limit` in a way that sizes larger than connection max remove any waiting.                                                                                                                                               |
-| `listen.backlog`          | Backlog argument value for [listen()](https://man7.org/linux/man-pages/man2/listen.2.html) call.                                                                                                                                                                                        |
-| `snd.buf.size`            | Maximum send buffer size on each TCP socket. If value is -1 socket send buffer remains unchanged from OS default.                                                                                                                                                                       |
-| `rcv.buf.size`            | Maximum receive buffer size on each TCP socket. If value is -1, the socket receive buffer remains unchanged from OS default.                                                                                                                                                            |
+| `idle.connection.timeout` | Connection idle timeout in milliseconds. Connections are closed by the server when this timeout lapses.                                                                                                                                                                                     |
+| `interest.queue.capacity` | Internal queue size. This is also related to `active.connection.limit` in a way that sizes larger than connection max remove any waiting.                                                                                                                                                   |
+| `listen.backlog`          | Backlog argument value for [listen()](https://man7.org/linux/man-pages/man2/listen.2.html) call.                                                                                                                                                                                            |
+| `snd.buf.size`            | Maximum send buffer size on each TCP socket. If value is -1 socket send buffer remains unchanged from OS default.                                                                                                                                                                           |
+| `rcv.buf.size`            | Maximum receive buffer size on each TCP socket. If value is -1, the socket receive buffer remains unchanged from OS default.                                                                                                                                                                |
 
 For example, the default network configuration for InfluxDB line protocol is the
 following:

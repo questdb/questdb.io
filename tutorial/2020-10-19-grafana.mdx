@@ -10,8 +10,14 @@ featured: true
 
 import Banner from "@theme/Banner"
 
-<Banner alt="A dashboard showing several graphs with operationnal data" height={433} src="/img/tutorial/2020-10-19/banner.jpg" width={650}>
-  Photo by <a href="https://unsplash.com/photos/JKUTrJ4vK00">Luke Chesser</a> via <a href="https://unsplash.com">Unsplash</a>
+<Banner
+  alt="A dashboard showing several graphs with operationnal data"
+  height={433}
+  src="/img/tutorial/2020-10-19/banner.jpg"
+  width={650}
+>
+  Photo by <a href="https://unsplash.com/photos/JKUTrJ4vK00">Luke Chesser</a>{" "}
+  via <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
 In this tutorial, we will cover how to load demo data from `.CSV` files into
@@ -66,9 +72,9 @@ docker run -p 8812:8812 -p 9000:9000 questdb/questdb
 
 ### Loading the dataset
 
-On our [live demo]({@demoUrl@}), uses 10+ years of taxi data.
-For this tutorial, we have a subset of that data, the data for the whole of
-February 2018. You can download the compressed dataset
+On our [live demo]({@demoUrl@}), uses 10+ years of taxi data. For this tutorial,
+we have a subset of that data, the data for the whole of February 2018. You can
+download the compressed dataset
 [from Amazon S3](https://s3-eu-west-1.amazonaws.com/questdb.io/datasets/grafana_tutorial_dataset.tar.gz):
 
 ```shell
