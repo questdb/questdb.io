@@ -68,8 +68,6 @@ In practice, this means that you are now charged for pod usage rather than
 paying for the compute and storage of the underlying Kubernetes nodes, making it
 a great choice for projects with unknown resource utilization.
 
-https://youtu.be/_JKsv2BtAnY
-
 Creating a new GKE Autopilot cluster is also extremely simple. There’s no need
 to set up Terraform or VPCs/autoscalers/node groups. Simply create a Google
 Cloud account, navigate to
@@ -272,26 +270,23 @@ $ brew install velero
 $ choco install velero
 ```
 
-### Configuring Server Components
+### Valero configuration
 
 To set up Velero on GCP, we need to:
 
-<!-- 1. [Create a GCS bucket](https://github.com/vmware-tanzu/velero-plugin-for-gcp#Create-an-GCS-bucket)
+1. [Create a GCS bucket](https://github.com/vmware-tanzu/velero-plugin-for-gcp#Create-an-GCS-bucket)
 2. [Set permissions for Velero](https://github.com/vmware-tanzu/velero-plugin-for-gcp#Set-permissions-for-Velero)
 3. [Install and start Velero](https://github.com/vmware-tanzu/velero-plugin-for-gcp#Install-and-start-Velero)
- -->
 
-### Create a GCS Bucket
+### GCS bucket storage
 
-Give a unique bucket name and use the gsutil tool to create the bucket (replace
-<YOUR_BUCKET> with the name of your bucket):
+Provide a unique bucket name and use the `gsutil` tool to create a bucket.
+Replace `<YOUR_BUCKET>` with the name of the bucket and run the following
+command:
 
 ```bash
-PROJECT_ID=$(gcloud config get-value project)
-BUCKET=<YOUR_BUCKET>gsutil mb gs://$BUCKET/
+PROJECT_ID=$(gcloud config get-value project) BUCKET=<YOUR_BUCKET> gsutil mb gs://$BUCKET/
 ```
-
-### Set GCP Permissions
 
 Create a service account:
 
