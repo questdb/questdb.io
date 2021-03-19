@@ -35,12 +35,12 @@ Recently, I've been experimenting with QuestDB as a primary time series database
 to stream and analyze IoT and financial data:
 
 - [Streaming Heart Rate Data with IoT Core and QuestDB](/tutorial/2021/02/05/streaming-heart-rate-data-with-iot-core-and-questdb/)
-- [Realtime Crypto Tracker with Kafka and QuestDB](/tutorial/2021/02/18/realtime-crypto-tracker-with-kafka-and-questdb/)
+- [Real-time Crypto Tracker with Kafka and QuestDB](/tutorial/2021/02/18/realtime-crypto-tracker-with-kafka-and-questdb/)
 
 While I was able to validate the power of QuestDB in storing massive amounts of
 data and querying them quickly in those two projects, I was mostly running them
-on my laptop via Docker. In order to scale my experiments, I wanted to create a
-more production-ready setup, including monitoring and disaster recovery on
+on my laptop via Docker. To scale my experiments, I wanted to create a more
+production-ready setup, including monitoring and disaster recovery on
 Kubernetes. So in this guide, we'll walk through setting up QuestDB on GKE with
 Prometheus and Velero.
 
@@ -56,17 +56,17 @@ Before getting started with the tutorial, you will need the following:
 
 ## Setting up GKE Autopilot
 
-As a DevOps engineer/SRE, I'm a huge fan of GKE since it provides a lot of
-features out of the box, such as cluster autoscaling, network policy plugins,
-and managed Istio compared to other managed Kubernetes options available.
-Recently Google Cloud announced
+As a DevOps engineer/SRE, I'm a huge fan of GKE since it provides many features
+out of the box, such as cluster autoscaling, network policy plugins, and managed
+Istio compared to other managed Kubernetes options available. Recently Google
+Cloud announced
 [GKE Autopilot](https://cloud.google.com/blog/products/containers-kubernetes/introducing-gke-autopilot),
 a new mode that further automates Kubernetes operations, including node
 management, security/hardening, and resource optimization. It brings together
 the serverless experience of Cloud Run with the flexibility and features of GKE.
 In practice, this means that you are now charged for pod usage rather than
 paying for the compute and storage of the underlying Kubernetes nodes, making it
-a great choice for projects with unknown resource utilization.
+an excellent choice for projects with unknown resource utilization.
 
 Creating a new GKE Autopilot cluster is also extremely simple. There's no need
 to set up Terraform or VPCs/autoscalers/node groups. To get started, create a
@@ -253,11 +253,11 @@ four-part series
 ## Automated Velero backups
 
 [Velero](https://velero.io/) is an open-source tool to back up and restore
-Kubernetes resources and persistent volumes. This is useful for disaster
-recovery (taking snapshots) or for data migration. Velero runs inside the
-Kubernetes cluster and integrates with various storage providers (e.g., AWS S3,
-GCP Storage, Minio) as well as [restic](https://velero.io/docs/v1.5/restic/) to
-take snapshots either on-demand or on a specified schedule.
+Kubernetes resources and persistent volumes which is useful for disaster
+recovery (taking snapshots) or data migration. Velero runs inside the Kubernetes
+cluster and integrates with various storage providers (e.g., AWS S3, GCP
+Storage, Minio) as well as [restic](https://velero.io/docs/v1.5/restic/) to take
+snapshots either on-demand or on a specified schedule.
 
 ### Installation
 
@@ -370,12 +370,12 @@ check it out.
 
 To optimize for performance, QuestDB decided to build a time series database
 from scratch with ANSI SQL compatibility, as opposed to building on top of
-Postgres like TimescaleDB. Also, as a newer product, QuestDB is working on
-enterprise features (e.g., replication, high-availability, recovery from
-snapshot) and integrations with other popular projects. With the Prometheus
-Postgres exporter and Velero, we can configure a production-ready QuestDB on
-Kubernetes. I look forward to enhancing this setup in future releases when more
-monitoring and ops features will be added.
+Postgres like TimescaleDB. As a newer product, QuestDB is working on enterprise
+features (e.g., replication, high-availability, recovery from snapshot) and
+integrations with other popular projects. With the Prometheus Postgres exporter
+and Velero, we can configure a production-ready QuestDB on Kubernetes. I look
+forward to enhancing this setup in future releases when QuestDB adds more
+monitoring and ops features.
 
 If you like this content, we'd love to know your thoughts! Feel free to share
 your feedback or just come and say hello in the
