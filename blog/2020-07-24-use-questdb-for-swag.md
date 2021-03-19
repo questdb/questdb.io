@@ -18,8 +18,14 @@ tags: [projects]
 
 import Banner from "@theme/Banner"
 
-<Banner alt="Grey cat wearing mirrored sunglasses" height={483} src="/img/blog/2020-07-24/banner.jpg" width={362}>
-  Photo by <a href="https://unsplash.com/photos/yMSecCHsIBc">Raoul Droog</a> on <a href="https://unsplash.com">Unsplash</a>
+<Banner
+  alt="Grey cat wearing mirrored sunglasses"
+  height={483}
+  src="/img/blog/2020-07-24/banner.jpg"
+  width={362}
+>
+  Photo by <a href="https://unsplash.com/photos/yMSecCHsIBc">Raoul Droog</a> on{" "}
+  <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
 We've been upping our SWAG game a lot lately, and we want to share it with you,
@@ -91,13 +97,16 @@ How do you get this level? Just do the following:
     [@QuestDB](https://twitter.com/intent/follow?screen_name=QuestDB) so we
     don't miss it!
 
-<img alt="Black t-shirt with QuestDB's logo"
-src="/img/blog/2020-07-24/tShirt.png" style={{
+<img
+  alt="Black t-shirt with QuestDB's logo"
+  src="/img/blog/2020-07-24/tShirt.png"
+  style={{
     display: "block",
     maxHeight: "400px",
     margin: "0 auto",
     marginBottom: "2rem",
-  }} />
+  }}
+/>
 
 That's it! Sit back and wait for the SWAG!
 

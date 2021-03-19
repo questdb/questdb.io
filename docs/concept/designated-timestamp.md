@@ -73,48 +73,48 @@ There are two approaches that can be used in such cases:
    `systimestamp()`. For more information about `systimestamp()`, see the
    [date & time functions](/docs/reference/function/date-time/) reference.
 
-  ```questdb-sql title="The db_ts column is specified as designated timestamp"
-  CREATE TABLE readings(
-      db_ts timestamp,
-      device_ts timestamp,
-      device_name symbol,
-      reading int)
-  timestamp(db_ts);
-  ```
+   ```questdb-sql title="The db_ts column is specified as designated timestamp"
+   CREATE TABLE readings(
+   	db_ts timestamp,
+   	device_ts timestamp,
+   	device_name symbol,
+   	reading int)
+   timestamp(db_ts);
+   ```
 
-  ```questdb-sql title="Using system timestamp while retaining the device timestamp"
-  INSERT INTO readings VALUES(
-      systimestamp(),
-      to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'),
-      'my_sensor',
-      123);
-  ```
+   ```questdb-sql title="Using system timestamp while retaining the device timestamp"
+   INSERT INTO readings VALUES(
+   	systimestamp(),
+   	to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss'),
+   	'my_sensor',
+   	123);
+   ```
 
 2. Use a temporary table with out-of-order data:
 
-  ```questdb-sql title="Main table with designated timestamp"
-  CREATE TABLE readings(
-      db_ts timestamp,
-      device_ts timestamp,
-      device_name symbol,
-      reading int)
-      timestamp(db_ts)
-  PARTITION BY DAY;
-  ```
+   ```questdb-sql title="Main table with designated timestamp"
+   CREATE TABLE readings(
+   	db_ts timestamp,
+   	device_ts timestamp,
+   	device_name symbol,
+   	reading int)
+   	timestamp(db_ts)
+   PARTITION BY DAY;
+   ```
 
-  ```questdb-sql title="Temporary table which may have out-of-order data"
-  CREATE TABLE readings_temp(
-      db_ts timestamp,
-      device_ts timestamp,
-      device_name symbol,
-      reading int);
-  ```
+   ```questdb-sql title="Temporary table which may have out-of-order data"
+   CREATE TABLE readings_temp(
+   	db_ts timestamp,
+   	device_ts timestamp,
+   	device_name symbol,
+   	reading int);
+   ```
 
-  Data in the temporary table can then be ordered and inserted into the main
-  table. This can be a scheduled task run at the interval that the table is
-  partitioned by:
+   Data in the temporary table can then be ordered and inserted into the main
+   table. This can be a scheduled task run at the interval that the table is
+   partitioned by:
 
-  ```questdb-sql title="Order and insert data"
-  INSERT INTO readings
-      SELECT * FROM (readings_temp ORDER BY db_ts) timestamp(db_ts);
-  ```
+   ```questdb-sql title="Order and insert data"
+   INSERT INTO readings
+   	SELECT * FROM (readings_temp ORDER BY db_ts) timestamp(db_ts);
+   ```

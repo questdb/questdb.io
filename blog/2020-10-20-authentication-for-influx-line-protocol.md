@@ -11,8 +11,14 @@ tags: [influxdb line protocol, story]
 
 import Banner from "@theme/Banner"
 
-<Banner alt="An open lock with its key attached to it." height={365} src="/img/blog/2020-10-20/banner.jpg" width={650}>
-  Photo by <a href="https://unsplash.com/photos/hRXIKdxoaPo">Vanna Phon</a> on <a href="https://unsplash.com">Unsplash</a>
+<Banner
+  alt="An open lock with its key attached to it."
+  height={365}
+  src="/img/blog/2020-10-20/banner.jpg"
+  width={650}
+>
+  Photo by <a href="https://unsplash.com/photos/hRXIKdxoaPo">Vanna Phon</a> on{" "}
+  <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
 QuestDB supports ingesting records using InfluxDB line protocol. This means that

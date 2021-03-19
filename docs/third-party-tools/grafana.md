@@ -10,8 +10,10 @@ plugins. QuestDB supports connecting to Grafana via the
 
 ## Prerequisites
 
-- [Grafana](https://grafana.com/grafana/download) should be installed and running.
-- QuestDB should be installed and running via [Docker](/docs/get-started/docker/), the
+- [Grafana](https://grafana.com/grafana/download) should be installed and
+  running.
+- QuestDB should be installed and running via
+  [Docker](/docs/get-started/docker/), the
   [binaries](/docs/get-started/binaries/) or
   [Homebrew](/docs/get-started/homebrew/) for macOS users.
 

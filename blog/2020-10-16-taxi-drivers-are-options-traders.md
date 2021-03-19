@@ -13,8 +13,14 @@ tags: [deep-dive, story]
 
 import Banner from "@theme/Banner"
 
-<Banner alt="Taxis in New York City stuck in traffic" height={600} src="/img/blog/2020-10-16/banner.jpg" width={400}>
-  Photo by <a href="https://unsplash.com/photos/K9cc-19hBKY">Kevin Lee</a> on <a href="https://unsplash.com">Unsplash</a>
+<Banner
+  alt="Taxis in New York City stuck in traffic"
+  height={600}
+  src="/img/blog/2020-10-16/banner.jpg"
+  width={400}
+>
+  Photo by <a href="https://unsplash.com/photos/K9cc-19hBKY">Kevin Lee</a> on{" "}
+  <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
 Every cab I have ever ridden has been complaining about how hard it is to make
@@ -42,15 +48,15 @@ surcharges depending on a variety of factors such as the route taken or the time
 of the day.
 
 Most of the driver's earnings come from the `fare`, which consists of a
-`flat fare` $2.50 for entering the cab, and a `variable fare`. The variable
-fare is a function of speed, time and distance. It is calculated as follows:
+`flat fare` $2.50 for entering the cab, and a `variable fare`. The variable fare
+is a function of speed, time and distance. It is calculated as follows:
 
 - When the cab drives above 12mph, $2.50 per mile
 - Otherwise, $0.50 per minute
 
 This post focuses on the variable fare, i.e the output of the meter excluding
-the $2.50 start fee and extras. To be able to compare rides with one another,
-we normalize it as an `hourly rate` of driving a customer around.
+the $2.50 start fee and extras. To be able to compare rides with one another, we
+normalize it as an `hourly rate` of driving a customer around.
 
 ## Modelling variable earnings for taxi drivers
 
@@ -318,14 +324,12 @@ Lyft, and other FHV, along with urban planning, for example cycle lanes making
 for less space on the road and more congestion.
 
 Whatever the underlying reasons, the impact is visible, and it is significant.
-Over the past 10 years, slower traffic has cost up to
-$10/hour per taxi.
-To put this in context, this means $29,000/driver each year (8
-hours a day, no holidays), or
-$300 million a year for the entire NYC cab
-industry! And these are lower bound numbers. In reality, drivers share cabs. If
-we assume all of the 13,500 cabs are constantly on the road, this adds up to $1.2
-billion a year lost for the industry!
+Over the past 10 years, slower traffic has cost up to $10/hour per taxi. To put
+this in context, this means $29,000/driver each year (8 hours a day, no
+holidays), or $300 million a year for the entire NYC cab industry! And these are
+lower bound numbers. In reality, drivers share cabs. If we assume all of the
+13,500 cabs are constantly on the road, this adds up to $1.2 billion a year lost
+for the industry!
 
 ## Customers are losing too
 
