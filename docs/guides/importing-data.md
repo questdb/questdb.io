@@ -44,7 +44,7 @@ following implicit settings:
 }
 ```
 
-### Examples
+## Examples
 
 Given a CSV file which contains timestamps in the format
 `yyyy-MM-dd - HH:mm:ss.SSSUUU`, the following text loader configuration will
