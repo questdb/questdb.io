@@ -200,8 +200,8 @@ config:
     sslmode: disable
   disableDefaultMetrics: true
   annotations:
-  prometheus.io/scrape: "true"
-  prometheus.io/port: "9187"
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9187"
 ```
 
 Now we can pass this file via Helm to install the Postgres exporter:
