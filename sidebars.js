@@ -65,6 +65,13 @@ module.exports = {
       ],
     },
     {
+      label: "Guides",
+      type: "category",
+      items: [
+        "guides/importing-data",
+      ],
+    },
+    {
       label: "Third-party Tools",
       type: "category",
       items: [
