@@ -195,12 +195,13 @@ config:
     host: questdb-0.questdb-headless
     user: admin
     password: quest
-    port: '8812'
+    port: "8812"
     database: qdb
     sslmode: disable
-  disableDefaultMetrics: trueannotations:
-  prometheus.io/scrape: 'true'
-  prometheus.io/port: '9187'
+  disableDefaultMetrics: true
+  annotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "9187"
 ```
 
 Now we can pass this file via Helm to install the Postgres exporter:
@@ -233,7 +234,7 @@ queries:
 
 ```bash
 export POD_NAME=$(kubectl get pods --namespace default -l \ "app=prometheus,component=server" -o jsonpath="{.items[0].metadata.name}")
-  kubectl --namespace default port-forward $POD_NAME 9090
+kubectl --namespace default port-forward $POD_NAME 9090
 ```
 
 Once port-forwarding is active, visit [localhost:9090](localhost:9090) and check
@@ -248,7 +249,7 @@ that we're able to scrape `pg_up`:
 
 If you are looking for a production-ready monitoring setup, please refer to my
 four-part series
-[Practical monitoring with Prometheus and Grafana](https://yitaek.medium.com/practical-monitoring-with-prometheus-grafana-part-i-22d0f172f993).)
+[Practical monitoring with Prometheus and Grafana](https://yitaek.medium.com/practical-monitoring-with-prometheus-grafana-part-i-22d0f172f993).
 
 ## Automated Velero backups
 
@@ -273,7 +274,7 @@ brew install velero
 choco install velero
 ```
 
-### Valero configuration
+### Velero configuration
 
 To set up Velero on GCP, we need to:
 
@@ -295,7 +296,7 @@ Create a service account:
 
 ```bash
 gcloud iam service-accounts create velero \
- — display-name "Velero service account"
+  -—display-name "Velero service account"
 ```
 
 Attach the compute permissions to the service account:
@@ -326,7 +327,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
 gsutil iam ch serviceAccount:$SERVICE_ACCOUNT_EMAIL:objectAdmin gs://${BUCKET}
 ```
 
-Download the service account key and save it as `credential-velero`:
+Download the service account key and save it as `credentials-velero`:
 
 ```bash
 gcloud iam service-accounts keys create credentials-velero \
@@ -343,7 +344,7 @@ velero install \
     --secret-file ./credentials-velero
 ```
 
-Finally, we can create a schedule using a `cron`-like string:
+Finally, we can create a schedule using a `cron`-like expression:
 
 ```bash
 velero schedule create \
@@ -361,8 +362,8 @@ Lastly, verify backups are being made in our bucket:
   width={650}
 />
 
-For more information on Valero, my article about
-[disaster recovery on Kubernetes](https://medium.com/dev-genius/disaster-recovery-on-kubernetes-98c5c78382bb)
+For more information on Velero,
+[my article about disaster recovery on Kubernetes](https://medium.com/dev-genius/disaster-recovery-on-kubernetes-98c5c78382bb)
 provides a deep-dive into the service features and describes why you should
 check it out.
 
