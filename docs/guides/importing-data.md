@@ -87,5 +87,5 @@ The CSV data can then be loaded via POST request, for example, using cURL:
 curl -F data=@weather.csv 'http://localhost:9000/imp'
 ```
 
-For more information on the `/imp` entrypoint, refer to the
+For more information on the `/imp` entry point, refer to the
 [REST API documentation](/docs/reference/api/rest/#imp---import-data).
