@@ -40,7 +40,7 @@ to stream and analyze IoT and financial data:
 While I was able to validate the power of QuestDB in storing massive amounts of
 data and querying them quickly in those two projects, I was mostly running them
 on my laptop via Docker. To scale my experiments, I wanted to create a more
-production-ready setup, including monitoring and disaster recovery on
+production-ready setup, including monitoring and disaster recovery, on
 Kubernetes. So in this guide, we'll walk through setting up QuestDB on GKE with
 Prometheus and Velero.
 
@@ -112,7 +112,7 @@ initially marked as unschedulable. Give it a few seconds until cluster
 autoscaler triggers a scaling up event and schedules the questdb pod.
 
 <Screenshot
-  alt="The status dashboard for Kubernetes services in Google Cloud console"
+  alt="The status dashboard for Kubernetes services in Google Cloud Console"
   height={88}
   src="/img/tutorial/2021-03-18/cluster-status-green.png"
   width={650}
@@ -140,7 +140,7 @@ system health and grab metrics from QuestDB. For performance reasons, QuestDB
 team decided to decouple the REST endpoint from its min
 [HTTP server that holds a simple health status](https://questdb.io/docs/operations/health-monitoring/)
 on port 9003. This port is currently not exposed via the Helm chart, so the
-StatefulSet and Service sections need to be changed to allow probes to
+`StatefulSet` and `Service` sections need to be changed to allow probes to
 periodically check this endpoint.
 
 QuestDB currently does not provide a comprehensive metrics endpoint that
@@ -152,7 +152,7 @@ issues listed below for these features:
 
 I wanted to deploy Prometheus Postgres Exporter to at least track QuestDB
 up/down status and set up the framework to monitor Postgres metrics once these
-features became available.
+features become available.
 
 ### Expose Postgres port
 
@@ -177,7 +177,7 @@ helm upgrade --install questdb questdb/questdb -f questdb-values.yaml
 ### Install Prometheus Postgres exporter
 
 Prometheus Helm charts are maintained by the
-[prometheus community](https://prometheus-community.github.io/helm-charts/):
+[Prometheus community](https://prometheus-community.github.io/helm-charts/):
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -186,7 +186,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 Next, we need to modify the default values to scrape QuestDB and also disable
 default metrics since QuestDB doesn't currently expose `pg_stat_database` or
 `pg_stat_activity`. We also want Prometheus to scrape our metrics, so we need to
-add annotations specify our scrape port. Create another YAML file called
+add annotations and specify our scrape port. Create another YAML file called
 `exporter-values.yaml` with the following contents:
 
 ```yaml title="exporter-values.yaml"
@@ -362,7 +362,7 @@ Lastly, verify backups are being made in our bucket:
 />
 
 For more information on Valero, my article about
-[Disaster recovery on Kubernetes](https://medium.com/dev-genius/disaster-recovery-on-kubernetes-98c5c78382bb)
+[disaster recovery on Kubernetes](https://medium.com/dev-genius/disaster-recovery-on-kubernetes-98c5c78382bb)
 provides a deep-dive into the service features and describes why you should
 check it out.
 
@@ -373,9 +373,9 @@ from scratch with ANSI SQL compatibility, as opposed to building on top of
 Postgres like TimescaleDB. As a newer product, QuestDB is working on enterprise
 features (e.g., replication, high-availability, recovery from snapshot) and
 integrations with other popular projects. With the Prometheus Postgres exporter
-and Velero, we can configure a production-ready QuestDB on Kubernetes. I look
-forward to enhancing this setup in future releases when QuestDB adds more
-monitoring and ops features.
+and Velero, we can configure a production-ready QuestDB instance on Kubernetes.
+I look forward to enhancing this setup in future releases when QuestDB adds more
+monitoring and DevOps features.
 
 If you like this content, we'd love to know your thoughts! Feel free to share
 your feedback or just come and say hello in the
