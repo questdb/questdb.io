@@ -18,6 +18,7 @@ import shCss from "../css/index/showcase.module.css"
 import usCss from "../css/index/usp.module.css"
 import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
+import loCss from "../css/customers/logo.module.css"
 
 const FeatureTabs = () => {
   const [opened, setOpened] = useState<"digital" | "realtime" | "integration">(
@@ -208,6 +209,117 @@ const Integration = () => (
         />
         Tableau
       </p>
+    </div>
+  </section>
+)
+const Logos = () => (
+  <section className={clsx(seCss.section)}>
+    <h2 className={clsx(seCss.section__title, "text--center")}>Trusted by</h2>
+    <div className={(loCss.logo__group, clsx(seCss["section--inner"]))}>
+      <Button
+        className={loCss.logo__wrapper}
+        href="https://toggle.global/?utm_source=questdb"
+        variant="plain"
+      >
+        <img
+          alt="Toggle.global logo"
+          className="responsive-image"
+          height={16}
+          src="/img/pages/customers/logos/toggle.svg"
+          width={110}
+        />
+      </Button>
+      <Button
+        className={loCss.logo__wrapper}
+        href="https://www.datron.com"
+        variant="plain"
+      >
+        <img
+          alt="Datron logo"
+          className="responsive-image"
+          height={24}
+          src="/img/pages/customers/logos/datron.png"
+          width={124}
+        />
+      </Button>
+      <Button
+        className={loCss.logo__wrapper}
+        href="https://www.ycombinator.com/"
+        variant="plain"
+      >
+        <img
+          alt="YCombinator logo"
+          className="responsive-image"
+          height={34}
+          src="/img/pages/customers/logos/yc.png"
+          width={34}
+        />
+      </Button>
+      <Button
+        className={loCss.logo__wrapper}
+        href="https://www.innova.com.tr/en"
+        variant="plain"
+      >
+        <img
+          alt="Innova logo"
+          className="responsive-image"
+          height={30}
+          src="/img/pages/customers/logos/innova.png"
+          width={90}
+        />
+      </Button>
+      <Button
+        className={loCss.logo__wrapper}
+        href="https://www.ably.io/"
+        variant="plain"
+      >
+        <img
+          alt="Ably logo"
+          className="responsive-image"
+          height={34}
+          src="/img/pages/customers/logos/ably.svg"
+          width={117}
+        />
+      </Button>
+      <Button
+        className={loCss.logo__wrapper}
+        href="https://www.viesgo.com/en/"
+        variant="plain"
+      >
+        <img
+          alt="Viesgo logo"
+          className="responsive-image"
+          height={19}
+          src="/img/pages/customers/logos/viesgo.svg"
+          width={130}
+        />
+      </Button>
+      <Button
+        className={loCss.logo__wrapper}
+        href="https://www.biba.uni-bremen.de/en.html"
+        variant="plain"
+      >
+        <img
+          alt="BIBA logo"
+          className="responsive-image"
+          height={24}
+          src="/img/pages/customers/logos/biba.svg"
+          width={63}
+        />
+      </Button>
+      <Button
+        className={loCss.logo__wrapper}
+        href="https://trysavvy.com/"
+        variant="plain"
+      >
+        <img
+          alt="Savvy logo"
+          className="responsive-image"
+          height={30}
+          src="/img/pages/customers/logos/savvy.png"
+          width={94}
+        />
+      </Button>
     </div>
   </section>
 )
@@ -798,6 +910,7 @@ const Home = () => {
       title={title}
     >
       <Top />
+      <Logos />
       <Usp />
       <Integration />
       <FeatureTabs />

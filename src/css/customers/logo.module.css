@@ -19,6 +19,14 @@
   filter: none;
 }
 
+.logo__group {
+  display: flex;
+  margin-top: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+}
+
 @media (max-width: 996px) {
   .logo__wrapper {
     min-width: 45%;
