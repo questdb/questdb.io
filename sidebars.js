@@ -69,6 +69,7 @@ module.exports = {
       type: "category",
       items: [
         "guides/importing-data",
+        "guides/influxdb-line-protocol",
       ],
     },
     {

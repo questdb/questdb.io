@@ -20,15 +20,15 @@ QuestDB can listen for line protocol packets both over [TCP](#tcp-receiver) and
 ### Syntax
 
 ```shell
-table_name,tagset valueset timestamp
+table_name,tagset fieldset timestamp
 ```
 
-| Element      | Definition                                                                                                                      |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| `table_name` | Name of the table where QuestDB will write data.                                                                                |
-| `tagset`     | Array of string key-value pairs separated by commas that represent the reading's associated metadata                            |
-| `values`     | Array of key-value pairs separated by commas that represent the readings. The keys are string, values can be numeric or boolean |
-| `timestamp`  | UNIX timestamp. By default in nanoseconds. Can be changed in the configuration                                                  |
+| Element      | Definition                                                                                                                          |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `table_name` | Name of the table where QuestDB will write data.                                                                                    |
+| `tagset`     | Array of string key-value pairs separated by commas that represent the reading's associated metadata                                |
+| `fieldset`   | Array of key-value pairs separated by commas that represent readings. The keys are string, values can be string, numeric or boolean |
+| `timestamp`  | UNIX timestamp. By default in nanoseconds. Can be changed in the configuration                                                      |
 
 ### Behaviour
 
@@ -117,7 +117,7 @@ the following template:
 ```bash
 # [key/user id] [key type] {key details} ...
 #
-testUser1	ec-p-256-sha256	fLKYEaoEb9lrn3nkwLDA-M_xnuFOdSt9y0Z7_vWSHLU	Dt5tbS1dEDMSYfym3fgMv0B99szno-dFc1rYF9t0aac
+testUser1 ec-p-256-sha256 fLKYEaoEb9lrn3nkwLDA-M_xnuFOdSt9y0Z7_vWSHLU Dt5tbS1dEDMSYfym3fgMv0B99szno-dFc1rYF9t0aac
 ```
 
 Only elliptic curve (for curve P-256) are supported (key type ec-p-256-sha256).
