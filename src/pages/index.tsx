@@ -235,7 +235,7 @@ const Logos = () => (
       <img
         alt="Toggle.global logo"
         className="responsive-image"
-        height={34}
+        height={16}
         src="/img/pages/customers/logos/toggle.svg"
         width={115}
       />
@@ -248,7 +248,7 @@ const Logos = () => (
       <img
         alt="Datron logo"
         className="responsive-image"
-        height={34}
+        height={24}
         src="/img/pages/customers/logos/datron.png"
         width={124}
       />
@@ -274,21 +274,8 @@ const Logos = () => (
       <img
         alt="Verizon logo"
         className="responsive-image"
-        height={34}
+        height={22}
         src="/img/pages/customers/logos/verizon.svg"
-        width={100}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.innova.com.tr/en"
-      variant="plain"
-    >
-      <img
-        alt="Innova logo"
-        className="responsive-image"
-        height={30}
-        src="/img/pages/customers/logos/innova.png"
         width={100}
       />
     </Button>
@@ -303,6 +290,19 @@ const Logos = () => (
         height={34}
         src="/img/pages/customers/logos/ably.svg"
         width={110}
+      />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.innova.com.tr/en"
+      variant="plain"
+    >
+      <img
+        alt="Innova logo"
+        className="responsive-image"
+        height={20}
+        src="/img/pages/customers/logos/innova.png"
+        width={100}
       />
     </Button>
     <Button
