@@ -23,12 +23,6 @@ Influx line protocol messages have the following syntax:
 table_name,tagset fieldset timestamp
 ```
 
-The following code snippet shows an example line protocol message:
-
-```shell
-sensors,location=london-1 temperature=22 1465839830100400200
-```
-
 The data of each row is serialized in a "pseudo-CSV" format where each line is
 composed of the following:
 
@@ -40,8 +34,13 @@ composed of the following:
 - an optional timestamp for the record
 
 A single line of text in line protocol format represents one table row QuestDB.
-Sending a record to QuestDB with the format above would insert the following row
-into the `sensors` table:
+Consider the following InfluxDB line protocol message:
+
+```shell title="Basic line protocol message"
+sensors,location=london-1 temperature=22 1465839830100400200
+```
+
+This would create a new row in the `sensors` table with the following contents:
 
 | location | temperature | timestamp           |
 | -------- | ----------- | ------------------- |
@@ -183,4 +182,12 @@ QuestDB can ingest line protocol packets both over TCP and UDP with the
 following defaults:
 
 - InfluxDB TCP listener on port `9009` by default
-- InfluxDB UDB listener on port `9009` by default
+- InfluxDB UDP listener on port `9009` by default
+
+For more details on configuring how QuestDB ingests InfluxDB line protocol
+messages, including setting alternative ports, refer to the following server
+configuration references:
+
+- [InfluxDB line protocol TCP configuration](/docs/reference/configuration/#influxdb-line-protocol-tcp)
+- [InfluxDB line protocol UDP configuration](/docs/reference/configuration/#influxdb-line-protocol-udp/)
+  .
