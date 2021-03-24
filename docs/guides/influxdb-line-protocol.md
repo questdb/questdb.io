@@ -17,7 +17,7 @@ refer to the [InfluxDB API reference](/docs/reference/api/influxdb/).
 
 ## Message format
 
-Influx line protocol messages have the following syntax:
+InfluxDB line protocol messages have the following syntax:
 
 ```shell
 table_name,tagset fieldset timestamp
