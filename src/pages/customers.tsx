@@ -47,6 +47,19 @@ const Customers = () => {
       <section className={clsx(seCss["section--inner"], loCss.logo)}>
         <Button
           className={loCss.logo__wrapper}
+          href="https://www.keplercheuvreux.com/en/"
+          variant="plain"
+        >
+          <img
+            alt="Kepler logo"
+            className="responsive-image"
+            height={34}
+            src="/img/pages/customers/logos/kepler.png"
+            width={140}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
           href="https://toggle.global/?utm_source=questdb"
           variant="plain"
         >
@@ -86,15 +99,15 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.innova.com.tr/en"
+          href="https://www.verizon.com/"
           variant="plain"
         >
           <img
-            alt="Innova logo"
+            alt="Verizon logo"
             className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/innova.png"
-            width={90}
+            height={22}
+            src="/img/pages/customers/logos/verizon.svg"
+            width={100}
           />
         </Button>
         <Button
@@ -108,6 +121,19 @@ const Customers = () => {
             height={34}
             src="/img/pages/customers/logos/ably.svg"
             width={117}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://www.innova.com.tr/en"
+          variant="plain"
+        >
+          <img
+            alt="Innova logo"
+            className="responsive-image"
+            height={30}
+            src="/img/pages/customers/logos/innova.png"
+            width={90}
           />
         </Button>
         <Button
@@ -134,19 +160,6 @@ const Customers = () => {
             height={24}
             src="/img/pages/customers/logos/biba.svg"
             width={63}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="https://trysavvy.com/"
-          variant="plain"
-        >
-          <img
-            alt="Savvy logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/savvy.png"
-            width={94}
           />
         </Button>
       </section>
