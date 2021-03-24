@@ -190,4 +190,3 @@ configuration references:
 
 - [InfluxDB line protocol TCP configuration](/docs/reference/configuration/#influxdb-line-protocol-tcp)
 - [InfluxDB line protocol UDP configuration](/docs/reference/configuration/#influxdb-line-protocol-udp/)
-  .
