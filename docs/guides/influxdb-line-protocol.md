@@ -188,5 +188,5 @@ For more details on configuring how QuestDB ingests InfluxDB line protocol
 messages, including setting alternative ports, refer to the following server
 configuration references:
 
-- [InfluxDB line protocol TCP configuration](/docs/reference/configuration/#influxdb-line-protocol-tcp/)
-- [InfluxDB line protocol UDP configuration](/docs/reference/configuration/#influxdb-line-protocol-udp/)
+- [InfluxDB line protocol TCP configuration](/docs/reference/configuration/#influxdb-line-protocol-tcp)
+- [InfluxDB line protocol UDP configuration](/docs/reference/configuration/#influxdb-line-protocol-udp)
