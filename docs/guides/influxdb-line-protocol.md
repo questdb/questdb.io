@@ -114,7 +114,7 @@ given column.
 :::info
 
 For details on the available data types in QuestDB, see the
-[data types reference](/docs/reference/sql/datatypes).
+[data types reference](/docs/reference/sql/datatypes/).
 
 :::
 
