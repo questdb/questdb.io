@@ -1,0 +1,27 @@
+.logo {
+  display: flex;
+  padding-bottom: 0;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.logo__wrapper {
+  display: flex;
+  padding: 1rem 0.5rem;
+  justify-content: center;
+  flex: 1 0 auto;
+  filter: brightness(0) invert(1);
+  transition: filter var(--ifm-transition-fast) ease-out;
+}
+
+.logo__wrapper:hover {
+  filter: none;
+}
+
+@media (max-width: 996px) {
+  .logo__wrapper {
+    min-width: 45%;
+    flex: 1;
+  }
+}

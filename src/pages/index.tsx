@@ -16,9 +16,9 @@ import juCss from "../css/index/jumbotron.module.css"
 import meCss from "../css/index/menu.module.css"
 import shCss from "../css/index/showcase.module.css"
 import usCss from "../css/index/usp.module.css"
+import cuCss from "../css/index/customer.module.css"
 import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
-import loCss from "../css/customers/logo.module.css"
 
 const FeatureTabs = () => {
   const [opened, setOpened] = useState<"digital" | "realtime" | "integration">(
@@ -212,125 +212,83 @@ const Integration = () => (
     </div>
   </section>
 )
-const Logos = () => (
-  <section className={(clsx(seCss.section), clsx(seCss["section--inner"]))}>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.keplercheuvreux.com/en/"
-      variant="plain"
-    >
-      <img
-        alt="Kepler logo"
-        className="responsive-image"
-        height={34}
-        src="/img/pages/customers/logos/kepler.png"
-        width={140}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://toggle.global/?utm_source=questdb"
-      variant="plain"
-    >
-      <img
-        alt="Toggle.global logo"
-        className="responsive-image"
-        height={16}
-        src="/img/pages/customers/logos/toggle.svg"
-        width={115}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.datron.com"
-      variant="plain"
-    >
-      <img
-        alt="Datron logo"
-        className="responsive-image"
-        height={24}
-        src="/img/pages/customers/logos/datron.png"
-        width={124}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.ycombinator.com/"
-      variant="plain"
-    >
-      <img
-        alt="YCombinator logo"
-        className="responsive-image"
-        height={34}
-        src="/img/pages/customers/logos/yc.png"
-        width={34}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.verizon.com/"
-      variant="plain"
-    >
-      <img
-        alt="Verizon logo"
-        className="responsive-image"
-        height={22}
-        src="/img/pages/customers/logos/verizon.svg"
-        width={100}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.ably.io/"
-      variant="plain"
-    >
-      <img
-        alt="Ably logo"
-        className="responsive-image"
-        height={34}
-        src="/img/pages/customers/logos/ably.svg"
-        width={110}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.innova.com.tr/en"
-      variant="plain"
-    >
-      <img
-        alt="Innova logo"
-        className="responsive-image"
-        height={20}
-        src="/img/pages/customers/logos/innova.png"
-        width={100}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.viesgo.com/en/"
-      variant="plain"
-    >
-      <img
-        alt="Viesgo logo"
-        className="responsive-image"
-        height={19}
-        src="/img/pages/customers/logos/viesgo.svg"
-        width={100}
-      />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.biba.uni-bremen.de/en.html"
-      variant="plain"
-    >
-      <img
-        alt="BIBA logo"
-        className="responsive-image"
-        height={24}
-        src="/img/pages/customers/logos/biba.svg"
-        width={63}
-      />
-    </Button>
+
+const Customers = () => (
+  <section className={clsx(seCss["section--flex-wrap"])}>
+    <div className={cuCss.logo}>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="Kepler logo"
+          className="responsive-image"
+          height={34}
+          src="/img/pages/customers/logos/kepler.png"
+          width={140}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="Toggle logo"
+          className="responsive-image"
+          height={16}
+          src="/img/pages/customers/logos/toggle.svg"
+          width={115}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="DATRON logo"
+          className="responsive-image"
+          height={24}
+          src="/img/pages/customers/logos/datron.png"
+          width={124}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="YCombinator logo"
+          className="responsive-image"
+          height={34}
+          src="/img/pages/customers/logos/yc.png"
+          width={34}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="Verizon logo"
+          className="responsive-image"
+          height={22}
+          src="/img/pages/customers/logos/verizon.svg"
+          width={100}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="Ably logo"
+          className="responsive-image"
+          height={34}
+          src="/img/pages/customers/logos/ably.svg"
+          width={110}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="Innova logo"
+          className="responsive-image"
+          height={20}
+          src="/img/pages/customers/logos/innova.png"
+          width={100}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="Viesgo logo"
+          className="responsive-image"
+          height={19}
+          src="/img/pages/customers/logos/viesgo.svg"
+          width={100}
+        />
+      </p>
+    </div>
   </section>
 )
 
@@ -339,7 +297,7 @@ const Top = () => {
 
   return (
     <section
-      className={clsx(seCss["section--inner"], seCss["section--accent"])}
+      className={clsx(seCss["section--inner"], seCss["section--showcase"])}
     >
       <div className={juCss.jumbotron}>
         <h1
@@ -920,7 +878,7 @@ const Home = () => {
       title={title}
     >
       <Top />
-      <Logos />
+      <Customers />
       <Usp />
       <Integration />
       <FeatureTabs />
