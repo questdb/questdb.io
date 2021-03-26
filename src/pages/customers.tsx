@@ -66,9 +66,9 @@ const Customers = () => {
           <img
             alt="Toggle.global logo"
             className="responsive-image"
-            height={16}
+            height={20}
             src="/img/pages/customers/logos/toggle.svg"
-            width={110}
+            width={115}
           />
         </Button>
         <Button
@@ -79,9 +79,9 @@ const Customers = () => {
           <img
             alt="Datron logo"
             className="responsive-image"
-            height={24}
+            height={20}
             src="/img/pages/customers/logos/datron.png"
-            width={124}
+            width={110}
           />
         </Button>
         <Button
@@ -106,7 +106,20 @@ const Customers = () => {
             alt="Verizon logo"
             className="responsive-image"
             height={22}
-            src="/img/pages/customers/logos/verizon.svg"
+            src="/img/pages/customers/logos/verizon.png"
+            width={110}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://www.innova.com.tr/en"
+          variant="plain"
+        >
+          <img
+            alt="Innova logo"
+            className="responsive-image"
+            height={20}
+            src="/img/pages/customers/logos/innova.png"
             width={100}
           />
         </Button>
@@ -118,21 +131,8 @@ const Customers = () => {
           <img
             alt="Ably logo"
             className="responsive-image"
-            height={34}
+            height={28}
             src="/img/pages/customers/logos/ably.svg"
-            width={117}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="https://www.innova.com.tr/en"
-          variant="plain"
-        >
-          <img
-            alt="Innova logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/innova.png"
             width={90}
           />
         </Button>
@@ -144,9 +144,9 @@ const Customers = () => {
           <img
             alt="Argus logo"
             className="responsive-image"
-            height={19}
+            height={30}
             src="/img/pages/customers/logos/argus.png"
-            width={100}
+            width={80}
           />
         </Button>
         <Button
@@ -157,9 +157,9 @@ const Customers = () => {
           <img
             alt="BIBA logo"
             className="responsive-image"
-            height={24}
+            height={19}
             src="/img/pages/customers/logos/biba.svg"
-            width={63}
+            width={60}
           />
         </Button>
       </section>

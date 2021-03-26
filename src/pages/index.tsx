@@ -216,87 +216,69 @@ const Integration = () => (
 const Customers = () => (
   <section className={clsx(seCss["section--slim"])}>
     <div className={cuCss.logo}>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="Kepler logo"
-          className={cuCss.logo__middle}
-          height={34}
-          src="/img/pages/customers/logos/kepler.png"
-          width={140}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="Toggle logo"
-          className={cuCss.logo__middle}
-          height={20}
-          src="/img/pages/customers/logos/toggle.svg"
-          width={115}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="DATRON logo"
-          className={cuCss.logo__middle}
-          height={24}
-          src="/img/pages/customers/logos/datron.png"
-          width={134}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="YCombinator logo"
-          className={cuCss.logo__middle}
-          height={34}
-          src="/img/pages/customers/logos/yc.png"
-          width={34}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="Verizon logo"
-          className={cuCss.logo__middle}
-          height={22}
-          src="/img/pages/customers/logos/verizon.svg"
-          width={110}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="Innova logo"
-          className={cuCss.logo__middle}
-          height={20}
-          src="/img/pages/customers/logos/innova.png"
-          width={100}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="Ably logo"
-          className={cuCss.logo__middle}
-          height={34}
-          src="/img/pages/customers/logos/ably.svg"
-          width={110}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="Argus logo"
-          className={cuCss.logo__middle}
-          height={30}
-          src="/img/pages/customers/logos/argus.png"
-          width={100}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="BIBA logo"
-          className={cuCss.logo__middle}
-          height={19}
-          src="/img/pages/customers/logos/biba.svg"
-          width={60}
-        />
-      </p>
+      <img
+        alt="Kepler logo"
+        className={cuCss.logo__item}
+        height={34}
+        src="/img/pages/customers/logos/kepler.png"
+        width={140}
+      />
+      <img
+        alt="Toggle logo"
+        className={cuCss.logo__item}
+        height={20}
+        src="/img/pages/customers/logos/toggle.svg"
+        width={115}
+      />
+      <img
+        alt="DATRON logo"
+        className={cuCss.logo__item}
+        height={20}
+        src="/img/pages/customers/logos/datron.png"
+        width={110}
+      />
+      <img
+        alt="YCombinator logo"
+        className={cuCss.logo__item}
+        height={34}
+        src="/img/pages/customers/logos/yc.png"
+        width={34}
+      />
+      <img
+        alt="Verizon logo"
+        className={cuCss.logo__item}
+        height={22}
+        src="/img/pages/customers/logos/verizon.png"
+        width={110}
+      />
+      <img
+        alt="Innova logo"
+        className={cuCss.logo__item}
+        height={20}
+        src="/img/pages/customers/logos/innova.png"
+        width={100}
+      />
+      <img
+        alt="Ably logo"
+        className={cuCss.logo__item}
+        height={28}
+        src="/img/pages/customers/logos/ably.svg"
+        width={90}
+      />
+      <img
+        alt="Argus logo"
+        className={cuCss.logo__item}
+        height={30}
+        src="/img/pages/customers/logos/argus.png"
+        width={80}
+      />
+      <img
+        alt="BIBA logo"
+        className={cuCss.logo__item}
+        height={19}
+        src="/img/pages/customers/logos/biba.svg"
+        width={60}
+      />
     </div>
   </section>
 )

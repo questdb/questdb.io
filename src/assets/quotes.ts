@@ -17,7 +17,7 @@ const quotes: Quote[] = [
     website: "https://www.verizon.com/",
     logo: {
       alt: "Verizon logo",
-      src: "/img/pages/customers/logos/verizon.svg",
+      src: "/img/pages/customers/logos/verizon.png",
       height: 22,
       width: 100,
     },
