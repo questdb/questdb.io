@@ -29,14 +29,11 @@
   justify-content: center;
 }
 
-.section--slim-flex-wrap {
-  display: flex;
+.section--slim {
   max-width: var(--ifm-container-width);
   margin: 0 auto;
   margin-bottom: 0;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+ }
 
 .section--slim--accent {
   --ifm-link-hover-color: var(--palette-pink);

@@ -214,12 +214,12 @@ const Integration = () => (
 )
 
 const Customers = () => (
-  <section className={clsx(seCss["section--slim-flex-wrap"])}>
+  <section className={clsx(seCss["section--slim"])}>
     <div className={cuCss.logo}>
       <p className={cuCss.logo__item}>
         <img
           alt="Kepler logo"
-          className="responsive-image"
+          className={cuCss.logo__middle}
           height={34}
           src="/img/pages/customers/logos/kepler.png"
           width={140}
@@ -228,7 +228,7 @@ const Customers = () => (
       <p className={cuCss.logo__item}>
         <img
           alt="Toggle logo"
-          className="responsive-image"
+          className={cuCss.logo__middle}
           height={20}
           src="/img/pages/customers/logos/toggle.svg"
           width={115}
@@ -237,7 +237,7 @@ const Customers = () => (
       <p className={cuCss.logo__item}>
         <img
           alt="DATRON logo"
-          className="responsive-image"
+          className={cuCss.logo__middle}
           height={24}
           src="/img/pages/customers/logos/datron.png"
           width={134}
@@ -246,7 +246,7 @@ const Customers = () => (
       <p className={cuCss.logo__item}>
         <img
           alt="YCombinator logo"
-          className="responsive-image"
+          className={cuCss.logo__middle}
           height={34}
           src="/img/pages/customers/logos/yc.png"
           width={34}
@@ -255,7 +255,7 @@ const Customers = () => (
       <p className={cuCss.logo__item}>
         <img
           alt="Verizon logo"
-          className="responsive-image"
+          className={cuCss.logo__middle}
           height={22}
           src="/img/pages/customers/logos/verizon.svg"
           width={110}
@@ -264,7 +264,7 @@ const Customers = () => (
       <p className={cuCss.logo__item}>
         <img
           alt="Innova logo"
-          className="responsive-image"
+          className={cuCss.logo__middle}
           height={20}
           src="/img/pages/customers/logos/innova.png"
           width={100}
@@ -273,7 +273,7 @@ const Customers = () => (
       <p className={cuCss.logo__item}>
         <img
           alt="Ably logo"
-          className="responsive-image"
+          className={cuCss.logo__middle}
           height={34}
           src="/img/pages/customers/logos/ably.svg"
           width={110}
@@ -281,17 +281,17 @@ const Customers = () => (
       </p>
       <p className={cuCss.logo__item}>
         <img
-          alt="Viesgo logo"
-          className="responsive-image"
-          height={19}
-          src="/img/pages/customers/logos/viesgo.svg"
+          alt="Argus logo"
+          className={cuCss.logo__middle}
+          height={30}
+          src="/img/pages/customers/logos/argus.png"
           width={100}
         />
       </p>
       <p className={cuCss.logo__item}>
         <img
           alt="BIBA logo"
-          className="responsive-image"
+          className={cuCss.logo__middle}
           height={19}
           src="/img/pages/customers/logos/biba.svg"
           width={60}

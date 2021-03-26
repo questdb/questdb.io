@@ -70,18 +70,18 @@ const quotes: Quote[] = [
     company: "Innova",
   },
   {
-    website: "https://www.counterflow.ai/",
+    website: "https://toggle.ai/",
     logo: {
-      alt: "Counterflow AI logo",
-      src: "/img/pages/customers/logos/counterflow.png",
-      height: 34,
-      width: 140,
+      alt: "Toggle logo",
+      src: "/img/pages/customers/logos/toggle.svg",
+      height: 18,
+      width: 88,
     },
     text:
-      "QuestDB is quite impressive and stands out as a superior option.  Our intent is to integrate it with our SaaS offering and contribute to the project.",
-    author: "Randy Caldejon",
-    role: "CEO",
-    company: "Counterflow AI",
+      "We switched from InfluxDB to QuestDB to get queries that are on average 300x faster utilizing 1/4 of the hardware, without ever overtaxing our servers.",
+    author: "Armenak Mayalian",
+    role: "CTO",
+    company: "Toggle",
   },
   {
     website: "https://www.samtec.com/",
@@ -96,20 +96,6 @@ const quotes: Quote[] = [
     author: "Nick Scolum",
     role: "Senior Software Engineer",
     company: "Samtec",
-  },
-  {
-    website: "https://razorpay.com/",
-    logo: {
-      alt: "Razorpay logo",
-      src: "/img/pages/customers/logos/razorpay.svg",
-      height: 24,
-      width: 113,
-    },
-    text:
-      "I am honestly impressed by the database’s performance and simplicity - we are thinking of moving some of our real time workloads to QuestDB.",
-    author: "Venkatesan Vaidhyanathan",
-    role: "Senior Technical Architect",
-    company: "Razorpay",
   },
   {
     website: "https://chainslayer.io/",
@@ -138,6 +124,20 @@ const quotes: Quote[] = [
     author: "Marc Recht",
     role: "CTO",
     company: "FORRS Partners",
+  },
+  {
+    website: "https://www.counterflow.ai/",
+    logo: {
+      alt: "Counterflow AI logo",
+      src: "/img/pages/customers/logos/counterflow.png",
+      height: 34,
+      width: 140,
+    },
+    text:
+      "QuestDB is quite impressive and stands out as a superior option.  Our intent is to integrate it with our SaaS offering and contribute to the project.",
+    author: "Randy Caldejon",
+    role: "CEO",
+    company: "Counterflow AI",
   },
 ]
 

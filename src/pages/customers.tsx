@@ -138,15 +138,15 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.viesgo.com/en/"
+          href="https://www.arguscontrols.com/"
           variant="plain"
         >
           <img
-            alt="Viesgo logo"
+            alt="Argus logo"
             className="responsive-image"
             height={19}
-            src="/img/pages/customers/logos/viesgo.svg"
-            width={130}
+            src="/img/pages/customers/logos/argus.png"
+            width={100}
           />
         </Button>
         <Button
