@@ -306,7 +306,7 @@ const Top = () => {
 
   return (
     <section
-      className={clsx(seCss["section--inner"], seCss["section--accent"])}
+      className={clsx(seCss["section--inner"], seCss["section--slim--accent"])}
     >
       <div className={juCss.jumbotron}>
         <h1
