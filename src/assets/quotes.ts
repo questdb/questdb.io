@@ -14,6 +14,34 @@ type Quote = {
 
 const quotes: Quote[] = [
   {
+    website: "https://www.verizon.com/",
+    logo: {
+      alt: "Verizon logo",
+      src: "/img/pages/customers/logos/verizon.svg",
+      height: 22,
+      width: 100,
+    },
+    text:
+      "Verizon Media serves close to a billion users, at a rate of 500,000 queries per second. We use QuestDB embedded within our Vespa engine for search, recommendation, and personalization uses cases where we monitor metrics used to make autoscaling decisions.",
+    author: "Jon Bratseth",
+    role: "VP Architect",
+    company: "Verizon Media",
+  },
+  {
+    website: "https://www.keplercheuvreux.com/en/",
+    logo: {
+      alt: "Kepler logo",
+      src: "/img/pages/customers/logos/kepler.png",
+      height: 34,
+      width: 140,
+    },
+    text:
+      "When we set out to design the next generation of our execution platform, one requirement was large-scale model calibration based on real-time market data streams. QuestDB allows us to derive quick insights on live and historical data that would not be achievable with other open source time series databases.",
+    author: "Jean-Francois Perreton",
+    role: "Head of Algo Quant",
+    company: "Kepler Cheuvreux",
+  },
+  {
     website: "https://www.innova.com.tr/en/about-us/about-innova",
     logo: {
       alt: "Innova logo",
@@ -26,6 +54,20 @@ const quotes: Quote[] = [
     author: "Erdem Aydemir",
     role: "Software Engineer",
     company: "Innova",
+  },
+  {
+    website: "https://www.counterflow.ai/",
+    logo: {
+      alt: "Counterflow AI logo",
+      src: "/img/pages/customers/logos/counterflow.png",
+      height: 34,
+      width: 140,
+    },
+    text:
+      "QuestDB is quite impressive and stands out as a superior option.  Our intent is to integrate it with our SaaS offering and contribute to the project.",
+    author: "Randy Caldejon",
+    role: "CEO",
+    company: "Counterflow AI",
   },
   {
     website: "https://www.samtec.com/",

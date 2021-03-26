@@ -29,6 +29,15 @@
   justify-content: center;
 }
 
+.section--slim-flex-wrap {
+  display: flex;
+  max-width: var(--ifm-container-width);
+  margin: 0 auto;
+  margin-bottom: 0rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .section--center {
   display: flex;
   flex-direction: column;

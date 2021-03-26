@@ -214,7 +214,7 @@ const Integration = () => (
 )
 
 const Customers = () => (
-  <section className={clsx(seCss["section--flex-wrap"])}>
+  <section className={clsx(seCss["section--slim-flex-wrap"])}>
     <div className={cuCss.logo}>
       <p className={cuCss.logo__item}>
         <img
@@ -229,7 +229,7 @@ const Customers = () => (
         <img
           alt="Toggle logo"
           className="responsive-image"
-          height={16}
+          height={20}
           src="/img/pages/customers/logos/toggle.svg"
           width={115}
         />
@@ -240,7 +240,7 @@ const Customers = () => (
           className="responsive-image"
           height={24}
           src="/img/pages/customers/logos/datron.png"
-          width={124}
+          width={134}
         />
       </p>
       <p className={cuCss.logo__item}>
@@ -258,15 +258,6 @@ const Customers = () => (
           className="responsive-image"
           height={22}
           src="/img/pages/customers/logos/verizon.svg"
-          width={100}
-        />
-      </p>
-      <p className={cuCss.logo__item}>
-        <img
-          alt="Ably logo"
-          className="responsive-image"
-          height={34}
-          src="/img/pages/customers/logos/ably.svg"
           width={110}
         />
       </p>
@@ -281,11 +272,29 @@ const Customers = () => (
       </p>
       <p className={cuCss.logo__item}>
         <img
+          alt="Ably logo"
+          className="responsive-image"
+          height={34}
+          src="/img/pages/customers/logos/ably.svg"
+          width={110}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
           alt="Viesgo logo"
           className="responsive-image"
           height={19}
           src="/img/pages/customers/logos/viesgo.svg"
           width={100}
+        />
+      </p>
+      <p className={cuCss.logo__item}>
+        <img
+          alt="BIBA logo"
+          className="responsive-image"
+          height={19}
+          src="/img/pages/customers/logos/biba.svg"
+          width={60}
         />
       </p>
     </div>
@@ -297,7 +306,7 @@ const Top = () => {
 
   return (
     <section
-      className={clsx(seCss["section--inner"], seCss["section--showcase"])}
+      className={clsx(seCss["section--inner"], seCss["section--accent"])}
     >
       <div className={juCss.jumbotron}>
         <h1
