@@ -1,9 +1,9 @@
 ---
 title: Version 6.0 migration
 description:
-  This document details breaking changes that come into effect with the release
-  of version 6.0 of QuestDB with details on automatic migrations and instruction
-  for reverting to older versions.
+  This document describes details about automatic upgrades with QuestDB version
+  6.0 and instructions for manually reverting tables for compatibility with
+  earlier QuestDB versions.
 ---
 
 Release 6.0 introduces breaking changes in table transaction files. An automated
