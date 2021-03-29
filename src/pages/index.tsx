@@ -217,6 +217,13 @@ const Customers = () => (
   <section className={clsx(seCss["section--slim"])}>
     <div className={cuCss.logo}>
       <img
+        alt="DATRON logo"
+        className={cuCss.logo__item}
+        height={20}
+        src="/img/pages/customers/logos/datron.png"
+        width={110}
+      />
+      <img
         alt="Kepler logo"
         className={cuCss.logo__item}
         height={34}
@@ -224,17 +231,10 @@ const Customers = () => (
         width={140}
       />
       <img
-        alt="Toggle logo"
+        alt="Verizon logo"
         className={cuCss.logo__item}
-        height={20}
-        src="/img/pages/customers/logos/toggle.svg"
-        width={115}
-      />
-      <img
-        alt="DATRON logo"
-        className={cuCss.logo__item}
-        height={20}
-        src="/img/pages/customers/logos/datron.png"
+        height={22}
+        src="/img/pages/customers/logos/verizon.png"
         width={110}
       />
       <img
@@ -245,11 +245,11 @@ const Customers = () => (
         width={34}
       />
       <img
-        alt="Verizon logo"
+        alt="Toggle logo"
         className={cuCss.logo__item}
-        height={22}
-        src="/img/pages/customers/logos/verizon.png"
-        width={110}
+        height={20}
+        src="/img/pages/customers/logos/toggle.svg"
+        width={115}
       />
       <img
         alt="Innova logo"
