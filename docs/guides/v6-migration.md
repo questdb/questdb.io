@@ -38,8 +38,8 @@ tables by following these steps:
 
 ### Table downgrade example
 
-This section illustrates how to revert transaction files to use a format used by
-QuestDB versions prior to 6.0. Given storage directories for two table
+This section illustrates how to revert transaction files to a format used by
+QuestDB versions earlier than 6.0. Given storage directories for two table
 `example_table` and `sensors`:
 
 ```bash title="path/to/qdb"
