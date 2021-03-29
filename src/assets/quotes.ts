@@ -36,7 +36,7 @@ const quotes: Quote[] = [
       width: 140,
     },
     text:
-      "When we set out to design the next generation of our execution platform, one requirement was large-scale model calibration based on real-time market data streams. QuestDB allows us to derive quick insights on live and historical data that would not be achievable with other open source time series databases.",
+      "Our requirement was large-scale model calibration based on real-time market data streams. QuestDB allows us to derive quick insights on live and historical data that would not be achievable with other open source time series databases.",
     author: "Jean-Francois Perreton",
     role: "Head of Algo Quant",
     company: "Kepler Cheuvreux",
