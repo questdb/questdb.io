@@ -266,11 +266,11 @@ const Customers = () => (
         width={90}
       />
       <img
-        alt="Argus logo"
+        alt="Insurance Information Institute logo"
         className={cuCss.logo__item}
-        height={30}
-        src="/img/pages/customers/logos/argus.png"
-        width={80}
+        height={20}
+        src="/img/pages/customers/logos/iii.png"
+        width={140}
       />
       <img
         alt="BIBA logo"

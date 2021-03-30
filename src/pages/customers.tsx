@@ -47,6 +47,19 @@ const Customers = () => {
       <section className={clsx(seCss["section--inner"], loCss.logo)}>
         <Button
           className={loCss.logo__wrapper}
+          href="https://www.datron.com"
+          variant="plain"
+        >
+          <img
+            alt="Datron logo"
+            className="responsive-image"
+            height={20}
+            src="/img/pages/customers/logos/datron.png"
+            width={110}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
           href="https://www.keplercheuvreux.com/en/"
           variant="plain"
         >
@@ -60,27 +73,14 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://toggle.global/?utm_source=questdb"
+          href="https://www.verizon.com/"
           variant="plain"
         >
           <img
-            alt="Toggle.global logo"
+            alt="Verizon logo"
             className="responsive-image"
-            height={20}
-            src="/img/pages/customers/logos/toggle.svg"
-            width={115}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="https://www.datron.com"
-          variant="plain"
-        >
-          <img
-            alt="Datron logo"
-            className="responsive-image"
-            height={20}
-            src="/img/pages/customers/logos/datron.png"
+            height={22}
+            src="/img/pages/customers/logos/verizon.png"
             width={110}
           />
         </Button>
@@ -99,15 +99,15 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.verizon.com/"
+          href="https://toggle.global/?utm_source=questdb"
           variant="plain"
         >
           <img
-            alt="Verizon logo"
+            alt="Toggle.global logo"
             className="responsive-image"
-            height={22}
-            src="/img/pages/customers/logos/verizon.png"
-            width={110}
+            height={20}
+            src="/img/pages/customers/logos/toggle.svg"
+            width={115}
           />
         </Button>
         <Button
@@ -138,15 +138,15 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.arguscontrols.com/"
+          href="https://www.iii.org/"
           variant="plain"
         >
           <img
-            alt="Argus logo"
+            alt="Insurance Information Institute logo"
             className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/argus.png"
-            width={80}
+            height={41}
+            src="/img/pages/customers/logos/iii.png"
+            width={140}
           />
         </Button>
         <Button
