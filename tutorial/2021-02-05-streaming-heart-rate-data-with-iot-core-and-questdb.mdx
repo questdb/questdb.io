@@ -10,13 +10,15 @@ featured: true
 
 import Banner from "@theme/Banner"
 
-<Banner alt="Rasppberry Pi devices on a workbench used in an IoT project" height={433} src="/img/tutorial/2021-02-05/banner.jpg" width={650}>
-Photo by{" "}
-  <a href="https://unsplash.com/@_louisreed">Louis Reed
-</a>{" "}
-  via <a href="https://unsplash.com">Unsplash</a>
+<Banner
+  alt="Rasppberry Pi devices on a workbench used in an IoT project"
+  height={433}
+  src="/img/tutorial/2021-02-05/banner.jpg"
+  width={650}
+>
+  Photo by <a href="https://unsplash.com/@_louisreed">Louis Reed</a> via{" "}
+  <a href="https://unsplash.com">Unsplash</a>
 </Banner>
-
 
 This submission comes from one of our community contributors
 [Yitaek Hwang](https://github.com/Yitaek) who has put together a nice guide for
@@ -47,10 +49,10 @@ import Screenshot from "@theme/Screenshot"
 Although Cloud Dataflow supports streaming inserts to BigQuery, I wanted to take
 this opportunity to try out a new time-series database I came across called
 QuestDB. QuestDB is a fast open-source time-series database with Postgres and
-Influx line protocol compatibility. The [live demo]({@demoUrl@})
-on the website queries the NYC taxi rides dataset with over 1.6 billion rows in
-milliseconds, so I was excited to give this database a try. To round out the
-end-to-end demo, I used Grafana to pull and visualize data from QuestDB.
+Influx line protocol compatibility. The [live demo]({@demoUrl@}) on the website
+queries the NYC taxi rides dataset with over 1.6 billion rows in milliseconds,
+so I was excited to give this database a try. To round out the end-to-end demo,
+I used Grafana to pull and visualize data from QuestDB.
 
 <Screenshot
   alt="A diagram showing a Raspberry Pi sending data to QuestDB via Google Cloud Platform services"

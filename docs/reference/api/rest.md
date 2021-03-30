@@ -10,8 +10,7 @@ and is compatible with most programming languages. API functions are fully keyed
 on the URL and they use query parameters as their arguments.
 
 The Web Console is the official Web client relying on the REST API. Find out
-more in the section
-[using the Web Console](/docs/reference/client/web-console/).
+more in the section [using the Web Console](/docs/reference/web-console/).
 
 **Available methods**
 

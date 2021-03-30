@@ -15,8 +15,14 @@ tags: [story]
 
 import Banner from "@theme/Banner"
 
-<Banner alt="An open lock with its key attached to it." height={433} src="/img/blog/2020-11-26/banner.jpg" width={650}>
-  Photo by <a href="https://unsplash.com/photos/uCMKx2H1Y38">AbsolutVision</a> on <a href="https://unsplash.com">Unsplash</a>
+<Banner
+  alt="An open lock with its key attached to it."
+  height={433}
+  src="/img/blog/2020-11-26/banner.jpg"
+  width={650}
+>
+  Photo by <a href="https://unsplash.com/photos/uCMKx2H1Y38">AbsolutVision</a>{" "}
+  on <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
 Like all good superheroes, every company has its own origin story explaining why

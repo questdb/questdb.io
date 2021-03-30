@@ -106,7 +106,7 @@ on the [health monitoring page](/docs/operations/health-monitoring/).
 
 This section describes configuration settings for the Web Console available by
 default on port `9000`. For details on the use of this component, refer to the
-[web console documentation](/docs/reference/client/web-console/) page.
+[web console documentation](/docs/reference/web-console/) page.
 
 | Property                                       | Default        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ---------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

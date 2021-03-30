@@ -96,8 +96,8 @@ Full examples using this statement in multiple languages can be found on the
 ## Error prevention when disk full
 
 Even better than good error reporting is error prevention! This fix enhances the
-the resilience of the system by preventing data loss in QuestDB instances if
-disk space unexpectedly runs out.
+resilience of the system by preventing data loss in QuestDB instances if disk
+space unexpectedly runs out.
 
 ## See the full release
 
@@ -105,7 +105,7 @@ These have been our top picks from the 5.0.6 release which cover what our users
 have been most excited about recently but there are a lot more changes that have
 been omitted here. For a full list of the fixes, features and improvements that
 we've added, take a look
-[on the GitHub Release](https://github.com/questdb/questdb/releases/tag/5.0.6).
+[at the GitHub Release](https://github.com/questdb/questdb/releases/tag/5.0.6).
 
 If you like our new additions or have a burning suggestion for upcoming changes,
 we'd love to know your thoughts! Feel free to share your feedback

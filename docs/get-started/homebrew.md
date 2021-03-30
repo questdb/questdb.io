@@ -31,4 +31,5 @@ questdb uninstall
 ## Next steps
 
 Once you installed the QuestDB with Homebrew, you can navigate to our
-[CLI](/docs/reference/client/cli/) page to learn more about its usage.
+[command-line options](/docs/reference/command-line-options/) page to learn more
+about its usage.

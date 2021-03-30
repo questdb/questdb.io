@@ -193,7 +193,6 @@ public class App {
 
 <TabItem value="csharp">
 
-
 ```csharp
 using Npgsql;
 string username = "admin";
@@ -271,6 +270,7 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
   { label: "Go", value: "go" },
 ]}>
 
@@ -310,6 +310,28 @@ async function run() {
 }
 
 run()
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import requests
+import json
+
+host = 'http://localhost:9000'
+
+sql_query = "select * from long_sequence(10)"
+
+try:
+  response = requests.post(host + '/exec', params={'query': sql_query})
+  json_response = json.loads(response.text)
+  rows = json_response['dataset']
+  for row in rows:
+    print(row[0])
+except requests.exceptions.RequestException as e:
+  print("Error: %s" % (e))
 ```
 
 </TabItem>
@@ -377,5 +399,4 @@ my_table;
 Aside from the Code Editor, the Web Console includes a Visualization panel for
 viewing query results as tables or graphs and an Import tab for uploading
 datasets as CSV files. For more details on these components and general use of
-the console, see the
-[Web Console reference](/docs/reference/client/web-console/) page.
+the console, see the [Web Console reference](/docs/reference/web-console/) page.

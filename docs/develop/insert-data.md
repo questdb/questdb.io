@@ -28,7 +28,7 @@ using either [Docker](/docs/get-started/docker/), the
 QuestDB implements InfluxDB line protocol which is accessible by default on TCP
 port `9009`. This allows using QuestDB as a drop-in replacement for InfluxDB and
 others implementing the protocol. Configuration settings for ingestion using
-this protocol can be set for for
+this protocol can be set for
 [Influx line over TCP](/docs/reference/configuration#influxdb-line-protocol-tcp)
 and
 [Influx line over UDP](/docs/reference/configuration#influxdb-line-protocol-udp).
@@ -44,7 +44,7 @@ this protocol can be found on the
 
 The following examples add a timestamp property to each line protocol message.
 This property is optional and can be omitted to allow the server to
-automatically assign the the server's system time as the row's timestamp value.
+automatically assign the server's system time as the row's timestamp value.
 
 :::
 
@@ -583,6 +583,7 @@ import TabItem from "@theme/TabItem"
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
   { label: "Go", value: "go" },
 ]}>
 
@@ -641,6 +642,23 @@ async function run() {
 }
 
 run()
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import requests
+
+csv = {'data': ('my_table', open('./data.csv', 'r'))}
+host = 'http://localhost:9000'
+
+try:
+  response = requests.post(host + '/imp', files=csv)
+  print(response.text)
+except requests.exceptions.RequestException as e:
+  print("Error: %s" % (e))
 ```
 
 </TabItem>
@@ -717,6 +735,7 @@ Alternatively, the `/exec` endpoint can be used to create a table and the
 <Tabs defaultValue="curl" values={[
   { label: "cURL", value: "curl" },
   { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
   { label: "Go", value: "go" },
 ]}>
 
@@ -793,6 +812,31 @@ insertData()
 
 </TabItem>
 
+<TabItem value="python">
+
+```python
+import requests
+import json
+
+host = 'http://localhost:9000'
+
+def run_query(sql_query):
+  query_params = {'query': sql_query, 'fmt' : 'json'}
+  try:
+    response = requests.post(host + '/exec', params=query_params)
+    json_response = json.loads(response.text)
+    print(json_response)
+  except requests.exceptions.RequestException as e:
+    print("Error: %s" % (e))
+
+# create table
+run_query("CREATE TABLE IF NOT EXISTS trades (name STRING, value INT);")
+# insert row
+run_query("INSERT INTO trades VALUES('abc', 123456);")
+```
+
+</TabItem>
+
 <TabItem value="go">
 
 ```go
@@ -854,4 +898,4 @@ http://[server-address]:9000. When running locally, this is accessible at
 [http://localhost:9000](http://localhost:9000). The Web Console can be used to
 explore table schemas, visualizing query results as tables or graphs, and
 importing datasets from CSV files. For details on these components, refer to the
-[Web Console reference](/docs/reference/client/web-console/) page.
+[Web Console reference](/docs/reference/web-console/) page.

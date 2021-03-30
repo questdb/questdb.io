@@ -14,20 +14,6 @@ type Quote = {
 
 const quotes: Quote[] = [
   {
-    website: "https://www.datron.com/",
-    logo: {
-      alt: "Datron logo",
-      src: "/img/pages/customers/logos/datron.png",
-      height: 19,
-      width: 100,
-    },
-    text:
-      "With QuestDB's turnkey solution in Docker, we quickly built a solid foundation for a data acquisition pipeline with billions of measurements.",
-    author: "Andreas Landmann",
-    role: "Director of Research and Technology",
-    company: "DATRON AG",
-  },
-  {
     website: "https://www.innova.com.tr/en/about-us/about-innova",
     logo: {
       alt: "Innova logo",
@@ -96,6 +82,20 @@ const quotes: Quote[] = [
     author: "Marc Recht",
     role: "CTO",
     company: "FORRS Partners",
+  },
+  {
+    website: "https://www.datron.com/",
+    logo: {
+      alt: "Datron logo",
+      src: "/img/pages/customers/logos/datron.png",
+      height: 19,
+      width: 100,
+    },
+    text:
+      "With QuestDB's turnkey solution in Docker, we quickly built a solid foundation for a data acquisition pipeline with billions of measurements.",
+    author: "Andreas Landmann",
+    role: "Director of Research and Technology",
+    company: "DATRON AG",
   },
 ]
 

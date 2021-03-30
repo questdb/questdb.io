@@ -65,12 +65,20 @@ module.exports = {
       ],
     },
     {
+      label: "Guides",
+      type: "category",
+      items: [
+        "guides/importing-data",
+        "guides/influxdb-line-protocol",
+      ],
+    },
+    {
       label: "Third-party Tools",
       type: "category",
       items: [
         "third-party-tools/grafana",
         "third-party-tools/kafka",
-        "third-party-tools/telegraf"
+        "third-party-tools/telegraf",
       ],
     },
     {
@@ -80,7 +88,7 @@ module.exports = {
         "operations/capacity-planning",
         "operations/deployment",
         "operations/data-retention",
-        "operations/health-monitoring"
+        "operations/health-monitoring",
       ],
     },
     {
@@ -97,11 +105,7 @@ module.exports = {
             "reference/api/java-embedded",
           ],
         },
-        {
-          type: "category",
-          label: "Clients",
-          items: ["reference/client/cli", "reference/client/web-console"],
-        },
+        "reference/command-line-options",
         {
           id: "reference/configuration",
           type: "doc",
@@ -165,6 +169,7 @@ module.exports = {
             "reference/sql/with",
           ],
         },
+        "reference/web-console",
       ],
     },
   ].filter(Boolean),

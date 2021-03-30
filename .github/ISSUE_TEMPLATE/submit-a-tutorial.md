@@ -1,10 +1,9 @@
 ---
 name: Submit a tutorial
 about: Submit a new QuestDB tutorial or guide!
-title: 'Tutorial Topic'
-labels: 'Tutorial'
-assignees: ''
-
+title: "Tutorial Topic"
+labels: "Tutorial"
+assignees: ""
 ---
 
 <!--
@@ -24,12 +23,13 @@ Examples:
 
 > I would like to write a tutorial that shows how to use QuestDB:
 >
-> * "for storing IoT sensor data..."
-> * "for creating data visualizations..."
-> * "with an ML library..."
-> * "for monitoring an application..."
+> - "for storing IoT sensor data..."
+> - "for creating data visualizations..."
+> - "with an ML library..."
+> - "for monitoring an application..."
 
-Are there any particular tools, concepts, languages or platforms that readers will learn about?
+Are there any particular tools, concepts, languages or platforms that readers
+will learn about?
 
 💡 ...
 
@@ -37,5 +37,4 @@ Are there any particular tools, concepts, languages or platforms that readers wi
 
 Please leave your feedback on this tutorial
 
-👍 I need this!
-🚀 I can help you!
+👍 I need this! 🚀 I can help you!

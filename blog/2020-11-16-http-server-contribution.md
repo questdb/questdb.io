@@ -13,8 +13,14 @@ tags: [community-written]
 
 import Banner from "@theme/Banner"
 
-<Banner alt="Close-up on a dark computer keyboard." height={391} src="/img/blog/2020-11-26/banner.jpg" width={650}>
-  Photo by <a href="https://unsplash.com/photos/1osIUArK5oA">Florian Krumm</a> on <a href="https://unsplash.com">Unsplash</a>
+<Banner
+  alt="Close-up on a dark computer keyboard."
+  height={391}
+  src="/img/blog/2020-11-26/banner.jpg"
+  width={650}
+>
+  Photo by <a href="https://unsplash.com/photos/1osIUArK5oA">Florian Krumm</a>{" "}
+  on <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
 I have recently made a sizable contribution to QuestDB’s code and wanted to

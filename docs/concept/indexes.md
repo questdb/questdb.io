@@ -56,7 +56,7 @@ Table                                       Index
 ### Advantages
 
 Index allows you to greatly reduce the complexity of queries that span a subset
-of an indexed column, typically when using WHERE clauses.
+of an indexed column, typically when using `WHERE` clauses.
 
 Consider the following query applied to the above table
 `SELECT sum(Value) FROM Table WHERE Symbol='A';`
