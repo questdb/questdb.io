@@ -16,6 +16,7 @@ import juCss from "../css/index/jumbotron.module.css"
 import meCss from "../css/index/menu.module.css"
 import shCss from "../css/index/showcase.module.css"
 import usCss from "../css/index/usp.module.css"
+import cuCss from "../css/index/customer.module.css"
 import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
 
@@ -212,12 +213,82 @@ const Integration = () => (
   </section>
 )
 
+const Customers = () => (
+  <section className={clsx(seCss["section--slim"])}>
+    <div className={cuCss.logo}>
+      <img
+        alt="DATRON logo"
+        className={cuCss.logo__item}
+        height={20}
+        src="/img/pages/customers/logos/datron.png"
+        width={110}
+      />
+      <img
+        alt="Kepler logo"
+        className={cuCss.logo__item}
+        height={34}
+        src="/img/pages/customers/logos/kepler.png"
+        width={140}
+      />
+      <img
+        alt="Verizon logo"
+        className={cuCss.logo__item}
+        height={22}
+        src="/img/pages/customers/logos/verizon.png"
+        width={110}
+      />
+      <img
+        alt="YCombinator logo"
+        className={cuCss.logo__item}
+        height={34}
+        src="/img/pages/customers/logos/yc.png"
+        width={34}
+      />
+      <img
+        alt="Toggle logo"
+        className={cuCss.logo__item}
+        height={20}
+        src="/img/pages/customers/logos/toggle.svg"
+        width={115}
+      />
+      <img
+        alt="Innova logo"
+        className={cuCss.logo__item}
+        height={20}
+        src="/img/pages/customers/logos/innova.png"
+        width={100}
+      />
+      <img
+        alt="Ably logo"
+        className={cuCss.logo__item}
+        height={28}
+        src="/img/pages/customers/logos/ably.svg"
+        width={90}
+      />
+      <img
+        alt="Insurance Information Institute logo"
+        className={cuCss.logo__item}
+        height={20}
+        src="/img/pages/customers/logos/iii.png"
+        width={140}
+      />
+      <img
+        alt="BIBA logo"
+        className={cuCss.logo__item}
+        height={19}
+        src="/img/pages/customers/logos/biba.svg"
+        width={60}
+      />
+    </div>
+  </section>
+)
+
 const Top = () => {
   const { siteConfig } = useDocusaurusContext()
 
   return (
     <section
-      className={clsx(seCss["section--inner"], seCss["section--accent"])}
+      className={clsx(seCss["section--inner"], seCss["section--slim--accent"])}
     >
       <div className={juCss.jumbotron}>
         <h1
@@ -798,6 +869,7 @@ const Home = () => {
       title={title}
     >
       <Top />
+      <Customers />
       <Usp />
       <Integration />
       <FeatureTabs />

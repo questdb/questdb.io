@@ -29,6 +29,20 @@
   justify-content: center;
 }
 
+.section--slim {
+  max-width: var(--ifm-container-width);
+  margin: 0 auto;
+  margin-bottom: 0;
+ }
+
+.section--slim--accent {
+  --ifm-link-hover-color: var(--palette-pink);
+  --ifm-link-color: var(--palette-pink);
+  padding-top: 7rem;
+  padding-bottom: 1.5rem;
+}
+
+
 .section--center {
   display: flex;
   flex-direction: column;
