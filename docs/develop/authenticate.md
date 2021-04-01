@@ -28,9 +28,7 @@ import TabItem from "@theme/TabItem"
   { label: "Go", value: "go" },
 ]}>
 
-
 <TabItem value="nodejs">
-
 
 ```javascript
 const { Socket } = require("net")
@@ -128,9 +126,7 @@ run()
 
 </TabItem>
 
-
 <TabItem value="go">
-
 
 ```go
 package main
@@ -206,6 +202,5 @@ func checkErr(err error) {
 ```
 
 </TabItem>
-
 
 </Tabs>

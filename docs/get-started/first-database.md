@@ -65,7 +65,7 @@ functions, please refer to the
 [row generator](/docs/reference/function/row-generator/) pages.
 
 Our `sensors` table now contains 10,000 randomly generated sensor values of
-different makes and in various cities. It should look like the below:
+different makes and in various cities. It should look like the table below:
 
 | ID  | make              | city     |
 | --- | ----------------- | -------- |
@@ -75,8 +75,8 @@ different makes and in various cities. It should look like the below:
 | 4   | Honeywell         | Chicago  |
 | ... | ...               | ...      |
 
-Let's now create some sensor readings. In this case, we will generate the table
-and the data at the same time:
+Let's now create some sensor readings. In this case, we will create the table
+and generate the data at the same time:
 
 ```questdb-sql title="Create table as"
 CREATE TABLE readings
@@ -91,15 +91,15 @@ TIMESTAMP(ts)
 PARTITION BY MONTH;
 ```
 
-While creating this table, we did the following:
+The query above demonstrates how to use the following features:
 
-- `TIMESTAMP(ts)` elected `ts` as
-  [designated timestamp](/docs/concept/designated-timestamp/). This will enable
-  time partitioning.
-- `PARTITION BY MONTH` created a monthly partition strategy. Our data will be
-  sharded in monthly files.
+- `TIMESTAMP(ts)` elects the `ts` column as a
+  [designated timestamp](/docs/concept/designated-timestamp/). This enables
+  partitioning tables by time.
+- `PARTITION BY MONTH` creates a monthly partitioning strategy where the stored
+  data is effectively sharded by month.
 
-The generated data will look like the below:
+The generated data will look like the following:
 
 | ID  | ts                          | temp        | sensorId |
 | --- | --------------------------- | ----------- | -------- |
@@ -112,8 +112,8 @@ The generated data will look like the below:
 
 ## Running queries
 
-Let's first select all records from the `readings` table (note the omission of
-`SELECT * FROM`):
+Let's select all records from the `readings` table (note that `SELECT * FROM` is
+optional in QuestDB):
 
 ```questdb-sql
 readings;
@@ -135,9 +135,9 @@ and the average reading:
 SELECT avg(temp) FROM readings;
 ```
 
-| average |
-| ------- |
-| 18.997  |
+| average         |
+| --------------- |
+| 18.999217780895 |
 
 We can now leverage our `sensors` table to get more interesting data:
 
@@ -150,61 +150,57 @@ JOIN(
 ON readings.sensorId = sensId;
 ```
 
-Results should look like the data below:
+The results should look like the table below:
 
-| ID  | ts                          | temp        | sensorId | sensId | make              | city          |
-| --- | --------------------------- | ----------- | -------- | ------ | ----------------- | ------------- |
-| 1   | 2019-10-17T00:00:00.000000Z | 19.37373911 | 9160     | 9160   | RS Pro            | Boston        |
-| 2   | 2019-10-17T00:00:00.600000Z | 21.91184617 | 9671     | 9671   | United Automation | New York      |
-| 3   | 2019-10-17T00:00:01.400000Z | 16.58367834 | 8731     | 8731   | Honeywell         | Miami         |
-| 4   | 2019-10-17T00:00:01.500000Z | 16.69308815 | 3447     | 3447   | United Automation | Miami         |
-| 5   | 2019-10-17T00:00:01.600000Z | 19.67991569 | 7985     | 7985   | Eberle            | San Francisco |
-| 6   | 2019-10-17T00:00:01.600000Z | 15.39514039 | 4230     | 4230   | United Automation | Chicago       |
-| 7   | 2019-10-17T00:00:02.100000Z | 15.06719566 | 2829     | 2829   | Honeywell         | New York      |
-| ... | ...                         | ...         | ...      | ...    | ...               | ...           |
+| ID  | ts                          | temp            | sensorId | sensId | make      | city          |
+| --- | --------------------------- | --------------- | -------- | ------ | --------- | ------------- |
+| 1   | 2019-10-17T00:00:00.000000Z | 16.472200460982 | 3211     | 3211   | Omron     | New York      |
+| 2   | 2019-10-17T00:00:00.100000Z | 16.598432033599 | 2319     | 2319   | Honeywell | San Francisco |
+| 3   | 2019-10-17T00:00:00.100000Z | 20.293681747009 | 8723     | 8723   | Honeywell | New York      |
+| 4   | 2019-10-17T00:00:00.100000Z | 20.939263119843 | 885      | 885    | RS Pro    | San Francisco |
+| 5   | 2019-10-17T00:00:00.200000Z | 19.336660059029 | 3200     | 3200   | Honeywell | San Francisco |
+| 6   | 2019-10-17T00:00:01.100000Z | 20.946643576954 | 4053     | 4053   | Honeywell | Miami         |
 
 ```questdb-sql title="Aggregation keyed by city"
 SELECT city, max(temp)
 FROM readings
 JOIN(
     SELECT ID sensId, city
-    FROM sensors)
-ON readings.sensorId = sensId;
+    FROM sensors) a
+ON readings.sensorId = a.sensId;
 ```
 
-Results should look like the data below:
+The results should look like the table below:
 
-| city          | max         |
-| ------------- | ----------- |
-| Boston        | 22.99999233 |
-| New York      | 22.99999631 |
-| Miami         | 22.99999673 |
-| San Francisco | 22.99999531 |
-| Chicago       | 22.9999988  |
+| city          | max             |
+| ------------- | --------------- |
+| New York      | 22.999998786398 |
+| San Francisco | 22.999998138348 |
+| Miami         | 22.99999994818  |
+| Chicago       | 22.999991705861 |
+| Boston        | 22.999999233377 |
 
 ```questdb-sql title="Aggregation by hourly time buckets"
 SELECT ts, city, make, avg(temp)
-FROM readings
-JOIN (
-    SELECT ID sensId, city, make
+FROM readings timestamp(ts)
+JOIN
+    (SELECT ID sensId, city, make
     FROM sensors
-    WHERE city='Miami' AND make='Omron')
-ON readings.sensorId = sensId
-WHERE ts ='2019-10-21;1d' -- this is an interval between 21-10 and 1day later
-SAMPLE BY 1h;
+    WHERE city='Miami' AND make='Omron') a
+ON readings.sensorId = a.sensId
+WHERE ts ='2019-10-21;1d' -- this is an interval between 21-10 and 1 day later
 ```
 
-Results should look like the data below:
+The results should look like the table below:
 
-| ts                          | city  | make  | average     |
-| --------------------------- | ----- | ----- | ----------- |
-| 2019-10-21T00:00:00.000000Z | Miami | Omron | 18.97225935 |
-| 2019-10-21T01:00:00.000000Z | Miami | Omron | 19.15940157 |
-| 2019-10-21T02:00:00.000000Z | Miami | Omron | 18.92696357 |
-| 2019-10-21T03:00:00.000000Z | Miami | Omron | 19.09917038 |
-| 2019-10-21T04:00:00.000000Z | Miami | Omron | 19.1161127  |
-| 2019-10-21T05:00:00.000000Z | Miami | Omron | 18.93939597 |
-| ...                         | ...   | ...   | ...         |
+| ts                          | city  | make  | average         |
+| --------------------------- | ----- | ----- | --------------- |
+| 2019-10-21T00:00:44.600000Z | Miami | Omron | 20.004285872098 |
+| 2019-10-21T00:00:52.400000Z | Miami | Omron | 16.68436714013  |
+| 2019-10-21T00:01:05.400000Z | Miami | Omron | 15.243684089291 |
+| 2019-10-21T00:01:06.100000Z | Miami | Omron | 17.193984104315 |
+| 2019-10-21T00:01:07.100000Z | Miami | Omron | 20.778686822666 |
+| ...                         | ...   | ...   | ...             |
 
 For more information about these statements, please refer to the
 [SELECT](/docs/reference/sql/select/) and [JOIN](/docs/reference/sql/join/)
@@ -212,4 +208,9 @@ pages.
 
 ## Deleting tables
 
-Upon dropping the table, all data is deleted.
+Upon dropping the table, all data is deleted:
+
+```questdb-sql
+DROP TABLE readings;
+DROP TABLE sensors;
+```

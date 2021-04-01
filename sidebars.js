@@ -65,12 +65,20 @@ module.exports = {
       ],
     },
     {
+      label: "Guides",
+      type: "category",
+      items: [
+        "guides/importing-data",
+        "guides/influxdb-line-protocol",
+      ],
+    },
+    {
       label: "Third-party Tools",
       type: "category",
       items: [
         "third-party-tools/grafana",
         "third-party-tools/kafka",
-        "third-party-tools/telegraf"
+        "third-party-tools/telegraf",
       ],
     },
     {
@@ -80,7 +88,7 @@ module.exports = {
         "operations/capacity-planning",
         "operations/deployment",
         "operations/data-retention",
-        "operations/health-monitoring"
+        "operations/health-monitoring",
       ],
     },
     {

@@ -11,9 +11,9 @@ import ouCss from "../../css/case-study/outcome.module.css"
 import seCss from "../../css/section.module.css"
 
 const Toggle = () => {
-  const title = "Case Study: Toggle AI"
+  const title = "Toggle AI - time series data for machine learning in FinTech"
   const description =
-    "How Toggle switched from InfluxDB to QuestDB and benefited from massive cost reduction + performance improvements"
+    "Toggle switched from InfluxDB to QuestDB and benefited from faster queries, massive cost reduction, and performance improvements on ingestion."
 
   return (
     <PageLayout
@@ -44,7 +44,7 @@ const Toggle = () => {
             </Button>
             <span className={juCss.jumbotron__name}>Case study</span>
           </div>
-          <h1 className={seCss.section__title}>Migrating to QuestDB</h1>
+          <h1 className={seCss.section__title}>Toggle migration to QuestDB</h1>
           <p
             className={clsx(
               seCss.section__subtitle,
@@ -146,8 +146,8 @@ const Toggle = () => {
             Toggle uses AI & Machine Learning to help investors extract insights
             on their portfolio & investments. The system distills billions of
             data points into alerts like “Analyst expectations are turning
-            negative for AAPL; historically, this led to stock’s
-            outperformance.” As you can imagine, this sort of system requires a
+            negative for AAPL; historically, this led to outperformance of the
+            stock.” As you can imagine, this sort of system requires a
             tremendous amount of timeseries data — prices, fundamentals,
             sentiment, etc. All of this data is stored as a series and needs to
             be easily accessible for analysis by our models. It is critical that
@@ -160,10 +160,10 @@ const Toggle = () => {
             TimescaleDB. After much testing, they settled on InfluxDB, as it had
             the best performance. As the company was growing, performance
             started to degrade, and it became expensive to run. They had a small
-            cluster of 4 x m4.2xlarge machines after a short time, and memory on
-            all 4 was often at least 80%, hitting 100% a few times per week.
-            Modeling out the future infrastructure spend based on this baseline,
-            InfluxDB wasn’t a viable option as the company scaled.
+            cluster of 4 x m4.2xlarge machines, and memory on all 4 was often at
+            least 80%, hitting 100% a few times per week. Modeling out the
+            future infrastructure spend based on this baseline, InfluxDB wasn’t
+            a viable option as the company scaled.
           </p>
 
           <h3>The process to migrate data from InfluxDB to QuestDB</h3>
@@ -175,8 +175,8 @@ const Toggle = () => {
           <ul className="font-size--large">
             <li>Can we move the data seamlessly and promptly?</li>
             <li>
-              Can we query a sample of our data in at least the same response
-              times of influx?
+              Can we query a sample of our data with at least the response times
+              of InfluxDB?
             </li>
             <li>Can we ingest new data seamlessly?</li>
             <li>Can we create time series on the fly?</li>
@@ -210,11 +210,11 @@ const Toggle = () => {
             </li>
             <li>
               The virtual machine’s stats indicated that the servers were never
-              overtaxed (User: 17%, system: 4%).
+              overtaxed (user: 17%, system: 4%).
             </li>
             <li>
               Direct cost reduction (¼ of the machines) and performance
-              improvements means that Toggle can do much more for less.
+              improvements meant that Toggle could do much more for less.
             </li>
           </ul>
 
@@ -223,16 +223,24 @@ const Toggle = () => {
             side & ingest in the other. Toggle imported over 600 million data
             points in a few minutes.
           </p>
-
-          <h3>
-            Customer support experience from QuestDB’s team during the process
-          </h3>
-          <p className="font-size--large">
-            <b>Armenak, Toggle&apos;s CTO:</b> The QuestDB team assisted us in
-            all steps along the way. They were proactive in supporting our
-            changeover, helping to debug issues as they arose, and optimize our
-            deployment as we moved things into production.
-          </p>
+          <div
+            className={clsx(
+              "markdown",
+              seCss["section--inner"],
+              seCss["section--column"],
+            )}
+          >
+            <p className={caCss.card__title}>
+              <span className={caCss.card__quote}>&ldquo;</span>The QuestDB team
+              assisted us in all steps along the way. They were proactive in
+              supporting our changeover, helping to debug issues as they arose,
+              and optimize our deployment as we moved things into production.
+              <span className={caCss.card__quote}>&rdquo;</span>
+            </p>
+            <p className={caCss.card__title}>
+              <b>Armenak, Toggle&apos;s CTO</b>
+            </p>
+          </div>
         </div>
       </section>
     </PageLayout>

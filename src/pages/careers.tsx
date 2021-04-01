@@ -107,8 +107,8 @@ const CareersPage = () => {
             </p>
           </div>
           <div className={clsx(caCss.card__side, caCss["card__side--center"])}>
-            <a className={joCss.job} href="senior-cloud-architect/">
-              <h3 className={joCss.job__title}>Senior Cloud Architect</h3>
+            <a className={joCss.job} href="senior-cloud-engineer/">
+              <h3 className={joCss.job__title}>Senior Cloud Engineer</h3>
               <p className={joCss.job__location}>Remote</p>
               <span className={joCss.job__cta}>
                 Details&nbsp;
@@ -122,32 +122,6 @@ const CareersPage = () => {
             </a>
             <a className={joCss.job} href="backend-software-engineer/">
               <h3 className={joCss.job__title}>Software Engineer, Backend</h3>
-              <p className={joCss.job__location}>Remote</p>
-              <span className={joCss.job__cta}>
-                Details&nbsp;
-                <img
-                  alt="Right arrow"
-                  height={20}
-                  src="/img/pages/careers/arrowRight.svg"
-                  width={20}
-                />
-              </span>
-            </a>
-            <a className={joCss.job} href="technical-content-writer/">
-              <h3 className={joCss.job__title}>Technical Content Writer</h3>
-              <p className={joCss.job__location}>Remote</p>
-              <span className={joCss.job__cta}>
-                Details&nbsp;
-                <img
-                  alt="Right arrow"
-                  height={20}
-                  src="/img/pages/careers/arrowRight.svg"
-                  width={20}
-                />
-              </span>
-            </a>
-            <a className={joCss.job} href="head-of-developer-relations/">
-              <h3 className={joCss.job__title}>Head of Developer Relations</h3>
               <p className={joCss.job__location}>Remote</p>
               <span className={joCss.job__cta}>
                 Details&nbsp;

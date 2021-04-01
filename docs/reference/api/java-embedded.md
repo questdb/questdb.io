@@ -16,9 +16,7 @@ import TabItem from "@theme/TabItem"
   { label: "Gradle", value: "gradle" },
 ]}>
 
-
 <TabItem value="maven">
-
 
 ```xml
 <dependency>
@@ -30,9 +28,7 @@ import TabItem from "@theme/TabItem"
 
 </TabItem>
 
-
 <TabItem value="gradle">
-
 
 ```shell
 implementation 'org.questdb:questdb:{@version@}'
@@ -40,9 +36,7 @@ implementation 'org.questdb:questdb:{@version@}'
 
 </TabItem>
 
-
 </Tabs>
-
 
 ## Writing data
 
@@ -215,19 +209,20 @@ a time in applications that require such behaviour.
 ## Writing columns in blocks
 
 QuestDB supports writing blocks of columnar data at once via the use of the
-`TableBlockWriter`. The `TableBlockWriter` instance is obtained from a `TableWriter`
-and can then be used to write in memory frames of columnar data. A frame of columnar
-data is just a piece of contiguous memory with each column value stored in it one
-after another. The `TableBlockWriter` will allow any number of such frames of columnar
-data to be written with an invocation of the `appendPageFrameColumn` method, before
-the block is either committed or cancelled (rolled back). Use of the `TableBlockWriter`
-requires that all columns have the same number of rows written to them and within each
-column the frames need to be added in append order.
+`TableBlockWriter`. The `TableBlockWriter` instance is obtained from a
+`TableWriter` and can then be used to write in memory frames of columnar data. A
+frame of columnar data is just a piece of contiguous memory with each column
+value stored in it one after another. The `TableBlockWriter` will allow any
+number of such frames of columnar data to be written with an invocation of the
+`appendPageFrameColumn` method, before the block is either committed or
+cancelled (rolled back). Use of the `TableBlockWriter` requires that all columns
+have the same number of rows written to them and within each column the frames
+need to be added in append order.
 
-A `PageFrame` instance can optionally be used as a convenient interface to hold the
-columnar frames and a `PageFrameCursor` instance can be used as an interface to provide
-a sequence of frames to be committed. Many of QuestDB's `RecordCursorFactory` 
-implementations provide a `PageFrameCursor`.
+A `PageFrame` instance can optionally be used as a convenient interface to hold
+the columnar frames and a `PageFrameCursor` instance can be used as an interface
+to provide a sequence of frames to be committed. Many of QuestDB's
+`RecordCursorFactory` implementations provide a `PageFrameCursor`.
 
 ```java title="Example table block writer"
 final CairoConfiguration configuration = new DefaultCairoConfiguration("data_dir");
@@ -235,7 +230,7 @@ try (CairoEngine engine = new CairoEngine(configuration)) {
     final SqlExecutionContextImpl ctx = new SqlExecutionContextImpl(engine, 1);
     try (SqlCompiler compiler = new SqlCompiler(engine)) {
 
-        PageFrameCursor cursor = ...; // Setup PageFrameCursor instance 
+        PageFrameCursor cursor = ...; // Setup PageFrameCursor instance
         compiler.compile("create table abc (a int, b byte, c short, d long, e float, g double, h date, i symbol, j string, k boolean, ts timestamp) timestamp(ts)", ctx);
 
         try (TableWriter writer = engine.getWriter(ctx.getCairoSecurityContext(), "abc")) {

@@ -20,7 +20,8 @@ data by date. For more details on partitioning, see the
 A simple approach to removing stale data is to drop data that has been
 partitioned by time. A table must have a
 [designated timestamp](/docs/concept/designated-timestamp/) assigned and a
-partitioning strategy specified during a `CREATE TABLE` operation to achieve this.
+partitioning strategy specified during a `CREATE TABLE` operation to achieve
+this.
 
 :::note
 

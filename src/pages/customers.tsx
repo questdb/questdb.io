@@ -47,28 +47,41 @@ const Customers = () => {
       <section className={clsx(seCss["section--inner"], loCss.logo)}>
         <Button
           className={loCss.logo__wrapper}
-          href="https://toggle.global/?utm_source=questdb"
-          variant="plain"
-        >
-          <img
-            alt="Toggle.global logo"
-            className="responsive-image"
-            height={16}
-            src="/img/pages/customers/logos/toggle.svg"
-            width={110}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
           href="https://www.datron.com"
           variant="plain"
         >
           <img
             alt="Datron logo"
             className="responsive-image"
-            height={24}
+            height={20}
             src="/img/pages/customers/logos/datron.png"
-            width={124}
+            width={110}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://www.keplercheuvreux.com/en/"
+          variant="plain"
+        >
+          <img
+            alt="Kepler logo"
+            className="responsive-image"
+            height={34}
+            src="/img/pages/customers/logos/kepler.png"
+            width={140}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
+          href="https://www.verizon.com/"
+          variant="plain"
+        >
+          <img
+            alt="Verizon logo"
+            className="responsive-image"
+            height={22}
+            src="/img/pages/customers/logos/verizon.png"
+            width={110}
           />
         </Button>
         <Button
@@ -86,15 +99,28 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
+          href="https://toggle.global/?utm_source=questdb"
+          variant="plain"
+        >
+          <img
+            alt="Toggle.global logo"
+            className="responsive-image"
+            height={20}
+            src="/img/pages/customers/logos/toggle.svg"
+            width={115}
+          />
+        </Button>
+        <Button
+          className={loCss.logo__wrapper}
           href="https://www.innova.com.tr/en"
           variant="plain"
         >
           <img
             alt="Innova logo"
             className="responsive-image"
-            height={30}
+            height={20}
             src="/img/pages/customers/logos/innova.png"
-            width={90}
+            width={100}
           />
         </Button>
         <Button
@@ -105,22 +131,22 @@ const Customers = () => {
           <img
             alt="Ably logo"
             className="responsive-image"
-            height={34}
+            height={28}
             src="/img/pages/customers/logos/ably.svg"
-            width={117}
+            width={90}
           />
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.viesgo.com/en/"
+          href="https://www.iii.org/"
           variant="plain"
         >
           <img
-            alt="Viesgo logo"
+            alt="Insurance Information Institute logo"
             className="responsive-image"
-            height={19}
-            src="/img/pages/customers/logos/viesgo.svg"
-            width={130}
+            height={41}
+            src="/img/pages/customers/logos/iii.png"
+            width={140}
           />
         </Button>
         <Button
@@ -131,26 +157,41 @@ const Customers = () => {
           <img
             alt="BIBA logo"
             className="responsive-image"
-            height={24}
+            height={19}
             src="/img/pages/customers/logos/biba.svg"
-            width={63}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
-          href="https://trysavvy.com/"
-          variant="plain"
-        >
-          <img
-            alt="Savvy logo"
-            className="responsive-image"
-            height={30}
-            src="/img/pages/customers/logos/savvy.png"
-            width={94}
+            width={60}
           />
         </Button>
       </section>
-
+      <section className={clsx(seCss.section, seCss["section--inner"])}>
+        <div className={caCss.card}>
+          <div className={caCss.card__illustration}>
+            <img
+              alt="A CNC milling machine built by DATRON"
+              height={360}
+              src="/img/pages/case-study/datron/summary.png"
+              width={640}
+            />
+          </div>
+          <p className={caCss.card__summary}>
+            <img
+              alt="Datron logo"
+              className={caCss.card__logo}
+              height={24}
+              src="/img/pages/customers/logos/datron.png"
+              width={124}
+            />
+            “QuestDB offers new possibilities while reducing costs and
+            simplifying data analysis.”
+            <em className={caCss.card__author}>
+              - <strong>Tim Borowski</strong>, DATRON
+            </em>
+            <Button className={caCss.card__cta} to="/case-study/datron/">
+              View full case study
+            </Button>
+          </p>
+        </div>
+      </section>
       <section className={clsx(seCss.section, seCss["section--inner"])}>
         <div className={caCss.card}>
           <p className={caCss.card__summary}>
