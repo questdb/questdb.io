@@ -16,7 +16,7 @@ import juCss from "../css/index/jumbotron.module.css"
 import meCss from "../css/index/menu.module.css"
 import shCss from "../css/index/showcase.module.css"
 import usCss from "../css/index/usp.module.css"
-import cuCss from "../css/index/customer.module.css"
+import loCss from "../css/customers/logo.module.css"
 import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
 
@@ -214,72 +214,126 @@ const Integration = () => (
 )
 
 const Customers = () => (
-  <section className={clsx(seCss["section--slim"])}>
-    <div className={cuCss.logo}>
+  <section
+    className={clsx(seCss["section--slim"], loCss.logo, loCss.logo__padded)}
+  >
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.datron.com"
+      variant="plain"
+    >
       <img
-        alt="DATRON logo"
-        className={cuCss.logo__item}
+        alt="Datron logo"
+        className="responsive-image"
         height={20}
         src="/img/pages/customers/logos/datron.png"
         width={110}
       />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.keplercheuvreux.com/en/"
+      variant="plain"
+    >
       <img
         alt="Kepler logo"
-        className={cuCss.logo__item}
+        className="responsive-image"
         height={34}
         src="/img/pages/customers/logos/kepler.png"
         width={140}
       />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.verizon.com/"
+      variant="plain"
+    >
       <img
         alt="Verizon logo"
-        className={cuCss.logo__item}
-        height={22}
+        className="responsive-image"
+        height={35}
         src="/img/pages/customers/logos/verizon.png"
         width={110}
       />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.ycombinator.com/"
+      variant="plain"
+    >
       <img
         alt="YCombinator logo"
-        className={cuCss.logo__item}
+        className="responsive-image"
         height={34}
         src="/img/pages/customers/logos/yc.png"
         width={34}
       />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://toggle.global/?utm_source=questdb"
+      variant="plain"
+    >
       <img
-        alt="Toggle logo"
-        className={cuCss.logo__item}
+        alt="Toggle.global logo"
+        className="responsive-image"
         height={20}
         src="/img/pages/customers/logos/toggle.svg"
         width={115}
       />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.innova.com.tr/en"
+      variant="plain"
+    >
       <img
         alt="Innova logo"
-        className={cuCss.logo__item}
+        className="responsive-image"
         height={20}
         src="/img/pages/customers/logos/innova.png"
         width={100}
       />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.ably.io/"
+      variant="plain"
+    >
       <img
         alt="Ably logo"
-        className={cuCss.logo__item}
+        className="responsive-image"
         height={28}
         src="/img/pages/customers/logos/ably.svg"
         width={90}
       />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.iii.org/"
+      variant="plain"
+    >
       <img
         alt="Insurance Information Institute logo"
-        className={cuCss.logo__item}
-        height={20}
+        className="responsive-image"
+        height={41}
         src="/img/pages/customers/logos/iii.png"
         width={140}
       />
+    </Button>
+    <Button
+      className={loCss.logo__wrapper}
+      href="https://www.biba.uni-bremen.de/en.html"
+      variant="plain"
+    >
       <img
         alt="BIBA logo"
-        className={cuCss.logo__item}
+        className="responsive-image"
         height={19}
         src="/img/pages/customers/logos/biba.svg"
         width={60}
       />
-    </div>
+    </Button>
   </section>
 )
 
