@@ -14,20 +14,6 @@ type Quote = {
 
 const quotes: Quote[] = [
   {
-    website: "https://www.verizon.com/",
-    logo: {
-      alt: "Verizon logo",
-      src: "/img/pages/customers/logos/verizon.png",
-      height: 22,
-      width: 100,
-    },
-    text:
-      "Verizon Media serves close to a billion users, at a rate of 500,000 queries per second. We use QuestDB embedded within our Vespa engine for search, recommendation, and personalization uses cases where we monitor metrics used to make autoscaling decisions.",
-    author: "Jon Bratseth",
-    role: "VP Architect",
-    company: "Verizon Media",
-  },
-  {
     website: "https://www.keplercheuvreux.com/en/",
     logo: {
       alt: "Kepler logo",
@@ -56,20 +42,6 @@ const quotes: Quote[] = [
     company: "DATRON AG",
   },
   {
-    website: "https://www.innova.com.tr/en/about-us/about-innova",
-    logo: {
-      alt: "Innova logo",
-      src: "/img/pages/customers/logos/innova.png",
-      height: 18,
-      width: 88,
-    },
-    text:
-      "QuestDB allows us to query data while writing millions of data points every few minutes. It is an excellent database for time-based calculation of records with static columns and can store the data very efficiently. QuestDB’s community is constantly growing and its popularity is on the rise.",
-    author: "Erdem Aydemir",
-    role: "Software Engineer",
-    company: "Innova",
-  },
-  {
     website: "https://toggle.ai/",
     logo: {
       alt: "Toggle logo",
@@ -82,6 +54,20 @@ const quotes: Quote[] = [
     author: "Armenak Mayalian",
     role: "CTO",
     company: "Toggle",
+  },
+  {
+    website: "https://www.innova.com.tr/en/about-us/about-innova",
+    logo: {
+      alt: "Innova logo",
+      src: "/img/pages/customers/logos/innova.png",
+      height: 18,
+      width: 88,
+    },
+    text:
+      "QuestDB allows us to query data while writing millions of data points every few minutes. It is an excellent database for time-based calculation of records with static columns and can store the data very efficiently. QuestDB’s community is constantly growing and its popularity is on the rise.",
+    author: "Erdem Aydemir",
+    role: "Software Engineer",
+    company: "Innova",
   },
   {
     website: "https://www.samtec.com/",
@@ -98,20 +84,6 @@ const quotes: Quote[] = [
     company: "Samtec",
   },
   {
-    website: "https://chainslayer.io/",
-    logo: {
-      alt: "ChainSlayer logo",
-      src: "/img/pages/customers/logos/chainslayer.png",
-      height: 24,
-      width: 116,
-    },
-    text:
-      "QuestDB is the cornerstone of our offering. The SQL interface with timeseries functions like ASOF join is brilliant. It’s speed and small footprint make it perfect for containerized environments. And the UI looks absolutely amazing.",
-    author: "Tjerk Stroband",
-    role: "CTO",
-    company: "ChainSlayer",
-  },
-  {
     website: "https://www.forrs.de/",
     logo: {
       alt: "FORRS logo",
@@ -120,10 +92,24 @@ const quotes: Quote[] = [
       width: 70,
     },
     text:
-      "Working with QuestDB is a breeze. This innovative time-series database excels with integration into existing environments. Supporting multiple open interfaces, such REST and the PG wire protocol, while not relying on any client driver, makes it easy to work with the OS and language of choice.",
+      "Working with QuestDB is a breeze. This innovative time series database excels with integration into existing environments. Supporting multiple open interfaces, such REST and the PG wire protocol, while not relying on any client driver, makes it easy to work with the OS and language of choice.",
     author: "Marc Recht",
     role: "CTO",
     company: "FORRS Partners",
+  },
+  {
+    website: "https://chainslayer.io/",
+    logo: {
+      alt: "ChainSlayer logo",
+      src: "/img/pages/customers/logos/chainslayer.png",
+      height: 24,
+      width: 116,
+    },
+    text:
+      "QuestDB is the cornerstone of our offering. The SQL interface with time series functions like ASOF join is brilliant. It’s speed and small footprint make it perfect for containerized environments. And the UI looks absolutely amazing.",
+    author: "Tjerk Stroband",
+    role: "CTO",
+    company: "ChainSlayer",
   },
   {
     website: "https://www.counterflow.ai/",
@@ -134,7 +120,7 @@ const quotes: Quote[] = [
       width: 140,
     },
     text:
-      "QuestDB is quite impressive and stands out as a superior option.  Our intent is to integrate it with our SaaS offering and contribute to the project.",
+      "QuestDB is impressive and stands out as a superior option. Our intent is to integrate it with our SaaS offering and contribute to the project.",
     author: "Randy Caldejon",
     role: "CEO",
     company: "Counterflow AI",
