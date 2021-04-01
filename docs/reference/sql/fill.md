@@ -19,8 +19,13 @@ documentation.
 
 ### Options
 
-The `FILL` keyword expects a `fillOption` which will be applied to each
-aggregate column.
+The `FILL` keyword expects a single `fillOption` strategy which will be applied
+to each aggregate column. The following restrictions apply:
+
+- Keywords denoting fill strategies may not be combined. Only one option from
+  `NONE`, `NULL`, `PREV`, `LINEAR` and constants may be used.
+- If a constant is selected as a fill option, a constant value must be specified
+  for each aggregate column
 
 | fillOption | Description                                                                                                                                        |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
