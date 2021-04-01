@@ -39,7 +39,7 @@ const quotes: Quote[] = [
       "With QuestDB's turnkey solution in Docker, we quickly built a solid foundation for a data acquisition pipeline with billions of measurements.",
     author: "Andreas Landmann",
     role: "Director of Research and Technology",
-    company: "DATRON AG",
+    company: "DATRON",
   },
   {
     website: "https://toggle.ai/",
@@ -124,6 +124,20 @@ const quotes: Quote[] = [
     author: "Randy Caldejon",
     role: "CEO",
     company: "Counterflow AI",
+  },
+  {
+    website: "https://razorpay.com/",
+    logo: {
+      alt: "Razorpay logo",
+      src: "/img/pages/customers/logos/razorpay.svg",
+      height: 24,
+      width: 113,
+    },
+    text:
+      "I am honestly impressed by the database’s performance and simplicity - we are thinking of moving some of our real time workloads to QuestDB.",
+    author: "Venkatesan Vaidhyanathan",
+    role: "Senior Technical Architect",
+    company: "Razorpay",
   },
 ]
 
