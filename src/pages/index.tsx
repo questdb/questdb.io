@@ -217,11 +217,7 @@ const Customers = () => (
   <section
     className={clsx(seCss["section--slim"], loCss.logo, loCss.logo__padded)}
   >
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.datron.com"
-      variant="plain"
-    >
+    <a className={loCss.logo__wrapper}>
       <img
         alt="Datron logo"
         className="responsive-image"
@@ -229,12 +225,8 @@ const Customers = () => (
         src="/img/pages/customers/logos/datron.png"
         width={110}
       />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.keplercheuvreux.com/en/"
-      variant="plain"
-    >
+    </a>
+    <a className={loCss.logo__wrapper}>
       <img
         alt="Kepler logo"
         className="responsive-image"
@@ -242,12 +234,8 @@ const Customers = () => (
         src="/img/pages/customers/logos/kepler.png"
         width={140}
       />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.verizon.com/"
-      variant="plain"
-    >
+    </a>
+    <a className={loCss.logo__wrapper}>
       <img
         alt="Verizon logo"
         className="responsive-image"
@@ -255,12 +243,8 @@ const Customers = () => (
         src="/img/pages/customers/logos/verizon.png"
         width={110}
       />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.ycombinator.com/"
-      variant="plain"
-    >
+    </a>
+    <a className={loCss.logo__wrapper}>
       <img
         alt="YCombinator logo"
         className="responsive-image"
@@ -268,12 +252,8 @@ const Customers = () => (
         src="/img/pages/customers/logos/yc.png"
         width={34}
       />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://toggle.global/?utm_source=questdb"
-      variant="plain"
-    >
+    </a>
+    <a className={loCss.logo__wrapper}>
       <img
         alt="Toggle.global logo"
         className="responsive-image"
@@ -281,12 +261,8 @@ const Customers = () => (
         src="/img/pages/customers/logos/toggle.svg"
         width={115}
       />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.innova.com.tr/en"
-      variant="plain"
-    >
+    </a>
+    <a className={loCss.logo__wrapper}>
       <img
         alt="Innova logo"
         className="responsive-image"
@@ -294,12 +270,8 @@ const Customers = () => (
         src="/img/pages/customers/logos/innova.png"
         width={100}
       />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.ably.io/"
-      variant="plain"
-    >
+    </a>
+    <a className={loCss.logo__wrapper}>
       <img
         alt="Ably logo"
         className="responsive-image"
@@ -307,12 +279,8 @@ const Customers = () => (
         src="/img/pages/customers/logos/ably.svg"
         width={90}
       />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.iii.org/"
-      variant="plain"
-    >
+    </a>
+    <a className={loCss.logo__wrapper}>
       <img
         alt="Insurance Information Institute logo"
         className="responsive-image"
@@ -320,12 +288,8 @@ const Customers = () => (
         src="/img/pages/customers/logos/iii.png"
         width={140}
       />
-    </Button>
-    <Button
-      className={loCss.logo__wrapper}
-      href="https://www.biba.uni-bremen.de/en.html"
-      variant="plain"
-    >
+    </a>
+    <a className={loCss.logo__wrapper}>
       <img
         alt="BIBA logo"
         className="responsive-image"
@@ -333,7 +297,7 @@ const Customers = () => (
         src="/img/pages/customers/logos/biba.svg"
         width={60}
       />
-    </Button>
+    </a>
   </section>
 )
 

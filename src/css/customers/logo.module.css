@@ -9,8 +9,8 @@
 .logo__padded {
   padding-bottom: 50px;
 }
-
-.logo__wrapper {
+/* make sure that index.tsx does not turn off transition on hover, but customer.tsx does */
+.logo__wrapper, .logo__padded .logo__wrapper:hover {
   display: flex;
   padding: 1rem 0.5rem;
   justify-content: center;
