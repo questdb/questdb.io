@@ -220,7 +220,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Datron logo"
-        className="responsive-image"
         height={20}
         src="/img/pages/customers/logos/datron.png"
         width={110}
@@ -229,7 +228,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Kepler logo"
-        className="responsive-image"
         height={34}
         src="/img/pages/customers/logos/kepler.png"
         width={140}
@@ -238,7 +236,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Verizon logo"
-        className="responsive-image"
         height={35}
         src="/img/pages/customers/logos/verizon.png"
         width={110}
@@ -247,7 +244,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="YCombinator logo"
-        className="responsive-image"
         height={34}
         src="/img/pages/customers/logos/yc.png"
         width={34}
@@ -256,7 +252,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Toggle.global logo"
-        className="responsive-image"
         height={20}
         src="/img/pages/customers/logos/toggle.svg"
         width={115}
@@ -265,7 +260,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Innova logo"
-        className="responsive-image"
         height={20}
         src="/img/pages/customers/logos/innova.png"
         width={100}
@@ -274,7 +268,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Ably logo"
-        className="responsive-image"
         height={28}
         src="/img/pages/customers/logos/ably.svg"
         width={90}
@@ -283,7 +276,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Insurance Information Institute logo"
-        className="responsive-image"
         height={41}
         src="/img/pages/customers/logos/iii.png"
         width={140}
@@ -292,7 +284,6 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="BIBA logo"
-        className="responsive-image"
         height={19}
         src="/img/pages/customers/logos/biba.svg"
         width={60}
