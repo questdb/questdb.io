@@ -220,7 +220,7 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Datron logo"
-        height={20}
+        height={22}
         src="/img/pages/customers/logos/datron.png"
         width={110}
       />
@@ -236,7 +236,7 @@ const Customers = () => (
     <a className={loCss.logo__wrapper}>
       <img
         alt="Verizon logo"
-        height={35}
+        height={25}
         src="/img/pages/customers/logos/verizon.png"
         width={110}
       />
