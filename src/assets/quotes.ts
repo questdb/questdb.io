@@ -42,6 +42,20 @@ const quotes: Quote[] = [
     company: "DATRON",
   },
   {
+    website: "https://www.ably.io/",
+    logo: {
+      alt: "Ably logo",
+      src: "/img/pages/customers/logos/ably.svg",
+      height: 28,
+      width: 100,
+    },
+    text:
+      "QuestDB allows me to build tools and systems without having to learn proprietary query languages while maintaining industry-leading performance and a straightforward setup.",
+    author: "Ben Gamble",
+    role: "Head of Dev Rel",
+    company: "Ably",
+  },
+  {
     website: "https://toggle.ai/",
     logo: {
       alt: "Toggle logo",
