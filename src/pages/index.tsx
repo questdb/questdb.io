@@ -16,7 +16,7 @@ import juCss from "../css/index/jumbotron.module.css"
 import meCss from "../css/index/menu.module.css"
 import shCss from "../css/index/showcase.module.css"
 import usCss from "../css/index/usp.module.css"
-import loCss from "../css/customers/logo.module.css"
+import cuCss from "../css/index/customer.module.css"
 import prCss from "../css/property.module.css"
 import seCss from "../css/section.module.css"
 
@@ -214,81 +214,82 @@ const Integration = () => (
 )
 
 const Customers = () => (
-  <section
-    className={clsx(seCss["section--slim"], loCss.logo, loCss.logo__padded)}
-  >
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="Datron logo"
-        height={22}
-        src="/img/pages/customers/logos/datron.png"
-        width={110}
-      />
-    </a>
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="Kepler logo"
-        height={34}
-        src="/img/pages/customers/logos/kepler.png"
-        width={140}
-      />
-    </a>
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="Verizon logo"
-        height={25}
-        src="/img/pages/customers/logos/verizon.png"
-        width={110}
-      />
-    </a>
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="YCombinator logo"
-        height={34}
-        src="/img/pages/customers/logos/yc.png"
-        width={34}
-      />
-    </a>
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="Toggle.global logo"
-        height={20}
-        src="/img/pages/customers/logos/toggle.svg"
-        width={115}
-      />
-    </a>
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="Innova logo"
-        height={20}
-        src="/img/pages/customers/logos/innova.png"
-        width={100}
-      />
-    </a>
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="Ably logo"
-        height={28}
-        src="/img/pages/customers/logos/ably.svg"
-        width={90}
-      />
-    </a>
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="Insurance Information Institute logo"
-        height={41}
-        src="/img/pages/customers/logos/iii.png"
-        width={140}
-      />
-    </a>
-    <a className={loCss.logo__wrapper}>
-      <img
-        alt="BIBA logo"
-        height={19}
-        src="/img/pages/customers/logos/biba.svg"
-        width={60}
-      />
-    </a>
+  <section className={clsx(seCss["section--slim"])}>
+    <div className={cuCss.logo}>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="DATRON logo"
+          height={22}
+          src="/img/pages/customers/logos/datron.png"
+          width={110}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Kepler logo"
+          height={34}
+          src="/img/pages/customers/logos/kepler.png"
+          width={140}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Verizon logo"
+          height={25}
+          src="/img/pages/customers/logos/verizon.png"
+          width={110}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="YCombinator logo"
+          className={cuCss.logo__img}
+          height={34}
+          src="/img/pages/customers/logos/yc.png"
+          width={34}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Toggle logo"
+          height={20}
+          src="/img/pages/customers/logos/toggle.svg"
+          width={115}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Innova logo"
+          height={20}
+          src="/img/pages/customers/logos/innova.png"
+          width={100}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Ably logo"
+          height={28}
+          src="/img/pages/customers/logos/ably.svg"
+          width={90}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Insurance Information Institute logo"
+          height={41}
+          src="/img/pages/customers/logos/iii.png"
+          width={140}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="BIBA logo"
+          height={19}
+          src="/img/pages/customers/logos/biba.svg"
+          width={60}
+        />
+      </div>
+    </div>
   </section>
 )
 
