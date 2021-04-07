@@ -1,0 +1,40 @@
+.logo {
+  filter: brightness(0) invert(1);
+  display: flex;
+  height: auto;
+  width: 100%;
+  margin-top: 0;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: center;
+}
+
+.logo__item {
+  min-height: 40px;
+  padding: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: var(--font-size-big-2);
+  transform: scale(0.92);
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 996px) {
+  .logo {
+    margin-top: 0;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .logo__item {
+    min-height: 100px;
+    min-width: 100px;
+    transform: scale(0.8);
+    font-size: var(--font-size-big-1);
+  }
+}
