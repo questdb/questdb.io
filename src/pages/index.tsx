@@ -216,69 +216,79 @@ const Integration = () => (
 const Customers = () => (
   <section className={clsx(seCss["section--slim"])}>
     <div className={cuCss.logo}>
-      <img
-        alt="DATRON logo"
-        className={cuCss.logo__item}
-        height={20}
-        src="/img/pages/customers/logos/datron.png"
-        width={110}
-      />
-      <img
-        alt="Kepler logo"
-        className={cuCss.logo__item}
-        height={34}
-        src="/img/pages/customers/logos/kepler.png"
-        width={140}
-      />
-      <img
-        alt="Verizon logo"
-        className={cuCss.logo__item}
-        height={22}
-        src="/img/pages/customers/logos/verizon.png"
-        width={110}
-      />
-      <img
-        alt="YCombinator logo"
-        className={cuCss.logo__item}
-        height={34}
-        src="/img/pages/customers/logos/yc.png"
-        width={34}
-      />
-      <img
-        alt="Toggle logo"
-        className={cuCss.logo__item}
-        height={20}
-        src="/img/pages/customers/logos/toggle.svg"
-        width={115}
-      />
-      <img
-        alt="Innova logo"
-        className={cuCss.logo__item}
-        height={20}
-        src="/img/pages/customers/logos/innova.png"
-        width={100}
-      />
-      <img
-        alt="Ably logo"
-        className={cuCss.logo__item}
-        height={28}
-        src="/img/pages/customers/logos/ably.svg"
-        width={90}
-      />
-      <img
-        alt="Insurance Information Institute logo"
-        className={cuCss.logo__item}
-        height={20}
-        src="/img/pages/customers/logos/iii.png"
-        width={140}
-      />
-      <img
-        alt="BIBA logo"
-        className={cuCss.logo__item}
-        height={19}
-        src="/img/pages/customers/logos/biba.svg"
-        width={60}
-      />
+      <div className={cuCss.logo__item}>
+        <img
+          alt="DATRON logo"
+          height={22}
+          src="/img/pages/customers/logos/datron.png"
+          width={110}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Kepler logo"
+          height={34}
+          src="/img/pages/customers/logos/kepler.png"
+          width={140}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Verizon logo"
+          height={25}
+          src="/img/pages/customers/logos/verizon.png"
+          width={110}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="YCombinator logo"
+          className={cuCss.logo__img}
+          height={34}
+          src="/img/pages/customers/logos/yc.png"
+          width={34}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Toggle logo"
+          height={20}
+          src="/img/pages/customers/logos/toggle.svg"
+          width={115}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Innova logo"
+          height={20}
+          src="/img/pages/customers/logos/innova.png"
+          width={100}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Ably logo"
+          height={28}
+          src="/img/pages/customers/logos/ably.svg"
+          width={90}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="Insurance Information Institute logo"
+          height={41}
+          src="/img/pages/customers/logos/iii.png"
+          width={140}
+        />
+      </div>
+      <div className={cuCss.logo__item}>
+        <img
+          alt="BIBA logo"
+          height={19}
+          src="/img/pages/customers/logos/biba.svg"
+          width={60}
+        />
+      </div>
     </div>
   </section>
 )
