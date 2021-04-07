@@ -27,24 +27,22 @@ using either [Docker](/docs/get-started/docker/), the
 
 QuestDB implements InfluxDB line protocol which is accessible by default on TCP
 port `9009`. This allows using QuestDB as a drop-in replacement for InfluxDB and
-others implementing the protocol. Configuration settings for ingestion using
-this protocol can be set for
-[Influx line over TCP](/docs/reference/configuration#influxdb-line-protocol-tcp)
-and
-[Influx line over UDP](/docs/reference/configuration#influxdb-line-protocol-udp).
+other systems implementing the protocol.
 
-More information on the InfluxDB line protocol implementation with details on
-message format, ports, authentication and examples can be found on the
-[InfluxDB API reference](/docs/reference/api/influxdb/) page. Additionally, a
-guide on the Telegraf agent for collecting and sending metrics to QuestDB via
-this protocol can be found on the
-[Telegraf guide](/docs/third-party-tools/telegraf/).
+For additional details on the message format, see the
+[InfluxDB line protocol guide](/docs/guides/influxdb-line-protocol/). Details on
+ports and authentication can be found on the
+[InfluxDB API reference](/docs/reference/api/influxdb/) page, and a guide on the
+Telegraf agent for collecting and sending metrics to QuestDB via this protocol
+can be found on the [Telegraf guide](/docs/third-party-tools/telegraf/).
 
 :::info
 
-The following examples add a timestamp property to each line protocol message.
-This property is optional and can be omitted to allow the server to
-automatically assign the server's system time as the row's timestamp value.
+- Each line protocol message must be delimited with newline `\n` characters.
+
+- The timestamp element of InfluxDB line protocol messages is optional and when
+  omitted, the server will automatically assign the server's system time as the
+  row's timestamp value.
 
 :::
 
@@ -198,12 +196,18 @@ import socket
 
 HOST = 'localhost'
 PORT = 9009
-
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# For UDP, change socket.SOCK_STREAM to socket.SOCK_DGRAM
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
-  sock.sendto(('trades,name=test_ilp1 value=12.4 %d' % (time.time_ns())).encode(), (HOST, PORT))
-  sock.sendto(('trades,name=test_ilp2 value=11.4 %d' % (time.time_ns())).encode(), (HOST, PORT))
+  sock.connect((HOST, PORT))
+  # Single record insert
+  sock.send(('trades,name=client_timestamp value=12.4 %d\n' %(time.time_ns())).encode())
+  # Omitting the timestamp allows the server to assign one
+  sock.send(('trades,name=server_timestamp value=12.4\n').encode())
+  # Streams of readings must be newline-delimited
+  sock.send(('trades,name=ilp_stream_1 value=12.4\ntrades,name=ilp_stream_2 value=11.4\n').encode())
+
 except socket.error as e:
   print("Got error: %s" % (e))
 

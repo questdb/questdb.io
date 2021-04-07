@@ -6,6 +6,10 @@
   flex-wrap: wrap;
 }
 
+.logo__padded {
+  padding-bottom: 50px;
+}
+
 .logo__wrapper {
   display: flex;
   padding: 1rem 0.5rem;

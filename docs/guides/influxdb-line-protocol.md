@@ -32,6 +32,7 @@ composed of the following:
 - several comma-separated items of fields in the format `<label>=<value>`
   followed by a space
 - an optional timestamp for the record
+- a newline character `\n`
 
 A single line of text in line protocol format represents one table row QuestDB.
 Consider the following InfluxDB line protocol message:
@@ -190,3 +191,30 @@ configuration references:
 
 - [InfluxDB line protocol TCP configuration](/docs/reference/configuration/#influxdb-line-protocol-tcp)
 - [InfluxDB line protocol UDP configuration](/docs/reference/configuration/#influxdb-line-protocol-udp)
+
+## Examples
+
+The following basic Python example demonstrates how to stream InfluxDB line
+protocol messages to QuestDB over TCP. For more examples using different
+languages, see the [insert data](/docs/develop/insert-data/) documentation.
+
+```python
+import time
+import socket
+# For UDP, change socket.SOCK_STREAM to socket.SOCK_DGRAM
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+try:
+  sock.connect(('localhost', 9009))
+  # Single record insert
+  sock.send(('trades,name=client_timestamp value=12.4 %d\n' %(time.time_ns())).encode())
+  # Omitting the timestamp allows the server to assign one
+  sock.send(('trades,name=server_timestamp value=12.4\n').encode())
+  # Streams of readings must be newline-delimited
+  sock.send(('trades,name=ilp_stream_1 value=12.4\ntrades,name=ilp_stream_2 value=11.4\n').encode())
+
+except socket.error as e:
+  print("Got error: %s" % (e))
+
+sock.close()
+```
