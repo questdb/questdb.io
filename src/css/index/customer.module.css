@@ -31,8 +31,9 @@
   }
 
   .logo__item {
-    min-height: 100px;
-    min-width: 100px;
+    min-height: 80px;
+    min-width: 150px;
+    flex: 1;
     justify-content: center;
     align-items: center;
     transform: scale(0.8);
