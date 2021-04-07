@@ -25,14 +25,14 @@
 @media (max-width: 996px) {
   .logo {
     margin-top: 0;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
   }
 
   .logo__item {
-    min-height: 150px;
-    min-width: 150px;
+    min-height: 100px;
+    min-width: 100px;
     justify-content: center;
     align-items: center;
     transform: scale(0.8);
