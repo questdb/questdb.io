@@ -143,22 +143,17 @@ Some seconds later, the rule will be applied on every instance with the matching
 this port will be used by the Cloud Function later to connect to the database.
 
 If you try to open the interactive console again, you should see the
-[QuestDB Web Console](/docs/reference/web-console/) and start
-writing queries.
-
-<Screenshot
-  alt="The QuestDB Web Console accessible on a Google Cloud Platform VM Instance"
-  height={181}
-  src="/img/tutorial/2021-03-31/web-console.png"
-  width={650}
-/>
-
+[QuestDB Web Console](/docs/reference/web-console/) and start writing queries.
 As our first query, create the table in which the Cloud Function will write the
 anonymized data. To create the table run the following SQL statement:
 
 ```questdb-sql
 CREATE TABLE
-    purchases(buyer STRING, item_id INT, quantity INT, price INT, purchase_date TIMESTAMP)
+    purchases(buyer STRING,
+            item_id INT,
+            quantity INT,
+            price INT,
+            purchase_date TIMESTAMP)
     timestamp(purchase_date);
 ```
 
@@ -229,9 +224,9 @@ To create a Cloud Function:
 
 <Screenshot
   alt="Creating a new Cloud Function on Google Cloud Platform for an ETL job"
-  height={463}
+  height={586}
   src="/img/tutorial/2021-03-31/create-cloud-function.png"
-  width={650}
+  width={450}
 />
 
 The next step is to select the runtime our function will use and provide the
@@ -246,9 +241,9 @@ function is in progress.
 
 <Screenshot
   alt="Deploying a Python3.8 Cloud Function on Google Cloud Platform"
-  height={121}
+  height={150}
   src="/img/tutorial/2021-03-31/deploying-cloud-function.png"
-  width={650}
+  width={550}
 />
 
 ## Generating and processing data
@@ -518,13 +513,6 @@ As you see, the entrypoint of the function has been changed as well. In the text
 box called "Entrypoint" set the entrypoint as a function name to call. The
 entrypoint is the function that will be called by Cloud Functions when an event
 is triggered.
-
-<Screenshot
-  alt="Editing a Cloud Function on Google Cloud Platform"
-  height={296}
-  src="/img/tutorial/2021-03-31/editing-cloud-functions.png"
-  width={650}
-/>
 
 ## Running the full example
 
