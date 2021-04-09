@@ -14,6 +14,20 @@ type Quote = {
 
 const quotes: Quote[] = [
   {
+    website: "https://www.verizon.com/",
+    logo: {
+      alt: "Verizon logo",
+      src: "/img/pages/customers/logos/verizon.png",
+      height: 22,
+      width: 100,
+    },
+    text:
+      "Verizon Media serves close to a billion users at a rate of 500k queries per second. We use QuestDB to monitor metrics for autoscaling decisions within our Vespa engine that provides search, recommendation, and personalization via ML models and aggregations on continuously-changing data.",
+    author: "Jon Bratseth",
+    role: "VP Architect",
+    company: "Verizon Media",
+  },
+  {
     website: "https://www.keplercheuvreux.com/en/",
     logo: {
       alt: "Kepler logo",
@@ -40,6 +54,20 @@ const quotes: Quote[] = [
     author: "Andreas Landmann",
     role: "Director of Research and Technology",
     company: "DATRON",
+  },
+  {
+    website: "https://www.ably.io/",
+    logo: {
+      alt: "Ably logo",
+      src: "/img/pages/customers/logos/ably.svg",
+      height: 28,
+      width: 100,
+    },
+    text:
+      "QuestDB allows me to build tools and systems without having to learn proprietary query languages while maintaining industry-leading performance and a straightforward setup.",
+    author: "Ben Gamble",
+    role: "Head of Dev Rel",
+    company: "Ably",
   },
   {
     website: "https://toggle.ai/",
@@ -84,20 +112,6 @@ const quotes: Quote[] = [
     company: "Samtec",
   },
   {
-    website: "https://www.forrs.de/",
-    logo: {
-      alt: "FORRS logo",
-      src: "/img/pages/customers/logos/forrs.svg",
-      height: 16,
-      width: 70,
-    },
-    text:
-      "Working with QuestDB is a breeze. This innovative time series database excels with integration into existing environments. Supporting multiple open interfaces, such REST and the PG wire protocol, while not relying on any client driver, makes it easy to work with the OS and language of choice.",
-    author: "Marc Recht",
-    role: "CTO",
-    company: "FORRS Partners",
-  },
-  {
     website: "https://chainslayer.io/",
     logo: {
       alt: "ChainSlayer logo",
@@ -124,20 +138,6 @@ const quotes: Quote[] = [
     author: "Randy Caldejon",
     role: "CEO",
     company: "Counterflow AI",
-  },
-  {
-    website: "https://razorpay.com/",
-    logo: {
-      alt: "Razorpay logo",
-      src: "/img/pages/customers/logos/razorpay.svg",
-      height: 24,
-      width: 113,
-    },
-    text:
-      "I am honestly impressed by the database’s performance and simplicity - we are thinking of moving some of our real time workloads to QuestDB.",
-    author: "Venkatesan Vaidhyanathan",
-    role: "Senior Technical Architect",
-    company: "Razorpay",
   },
 ]
 
