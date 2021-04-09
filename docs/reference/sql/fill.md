@@ -10,7 +10,7 @@ keyword allows for specifying a fill behavior for query results which have
 missing aggregates due to missing rows.
 
 To specify a default handling for `null` values within queries, see the
-[coalesce() function](http://localhost:3000/docs/reference/function/conditional/#coalesce)
+[coalesce() function](/docs/reference/function/conditional/#coalesce)
 documentation.
 
 ## Syntax
