@@ -14,6 +14,20 @@ type Quote = {
 
 const quotes: Quote[] = [
   {
+    website: "https://www.verizon.com/",
+    logo: {
+      alt: "Verizon logo",
+      src: "/img/pages/customers/logos/verizon.png",
+      height: 22,
+      width: 100,
+    },
+    text:
+      "Verizon Media serves close to a billion users at a rate of 500k queries per second. We use QuestDB to monitor metrics for autoscaling decisions within our Vespa engine that provides search, recommendation, and personalization via ML models and aggregations on continuously-changing data.",
+    author: "Jon Bratseth",
+    role: "VP Architect",
+    company: "Verizon Media",
+  },
+  {
     website: "https://www.keplercheuvreux.com/en/",
     logo: {
       alt: "Kepler logo",
@@ -96,20 +110,6 @@ const quotes: Quote[] = [
     author: "Nick Scolum",
     role: "Senior Software Engineer",
     company: "Samtec",
-  },
-  {
-    website: "https://www.forrs.de/",
-    logo: {
-      alt: "FORRS logo",
-      src: "/img/pages/customers/logos/forrs.svg",
-      height: 16,
-      width: 70,
-    },
-    text:
-      "Working with QuestDB is a breeze. This innovative time series database excels with integration into existing environments. Supporting multiple open interfaces, such REST and the PG wire protocol, while not relying on any client driver, makes it easy to work with the OS and language of choice.",
-    author: "Marc Recht",
-    role: "CTO",
-    company: "FORRS Partners",
   },
   {
     website: "https://chainslayer.io/",
