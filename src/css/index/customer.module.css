@@ -20,20 +20,22 @@
   font-size: var(--font-size-big-2);
   transform: scale(0.92);
   align-items: center;
-  justify-content: center;
 }
 
 @media (max-width: 996px) {
   .logo {
     margin-top: 0;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
   }
 
   .logo__item {
-    min-height: 100px;
-    min-width: 100px;
+    min-height: 80px;
+    min-width: 150px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
     transform: scale(0.8);
     font-size: var(--font-size-big-1);
   }
