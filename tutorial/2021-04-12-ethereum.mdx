@@ -16,7 +16,7 @@ import Banner from "@theme/Banner"
   src="/img/tutorial/2021-04-12/banner.jpg"
   width={650}
 >
-  Photo by <a href="https://unsplash.com/photos/qwtCeJ5cLYs">Stephen Dawson</a>{" "}
+  Photo by <a href="https://unsplash.com/@thoughtcatalog">Thought Catalog</a>{" "}
   via <a href="https://unsplash.com">Unsplash</a>
 </Banner>
 
@@ -198,7 +198,7 @@ as a checkpoint in `last_synced_block.txt`.
 
 ## Exploring data & next steps
 
-QuestDB provides some built-it visualization capabilities. For example, if you
+QuestDB provides some built-in visualization capabilities. For example, if you
 would like to explore how `gas_used` by `miner` looks, you can navigate to
 **Chart** on the QuestDB Web Console and configure the following settings:
 
@@ -238,7 +238,7 @@ SELECT to_timestamp(timestamp, 'yyyy-MM-dd HH:mm:ss') AS time,
 FROM (blocks ORDER BY timestamp);
 ```
 
-Finally, if you are going to stream contracts or tokens data, you’ll need to
+Finally, if you are going to stream contracts or token data, you'll need to
 first flatten `function_sighashes` as QuestDB does not support `array` types
 natively yet.
 
@@ -249,7 +249,7 @@ time series analysis using Python ETL scripts. With this data, you can now
 calculate popular signals like Network Value to Transaction Ratio or replicate
 analysis provided on Coin Metrics or Glassnode. As a bonus, you can deploy the
 streaming application to Kubernetes following the
-[instructions on this GitHub guide](https://github.com/blockchain-etl/blockchain-etl-streaming).
+[instructions on this GitHub repository](https://github.com/blockchain-etl/blockchain-etl-streaming).
 
 If you like this content, we'd love to know your thoughts! Feel free to share
 your feedback, browse the
