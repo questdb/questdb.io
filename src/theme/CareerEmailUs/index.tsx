@@ -16,7 +16,10 @@ const CareerEmailUs = ({ title }: Props) => {
         relevant links to your portfolio (LinkedIn, GitHub, personal website,
         etc.) and a few words about why you are interested in QuestDB.
       </p>
-      <a className={styles.link} href="mailto:careers@questdb.io">
+      <a
+        className={styles.link}
+        href={"mailto:careers@questdb.io?subject=" + title}
+      >
         careers@questdb.io
       </a>
     </section>
