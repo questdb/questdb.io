@@ -112,7 +112,7 @@ const quotes: Quote[] = [
     company: "Samtec",
   },
   {
-    website: "https://chainslayer.io/",
+    website: "https://www.chainslayer.io/",
     logo: {
       alt: "ChainSlayer logo",
       src: "/img/pages/customers/logos/chainslayer.png",
