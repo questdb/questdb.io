@@ -5,9 +5,9 @@ author_title: QuestDB Team
 author_url: https://github.com/bsmth
 author_image_url: https://avatars.githubusercontent.com/bsmth
 description:
-  We've released an alpha version for 6.0 and the highlights include
-  out-of-order ingestion, improved InfluxDB Line Protocol ingestion and multiple
-  fixes and improvements
+  An alpha version for QuestDB version 6.0 is available now to test with
+  highlights such as out-of-order support, improved InfluxDB Line Protocol
+  ingestion and multiple fixes and improvements
 keywords:
   - postgres
   - grafana
@@ -20,22 +20,21 @@ tags: [influxdb, postgres, out-of-order, release]
 We've just published an alpha version for the upcoming 6.0 major release and it
 includes long-awaited support for ingesting out-of-order records on-the-fly, a
 complete overhaul of the InfluxDB Line Protocol subsystem, and multiple fixes
-which provide stability improvements. Here's a roundup of recent changes that
-have just landed.
+which provide stability improvements. Here's a roundup of changes that have just
+landed in the latest and greatest version!
 
 <!--truncate-->
 
 ## QuestDB 6.0 alpha
 
-Version 6.0 includes several major features and fixes relating to ingestion
-subsystems, SQL execution and type handling. QuestDB relies on an append-only
-model and in versions prior to 6.0, we reject records that appear
-(chronologically) out-of-order by timestamp at the database.
-
-Out-of-order (O3) support adds flexibility and efficiency of use to the system
-and provides compatibility with the
+QuestDB relies on an append-only model and in versions prior to 6.0, we reject
+records that appear (chronologically) out-of-order by timestamp at the database.
+In real-world applications, data doesn’t follow this rule because of network
+jitter, latency or even clock synchronization issues. Out-of-order (O3) support
+adds flexibility to the system and provides compatibility with the
 [Time Series Benchmark Suite](https://github.com/timescale/tsbs) (TSBS) which is
 used to reliably measure and compare the performance of time series databases.
+
 Also included with this version is a massive internal revision of InfluxDB Line
 Protocol (ILP) ingestion which brings significant performance improvements,
 alongside multiple UI fixes for the Web Console and SQL features.
