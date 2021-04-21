@@ -16,6 +16,14 @@ methods that can be used:
   range of clients
 - [Rest API](#rest-api) which can be used for importing datasets from CSV
 
+:::tip
+
+InfluxDB Line Protocol is the recommended primary ingestion method in QuestDB.
+To query ingested data, users should utilize PostgreSQL wire and the REST API or
+Web Console.
+
+:::
+
 ## Prerequisites
 
 This page assumes that QuestDB is running and accessible. QuestDB can be run
