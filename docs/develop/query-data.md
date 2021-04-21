@@ -9,10 +9,11 @@ This page describes how to query data from QuestDB using different programming
 languages and tools. To query data in a running instance, there are three main
 methods that can be used:
 
-- [Postgres wire](#postgres-compatibility) protocol for compatibility with a
-  range of clients
-- [Rest API](#rest-api) which can be queried via HTTP
-- [Web Console](#web-console) which provides a code editor for convenience
+1. [Web Console](#web-console) which provides a code editor, table schema
+   explorer and a data visualization panel
+2. [Rest API](#rest-api) which can be queried via HTTP
+3. [Postgres wire](#postgres-compatibility) protocol for compatibility with a
+   range of clients
 
 ## Prerequisites
 
@@ -20,10 +21,169 @@ QuestDB must be running and accessible, you can do so from
 [Docker](/docs/get-started/docker/), the [binaries](/docs/get-started/binaries/)
 or [Homebrew](/docs/get-started/homebrew/) for macOS users.
 
+## Web Console
+
+QuestDB ships with an embedded Web Console running by default on port `9000`.
+
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="Screenshot of the Web Console"
+  height={375}
+  small
+  src="/img/docs/console/overview.png"
+  width={500}
+/>
+
+To query data from the web console, SQL statements can be written in the code
+editor and executed by clicking **RUN**.
+
+```questdb-sql title="Listing tables and querying a table"
+SHOW TABLES;
+SELECT * FROM my_table;
+
+--Note that `SELECT * FROM` is optional
+my_table;
+```
+
+Aside from the Code Editor, the Web Console includes a data visualization panel
+for viewing query results as tables or graphs and an Import tab for uploading
+datasets as CSV files. For more details on these components and general use of
+the console, see the [Web Console reference](/docs/reference/web-console/) page.
+
+## REST API
+
+You can query data using the [REST API](/docs/reference/api/rest/), this will
+work with a very wide range of libraries and tools. The REST API is accessible
+on port `9000`.
+
+More information on the available endpoints alongside possible parameters and
+usage examples can be found on the
+[REST API reference](/docs/reference/api/rest/) page.
+
+<!-- prettier-ignore-start -->
+
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+
+<Tabs defaultValue="curl" values={[
+  { label: "cURL", value: "curl" },
+  { label: "NodeJS", value: "nodejs" },
+  { label: "Python", value: "python" },
+  { label: "Go", value: "go" },
+]}>
+
+<!-- prettier-ignore-end -->
+
+<TabItem value="curl">
+
+```shell
+curl -G \
+  --data-urlencode "query=SELECT x FROM long_sequence(5);" \
+  http://localhost:9000/exec
+```
+
+</TabItem>
+
+<TabItem value="nodejs">
+
+```javascript
+const fetch = require("node-fetch")
+const qs = require("querystring")
+
+const HOST = "http://localhost:9000"
+
+async function run() {
+  try {
+    const queryData = {
+      query: "SELECT x FROM long_sequence(5);",
+    }
+
+    const response = await fetch(`${HOST}/exec?${qs.encode(queryData)}`)
+    const json = await response.json()
+
+    console.log(json)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+run()
+```
+
+</TabItem>
+
+<TabItem value="python">
+
+```python
+import requests
+import json
+
+host = 'http://localhost:9000'
+
+sql_query = "select * from long_sequence(10)"
+
+try:
+  response = requests.post(host + '/exec', params={'query': sql_query})
+  json_response = json.loads(response.text)
+  rows = json_response['dataset']
+  for row in rows:
+    print(row[0])
+except requests.exceptions.RequestException as e:
+  print("Error: %s" % (e))
+```
+
+</TabItem>
+
+<TabItem value="go">
+
+```go
+package main
+
+import (
+  "fmt"
+  "io/ioutil"
+  "log"
+  "net/http"
+  "net/url"
+)
+
+func main() {
+  u, err := url.Parse("http://localhost:9000")
+  checkErr(err)
+
+  u.Path += "exec"
+  params := url.Values{}
+  params.Add("query", "SELECT x FROM long_sequence(5);")
+  u.RawQuery = params.Encode()
+  url := fmt.Sprintf("%v", u)
+
+  res, err := http.Get(url)
+  checkErr(err)
+
+  defer res.Body.Close()
+
+  body, err := ioutil.ReadAll(res.Body)
+  checkErr(err)
+
+  log.Println(string(body))
+}
+
+func checkErr(err error) {
+  if err != nil {
+    panic(err)
+  }
+}
+```
+
+</TabItem>
+
+</Tabs>
+
 ## Postgres compatibility
 
 You can query data using the [Postgres](/docs/reference/api/postgres/) endpoint
-that QuestDB exposes. This is accessible via port `8812`.
+that QuestDB exposes which is accessible by default via port `8812`.
 
 <!-- prettier-ignore-start -->
 
@@ -251,152 +411,3 @@ finally:
 </TabItem>
 
 </Tabs>
-
-## REST API
-
-You can query data using the [REST API](/docs/reference/api/rest/), this will
-work with a very wide range of libraries and tools. The REST API is accessible
-on port `9000`.
-
-More information on the available endpoints alongside possible parameters and
-usage examples can be found on the
-[REST API reference](/docs/reference/api/rest/) page.
-
-<!-- prettier-ignore-start -->
-
-import Tabs from "@theme/Tabs"
-import TabItem from "@theme/TabItem"
-
-<Tabs defaultValue="curl" values={[
-  { label: "cURL", value: "curl" },
-  { label: "NodeJS", value: "nodejs" },
-  { label: "Python", value: "python" },
-  { label: "Go", value: "go" },
-]}>
-
-<!-- prettier-ignore-end -->
-
-<TabItem value="curl">
-
-```shell
-curl -G \
-  --data-urlencode "query=SELECT x FROM long_sequence(5);" \
-  http://localhost:9000/exec
-```
-
-</TabItem>
-
-<TabItem value="nodejs">
-
-```javascript
-const fetch = require("node-fetch")
-const qs = require("querystring")
-
-const HOST = "http://localhost:9000"
-
-async function run() {
-  try {
-    const queryData = {
-      query: "SELECT x FROM long_sequence(5);",
-    }
-
-    const response = await fetch(`${HOST}/exec?${qs.encode(queryData)}`)
-    const json = await response.json()
-
-    console.log(json)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-run()
-```
-
-</TabItem>
-
-<TabItem value="python">
-
-```python
-import requests
-import json
-
-host = 'http://localhost:9000'
-
-sql_query = "select * from long_sequence(10)"
-
-try:
-  response = requests.post(host + '/exec', params={'query': sql_query})
-  json_response = json.loads(response.text)
-  rows = json_response['dataset']
-  for row in rows:
-    print(row[0])
-except requests.exceptions.RequestException as e:
-  print("Error: %s" % (e))
-```
-
-</TabItem>
-
-<TabItem value="go">
-
-```go
-package main
-
-import (
-  "fmt"
-  "io/ioutil"
-  "log"
-  "net/http"
-  "net/url"
-)
-
-func main() {
-  u, err := url.Parse("http://localhost:9000")
-  checkErr(err)
-
-  u.Path += "exec"
-  params := url.Values{}
-  params.Add("query", "SELECT x FROM long_sequence(5);")
-  u.RawQuery = params.Encode()
-  url := fmt.Sprintf("%v", u)
-
-  res, err := http.Get(url)
-  checkErr(err)
-
-  defer res.Body.Close()
-
-  body, err := ioutil.ReadAll(res.Body)
-  checkErr(err)
-
-  log.Println(string(body))
-}
-
-func checkErr(err error) {
-  if err != nil {
-    panic(err)
-  }
-}
-```
-
-</TabItem>
-
-</Tabs>
-
-## Web Console
-
-Details for inserting data with the Web Console is covered on the
-[insert data](/docs/develop/insert-data#web-console) page. To query data from
-the web console, SQL statements can be written in the code editor and executed
-by clicking **RUN**.
-
-```questdb-sql title="Listing tables and querying a table"
-SHOW TABLES;
-SELECT * FROM my_table;
-
---Note that `SELECT * FROM` is optional
-my_table;
-```
-
-Aside from the Code Editor, the Web Console includes a Visualization panel for
-viewing query results as tables or graphs and an Import tab for uploading
-datasets as CSV files. For more details on these components and general use of
-the console, see the [Web Console reference](/docs/reference/web-console/) page.
