@@ -13,9 +13,23 @@ keywords:
   - grafana
   - timeseries
   - database
-image: /img/blog/2021-02-05/og.png
+image: /img/blog/2021-04-20/og.png
 tags: [influxdb, postgres, out-of-order, release]
 ---
+
+<!-- prettier-ignore-start -->
+
+import Banner from "@theme/Banner"
+
+<Banner
+  alt="Announcement for QuestDB 6.0 alpha with out-of-order inserts and compatibility with the Time Series Benchmarking Suite"
+  height={362}
+  src="/img/blog/2021-04-20/og.png"
+  width={650}
+>
+</Banner>
+
+<!-- prettier-ignore-end -->
 
 We've just published an alpha version for the upcoming 6.0 major release and it
 includes long-awaited support for ingesting out-of-order records on-the-fly, a
