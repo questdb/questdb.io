@@ -21,6 +21,8 @@
 
 .hero__title {
   line-height: 68px;
+  text-align: center;
+  margin: 120px 0 0;
 }
 
 .section__title {
@@ -47,8 +49,8 @@
   padding: 60px;
 }
 
-.defalut_text {
-  font-family: 'Inter';  
+.default_text {
+  /* font-family: 'Inter';   */
   font-weight: 400;
   font-size: 18px;
   line-height: 29px;
@@ -56,7 +58,7 @@
 
 .level__title {
   color: var(--palette-pink);
-  font-family: 'Inter';  
+  /* font-family: 'Inter';   */
   font-weight: 400;
   font-size: var(--font-size-normal);
   line-height: 26px;
@@ -64,7 +66,7 @@
 }
 
 .property {
-  font-family: 'Inter';
+  /* font-family: 'Inter'; */
   font-weight: 400;
   font-size: 18px;
   line-height: 29px;
@@ -107,7 +109,7 @@
 }
 
 .second_text {
-  font-family: 'Rubik';  
+  /* font-family: 'Rubik';   */
   font-weight: 400;
   font-size: 18px;
   line-height: 29px;
@@ -167,7 +169,7 @@
 
 
 .card {
-  background: #262833;
+  background: #21222C;
   border-radius: 8px;
   padding: 29px;
   max-width: 500px;
@@ -201,7 +203,7 @@
 }
 
 .contribute_text {
-  font-family: 'Inter';  
+  /* font-family: 'Inter';   */
   font-weight: 400;
   font-size: var(--font-size-normal);
   line-height: 26px;
@@ -220,7 +222,7 @@
   margin-right: 9px;
   min-width: 255px;
   outline: none;
-  font-family: 'Inter';  
+  /* font-family: 'Inter';   */
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
@@ -228,7 +230,7 @@
 }
 
 .custom_input::placeholder {
-  font-family: 'Inter';  
+  /* font-family: 'Inter';   */
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
@@ -252,6 +254,7 @@
 
   .hero__title {
     line-height: 54px;
+    margin: 60px 0 0;
   }
 
   .flex__section {

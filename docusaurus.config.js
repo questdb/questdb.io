@@ -179,6 +179,10 @@ const config = {
           position: "left",
           items: [
             {
+              label: "Get QuestDB swag",
+              to: "/community/",
+            },
+            {
               label: "GitHub",
               to: customFields.githubUrl,
             },
@@ -224,7 +228,7 @@ const config = {
         },
         {
           title: "Community",
-          items: [
+          items: [            
             {
               label: "GitHub",
               href: customFields.githubUrl,
