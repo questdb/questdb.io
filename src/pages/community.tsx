@@ -157,9 +157,9 @@ const Community = () => {
                 GitHub issue
               </a>
             </p>
-            <div>
+            <div className={paCss.contributes}>
               <p className={paCss.default_text}>How to contribute?</p>
-              <div className={paCss.contributes}>
+              <div>
                 {contributes.map((item: Contribute, index: number) => (
                   <div className={paCss.contribute_Item} key={index}>
                     <div className={paCss.contribute_Inner}>

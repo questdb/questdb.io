@@ -22,7 +22,8 @@
 .hero__title {
   line-height: 68px;
   text-align: center;
-  margin: 120px 0 0;
+  margin: 120px auto 0;
+  max-width: var(--ifm-container-width);
 }
 
 .section__title {
@@ -50,7 +51,6 @@
 }
 
 .default_text {
-  /* font-family: 'Inter';   */
   font-weight: 400;
   font-size: 18px;
   line-height: 29px;
@@ -58,7 +58,6 @@
 
 .level__title {
   color: var(--palette-pink);
-  /* font-family: 'Inter';   */
   font-weight: 400;
   font-size: var(--font-size-normal);
   line-height: 26px;
@@ -66,7 +65,6 @@
 }
 
 .property {
-  /* font-family: 'Inter'; */
   font-weight: 400;
   font-size: 18px;
   line-height: 29px;
@@ -109,7 +107,6 @@
 }
 
 .second_text {
-  /* font-family: 'Rubik';   */
   font-weight: 400;
   font-size: 18px;
   line-height: 29px;
@@ -128,7 +125,7 @@
 .text_center_header {
   text-align: center;
   max-width: 552px;
-  margin: 0 auto;
+  margin: 40px auto;
 }
 
 .section_center {
@@ -184,6 +181,10 @@
   margin: 0 auto;
 }
 
+.contributes {
+  margin-top: 70px;
+}
+
 .contribute_Item {
   display: flex;
   align-items: center;
@@ -203,7 +204,6 @@
 }
 
 .contribute_text {
-  /* font-family: 'Inter';   */
   font-weight: 400;
   font-size: var(--font-size-normal);
   line-height: 26px;
@@ -222,7 +222,6 @@
   margin-right: 9px;
   min-width: 255px;
   outline: none;
-  /* font-family: 'Inter';   */
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
@@ -230,7 +229,6 @@
 }
 
 .custom_input::placeholder {
-  /* font-family: 'Inter';   */
   font-weight: 500;
   font-size: 14px;
   line-height: 19px;
