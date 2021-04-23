@@ -270,7 +270,7 @@ configured in the `server.conf` file in the format:
 Where `<protocol>` is one of:
 
 - `http` - HTTP connections
-- `pg` - PostgreSQL wire protocol
+- `pg` - Postgres wire protocol
 - `line.tcp` - InfluxDB line protocol over TCP
 
 And `<config>` is one of the following settings:
