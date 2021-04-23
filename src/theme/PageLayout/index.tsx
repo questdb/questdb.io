@@ -76,7 +76,12 @@ const PageLayout = ({
           <meta name="twitter:title" content={metaTitle} />
           <meta name="twitter:image:alt" content={`Image for "${metaTitle}"`} />
           {keywords != null && keywords.length > 0 && (
-            <meta name="keywords" content={keywords.join(",")} />
+            <meta
+              name="keywords"
+              content={
+                keywords instanceof Array ? keywords.join(",") : keywords
+              }
+            />
           )}
         </Head>
         <AnnouncementBar />

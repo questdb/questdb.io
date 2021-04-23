@@ -2,7 +2,7 @@ import fs from "fs-extra"
 import * as Joi from "joi"
 import { flatten, take, kebabCase } from "lodash"
 import path from "path"
-import { Configuration, Loader } from "webpack"
+import { Configuration } from "webpack"
 
 import {
   STATIC_DIR_NAME,
@@ -37,7 +37,7 @@ import { generateTutorial } from "./utils"
 export default function pluginContentTutorial(
   context: LoadContext,
   options: TutorialPluginOptions,
-): Plugin<TutorialContent | null, typeof PluginOptionSchema> {
+): Plugin<TutorialContent | null> {
   const {
     siteDir,
     siteConfig: { onBrokenMarkdownLinks },
@@ -173,7 +173,7 @@ export default function pluginContentTutorial(
     configureWebpack(
       _config: Configuration,
       isServer: boolean,
-      { getBabelLoader, getCacheLoader }: ConfigureWebpackUtils,
+      { getJSLoader }: ConfigureWebpackUtils,
     ) {
       const markdownLoaderOptions = {
         siteDir,
@@ -203,8 +203,7 @@ export default function pluginContentTutorial(
               test: /(\.mdx?)$/,
               include: getContentPathList(contentPaths),
               use: [
-                getCacheLoader(isServer),
-                getBabelLoader(isServer),
+                getJSLoader({ isServer }),
                 {
                   loader: require.resolve("@docusaurus/mdx-loader"),
                   options: {
@@ -220,7 +219,7 @@ export default function pluginContentTutorial(
                   loader: path.resolve(__dirname, "./markdownLoader.js"),
                   options: markdownLoaderOptions,
                 },
-              ].filter(Boolean) as Loader[],
+              ].filter(Boolean),
             },
           ],
         },
@@ -232,9 +231,8 @@ export default function pluginContentTutorial(
 export function validateOptions({
   validate,
   options,
-}: OptionValidationContext<null, Joi.ValidationError>): ValidationResult<
-  null,
-  Joi.ValidationError
+}: OptionValidationContext<TutorialPluginOptions>): ValidationResult<
+  TutorialPluginOptions
 > {
   const validatedOptions = validate(PluginOptionSchema, options)
   return validatedOptions

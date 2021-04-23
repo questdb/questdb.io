@@ -7,7 +7,7 @@ module.exports = () => ({
         splitChunks: isServer
           ? false
           : {
-              name: true,
+              // name: true, // Does not exist anymore, see https://webpack.js.org/blog/2020-10-10-webpack-5-release/
               cacheGroups: {
                 common: {
                   name: "common",

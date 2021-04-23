@@ -14,10 +14,10 @@
     "serve": "docusaurus serve"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.b305145da9",
-    "@docusaurus/module-type-aliases": "2.0.0-alpha.b305145da9",
-    "@docusaurus/plugin-pwa": "2.0.0-alpha.b305145da9",
-    "@docusaurus/preset-classic": "2.0.0-alpha.b305145da9",
+    "@docusaurus/core": "2.0.0-alpha.adf2a526e5",
+    "@docusaurus/module-type-aliases": "2.0.0-alpha.adf2a526e5",
+    "@docusaurus/plugin-pwa": "2.0.0-alpha.adf2a526e5",
+    "@docusaurus/preset-classic": "2.0.0-alpha.adf2a526e5",
     "@questdb/sql-grammar": "1.0.5",
     "@tsconfig/docusaurus": "1.0.2",
     "@types/react": "16.9.56",
@@ -68,8 +68,8 @@
     "rimraf": "3.0.2",
     "sharp": "0.26.3",
     "url-loader": "4.1.1",
-    "webpack": "4.44.2",
-    "webpack-manifest-plugin": "2.2.0"
+    "webpack": "^5.33.2",
+    "webpack-manifest-plugin": "^3.1.1"
   },
   "browserslist": {
     "production": [
