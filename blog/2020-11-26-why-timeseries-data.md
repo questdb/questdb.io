@@ -4,8 +4,8 @@ title:
   (TSDB)?
 author: Nicolas Hourcard
 author_title: QuestDB Team
-author_url: https://github.com/NicQuestDB
-author_image_url: https://avatars.githubusercontent.com/NicQuestDB
+author_url: https://github.com/tris0laris
+author_image_url: https://avatars.githubusercontent.com/tris0laris
 description:
   A primer on time-series data and time-series databases (TSDB), and why we
   decided to build QuestDB

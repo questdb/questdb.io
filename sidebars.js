@@ -70,6 +70,7 @@ module.exports = {
       items: [
         "guides/importing-data",
         "guides/influxdb-line-protocol",
+        "guides/google-cloud-platform",
       ],
     },
     {

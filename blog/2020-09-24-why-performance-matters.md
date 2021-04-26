@@ -2,8 +2,8 @@
 title: Why performance matters in time-series data
 author: Nicolas Hourcard
 author_title: QuestDB Team
-author_url: https://github.com/NicQuestDB
-author_image_url: https://avatars.githubusercontent.com/NicQuestDB
+author_url: https://github.com/tris0laris
+author_image_url: https://avatars.githubusercontent.com/tris0laris
 description:
   Thoughts on why speed and performance are crucial to time-series databases
   ingestion and analysis.

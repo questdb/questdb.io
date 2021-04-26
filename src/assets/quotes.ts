@@ -52,7 +52,7 @@ const quotes: Quote[] = [
     text:
       "With QuestDB's turnkey solution in Docker, we quickly built a solid foundation for a data acquisition pipeline with billions of measurements.",
     author: "Andreas Landmann",
-    role: "Director of Research and Technology",
+    role: "Director, Research & Technology",
     company: "DATRON",
   },
   {
@@ -112,7 +112,7 @@ const quotes: Quote[] = [
     company: "Samtec",
   },
   {
-    website: "https://chainslayer.io/",
+    website: "https://www.chainslayer.io/",
     logo: {
       alt: "ChainSlayer logo",
       src: "/img/pages/customers/logos/chainslayer.png",

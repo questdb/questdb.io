@@ -70,7 +70,7 @@
 .quote__author {
   --ifm-paragraph-margin-bottom: 0;
   color: var(--palette-pale-blue);
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-small);
 }
 
 .controls {

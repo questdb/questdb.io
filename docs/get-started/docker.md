@@ -60,7 +60,7 @@ import TabItem from "@theme/TabItem"
 <TabItem value="linux">
 
 ```shell
-/root/.questdb/db
+/root/.questdb
 ```
 
 </TabItem>
@@ -68,7 +68,7 @@ import TabItem from "@theme/TabItem"
 <TabItem value="windows">
 
 ```shell
-C:\questdb\db
+C:\questdb
 ```
 
 </TabItem>

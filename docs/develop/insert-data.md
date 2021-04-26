@@ -1,20 +1,29 @@
 ---
 title: Insert data
 description:
-  This page demonstrates how to insert data into QuestDB from NodeJS, Java, Go
-  and cURL. The examples show how to use the REST API as well as the InfluxDB
-  integration.
+  This page demonstrates how to insert time series data into QuestDB from
+  NodeJS, Java, Go and cURL. The examples show how to use the REST API as well
+  as the InfluxDB integration.
 ---
 
 This page shows how to insert data into QuestDB using different programming
 languages and tools. To ingest data to a running instance, there are three main
-methods that can be used:
+methods for inserting data:
 
-- [InfluxDB line](#influxdb-line-protocol) protocol which provides flexibility,
-  ease of use, and high ingestion rates
+- [InfluxDB line](#influxdb-line-protocol) protocol (ILP) which provides
+  flexibility, ease of use, and high ingestion rates
 - [Postgres wire](#postgres-compatibility) protocol for compatibility with a
-  range of clients
+  range of clients or fallback over ILP
 - [Rest API](#rest-api) which can be used for importing datasets from CSV
+
+:::tip
+
+InfluxDB Line Protocol is the recommended primary ingestion method in QuestDB.
+To query ingested data, users should utilize the Web Console and REST API on
+port `9000` or use a Postgres wire client. Methods for querying data are
+described on the [query data documentation](/docs/develop/query-data/) page.
+
+:::
 
 ## Prerequisites
 
@@ -28,6 +37,16 @@ using either [Docker](/docs/get-started/docker/), the
 QuestDB implements InfluxDB line protocol which is accessible by default on TCP
 port `9009`. This allows using QuestDB as a drop-in replacement for InfluxDB and
 other systems implementing the protocol.
+
+This interface is the preferred ingestion method as it provides the following
+benefits:
+
+- high-throughput ingestion
+- robust ingestion from multiple sources into tables with dedicated systems for
+  reducing congestion
+- configurable hysteresis via
+  [server configuration](/docs/reference/configuration/#influxdb-line-protocol-tcp)
+  settings
 
 For additional details on the message format, see the
 [InfluxDB line protocol guide](/docs/guides/influxdb-line-protocol/). Details on
@@ -241,8 +260,8 @@ supported features can be found on the
 <TabItem value="nodejs">
 
 This example uses the [`pg` package](https://www.npmjs.com/package/pg) which
-allows for quickly building queries using PostgreSQL wire protocol. Details on
-the use of this package can be found on the
+allows for quickly building queries using Postgres wire protocol. Details on the
+use of this package can be found on the
 [node-postgres documentation](https://node-postgres.com/).
 
 This example uses naive `Date.now() * 1000` inserts for Timestamp types in
@@ -556,7 +575,7 @@ finally:
     if (connection):
         cursor.close()
         connection.close()
-        print("PostgreSQL connection is closed")
+        print("Postgres connection is closed")
 ```
 
 </TabItem>

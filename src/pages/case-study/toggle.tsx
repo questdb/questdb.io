@@ -128,8 +128,8 @@ const Toggle = () => {
         </p>
 
         <p className={caCss.card__subtitle}>
-          In this case study, Toggle’s CTO, Armenak, summarises the migration
-          experience and goes through the improvements they saw.
+          In this case study, we summarize Toggle’s migration experience from
+          InfluxDB to QuestDB and the improvements the migration brought.
         </p>
       </section>
 
