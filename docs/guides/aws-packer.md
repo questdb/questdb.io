@@ -93,7 +93,7 @@ i.e.;
 The following command will build the QuestDB machine image and create it in the
 `eu-central-1` region with the name `<base_ami_name>-amzn2-<timestamp>`:
 
-```
+```bash
 packer build -var 'aws_region=eu-central-1' template.json
 ```
 
@@ -115,7 +115,7 @@ eu-central-1: ami-0a...
 To view the details of the image, the following AWS CLI command will describe
 AMIs created by the current AWS account:
 
-```
+```bash
 aws ec2 describe-images --owners self
 ```
 
@@ -162,7 +162,7 @@ of the `ImageId` value which will be referred to in the following section as
 }
 ```
 
-### Enable networking and launch an instance
+## Enable networking and launch an instance
 
 Instances using this AMI with QuestDB installed can be directly launched from
 the CLI. For convenience, we will first allow networking on instance creation

@@ -72,6 +72,7 @@ module.exports = {
         "guides/influxdb-line-protocol",
         "guides/aws-packer",
         "guides/kubernetes",
+        "guides/google-cloud-platform",
       ],
     },
     {
