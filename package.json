@@ -14,10 +14,10 @@
     "serve": "docusaurus serve"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.adf2a526e5",
-    "@docusaurus/module-type-aliases": "2.0.0-alpha.adf2a526e5",
-    "@docusaurus/plugin-pwa": "2.0.0-alpha.adf2a526e5",
-    "@docusaurus/preset-classic": "2.0.0-alpha.adf2a526e5",
+    "@docusaurus/core": "2.0.0-alpha.8b941d0d7d",
+    "@docusaurus/module-type-aliases": "2.0.0-alpha.8b941d0d7d",
+    "@docusaurus/plugin-pwa": "2.0.0-alpha.8b941d0d7d",
+    "@docusaurus/preset-classic": "2.0.0-alpha.8b941d0d7d",
     "@questdb/sql-grammar": "1.0.5",
     "@tsconfig/docusaurus": "1.0.2",
     "@types/react": "16.9.56",
