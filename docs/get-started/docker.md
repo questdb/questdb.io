@@ -109,7 +109,7 @@ persisted or server configuration settings may be passed to an instance. The
 following example demonstrated how to mount the current directory to a QuestDB
 container using the `-v` flag in a Docker `run` command:
 
-```
+```bash
 docker run -p 9000:9000 -p 8812:8812 -v "$(pwd):/root/.questdb/" questdb/questdb
 ```
 
