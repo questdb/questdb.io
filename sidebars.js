@@ -67,7 +67,13 @@ module.exports = {
     {
       label: "Guides",
       type: "category",
-      items: ["guides/importing-data", "guides/influxdb-line-protocol"],
+      items: [
+        "guides/importing-data",
+        "guides/influxdb-line-protocol",
+        "guides/aws-packer",
+        "guides/kubernetes",
+        "guides/google-cloud-platform",
+      ],
     },
     {
       label: "Third-party Tools",

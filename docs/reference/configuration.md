@@ -348,7 +348,7 @@ w.stdout.level=INFO,ERROR
 ```
 
 QuestDB will look for `/qlog.conf` on the classpath unless this name is
-overridden via a "system" property: `-DquestdbLog=/something_else.conf`.
+overridden via a "system" property: `-Dout=/something_else.conf`.
 
 ### Environment variables
 
