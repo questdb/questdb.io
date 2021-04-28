@@ -10,10 +10,17 @@ import MailchimpSubscribe from "react-mailchimp-subscribe"
 const url =
   "https://questdb.us7.list-manage.com/subscribe/post?u=f692ae4038a31e8ae997a0f29&amp;id=bdd4ec2744"
 
-// FIXME, disabling linter during testing
-/* eslint-disable react/prop-types */
+type FormProps = {
+  status: string
+  message: string
+  onValidated: Function
+}
 
-const CustomForm = ({ status, message, onValidated }) => {
+const CustomForm: React.FC<FormProps> = ({
+  status,
+  message,
+  onValidated,
+}: FormProps) => {
   let email
   const submit = () =>
     email != null &&
@@ -43,8 +50,6 @@ const CustomForm = ({ status, message, onValidated }) => {
     </div>
   )
 }
-
-/* eslint-enable react/prop-types */
 
 type Contribute = {
   image: string
