@@ -5,6 +5,46 @@ import PageLayout from "@theme/PageLayout"
 import Button from "@theme/Button"
 import seCss from "../css/section.module.css"
 import paCss from "../css/community/page.module.css"
+import MailchimpSubscribe from "react-mailchimp-subscribe"
+
+const url =
+  "https://questdb.us7.list-manage.com/subscribe/post?u=f692ae4038a31e8ae997a0f29&amp;id=bdd4ec2744"
+
+// FIXME, disabling linter during testing
+/* eslint-disable react/prop-types */
+
+const CustomForm = ({ status, message, onValidated }) => {
+  let email
+  const submit = () =>
+    email != null &&
+    email.value.indexOf("@") > -1 &&
+    onValidated({
+      EMAIL: email.value,
+    })
+
+  return (
+    <div>
+      <input
+        className={paCss.custom_input}
+        ref={(node) => (email = node)}
+        type="email"
+        placeholder="Email address"
+      />
+      <Button onClick={submit} className={paCss.signup_button}>
+        Sign Up
+      </Button>
+      {status === "sending" && <div>sending...</div>}
+      {status === "error" && (
+        <div dangerouslySetInnerHTML={{ __html: message }} />
+      )}
+      {status === "success" && (
+        <div dangerouslySetInnerHTML={{ __html: message }} />
+      )}
+    </div>
+  )
+}
+
+/* eslint-enable react/prop-types */
 
 type Contribute = {
   image: string
@@ -66,12 +106,16 @@ const Community = () => {
                 Stay up to date with all things QuestDB
               </p>
               <div>
-                <input
-                  type="text"
-                  className={paCss.custom_input}
-                  placeholder="Email address"
+                <MailchimpSubscribe
+                  url={url}
+                  render={({ subscribe, status, message }) => (
+                    <CustomForm
+                      status={status}
+                      message={message}
+                      onValidated={(formData) => subscribe(formData)}
+                    />
+                  )}
                 />
-                <Button className={paCss.signup_button}>Sign Up</Button>
               </div>
             </div>
           </div>
