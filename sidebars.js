@@ -71,6 +71,9 @@ module.exports = {
         "guides/v6-migration",
         "guides/importing-data",
         "guides/influxdb-line-protocol",
+        "guides/aws-packer",
+        "guides/kubernetes",
+        "guides/google-cloud-platform",
       ],
     },
     {
