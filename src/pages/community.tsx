@@ -11,7 +11,7 @@ type Contribute = {
   title: string
 }
 
-const contributes: Contribute[] = [
+const contribution: Contribute[] = [
   {
     image: "/img/pages/community/plugin.svg",
     title: "Create a Plugin",
@@ -71,7 +71,7 @@ const Community = () => {
                   className={paCss.custom_input}
                   placeholder="Email address"
                 />
-                <Button>Sign Up</Button>
+                <Button className={paCss.signup_button}>Sign Up</Button>
               </div>
             </div>
           </div>
@@ -157,10 +157,10 @@ const Community = () => {
                 GitHub issue
               </a>
             </p>
-            <div className={paCss.contributes}>
+            <div className={paCss.contribution}>
               <p className={paCss.default_text}>How to contribute?</p>
               <div>
-                {contributes.map((item: Contribute, index: number) => (
+                {contribution.map((item: Contribute, index: number) => (
                   <div className={paCss.contribute_Item} key={index}>
                     <div className={paCss.contribute_Inner}>
                       <img
@@ -209,7 +209,7 @@ const Community = () => {
             </p>
             <p className={paCss.property}>
               You have written a{" "}
-              <a className={paCss.link_item} href="#">
+              <a className={paCss.link_item} href="/tutorial/">
                 tutorial or guide using QuestDB
               </a>
             </p>
@@ -237,7 +237,7 @@ const Community = () => {
                   Shirt size (if applicable)
                 </p>
                 <p className={paCss.message__content}>
-                  Claim details e.g. (Github username, relevant URLs)
+                  Claim details e.g. (GitHub username, relevant URLs)
                 </p>
               </div>
             </div>
@@ -253,7 +253,7 @@ const Community = () => {
                 What you get:
               </p>
               <p className={paCss.second_text}>
-                For this level, we have even more cool swag in store!
+                For this level, we have even more cool swag!
               </p>
             </div>
           </div>

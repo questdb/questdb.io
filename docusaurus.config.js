@@ -228,7 +228,7 @@ const config = {
         },
         {
           title: "Community",
-          items: [            
+          items: [
             {
               label: "GitHub",
               href: customFields.githubUrl,
