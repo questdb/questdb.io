@@ -7,9 +7,6 @@ import seCss from "../css/section.module.css"
 import paCss from "../css/community/page.module.css"
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 
-const url =
-  "https://questdb.us7.list-manage.com/subscribe/post?u=f692ae4038a31e8ae997a0f29&amp;id=bdd4ec2744"
-
 type FormProps = {
   status: string
   message: string
@@ -80,11 +77,15 @@ const contribution: Contribute[] = [
 ]
 
 const Community = () => {
-  const title = "Community"
   const { siteConfig } = useDocusaurusContext()
+  const newsletterUrl =
+    "https://questdb.us7.list-manage.com/subscribe/post?u=f692ae4038a31e8ae997a0f29&amp;id=bdd4ec2744"
+  const title = "QuestDB developer community"
+  const description =
+    "Get involved with the developer community that's building the fastest open-source time series database."
 
   return (
-    <PageLayout canonical="/community" title={title}>
+    <PageLayout canonical="/community" description={description} title={title}>
       <section className={clsx(seCss.section)}>
         <h1
           className={clsx(
@@ -120,7 +121,7 @@ const Community = () => {
               </p>
               <div>
                 <MailchimpSubscribe
-                  url={url}
+                  url={newsletterUrl}
                   render={({ subscribe, status, message }) => (
                     <CustomForm
                       status={status}
@@ -195,7 +196,7 @@ const Community = () => {
         <div className={clsx(seCss["section--inner"])}>
           <div className={paCss.half__section}>
             <p className={paCss.level__title}>Level 2</p>
-            <h2 className={paCss.section__title}>Contributor</h2>
+            <h2 className={paCss.section__title}>Open-source contributor</h2>
             <p className={paCss.default_text}>
               To claim your swag for the this level:
             </p>
