@@ -132,6 +132,29 @@ const Community = () => {
                 />
               </div>
             </div>
+            <div className={paCss.join_slack}>
+              <p
+                className={`${paCss.default_text} ${paCss.join_slack_description}`}
+              >
+                Join our growing community on &nbsp;
+                <a
+                  className={paCss.link_item}
+                  href={siteConfig.customFields.slackUrl}
+                >
+                  QuestDB’s Slack
+                </a>
+              </p>
+              <a
+                className={paCss.link_item}
+                href={siteConfig.customFields.slackUrl}
+              >
+                <img
+                  src="/img/pages/community/slack-logo.svg"
+                  alt="slack logo"
+                  className={paCss.slack_logo}
+                />
+              </a>
+            </div>
           </div>
           <div className={`${paCss.half__section} ${paCss.section_center}`}>
             <img

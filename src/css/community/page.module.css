@@ -238,6 +238,24 @@
   margin: 0 auto;
 }
 
+.join_slack {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.join_slack_description {
+  max-width: 310px;
+  margin: 0;
+  margin-right: 23px;
+  font-size: 22px;
+  line-height: 35px;
+}
+
+.slack_logo {
+  width: 50px;
+}
+
 @media (max-width: 996px) {
   .half__section {
     max-width: 500px;
@@ -281,5 +299,9 @@
 
   .custom_box {
     width: 330px;
+  }
+
+  .join_slack_description {
+    font-size: 18px;
   }
 }
