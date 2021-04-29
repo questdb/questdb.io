@@ -179,7 +179,7 @@ const config = {
           position: "left",
           items: [
             {
-              label: "Get QuestDB swag",
+              label: "QuestDB Swag",
               to: "/community/",
             },
             {
