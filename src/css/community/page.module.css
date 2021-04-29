@@ -256,6 +256,14 @@
   width: 50px;
 }
 
+@media (min-width:997px) and (max-width:1121px){
+  .custom_input,
+  .signup_button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
 @media (max-width: 996px) {
   .half__section {
     max-width: 500px;
