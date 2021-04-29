@@ -99,6 +99,11 @@
   color: var(--palette-pink);
 }
 
+.contribution_link_item {
+  text-decoration: none;
+  color: var(--palette-white);
+}
+
 .custom_box {
   border: 1px solid rgba(177, 181, 211, 0.2);
   border-radius: 8px;

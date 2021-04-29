@@ -54,20 +54,24 @@ const CustomForm: React.FC<FormProps> = ({
 type Contribute = {
   image: string
   title: string
+  url: string
 }
 
 const contribution: Contribute[] = [
   {
     image: "/img/pages/community/plugin.svg",
-    title: "Create a Plugin",
+    title: "Help build a new feature",
+    url: "https://github.com/questdb/questdb",
   },
   {
     image: "/img/pages/community/bug.svg",
-    title: "Report a Bug",
+    title: "Report an issue",
+    url: "https://github.com/questdb/questdb/issues",
   },
   {
     image: "/img/pages/community/docs.svg",
-    title: "Improve the Docs",
+    title: "Improve the docs",
+    url: "https://github.com/questdb/questdb.io",
   },
 ]
 
@@ -217,11 +221,19 @@ const Community = () => {
                         alt="icon"
                         className={paCss.main_icon}
                       />
+
                       <span className={paCss.contribute_text}>
-                        {item.title}
+                        <a
+                          className={paCss.contribution_link_item}
+                          href={item.url}
+                        >
+                          {item.title}
+                        </a>
                       </span>
                     </div>
-                    <img src="/img/pages/community/arrow.svg" alt="arrow" />
+                    <a className={paCss.contribution_link_item} href={item.url}>
+                      <img src="/img/pages/community/arrow.svg" alt="arrow" />
+                    </a>
                   </div>
                 ))}
               </div>
