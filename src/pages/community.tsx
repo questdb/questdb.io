@@ -52,6 +52,7 @@ const CustomForm: React.FC<FormProps> = ({
 }
 
 type Contribute = {
+  alt: string
   image: string
   title: string
   url: string
@@ -62,16 +63,19 @@ const contribution: Contribute[] = [
     image: "/img/pages/community/plugin.svg",
     title: "Help build a new feature",
     url: "https://github.com/questdb/questdb",
+    alt: "A plugin icon",
   },
   {
     image: "/img/pages/community/bug.svg",
     title: "Report an issue",
     url: "https://github.com/questdb/questdb/issues",
+    alt: "A bug icon",
   },
   {
     image: "/img/pages/community/docs.svg",
     title: "Improve the docs",
     url: "https://github.com/questdb/questdb.io",
+    alt: "A document icon",
   },
 ]
 
@@ -131,7 +135,7 @@ const Community = () => {
           <div className={`${paCss.half__section} ${paCss.section_center}`}>
             <img
               src="/img/pages/community/slack.png"
-              alt=""
+              alt="A collage showing conversation from the QuestDB community Slack workspace with QuestDB stickers that participants receive"
               className={paCss.section_image}
             />
           </div>
@@ -146,7 +150,7 @@ const Community = () => {
             <div className={paCss.half__section}>
               <img
                 src="/img/pages/community/step1.svg"
-                alt=""
+                alt="A mug and a pack of stickers printed with the QuestDB logo"
                 className={paCss.section_image}
               />
             </div>
@@ -206,7 +210,10 @@ const Community = () => {
             </p>
             <p className={paCss.property}>
               You have voted, commented on, or opened a{" "}
-              <a className={paCss.link_item} href="#">
+              <a
+                className={paCss.link_item}
+                href="https://github.com/questdb/questdb/issues"
+              >
                 GitHub issue
               </a>
             </p>
@@ -218,7 +225,7 @@ const Community = () => {
                     <div className={paCss.contribute_Inner}>
                       <img
                         src={item.image}
-                        alt="icon"
+                        alt={item.alt}
                         className={paCss.main_icon}
                       />
 
@@ -232,7 +239,10 @@ const Community = () => {
                       </span>
                     </div>
                     <a className={paCss.contribution_link_item} href={item.url}>
-                      <img src="/img/pages/community/arrow.svg" alt="arrow" />
+                      <img
+                        src="/img/pages/community/arrow.svg"
+                        alt="An arrow icon"
+                      />
                     </a>
                   </div>
                 ))}
@@ -242,7 +252,7 @@ const Community = () => {
           <div className={`${paCss.half__section} ${paCss.section_center}`}>
             <img
               src="/img/pages/community/step2.svg"
-              alt=""
+              alt="A black t-shirt with the QuestDB logo printed on the front"
               className={paCss.section_image}
             />
             <div className={`${paCss.custom_box} ${paCss.text_center}`}>
@@ -306,7 +316,7 @@ const Community = () => {
           <div className={`${paCss.half__section} ${paCss.section_center}`}>
             <img
               src="/img/pages/community/step3.svg"
-              alt="image"
+              alt="A pink and black water bottle, a cellphone cover and a circular mousemat printed with the QuestDB logo"
               className={paCss.section_image}
             />
             <div className={`${paCss.custom_box} ${paCss.text_center}`}>
