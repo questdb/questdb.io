@@ -254,6 +254,17 @@ body {
 
 /**
  *
+ * Supplemental docs (Privacy notice, TOS)
+ *
+ **/
+
+.supplemental {
+  align-self: center;
+  box-sizing: content-box;
+}
+
+/**
+ *
  * Pagination
  *
  **/
