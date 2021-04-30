@@ -152,6 +152,8 @@ const Community = () => {
                   src="/img/pages/community/slack-logo.svg"
                   alt="slack logo"
                   className={paCss.slack_logo}
+                  width={50}
+                  height={50}
                 />
               </a>
             </div>
@@ -161,6 +163,8 @@ const Community = () => {
               src="/img/pages/community/slack.png"
               alt="A collage showing conversation from the QuestDB community Slack workspace with QuestDB stickers that participants receive"
               className={paCss.section_image}
+              width={500}
+              height={500}
             />
           </div>
         </div>
@@ -176,6 +180,8 @@ const Community = () => {
                 src="/img/pages/community/stickers-mugs.png"
                 alt="A mug and a pack of stickers printed with the QuestDB logo"
                 className={paCss.section_image}
+                width={500}
+                height={414}
               />
             </div>
             <div className={paCss.half__section}>
@@ -251,6 +257,8 @@ const Community = () => {
                         src={item.image}
                         alt={item.alt}
                         className={paCss.main_icon}
+                        width={18}
+                        height={18}
                       />
 
                       <span className={paCss.contribute_text}>
@@ -266,6 +274,8 @@ const Community = () => {
                       <img
                         src="/img/pages/community/arrow.svg"
                         alt="An arrow icon"
+                        width={8}
+                        height={11}
                       />
                     </a>
                   </div>
@@ -278,6 +288,8 @@ const Community = () => {
               src="/img/pages/community/questdb-shirt.png"
               alt="A black t-shirt with the QuestDB logo printed on the front"
               className={paCss.section_image}
+              width={500}
+              height={500}
             />
             <div className={`${paCss.custom_box} ${paCss.text_center}`}>
               <p className={`${paCss.default_text} ${paCss.mb5}`}>
@@ -342,6 +354,8 @@ const Community = () => {
               src="/img/pages/community/questdb-swag-mousemat.png"
               alt="A pink and black water bottle, a cellphone cover and a circular mousemat printed with the QuestDB logo"
               className={paCss.section_image}
+              width={659}
+              height={561}
             />
             <div className={`${paCss.custom_box} ${paCss.text_center}`}>
               <p className={`${paCss.default_text} ${paCss.mb5}`}>
