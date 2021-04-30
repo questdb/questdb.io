@@ -1,0 +1,256 @@
+---
+title: Streaming on-chain Ethereum data to QuestDB
+author: Yitaek Hwang
+description:
+  Learn how to use Infura, Blockchain ETL, and QuestDB to stream Ethereum data
+  to a time series database for visualization and analysis.
+image: /img/tutorial/shared/og-ethereum.png
+featured: true
+---
+
+import Banner from "@theme/Banner"
+
+<Banner
+  alt="Physical coins with Ethereum and Bitcoin logos."
+  height={467}
+  src="/img/tutorial/2021-04-12/banner.jpg"
+  width={650}
+>
+  Photo by <a href="https://unsplash.com/@thoughtcatalog">Thought Catalog</a>{" "}
+  via <a href="https://unsplash.com">Unsplash</a>
+</Banner>
+
+This submission comes from one of our community contributors
+[Yitaek Hwang](https://yitaek.medium.com/) who has put together another
+excellent tutorial that shows how to stream Ethereum blockchain data into
+QuestDB for time series data visualization and analysis.
+
+Thanks for another great contribution, Yitaek!
+
+## Introduction
+
+Previously, I wrote about using
+[Coinbase API and Kafka Connect](/tutorial/2021/03/18/questdb-and-prometheus-on-gke-autopilot/)
+to track the price of various cryptocurrencies in real-time. While price is an
+important factor for a potential investor, on-chain data like block information
+(gas used, difficulty), transactions, and smart contracts also provide useful
+metrics for technical analysis. In this tutorial, we will pull on-chain data
+from Ethereum and stream it to QuestDB for further analysis and visualization.
+
+**Disclaimer:** This tutorial is not investment or financial advice. All views
+expressed here are my own.
+
+## Prerequisites
+
+- [Python 3.6+](https://www.python.org/downloads/)
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Infura](https://infura.io/) account
+
+## Accessing Ethereum on-chain data
+
+Infura is a development platform powered by Consensys with a generous free tier
+(100k requests/day) to pull data from Ethereum Mainnet and Testnets. Create a
+new project in your Infura account under Ethereum:
+
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="A new account on Infura showing API call quotas remaining"
+  height={278}
+  src="/img/tutorial/2021-04-12/infura-account.png"
+  width={650}
+/>
+
+Make note of the HTTPS endpoint for the Mainnet in the following format:
+
+```txt
+https://mainnet.infura.io/v3/<your-project-id>
+```
+
+## Create table for time series data
+
+The ETL script we will use to stream Ethereum data provides the following
+on-chain information:
+
+- Blocks
+- Contracts
+- Logs
+- Token Transfers
+- Tokens
+- Traces
+- Transactions
+
+For simplicity, we will only stream blocks and token transfers in this example,
+but the schema for all the available on-chain data is located under
+[ethereum-etl-postgres/schema](https://github.com/blockchain-etl/ethereum-etl-postgres/tree/master/schema).
+This data will be indexed in QuestDB for high-performance time series data
+analysis.
+
+Start the QuestDB Docker container with the web console and PostgreSQL wire
+protocol ports exposed:
+
+```bash
+docker run -p 9000:9000 -p 8812:8812 questdb/questdb
+```
+
+Navigate to the web console at localhost:9000 and create tables for `blocks`:
+
+```questdb-sql
+create table blocks
+(
+  timestamp string,
+  number int,
+  hash string,
+  parent_hash string,
+  nonce string,
+  sha3_uncles string,
+  logs_bloom string,
+  transactions_root string,
+  state_root string,
+  receipts_root string,
+  miner symbol,
+  difficulty long,
+  total_difficulty long,
+  size long,
+  extra_data string,
+  gas_limit long,
+  gas_used long,
+  transaction_count long
+);
+```
+
+and for `token_transfers`:
+
+```questdb-sql
+create table token_transfers
+(
+  token_address symbol,
+  from_address symbol,
+  to_address symbol,
+  value float,
+  transaction_hash string,
+  log_index long,
+  block_timestamp string,
+  block_number long,
+  block_hash string
+);
+```
+
+When creating tables that use repetitive strings in QuestDB, we can achieve
+better performance on both storage space and query efficiency by using the
+`symbol` type.
+
+<Screenshot
+  alt="A SQL query in the QuestDB web console showing how to create a new table"
+  height={251}
+  src="/img/tutorial/2021-04-12/create-table.png"
+  width={650}
+/>
+
+When sending data over PostgreSQL wire, we can send regular `string` types, but
+treat them as enum-like values stored as integers in QuestDB. For more
+information on using this feature, further details can be found on the
+[symbol type documentation](/docs/concept/symbol/).
+
+After refreshing the tables list, you should see both populated and we’re ready
+to stream Ethereum data to our database.
+
+## Stream Ethereum on-chain data
+
+Blockchain ETL provides a Python script to pull data from Infura and stream it
+to Google Pub/Sub or Postgres. To start, we need to first install
+ethereumetl[streaming] :
+
+```bash
+pip3 install "ethereum-etl[streaming]"
+```
+
+Now we need to specify our QuestDB credentials as well as Infura API details.
+Postgres output is in the following format:
+
+```http
+postgresql+pg8000://<user>:<password>@<host>:<port>/<database>
+```
+
+where API url is specified via `--provider-uri`. We can also specify the
+`start-block` number (or omit to download all of Ethereum data from the
+beginning), and the schemas we’re interested in:
+
+```bash
+ethereumetl stream --start-block 600000 -e block,token_transfer \
+--output postgresql+pg8000://admin:quest@localhost:8812/qdb \
+--provider-uri https://mainnet.infura.io/v3/<my-project-id>
+```
+
+As the stream starts up, data will be visible in QuestDB:
+
+<Screenshot
+  alt="A SQL query in the QuestDB web console showing how to list all rows from a table"
+  height={456}
+  src="/img/tutorial/2021-04-12/select-all-from-blocks.png"
+  width={650}
+/>
+
+The script automatically stores the last processed block in
+`last_synced_block.txt`. If you would like to run the script later, you can
+remove the `--start-block` flag and the script will resume from the value stored
+as a checkpoint in `last_synced_block.txt`.
+
+## Exploring data & next steps
+
+QuestDB provides some built-in visualization capabilities. For example, if you
+would like to explore how `gas_used` by `miner` looks, you can navigate to
+**Chart** on the QuestDB Web Console and configure the following settings:
+
+- **Chart type - bar**
+- **Labels - `miner`**
+- **Series - `gas_used`**
+
+<Screenshot
+  alt="The chart functionality in the QuestDB web console showing a bar chart of blockchain info"
+  height={257}
+  src="/img/tutorial/2021-04-12/visualizing-data.png"
+  width={650}
+/>
+
+The Ethereum ETL script currently stores
+[timestamp data in RFC3339 format](https://github.com/blockchain-etl/ethereum-etl/blob/develop/ethereumetl/streaming/eth_item_timestamp_calculator.py),
+whereas QuestDB expects signed offset from Unix Epoch. This was why our table
+schema used `string` instead of `timestamp` type for our time series fields. To
+see better performance and to use more language features that QuestDB offers,
+there are a few options. We can either modify the ETL script directly to send
+`timestamp` types, or stream our data to Cloud Pub/Sub, transform the data prior
+to streaming to QuestDB.
+
+Alternatively, we can use the `to_timestamp()` function in QuestDB to parse
+string fields with a date format as timestamps. For example, pulling data from
+the `blocks` table using `timestamp` type can be done on-the-fly using this
+query:
+
+```questdb-sql
+SELECT to_timestamp(timestamp, 'yyyy-MM-dd HH:mm:ss') AS time,
+        number,
+        miner,
+        difficulty,
+        size,
+        gas_limit,
+        gas_used
+FROM (blocks ORDER BY timestamp);
+```
+
+Finally, if you are going to stream contracts or token data, you'll need to
+first flatten `function_sighashes` as QuestDB does not support `array` types
+natively yet.
+
+## Summary
+
+We've learned how to stream Ethereum on-chain data from Infura into QuestDB for
+time series analysis using Python ETL scripts. With this data, you can now
+calculate popular signals like Network Value to Transaction Ratio or replicate
+analysis provided on Coin Metrics or Glassnode. As a bonus, you can deploy the
+streaming application to Kubernetes following the
+[instructions on this GitHub repository](https://github.com/blockchain-etl/blockchain-etl-streaming).
+
+If you like this content, we'd love to know your thoughts! Feel free to share
+your feedback or come and say hello in the
+[QuestDB Community Slack]({@slackUrl@}).
