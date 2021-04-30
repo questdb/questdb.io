@@ -15,7 +15,7 @@ const customFields = {
   domain,
   githubOrgUrl,
   githubUrl: `${githubOrgUrl}/questdb`,
-  helmVersion: "0.2.8",
+  helmVersion: "0.3.0",
   linkedInUrl: "https://www.linkedin.com/company/questdb/",
   oneLiner: "Fast SQL open source database for time series - QuestDB",
   slackUrl: `https://slack.${domain}`,
