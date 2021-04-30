@@ -354,7 +354,7 @@ const Community = () => {
               src="/img/pages/community/questdb-swag-mousemat.png"
               alt="A pink and black water bottle, a cellphone cover and a circular mousemat printed with the QuestDB logo"
               className={paCss.section_image}
-              width={659}
+              width={500}
               height={561}
             />
             <div className={`${paCss.custom_box} ${paCss.text_center}`}>
