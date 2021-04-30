@@ -14,10 +14,10 @@
     "serve": "docusaurus serve"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.b11c24b75",
-    "@docusaurus/module-type-aliases": "2.0.0-alpha.b11c24b75",
-    "@docusaurus/plugin-pwa": "2.0.0-alpha.b11c24b75",
-    "@docusaurus/preset-classic": "2.0.0-alpha.b11c24b75",
+    "@docusaurus/core": "2.0.0-alpha.75",
+    "@docusaurus/module-type-aliases": "2.0.0-alpha.75",
+    "@docusaurus/plugin-pwa": "2.0.0-alpha.75",
+    "@docusaurus/preset-classic": "2.0.0-alpha.75",
     "@questdb/sql-grammar": "1.0.5",
     "@tsconfig/docusaurus": "1.0.2",
     "@types/react": "16.9.56",
@@ -62,13 +62,14 @@
     "imagemin-svgo": "8.0.0",
     "lint-staged": "10.5.1",
     "make-dir": "3.1.0",
+    "netlify-plugin-cache": "^1.0.3",
     "node-fetch": "2.6.1",
     "prettier": "2.1.2",
     "rimraf": "3.0.2",
     "sharp": "0.26.3",
     "url-loader": "4.1.1",
-    "webpack": "4.44.2",
-    "webpack-manifest-plugin": "2.2.0"
+    "webpack": "^5.33.2",
+    "webpack-manifest-plugin": "^3.1.1"
   },
   "browserslist": {
     "production": [
