@@ -173,7 +173,7 @@ const Community = () => {
           <div className={paCss.flex__section}>
             <div className={paCss.half__section}>
               <img
-                src="/img/pages/community/step1.svg"
+                src="/img/pages/community/stickers-mugs.png"
                 alt="A mug and a pack of stickers printed with the QuestDB logo"
                 className={paCss.section_image}
               />
@@ -275,7 +275,7 @@ const Community = () => {
           </div>
           <div className={`${paCss.half__section} ${paCss.section_center}`}>
             <img
-              src="/img/pages/community/step2.svg"
+              src="/img/pages/community/questdb-shirt.png"
               alt="A black t-shirt with the QuestDB logo printed on the front"
               className={paCss.section_image}
             />
@@ -339,7 +339,7 @@ const Community = () => {
           </div>
           <div className={`${paCss.half__section} ${paCss.section_center}`}>
             <img
-              src="/img/pages/community/step3.svg"
+              src="/img/pages/community/questdb-swag-mousemat.png"
               alt="A pink and black water bottle, a cellphone cover and a circular mousemat printed with the QuestDB logo"
               className={paCss.section_image}
             />
