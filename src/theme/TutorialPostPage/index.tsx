@@ -28,9 +28,9 @@ function TutorialPostPage({ content }: Tutorial) {
               <Content />
             </TutorialPostItem>
           </main>
-          {content.rightToc != null && (
+          {content.toc != null && (
             <div className="col col--2">
-              <Toc headings={content.rightToc} />
+              <Toc toc={content.toc} />
             </div>
           )}
         </div>

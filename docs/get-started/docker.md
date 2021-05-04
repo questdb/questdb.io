@@ -102,6 +102,31 @@ Now that QuestDB is running, you can start interacting with it:
 
 ## Data persistence
 
+### Mounting a volume
+
+Volumes can be mounted to the QuestDB Docker container so that data may be
+persisted or server configuration settings may be passed to an instance. The
+following example demonstrated how to mount the current directory to a QuestDB
+container using the `-v` flag in a Docker `run` command:
+
+```bash
+docker run -p 9000:9000 -p 8812:8812 -v "$(pwd):/root/.questdb/" questdb/questdb
+```
+
+The current directory will then have data persisted to disk for convenient
+migration or backups:
+
+```bash title="Current directory contents"
+├── conf
+│   └── server.conf
+├── db
+└── public
+```
+
+For details on passing QuestDB server settings to a Docker container, see the
+[Docker section](/docs/reference/configuration/#docker) of the server
+configuration documentation.
+
 ### Restart an existing container
 
 When you stop the container, it will not be removed by Docker. This means that

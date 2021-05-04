@@ -19,10 +19,14 @@ function splitNavItemsByPosition(
   rightItems: Array<ComponentProps<typeof NavbarItem>>
 } {
   const leftItems = items.filter(
-    (item) => (item.position ?? DefaultNavItemPosition) === "left",
+    (item) =>
+      // @ts-expect-error: temporary, will be fixed in Docusaurus TODO remove soon
+      (item.position ?? DefaultNavItemPosition) === "left",
   )
   const rightItems = items.filter(
-    (item) => (item.position ?? DefaultNavItemPosition) === "right",
+    (item) =>
+      // @ts-expect-error: temporary, will be fixed in Docusaurus TODO remove soon
+      (item.position ?? DefaultNavItemPosition) === "right",
   )
   return {
     leftItems,
@@ -136,7 +140,12 @@ function Navbar(): JSX.Element {
           <div className="menu">
             <ul className="menu__list">
               {items.map((item, i) => (
-                <NavbarItem mobile {...item} onClick={hideSidebar} key={i} />
+                <NavbarItem
+                  mobile
+                  {...item}
+                  {...(item.type !== "search" && { onClick: hideSidebar })} // Search type def does not accept onClick
+                  key={i}
+                />
               ))}
             </ul>
           </div>
