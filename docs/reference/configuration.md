@@ -32,9 +32,9 @@ QDB_<KEY_OF_THE_PROPERTY>
 Where `<KEY_OF_THE_PROPERTY>` is equal to the configuration key name. To
 properly format a `server.conf` key as an environment variable it must have:
 
-- `QDB_` prefix
-- uppercase characters
-- all `.` period characters replaced with `_` underscore
+1. `QDB_` prefix
+2. uppercase characters
+3. all `.` period characters replaced with `_` underscore
 
 For example, the server configuration key for shared workers must be passed as
 described below:
@@ -43,9 +43,19 @@ described below:
 | --------------------- | ------------------------- |
 | `shared.worker.count` | `QDB_SHARED_WORKER_COUNT` |
 
-## Example
+:::note
 
-```shell title="Customizing the worker count via server.conf"
+QuestDB applies these configuration changes on startup and a running instance
+must be restarted in order for configuration changes to take effect
+
+:::
+
+### Examples
+
+The following configuration property customizes the number of worker threads
+shared across the application:
+
+```shell title="conf/server.conf"
 shared.worker.count=5
 ```
 
@@ -53,12 +63,62 @@ shared.worker.count=5
 export QBD_SHARED_WORKER_COUNT=5
 ```
 
-:::note
+## Docker
 
-QuestDB applies these configuration changes on startup and a running instance
-must be restarted in order for configuration changes to take effect
+This section describes how configure QuestDB server settings when running
+QuestDB in a Docker container. The examples change the default HTTP and REST API
+port from `9000` to `4000` for illustrative purposes, and demonstrate how to
+expose this port.
 
-:::
+### Environment variables
+
+Server configuration can be passed to QuestDB running in Docker by using the
+`-e` flag to pass an environment variable to a container:
+
+```bash
+docker run -p 4000:4000 -e QBD_HTTP_BIND_TO=0.0.0.0:4000 questdb/questdb
+```
+
+### Mounting a volume
+
+A server configuration file can be provided by mounting a local directory in a
+QuestDB container. Given the following configuration file which overrides the
+default HTTP bind property:
+
+```shell title="./server.conf"
+http.bind.to=0.0.0.0:4000
+```
+
+Running the container with the `-v` flag allows for mounting the current
+directory to QuestDB's `conf` directory in the container. With the server
+configuration above, HTTP ports for the web console and REST API will be
+available on `localhost:4000`:
+
+```bash
+docker run -v "$(pwd):/root/.questdb/conf" -p 4000:4000 questdb/questdb
+```
+
+To mount the full root directory of QuestDB when running in a Docker container,
+provide a the configuration in a `conf` directory:
+
+```shell title="./conf/server.conf"
+http.bind.to=0.0.0.0:4000
+```
+
+Mount the current directory using the `-v` flag:
+
+```bash
+docker run -v "$(pwd):/root/.questdb/" -p 4000:4000 questdb/questdb
+```
+
+The current directory will then have data persisted to disk:
+
+```bash title="Current directory contents"
+├── conf
+│   └── server.conf
+├── db
+└── public
+```
 
 ## Keys and default values
 

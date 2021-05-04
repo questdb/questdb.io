@@ -91,7 +91,7 @@ export type Tutorial = Readonly<{
   content: Readonly<{
     frontMatter: Omit<FlatTutorial, "link" | "date"> & { description?: string }
     metadata: Omit<Metadata, "title" | "tags"> & { truncated?: string }
-    rightToc?: Content["rightToc"]
+    toc?: Content["toc"]
   }>
   external: true
 }>
@@ -108,6 +108,7 @@ const normalize = (data: FlatTutorial[]): Tutorial[] =>
       },
       metadata: {
         date,
+        formattedDate: date.toString(), // TODO format date
         permalink: link,
         truncated: "true",
       },

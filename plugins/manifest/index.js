@@ -1,4 +1,4 @@
-const ManifestPlugin = require("webpack-manifest-plugin")
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin")
 
 module.exports = () => ({
   name: "manifest",
@@ -6,7 +6,7 @@ module.exports = () => ({
     return {
       plugins: isServer
         ? []
-        : [new ManifestPlugin({ fileName: "asset-manifest.json" })],
+        : [new WebpackManifestPlugin ({ fileName: "asset-manifest.json" })],
     }
   },
 })
