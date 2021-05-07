@@ -143,3 +143,15 @@ docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 \
   -e QDB_CAIRO_O3_COMMIT_HYSTERESIS_IN_MS=20000 \
   questdb/questdb
 ```
+
+O3 hysteresis parameters may also be set during table creation as part of the
+`PARTITION BY` clause. When passed in this way using the `WITH` keyword, the
+following two parameters may be applied:
+
+- `o3MaxUncommittedRows` - equivalent to `cairo.o3.max.uncommitted.rows`
+- `o3CommitHysteresis` - equivalent to `cairo.o3.commit.hysteresis.in.ms`
+
+```questdb-sql title="Setting hysteresis parameters via SQL"
+CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
+PARTITION BY DAY WITH o3MaxUncommittedRows=250000, o3CommitHysteresis=240s
+```
