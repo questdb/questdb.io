@@ -179,17 +179,18 @@ information on the concepts introduced to below, see
 - [symbol](/docs/concept/symbol/) reference for using the `symbol` data type
 
 This example will create a table without a designated timestamp and does not
-have a partitioning strategy applied. New records may be ingested which have
-timestamp values out of order.
+have a partitioning strategy applied.
 
 ```questdb-sql title="Basic example"
 CREATE TABLE
 my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING);
 ```
 
-The same table can be created and a designated timestamp may be specified.
-Tables with designated timestamps enforce that new timestamp values appear in
-chronological order.
+The same table can be created and a designated timestamp may be specified. New
+records with timestamps which are out-of-order (O3) chronologically will be
+ordered at the point of ingestion. Configuring how the system handles ingestion
+of O3 records is done via [O3 hysteresis](/docs/guides/hysteresis/)
+configuration.
 
 ```questdb-sql title="Adding a designated timestamp"
 CREATE TABLE
