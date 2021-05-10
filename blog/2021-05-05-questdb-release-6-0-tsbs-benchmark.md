@@ -9,12 +9,11 @@ description:
   Here's how we built it and how it compares to ClickHouse, TimescaleDB, and
   InfluxDB.
 keywords:
-  - jdbc
-  - postgres
-  - tcp
-  - kafka
-  - garbage
-  - java
+  - clickhouse
+  - influxdb
+  - timescaledb
+  - tsbs
+  - benchmark
   - timeseries
   - database
 image: /img/blog/2021-05-05/banner.png
