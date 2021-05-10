@@ -64,7 +64,7 @@ import Screenshot from "@theme/Screenshot"
 
 <Screenshot
   alt="A diagram with two timelines illustrating how data may be delayed from multiple applications to a single database"
-  height={284}
+  height={415}
   src="/img/blog/2021-05-05/o3-data-illustration.jpg"
   title="Out-of-order data in real-world applications"
   width={650}
@@ -125,7 +125,7 @@ in the staging area in parallel:
 
 <Screenshot
   alt="A diagram illustrating how sorting is applied to unordered database records based on a timestamp column order"
-  height={284}
+  height={452}
   src="/img/blog/2021-05-05/o3-radix-sort.png"
   title="Applying sort order to columns in parallel"
   width={650}
@@ -137,7 +137,7 @@ operation needed and the dimensions of each of the three groups below:
 
 <Screenshot
   alt="A diagram illustrating the combinations of merge operations that can be applied to two data sets"
-  height={284}
+  height={400}
   src="/img/blog/2021-05-05/staging-area.png"
   title="O3 sort and merge scenarios"
   width={650}
@@ -197,7 +197,7 @@ with `__MEMCPY` as Angner Fog's Asmlib `A_memcpy`, in one instance and glibC's
 
 <Screenshot
   alt="A chart showing the performance of memory copy libraries Asmlib and gcliC by megabytes copied over time"
-  height={284}
+  height={361}
   src="/img/blog/2021-05-05/memcpy-comparison.png"
   title="Xeon 8275CL CPU @ 3.00GHz, AVX 512, 3.00GHz, 36608K cache, Amzn2 Linux. Units are microseconds/Mb, lower score is better."
   width={650}
@@ -205,7 +205,7 @@ with `__MEMCPY` as Angner Fog's Asmlib `A_memcpy`, in one instance and glibC's
 
 <Screenshot
   alt="A chart showing the performance of memory copy libraries Asmlib, gcliC and Windows CRT by megabytes copied over time"
-  height={284}
+  height={348}
   src="/img/blog/2021-05-05/memcpy-comparison-2.png"
   title="i7-3770, 3.40GHz, 8Mb cache, AVX, Ubuntu 20. Units are microseconds/Mb, lower score is better."
   width={650}
@@ -258,7 +258,7 @@ stable results with similar performance to `memset`.
 
 <Screenshot
   alt="A chart showing the performance of non-temporal SIMD instructions, memset and loops for time taken to fill buffers with data"
-  height={284}
+  height={409}
   src="/img/blog/2021-05-05/non-temporal-memset.png"
   title="Initializing a buffer with the same 64bit value"
   width={650}
@@ -304,7 +304,7 @@ fourteen workers on an AWS EC2 m5.8xlarge instance with sixteen cores.
 
 <Screenshot
   alt="Time series benchmark suite results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using four workers"
-  height={284}
+  height={377}
   src="/img/blog/2021-05-05/max-throughput-comparison.png"
   title="Benchmark results comparing the point of maximum throughput of QuestDB, ClickHouse, InfluxDB and TimescaleDB"
   width={650}
@@ -322,7 +322,7 @@ than InfluxDB and 6.5x faster than TimescaleDB.
 
 <Screenshot
   alt="A chart comparing the maximum throughput of four database systems, showing QuestDB hitting ingestion limits with less resources than other systems"
-  height={284}
+  height={324}
   src="/img/blog/2021-05-05/tsbs-benchmark-results.png"
   title="TSBS Ingestion rate with 4 workers: Number of rows/secs for QuestDB, ClickHouse, TimescaleDB and InfluxDB"
   width={650}
