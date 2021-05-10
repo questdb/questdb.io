@@ -6,8 +6,8 @@ author_url: https://github.com/bluestreak01
 author_image_url: https://avatars.githubusercontent.com/bluestreak01
 description:
   Our new ingestion framework can sort time series data before writing to disk.
-  Here's how we built it and how it compares to ClickHouse, TimescaleDB, and
-  InfluxDB.
+  Here's how we built it and how it compares to InfluxDB, ClickHouse, and
+  TimescaleDB.
 keywords:
   - clickhouse
   - influxdb
@@ -20,24 +20,16 @@ image: /img/blog/2021-05-05/banner.png
 tags: [release, clickhouse, timescaledb, influxdb, benchmark]
 ---
 
-We've developed a new ingestion framework for our time series database to handle
-out-of-order data without incurring significant performance penalties. This
-article describes how we now process and sort incoming data and includes
-benchmarks of our latest release with this new ingestion system to see how it
-compares to ClickHouse, TimescaleDB, and InfluxDB.
-
-<!--truncate-->
-
-## Introduction
-
 The journey to today's version of QuestDB began with the original prototype in
 2013, and we've described what happened since in a post published
 [during our HN launch](https://news.ycombinator.com/item?id=23975807) last year.
 During the early stages of the project, we were inspired by vector-based
 append-only systems like kdb+ because of the advantages of speed and the simple
-code path this model brings. We also required that row timestamps be stored in
+code path this model brings. We also required that row timestamps are stored in
 ascending order, resulting in fast time series queries without an expensive
 index.
+
+<!--truncate-->
 
 We found out that this model does not fit all data acquisition use cases, such
 as out-of-order data. Although several workarounds were available, we wanted to
@@ -49,8 +41,8 @@ weren't happy with. Like the entirety of our codebase, the solution that we
 present today is built from scratch. It took over 9 months to come to fruition
 and adds a further 65k lines of code to the project.
 
-Here's what we built, why we made it, what we learned along the way, and
-benchmarks comparing other open-source time series databases.
+Here's what we built, why we built it, what we learned along the way, and
+benchmarks comparing QuestDB to InfluxDB, ClickHouse and TimescaleDB.
 
 ## The problem with out-of-order data
 
