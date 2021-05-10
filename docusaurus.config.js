@@ -21,7 +21,7 @@ const customFields = {
   slackUrl: `https://slack.${domain}`,
   stackoverflowUrl: "https://stackoverflow.com/questions/tagged/questdb",
   twitterUrl: "https://twitter.com/questdb",
-  version: "5.0.6.1",
+  version: "6.0.0",
   videosUrl: "https://www.youtube.com/channel/UChqKEmOyiD9c6QFx2mjKwiA",
 }
 

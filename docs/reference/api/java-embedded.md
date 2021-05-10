@@ -18,10 +18,19 @@ import TabItem from "@theme/TabItem"
 
 <TabItem value="maven">
 
-```xml
+
+```xml title="JDK11"
 <dependency>
     <groupId>org.questdb</groupId>
     <artifactId>questdb</artifactId>
+    <version>{@version@}</version>
+</dependency>
+```
+
+```xml title="JDK8"
+<dependency>
+    <groupId>org.questdb</groupId>
+    <artifactId>questdb-jdk8</artifactId>
     <version>{@version@}</version>
 </dependency>
 ```
