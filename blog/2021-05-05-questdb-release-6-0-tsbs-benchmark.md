@@ -359,3 +359,7 @@ To add O3 support, we went for a novel solution that yielded surprisingly good
 performance versus well-trodden approaches such as B-trees or LSM-based
 ingestion frameworks. We're happy to have shared the journey, and we're eagerly
 waiting for feedback from the community.
+
+For more details, the
+[GitHub release for version 6.0](https://github.com/questdb/questdb/releases/tag/6.0.0)
+contains a changelog of additions and fixes in this software version.
