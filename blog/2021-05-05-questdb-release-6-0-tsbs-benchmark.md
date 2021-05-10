@@ -25,7 +25,7 @@ The journey to today's version of QuestDB began with the original prototype in
 [during our HN launch](https://news.ycombinator.com/item?id=23975807) last year.
 During the early stages of the project, we were inspired by vector-based
 append-only systems like kdb+ because of the advantages of speed and the simple
-code path this model brings. We also required that row timestamps are stored in
+code path this model brings. We also required that row timestamps were stored in
 ascending order, resulting in fast time series queries without an expensive
 index.
 
@@ -290,14 +290,14 @@ The TSBS is a collection of Go programs to generate datasets and then benchmark
 read and write performance. The suite is extensible so that different use cases
 and query types can be included and compared across systems.
 
-Here are our results of the benchmark with the 'cpu-only' use case using up to
-fourteen workers on an AWS EC2 m5.8xlarge instance with sixteen cores.
+Here are our results of the benchmark with the `cpu-only` use case using up to
+fourteen workers on an AWS EC2 `m5.8xlarge` instance with sixteen cores.
 
 <Screenshot
   alt="Time series benchmark suite results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using four workers"
   height={377}
   src="/img/blog/2021-05-05/max-throughput-comparison.png"
-  title="Benchmark results comparing the point of maximum throughput of QuestDB, ClickHouse, InfluxDB and TimescaleDB"
+  title="TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
   width={650}
 />
 
@@ -315,7 +315,7 @@ than InfluxDB and 6.5x faster than TimescaleDB.
   alt="A chart comparing the maximum throughput of four database systems, showing QuestDB hitting ingestion limits with less resources than other systems"
   height={324}
   src="/img/blog/2021-05-05/tsbs-benchmark-results.png"
-  title="TSBS Ingestion rate with 4 workers: Number of rows/secs for QuestDB, ClickHouse, TimescaleDB and InfluxDB"
+  title="TSBS benchmark results using 4 threads: rows ingested per second by QuestDB, InfluxDB, ClickHouse, and TimescaleDB."
   width={650}
 />
 
