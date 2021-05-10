@@ -68,6 +68,7 @@ module.exports = {
       label: "Guides",
       type: "category",
       items: [
+        "guides/v6-migration",
         "guides/importing-data",
         "guides/influxdb-line-protocol",
         "guides/aws-packer",
@@ -139,10 +140,11 @@ module.exports = {
               type: "category",
               label: "ALTER TABLE",
               items: [
-                "reference/sql/alter-table-alter-column-add-index",
                 "reference/sql/alter-table-add-column",
+                "reference/sql/alter-table-alter-column-add-index",
                 "reference/sql/alter-table-rename-column",
                 "reference/sql/alter-table-drop-column",
+                "reference/sql/alter-table-attach-partition",
                 "reference/sql/alter-table-drop-partition",
               ],
             },
