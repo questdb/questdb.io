@@ -181,30 +181,6 @@ few records per partition and having query operations across too many partitions
 has the result of slower query times. A general guideline is that roughly
 between 1 million and 100 million records is optimal per partition.
 
-### Timestamps
-
-Tables which have a designated timestamp expect new records to have a more
-recent timestamp than the last-inserted record. For this reason, out of order
-records are ignored by the system.
-
-**System timestamp:**
-
-One approach to mitigate the loss of records which have out-of-order timestamps
-is to allow the server to assign a timestamp for an incoming record which is
-equal to the time of ingestion:
-
-```questdb-sql title="Using server time for new inserts"
-INSERT INTO readings
-VALUES(systimestamp(), 123.4)
-```
-
-When using InfluxDB line protocol, omitting a timestamp value from incoming
-records has the same effect of an implicit `systimestamp()` function:
-
-```bash title="InfluxDB line protocol without a timestamp"
-readings,city=London,temperature=23.5,humidity=0.343
-```
-
 ### Choosing a schema
 
 This section provides some hints for choosing the right schema for a dataset
