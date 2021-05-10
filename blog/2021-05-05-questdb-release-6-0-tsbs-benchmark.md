@@ -17,7 +17,7 @@ keywords:
   - timeseries
   - database
 image: /img/blog/2021-05-05/banner.png
-tags: [release, clickhouse, timescaledb, influxdb, hackernews]
+tags: [release, clickhouse, timescaledb, influxdb, benchmark]
 ---
 
 We've developed a new ingestion framework for our time series database to handle
