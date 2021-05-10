@@ -25,14 +25,13 @@ import Screenshot from "@theme/Screenshot"
 - Partitions are defined at table creation. For more information, refer to
   [CREATE TABLE section](/docs/reference/sql/create-table/).
 
-## Requirements
+:::info
 
-Partition is only available on tables with a designated timestamp. The main
-benefit of using a designated timestamp is that the field in question will
-enforce an increasing policy on timestamp value. This allows you to leverage
-specific high-performance time series functions. For more information on
-designated timestamp, refer to the
+Partitioning is only possible on tables which have a designated timestamp. For
+more information on designated timestamps, refer to the
 [designated timestamp section](/docs/concept/designated-timestamp/).
+
+:::
 
 ## Advantages
 
@@ -52,13 +51,13 @@ has been partitioned using `PARTITION BY MONTH`.
 
 ```
 [quest-user trips]$ dir
-2017-03	    2017-10 	2018-05	    2019-02
-2017-04	    2017-11 	2018-06	    2019-03
-2017-05	    2017-12 	2018-07	    2019-04
-2017-06	    2018-01 	2018-08 	2019-05
-2017-07	    2018-02 	2018-09 	2019-06
-2017-08	    2018-03 	2018-10
-2017-09	    2018-04 	2018-11
+2017-03     2017-10   2018-05     2019-02
+2017-04     2017-11   2018-06     2019-03
+2017-05     2017-12   2018-07     2019-04
+2017-06     2018-01   2018-08   2019-05
+2017-07     2018-02   2018-09   2019-06
+2017-08     2018-03   2018-10
+2017-09     2018-04   2018-11
 ```
 
 Each partition on the disk contains the column data files of the corresponding
