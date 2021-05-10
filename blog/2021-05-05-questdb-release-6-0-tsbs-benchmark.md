@@ -309,9 +309,9 @@ fourteen workers on an AWS EC2 m5.8xlarge instance with sixteen cores.
   width={650}
 />
 
-We reach maximum ingestion performance using four workers, whereas the other
+We reach maximum ingestion performance using four threads, whereas the other
 systems require more CPU resources to hit maximum throughput. QuestDB achieves
-959k rows/sec with 4 workers. We find that InfluxDB needs 14 threads to reach
+959k rows/sec with 4 threads. We find that InfluxDB needs 14 threads to reach
 its max ingestion rate (334k rows/sec), while TimescaleDB reaches 145k rows/sec
 with 4 threads. ClickHouse hits 914k rows/sec with twice as many threads as
 QuestDB.
