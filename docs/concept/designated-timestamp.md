@@ -25,12 +25,12 @@ As of version 6.0.0, QuestDB supports ingestion of records which are
 out-of-order (O3) by time. Configuring how the system handles ingestion of O3
 records is done via [O3 hysteresis](/docs/guides/hysteresis/) configuration.
 
-:::tip
+:::info
 
-In versions prior to 6.0.0, once a column is elected as a designated timestamp,
-it will enforce an order policy on this column, and O3 inserts will be rejected.
-In other words, new timestamp values need to be greater than or equal to the
-latest timestamp in the column.
+In versions prior to 6.0.0, when a column was elected as a designated timestamp,
+it would enforce an order policy and O3 inserts would be rejected. In other
+words, new timestamp values needed to be greater than or equal to the most
+recent timestamp in the column.
 
 :::
 

@@ -143,7 +143,7 @@ shifting to SIMD-optimized code for everything else. With a prefix, merge, and
 suffix split, the maximum `liveliness` of the commit (how susceptible it is to
 add more CPU capacity) is `partitions_affected` x `number_of_columns` x `3`.
 
-## Optimizing O3 commits with SIMD?
+## Optimizing O3 commits with SIMD
 
 Because we aim to rely on `memcpy` the most, we benchmarked code that merges
 variable-length columns:
@@ -329,6 +329,20 @@ contention beyond what the system is capable of. We think that one limiting
 factor may be that we are IO bound as we scale up to 30% better on faster
 AMD-based systems.
 
+When we run the suite again using an AMD Ryzen5 processor, we found that we were
+able to hit maximum throughput of 1.43 million rows per second using 5 threads.
+This is compared to the
+[Intel Xeon Platinum](https://aws.amazon.com/ec2/instance-types/) that's in use
+by our reference benchmark `m5.8xlarge` instance on AWS.
+
+<Screenshot
+  alt="A chart comparing the maximum throughput of QuestDB when utilizing an Intel Xeon Platinum processor versus an AMD Ryzen5 processor."
+  height={410}
+  src="/img/blog/2021-05-10/questdb-bench-amd-ryzen.png"
+  title="Comparing QuestDB TSBS load results on AWS EC2 using an Intel Xeon Platinum versus an AMD Ryzen5"
+  width={650}
+/>
+
 We have opened a pull request
 ([#157 - Questdb benchmark support](https://github.com/timescale/tsbs/issues/157)) in
 TimescaleDB's TSBS GitHub repository which adds the ability to run the benchmark
@@ -349,8 +363,8 @@ tsbs_load_questdb --file /tmp/bigcpu --workers 4
 To add O3 support, we went for a novel solution that yielded surprisingly good
 performance versus well-trodden approaches such as B-trees or LSM-based
 ingestion frameworks. We're happy to have shared the journey, and we're eagerly
-waiting for feedback from the community.
+awaiting feedback from the community.
 
 For more details, the
 [GitHub release for version 6.0](https://github.com/questdb/questdb/releases/tag/6.0.0)
-contains a changelog of additions and fixes in this software version.
+contains a changelog of additions and fixes in this release.
