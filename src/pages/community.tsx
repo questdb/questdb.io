@@ -104,15 +104,15 @@ const Community = () => {
         >
           <div className={`${paCss.half__section} ${paCss.padding_60}`}>
             <h2 className={paCss.section__title}>
-              We’re super proud of the QuestDB community and all our
+              We’re super proud of the QuestDB community and everything our
               contributors do
             </h2>
             <p
               className={clsx(seCss.section__subtitle, paCss.section__subtitle)}
             >
               As a way of saying &quot;thank you&quot; for being part of the
-              journey, we want to offer contributors some of our coveted
-              stickers, pins, t-shirts, and awesome virtual swag.
+              journey, we want to offer contributors some of our stickers, pins,
+              t-shirts, and awesome virtual swag.
             </p>
             <div className={paCss.border} />
             <div>
@@ -332,7 +332,7 @@ const Community = () => {
                 with the following information:
               </p>
               <p className={paCss.list__description}>
-                Subject: Level (1/2/3) Swag Plz!
+                Subject: Level (1/2/3) Swag!
               </p>
               <p className={paCss.list__description}>
                 Your message must contain:
