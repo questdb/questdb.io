@@ -177,6 +177,18 @@ columns are added as field or tag sets, the table is automatically updated to
 reflect the new structure and the new column will be back-propagated with null
 values.
 
+When new tables are created by inserting records via InfluxDB line protocol, a
+default [partitioning strategy](/docs/concept/partitions/) by `DAY` is applied.
+This default can be overridden by means of passing server configuration for
+`line.tcp.default.partition.by`, i.e.
+
+```bash title="server.conf"
+line.tcp.default.partition.by=MONTH
+```
+
+For information describing how to pass server settings to QuestDB, see the
+[configuration documentation](/docs/reference/configuration/) page.
+
 ## QuestDB listener configuration
 
 QuestDB can ingest line protocol packets both over TCP and UDP with the
