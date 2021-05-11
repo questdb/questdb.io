@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="461" height="81">
+    <defs>
+        <style type="text/css">
+            @namespace "http://www.w3.org/2000/svg";
+                .line                 {fill: none; stroke: #636273;}
+                .bold-line            {stroke: #636273; shape-rendering: crispEdges; stroke-width: 2; }
+                .thin-line            {stroke: #636273; shape-rendering: crispEdges}
+                .filled               {fill: #636273; stroke: none;}
+                text.terminal         {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+                font-size: 12px;
+                fill: #ffffff;
+                font-weight: bold;
+                }
+                text.nonterminal      {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+                font-size: 12px;
+                fill: #e289a4;
+                font-weight: normal;
+                }
+                text.regexp           {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+                font-size: 12px;
+                fill: #00141F;
+                font-weight: normal;
+                }
+                rect, circle, polygon {fill: none; stroke: none;}
+                rect.terminal         {fill: none; stroke: #be2f5b;}
+                rect.nonterminal      {fill: rgba(255,255,255,0.1); stroke: none;}
+                rect.text             {fill: none; stroke: none;}
+                polygon.regexp        {fill: #C7ECFF; stroke: #038cbc;}
+        </style>
+    </defs>
+    <polygon points="9 61 1 57 1 65"/>
+         <polygon points="17 61 9 57 9 65"/>
+         <rect x="31" y="47" width="58" height="32" rx="10"/>
+         <rect x="29" y="45" width="58" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="39" y="65">DROP</text>
+         <rect x="109" y="47" width="98" height="32" rx="10"/>
+         <rect x="107" y="45" width="98" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="117" y="65">PARTITION</text>
+         <rect x="227" y="47" width="52" height="32" rx="10"/>
+         <rect x="225" y="45" width="52" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="235" y="65">LIST</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#partitionName" xlink:title="partitionName">
+            <rect x="319" y="47" width="110" height="32"/>
+            <rect x="317" y="45" width="110" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="327" y="65">partitionName</text></a><rect x="319" y="3" width="24" height="32" rx="10"/>
+         <rect x="317" y="1" width="24" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="327" y="21">,</text>
+         <svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 61 h2 m0 0 h10 m58 0 h10 m0 0 h10 m98 0 h10 m0 0 h10 m52 0 h10 m20 0 h10 m110 0 h10 m-150 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -24 q0 -10 10 -10 m130 44 l20 0 m-20 0 q10 0 10 -10 l0 -24 q0 -10 -10 -10 m-130 0 h10 m24 0 h10 m0 0 h86 m23 44 h-3"/>
+         <polygon points="467 61 475 57 475 65"/>
+         <polygon points="467 61 459 57 459 65"/></svg>

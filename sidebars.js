@@ -68,11 +68,25 @@ module.exports = {
       label: "Guides",
       type: "category",
       items: [
-        "guides/importing-data",
-        "guides/influxdb-line-protocol",
-        "guides/aws-packer",
-        "guides/kubernetes",
-        "guides/google-cloud-platform",
+       "guides/v6-migration",
+        {
+          label: "Ingestion",
+          type: "category",
+          items: [
+            "guides/importing-data",
+            "guides/influxdb-line-protocol",
+            "guides/hysteresis",
+          ],
+        },
+        {
+          label: "Deployment",
+          type: "category",
+          items: [
+            "guides/aws-packer",
+            "guides/kubernetes",
+            "guides/google-cloud-platform",
+          ],
+        },
       ],
     },
     {
@@ -139,10 +153,11 @@ module.exports = {
               type: "category",
               label: "ALTER TABLE",
               items: [
-                "reference/sql/alter-table-alter-column-add-index",
                 "reference/sql/alter-table-add-column",
+                "reference/sql/alter-table-alter-column-add-index",
                 "reference/sql/alter-table-rename-column",
                 "reference/sql/alter-table-drop-column",
+                "reference/sql/alter-table-attach-partition",
                 "reference/sql/alter-table-drop-partition",
               ],
             },
