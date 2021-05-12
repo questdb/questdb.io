@@ -95,7 +95,7 @@ const quotes: Quote[] = [
       "QuestDB allows us to query data while writing millions of data points every few minutes. It is an excellent database for time-based calculation of records with static columns and can store the data very efficiently. QuestDB’s community is constantly growing and its popularity is on the rise.",
     author: "Erdem Aydemir",
     role: "Software Engineer",
-    company: "Innova",
+    company: "Türk Telekom",
   },
   {
     website: "https://www.samtec.com/",
