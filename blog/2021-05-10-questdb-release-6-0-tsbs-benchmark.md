@@ -1,5 +1,5 @@
 ---
-title: Building a new vector based storage model
+title: How we achieved write speeds of 1.4 million rows per second
 author: Vlad Ilyushchenko
 author_title: QuestDB Team
 author_url: https://github.com/bluestreak01

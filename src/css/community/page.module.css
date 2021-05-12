@@ -1,0 +1,315 @@
+.flex__section {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.flex__reverse_section {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  flex-direction: row-reverse;
+}
+
+.half__section {
+  width: 47%;
+  margin: 1.5%;
+}
+
+.hero__title {
+  line-height: 68px;
+  text-align: center;
+  margin: 120px auto 0;
+  max-width: var(--ifm-container-width);
+}
+
+.section__title {
+  font-size: var(--font-size-big-3);
+  color: var(--palette-white);
+}
+
+.section__subtitle {
+  max-width: 479px;
+  line-height: 35px;
+}
+
+.pink__color {
+  color: var(--palette-pink);
+}
+
+.border {
+  margin: 30px 0;
+  border-top: 1px solid #ffffff;
+  opacity: 0.1;
+}
+
+.padding_60 {
+  padding: 60px;
+}
+
+.default_text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 29px;
+}
+
+.level__title {
+  color: var(--palette-pink);
+  font-weight: 400;
+  font-size: var(--font-size-normal);
+  line-height: 26px;
+  margin-bottom: 6px;
+}
+
+.property {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 29px;
+  position: relative;
+  padding-left: 2.5rem;
+  padding-right: 0.5rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  line-height: 28px;
+  max-width: 380px;
+}
+
+.property::before {
+  position: absolute;
+  height: 100%;
+  width: 2.5rem;
+  left: 0;
+  top: -2px;
+  content: " ";
+  background-image: url("/img/pages/index/tick.svg");
+  background-position-x: -6px;
+  background-position-y: 0;
+  background-repeat: no-repeat;
+}
+
+.property:last-child {
+  margin-bottom: 0;
+}
+
+.link_item {
+  text-decoration: underline;
+  color: var(--palette-pink);
+}
+
+.contribution_link_item {
+  text-decoration: none;
+  color: var(--palette-white);
+}
+
+.custom_box {
+  border: 1px solid rgba(177, 181, 211, 0.2);
+  border-radius: 8px;
+  padding: 27px;
+  width: 446px;
+}
+
+.second_text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 29px;
+  color: #b1b5d3;
+  margin: 0;
+}
+
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.text_center_header {
+  text-align: center;
+  max-width: 552px;
+  margin: 40px auto;
+}
+
+.section_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.list__description {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: var(--palette-white);
+  font-size: var(--font-size-normal);
+  position: relative;
+}
+
+.list__description::before {
+  content: "o ";
+  color: var(--palette-pink);
+  left: 0;
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 1rem;
+}
+
+.message__content {
+  margin: 0;
+  color: var(--palette-pale-blue);
+  font-size: var(--font-size-normal);
+}
+
+.message__content::before {
+  content: "> ";
+  color: var(--palette-pink);
+}
+
+.card {
+  background: #21222c;
+  border-radius: 8px;
+  padding: 29px;
+  max-width: 500px;
+}
+
+.message__contents {
+  padding-left: 1.5rem;
+}
+
+.section_image {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contribution {
+  margin-top: 70px;
+}
+
+.contribute_Item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 400px;
+  padding: 18px 12px;
+  border-bottom: 1px solid rgba(177, 181, 211, 0.2);
+}
+
+.contribute_Item:first-child {
+  border-top: 1px solid rgba(177, 181, 211, 0.2);
+}
+
+.contribute_Inner {
+  display: flex;
+  align-items: center;
+}
+
+.contribute_text {
+  font-weight: 400;
+  font-size: var(--font-size-normal);
+  line-height: 26px;
+}
+
+.main_icon {
+  margin-right: 25px;
+}
+
+.custom_input {
+  background: #ffffff;
+  border-radius: 3px;
+  height: 55px;
+  border: none;
+  padding: 10px 16px;
+  margin-right: 9px;
+  min-width: 255px;
+  outline: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.section__inner {
+  padding: 4.5rem 1rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.join_slack {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.join_slack_description {
+  max-width: 310px;
+  margin: 0;
+  margin-right: 23px;
+  font-size: 22px;
+  line-height: 35px;
+}
+
+.slack_logo {
+  width: 50px;
+}
+
+@media (min-width:997px) and (max-width:1121px){
+  .custom_input,
+  .signup_button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 996px) {
+  .half__section {
+    max-width: 500px;
+    width: 100%;
+    margin: 16px auto;
+  }
+
+  .hero__title {
+    line-height: 54px;
+    margin: 60px 0 0;
+  }
+
+  .flex__section {
+    flex-direction: column;
+    padding: 2rem 0 1rem;
+  }
+
+  .flex__reverse_section {
+    flex-direction: column-reverse;
+  }
+
+  .padding_60 {
+    padding: 0;
+  }
+
+  .custom_box {
+    width: 446px;
+  }
+}
+
+@media (max-width: 556px) {
+  .section_image {
+    max-width: 100%;
+  }
+
+  .custom_input,
+  .signup_button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .custom_box {
+    width: 330px;
+  }
+
+  .join_slack_description {
+    font-size: 18px;
+  }
+}
