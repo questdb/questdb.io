@@ -78,11 +78,15 @@ SELECT name a, length(name) b FROM names limit 4
 
 `string ~ regex` - matches `string` value to regex
 
+`symbol ~ regex` - matches `symbol` value to regex
+
 [java.util.regex](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html)
 
 ## !~
 
 `string !~ regex` - checks if `string` value does not match regex
+
+`symbol !~ regex` - checks if `symbol` value does not match regex
 
 ## to_lowercase
 
