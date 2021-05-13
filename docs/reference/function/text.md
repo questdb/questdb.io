@@ -4,6 +4,10 @@ sidebar_label: Text
 description: Text function reference documentation.
 ---
 
+This page describes the available functions to assist with performing text
+manipulation such as concatenation, case conversion, string length calculation,
+and pattern matching via regular expressions.
+
 ## concat
 
 `concat(str, ...)` - concatenates a string from one or more input values.

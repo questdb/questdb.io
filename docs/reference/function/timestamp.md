@@ -10,36 +10,33 @@ description: Timestamp function reference documentation.
 - during a [CREATE TABLE](/docs/reference/sql/create-table/#timestamp) operation
 - during a [SELECT](/docs/reference/sql/select/) operation (`dynamic timestamp`)
 
+:::info
+
+Checking if tables contain a designated timestamp column can be done via the
+`tables()` and `table_columns()` functions which are described in the
+[meta functions](/docs/reference/function/meta/) documentation page.
+
+:::
+
 ## Syntax
 
 ### During a CREATE operation
-
-![Flow chart showing the syntax of the TIMESTAMP keyword](/img/docs/diagrams/timestamp.svg)
 
 Create a [designated timestamp](/docs/concept/designated-timestamp/) column
 during table creation. For more information, refer to the
 [CREATE TABLE](/docs/reference/sql/create-table/) section.
 
+![Flow chart showing the syntax of the TIMESTAMP keyword](/img/docs/diagrams/timestamp.svg)
+
 ### During a SELECT operation
 
-![Flow chart showing the syntax of the timestamp function](/img/docs/diagrams/dynamicTimestamp.svg)
-
 Creates a [designated timestamp](/docs/concept/designated-timestamp/) column in
-the result of a query.
+the result of a query. Assigning a timestamp in a `SELECT` statement
+(`dynamic timestamp`) allows for time series operations such as `LATEST BY`,
+`SAMPLE BY` or `LATEST BY` on tables which do not have a `designated timestamp`
+assigned.
 
-:::caution
-
-The output query must be ordered by time. `TIMESTAMP()` does not check for order
-and using timestamp functions on unordered data may produce unexpected results.
-
-:::
-
-:::tip
-
-Dynamic timestamp allows to perform time series operations such as `LATEST BY`,
-`SAMPLE BY` or `LATEST BY` on tables which do not have a `designated timestamp`.
-
-:::
+![Flow chart showing the syntax of the timestamp function](/img/docs/diagrams/dynamicTimestamp.svg)
 
 ## Examples
 

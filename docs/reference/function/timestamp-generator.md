@@ -4,6 +4,12 @@ sidebar_label: Timestamp generator
 description: Timestamp generator function reference documentation.
 ---
 
+The `timestamp_sequence()` function may be used as a timestamp generator to
+create data for testing. Pseudo-random steps can be achieved by providing a
+[random function](/docs/reference/function/random-value-generator/) to the
+`step` argument. A `seed` value may be provided to a random function if the
+randomly-generated `step` should be deterministic.
+
 ## timestamp_sequence
 
 - `timestamp_sequence(startTimestamp, step)` generates a sequence of `timestamp`

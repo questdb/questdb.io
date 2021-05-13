@@ -4,6 +4,15 @@ sidebar_label: Row generator
 description: Row generator function reference documentation.
 ---
 
+The `long_sequence()` function may be used as a row generator to create table
+data for testing. Basic usage of this function involves providing the number of
+iterations required. Deterministic pseudo-random behavior can be achieved by
+providing seed values when calling the function.
+
+This function is commonly used in combination with
+[random generator functions](/docs/reference/function/random-value-generator/)
+to produce mock data.
+
 ## long_sequence
 
 - `long_sequence(iterations)` - generates rows
@@ -16,18 +25,14 @@ and `seed2` are `long64` representing both parts of a `long128` seed.
 
 ### Row generation
 
+The `long_sequence()` function can be used to generate very large datasets for
+testing e.g. billions of rows.
+
 `long_sequence(iterations)` is used to:
 
 - Generate a number of rows defined by `iterations`.
 - Generate a column `x:long` of monotonically increasing long integers starting
   from 1, which can be accessed for queries.
-
-:::tip
-
-You can use this to generate very large datasets for your testing e.g billions
-of rows or more if your disk allows.
-
-:::
 
 ### Random number seed
 
@@ -36,7 +41,7 @@ When `long_sequence` is used conjointly with
 values are usually generated at random. The function supports a seed to be
 passed in order to produce deterministic results.
 
-:::tip
+:::info
 
 Deterministic procedural generation makes it easy to test on vasts amounts of
 data without actually moving large files around across machines. Using the same
