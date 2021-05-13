@@ -4,13 +4,13 @@ sidebar_label: Meta
 description: Table and database metadata function reference documentation.
 ---
 
-## all_tables
+## tables
 
-`all_tables()` returns all tables in the database.
+`tables()` returns all tables in the database including table metadata.
 
 **Arguments:**
 
-- `all_tables()` does not require arguments.
+- `tables()` does not require arguments.
 
 **Return value:**
 
@@ -18,43 +18,37 @@ Returns a `table`.
 
 **Examples:**
 
-- Get all tables in the database
-
-```questdb-sql
-all_tables();
+```questdb-sql title="List all tables"
+tables();
 ```
 
-| tableName |
-| --------- |
-| table1    |
-| table2    |
-| ...       |
-
-- Get all tables in the database that match 'sales'
-
-```questdb-sql
-all_tables() WHERE tableName ~= 'sales';
+```txt
+| id  | name        | designatedTimestamp | partitionBy | maxUncommittedRows | o3CommitHysteresisMicros |
+| --- | ----------- | ------------------- | ----------- | ------------------ | ------------------------ |
+| 1   | my_table    | ts                  | DAY         | 500000             | 300000000                |
+| 2   | device_data | null                | NONE        | 10000              | 30000000                 |
 ```
 
-| tableName   |
-| ----------- |
-| sales-north |
-| sales-west  |
-| sales-east  |
-| sales-south |
-
-- Get all tables in reverse alphabetical order
-
-```questdb-sql
-all_tables() ORDER BY tableName DESC;
+```questdb-sql title="All tables in reverse alphabetical order"
+tables() ORDER BY name DESC;
 ```
 
-| tableName |
-| --------- |
-| table_n   |
-| table_n-1 |
-| table_n-2 |
-| ...       |
+```txt
+| id  | name        | designatedTimestamp | partitionBy | maxUncommittedRows | o3CommitHysteresisMicros |
+| --- | ----------- | ------------------- | ----------- | ------------------ | ------------------------ |
+| 2   | device_data | null                | NONE        | 10000              | 30000000                 |
+| 1   | my_table    | ts                  | DAY         | 500000             | 300000000                |
+```
+
+```questdb-sql title="All tables with a daily partitioning strategy"
+tables() WHERE partitionBy = 'DAY'
+```
+
+```txt
+| id  | name        | designatedTimestamp | partitionBy | maxUncommittedRows | o3CommitHysteresisMicros |
+| --- | ----------- | ------------------- | ----------- | ------------------ | ------------------------ |
+| 1   | my_table    | ts                  | DAY         | 500000             | 300000000                |
+```
 
 ## table_columns
 
@@ -68,47 +62,54 @@ all_tables() ORDER BY tableName DESC;
 
 Returns a `table` with two columns:
 
-- `columnName` - name of the available columns in the table
-- `columnType` - type of the column
+- `column` - name of the available columns in the table
+- `type` - type of the column
+- `indexed` - if indexing is applied to this column
+- `indexBlockCapacity` - how many row IDs to store in a single storage block on
+  disk
+- `symbolCached` - whether or not this `symbol` column is cached
+- `symbolCapacity` - how many distinct values this column of `symbol` type is
+  expected to have
+- `designated` - if this is set as the designated timestamp column for this
+  table
+
+For more details on the meaning and use of these values, see the
+[CREATE TABLE](/docs/reference/sql/create-table/) documentation.
 
 **Examples:**
 
-- Get all columns in the table
-
-```questdb-sql
-table_columns('myTable')
+```questdb-sql title="Get all columns in a table"
+table_columns('my_table')
 ```
 
-| columnName | columnType |
-| ---------- | ---------- |
-| TS         | TIMESTAMP  |
-| Name       | STRING     |
-| Age        | INT        |
-| Sex        | SYMBOL     |
-| Grade      | DOUBLE     |
-| ...        | ...        |
-
-- Get all columns in the database that match the name 'sales'
-
-```questdb-sql
-SELECT columnName FROM table_columns('myTable') WHERE columnName ~= 'sales';
+```txt
+| column | type      | indexed | indexBlockCapacity | symbolCached | symbolCapacity | designated |
+| ------ | --------- | ------- | ------------------ | ------------ | -------------- | ---------- |
+| symb   | SYMBOL    | true    | 1048576            | false        | 256            | false      |
+| price  | DOUBLE    | false   | 0                  | false        | 0              | false      |
+| ts     | TIMESTAMP | false   | 0                  | false        | 0              | true       |
+| s      | STRING    | false   | 0                  | false        | 0              | false      |
 ```
 
-| columnName  |
-| ----------- |
-| sales-north |
-| sales-west  |
-| sales-east  |
-| sales-south |
-
-- Get the count of column types
-
-```questdb-sql
-SELECT columnType, count() FROM table_columns('wthr');
+```questdb-sql title="Get designated timestamp column"
+SELECT column, type, designated FROM table_columns('my_table') WHERE designated
 ```
 
-| columnType | count |
-| ---------- | ----- |
-| INT        | 4     |
-| DOUBLE     | 8     |
-| SYMBOL     | 2     |
+```txt
+| column | type      | designated |
+| ------ | --------- | ---------- |
+| ts     | TIMESTAMP | true       |
+```
+
+```questdb-sql title="Get the count of column types"
+SELECT type, count() FROM table_columns('my_table');
+```
+
+```txt
+| type      | count |
+| --------- | ----- |
+| SYMBOL    | 1     |
+| DOUBLE    | 1     |
+| TIMESTAMP | 1     |
+| STRING    | 1     |
+```
