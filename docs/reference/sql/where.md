@@ -74,7 +74,6 @@ patterns.
 
 ![Flow chart showing the syntax of the WHERE clause with a regex comparison](/img/docs/diagrams/whereRegexMatch.svg)
 
-
 ```questdb-sql title="Regex example"
 SELECT * FROM users WHERE name ~ 'Jo';
 ```
@@ -84,7 +83,6 @@ SELECT * FROM users WHERE name ~ 'Jo';
 | Joe      | 31  |
 | Jonathan | 45  |
 | ...      | ... |
-
 
 ### Regular expression does NOT match
 

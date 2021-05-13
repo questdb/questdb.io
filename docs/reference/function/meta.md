@@ -67,7 +67,6 @@ SELECT type, count() FROM table_columns('my_table');
 | TIMESTAMP | 1     |
 | STRING    | 1     |
 
-
 ## tables
 
 `tables()` returns all tables in the database including table metadata.
@@ -107,4 +106,3 @@ tables() WHERE partitionBy = 'DAY'
 | id  | name     | designatedTimestamp | partitionBy | maxUncommittedRows | o3CommitHysteresisMicros |
 | --- | -------- | ------------------- | ----------- | ------------------ | ------------------------ |
 | 1   | my_table | ts                  | DAY         | 500000             | 300000000                |
-
