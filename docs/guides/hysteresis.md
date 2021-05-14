@@ -162,13 +162,13 @@ PARTITION BY DAY WITH o3MaxUncommittedRows=250000, o3CommitHysteresis=240s
 Checking the values per-table may be done using the `tables()` function:
 
 ```questdb-sql title="List all tables"
-select id, name, maxUncommittedRows, o3CommitHysteresisMicros from tables();
+select id, name, o3MaxUncommittedRows, o3CommitHysteresisMicros from tables();
 ```
 
-| id  | name        | maxUncommittedRows | o3CommitHysteresisMicros |
-| --- | ----------- | ------------------ | ------------------------ |
-| 1   | my_table    | 500000             | 300000000                |
-| 2   | device_data | 10000              | 30000000                 |
+| id  | name        | o3MaxUncommittedRows | o3CommitHysteresisMicros |
+| --- | ----------- | -------------------- | ------------------------ |
+| 1   | my_table    | 500000               | 300000000                |
+| 2   | device_data | 10000                | 30000000                 |
 
 For more information on checking table metadata, see the
 [meta functions](/docs/reference/function/meta/) documentation page.
