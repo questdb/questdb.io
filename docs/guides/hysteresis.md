@@ -167,8 +167,20 @@ select id, name, o3MaxUncommittedRows, o3CommitHysteresisMicros from tables();
 
 | id  | name        | o3MaxUncommittedRows | o3CommitHysteresisMicros |
 | --- | ----------- | -------------------- | ------------------------ |
-| 1   | my_table    | 500000               | 300000000                |
+| 1   | my_table    | 250000               | 240000000                |
 | 2   | device_data | 10000                | 30000000                 |
+
+The values can changed per each table with:
+
+```questdb-sql title="Altering hysteresis o3MaxUncommittedRows parameter via SQL"
+ALTER TABLE my_table SET PARAM o3MaxUncommittedRows = 10s
+```
+
+and 
+
+```questdb-sql title="Altering hysteresis o3CommitHysteresis parameter via SQL"
+ALTER TABLE my_table SET PARAM o3CommitHysteresis = 20s
+```
 
 For more information on checking table metadata, see the
 [meta functions](/docs/reference/function/meta/) documentation page.
