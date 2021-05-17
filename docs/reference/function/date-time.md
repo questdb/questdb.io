@@ -173,6 +173,12 @@ values(to_timestamp('2019-12-12T12:15', 'yyyy-MM-ddTHH:mm'), 123.5);
 | --------------------------- | ----- |
 | 2019-12-12T12:15:00.000000Z | 123.5 |
 
+Note that conversion of ISO timestamp format is optional. QuestDB automatically
+converts `STRING` to `TIMESTAMP` if it is partial or full form of
+`yyyy-MM-ddTHH:mm:ss.SSSUUU` or `yyyy-MM-dd HH:mm:ss.SSSUUU` with valid time
+offset `+01:00` or `Z`. See more examples at
+[Native timestamp format](/docs/reference/sql/where#native-timestamp-format)
+
 ## to_date
 
 `to_date(string, format)` - converts string to `date` by using the supplied

@@ -207,11 +207,43 @@ SELECT * FROM users WHERE NOT isActive;
 ## Timestamp and date
 
 QuestDB supports both its own timestamp search notation and standard search
-based on inequality. This section describes the use of the
-`timestamp search notation` which is efficient and fast but requires a
-[designated timestamp](/docs/concept/designated-timestamp/). Remember,
-designated timestamp can be applied
-[dynamically](/docs/reference/function/timestamp/#during-a-select-operation).
+based on inequality. This section describes the use of the **timestamp search
+notation** which is efficient and fast but requires a
+[designated timestamp](/docs/concept/designated-timestamp/).
+
+If a table does not have a designated timestamp applied during table creation,
+one may be applied dynamically
+[during a select operation](/docs/reference/function/timestamp/#during-a-select-operation).
+
+### Native timestamp format
+
+QuestDB automatically recognizes strings formatted as ISO timestamp as a
+`timestamp` type. The following are valid examples of strings parsed as
+`timestamp` types:
+
+| Valid STRING Format              | Resulting Timestamp         |
+| -------------------------------- | --------------------------- |
+| 2010-01-12T12:35:26.123456+01:30 | 2010-01-12T14:05:26.123456Z |
+| 2010-01-12T12:35:26.123456+01    | 2010-01-12T13:35:26.123456Z |
+| 2010-01-12T12:35:26.123456Z      | 2010-01-12T12:35:26.123456Z |
+| 2010-01-12T12:35:26.12345        | 2010-01-12T12:35:26.123450Z |
+| 2010-01-12T12:35:26.1234         | 2010-01-12T12:35:26.123400Z |
+| 2010-01-12T12:35:26.123          | 2010-01-12T12:35:26.123000Z |
+| 2010-01-12T12:35:26.12           | 2010-01-12T12:35:26.120000Z |
+| 2010-01-12T12:35:26.1            | 2010-01-12T12:35:26.100000Z |
+| 2010-01-12T12:35:26              | 2010-01-12T12:35:26.000000Z |
+| 2010-01-12T12:35                 | 2010-01-12T12:35:00.000000Z |
+| 2010-01-12T12                    | 2010-01-12T12:00:00.000000Z |
+| 2010-01-12                       | 2010-01-12T00:00:00.000000Z |
+| 2010-01                          | 2010-01-01T00:00:00.000000Z |
+| 2010                             | 2010-01-01T00:00:00.000000Z |
+| 2010-01-12 12:35:26.123456-02:00 | 2010-01-12T10:35:26.123456Z |
+| 2010-01-12 12:35:26.123456Z      | 2010-01-12T14:05:26.123456Z |
+| 2010-01-12 12:35:26.123          | 2010-01-12T12:35:26.123000Z |
+| 2010-01-12 12:35:26.12           | 2010-01-12T12:35:26.120000Z |
+| 2010-01-12 12:35:26.1            | 2010-01-12T12:35:26.100000Z |
+| 2010-01-12 12:35:26              | 2010-01-12T12:35:26.000000Z |
+| 2010-01-12 12:35                 | 2010-01-12T12:35:00.000000Z |
 
 ### Exact timestamp
 
@@ -219,7 +251,7 @@ designated timestamp can be applied
 
 ![Flow chart showing the syntax of the WHERE clause with a timestamp comparison](/img/docs/diagrams/whereTimestampExact.svg)
 
-```questdb-sql title="Example - Date"
+```questdb-sql title="Timestamp equals date"
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z';
 ```
 
@@ -229,7 +261,7 @@ SELECT scores WHERE ts = '2010-01-12T00:02:26.000Z';
 | 2010-01-12T00:02:26.000Z | 3.1   |
 | ...                      | ...   |
 
-```questdb-sql title="Example - Timestamp"
+```questdb-sql title="Timestamp equals timestamp"
 SELECT scores WHERE ts = '2010-01-12T00:02:26.000000Z';
 ```
 
@@ -248,7 +280,7 @@ Return results within a defined range
 ![Flow chart showing the syntax of the WHERE clause with a partial timestamp comparison](/img/docs/diagrams/whereTimestampPartial.svg)
 
 ```questdb-sql title="Results in a given year"
-SELECT * FROM scores WHERE ts = '2018';
+SELECT * FROM scores WHERE ts IN '2018';
 ```
 
 | ts                          | score |
@@ -258,7 +290,7 @@ SELECT * FROM scores WHERE ts = '2018';
 | 2018-12-31T23:59:59.999999Z | 115.8 |
 
 ```questdb-sql title="Results in a given minute"
-SELECT * FROM scores WHERE ts = '2018-05-23T12:15';
+SELECT * FROM scores WHERE ts IN '2018-05-23T12:15';
 ```
 
 | ts                          | score |
@@ -269,7 +301,7 @@ SELECT * FROM scores WHERE ts = '2018-05-23T12:15';
 
 ### Time range with modifier
 
-You can apply a modifier to further customise the range. The algorithm will
+You can apply a modifier to further customize the range. The algorithm will
 calculate the resulting range by modifying the upper bound of the original range
 by the modifier parameter.
 
@@ -283,7 +315,7 @@ by the modifier parameter.
 - A `negative` value reduces the interval.
 
 ```questdb-sql title="Results in a given year and the first month of the next year"
-SELECT * FROM scores WHERE ts = '2018;1M';
+SELECT * FROM scores WHERE ts IN '2018;1M';
 ```
 
 The range is 2018. The modifier extends the upper bound (originally 31 Dec 2018)
@@ -296,7 +328,7 @@ by one month.
 | 2019-01-31T23:59:59.999999Z | 115.8 |
 
 ```questdb-sql title="Results in a given month excluding the last 3 days"
-SELECT * FROM scores WHERE ts = '2018-01;-3d';
+SELECT * FROM scores WHERE ts IN '2018-01;-3d';
 ```
 
 The range is Jan 2018. The modifier reduces the upper bound (originally 31
@@ -308,21 +340,43 @@ Dec 2018) by 3 days.
 | ...                         | ...   |
 | 2019-01-28T23:59:59.999999Z | 115.8 |
 
-### Explicit range
+### IN with multiple arguments
+
+#### Syntax
+
+`IN` with more than 1 argument is treated as standard SQL `IN`. It is a
+shorthand of multiple `OR` conditions, i.e. the following query:
+
+```questdb-sql title="IN list"
+SELECT * FROM scores
+WHERE ts IN ('2018-01-01', '2018-01-01T12:00', '2018-01-02');
+```
+
+is equivalent to:
+
+```questdb-sql title="IN list equivalent OR"
+SELECT * FROM scores
+WHERE ts = '2018-01-01' or ts = '2018-01-01T12:00' or ts = '2018-01-02');
+```
+
+| ts                          | value |
+| --------------------------- | ----- |
+| 2018-01-01T00:00:00.000000Z | 123.4 |
+| 2018-01-01T12:00:00.000000Z | 589.1 |
+| 2018-01-02T00:00:00.000000Z | 131.5 |
+
+### BETWEEN
 
 #### Syntax
 
 For non-standard ranges, users can explicitly specify the target range using the
-`in` operator.
-
-![Flow chart showing the syntax of the WHERE clause with a timestamp range comparison](/img/docs/diagrams/whereTimestampRange.svg)
-
-`lower_bound` and `upper_bound` must be valid timestamps or dates and are
-`inclusive`.
+`BETWEEN` operator. As with standard SQL, both upper and lower bounds of
+`BETWEEN` are inclusive, and the order of lower and upper bounds is not
+important so that `BETWEEN X AND Y` is equivalent to `BETWEEN Y AND X`.
 
 ```questdb-sql title="Explicit range"
 SELECT * FROM scores
-WHERE ts in('2018-01-01T00:00:23.000000Z' , '2018-01-01T00:00:23.500000Z');
+WHERE ts BETWEEN '2018-01-01T00:00:23.000000Z' AND '2018-01-01T00:00:23.500000Z';
 ```
 
 | ts                          | value |
@@ -330,3 +384,12 @@ WHERE ts in('2018-01-01T00:00:23.000000Z' , '2018-01-01T00:00:23.500000Z');
 | 2018-01-01T00:00:23.000000Z | 123.4 |
 | ...                         | ...   |
 | 2018-01-01T00:00:23.500000Z | 131.5 |
+
+`BETWEEN` can accept non-constant bounds, for example, the following query will
+return all records older than one year before the current date:
+
+```questdb-sql title="One year before current date"
+SELECT * FROM scores
+WHERE ts BETWEEN to_str(now(), 'yyyy-MM-dd')
+AND dateadd('y', -1, to_str(now(), 'yyyy-MM-dd'));
+```
