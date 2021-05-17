@@ -10,6 +10,14 @@ QuestDB offers the option to elect a column as a _designated timestamp_. This
 allows you to specify which column the tables will be indexed by in order to
 leverage time-oriented language features and high-performance functionalities.
 
+:::info
+
+Checking if tables contain a designated timestamp column can be done via the
+`tables()` and `table_columns()` functions which are described in the
+[meta functions](/docs/reference/function/meta/) documentation page.
+
+:::
+
 ## Properties
 
 - Only a column of type `timestamp` can be elected as a designated timestamp.

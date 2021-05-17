@@ -4,6 +4,10 @@ sidebar_label: Text
 description: Text function reference documentation.
 ---
 
+This page describes the available functions to assist with performing text
+manipulation such as concatenation, case conversion, string length calculation,
+and pattern matching via regular expressions.
+
 ## concat
 
 `concat(str, ...)` - concatenates a string from one or more input values.
@@ -70,19 +74,19 @@ SELECT name a, length(name) b FROM names limit 4
 | TOM    | 3   |
 | null   | -1  |
 
-## ~=
+## ~
 
-`~=(string, regex)` - matches `string` value to regex
+`string ~ regex` - matches `string` value to regex
 
-`~=(symbol, regex)` - matches `symbol` value to regex
+`symbol ~ regex` - matches `symbol` value to regex
 
 [java.util.regex](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html)
 
 ## !~
 
-`!~(string, regex)` - checks if `string` value does not match regex
+`string !~ regex` - checks if `string` value does not match regex
 
-`!~(symbol, regex)` - checks if `symbol` value does not match regex
+`symbol !~ regex` - checks if `symbol` value does not match regex
 
 ## to_lowercase
 

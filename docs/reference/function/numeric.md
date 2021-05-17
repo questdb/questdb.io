@@ -4,6 +4,9 @@ sidebar_label: Numeric
 description: Numeric function reference documentation.
 ---
 
+This page describes the available functions to assist with performing numeric
+calculations.
+
 ## abs
 
 `abs(value)` return the absolute value. The behavior of `abs` is as follows:
