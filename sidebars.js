@@ -93,7 +93,7 @@ module.exports = {
       ],
     },
     {
-      label: "Management",
+      label: "Operations",
       type: "category",
       items: [
         "operations/capacity-planning",
