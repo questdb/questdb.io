@@ -18,7 +18,6 @@ import TabItem from "@theme/TabItem"
 
 <TabItem value="maven">
 
-
 ```xml title="JDK11"
 <dependency>
     <groupId>org.questdb</groupId>

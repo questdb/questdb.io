@@ -256,7 +256,7 @@
   width: 50px;
 }
 
-@media (min-width:997px) and (max-width:1121px){
+@media (min-width: 997px) and (max-width: 1121px) {
   .custom_input,
   .signup_button {
     width: 100%;
