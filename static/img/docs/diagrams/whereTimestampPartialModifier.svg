@@ -37,7 +37,7 @@
     <rect x="119" y="1" width="134" height="32" class="nonterminal"/>
     <text class="nonterminal" x="129" y="21">timestampColumn</text></a><rect x="275" y="3" width="30" height="32" rx="10"/>
     <rect x="273" y="1" width="30" height="32" class="terminal" rx="10"/>
-    <text class="terminal" x="283" y="21">=</text>
+    <text class="terminal" x="283" y="21">IN</text>
     <rect x="345" y="3" width="52" height="32" rx="10"/>
     <rect x="343" y="1" width="52" height="32" class="terminal" rx="10"/>
     <text class="terminal" x="353" y="21">yyyy</text>

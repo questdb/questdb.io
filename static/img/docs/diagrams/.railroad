@@ -72,10 +72,10 @@ timestampSearch
   ::= 'WHERE' timestampColumn ( '=' | '>' | '<' | '>=' | '<=' ) "'" timestamp "'"
 
 timestampIntervalSearch
-  ::= 'WHERE' timestampColumn '=' "'" timestamp ';' interval (s | m | h | d | M | y) "'"
+  ::= 'WHERE' timestampColumn 'IN' "'" timestamp ';' interval (s | m | h | d | M | y) "'"
 
 timestampInSearch
-  ::= 'WHERE' timestampColumn 'in' '(' "'timestamp1'" ';' "'timestamp2'" ')'
+  ::= 'WHERE' timestampColumn 'IN' '(' "'timestamp1'" ';' "'timestamp2'" ')'
 
 exactStringOrSymbolSearch
   ::= 'WHERE' column '=' "'" string "'"
@@ -102,10 +102,10 @@ timestampExact
   ::= 'WHERE' column '=' timestamp
 
 timestampPartial
-  ::= 'WHERE' timestampColumn '=' ( 'yyyy' | 'yyyy-MM' | 'YYYY-MM-dd' | 'yyyy-MM-ddThh' | 'yyyy-MM-ddThh:mm' | 'yyyy-MM-ddThh:mm:ss' )
+  ::= 'WHERE' timestampColumn 'IN' ( 'yyyy' | 'yyyy-MM' | 'YYYY-MM-dd' | 'yyyy-MM-ddThh' | 'yyyy-MM-ddThh:mm' | 'yyyy-MM-ddThh:mm:ss' )
 
 timestampExplicitRange
-  ::= 'WHERE' timestamp 'in' '(' lower_bound ',' upper_bound ')'
+  ::= 'WHERE' timestamp 'IN' '(' lower_bound ',' upper_bound ')'
 
 union
   ::= selectStatement ('UNION' 'ALL'? otherSelectStatement)*

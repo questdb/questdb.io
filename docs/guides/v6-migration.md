@@ -77,18 +77,28 @@ mv db/sensors/_txn.v417 db/sensors/_txn
 After these steps have been completed, QuestDB v5.x may be started and the table
 data will be loaded as usual.
 
-### Breaking SQL changes
+## Breaking SQL changes
 
-Release 6.0.1 has few breaking SQL syntax changes in order to simplify working with TIMESTAMP type in queries and make SQL syntax more in line with ANSI SQL expectations.
+Release 6.0.1 contains breaking changes relating to SQL syntax to simplify
+working with `TIMESTAMP` types and for improved compatibility with ANSI SQL
+expectations.
 
-Below examples show the difference in query results for talbe `my_table` containing 48 records with timestamp every hour beginning from 00:00:00 on 2020-01-01
+:::info
 
-| timestamp                   | 
+For more information on these changes, see the 6.0.1 software version
+[release notes on GitHub](https://github.com/questdb/questdb/releases/tag/6.0.1).
+
+:::
+
+To illustrate how timestamps are handled, a table `my_table` containing 48
+records with timestamps every hour beginning at `00:00:00` on `2020-01-01` will
+be used in the following examples:
+
+| timestamp                   |
 | --------------------------- |
 | 2020-01-01T00:00:00.000000Z |
 | 2020-01-01T01:00:00.000000Z |
 | 2020-01-01T02:00:00.000000Z |
-| 2020-01-01T03:00:00.000000Z |
 | ...                         |
 | 2020-01-01T23:00:00.000000Z |
 | 2020-01-02T00:00:00.000000Z |
@@ -96,99 +106,110 @@ Below examples show the difference in query results for talbe `my_table` contain
 | ...                         |
 | 2020-01-02T23:00:00.000000Z |
 
-#### Timestamp String equality
+### Timestamp string equality
 
-Example query
+The following example SQL uses a `WHERE` clause to evaluate if records match
+using string equality.
 
-```questdb-sql title="timestamp string equality"
+```questdb-sql title="Timestamp string equality"
 SELECT * FROM my_table
 WHERE timestamp = '2020-01-01'
 ```
-Before 6.0.1 this would result in 24 records of all hours during date '2020-01-01'
 
-| timestamp                   | 
+The result will be 1 record with exact match of `2020-01-01T00:00:00.000000Z`.
+In other words, the string `2020-01-01` does not represent an interval, but a
+single `TIMESTAMP` data point of `2020-01-01T00:00:00.000000Z`
+
+| timestamp                   |
+| --------------------------- |
+| 2020-01-01T00:00:00.000000Z |
+
+Before software version `6.0.1`, this would result in 24 records of all hours
+during date '2020-01-01'
+
+| timestamp                   |
 | --------------------------- |
 | 2020-01-01T00:00:00.000000Z |
 | 2020-01-01T01:00:00.000000Z |
 | 2020-01-01T02:00:00.000000Z |
-| 2020-01-01T03:00:00.000000Z |
 | ...                         |
 | 2020-01-01T23:00:00.000000Z |
 
-After 6.0.1 the result will be 1 record with exact match of `2020-01-01T00:00:00.000000Z`. 
-In other words string `2020-01-01` represents not an interval but a single TIMESTAMP data point of `2020-01-01T00:00:00.000000Z`
+In order to use the old semantics, the query must use the `IN` keyword instead
+of `=`:
 
-| timestamp                   | 
-| --------------------------- |
-| 2020-01-01T00:00:00.000000Z |
-
-In order to use old sematics the query has to be re-written with `IN` instead of `=`
-
-```questdb-sql title="timestamp string equality old equivalent"
+```questdb-sql title="Timestamp string equality using IN"
 SELECT * FROM my_table
 WHERE timestamp IN '2020-01-01'
 ```
 
-#### Timestamp String comparision
+### Timestamp string comparison
 
-Example query
+Timestamps may also be compared using `>` greater-than and `<` less-than
+operators. The following example SQL uses a `>` greater-than operator to
+evaluate if records occur later than a timestamp provided as a string:
 
-```questdb-sql title="timestamp string equality"
+```questdb-sql title="Timestamp string equality"
 SELECT * FROM my_table
 WHERE timestamp > '2020-01-01'
 ```
-Before 6.0.1 this would result in 24 records of all hours during date '2020-01-02'
 
-| timestamp                   | 
-| --------------------------- |
-| 2020-01-02T00:00:00.000000Z |
-| ...                         |
-| 2020-01-02T23:00:00.000000Z |
+The results are 47 records which have timestamps strictly greater than
+`2020-01-01T00:00:00.000000Z`. The string `2020-01-01` does not represent an
+interval, but a single `TIMESTAMP` data point of `2020-01-01T00:00:00.000000Z`:
 
-After 6.0.1 the result will be 47 record with strictly greter of `2020-01-01T00:00:00.000000Z`.
-
-| timestamp                   | 
+| timestamp                   |
 | --------------------------- |
 | 2020-01-01T01:00:00.000000Z |
 | ...                         |
 | 2020-01-02T23:00:00.000000Z |
 
+Before software version `6.0.1`, this would result in 24 records, one for each
+hour during the date `2020-01-02`:
 
-In other words string `2020-01-01` represents not an interval but a single TIMESTAMP data point of `2020-01-01T00:00:00.000000Z`. 
-The equivalient to the old syntax is
+| timestamp                   |
+| --------------------------- |
+| 2020-01-02T00:00:00.000000Z |
+| ...                         |
+| 2020-01-02T23:00:00.000000Z |
 
-```questdb-sql title="timestamp string equality old equivalent"
+In order to use the old semantics, the query must use `>=` instead of `>`, and
+`<=` instead of `<`:
+
+```questdb-sql title="Greater than or equal to a string timestamp"
 SELECT * FROM my_table
 WHERE timestamp >= '2020-01-02'
 ```
 
-#### Timestamp IN list 
+### Timestamp IN list
 
-Example query of timestamp used with `IN` operator with list of 2 elements
+The `IN` keyword is used to check equality with a list of 2 elements:
 
-```questdb-sql title="timestamp IN string list"
+```questdb-sql title="Timestamp IN string list"
 SELECT * FROM my_table
 WHERE timestamp IN ('2020-01-01T00:00:00.000000Z', '2020-01-02T00:00:00.000000Z')
 ```
 
-Before 6.0.1 this would result in 25 records of all hours during date `2020-01-01` and `00:00:00` time on `2020-01-02`
+The result is two records matching exactly `2020-01-01T00:00:00.000000Z` and
+`2020-01-02T00:00:00.000000Z`
 
-| timestamp                   | 
+| timestamp                   |
+| --------------------------- |
+| 2020-01-02T00:00:00.000000Z |
+| 2020-01-02T00:00:00.000000Z |
+
+Before software version `6.0.1`, this would result in 25 records, one for each
+hour during the date `2020-01-01` and the `00:00:00` data point on `2020-01-02`:
+
+| timestamp                   |
 | --------------------------- |
 | 2020-01-02T00:00:00.000000Z |
 | ...                         |
 | 2020-01-02T00:00:00.000000Z |
 
-After 6.0.2 result will 2 records matching exactly '2020-01-01T00:00:00.000000Z' and '2020-01-02T00:00:00.000000Z'
+In order to use the old semantics, the `BETWEEN` keyword should be used:
 
-| timestamp                   | 
-| --------------------------- |
-| 2020-01-02T00:00:00.000000Z |
-| 2020-01-02T00:00:00.000000Z |
-
-The equivalient to the old syntax is operator BETWEEN
-
-```questdb-sql title="timestamp string equality old equivalent"
+```questdb-sql title="Timestamp string equality using BETWEEN"
 SELECT * FROM my_table
 WHERE timestamp BETWEEN '2020-01-01T00:00:00.000000Z' AND '2020-01-02T00:00:00.000000Z'
 ```
