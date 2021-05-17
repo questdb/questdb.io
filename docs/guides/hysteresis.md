@@ -144,9 +144,12 @@ docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 \
   questdb/questdb
 ```
 
-O3 hysteresis parameters may also be set during table creation as part of the
-`PARTITION BY` clause. When passed in this way using the `WITH` keyword, the
-following two parameters may be applied:
+### Per-table configuration
+
+Aside from 'global' server hysteresis settings, it's possible to set O3
+hysteresis parameters during table creation as part of the `PARTITION BY`
+clause. When passed in this way using the `WITH` keyword, the following two
+parameters may be applied:
 
 - `o3MaxUncommittedRows` - equivalent to `cairo.o3.max.uncommitted.rows`
 - `o3CommitHysteresis` - equivalent to `cairo.o3.commit.hysteresis.in.ms`
@@ -155,3 +158,29 @@ following two parameters may be applied:
 CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
 PARTITION BY DAY WITH o3MaxUncommittedRows=250000, o3CommitHysteresis=240s
 ```
+
+Checking the values per-table may be done using the `tables()` function:
+
+```questdb-sql title="List all tables"
+select id, name, o3MaxUncommittedRows, o3CommitHysteresisMicros from tables();
+```
+
+| id  | name        | o3MaxUncommittedRows | o3CommitHysteresisMicros |
+| --- | ----------- | -------------------- | ------------------------ |
+| 1   | my_table    | 250000               | 240000000                |
+| 2   | device_data | 10000                | 30000000                 |
+
+The values can changed per each table with:
+
+```questdb-sql title="Altering hysteresis o3MaxUncommittedRows parameter via SQL"
+ALTER TABLE my_table SET PARAM o3MaxUncommittedRows = 10s
+```
+
+and 
+
+```questdb-sql title="Altering hysteresis o3CommitHysteresis parameter via SQL"
+ALTER TABLE my_table SET PARAM o3CommitHysteresis = 20s
+```
+
+For more information on checking table metadata, see the
+[meta functions](/docs/reference/function/meta/) documentation page.

@@ -68,7 +68,7 @@ module.exports = {
       label: "Guides",
       type: "category",
       items: [
-       "guides/v6-migration",
+        "guides/v6-migration",
         {
           label: "Ingestion",
           type: "category",

@@ -4,6 +4,10 @@ sidebar_label: Conditional
 description: Conditional functions reference documentation.
 ---
 
+Conditionally functions allow for conditionally selecting input values. The
+`coalesce()` function is useful for handling null data values and providing
+replacement values.
+
 ## coalesce
 
 `coalesce(value [, ...])` - returns the first non-null argument in a provided
