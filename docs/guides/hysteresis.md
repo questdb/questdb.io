@@ -7,8 +7,9 @@ description:
 image: /img/guides/hysteresis/o3-data.jpeg
 ---
 
-Server configuration may be applied when ingesting data to allow user control on
-how the system processes and commits late-arriving data for optimum throughput.
+Server configuration may be applied when ingesting data over InfluxDB Line
+Protocol (ILP) to allow user control on how the system processes and commits
+late-arriving data for optimum throughput.
 
 ## Background
 
@@ -43,9 +44,22 @@ the boundary; the remaining rows stay in memory to be committed later.
 ## Out-of-order (O3) commit parameters
 
 Commit parameters allow for specifying that commits of out-of-order data should
-occur when they are outside a window of time for which they are expected to be
-out-of-order or when the row-count passes a certain threshold. The following
-server configuration parameters are user-configurable:
+occur when:
+
+- they are outside a window of time for which they are expected to be
+  out-of-order or
+- when the row-count passes a certain threshold.
+
+:::info
+
+Commit parameters are user-configurable for ingestion using **InfluxDB line
+protocol only**. This is the case as commits over Postgres wire protocol are
+invoked client-side and commits via REST API occur either row-by-row or after a
+CSV import is complete.
+
+:::
+
+The following server configuration parameters are user-configurable:
 
 ```bash
 # the maximum number of uncommitted o3 rows
