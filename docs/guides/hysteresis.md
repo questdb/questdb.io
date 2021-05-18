@@ -90,9 +90,9 @@ and should cover most patterns for timestamp arrival. The default configuration
 is as follows:
 
 ```txt title="Defaults"
-cairo.o3.commit.hysteresis.in.ms=1000
-cairo.o3.max.uncommitted.rows=1000
-line.tcp.maintenance.job.hysteresis.in.ms=1000
+cairo.o3.commit.hysteresis.in.ms=300000
+cairo.o3.max.uncommitted.rows=500000
+line.tcp.maintenance.job.hysteresis.in.ms=30000
 ```
 
 Users should modify out-of-order parameters if there is a known or expected
