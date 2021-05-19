@@ -1,5 +1,6 @@
 ---
-title: Customizing CSV imports
+title: Importing data in bulk via CSV
+sidebar_label: Configuring CSV imports
 description:
   This document describes how to load CSV data and specify text loader
   configuration for timestamp and date parsing

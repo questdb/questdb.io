@@ -68,16 +68,8 @@ module.exports = {
       label: "Guides",
       type: "category",
       items: [
-        "guides/v6-migration",
-        {
-          label: "Ingestion",
-          type: "category",
-          items: [
-            "guides/importing-data",
-            "guides/influxdb-line-protocol",
-            "guides/hysteresis",
-          ],
-        },
+        "guides/hysteresis",
+        "guides/influxdb-line-protocol",
         {
           label: "Deployment",
           type: "category",
@@ -87,6 +79,8 @@ module.exports = {
             "guides/google-cloud-platform",
           ],
         },
+        "guides/importing-data",
+        "guides/v6-migration",
       ],
     },
     {
@@ -103,7 +97,6 @@ module.exports = {
       type: "category",
       items: [
         "operations/capacity-planning",
-        "operations/deployment",
         "operations/data-retention",
         "operations/health-monitoring",
       ],
@@ -159,6 +152,7 @@ module.exports = {
                 "reference/sql/alter-table-drop-column",
                 "reference/sql/alter-table-attach-partition",
                 "reference/sql/alter-table-drop-partition",
+                "reference/sql/alter-table-set-param",
               ],
             },
             "reference/sql/backup",

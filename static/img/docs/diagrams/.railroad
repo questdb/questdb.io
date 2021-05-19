@@ -11,7 +11,7 @@ createTableDef
   )?
 
 alterTable 
-  ::= 'ALTER' 'TABLE' tableName ( 'ADD' | 'DROP' | 'ALTER' | 'ATTACH' | 'RENAME' )
+  ::= 'ALTER' 'TABLE' tableName ( 'ADD' | 'ATTACH' | 'DROP' | 'RENAME' | 'SET' )
 
 castDef 
   ::= 'cast' '(' columnRef 'as' typeDef ')'
@@ -145,3 +145,6 @@ renameColumn
 
 attachPartition
  ::= 'ATTACH' 'PARTITION' 'LIST' partitionName (',' partitionName)*
+
+setParam
+ ::= 'SET' 'PARAM' ( 'o3CommitHysteresis' | 'o3MaxUncommittedRows' ) value
