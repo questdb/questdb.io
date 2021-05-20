@@ -130,7 +130,7 @@ if either:
 # commit when this number of uncommitted records is reached
 line.tcp.max.uncommitted.rows=1000
 # commit uncommitted rows when this timer is reached
-line.tcp.maintenance.job.hysteresis.in.ms=1000
+line.tcp.maintenance.job.interval=1000
 ```
 
 ### InfluxDB over UDP

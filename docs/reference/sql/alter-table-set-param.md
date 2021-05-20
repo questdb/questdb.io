@@ -21,19 +21,19 @@ The values for **maximum uncommitted rows** and a time range for **out-of-order
 commit hysteresis** can changed per each table with the following SQL:
 
 ```questdb-sql title="Altering out-of-order parameters via SQL"
-ALTER TABLE my_table SET PARAM o3MaxUncommittedRows = 10000
-ALTER TABLE my_table SET PARAM o3CommitHysteresis = 20s
+ALTER TABLE my_table SET PARAM o3MaxUncommittedRows=10000
+ALTER TABLE my_table SET PARAM o3CommitLag=20s
 ```
 
 Checking the values per-table may be done using the `tables()` function:
 
 ```questdb-sql title="List table metadata"
-select id, name, o3MaxUncommittedRows, o3CommitHysteresisMicros from tables();
+select id, name, o3MaxUncommittedRows, o3CommitLagMicros from tables();
 ```
 
-| id  | name     | o3MaxUncommittedRows | o3CommitHysteresisMicros |
-| --- | -------- | -------------------- | ------------------------ |
-| 1   | my_table | 10000                | 20000000                 |
+| id  | name     | o3MaxUncommittedRows | o3CommitLag |
+| --- | -------- | -------------------- | ----------- |
+| 1   | my_table | 10000                | 20000000    |
 
 For more details on retrieving table and column information, see the
 [meta functions documentation](/docs/reference/function/meta/).

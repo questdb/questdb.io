@@ -65,9 +65,9 @@ The following server configuration parameters are user-configurable:
 # the maximum number of uncommitted o3 rows
 cairo.o3.max.uncommitted.rows=X
 # the maximum time between jobs that commit uncommitted o3 rows
-cairo.o3.commit.hysteresis.in.ms=X
+cairo.o3.commit.lag=X
 # the maximum time between ILP jobs that commit uncommitted rows
-line.tcp.maintenance.job.hysteresis.in.ms=X
+line.tcp.maintenance.job.interval=X
 ```
 
 These parameters are enforced so that commits occur **if any one of these
@@ -77,11 +77,10 @@ out-of-order records or by record count.
 An out-of-order commit will occur:
 
 - every `cairo.o3.max.uncommitted.rows` **or**
-- if records haven't been committed for
-  `line.tcp.maintenance.job.hysteresis.in.ms`
+- if records haven't been committed for `line.tcp.maintenance.job.interval`
 
 If a commit occurs due to `cairo.o3.max.uncommitted.rows` being reached, then
-`cairo.o3.commit.hysteresis.in.ms` will be applied.
+`cairo.o3.commit.lag` will be applied.
 
 ## When to change out-of-order commit configuration
 
@@ -90,9 +89,9 @@ and should cover most patterns for timestamp arrival. The default configuration
 is as follows:
 
 ```txt title="Defaults"
-cairo.o3.commit.hysteresis.in.ms=300000
+cairo.o3.commit.lag=300000
 cairo.o3.max.uncommitted.rows=500000
-line.tcp.maintenance.job.hysteresis.in.ms=30000
+line.tcp.maintenance.job.interval=30000
 ```
 
 Users should modify out-of-order parameters if there is a known or expected
@@ -107,7 +106,7 @@ expected to be consistently delayed up to thirty seconds, the following
 configuration settings can be applied
 
 ```txt title="server.conf"
-cairo.o3.commit.hysteresis.in.ms=30000
+cairo.o3.commit.lag=30000
 cairo.o3.max.uncommitted.rows=500
 ```
 
@@ -117,7 +116,7 @@ throughput of ten thousand records per second with a likely maximum of 1 second
 lateness for timestamp values:
 
 ```txt title="server.conf"
-cairo.o3.commit.hysteresis.in.ms=1000
+cairo.o3.commit.lag=1000
 cairo.o3.max.uncommitted.rows=10000
 ```
 
@@ -128,22 +127,22 @@ These settings may be applied via
 
 ```txt title="server.conf"
 cairo.o3.max.uncommitted.rows=500
-cairo.o3.commit.hysteresis.in.ms=10000
-line.tcp.maintenance.job.hysteresis.in.ms=1000
+cairo.o3.commit.lag=10000
+line.tcp.maintenance.job.interval=1000
 ```
 
 As with other server configuration parameters, these settings may be passed as
 environment variables:
 
-- `QDB_LINE_TCP_MAINTENANCE_JOB_HYSTERESIS_IN_MS`
+- `QDB_LINE_TCP_MAINTENANCE_JOB_INTERVAL`
 - `QDB_CAIRO_O3_MAX_UNCOMMITTED_ROWS`
-- `QDB_CAIRO_O3_COMMIT_HYSTERESIS_IN_MS`
+- `QDB_CAIRO_O3_COMMIT_LAG`
 
 To set this configuration for the current shell:
 
 ```bash title="Setting environment variables"
 export QDB_CAIRO_O3_MAX_UNCOMMITTED_ROWS=1000
-export QDB_CAIRO_O3_COMMIT_HYSTERESIS_IN_MS=20000
+export QDB_CAIRO_O3_COMMIT_LAG=20000
 questdb start
 ```
 
@@ -152,7 +151,7 @@ Passing the environment variables via Docker is done using the `-e` flag:
 ```bash
 docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 \
   -e QDB_CAIRO_O3_MAX_UNCOMMITTED_ROWS=1000 \
-  -e QDB_CAIRO_O3_COMMIT_HYSTERESIS_IN_MS=20000 \
+  -e QDB_CAIRO_O3_COMMIT_LAG=20000 \
   questdb/questdb
 ```
 
@@ -164,23 +163,23 @@ When passed in this way using the `WITH` keyword, the following two parameters
 may be applied:
 
 - `o3MaxUncommittedRows` - equivalent to `cairo.o3.max.uncommitted.rows`
-- `o3CommitHysteresis` - equivalent to `cairo.o3.commit.hysteresis.in.ms`
+- `o3CommitLag` - equivalent to `cairo.o3.commit.lag`
 
 ```questdb-sql title="Setting out-of-order table parameters via SQL"
 CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
-PARTITION BY DAY WITH o3MaxUncommittedRows=250000, o3CommitHysteresis=240s
+PARTITION BY DAY WITH o3MaxUncommittedRows=250000, o3CommitLag=240s
 ```
 
 Checking the values per-table may be done using the `tables()` function:
 
 ```questdb-sql title="List all tables"
-select id, name, o3MaxUncommittedRows, o3CommitHysteresisMicros from tables();
+select id, name, o3MaxUncommittedRows, o3CommitLag from tables();
 ```
 
-| id  | name        | o3MaxUncommittedRows | o3CommitHysteresisMicros |
-| --- | ----------- | -------------------- | ------------------------ |
-| 1   | my_table    | 250000               | 240000000                |
-| 2   | device_data | 10000                | 30000000                 |
+| id  | name        | o3MaxUncommittedRows | o3CommitLag |
+| --- | ----------- | -------------------- | ----------- |
+| 1   | my_table    | 250000               | 240000000   |
+| 2   | device_data | 10000                | 30000000    |
 
 The values can changed per each table with:
 
@@ -190,8 +189,8 @@ ALTER TABLE my_table SET PARAM o3MaxUncommittedRows = 10000
 
 and
 
-```questdb-sql title="Altering hysteresis o3CommitHysteresis parameter via SQL"
-ALTER TABLE my_table SET PARAM o3CommitHysteresis = 20s
+```questdb-sql title="Altering hysteresis o3CommitLag parameter via SQL"
+ALTER TABLE my_table SET PARAM o3CommitLag = 20s
 ```
 
 For more information on checking table metadata, see the

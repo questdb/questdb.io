@@ -38,7 +38,7 @@
          <text class="terminal" x="103" y="21">PARAM</text>
          <rect x="203" y="3" width="160" height="32" rx="10"/>
          <rect x="201" y="1" width="160" height="32" class="terminal" rx="10"/>
-         <text class="terminal" x="211" y="21">o3CommitHysteresis</text>
+         <text class="terminal" x="211" y="21">o3CommitLag</text>
          <rect x="203" y="47" width="190" height="32" rx="10"/>
          <rect x="201" y="45" width="190" height="32" class="terminal" rx="10"/>
          <text class="terminal" x="211" y="65">o3MaxUncommittedRows</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#value" xlink:title="value">
