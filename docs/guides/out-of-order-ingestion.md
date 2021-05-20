@@ -162,21 +162,21 @@ out-of-order values during table creation as part of the `PARTITION BY` clause.
 When passed in this way using the `WITH` keyword, the following two parameters
 may be applied:
 
-- `o3MaxUncommittedRows` - equivalent to `cairo.max.uncommitted.rows`
-- `o3CommitLag` - equivalent to `cairo.o3.commit.lag`
+- `maxUncommittedRows` - equivalent to `cairo.max.uncommitted.rows`
+- `commitLag` - equivalent to `cairo.o3.commit.lag`
 
 ```questdb-sql title="Setting out-of-order table parameters via SQL"
 CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
-PARTITION BY DAY WITH o3MaxUncommittedRows=250000, o3CommitLag=240s
+PARTITION BY DAY WITH maxUncommittedRows=250000, commitLag=240s
 ```
 
 Checking the values per-table may be done using the `tables()` function:
 
 ```questdb-sql title="List all tables"
-select id, name, o3MaxUncommittedRows, o3CommitLag from tables();
+select id, name, maxUncommittedRows, commitLag from tables();
 ```
 
-| id  | name        | o3MaxUncommittedRows | o3CommitLag |
+| id  | name        | maxUncommittedRows | commitLag |
 | --- | ----------- | -------------------- | ----------- |
 | 1   | my_table    | 250000               | 240000000   |
 | 2   | device_data | 10000                | 30000000    |
@@ -184,13 +184,13 @@ select id, name, o3MaxUncommittedRows, o3CommitLag from tables();
 The values can changed per each table with:
 
 ```questdb-sql title="Altering maximum number of out-of-order rows via SQL"
-ALTER TABLE my_table SET PARAM o3MaxUncommittedRows = 10000
+ALTER TABLE my_table SET PARAM maxUncommittedRows = 10000
 ```
 
 and
 
 ```questdb-sql title="Altering out-of-order commit lag via SQL"
-ALTER TABLE my_table SET PARAM o3CommitLag = 20s
+ALTER TABLE my_table SET PARAM commitLag = 20s
 ```
 
 For more information on checking table metadata, see the
