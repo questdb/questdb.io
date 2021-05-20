@@ -44,10 +44,13 @@ case
 Copy
   ::= 'COPY' tableName 'FROM' fileName  (| 'WITH' 'HEADER' (true|false) ) ';'
 
-Create Table timestamp
+CreateTableTimestamp
   ::= 'CREATE' someCreateTableStatement 'timestamp' '(' columnName ')'
 
-Dynamic-timestamp
+createTableWithParams
+         ::= 'WITH' maxUncommittedRows '=' rowCount ',' commitLag '=' lag
+
+dynamicTimestamp
   ::= 'SELECT' someSelectStatement 'timestamp' '(' columnName ')'
 
 sampleBy 
