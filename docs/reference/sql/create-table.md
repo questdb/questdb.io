@@ -17,6 +17,7 @@ functions which are described in the
 ## Syntax
 
 ![Flow chart showing the syntax of the CREATE TABLE keyword](/img/docs/diagrams/createTable.svg)
+![Flow chart showing the syntax of keyword to specify WITH table commit parameters](/img/docs/diagrams/createTableWithCommitParam.svg)
 
 The following sections describe the keywords and definitions illustrated in this
 diagram.
@@ -169,7 +170,9 @@ created.
 
 :::
 
-### WITH commit lag for out-of-order data
+### WITH table parameters
+
+![Flow chart showing the syntax of keyword to specify WITH table commit parameters](/img/docs/diagrams/createTableWithCommitParam.svg)
 
 Table parameters which influence how often commits of out-of-order data occur
 may be set during table creation using the `WITH` keyword. The following two
@@ -177,11 +180,6 @@ parameters may be applied:
 
 - `maxUncommittedRows` - equivalent to `cairo.max.uncommitted.rows`
 - `commitLag` - equivalent to `cairo.commit.lag`
-
-```questdb-sql
-CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
-PARTITION BY DAY WITH maxUncommittedRows=250000, commitLag=240s
-```
 
 For more information on commit lag and the maximum uncommitted rows, see the
 guide for [out-of-order commits](/docs/guides/out-of-order-commit-lag/).
@@ -243,6 +241,26 @@ CREATE TABLE my_table(
     ts TIMESTAMP, s STRING
 ) timestamp(ts)  PARTITION BY DAY;
 ```
+
+### CREATE TABLE WITH
+
+#### Specifying commit lag and maximum uncommitted rows
+
+Let's assume we have out-of-order records arriving at a table `my_table`. If we
+know beforehand that the maximum _lag_ of later records is likely to be 240
+seconds, we can schedule sorting and commits of out-of-order data to occur
+within this time boundary. The _lag_ configuration can be combined with the
+maximum uncommitted rows so that a commit will occur based on expected row
+count, or the _lag_ boundary is met:
+
+```questdb-sql
+CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
+PARTITION BY DAY WITH maxUncommittedRows=250000, commitLag=240s
+```
+
+For more information on out-of-order lag and uncommitted rows, see the
+documentation for
+[out-of-order data commits](/docs/guides/out-of-order-commit-lag/).
 
 ### CREATE TABLE AS
 
