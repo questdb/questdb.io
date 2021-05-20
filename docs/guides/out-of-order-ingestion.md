@@ -2,9 +2,9 @@
 title: Configuring ingestion and commits of out-of-order data
 sidebar_label: Out-of-order data
 description:
-  This document describes server configuration parameters for ingestion
-  hysteresis along with details when and why these settings should be applied
-image: /img/guides/hysteresis/o3-data.jpeg
+  This document describes server configuration parameters for out-of-order
+  commit-lag along with details when and why these settings should be applied
+image: /img/guides/out-of-order-commit-lag/o3-data.jpeg
 ---
 
 Server configuration may be applied when ingesting data over InfluxDB Line
@@ -27,14 +27,14 @@ import Screenshot from "@theme/Screenshot"
 <Screenshot
   alt="A diagram showing how data may arrive with random timings from clients due to network jitter or latency"
   height={334}
-  src="/img/guides/hysteresis/o3-data.jpeg"
+  src="/img/guides/out-of-order-commit-lag/o3-data.jpeg"
   title="Records with various network-induced delays"
   width={650}
 />
 
 If any new timestamp value has a high probability to arrive within 10 seconds of
 the previously received value, the boundary for this data is `10 seconds` and we
-name this boundary **O3 hysteresis**.
+name this boundary **commit lag**.
 
 When the order of timestamp values follow this pattern, it will be recognized by
 our out-of-order algorithm and prioritized using an optimized processing path. A
@@ -63,7 +63,7 @@ The following server configuration parameters are user-configurable:
 
 ```bash
 # the maximum number of uncommitted o3 rows
-cairo.o3.max.uncommitted.rows=X
+cairo.max.uncommitted.rows=X
 # the maximum time between jobs that commit uncommitted o3 rows
 cairo.o3.commit.lag=X
 # the maximum time between ILP jobs that commit uncommitted rows
@@ -76,10 +76,10 @@ out-of-order records or by record count.
 
 An out-of-order commit will occur:
 
-- every `cairo.o3.max.uncommitted.rows` **or**
+- every `cairo.max.uncommitted.rows` **or**
 - if records haven't been committed for `line.tcp.maintenance.job.interval`
 
-If a commit occurs due to `cairo.o3.max.uncommitted.rows` being reached, then
+If a commit occurs due to `cairo.max.uncommitted.rows` being reached, then
 `cairo.o3.commit.lag` will be applied.
 
 ## When to change out-of-order commit configuration
@@ -90,7 +90,7 @@ is as follows:
 
 ```txt title="Defaults"
 cairo.o3.commit.lag=300000
-cairo.o3.max.uncommitted.rows=500000
+cairo.max.uncommitted.rows=500000
 line.tcp.maintenance.job.interval=30000
 ```
 
@@ -107,7 +107,7 @@ configuration settings can be applied
 
 ```txt title="server.conf"
 cairo.o3.commit.lag=30000
-cairo.o3.max.uncommitted.rows=500
+cairo.max.uncommitted.rows=500
 ```
 
 For high-throughput scenarios, lower commit timer and larger number of
@@ -117,7 +117,7 @@ lateness for timestamp values:
 
 ```txt title="server.conf"
 cairo.o3.commit.lag=1000
-cairo.o3.max.uncommitted.rows=10000
+cairo.max.uncommitted.rows=10000
 ```
 
 ## How to configure out-of-order ingestion
@@ -126,7 +126,7 @@ These settings may be applied via
 [server configuration file](/docs/reference/configuration/):
 
 ```txt title="server.conf"
-cairo.o3.max.uncommitted.rows=500
+cairo.max.uncommitted.rows=500
 cairo.o3.commit.lag=10000
 line.tcp.maintenance.job.interval=1000
 ```
@@ -135,13 +135,13 @@ As with other server configuration parameters, these settings may be passed as
 environment variables:
 
 - `QDB_LINE_TCP_MAINTENANCE_JOB_INTERVAL`
-- `QDB_CAIRO_O3_MAX_UNCOMMITTED_ROWS`
+- `QDB_cairo.max.uncommitted.rows`
 - `QDB_CAIRO_O3_COMMIT_LAG`
 
 To set this configuration for the current shell:
 
 ```bash title="Setting environment variables"
-export QDB_CAIRO_O3_MAX_UNCOMMITTED_ROWS=1000
+export QDB_cairo.max.uncommitted.rows=1000
 export QDB_CAIRO_O3_COMMIT_LAG=20000
 questdb start
 ```
@@ -150,7 +150,7 @@ Passing the environment variables via Docker is done using the `-e` flag:
 
 ```bash
 docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 \
-  -e QDB_CAIRO_O3_MAX_UNCOMMITTED_ROWS=1000 \
+  -e QDB_cairo.max.uncommitted.rows=1000 \
   -e QDB_CAIRO_O3_COMMIT_LAG=20000 \
   questdb/questdb
 ```
@@ -162,7 +162,7 @@ out-of-order values during table creation as part of the `PARTITION BY` clause.
 When passed in this way using the `WITH` keyword, the following two parameters
 may be applied:
 
-- `o3MaxUncommittedRows` - equivalent to `cairo.o3.max.uncommitted.rows`
+- `o3MaxUncommittedRows` - equivalent to `cairo.max.uncommitted.rows`
 - `o3CommitLag` - equivalent to `cairo.o3.commit.lag`
 
 ```questdb-sql title="Setting out-of-order table parameters via SQL"
@@ -183,13 +183,13 @@ select id, name, o3MaxUncommittedRows, o3CommitLag from tables();
 
 The values can changed per each table with:
 
-```questdb-sql title="Altering hysteresis o3MaxUncommittedRows parameter via SQL"
+```questdb-sql title="Altering maximum number of out-of-order rows via SQL"
 ALTER TABLE my_table SET PARAM o3MaxUncommittedRows = 10000
 ```
 
 and
 
-```questdb-sql title="Altering hysteresis o3CommitLag parameter via SQL"
+```questdb-sql title="Altering out-of-order commit lag via SQL"
 ALTER TABLE my_table SET PARAM o3CommitLag = 20s
 ```
 

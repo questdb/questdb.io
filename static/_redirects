@@ -13,3 +13,4 @@
 /blog/2020/11/16/why-timeseries-data /blog/2020/11/26/why-timeseries-data
 /docs/reference/client/cli /docs/reference/command-line-options
 /docs/reference/client/web-console /docs/reference/web-console
+/docs/guides/hysteresis /docs/guides/out-of-order-commit-lag

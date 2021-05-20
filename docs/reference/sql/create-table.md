@@ -6,6 +6,14 @@ description: CREATE TABLE SQL keyword reference documentation.
 
 Creates new table in the database.
 
+:::info
+
+Checking table metadata can be done via the `tables()` and `table_columns()`
+functions which are described in the
+[meta functions](/docs/reference/function/meta/) documentation page.
+
+:::
+
 ## Syntax
 
 ![Flow chart showing the syntax of the CREATE TABLE keyword](/img/docs/diagrams/createTable.svg)
@@ -161,6 +169,23 @@ created.
 
 :::
 
+### WITH commit lag for out-of-order data
+
+Table parameters which influence how often commits of out-of-order data occur
+may be set during table creation using the `WITH` keyword. The following two
+parameters may be applied:
+
+- `maxUncommittedRows` - equivalent to `cairo.max.uncommitted.rows`
+- `commitLag` - equivalent to `cairo.commit.lag`
+
+```questdb-sql
+CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
+PARTITION BY DAY WITH maxUncommittedRows=250000, commitLag=240s
+```
+
+For more information on commit lag and the maximum uncommitted rows, see the
+guide for [out-of-order commits](/docs/guides/out-of-order-commit-lag/).
+
 ## Examples
 
 This section demonstrates how to use the [CREATE TABLE](#create-table) and
@@ -189,7 +214,7 @@ my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING);
 The same table can be created and a designated timestamp may be specified. New
 records with timestamps which are out-of-order (O3) chronologically will be
 ordered at the point of ingestion. Configuring how the system handles ingestion
-of O3 records is done via [O3 hysteresis](/docs/guides/hysteresis/)
+of O3 records is done via [commit lag](/docs/guides/out-of-order-commit-lag/)
 configuration.
 
 ```questdb-sql title="Adding a designated timestamp"

@@ -68,7 +68,7 @@ module.exports = {
       label: "Guides",
       type: "category",
       items: [
-        "guides/hysteresis",
+        "guides/out-of-order-commit-lag",
         "guides/influxdb-line-protocol",
         {
           label: "Deployment",

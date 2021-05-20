@@ -147,4 +147,4 @@ attachPartition
  ::= 'ATTACH' 'PARTITION' 'LIST' partitionName (',' partitionName)*
 
 setParam
- ::= 'SET' 'PARAM' ( 'o3CommitLag' | 'o3MaxUncommittedRows' ) value
+ ::= 'SET' 'PARAM' ( 'commitLag' | 'maxUncommittedRows' ) value

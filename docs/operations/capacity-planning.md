@@ -124,7 +124,7 @@ uncommitted records to tables. This maintenance of committing records will occur
 if either:
 
 - the max number of uncommitted rows is hit (default of `1000`) or
-- when the hysteresis timer is reached
+- when the maintenance job interval is reached
 
 ```bash title="server.conf"
 # commit when this number of uncommitted records is reached
