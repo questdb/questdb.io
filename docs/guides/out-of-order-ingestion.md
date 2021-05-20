@@ -135,13 +135,13 @@ As with other server configuration parameters, these settings may be passed as
 environment variables:
 
 - `QDB_LINE_TCP_MAINTENANCE_JOB_INTERVAL`
-- `QDB_cairo.max.uncommitted.rows`
+- `QDB_CAIRO_MAX_UNCOMMITTED_ROWS`
 - `QDB_CAIRO_O3_COMMIT_LAG`
 
 To set this configuration for the current shell:
 
 ```bash title="Setting environment variables"
-export QDB_cairo.max.uncommitted.rows=1000
+export QDB_CAIRO_MAX_UNCOMMITTED_ROWS=1000
 export QDB_CAIRO_O3_COMMIT_LAG=20000
 questdb start
 ```
@@ -150,7 +150,7 @@ Passing the environment variables via Docker is done using the `-e` flag:
 
 ```bash
 docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 \
-  -e QDB_cairo.max.uncommitted.rows=1000 \
+  -e QDB_CAIRO_MAX_UNCOMMITTED_ROWS=1000 \
   -e QDB_CAIRO_O3_COMMIT_LAG=20000 \
   questdb/questdb
 ```
