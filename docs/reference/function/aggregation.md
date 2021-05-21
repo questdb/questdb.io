@@ -79,9 +79,9 @@ SELECT payment_type, count() FROM transactions;
 
 :::
 
-## distinct_count
+## count_distinct
 
-`count(STRING_COL)` or `count(SYMBOL_COL)` - counts distinct values in `STRING` or `SYMBOL` column.
+`count_distinct(STRING_COL)` or `count_distinct(SYMBOL_COL)` - counts distinct values in `STRING` or `SYMBOL` column.
 
 **Return value:**
 
