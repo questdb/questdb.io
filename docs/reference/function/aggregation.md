@@ -1,8 +1,11 @@
 ---
-title: Aggregation functions
-sidebar_label: Aggregation
-description: Aggregation functions reference documentation.
+title: Aggregate functions
+sidebar_label: Aggregate
+description: Aggregate functions reference documentation.
 ---
+
+This page describes the available functions to assist with performing aggregate
+calculations.
 
 ## avg
 
@@ -76,6 +79,47 @@ SELECT payment_type, count() FROM transactions;
 :::note
 
 `null` values are aggregated with `count()`.
+
+:::
+
+## count_distinct
+
+`count_distinct(STRING_COL)` or `count_distinct(SYMBOL_COL)` - counts distinct
+values in `STRING` or `SYMBOL` columns.
+
+**Return value:**
+
+Return value type is `long`.
+
+**Examples:**
+
+- Count of distinct sides in the transactions table. Side column can either be
+  `BUY` or `SELL` or `null`
+
+```questdb-sql
+SELECT count_distinct(side) FROM transactions;
+```
+
+| count_distinct |
+| -------------- |
+| 2              |
+
+- Count of distinct counterparties in the transactions table aggregated by
+  `payment_type` value.
+
+```questdb-sql
+SELECT payment_type, count_distinct(counterparty) FROM transactions;
+```
+
+| cash_or_card | count_distinct |
+| ------------ | -------------- |
+| cash         | 3              |
+| card         | 23             |
+| null         | 5              |
+
+:::note
+
+`null` values are not counted in ``count_distinct` functions.
 
 :::
 
