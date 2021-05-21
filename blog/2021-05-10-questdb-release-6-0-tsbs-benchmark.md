@@ -46,9 +46,9 @@ benchmarks comparing QuestDB to InfluxDB, ClickHouse and TimescaleDB.
 ## The problem with out-of-order data
 
 Our data model had one fatal flaw - records were discarded if they appear
-out-of-order by timestamp compared to existing data. In real-world applications,
-payload data doesn’t behave like this because of network jitter, latency, or
-clock synchronization issues.
+out-of-order (O3) by timestamp compared to existing data. In real-world
+applications, payload data doesn’t behave like this because of network jitter,
+latency, or clock synchronization issues.
 
 import Screenshot from "@theme/Screenshot"
 
@@ -60,12 +60,12 @@ import Screenshot from "@theme/Screenshot"
   width={650}
 />
 
-We knew that the lack of out-of-order (O3) support was a show-stopper for some
-users and we needed a solid solution. There were possible workarounds, such as
-using a single table per data source or re-ordering tables periodically, but for
-most users this is inconvenient and unsustainable.
+We knew that the lack of out-of-order support was a show-stopper for some users
+and we needed a solid solution. There were possible workarounds, such as using a
+single table per data source or re-ordering tables periodically, but for most
+users this is inconvenient and unsustainable.
 
-## Options to deal with O3 data
+## How should you store out-of-order time series data?
 
 As we reviewed our data model, one possibility was to use something radically
 different from what we already had, such as including LSM trees or B-trees,
@@ -76,7 +76,7 @@ model from scratch.
 What bothered us most with this approach is that every subsequent read operation
 would face a performance penalty versus having data stored in arrays. We would
 also introduce complexity by having a storage model for ordered data and another
-for O3 data.
+for out-of-order data.
 
 A more promising option was to introduce a sort-and-merge phase as data arrives.
 This way, we could keep our storage model unchanged, while merging data on the
@@ -84,23 +84,24 @@ fly, with ordered vectors landing on disk as the output.
 
 ## Early thoughts on a solution
 
-Our idea of how we could handle O3 ingestion was to add a three-stage approach:
+Our idea of how we could handle out-of-order ingestion was to add a three-stage
+approach:
 
 1. Keep the append model until records arrive out-of-order
 1. Sort uncommitted records in a staging area in-memory
-1. Reconcile and merge the sorted O3 data and persisted data at commit time
+1. Reconcile and merge the sorted data and persisted data at commit time
 
 The first two steps are straightforward and easy to implement, and handling
-append-only data is unchanged. The heavy O3 commit kicks in only when there is
-data in the staging area. The bonus of this design is that the output is
-vectors, meaning our vector-based readers are still compatible.
+append-only data is unchanged. The heavy commit kicks in only when there is data
+in the staging area. The bonus of this design is that the output is vectors,
+meaning our vector-based readers are still compatible.
 
 This pre-commit sort-and-merge adds an extra processing phase to ingestion with
 an accompanying performance penalty. We nevertheless decided to explore this
-approach and see how far we could reduce the penalty by optimizing the O3
+approach and see how far we could reduce the penalty by optimizing the heavy
 commit.
 
-## What happens on O3 commit?
+## How we sort, merge, and commit out-of-order time series data
 
 Processing a staging area in bulk gives us a unique opportunity to analyze the
 data holistically. Such analysis aims to avoid physical _merges_ altogether
@@ -134,8 +135,9 @@ operation needed and the dimensions of each of the three groups below:
 />
 
 When merging datasets in this way, the prefix and suffix groups can be persisted
-data, O3 data, or none. The merge group is where more cases occur as it can be
-occupied by persisted data, O3 data, both O3 and persisted data, or none.
+data, out-of-order data, or none. The merge group is where more cases occur as
+it can be occupied by persisted data, out-of-order data, both out-of-order and
+persisted data, or none.
 
 When it's clear how to group and treat data in the staging area, a pool of
 workers perform the required operations, calling `memcpy` in trivial cases and
@@ -143,7 +145,7 @@ shifting to SIMD-optimized code for everything else. With a prefix, merge, and
 suffix split, the maximum `liveliness` of the commit (how susceptible it is to
 add more CPU capacity) is `partitions_affected` x `number_of_columns` x `3`.
 
-## Optimizing O3 commits with SIMD
+## Optimizing copy operations with SIMD
 
 Because we aim to rely on `memcpy` the most, we benchmarked code that merges
 variable-length columns:
@@ -262,7 +264,7 @@ Hand-writing SIMD instructions is both time consuming and verbose. We ended up
 optimizing parts of the code base with SIMD only when the performance benefits
 outweighed code maintenance.
 
-## Commit Hysteresis to further improve performance
+## How often should data be ordered and merged?
 
 While being able to copy data fast is a good option, we think that heavy data
 copying can be avoided in most time series ingestion scenarios. Assuming that
@@ -272,14 +274,14 @@ contained by some boundary.
 
 For example, if any new timestamp value has a high probability to fall within 10
 seconds of the previously received value, the boundary is then 10 seconds, and
-we call this boundary _O3 hysteresis._
+we call this boundary _lag_.
 
-When timestamp values follow this pattern, deferring the commit can effectively
-render O3 an append operation. We did not design QuestDB's O3 to deal with the
-_O3 hysteresis_ pattern only, but should your data conform to this pattern, it
-will be recognized and prioritized for the hot path.
+When timestamp values follow this pattern, deferring the commit can render
+out-of-order commits a normal append operation. The out-of-order system can deal
+with any variety of lateness, but if incoming data is late within the time
+specified as _lag_, it will be prioritized for faster processing.
 
-## The TSBS Benchmark
+## Comparing ingestion with ClickHouse, InfluxDB and TimescaleDB
 
 We saw the [Time Series Benchmark Suite](https://github.com/timescale/tsbs)
 (TSBS) regularly coming up in discussions about database performance and decided
@@ -343,6 +345,8 @@ by our reference benchmark `m5.8xlarge` instance on AWS.
   width={650}
 />
 
+## Adding QuestDB support to the Time Series Benchmark Suite
+
 We have opened a pull request
 ([#157 - Questdb benchmark support](https://github.com/timescale/tsbs/issues/157)) in
 TimescaleDB's TSBS GitHub repository which adds the ability to run the benchmark
@@ -360,10 +364,10 @@ tsbs_generate_data --use-case="cpu-only" --seed=123 --scale=4000 \
 tsbs_load_questdb --file /tmp/bigcpu --workers 4
 ```
 
-To add O3 support, we went for a novel solution that yielded surprisingly good
-performance versus well-trodden approaches such as B-trees or LSM-based
-ingestion frameworks. We're happy to have shared the journey, and we're eagerly
-awaiting feedback from the community.
+To add out-of-order support, we went for a novel solution that yielded
+surprisingly good performance versus well-trodden approaches such as B-trees or
+LSM-based ingestion frameworks. We're happy to have shared the journey, and
+we're eagerly awaiting feedback from the community.
 
 For more details, the
 [GitHub release for version 6.0](https://github.com/questdb/questdb/releases/tag/6.0.0)
