@@ -61,8 +61,12 @@ export async function generateTutorial(
       const relativePath = path.relative(siteDir, source)
       const fileName = path.basename(sourceFile)
 
-      const { frontMatter: unsafeFrontMatter, content, excerpt } = await parseMarkdownFile(source)
-      const frontMatter = unsafeFrontMatter as any; // TODO add validation + TS assertion?
+      const {
+        frontMatter: unsafeFrontMatter,
+        content,
+        excerpt,
+      } = await parseMarkdownFile(source)
+      const frontMatter = unsafeFrontMatter as any // TODO add validation + TS assertion?
 
       if (frontMatter.draft && process.env.NODE_ENV === "production") {
         return

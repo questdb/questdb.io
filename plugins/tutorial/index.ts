@@ -231,9 +231,7 @@ export default function pluginContentTutorial(
 export function validateOptions({
   validate,
   options,
-}: OptionValidationContext<TutorialPluginOptions>): ValidationResult<
-  TutorialPluginOptions
-> {
+}: OptionValidationContext<TutorialPluginOptions>): ValidationResult<TutorialPluginOptions> {
   const validatedOptions = validate(PluginOptionSchema, options)
   return validatedOptions
 }

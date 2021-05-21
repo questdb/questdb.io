@@ -182,6 +182,8 @@
 
 .section_image {
   max-width: 500px;
+  width: auto;
+  height: auto;
   margin: 0 auto;
 }
 

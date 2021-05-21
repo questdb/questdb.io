@@ -6,7 +6,7 @@ module.exports = () => ({
     return {
       plugins: isServer
         ? []
-        : [new WebpackManifestPlugin ({ fileName: "asset-manifest.json" })],
+        : [new WebpackManifestPlugin({ fileName: "asset-manifest.json" })],
     }
   },
 })
