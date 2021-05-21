@@ -79,6 +79,44 @@ SELECT payment_type, count() FROM transactions;
 
 :::
 
+## distinct_count
+
+`count(STRING_COL)` or `count(SYMBOL_COL)` - counts distinct values in `STRING` or `SYMBOL` column.
+
+**Return value:**
+
+Return value type is `long`.
+
+**Examples:**
+
+- Count of distinct sides in the transactions table. Side column can either be `BUY` or `SELL` or `null`
+
+```questdb-sql
+SELECT count_distinct(side) FROM transactions;
+```
+
+| count_distinct |
+| -------------- |
+| 2              |
+
+- Count of distinct counterparties in the transactions table aggregated by `payment_type` value.
+
+```questdb-sql
+SELECT payment_type, count_distinct(counterparty) FROM transactions;
+```
+
+| cash_or_card | count_distinct |
+| ------------ | -------------- |
+| cash         | 3              |
+| card         | 23             |
+| null         | 5              |
+
+:::note
+
+`null` values are not counted in count_distinct.
+
+:::
+
 ## haversine_dist_deg
 
 `haversine_dist_deg(lat, lon, ts)` - calculates the traveled distance for a
