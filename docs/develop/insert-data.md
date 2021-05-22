@@ -44,7 +44,7 @@ benefits:
 - high-throughput ingestion
 - robust ingestion from multiple sources into tables with dedicated systems for
   reducing congestion
-- configurable hysteresis via
+- configurable commit-lag for out-of-order data via
   [server configuration](/docs/reference/configuration/#influxdb-line-protocol-tcp)
   settings
 

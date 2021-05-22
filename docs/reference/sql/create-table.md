@@ -6,9 +6,18 @@ description: CREATE TABLE SQL keyword reference documentation.
 
 Creates new table in the database.
 
+:::info
+
+Checking table metadata can be done via the `tables()` and `table_columns()`
+functions which are described in the
+[meta functions](/docs/reference/function/meta/) documentation page.
+
+:::
+
 ## Syntax
 
 ![Flow chart showing the syntax of the CREATE TABLE keyword](/img/docs/diagrams/createTable.svg)
+![Flow chart showing the syntax of keyword to specify WITH table commit parameters](/img/docs/diagrams/createTableWithCommitParam.svg)
 
 The following sections describe the keywords and definitions illustrated in this
 diagram.
@@ -161,6 +170,20 @@ created.
 
 :::
 
+### WITH table parameters
+
+![Flow chart showing the syntax of keyword to specify WITH table commit parameters](/img/docs/diagrams/createTableWithCommitParam.svg)
+
+Table parameters which influence how often commits of out-of-order data occur
+may be set during table creation using the `WITH` keyword. The following two
+parameters may be applied:
+
+- `maxUncommittedRows` - equivalent to `cairo.max.uncommitted.rows`
+- `commitLag` - equivalent to `cairo.commit.lag`
+
+For more information on commit lag and the maximum uncommitted rows, see the
+guide for [out-of-order commits](/docs/guides/out-of-order-commit-lag/).
+
 ## Examples
 
 This section demonstrates how to use the [CREATE TABLE](#create-table) and
@@ -189,7 +212,7 @@ my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING);
 The same table can be created and a designated timestamp may be specified. New
 records with timestamps which are out-of-order (O3) chronologically will be
 ordered at the point of ingestion. Configuring how the system handles ingestion
-of O3 records is done via [O3 hysteresis](/docs/guides/hysteresis/)
+of O3 records is done via [commit lag](/docs/guides/out-of-order-commit-lag/)
 configuration.
 
 ```questdb-sql title="Adding a designated timestamp"
@@ -218,6 +241,26 @@ CREATE TABLE my_table(
     ts TIMESTAMP, s STRING
 ) timestamp(ts)  PARTITION BY DAY;
 ```
+
+### CREATE TABLE WITH
+
+#### Specifying commit lag and maximum uncommitted rows
+
+Let's assume we have out-of-order records arriving at a table `my_table`. If we
+know beforehand that the maximum _lag_ of later records is likely to be 240
+seconds, we can schedule sorting and commits of out-of-order data to occur
+within this time boundary. The _lag_ configuration can be combined with the
+maximum uncommitted rows so that a commit will occur based on expected row
+count, or the _lag_ boundary is met:
+
+```questdb-sql
+CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
+PARTITION BY DAY WITH maxUncommittedRows=250000, commitLag=240s
+```
+
+For more information on out-of-order lag and uncommitted rows, see the
+documentation for
+[out-of-order data commits](/docs/guides/out-of-order-commit-lag/).
 
 ### CREATE TABLE AS
 

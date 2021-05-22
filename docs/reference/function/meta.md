@@ -5,8 +5,8 @@ description: Table and database metadata function reference documentation.
 ---
 
 These functions provide table information including column details and metadata
-such as [hysteresis parameters](/docs/guides/hysteresis/). These functions are
-particularly useful for checking if tables contain a
+such as [commit lag parameters](/docs/guides/out-of-order-commit-lag/). These
+functions are particularly useful for checking if tables contain a
 [designated timestamp](/docs/concept/designated-timestamp) column.
 
 ## table_columns
@@ -85,24 +85,24 @@ Returns a `table`.
 tables();
 ```
 
-| id  | name        | designatedTimestamp | partitionBy | o3MaxUncommittedRows | o3CommitHysteresisMicros |
-| --- | ----------- | ------------------- | ----------- | -------------------- | ------------------------ |
-| 1   | my_table    | ts                  | DAY         | 500000               | 300000000                |
-| 2   | device_data | null                | NONE        | 10000                | 30000000                 |
+| id  | name        | designatedTimestamp | partitionBy | maxUncommittedRows | commitLag |
+| --- | ----------- | ------------------- | ----------- | ------------------ | --------- |
+| 1   | my_table    | ts                  | DAY         | 500000             | 300000000 |
+| 2   | device_data | null                | NONE        | 10000              | 30000000  |
 
 ```questdb-sql title="All tables in reverse alphabetical order"
 tables() ORDER BY name DESC;
 ```
 
-| id  | name        | designatedTimestamp | partitionBy | o3MaxUncommittedRows | o3CommitHysteresisMicros |
-| --- | ----------- | ------------------- | ----------- | -------------------- | ------------------------ |
-| 2   | device_data | null                | NONE        | 10000                | 30000000                 |
-| 1   | my_table    | ts                  | DAY         | 500000               | 300000000                |
+| id  | name        | designatedTimestamp | partitionBy | maxUncommittedRows | commitLag |
+| --- | ----------- | ------------------- | ----------- | ------------------ | --------- |
+| 2   | device_data | null                | NONE        | 10000              | 30000000  |
+| 1   | my_table    | ts                  | DAY         | 500000             | 300000000 |
 
 ```questdb-sql title="All tables with a daily partitioning strategy"
 tables() WHERE partitionBy = 'DAY'
 ```
 
-| id  | name     | designatedTimestamp | partitionBy | o3MaxUncommittedRows | o3CommitHysteresisMicros |
-| --- | -------- | ------------------- | ----------- | -------------------- | ------------------------ |
-| 1   | my_table | ts                  | DAY         | 500000               | 300000000                |
+| id  | name     | designatedTimestamp | partitionBy | maxUncommittedRows | commitLag |
+| --- | -------- | ------------------- | ----------- | ------------------ | --------- |
+| 1   | my_table | ts                  | DAY         | 500000             | 300000000 |
