@@ -55,7 +55,7 @@
     <rect x="341" y="1" width="214" height="32" class="nonterminal"/>
     <text class="nonterminal" x="351" y="21">updates_since_last_rebalance</text></a><rect x="71" y="47" width="246" height="32" rx="10"/>
     <rect x="69" y="45" width="246" height="32" class="terminal" rx="10"/>
-    <text class="terminal" x="79" y="65">maintenance.job.hysteresis.in.ms</text>
+    <text class="terminal" x="79" y="65">maintenance.job.interval</text>
     <rect x="337" y="47" width="30" height="32" rx="10"/>
     <rect x="335" y="45" width="30" height="32" class="terminal" rx="10"/>
     <text class="terminal" x="345" y="65">&lt;</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#time_since_last_rebalance" xlink:title="time_since_last_rebalance">

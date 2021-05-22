@@ -38,10 +38,10 @@
          <text class="terminal" x="103" y="21">PARAM</text>
          <rect x="203" y="3" width="160" height="32" rx="10"/>
          <rect x="201" y="1" width="160" height="32" class="terminal" rx="10"/>
-         <text class="terminal" x="211" y="21">o3CommitHysteresis</text>
+         <text class="terminal" x="211" y="21">commitLag</text>
          <rect x="203" y="47" width="190" height="32" rx="10"/>
          <rect x="201" y="45" width="190" height="32" class="terminal" rx="10"/>
-         <text class="terminal" x="211" y="65">o3MaxUncommittedRows</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#value" xlink:title="value">
+         <text class="terminal" x="211" y="65">maxUncommittedRows</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#value" xlink:title="value">
             <rect x="433" y="3" width="54" height="32"/>
             <rect x="431" y="1" width="54" height="32" class="nonterminal"/>
             <text class="nonterminal" x="441" y="21">value</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m44 0 h10 m0 0 h10 m68 0 h10 m20 0 h10 m160 0 h10 m0 0 h30 m-230 0 h20 m210 0 h20 m-250 0 q10 0 10 10 m230 0 q0 -10 10 -10 m-240 10 v24 m230 0 v-24 m-230 24 q0 10 10 10 m210 0 q10 0 10 -10 m-220 10 h10 m190 0 h10 m20 -44 h10 m54 0 h10 m3 0 h-3"/>

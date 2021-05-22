@@ -44,10 +44,13 @@ case
 Copy
   ::= 'COPY' tableName 'FROM' fileName  (| 'WITH' 'HEADER' (true|false) ) ';'
 
-Create Table timestamp
+CreateTableTimestamp
   ::= 'CREATE' someCreateTableStatement 'timestamp' '(' columnName ')'
 
-Dynamic-timestamp
+createTableWithParams
+         ::= 'WITH' maxUncommittedRows '=' rowCount ',' commitLag '=' lag
+
+dynamicTimestamp
   ::= 'SELECT' someSelectStatement 'timestamp' '(' columnName ')'
 
 sampleBy 
@@ -120,7 +123,7 @@ InfluxLineProtocolOverTCP
   ::= (user_1 | user_2 | '...') 'TCP requests' network_IO_thread 'write_queue' ((worker_1 'write' (table_1|table_2|'...')) | (worker_2 'write' (table_3|table_4|'...')))
 
 InfluxLineProtocolOverTCPLoadRebalance
-  ::= Launch_Load_Balancing_Job  ('IF' load_ratio '>' 'max.load.ratio' Rebalance_Load)? ( 'IF' (updates_since_last_rebalance '<' 'n.updates.per.load.balance' | time_since_last_rebalance '<' 'maintenance.job.hysteresis.in.ms') Launch_Load_Balancing_Job ('IF' load_ratio '>' 'max.load.ratio' Rebalance_Load)?  )*
+  ::= Launch_Load_Balancing_Job  ('IF' load_ratio '>' 'max.load.ratio' Rebalance_Load)? ( 'IF' (updates_since_last_rebalance '<' 'n.updates.per.load.balance' | time_since_last_rebalance '<' 'maintenance.job.interval') Launch_Load_Balancing_Job ('IF' load_ratio '>' 'max.load.ratio' Rebalance_Load)?  )*
 
 groupBy
   ::= 'SELECT' ((column ( ',' column )* ) ' ,' ( aggregation ( ',' aggregation )* )) 'FROM' table ('GROUP BY' (column ( ',' column )* ))?
@@ -147,4 +150,4 @@ attachPartition
  ::= 'ATTACH' 'PARTITION' 'LIST' partitionName (',' partitionName)*
 
 setParam
- ::= 'SET' 'PARAM' ( 'o3CommitHysteresis' | 'o3MaxUncommittedRows' ) value
+ ::= 'SET' 'PARAM' ( 'commitLag' | 'maxUncommittedRows' ) value
