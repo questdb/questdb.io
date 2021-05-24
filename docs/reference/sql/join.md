@@ -31,6 +31,26 @@ use shorthand `ON (column)` clause
 
 :::
 
+## Execution order
+
+Join operations are performed in order of their appearance in a SQL query. The
+following query performs a join on a table with one million rows based on a
+column from a smaller table with one hundred rows:
+
+```questdb-sql
+SELECT * FROM 1_million_rows
+INNER JOIN 1_hundred_rows
+ON 1_million_rows.customer_id = 1_hundred_rows.referral_id;
+```
+
+The performance of this query can be improved by rewriting the query as follows:
+
+```questdb-sql
+SELECT * FROM 1_hundred_rows
+INNER JOIN 1_million_rows
+ON 1_million_rows.referral_id = 1_hundred_rows.customer_id;
+```
+
 ## Implicit joins
 
 It is possible to join two tables using the following syntax:
@@ -68,7 +88,7 @@ table matching an `id` in the `movies` table.
 ```questdb-sql title="INNER JOIN ON"
 SELECT movieId a, title, avg(rating)
 FROM ratings
-INNER JOIN (select movieId id, title from movies)
+INNER JOIN (SELECT movieId id, title FROM movies)
 ON ratings.movieId = id;
 ```
 
@@ -78,7 +98,7 @@ need to be specified.
 ```questdb-sql title="Dropping INNER"
 SELECT movieId a, title, avg(rating)
 FROM ratings
-JOIN (select movieId id, title from movies)
+JOIN (SELECT movieId id, title FROM movies)
 ON ratings.movieId = id;
 ```
 
