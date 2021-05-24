@@ -21,7 +21,7 @@ Once Docker is installed, you will need to pull QuestDB's image from
 command using `docker run`:
 
 ```shell
-docker run -p 9000:9000 -p 8812:8812 questdb/questdb
+docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 questdb/questdb
 ```
 
 ### Options
@@ -37,8 +37,8 @@ This parameter will publish a port to the host, you can specify:
 
 - `-p 9000:9000`: [REST API](/docs/reference/api/rest/) and
   [Web Console](/docs/reference/web-console/)
-- `-p 8812:8812`: [Postgres](/docs/reference/api/postgres/)
 - `-p 9009:9009`: [InfluxDB line protocol](/docs/reference/api/influxdb/)
+- `-p 8812:8812`: [Postgres](/docs/reference/api/postgres/)
 
 #### -v volumes
 
@@ -110,7 +110,7 @@ following example demonstrated how to mount the current directory to a QuestDB
 container using the `-v` flag in a Docker `run` command:
 
 ```bash
-docker run -p 9000:9000 -p 8812:8812 -v "$(pwd):/root/.questdb/" questdb/questdb
+docker run -p 9000:9000 -v "$(pwd):/root/.questdb/" questdb/questdb
 ```
 
 The current directory will then have data persisted to disk for convenient
@@ -118,7 +118,7 @@ migration or backups:
 
 ```bash title="Current directory contents"
 ├── conf
-│   └── server.conf
+│   └── server.conf
 ├── db
 └── public
 ```
@@ -126,6 +126,64 @@ migration or backups:
 For details on passing QuestDB server settings to a Docker container, see the
 [Docker section](/docs/reference/configuration/#docker) of the server
 configuration documentation.
+
+### Writing logs to disk
+
+When mounting a volume to a Docker container, a logging configuration file may
+be provided in the container located at `/conf/log.conf`:
+
+```bash title="Current directory contents"
+└── conf
+    ├── log.conf
+    └── server.conf
+```
+
+For example, a file with the following contents can be created:
+
+```shell title="./conf/log.conf"
+# list of configured writers
+writers=file,stdout,http.min
+
+# file writer
+w.file.class=io.questdb.log.LogFileWriter
+w.file.location=questdb-docker.log
+w.file.level=INFO,ERROR,DEBUG
+
+# stdout
+w.stdout.class=io.questdb.log.LogConsoleWriter
+w.stdout.level=INFO
+
+# min http server, used monitoring
+w.http.min.class=io.questdb.log.LogConsoleWriter
+w.http.min.level=ERROR
+w.http.min.scope=http-min-server
+```
+
+The current directory can be mounted:
+
+```shell title="Mounting the current directory to a QuestDB container"
+docker run -p 9000:9000 -v "$(pwd):/root/.questdb/" questdb/questdb
+```
+
+The container logs will be written to disk using the logging level and file name
+provided in the `conf/log.conf` file, in this case in `./questdb-docker.log`:
+
+```shell title="Current directory tree"
+├── conf
+│  ├── log.conf
+│  └── server.conf
+├── db
+│  ├── table1
+│  └── table2
+├── public
+│  ├── ui / assets
+│  ├── ...
+│  └── version.txt
+└── questdb-docker.log
+```
+
+For more information on logging, see the
+[configuration reference documentation](/docs/reference/configuration/#logging).
 
 ### Restart an existing container
 

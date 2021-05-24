@@ -115,7 +115,7 @@ The current directory will then have data persisted to disk:
 
 ```bash title="Current directory contents"
 ├── conf
-│   └── server.conf
+│  └── server.conf
 ├── db
 └── public
 ```
@@ -392,9 +392,9 @@ these methods.
 
 ### Configuration file
 
-Logs may be configured via a dedicated file named `qlog.conf`.
+Logs may be configured via a dedicated file named `log-stdout.conf`.
 
-```shell title="qlog.conf"
+```shell title="log-stdout.conf"
 # list of configured writers
 writers=file,stdout
 
@@ -408,18 +408,52 @@ w.stdout.class=io.questdb.log.LogConsoleWriter
 w.stdout.level=INFO,ERROR
 ```
 
-QuestDB will look for `/qlog.conf` on the classpath unless this name is
+QuestDB will look for `/log-stdout.conf` on the classpath unless this name is
 overridden via a "system" property: `-Dout=/something_else.conf`.
+
+### Docker
+
+When mounting a volume to a Docker container, a logging configuration file may
+be provided in the container located at `/conf/log.conf`. For example, a file
+with the following contents can be created:
+
+```shell title="./conf/log.conf"
+# list of configured writers
+writers=file,stdout,http.min
+
+# file writer
+w.file.class=io.questdb.log.LogFileWriter
+w.file.location=questdb-docker.log
+w.file.level=INFO,ERROR,DEBUG
+
+# stdout
+w.stdout.class=io.questdb.log.LogConsoleWriter
+w.stdout.level=INFO
+
+# min http server, used monitoring
+w.http.min.class=io.questdb.log.LogConsoleWriter
+w.http.min.level=ERROR
+w.http.min.scope=http-min-server
+```
+
+The current directory can be mounted:
+
+```shell title="Mount the current directory to a QuestDB container"
+docker run -p 9000:9000 -v "$(pwd):/root/.questdb/" questdb/questdb
+```
+
+The container logs will be written to disk using the logging level and file name
+provided in the `conf/log.conf` file, in this case in `./questdb-docker.log`.
 
 ### Environment variables
 
-Values in the `qlog.conf` file can be overridden with environment variables. All
-configuration keys must be formatted as described in the
+Values in the `log-stdout.conf` file can be overridden with environment
+variables. All configuration keys must be formatted as described in the
 [environment variables](#environment-variables) section above.
 
 For example, to set logging on `ERROR` level only:
 
-```shell title="Setting log level to ERROR in qlog.conf"
+```shell title="Setting log level to ERROR in log-stdout.conf"
 w.stdout.level=ERROR
 ```
 
