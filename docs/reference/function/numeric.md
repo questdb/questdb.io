@@ -38,6 +38,28 @@ FROM long_sequence(3);
 | 0   | 0   |
 | 1   | 1   |
 
+## log
+
+`log(value)` return the natural logarithm (**log*e***) of a given number.
+
+**Arguments:**
+
+- `value` is any numeric value.
+
+**Return value:**
+
+Return value type is `double`.
+
+**Examples:**
+
+```questdb-sql
+SELECT log(4.123)
+```
+
+| log          |
+| ------------ |
+| 1.4165810537 |
+
 ## round
 
 `round(value, scale)` returns the **closest** value in the specified scale. It
@@ -212,3 +234,25 @@ FROM dbl;
 | 4.003627053  | 100    | 10     | 5     | 4.1    | 4.01    |
 | 86.91359825  | 100    | 90     | 87    | 87     | 86.92   |
 | 376.3807766  | 400    | 380    | 377   | 376.4  | 376.39  |
+
+## sqrt
+
+`sqrt(value)` return the square root of a given number.
+
+**Arguments:**
+
+- `value` is any numeric value.
+
+**Return value:**
+
+Return value type is `double`.
+
+**Examples:**
+
+```questdb-sql
+SELECT sqrt(4000.32)
+```
+
+| log              |
+| ---------------- |
+| 63.2480829749013 |
