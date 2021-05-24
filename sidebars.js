@@ -138,6 +138,11 @@ module.exports = {
         },
         {
           type: "category",
+          label: "Operators",
+          items: ["reference/operators/bitwise"],
+        },
+        {
+          type: "category",
           label: "SQL",
           items: [
             "concept/sql-execution-order",

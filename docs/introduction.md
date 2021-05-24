@@ -58,6 +58,19 @@ programming languages.
 - [Authenticate](/docs/develop/authenticate/) via an additional step before
   inserting records using InfluxDB line protocol
 
+## Guides
+
+- [Configuring commit lag of out-of-order (O3) data](/docs/guides/out-of-order-commit-lag/)
+- [InfluxDB line protocol](/docs/guides/influxdb-line-protocol/)
+- [Importing data in bulk via CSV](/docs/guides/importing-data/)
+- [Version 6.0 migration](/docs/guides/v6-migration/)
+
+### Deployment
+
+- [Deploy a QuestDB AMI to AWS using Packer](/docs/guides/aws-packer/)
+- [Run QuestDB on Kubernetes](/docs/guides/kubernetes/)
+- [Google Cloud Platform](/docs/guides/google-cloud-platform/)
+
 ## Third-party tools
 
 This section describes how to integrate QuestDB with third-party tools and
@@ -77,8 +90,6 @@ pages for the following topics:
 
 - [Capacity planning](/docs/operations/capacity-planning/) for configuring
   server settings and system resources for common scenarios and edge cases
-- [Deployment](/docs/operations/deployment/) details with information for
-  running locally, on Kubernetes or the AWS AMI
 - [Data retention](/docs/operations/data-retention/) strategy to delete old data
   and save disk space
 - [Health monitoring](/docs/operations/health-monitoring/) endpoint for
@@ -111,6 +122,7 @@ when starting services:
 ### Functions
 
 - [Aggregation](/docs/reference/function/aggregation/)
+- [Conditional](/docs/reference/function/conditional/)
 - [Date time](/docs/reference/function/date-time/)
 - [Meta](/docs/reference/function/meta/)
 - [Numeric](/docs/reference/function/numeric/)
@@ -120,15 +132,21 @@ when starting services:
 - [Timestamp generator](/docs/reference/function/timestamp-generator/)
 - [Timestamp](/docs/reference/function/timestamp/)
 
+### Operators
+
+- [Bitwise](/docs/reference/operators/bitwise/)
+
 ### SQL
 
 - [SQL Execution order](/docs/reference/sql/datatypes/)
 - [Data types](/docs/reference/sql/datatypes/)
 - [ALTER TABLE ADD COLUMN](/docs/reference/sql/alter-table-add-column/)
 - [ALTER TABLE ALTER COLUMN ADD INDEX](/docs/reference/sql/alter-table-alter-column-add-index/)
+- [ALTER TABLE RENAME COLUMN](/docs/reference/sql/alter-table-rename-column/)
 - [ALTER TABLE DROP COLUMN](/docs/reference/sql/alter-table-drop-column/)
 - [ALTER TABLE ATTACH PARTITION](/docs/reference/sql/alter-table-attach-partition/)
 - [ALTER TABLE DROP PARTITION](/docs/reference/sql/alter-table-drop-partition/)
+- [ALTER TABLE SET PARAM](/docs/reference/sql/alter-table-set-param/)
 - [BACKUP](/docs/reference/sql/backup/)
 - [CASE](/docs/reference/sql/case/)
 - [CAST](/docs/reference/sql/cast/)
