@@ -18,7 +18,7 @@
     "@docusaurus/module-type-aliases": "2.0.0-alpha.75",
     "@docusaurus/plugin-pwa": "2.0.0-alpha.75",
     "@docusaurus/preset-classic": "2.0.0-alpha.75",
-    "@questdb/sql-grammar": "1.0.5",
+    "@questdb/sql-grammar": "1.0.7",
     "@tsconfig/docusaurus": "1.0.2",
     "@types/react": "16.9.56",
     "@types/react-helmet": "6.1.0",
