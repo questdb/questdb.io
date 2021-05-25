@@ -122,6 +122,8 @@ cairo.max.uncommitted.rows=10000
 
 ## How to configure out-of-order ingestion
 
+### Server-wide configuration
+
 These settings may be applied via
 [server configuration file](/docs/reference/configuration/):
 
@@ -155,12 +157,11 @@ docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 \
   questdb/questdb
 ```
 
-### Configuring out-of-order values per-table
+### Per-table lag and maximum uncommitted rows
 
-Aside from 'global' server out-of-order settings, it's possible to set
-out-of-order values during table creation as part of the `PARTITION BY` clause.
-When passed in this way using the `WITH` keyword, the following two parameters
-may be applied:
+It's possible to set out-of-order values per table when creating a new table as
+part of the `PARTITION BY` clause. Configuration is passed using the `WITH`
+keyword with the following two parameters:
 
 - `maxUncommittedRows` - equivalent to `cairo.max.uncommitted.rows`
 - `commitLag` - equivalent to `cairo.commit.lag`
@@ -195,3 +196,25 @@ ALTER TABLE my_table SET PARAM commitLag = 20s
 
 For more information on checking table metadata, see the
 [meta functions](/docs/reference/function/meta/) documentation page.
+
+### INSERT lag and batch size
+
+The `INSERT` keyword may be passed parameters for handling the expected _lag_ of
+out-of-order records and a _batch_ size for the number of rows to process and
+insert at once. The following query shows an `INSERT AS SELECT` operation with
+lag and batch size applied:
+
+```questdb-sql
+INSERT batch 100000 lag 180000000 INTO trades
+SELECT ts, instrument, quantity, price
+FROM unordered_trades
+```
+
+:::info
+
+Using the lag and batch size parameters during `INSERT AS SELECT` statements is
+a convenient strategy to load and order large datasets from CSV in bulk. This
+strategy along with an example workflow is described in the
+[importing data guide](/docs/guides/importing-data/).
+
+:::
