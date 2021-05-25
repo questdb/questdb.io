@@ -12,7 +12,6 @@ and pipe (`|`) delimited inputs with optional headers. Data types and structures
 are detected automatically, but additional configuration can be provided to
 improve automatic detection.
 
-
 ## Text loader configuration
 
 QuestDB uses a `text_loader.json` configuration file which can be placed in the
@@ -92,7 +91,6 @@ curl -F data=@weather.csv 'http://localhost:9000/imp'
 For more information on the `/imp` entry point, refer to the
 [REST API documentation](/docs/reference/api/rest/#imp---import-data).
 
-
 ## Unordered data import with insert lag and batch size
 
 Using the lag and batch size parameters during `INSERT AS SELECT` statements is
@@ -122,45 +120,33 @@ ordered table may be created using the following steps:
    automatically detect the correct format:
 
    ```questdb-sql
-   create table weather as (
-   select
-       cast(timestamp as timestamp) timestamp,
-       windDir,
-       windSpeed,
-       windGust,
-       cloudCeiling,
-       skyCover,
-       visMiles,
-       tempF,
-       dewpF,
-       rain1H,
-       rain6H,
-       rain24H,
-       snowDepth
-   from 'weather-unordered.csv' where 1 != 1
-   ) timestamp(timestamp) partition by DAY;
+   CREATE TABLE weather AS (
+   SELECT
+     cast(timestamp AS timestamp) timestamp,
+     windDir,
+     windSpeed,
+     windGust,
+     rain1H,
+     rain6H,
+     rain24H
+   FROM 'weather-unordered.csv' WHERE 1 != 1
+   ) timestamp(timestamp) PARTITION BY DAY;
    ```
 
 3. Insert the unordered records into the partitioned table and provide a `lag`
    and `batch` size:
 
    ```questdb-sql
-   insert batch 100000 lag 180000000 into weather
-    select
-        cast(timestamp as timestamp) timestamp,
-        windDir,
-        windSpeed,
-        windGust,
-        cloudCeiling,
-        skyCover,
-        visMiles,
-        tempF,
-        dewpF,
-        rain1H,
-        rain6H,
-        rain24H,
-        snowDepth
-    from 'weather-shuffled.csv';
+   INSERT batch 100000 lag 180000000 INTO weather
+   SELECT
+     cast(timestamp AS timestamp) timestamp,
+     windDir,
+     windSpeed,
+     windGust,
+     rain1H,
+     rain6H,
+     rain24H
+   FROM 'weather-unordered.csv';
    ```
 
 To confirm that the table is ordered, the `isOrdered()` function may be used:
@@ -172,3 +158,6 @@ select isOrdered(timestamp) from weather
 | isOrdered |
 | --------- |
 | true      |
+
+More information about the use of `isOrdered()` can be found on the
+[boolean functions documentation](/docs/reference/function/boolean/).

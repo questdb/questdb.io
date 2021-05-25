@@ -33,7 +33,7 @@ indexCapacityDef
   ::= 'capacity' valueBlockSize
 
 insertInto
-  ::= 'INSERT' 'INTO' tableName (('('columnName (',' columnName)*) ')')? ('VALUES' '(' value (',' value)* ')' | 'SELECT' queryDef )
+  ::= 'INSERT' (batch batchCount lag lagAmount)? 'INTO' tableName (('('columnName (',' columnName)*) ')')? ('VALUES' '(' value (',' value)* ')' | 'SELECT' queryDef )
 
 Backup
   ::= 'BACKUP' ( 'TABLE' tableName ( ',' tableName )* | 'DATABASE' ) ';'
