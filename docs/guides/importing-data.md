@@ -1,6 +1,6 @@
 ---
 title: Importing data in bulk via CSV
-sidebar_label: Configuring CSV imports
+sidebar_label: Bulk CSV imports
 description:
   This document describes how to load CSV data and specify text loader
   configuration for timestamp and date parsing
@@ -91,10 +91,15 @@ curl -F data=@weather.csv 'http://localhost:9000/imp'
 For more information on the `/imp` entry point, refer to the
 [REST API documentation](/docs/reference/api/rest/#imp---import-data).
 
-## Unordered data import with insert lag and batch size
+## Large datasets with out-of-order data
 
-Using the lag and batch size parameters during `INSERT AS SELECT` statements is
-a convenient strategy to load and order large datasets from CSV in bulk.
+Using the `lag` and `batch` size parameters during `INSERT AS SELECT` statements
+is a convenient strategy to load and order large datasets from CSV in bulk when
+they contain out-of-order data.
+
+The batch size specifies how many records to attempt to bulk insert at one time
+and the **lag** allows for specifying the expected lateness of out-of-order
+timestamp values (in microseconds):
 
 ```questdb-sql
 INSERT batch 100000 lag 180000000 INTO my_table

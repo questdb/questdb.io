@@ -15,7 +15,6 @@ Checking if tables contain a designated timestamp column can be done via the
 
 :::
 
-
 ## systimestamp
 
 `systimestamp()` - offset from UTC Epoch in microseconds. Calculates

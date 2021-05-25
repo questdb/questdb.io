@@ -77,7 +77,7 @@ FROM unordered_trades
 
 Hints and an example workflow using `INSERT AS SELECT` for bulk CSV import of
 out-of-order data can be found on the
-[importing data via CSV](/docs/guides/importing-data/#unordered-data-import-with-insert-lag-and-batch-size)
+[importing data via CSV](/docs/guides/importing-data/#large-datasets-with-out-of-order-data)
 documentation.
 
 :::
