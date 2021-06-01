@@ -1,0 +1,187 @@
+---
+title: Time Series Benchmark Suite
+description:
+  Benchmarking database performance using the time series benchmark suite
+wrapperClassName: supplemental
+keywords:
+  - clickhouse
+  - influxdb
+  - timescaledb
+  - tsbs
+  - benchmark
+  - timeseries
+  - database
+image: /img/pages/tsbs/banner.png
+tags: [release, clickhouse, timescaledb, influxdb, benchmark]
+---
+
+<h1>How to benchmark time series workloads</h1>
+
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="A chart comparing the maximum throughput of four database systems, showing QuestDB hitting ingestion limits with less resources than other systems"
+  height={385}
+  src="/img/pages/tsbs/banner.png"
+  width={850}
+/>
+
+When looking at multiple solutions for storing and analyzing large amounts of
+time series data, it's common to see many open source systems claim that they
+are the easiest to maintain or are the fastest and most efficient at storing and
+writing data. Reliable comparisons are one of the best ways for users to make
+the decision which system fits their needs in terms of resource usage, speed,
+ease of use and other requirements.
+
+We decided to make it more transparent for developers to choose the right time
+series database by providing support for testing and measuring database
+performance that anyone can replicate.
+
+<h2>How is database performance measured?</h2>
+
+While there are many ways to measure database performance, we saw the
+[Time Series Benchmark Suite](https://github.com/timescale/tsbs) (TSBS)
+regularly coming up in discussions about time series databases and decided we
+should provide the ability to benchmark QuestDB along with other systems.
+
+The TSBS is a collection of Go programs to generate datasets and then benchmark
+read and write performance. It was initially released by InfluxDB engineers and
+continuously improved by the TimescaleDB team. The suite is extensible so that
+different types of data and query types can be included and compared across
+systems.
+
+<h3>The data format used for testing ingestion</h3>
+
+Data for the QuestDB ingestion benchmark is generated in
+[InfluxDB line protocol](/docs/guides/influxdb-line-protocol/) format where each
+reading is composed of the table name, several comma-separated tags, several
+comma-separated fields, and a timestamp for the record. An example reading looks
+like the following:
+
+```text
+diagnostics,name=truck_3985,fleet=West,driver=Seth,model=H-2,device_version=v1.5 load_capacity=1500,fuel_capacity=150,nominal_fuel_consumption=12,fuel_state=0.8,current_load=482,status=4i 1451609990000000000
+```
+
+The data generation tool is configurable so that the number of simulated devices
+can be increased using `scale`, and the overall timespan that devices are
+generating test data can be specified by a start and end timestamp:
+
+```bash
+tsbs_generate_data \
+--use-case="cpu-only" --seed=123 --scale=4000 \
+--timestamp-start="2016-01-01T00:00:00Z" --timestamp-end="2016-01-02T00:00:00Z" \
+--log-interval="10s" --format="influx" > /tmp/data
+```
+
+This will create a data set with:
+
+- 24 hours worth of data
+- 4000 simulated host machines
+- each simulated host reports system metrics every 10 seconds
+- records are in InfluxDB line protocol format with 10 tags and 10 fields per
+  row
+
+The total size of the data set generated from this command is approximately
+12GB.
+
+<h3>Performance-testing time series data ingestion</h3>
+
+The Time Series Benchmark Suite provides a separate tool for loading the
+generated data set into different databases. Users can test ingestion
+performance using the `tsbs_load` and specify the system to send the test data
+to:
+
+```bash
+tsbs_load_questdb --file /tmp/data --workers 4
+```
+
+This creates a table with 34.5 million rows:
+
+<Screenshot
+  alt="A chart comparing the maximum throughput of four database systems, showing QuestDB hitting ingestion limits with less resources than other systems"
+  height={385}
+  src="/img/pages/tsbs/loading-test-data.png"
+  width={850}
+/>
+
+<h2>Time Series Benchmark Suite results</h2>
+
+Here are our results of the benchmark with the `cpu-only` use case using up to
+fourteen workers on an AWS EC2 `m5.8xlarge` instance with sixteen cores.
+
+<Screenshot
+  alt="Time series benchmark suite results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using four workers"
+  height={377}
+  src="/img/blog/2021-05-10/max-throughput-comparison.png"
+  title="TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
+  width={850}
+/>
+
+We reach maximum ingestion performance using four threads, whereas the other
+systems require more CPU resources to hit maximum throughput. QuestDB achieves
+959k rows/sec with 4 threads. We find that InfluxDB needs 14 threads to reach
+its max ingestion rate (334k rows/sec), while TimescaleDB reaches 145k rows/sec
+with 4 threads. ClickHouse hits 914k rows/sec with twice as many threads as
+QuestDB.
+
+When running on 4 threads, QuestDB is 1.7x faster than ClickHouse, 6.4x faster
+than InfluxDB and 6.5x faster than TimescaleDB.
+
+<Screenshot
+  alt="A chart comparing the maximum throughput of four database systems, showing QuestDB hitting ingestion limits with less resources than other systems"
+  height={324}
+  src="/img/blog/2021-05-10/tsbs-benchmark-results.png"
+  title="TSBS benchmark results using 4 threads: rows ingested per second by QuestDB, InfluxDB, ClickHouse, and TimescaleDB."
+  width={850}
+/>
+
+Because our ingestion format (ILP) repeats tag values per row, ClickHouse and
+TimescaleDB parse around two-thirds of the total volume of data as QuestDB does
+in the same benchmark run. We chose to stick with ILP because of its widespread
+use in time series, but we may use a more efficient format to improve ingestion
+performance in the future.
+
+Degraded performance beyond 4 workers can be explained by the increased
+contention beyond what the system is capable of. We think that one limiting
+factor may be that we are IO bound as we scale up to 30% better on faster
+AMD-based systems.
+
+When we run the suite again using an AMD Ryzen5 processor, we found that we were
+able to hit maximum throughput of 1.43 million rows per second using 5 threads.
+This is compared to the
+[Intel Xeon Platinum](https://aws.amazon.com/ec2/instance-types/) that's in use
+by our reference benchmark `m5.8xlarge` instance on AWS.
+
+<Screenshot
+  alt="A chart comparing the maximum throughput of QuestDB when utilizing an Intel Xeon Platinum processor versus an AMD Ryzen5 processor."
+  height={410}
+  src="/img/blog/2021-05-10/questdb-bench-amd-ryzen.png"
+  title="Comparing QuestDB TSBS load results on AWS EC2 using an Intel Xeon Platinum versus an AMD Ryzen5"
+  width={850}
+/>
+
+<h2>Contributing to the Time Series Benchmark Suite</h2>
+
+We have opened a pull request
+([#157 - Questdb benchmark support](https://github.com/timescale/tsbs/issues/157)) in
+TimescaleDB's TSBS GitHub repository which adds the ability to run the benchmark
+against QuestDB. In the meantime, readers may clone
+[our fork of the benchmark suite](https://github.com/questdb/tsbs) and run the
+tests to see the results for themselves.
+
+<h2>Get in touch</h2>
+
+Version 6.0 of QuestDB ships with a new ingestion framework which is a new way
+to sort incoming data without the performance cost that standard methods
+experience during query operations and has no bottlenecks on ingestion.
+
+With the addition of this feature, we're happy to provide compatibility with the
+Time Series Benchmark Suite, which is a reproducible way to compare query and
+ingestion performance across multiple systems. With this compatibility, we hope
+to make it easier to assess which time series database is the proper tool for a
+particular use case.
+
+If you would like to know more about QuestDB and how it can solve problems that
+arise when dealing with large amounts of time series data, feel free to
+[Join the Community Slack]({@slackUrl@}) or view our
+[enterprise page](/enterprise/) for an overview of the solutions we offer.
