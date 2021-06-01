@@ -15,13 +15,13 @@ const customFields = {
   domain,
   githubOrgUrl,
   githubUrl: `${githubOrgUrl}/questdb`,
-  helmVersion: "0.4.0",
+  helmVersion: "0.8.0",
   linkedInUrl: "https://www.linkedin.com/company/questdb/",
   oneLiner: "Fast SQL open source database for time series - QuestDB",
   slackUrl: `https://slack.${domain}`,
   stackoverflowUrl: "https://stackoverflow.com/questions/tagged/questdb",
   twitterUrl: "https://twitter.com/questdb",
-  version: "6.0.2",
+  version: "6.0.3",
   videosUrl: "https://www.youtube.com/channel/UChqKEmOyiD9c6QFx2mjKwiA",
 }
 
