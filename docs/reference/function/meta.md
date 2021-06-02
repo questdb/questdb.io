@@ -71,6 +71,12 @@ SELECT type, count() FROM table_columns('my_table');
 
 `tables()` returns all tables in the database including table metadata.
 
+:::info
+
+`commitLag` is returned in _microseconds_
+
+:::
+
 **Arguments:**
 
 - `tables()` does not require arguments.

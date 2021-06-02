@@ -47,7 +47,7 @@ CreateTableTimestamp
   ::= 'CREATE' someCreateTableStatement 'timestamp' '(' columnName ')'
 
 createTableWithParams
-         ::= 'WITH' maxUncommittedRows '=' rowCount ',' commitLag '=' lag
+         ::= 'WITH' 'maxUncommittedRows' '=' rowCount ',' 'commitLag' '=' n ( 'us' | 's' | 'm' | 'h' | 'd' )
 
 dynamicTimestamp
   ::= 'SELECT' someSelectStatement 'timestamp' '(' columnName ')'

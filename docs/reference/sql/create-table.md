@@ -255,7 +255,7 @@ count, or the _lag_ boundary is met:
 
 ```questdb-sql
 CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
-PARTITION BY DAY WITH maxUncommittedRows=250000, commitLag=240s
+PARTITION BY DAY WITH maxUncommittedRows=250000, commitLag = 240s
 ```
 
 For more information on out-of-order lag and uncommitted rows, see the
