@@ -1,12 +1,25 @@
 .getQuestdb {
-  margin-left: 40px;
+  margin-left: 10px;
   font-size: var(--font-size-small);
+}
+
+.benchmarkButton {
+  margin-left: 10px;
+  background-color: transparent;
+  border: 2px solid #7a7a80;
+  color: var(--palette-white);
+  text-transform: none;
+}
+
+.benchmarkButton:hover {
+  background-color: var(--palette-white-20);
 }
 
 .brand {
   display: block;
   height: 30px;
   width: 119px;
+  min-width: 119px;
   margin-right: var(--ifm-navbar-item-padding-horizontal);
   border: 0;
   overflow: hidden;
@@ -54,6 +67,7 @@
 
 :global(.navbar__link),
 :global(.dropdown__link) {
+  white-space: nowrap;
   font-size: var(--ifm-font-size-base);
 }
 
@@ -71,6 +85,10 @@
   :global(.navbar__brand) {
     margin: 0;
   }
+
+  .benchmarkButton {
+    display: none;
+  }
 }
 
 @media (max-width: 996px) and (min-width: 768px) {
@@ -86,6 +104,9 @@
 
   :global(.navbar__item.navbar__item--slack),
   :global(.navbar__item.navbar__item--github) {
+    display: none;
+  }
+  .benchmarkButton {
     display: none;
   }
 }
@@ -105,6 +126,9 @@
 
   :global(.DocSearch-Button) {
     margin-left: 0.85rem;
+  }
+  .benchmarkButton {
+    display: none;
   }
 }
 

@@ -119,6 +119,13 @@ function Navbar(): JSX.Element {
           >
             Get QuestDB
           </Button>
+          <Button
+            className={styles.benchmarkButton}
+            size="xsmall"
+            to="/time-series-benchmark-suite/"
+          >
+            Benchmark
+          </Button>
         </div>
       </div>
       <div
