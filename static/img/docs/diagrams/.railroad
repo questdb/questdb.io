@@ -33,8 +33,7 @@ indexCapacityDef
   ::= 'capacity' valueBlockSize
 
 insertInto
-  ::= 'INSERT' (batch batchCount lag lagAmount)? 'INTO' tableName (('('columnName (',' columnName)*) ')')? ('VALUES' '(' value (',' value)* ')' | 'SELECT' queryDef )
-
+  ::= 'INSERT' ('batch' batchCount 'commitLag' n ( 'us' | 's' | 'm' | 'h' | 'd' ))? 'INTO' tableName (('('columnName (',' columnName)*) ')')? ('VALUES' '(' value (',' value)* ')' | 'SELECT' queryDef )
 Backup
   ::= 'BACKUP' ( 'TABLE' tableName ( ',' tableName )* | 'DATABASE' ) ';'
 
@@ -150,4 +149,4 @@ attachPartition
  ::= 'ATTACH' 'PARTITION' 'LIST' partitionName (',' partitionName)*
 
 setParam
- ::= 'SET' 'PARAM' ( 'commitLag' | 'maxUncommittedRows' ) value
+ ::= 'SET' 'PARAM' ( 'maxUncommittedRows' '=' n | 'commitLag' '=' n ( 'us' | 's' | 'm' | 'h' | 'd' ))

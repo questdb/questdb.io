@@ -93,16 +93,16 @@ For more information on the `/imp` entry point, refer to the
 
 ## Large datasets with out-of-order data
 
-Using the `lag` and `batch` size parameters during `INSERT AS SELECT` statements
-is a convenient strategy to load and order large datasets from CSV in bulk when
-they contain out-of-order data.
+Using the `commitLag` and `batch` size parameters during `INSERT AS SELECT`
+statements is a convenient strategy to load and order large datasets from CSV in
+bulk when they contain out-of-order data.
 
 The batch size specifies how many records to attempt to bulk insert at one time
 and the **lag** allows for specifying the expected lateness of out-of-order
 timestamp values (in microseconds):
 
 ```questdb-sql
-INSERT batch 100000 lag 180000000 INTO my_table
+INSERT batch 100000 commitLag 180s INTO my_table
 SELECT * FROM unordered_table
 ```
 
@@ -142,7 +142,7 @@ ordered table may be created using the following steps:
    and `batch` size:
 
    ```questdb-sql
-   INSERT batch 100000 lag 180000000 INTO weather
+   INSERT batch 100000 commitLag 180s INTO weather
    SELECT
      cast(timestamp AS timestamp) timestamp,
      windDir,

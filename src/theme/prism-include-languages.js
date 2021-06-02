@@ -29,7 +29,10 @@ const prismIncludeLanguages = (PrismObject) => {
         greedy: true,
         lookbehind: true,
       },
-      function: new RegExp(`\\b(?:${functions.join("|")})((?=\\s*\\()|\\b)`, "i"),
+      function: new RegExp(
+        `\\b(?:${functions.join("|")})((?=\\s*\\()|\\b)`,
+        "i",
+      ),
       keyword: new RegExp(`\\b(?:${keywords.join("|")})\\b`, "i"),
       boolean: new RegExp(`\\b(?:${constants.join("|")})\\b`, "i"),
       number: /\b0x[\da-f]+\b|\b\d+\.?\d*|\B\.\d+\b/i,
