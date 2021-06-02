@@ -52,8 +52,8 @@ third hour (`2021-01-01T13`):
 The following query returns the minimum, maximum and average price per hour:
 
 ```questdb-sql
-SELECT ts, min(price) min, max(price) max, avg(price) avg
-FROM PRICES
+SELECT ts, min(price) min, max(price) max, avg(price) average
+FROM prices
 SAMPLE BY 1h;
 ```
 
@@ -78,8 +78,8 @@ Based on this example, a `FILL` strategy can be employed which fills with the
 previous value using `PREV`:
 
 ```questdb-sql
-SELECT ts, min(price) min, max(price) max, avg(price) avg
-FROM PRICES
+SELECT ts, min(price) min, max(price) max, avg(price) average
+FROM prices
 SAMPLE BY 1h
 FILL(PREV);
 ```
@@ -98,8 +98,8 @@ using the `FILL` keyword:
 This query demonstrates using a `LINEAR` value for interpolation:
 
 ```questdb-sql
-SELECT ts, min(price) min, avg(price) avg
-FROM PRICES`
+SELECT ts, min(price) min, avg(price) average
+FROM prices
 SAMPLE BY 1h
 FILL(LINEAR);
 ```
@@ -119,8 +119,8 @@ value is used as a `fillOption`, a value must be specified for each aggregate
 column:
 
 ```questdb-sql
-SELECT ts, min(price) min, avg(price) avg
-FROM PRICES`
+SELECT ts, min(price) min, avg(price) average
+FROM prices
 SAMPLE BY 1h
 FILL(100.5, 10, 1);
 ```
@@ -138,8 +138,8 @@ The results of this query look like the following:
 This query demonstrates using `NULL` as a `fillOption`:
 
 ```questdb-sql
-SELECT ts, min(price) min, avg(price) avg
-FROM PRICES`
+SELECT ts, min(price) min, avg(price) average
+FROM prices
 SAMPLE BY 1h
 FILL(NULL);
 ```

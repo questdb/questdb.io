@@ -66,9 +66,28 @@ export QBD_SHARED_WORKER_COUNT=5
 ## Docker
 
 This section describes how configure QuestDB server settings when running
-QuestDB in a Docker container. The examples change the default HTTP and REST API
-port from `9000` to `4000` for illustrative purposes, and demonstrate how to
-expose this port.
+QuestDB in a Docker container. A command to run QuestDB via Docker with default
+interfaces is as follows:
+
+```shell
+docker run -p 9000:9000 \
+ -p 9009:9009 \
+ -p 8812:8812 \
+ -p 9003:9003 \
+ questdb/questdb
+```
+
+This publishes the following ports:
+
+- `-p 9000:9000` - [REST API](/docs/reference/api/rest/) and
+  [Web Console](/docs/reference/web-console/)
+- `-p 9009:9009` - [InfluxDB line protocol](/docs/reference/api/influxdb/)
+- `-p 8812:8812` - [Postgres wire protocol](/docs/reference/api/postgres/)
+- `-p 9003:9003` - [Min health server](#minimal-http-server)
+
+The examples in this section change the default HTTP and REST API port from
+`9000` to `4000` for illustrative purposes, and demonstrate how to publish this
+port with a non-default property.
 
 ### Environment variables
 

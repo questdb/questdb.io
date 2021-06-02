@@ -21,7 +21,11 @@ Once Docker is installed, you will need to pull QuestDB's image from
 command using `docker run`:
 
 ```shell
-docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 questdb/questdb
+docker run -p 9000:9000 \
+ -p 9009:9009 \
+ -p 8812:8812 \
+ -p 9003:9003 \
+ questdb/questdb
 ```
 
 ### Options
@@ -35,10 +39,12 @@ docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 questdb/questdb
 
 This parameter will publish a port to the host, you can specify:
 
-- `-p 9000:9000`: [REST API](/docs/reference/api/rest/) and
+- `-p 9000:9000` - [REST API](/docs/reference/api/rest/) and
   [Web Console](/docs/reference/web-console/)
-- `-p 9009:9009`: [InfluxDB line protocol](/docs/reference/api/influxdb/)
-- `-p 8812:8812`: [Postgres](/docs/reference/api/postgres/)
+- `-p 9009:9009` - [InfluxDB line protocol](/docs/reference/api/influxdb/)
+- `-p 8812:8812` - [Postgres wire protocol](/docs/reference/api/postgres/)
+- `-p 9003:9003` -
+  [Min health server](/docs/reference/configuration/#minimal-http-server)
 
 #### -v volumes
 
@@ -110,7 +116,11 @@ following example demonstrated how to mount the current directory to a QuestDB
 container using the `-v` flag in a Docker `run` command:
 
 ```bash
-docker run -p 9000:9000 -v "$(pwd):/root/.questdb/" questdb/questdb
+docker run -p 9000:9000 \
+ -p 9009:9009 \
+ -p 8812:8812 \
+ -p 9003:9003 \
+ -v "$(pwd):/root/.questdb/" questdb/questdb
 ```
 
 The current directory will then have data persisted to disk for convenient
@@ -162,7 +172,11 @@ w.http.min.scope=http-min-server
 The current directory can be mounted:
 
 ```shell title="Mounting the current directory to a QuestDB container"
-docker run -p 9000:9000 -v "$(pwd):/root/.questdb/" questdb/questdb
+docker run -p 9000:9000 \
+ -p 9009:9009 \
+ -p 8812:8812 \
+ -p 9003:9003 \
+ -v "$(pwd):/root/.questdb/" questdb/questdb
 ```
 
 The container logs will be written to disk using the logging level and file name
@@ -187,21 +201,42 @@ For more information on logging, see the
 
 ### Restart an existing container
 
-When you stop the container, it will not be removed by Docker. This means that
-you can restart it anytime and your data will be accessible:
-
-```shell title="Start container from the  ID obtained with 'docker ps'"
-docker start dd363939f261
-```
-
-### Re-run `docker run`
-
-If you re-run the command:
+Running the following command will create a new container for the QuestDB image:
 
 ```shell
-docker run -p 9000:9000 -p 8812:8812 questdb/questdb
+docker run -p 9000:9000 \
+ -p 9009:9009 \
+ -p 8812:8812 \
+ -p 9003:9003 \
+ questdb/questdb
 ```
 
-A new container will be created for the QuestDB image. This means that the
-container will be fresh, any data you may have created previously won't be
-accessible.
+By giving the container a name with `--name container_name`, we have an easy way
+to refer to the container created by run later on:
+
+```shell
+docker run -p 9000:9000 \
+ -p 9009:9009 \
+ -p 8812:8812 \
+ -p 9003:9003 \
+ --name docker_questdb \
+ questdb/questdb
+```
+
+If we want to re-use this container and its data after it has been stopped, we
+can use the following commands:
+
+```shell
+# bring the container up
+docker start docker_questdb
+# shut the container down
+docker stop docker_questdb
+```
+
+Alternatively, users can obtain a running container's ID with 'docker ps' and
+restart it using the
+[UUID short identifier](https://docs.docker.com/engine/reference/run/#name---name):
+
+```shell title="Starting a container by ID"
+docker start dd363939f261
+```

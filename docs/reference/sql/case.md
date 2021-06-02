@@ -28,13 +28,13 @@ Assume the following data
 | Jack  | 8   |
 
 ```questdb-sql title="CASE with ELSE"
-select
+SELECT
 name,
-case
-    when age > 18 then 'major'
-    else 'minor'
-end
-from table
+CASE
+    WHEN age > 18 THEN 'major'
+    ELSE 'minor'
+END
+FROM my_table
 ```
 
 Result
@@ -47,12 +47,12 @@ Result
 | Jack  | minor |
 
 ```questdb-sql title="CASE without ELSE"
-select
-Name,
-case
-    when age > 18 then 'major'
-end
-from table
+SELECT
+name,
+CASE
+    WHEN age > 18 THEN 'major'
+END
+FROM my_table
 ```
 
 Result

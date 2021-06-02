@@ -151,10 +151,13 @@ questdb start
 Passing the environment variables via Docker is done using the `-e` flag:
 
 ```bash
-docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 \
-  -e QDB_CAIRO_MAX_UNCOMMITTED_ROWS=1000 \
-  -e QDB_CAIRO_COMMIT_LAG=20000 \
-  questdb/questdb
+docker run -p 9000:9000 \
+ -p 9009:9009 \
+ -p 8812:8812 \
+ -p 9003:9003 \
+ -e QDB_CAIRO_MAX_UNCOMMITTED_ROWS=1000 \
+ -e QDB_CAIRO_COMMIT_LAG=20000 \
+ questdb/questdb
 ```
 
 ### Per-table lag and maximum uncommitted rows
