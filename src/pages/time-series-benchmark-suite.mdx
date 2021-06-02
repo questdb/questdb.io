@@ -10,10 +10,7 @@ keywords:
   - timescaledb
   - tsbs
   - benchmark
-  - timeseries
-  - database
 image: /img/pages/tsbs/banner.png
-tags: [release, clickhouse, timescaledb, influxdb, benchmark]
 ---
 
 <h1>How to benchmark time series workloads</h1>
@@ -154,17 +151,17 @@ This is compared to the
 by our reference benchmark `m5.8xlarge` instance on AWS.
 
 <Screenshot
-  alt="A chart comparing the maximum throughput of QuestDB when utilizing an Intel Xeon Platinum processor versus an AMD Ryzen5 processor."
+  alt="A chart comparing the maximum throughput of QuestDB when utilizing an Intel Xeon Platinum processor versus an AMD Ryzen5 processor."
   height={410}
   src="/img/blog/2021-05-10/questdb-bench-amd-ryzen.png"
-  title="Comparing QuestDB TSBS load results on AWS EC2 using an Intel Xeon Platinum versus an AMD Ryzen5"
+  title="Comparing QuestDB TSBS load results on AWS EC2 using an Intel Xeon Platinum versus an AMD Ryzen5"
   width={850}
 />
 
 <h2>Contributing to the Time Series Benchmark Suite</h2>
 
 We have opened a pull request
-([#157 - Questdb benchmark support](https://github.com/timescale/tsbs/issues/157)) in
+([#157 - Questdb benchmark support](https://github.com/timescale/tsbs/issues/157)) in
 TimescaleDB's TSBS GitHub repository which adds the ability to run the benchmark
 against QuestDB. In the meantime, readers may clone
 [our fork of the benchmark suite](https://github.com/questdb/tsbs) and run the
