@@ -123,6 +123,35 @@ SELECT payment_type, count_distinct(counterparty) FROM transactions;
 
 :::
 
+## first
+
+`first(SYMBOL)` - returns the first value of a `SYMBOL` column.
+
+**Return value:**
+
+Return value type is `string`.
+
+**Examples:**
+
+Given a table with the following contents:
+
+| device_id  | temperature | ts                          |
+| ---------- | ----------- | --------------------------- |
+| arduino-01 | 12          | 2021-06-02T14:33:19.970258Z |
+| arduino-02 | 10          | 2021-06-02T14:33:21.703934Z |
+| arduino-03 | 18          | 2021-06-02T14:33:23.707013Z |
+
+The following query returns the first symbol value for the `device_id` column
+which is of `SYMBOL` type:
+
+```questdb-sql
+SELECT first(device_id) FROM sensors;
+```
+
+| first      |
+| ---------- |
+| arduino-01 |
+
 ## haversine_dist_deg
 
 `haversine_dist_deg(lat, lon, ts)` - calculates the traveled distance for a
@@ -171,6 +200,35 @@ FROM (SELECT rnd_double() a FROM long_sequence(100));
 | ksum              |
 | ----------------- |
 | 52.79143968514029 |
+
+## last
+
+`last(SYMBOL)` - returns the last value of a `SYMBOL` column.
+
+**Return value:**
+
+Return value type is `string`.
+
+**Examples:**
+
+Given a table with the following contents:
+
+| device_id  | temperature | ts                          |
+| ---------- | ----------- | --------------------------- |
+| arduino-01 | 12          | 2021-06-02T14:33:19.970258Z |
+| arduino-02 | 10          | 2021-06-02T14:33:21.703934Z |
+| arduino-03 | 18          | 2021-06-02T14:33:23.707013Z |
+
+The following query returns the last symbol value for the `device_id` column
+which is of `SYMBOL` type:
+
+```questdb-sql
+SELECT last(device_id) FROM sensors;
+```
+
+| last       |
+| ---------- |
+| arduino-03 |
 
 ## max
 
