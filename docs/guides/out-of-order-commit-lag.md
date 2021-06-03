@@ -197,7 +197,9 @@ and
 ALTER TABLE my_table SET PARAM commitLag = 20s
 ```
 
-For more information on checking table metadata, see the
+For more information on setting table parameters via SQL, see the
+[SET PARAM](/docs/reference/sql/alter-table-set-param/) reference. Additional
+details on checking table metadata is described in the
 [meta functions](/docs/reference/function/meta/) documentation page.
 
 ### INSERT commit lag and batch size
@@ -212,6 +214,9 @@ INSERT batch 100000 commitLag 180s INTO trades
 SELECT ts, instrument, quantity, price
 FROM unordered_trades
 ```
+
+For more information on using `INSERT` statements with parameters, see the
+[INSERT parameters](/docs/reference/sql/insert/#parameters) documentation.
 
 :::info
 

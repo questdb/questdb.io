@@ -85,8 +85,8 @@ FROM unordered_trades
 :::info
 
 - More details on ingesting out-of-order data with context on _lag_ and
-  uncommitted record count see the guide
-  for +[configuring commit lag of out-of-order data](/docs/guides/out-of-order-commit-lag/)
+  uncommitted record count see the guide for
+  [configuring commit lag of out-of-order data](/docs/guides/out-of-order-commit-lag/)
 
 - Hints and an example workflow using `INSERT AS SELECT` for bulk CSV import of
   out-of-order data can be found on the
