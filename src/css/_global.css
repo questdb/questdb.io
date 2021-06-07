@@ -95,6 +95,11 @@ html[data-theme="dark"] {
   --ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
 }
 
+html[data-theme="light"] {
+  --ifm-background-color: white;
+  --ifm-font-color-base: #000;
+}
+
 html[data-theme="dark"] .DocSearch {
   --docsearch-text-color: var(--ifm-font-color-base);
   --docsearch-muted-color: var(--ifm-color-secondary-darkest);

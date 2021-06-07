@@ -1,7 +1,9 @@
 import clsx from "clsx"
 import useBaseUrl from "@docusaurus/useBaseUrl"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
-import React from "react"
+import useThemeContext from "@theme/hooks/useThemeContext"
+import Toggle from "@theme/Toggle"
+import React, { useCallback } from "react"
 
 import Button from "@theme/Button"
 import useMetadataContext from "@theme/useMetadataContext"
@@ -44,6 +46,14 @@ const Footer = () => {
       footer: { links },
     },
   } = siteConfig
+
+  const { isDarkTheme, setLightTheme, setDarkTheme } = useThemeContext()
+
+  const onToggleChange = useCallback(
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    (e) => (e.target.checked ? setDarkTheme() : setLightTheme()),
+    [setLightTheme, setDarkTheme],
+  )
 
   return (
     <footer
@@ -139,6 +149,7 @@ const Footer = () => {
             </li>
           </ul>
         </p>
+        <Toggle checked={isDarkTheme} onChange={onToggleChange} />
       </div>
     </footer>
   )

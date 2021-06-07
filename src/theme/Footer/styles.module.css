@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   flex-direction: column;
-  background: var(--palette-rock);
+  /* background: var(--palette-rock); */
 }
 
 .footer--alt {

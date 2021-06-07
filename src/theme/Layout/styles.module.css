@@ -1,1 +1,8 @@
-../PageLayout/styles.module.css
+.wrapper {
+  flex: 1 0 auto;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
