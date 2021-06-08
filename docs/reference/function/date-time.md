@@ -273,6 +273,102 @@ SELECT to_str(systimestamp(), 'yyyy-MM-dd gooD DAY 123') FROM long_sequence(1);
 | ----------------------- |
 | 2020-03-04 gooD DAY 123 |
 
+## to_timezone
+
+`to_timezone(timestamp, timezone)` - converts a timestamp value to a specified
+timezone.
+
+**Arguments:**
+
+- `timestamp` is any `timestamp`
+- `timezone` may be `Country/City` tz database name, time zone abbreviation such
+  as `PST` or in UTC offset in string format.
+
+**Return value:**
+
+Return value type is `string`
+
+**Examples:**
+
+- Unix UTC timestamp in milliseconds to `Europe/Berlin`
+
+```questdb-sql
+select to_timezone(1623167145000000, 'Europe/Berlin')
+```
+
+| to_timezone                 |
+| --------------------------- |
+| 2021-06-08T17:45:45.000000Z |
+
+- Unix UTC timestamp in milliseconds to PST by UTC offset
+
+```questdb-sql
+select to_timezone(1623167145000000, '-08:00')
+```
+
+| to_timezone                 |
+| --------------------------- |
+| 2021-06-08T07:45:45.000000Z |
+
+- Timestamp as string to `PST`
+
+```questdb-sql
+select to_timezone(cast('2021-06-08T13:45:45.000000Z' as timestamp), 'PST')
+```
+
+| to_timezone                 |
+| --------------------------- |
+| 2021-06-08T06:45:45.000000Z |
+
+## to_utc
+
+`to_utc(timestamp, timezone)` - converts a timestamp by specified timezone to
+UTC. May be provided a timezone in string format or an offset value in hours and
+minutes.
+
+**Arguments:**
+
+- `timestamp` is any `timestamp`
+- `timezone` may be `Country/City` tz database name, time zone abbreviation such
+  as `PST` or in UTC offset in string format.
+
+**Return value:**
+
+Return value type is `string`
+
+**Examples:**
+
+- Convert a unix timestamp in milliseconds in the `Europe/Berlin` timezone to
+  UTC
+
+```questdb-sql
+select to_utc(1623167145000000, 'Europe/Berlin')
+```
+
+| to_utc                      |
+| --------------------------- |
+| 2021-06-08T13:45:45.000000Z |
+
+- Unix timestamp in milliseconds from PST to UTC by UTC offset
+
+```questdb-sql
+select to_utc(1623167145000000, '-08:00')
+```
+
+| to_utc                      |
+| --------------------------- |
+| 2021-06-08T23:45:45.000000Z |
+
+- Timestamp as string in `PST` to UTC
+
+```questdb-sql
+select to_utc(cast('2021-06-08T13:45:45.000000Z' as timestamp), 'PST')
+```
+
+| to_utc                      |
+| --------------------------- |
+| 2021-06-08T20:45:45.000000Z |
+
 ## dateadd
 
 `dateadd(period, n, startDate)` - adds `n` `period` to `startDate`.
