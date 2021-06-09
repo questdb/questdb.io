@@ -123,6 +123,7 @@ function Navbar(): JSX.Element {
             className={styles.benchmarkButton}
             size="xsmall"
             to="/time-series-benchmark-suite/"
+            variant="secondary"
           >
             Benchmark
           </Button>
