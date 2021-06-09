@@ -280,7 +280,8 @@ timezone.
 
 **Arguments:**
 
-- `timestamp` is any `timestamp`
+- `timestamp` is any `timestamp` as unix timestamp or string value cast as
+  `timestamp` type
 - `timezone` may be `Country/City` tz database name, time zone abbreviation such
   as `PST` or in UTC offset in string format.
 
@@ -323,12 +324,13 @@ select to_timezone(cast('2021-06-08T13:45:45.000000Z' as timestamp), 'PST')
 ## to_utc
 
 `to_utc(timestamp, timezone)` - converts a timestamp by specified timezone to
-UTC. May be provided a timezone in string format or an offset value in hours and
+UTC. May be provided a timezone in string format or a UTC offset in hours and
 minutes.
 
 **Arguments:**
 
-- `timestamp` is any `timestamp`
+- `timestamp` is any `timestamp` as unix timestamp or string value cast as
+  `timestamp` type
 - `timezone` may be `Country/City` tz database name, time zone abbreviation such
   as `PST` or in UTC offset in string format.
 
@@ -338,7 +340,7 @@ Return value type is `string`
 
 **Examples:**
 
-- Convert a unix timestamp in milliseconds in the `Europe/Berlin` timezone to
+- Convert a unix timestamp in milliseconds from the `Europe/Berlin` timezone to
   UTC
 
 ```questdb-sql
