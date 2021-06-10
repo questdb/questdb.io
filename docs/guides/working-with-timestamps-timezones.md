@@ -2,8 +2,8 @@
 title: Timestamps and time zones
 description:
   This document describes how to work with time zones in QuestDB, including
-  hints how to convert timestamps to UTC, to a specific time zone or by an
-  arbitrary offset.
+  hints how to convert timestamps to UTC, to a specific time zone or by a UTC
+  offset value.
 ---
 
 When working with timestamped data, it may be necessary to convert timestamp
