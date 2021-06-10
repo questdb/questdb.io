@@ -276,22 +276,24 @@ SELECT to_str(systimestamp(), 'yyyy-MM-dd gooD DAY 123') FROM long_sequence(1);
 ## to_timezone
 
 `to_timezone(timestamp, timezone)` - converts a timestamp value to a specified
-timezone.
+timezone. For more information on the time zone database used for this function,
+see the
+[QuestDB time zone database documentation](/docs/guides/working-with-timestamps-timezones/).
 
 **Arguments:**
 
-- `timestamp` is any `timestamp` as unix timestamp or string value cast as
+- `timestamp` is any `timestamp` as Unix timestamp or string value cast as
   `timestamp` type
 - `timezone` may be `Country/City` tz database name, time zone abbreviation such
   as `PST` or in UTC offset in string format.
 
 **Return value:**
 
-Return value type is `string`
+Return value type is `timestamp`
 
 **Examples:**
 
-- Unix UTC timestamp in milliseconds to `Europe/Berlin`
+- Unix UTC timestamp in microseconds to `Europe/Berlin`
 
 ```questdb-sql
 select to_timezone(1623167145000000, 'Europe/Berlin')
@@ -301,7 +303,7 @@ select to_timezone(1623167145000000, 'Europe/Berlin')
 | --------------------------- |
 | 2021-06-08T17:45:45.000000Z |
 
-- Unix UTC timestamp in milliseconds to PST by UTC offset
+- Unix UTC timestamp in microseconds to PST by UTC offset
 
 ```questdb-sql
 select to_timezone(1623167145000000, '-08:00')
@@ -325,22 +327,24 @@ select to_timezone(cast('2021-06-08T13:45:45.000000Z' as timestamp), 'PST')
 
 `to_utc(timestamp, timezone)` - converts a timestamp by specified timezone to
 UTC. May be provided a timezone in string format or a UTC offset in hours and
-minutes.
+minutes. For more information on the time zone database used for this function,
+see the
+[QuestDB time zone database documentation](/docs/guides/working-with-timestamps-timezones/).
 
 **Arguments:**
 
-- `timestamp` is any `timestamp` as unix timestamp or string value cast as
+- `timestamp` is any `timestamp` as Unix timestamp or string value cast as
   `timestamp` type
 - `timezone` may be `Country/City` tz database name, time zone abbreviation such
   as `PST` or in UTC offset in string format.
 
 **Return value:**
 
-Return value type is `string`
+Return value type is `timestamp`
 
 **Examples:**
 
-- Convert a unix timestamp in milliseconds from the `Europe/Berlin` timezone to
+- Convert a Unix timestamp in microseconds from the `Europe/Berlin` timezone to
   UTC
 
 ```questdb-sql
@@ -351,7 +355,7 @@ select to_utc(1623167145000000, 'Europe/Berlin')
 | --------------------------- |
 | 2021-06-08T13:45:45.000000Z |
 
-- Unix timestamp in milliseconds from PST to UTC by UTC offset
+- Unix timestamp in microseconds from PST to UTC by UTC offset
 
 ```questdb-sql
 select to_utc(1623167145000000, '-08:00')
