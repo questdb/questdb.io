@@ -282,8 +282,7 @@ see the
 
 **Arguments:**
 
-- `timestamp` is any `timestamp` as Unix timestamp or string value cast as
-  `timestamp` type
+- `timestamp` is any `timestamp` as Unix timestamp or string equivalent
 - `timezone` may be `Country/City` tz database name, time zone abbreviation such
   as `PST` or in UTC offset in string format.
 
@@ -316,7 +315,7 @@ select to_timezone(1623167145000000, '-08:00')
 - Timestamp as string to `PST`
 
 ```questdb-sql
-select to_timezone(cast('2021-06-08T13:45:45.000000Z' as timestamp), 'PST')
+select to_timezone('2021-06-08T13:45:45.000000Z', 'PST')
 ```
 
 | to_timezone                 |
@@ -333,8 +332,7 @@ see the
 
 **Arguments:**
 
-- `timestamp` is any `timestamp` as Unix timestamp or string value cast as
-  `timestamp` type
+- `timestamp` is any `timestamp` as Unix timestamp or string equivalent
 - `timezone` may be `Country/City` tz database name, time zone abbreviation such
   as `PST` or in UTC offset in string format.
 
@@ -368,7 +366,7 @@ select to_utc(1623167145000000, '-08:00')
 - Timestamp as string in `PST` to UTC
 
 ```questdb-sql
-select to_utc(cast('2021-06-08T13:45:45.000000Z' as timestamp), 'PST')
+select to_utc('2021-06-08T13:45:45.000000Z', 'PST')
 ```
 
 | to_utc                      |
