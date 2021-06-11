@@ -30,17 +30,17 @@ my_table
 | --------------------------- | ---- |
 | 2021-06-08T15:45:45.123456Z | 12   |
 
-Timestamps may also be cast from string types in the following way:
+Timestamps may also inserted as strings in the following way:
 
 ```questdb-sql
-INSERT INTO my_table VALUES(cast('2021-06-08T16:30:00.123456Z' as timestamp), 13)
+INSERT INTO my_table VALUES('2021-06-08T16:45:45.123456Z', 13)
 my_table
 ```
 
 | ts                          | col1 |
 | --------------------------- | ---- |
 | 2021-06-08T15:45:45.123456Z | 12   |
-| 2021-06-08T16:30:00.123456Z | 13   |
+| 2021-06-08T16:45:45.123456Z | 13   |
 
 ## QuestDB's internal time zone database
 
@@ -159,7 +159,7 @@ select to_timezone(1213086329000000, '+02:00')
 | 2008-06-10T10:25:29.000000Z |
 
 ```questdb-sql
-select to_utc(cast('2008-06-10T10:25:29.000000Z' as timestamp), '+02:00')
+select to_utc('2008-06-10T10:25:29.000000Z', '+02:00')
 ```
 
 | to_timezone                 |
