@@ -24,6 +24,7 @@
 }
 
 .job__title {
+  max-width: 325px;
   margin-bottom: 0.5rem;
 }
 

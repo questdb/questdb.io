@@ -70,6 +70,7 @@ module.exports = {
       items: [
         "guides/out-of-order-commit-lag",
         "guides/influxdb-line-protocol",
+        "guides/working-with-timestamps-timezones",
         {
           label: "Deployment",
           type: "category",
