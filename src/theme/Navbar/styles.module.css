@@ -5,14 +5,6 @@
 
 .benchmarkButton {
   margin-left: 10px;
-  background-color: transparent;
-  border: 2px solid #7a7a80;
-  color: var(--palette-white);
-  text-transform: none;
-}
-
-.benchmarkButton:hover {
-  background-color: var(--palette-white-20);
 }
 
 .brand {

@@ -147,7 +147,9 @@ const CareersPage = () => {
               </span>
             </a>
             <a className={joCss.job} href="front-end-engineer/">
-              <h3 className={joCss.job__title}>Software Engineer, Frontend</h3>
+              <h3 className={joCss.job__title}>
+                Lead Software Engineer, Frontend
+              </h3>
               <p className={joCss.job__location}>Remote</p>
               <span className={joCss.job__cta}>
                 Details&nbsp;
