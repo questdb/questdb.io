@@ -120,7 +120,7 @@ docker run -p 9000:9000 \
  -p 9009:9009 \
  -p 8812:8812 \
  -p 9003:9003 \
- -v "$(pwd):/root/.questdb/" questdb/questdb
+ -v "$(pwd):/root/.questdb/db" questdb/questdb
 ```
 
 The current directory will then have data persisted to disk for convenient
