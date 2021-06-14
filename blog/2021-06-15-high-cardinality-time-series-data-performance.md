@@ -20,18 +20,18 @@ image: /img/blog/2021-06-15/banner.png
 tags: [clickhouse, timescaledb, influxdb, benchmark, cardinality, telegraf]
 ---
 
-If you're working with time series data, you've likely heard about or even run
-directly into high-cardinality data. This might sound like an intimidating
-subject if you're unfamiliar with it, but this article explains what cardinality
-is and why it crops up often with databases of all kinds. There are use cases
-such as IoT and monitoring where high-cardinality is more likely to be a
-concern. Still, a solid understanding of this concept helps when planning
-general-purpose database schemas and understanding common elements that can
-influence performance.
+If you're working with large amounts of data, you've likely heard about
+high-cardinality or ran into issues relating to it. It might sound like an
+intimidating topic if you're unfamiliar with it, but this article explains what
+cardinality is and why it crops up often with databases of all types. IoT and
+monitoring are use cases where high-cardinality is more likely to be a concern.
+Still, a solid understanding of this concept helps when planning general-purpose
+database schemas and understanding common factors that can influence database
+performance.
 
 <!--truncate-->
 
-## What is high-cardinality time series data?
+## What is high-cardinality data?
 
 Cardinality typically refers to the number of elements in a set's size. In the
 context of a time series database (TSDB), rows will usually have columns that
@@ -154,7 +154,7 @@ and InfluxDB using 16 threads:
   width={650}
 />
 
-## Why QuestDB can easily ingest high-cardinality time series data
+## Why QuestDB can easily ingest time series data with high-cardinality
 
 There are several reasons why QuestDB can quickly ingest data of this type, and
 a significant factor is the data model that we use to store and index data.
