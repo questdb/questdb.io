@@ -1,0 +1,247 @@
+---
+title: What's high-cardinality time series data and why does it matter?
+author: Vlad Ilyushchenko
+author_title: QuestDB Team
+author_url: https://github.com/bluestreak01
+author_image_url: https://avatars.githubusercontent.com/bluestreak01
+description:
+  Most open source time series databases struggle with high-cardinality time
+  series data. Learn more about high-cardinality and how to benchmark database
+  performance with this type of data.
+keywords:
+  - clickhouse
+  - influxdb
+  - timescaledb
+  - tsbs
+  - benchmark
+  - timeseries
+  - database
+image: /img/blog/2021-05-10/banner.png
+tags: [clickhouse, timescaledb, influxdb, benchmark, cardinality, telegraf]
+---
+
+If you're working with time series data, you've likely heard about or even run
+directly into high-cardinality data. This might sound like an intimidating
+subject if you're unfamiliar with it, but this article explains what cardinality
+is and why it crops up often with databases of all kinds. There are use cases
+such as IoT and monitoring where high-cardinality is more likely to be a
+concern. Still, a solid understanding of this concept helps when planning
+general-purpose database schemas and understanding common elements that can
+influence performance.
+
+<!--truncate-->
+
+## What is high-cardinality time series data?
+
+Cardinality typically refers to the number of elements in a set's size. In the
+context of a time series database (TSDB), rows will usually have columns that
+categorize the data and act like tags. Assume you have 1000 IoT devices in 20
+locations, they're running one of 5 firmware versions, and report input from 5
+types of sensor per device. The cardinality of this set is 500,000 (**1000 x 20
+x 5 x 5**). This can quickly get unmanageable in some cases, as even adding and
+tracking a new firmware version for the devices would increase the set to
+600,000 (**1000 x 20 x 6 x 5**).
+
+In these scenarios, experience shows that we will want to eventually get
+insights on more kinds of information about the devices, such as application
+errors, device state, metadata, configuration and so on. With each new tag or
+category we add to our data set, cardinality grows exponentially. In a database,
+high-cardinality boils down to the following two conditions:
+
+1. a table has many indexed columns
+2. each indexed column contains many unique values
+
+## How can I measure database performance using high-cardinality time series data?
+
+A popular way of measuring the throughput of time series databases is to use the
+Time Series Benchmark Suite, a collection of Go programs which generate metrics
+from multiple simulated systems. For measuring the performance of QuestDB, we
+create data in InfluxDB line protocol format which consists of ten 'tags' and
+ten 'measurements' per row.
+
+```bash
+tsbs_generate_data --scale=100 \
+  --timestamp-start="2016-01-01T00:00:00Z" --timestamp-end="2016-01-15T00:00:00Z" \
+  --use-case="cpu-only" --seed=123 --log-interval="10s" --format="influx"
+```
+
+If we want to influence cardinality, we can use the `scale` flag which provides
+a value for the number of unique devices we want the test data set to contain.
+As the number of devices increases, so does the number of unique identifiers
+values per data set and the cardinality is directly influenced. Here's some
+example output from the Time Series Benchmark Suite test data with three
+different devices:
+
+```csv
+"hostname","region","datacenter","rack","os","arch","team","service","service_version","service_environment","usage_user","usage_system","usage_idle","usage_nice","usage_iowait","usage_irq","usage_softirq","usage_steal","usage_guest","usage_guest_nice","timestamp"
+"host_0","eu-central-1","eu-central-1a","6","Ubuntu15.10","x86","SF","19","1","test",58,2,24,61,22,63,6,44,80,38,"2016-01-01T00:00:00.000000Z"
+"host_1","us-west-1","us-west-1a","41","Ubuntu15.10","x64","NYC","9","1","staging",84,11,53,87,29,20,54,77,53,74,"2016-01-01T00:00:00.000000Z"
+"host_2","sa-east-1","sa-east-1a","89","Ubuntu16.04LTS","x86","LON","13","0","staging",29,48,5,63,17,52,60,49,93,1,"2016-01-01T00:00:00.000000Z"
+```
+
+The table that we create on ingestion then stores **tags** as `symbol` types.
+This `symbol` type is used to efficiently store repeating string values so that
+similar records may be grouped together. Columns of this type are indexed so
+that queries across tables by symbol are faster and more efficient to execute.
+The **unique** values per `symbol` column in the benchmark test data are:
+
+- hostname = `scale_val`
+- region = 3
+- datacenter = 3
+- rack = 3
+- os = 2
+- arch = 2
+- team = 3
+- service = 3
+- service_version = 2
+- service_environment = 2
+
+This means we can calculate the cardinality of our test data as:
+
+```bash
+scale_val x 3 x 3 x 3 x 2 x 2 x 3 x 3 x 2 x 2
+# or
+scale_val x 3888
+```
+
+## Time series benchmark results using high-cardinality data
+
+The tests
+[we ran for our 6.0 release](/blog/2021/05/10/questdb-release-6-0-tsbs-benchmark/)
+used a scale of `4000` meaning we had a cardinality of 15,552,000. For this
+benchmark, we created multiple data sets with the following scale and the
+resulting cardinality:
+
+| scale      | cardinality    |
+| ---------- | -------------- |
+| `100`      | 388,800        |
+| `4000`     | 15,552,000     |
+| `100000`   | 388,800,000    |
+| `1000000`  | 3,888,000,000  |
+| `10000000` | 38,880,000,000 |
+
+Here, we show bench results with QuestDB, ClickHouse, TimescaleDB and InfluxDB
+using 6 threads:
+
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads workers"
+  height={415}
+  src="/img/blog/2021-05-10/questdb-bench-amd-ryzen.png"
+  title="TODO - placeholder: TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
+  width={650}
+/>
+
+Here's our bench results with QuestDB, ClickHouse, TimescaleDB and InfluxDB
+using 16 threads:
+
+<Screenshot
+  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads workers"
+  height={415}
+  src="/img/blog/2021-05-10/questdb-bench-amd-ryzen.png"
+  title="TODO - placeholder: TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
+  width={650}
+/>
+
+## Why QuestDB can easily ingest high-cardinality time series data
+
+There are several reasons why QuestDB can quickly ingest data of this type, and
+a significant factor is the data model that we use to store and index data.
+High-cardinality data has not been a pain point for our users due to the choices
+we made when designing the system architecture from day one. We use a
+column-based storage model where data is stored in tables, with each column
+stored in its own file.
+
+<Screenshot
+  alt="A diagram showing the storage model of QuestDB illustrating table columns as files partitioned by time"
+  height={415}
+  src="/img/blog/2020-11-26/model.png"
+  title="QuestDB's column-based storage"
+  width={650}
+/>
+
+New data is appended to the bottom of each column to allow data to be quickly
+retrieved in the same order that it was ingested. This storage model was chosen
+for architectural simplicity and quick read and write operations.
+
+Users who have migrated from other time-series databases told us that degraded
+performance from high-cardinality data manifests early, but their threshold for
+usability is around 300K. After running the benchmark with a large number of
+unique devices, we were pleased with our system stability with up to million
+unique devices without a significant performance drop.
+
+## Configuring parameters to optimize ingestion on high-cardinality data
+
+The ingestion subsystem that we shipped in version 6.0 introduces parameters
+that users may configure server-wide or specific to a table. These parameters
+specify how long to keep incoming data in memory and how often to merge and
+commit incoming data to disk. The two parameters that are relevant for
+high-cardinality data ingestion are commit `lag` and the maximum uncommitted
+rows.
+
+Lag refers to the expected maximum lateness of incoming data relative to the
+newest timestamp value. When records arrive at the database with timestamp
+values that are out-of-order by the value specified in the commit lag, sort and
+merge commits will be executed. Additionally, the maximum uncommitted rows can
+be set on a table which is a threshold for the maximum number of rows to keep in
+memory before sorting and committing data. The benefit of these parameters is
+that the frequency of commits can be minimized depending on the characteristics
+of the incoming data:
+
+```questdb-sql
+alter table cpu set param commitLag=50us;
+alter table cpu set param maxUncommittedRows=10000000;
+```
+
+If we take a look at the type of data that we are generating in the Time Series
+Benchmark Suite, we can see that for 10M devices, the duration of the data set
+is quite short (defined by the timestamp `--timestamp-start` and
+`--timestamp-end` flags):
+
+```bash
+tsbs_generate_data --scale=10000000 \
+  --timestamp-start="2016-01-01T00:00:00Z" --timestamp-end="2016-01-01T0:00:36Z"
+  --log-interval="10s" --format="influx" \
+  --use-case="cpu-only" --seed=123 > /tmp/cpu-10000000
+```
+
+This generates a data set of 36M rows and spans only 36 seconds of simulated
+activity. With throughput at this degree, the commit lag can be a much smaller
+value, such as 50 or 100 microseconds, and the maximum uncommitted rows can be
+around 10M. The explanation behind these values is that we expect a much
+narrower band of the lateness of records in terms of out-of-order data, and we
+have an upper-bounds of 10M records in memory before a commit is executed.
+
+Planning the schema of a table for high-cardinality data can also have a
+significant performance impact. When creating a table, we can designate
+resources for indexed columns to know how many unique values the symbol column
+will contain. This can be done via the capacity parameter through SQL as
+follows:
+
+```questdb-sql
+create table cpu (
+  hostname symbol capacity 20000000,
+  region symbol,
+  ...
+) timestamp(timestamp) partition by DAY;
+```
+
+In this case, we're setting a capacity of 20M for the `hostname` column, which
+we know will contain 10M values. It's generally a good idea to specify the
+capacity of an indexed column at about twice the expected unique values if the
+data are out-of-order. High RAM usage is associated with using a large capacity
+on indexed symbols with high-cardinality data as these values sit on the memory
+heap.
+
+## Next up
+
+This article shows how high-cardinality can quickly emerge in time series data
+in industrial IoT, monitoring, application data and many other scenarios.
+Choosing the right system with a data model that scales well to usage can
+eliminate performance bottlenecks that arise from cardinality issues. If
+high-cardinality time series data is problematic for you, get in touch to see
+how we can help. If you have have feedback or questions about this article, feel
+free ask in our [Slack Community](https://slack.questdb.io/) or browse the
+[project on GitHub](https://github.com/questdb/questdb) where we welcome
+contributions of all sizes.
