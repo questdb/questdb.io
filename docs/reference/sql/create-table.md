@@ -22,6 +22,12 @@ functions which are described in the
 The following sections describe the keywords and definitions illustrated in this
 diagram.
 
+### IF NOT EXISTS
+
+An optional `IF NOT EXISTS` clause may be added directly after the
+`CREATE TABLE` keywords to indicate that a new table should be created if one
+with the desired table name does not already exist.
+
 ### tableName
 
 `tableName` - name is used to reference the table in SQL statements. Internally
@@ -214,41 +220,44 @@ This example will create a table without a designated timestamp and does not
 have a partitioning strategy applied.
 
 ```questdb-sql title="Basic example"
-CREATE TABLE
-my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING);
+CREATE TABLE my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING);
 ```
 
 The same table can be created and a designated timestamp may be specified. New
 records with timestamps which are out-of-order (O3) chronologically will be
 ordered at the point of ingestion. Configuring how the system handles ingestion
-of O3 records is done via [commit lag](/docs/guides/out-of-order-commit-lag/)
-configuration.
+of out-of-order records is done via
+[commit lag](/docs/guides/out-of-order-commit-lag/) configuration.
 
 ```questdb-sql title="Adding a designated timestamp"
-CREATE TABLE
-    my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
-    timestamp(ts);
+CREATE TABLE my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
+  timestamp(ts);
 ```
 
-To partition this table by day, the following query may be used:
-
-```questdb-sql title="Adding a partitioning strategy"
-CREATE TABLE
-    my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
-    timestamp(ts)
-    PARTITION BY DAY;
+```questdb-sql title="Adding a partitioning strategy by DAY"
+CREATE TABLE my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
+  timestamp(ts)
+PARTITION BY DAY;
 ```
-
-The following example shows how to create the same table with a designated
-timestamp, a partitioning strategy and providing parameters for handling the
-symbol type:
 
 ```questdb-sql title="Adding parameters for symbol type"
-CREATE TABLE my_table(
-    symb SYMBOL capacity 256 nocache index capacity 1048576,
-    price DOUBLE,
-    ts TIMESTAMP, s STRING
-) timestamp(ts)  PARTITION BY DAY;
+CREATE TABLE
+  my_table(symb SYMBOL capacity 256 nocache index capacity 1048576,
+  price DOUBLE, ts TIMESTAMP, s STRING)
+  timestamp(ts)
+PARTITION BY DAY;
+```
+
+### CREATE TABLE IF NOT EXISTS
+
+The following example will create a table `my_table` if one does not already
+exist with the name `my_table`:
+
+```questdb-sql
+CREATE TABLE IF NOT EXISTS
+  my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
+  timestamp(ts)
+PARTITION BY DAY;
 ```
 
 ### CREATE TABLE WITH
@@ -263,7 +272,7 @@ maximum uncommitted rows so that a commit will occur based on expected row
 count, or the _lag_ boundary is met:
 
 ```questdb-sql
-CREATE TABLE my_table (timestamp TIMESTAMP) timestamp(timestamp)
+CREATE TABLE my_table (ts TIMESTAMP) timestamp(ts)
 PARTITION BY DAY WITH maxUncommittedRows=250000, commitLag = 240s
 ```
 
@@ -280,13 +289,13 @@ be copied with the corresponding structure.
 
 ```questdb-sql title="Create table as select"
 CREATE TABLE x AS(
-    SELECT
-        rnd_int() a,
-        rnd_double() b,
-        rnd_symbol('ABB', 'CDD') c
-    FROM
-        long_sequence(100)
-    WHERE false;
+  SELECT
+    rnd_int() a,
+    rnd_double() b,
+    rnd_symbol('ABB', 'CDD') c
+  FROM
+    long_sequence(100)
+  WHERE false;
 )
 ```
 
@@ -297,9 +306,11 @@ Notice the `where false` condition.
 :::
 
 ```questdb-sql title="Clone an existing wide table and change type of cherry-picked columns"
-CREATE TABLE x AS(SELECT * FROM table WHERE false)
-    , cast(price AS LONG)
-    , cast(instrument as SYMBOL INDEX);
+CREATE TABLE x AS(
+  SELECT * FROM table WHERE false),
+  cast(price AS LONG),
+  cast(instrument as SYMBOL INDEX);
+)
 ```
 
 Here we changed type of `price` (assuming it was `INT`) to `LONG` and changed
@@ -315,5 +326,6 @@ now we want to turn this data into time series through ordering trips by
 ```questdb-sql title="Create table as select with data manipulation"
 CREATE TABLE taxi_trips AS(
   SELECT * FROM taxi_trips_unordered ORDER BY pickup_time
-) timestamp(pickup_time) PARTITION BY MONTH;
+) timestamp(pickup_time)
+PARTITION BY MONTH;
 ```
