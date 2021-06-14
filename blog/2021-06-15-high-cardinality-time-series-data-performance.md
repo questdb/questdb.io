@@ -16,7 +16,7 @@ keywords:
   - benchmark
   - timeseries
   - database
-image: /img/blog/2021-05-10/banner.png
+image: /img/blog/2021-06-15/banner.png
 tags: [clickhouse, timescaledb, influxdb, benchmark, cardinality, telegraf]
 ---
 
@@ -51,7 +51,7 @@ high-cardinality boils down to the following two conditions:
 1. a table has many indexed columns
 2. each indexed column contains many unique values
 
-## How can I measure database performance using high-cardinality time series data?
+## How can I measure database performance using high-cardinality data?
 
 A popular way of measuring the throughput of time series databases is to use the
 Time Series Benchmark Suite, a collection of Go programs which generate metrics
@@ -121,14 +121,25 @@ resulting cardinality:
 | `10000000` | 38,880,000,000 |
 
 Here, we show bench results with QuestDB, ClickHouse, TimescaleDB and InfluxDB
-using 6 threads:
+using 4 threads:
 
 import Screenshot from "@theme/Screenshot"
 
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads workers"
   height={415}
-  src="/img/blog/2021-05-10/questdb-bench-amd-ryzen.png"
+  src="/img/blog/2021-06-15/maximum-throughput-by-device-4-threads.png"
+  title="TODO - placeholder: TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
+  width={650}
+/>
+
+Here, we show bench results with QuestDB, ClickHouse, TimescaleDB and InfluxDB
+using 6 threads:
+
+<Screenshot
+  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads workers"
+  height={415}
+  src="/img/blog/2021-06-15/maximum-throughput-by-device-6-threads.png"
   title="TODO - placeholder: TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
   width={650}
 />
@@ -139,7 +150,7 @@ using 16 threads:
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads workers"
   height={415}
-  src="/img/blog/2021-05-10/questdb-bench-amd-ryzen.png"
+  src="/img/blog/2021-06-15/maximum-throughput-by-device-16-threads.png"
   title="TODO - placeholder: TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
   width={650}
 />
@@ -173,12 +184,13 @@ unique devices without a significant performance drop.
 
 ## Configuring parameters to optimize ingestion on high-cardinality data
 
-The ingestion subsystem that we shipped in version 6.0 introduces parameters
-that users may configure server-wide or specific to a table. These parameters
-specify how long to keep incoming data in memory and how often to merge and
-commit incoming data to disk. The two parameters that are relevant for
-high-cardinality data ingestion are commit `lag` and the maximum uncommitted
-rows.
+The ingestion subsystem that
+[we shipped in version 6.0](https://github.com/questdb/questdb/releases)
+introduces parameters that users may configure server-wide or specific to a
+table. These parameters specify how long to keep incoming data in memory and how
+often to merge and commit incoming data to disk. The two parameters that are
+relevant for high-cardinality data ingestion are commit `lag` and the maximum
+uncommitted rows.
 
 Lag refers to the expected maximum lateness of incoming data relative to the
 newest timestamp value. When records arrive at the database with timestamp
@@ -237,11 +249,8 @@ heap.
 ## Next up
 
 This article shows how high-cardinality can quickly emerge in time series data
-in industrial IoT, monitoring, application data and many other scenarios.
-Choosing the right system with a data model that scales well to usage can
-eliminate performance bottlenecks that arise from cardinality issues. If
-high-cardinality time series data is problematic for you, get in touch to see
-how we can help. If you have have feedback or questions about this article, feel
-free ask in our [Slack Community](https://slack.questdb.io/) or browse the
+in industrial IoT, monitoring, application data and many other scenarios. If you
+have have feedback or questions about this article, feel free ask in our
+[Slack Community](https://slack.questdb.io/) or browse the
 [project on GitHub](https://github.com/questdb/questdb) where we welcome
-contributions of all sizes.
+contributions of all kinds.
