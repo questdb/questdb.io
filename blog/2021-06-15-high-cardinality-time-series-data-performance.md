@@ -133,8 +133,7 @@ import Screenshot from "@theme/Screenshot"
   width={650}
 />
 
-Here, we show bench results with QuestDB, ClickHouse, TimescaleDB and InfluxDB
-using 6 threads:
+We ran the same benchmark again using 6 threads:
 
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads workers"
@@ -144,8 +143,8 @@ using 6 threads:
   width={650}
 />
 
-Here's our bench results with QuestDB, ClickHouse, TimescaleDB and InfluxDB
-using 16 threads:
+And finally, here's our benchmark results with QuestDB, ClickHouse, TimescaleDB
+and InfluxDB using 16 threads:
 
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads workers"
