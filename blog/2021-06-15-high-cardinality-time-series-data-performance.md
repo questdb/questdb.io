@@ -104,13 +104,19 @@ scale_val x 3 x 3 x 3 x 2 x 2 x 3 x 3 x 2 x 2
 scale_val x 3888
 ```
 
-## Time series benchmark results using high-cardinality data
+## Exploring high-cardinality in a time series database benchmark
 
-The tests
-[we ran for our 6.0 release](/blog/2021/05/10/questdb-release-6-0-tsbs-benchmark/)
-used a scale of `4000` meaning we had a cardinality of 15,552,000. For this
-benchmark, we created multiple data sets with the following scale and the
-resulting cardinality:
+When we released QuestDB version 6.0, we included benchmark results that tested
+the performance of our new ingestion subsystem, but we didn't touch on the
+subject of cardinality at all. We wanted to explore this topic in more detail to
+see how QuestDB can handle different degrees of cardinality. We also thought
+this would be interesting to share with readers as high-cardinality is a
+well-known topic for developers and users of databases.
+
+The tests we ran for our previous benchmarks all used a scale of 4000, meaning
+we had a cardinality of 15,552,000 for all systems. For this benchmark, we
+created multiple data sets with the following scale and the resulting
+cardinality:
 
 | scale      | cardinality    |
 | ---------- | -------------- |
@@ -120,65 +126,90 @@ resulting cardinality:
 | `1000000`  | 3,888,000,000  |
 | `10000000` | 38,880,000,000 |
 
-Here, we show bench results with QuestDB, ClickHouse, TimescaleDB and InfluxDB
-using 4 threads:
+We also wanted to see what happens when we rerun the tests and provide more CPU
+resources to observe how a database scales with cardinality based on how many
+threads it can use. For that reason, we tested each database with the scale
+values the table above using 4, 6, and 16 threads on two different hosts which
+have the following specifications:
+
+1. AWS EC2 m5.8xlarge instance using Intel Xeon Platinum
+2. AMD Ryzen 3970X 32-Core Processor with GIGABYTE NVME HD
+
+The following chart compares how ingestion performance is impacted from lowest
+to highest cardinality running on the AWS EC2 instance with four threads:
 
 import Screenshot from "@theme/Screenshot"
 
 <Screenshot
-  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads workers"
+  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads"
   height={415}
   src="/img/blog/2021-06-15/maximum-throughput-by-device-4-threads.png"
-  title="TODO - placeholder: TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
+  title="TSBS results using 4 threads on AWS EC2 m5.8xlarge with 100, 1M and 10M devices"
   width={650}
 />
 
-We ran the same benchmark again using 6 threads:
+Using a dataset with low cardinality of 100 devices, we hit maximum ingestion
+throughput of 904k rows/sec, with ClickHouse performing closest at 548k
+rows/sec. When increasing cardinality to 10 million devices, QuestDB sustains
+640k rows/sec, and ClickHouse ingestion decreases at a similar rate relative to
+the device count with 345k rows/sec.
+
+The other systems under test struggled with higher unique device count, with
+InfluxDB ingestion dropping to 38k rows/sec, and TimescaleDB at 50k rows/sec
+with 10M devices. We ran the benchmark suite again on the same AWS EC2 instance,
+and increased the CPU resources (16 threads) available to the systems under
+test:
 
 <Screenshot
-  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads workers"
+  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads"
   height={415}
-  src="/img/blog/2021-06-15/maximum-throughput-by-device-6-threads.png"
-  title="TODO - placeholder: TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
+  src="/img/blog/2021-06-15/maximum-throughput-by-device-16-threads.png"
+  title="TODO - placeholder: TSBS results using 16 threads on AWS EC2 m5.8xlarge with 100, 1M and 10M devices"
   width={650}
 />
 
-And finally, here's our benchmark results with QuestDB, ClickHouse, TimescaleDB
-and InfluxDB using 16 threads:
+QuestDB showed a mostly constant ingestion rate of 815k rows/sec with all
+degrees of cardinality. ClickHouse was able to ingest 900k rows/sec, but
+requires four times more CPU resources than QuestDB to achieve this rate.
+ClickHouse ingestion drops to 409k rows/sec on the largest data set. There was
+no major change in performance between four and sixteen threads for TimescaleDB.
+InfluxDB struggled the most, failing to finish successfully on the largest data
+set.
+
+When we ran the same benchmark on a system using the AMD Ryzen 3970X, using 4, 6
+and 16 threads to see if we could observe any changes in ingestion rates:
 
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads workers"
   height={415}
-  src="/img/blog/2021-06-15/maximum-throughput-by-device-16-threads.png"
+  src="/img/blog/2021-06-15/maximum-throughput-by-device-scale-6-threads-ryzen.png"
   title="TODO - placeholder: TSBS results comparing the maximum ingestion throughput of QuestDB, InfluxDB, ClickHouse, and TimescaleDB"
   width={650}
 />
 
+QuestDB hits maximum throughput on this machine with 1M devices, with other
+systems performing better than on the AWS instance. We can assume that
+TimescaleDB is disk-bound as results change dramatically based on difference
+between the tests run on the EC2 instance.
+
 ## Why QuestDB can easily ingest time series data with high-cardinality
 
-There are several reasons why QuestDB can quickly ingest data of this type, and
-a significant factor is the data model that we use to store and index data.
-High-cardinality data has not been a pain point for our users due to the choices
-we made when designing the system architecture from day one. We use a
-column-based storage model where data is stored in tables, with each column
-stored in its own file.
-
-<Screenshot
-  alt="A diagram showing the storage model of QuestDB illustrating table columns as files partitioned by time"
-  height={415}
-  src="/img/blog/2020-11-26/model.png"
-  title="QuestDB's column-based storage"
-  width={650}
-/>
-
-New data is appended to the bottom of each column to allow data to be quickly
-retrieved in the same order that it was ingested. This storage model was chosen
+There are several reasons why QuestDB can quickly ingest data of this type, one
+factor is the data model that we use to store and index data. High-cardinality
+data has not been a pain point for our users due to the choices we made when
+designing the system architecture from day one. This storage model was chosen
 for architectural simplicity and quick read and write operations.
+
+The main reason why QuestDB can handle high-cardinality data is that hashmap
+operations on indexed columns are massively parallelized. We use SIMD to do a
+lot of heavy lifting across the entire SQL engine, which means that we can
+execute procedures relating to indexes and hashmap lookup in parallel where
+possible.
 
 Users who have migrated from other time-series databases told us that degraded
 performance from high-cardinality data manifests early, but their threshold for
-usability is around 300K. After running the benchmark with a large number of
-unique devices, we were pleased with our system stability with up to million
+usability is about 300K. After running the benchmark with a large number of
+unique devices, we were pleased with our system stability with up to 10 million
 unique devices without a significant performance drop.
 
 ## Configuring parameters to optimize ingestion on high-cardinality data
