@@ -54,9 +54,9 @@ high-cardinality boils down to the following two conditions:
 ## How can I measure database performance using high-cardinality data?
 
 A popular way of measuring the throughput of time series databases is to use the
-Time Series Benchmark Suite, a collection of Go programs which generate metrics
+Time Series Benchmark Suite, a collection of Go programs that generate metrics
 from multiple simulated systems. For measuring the performance of QuestDB, we
-create data in InfluxDB line protocol format which consists of ten 'tags' and
+create data in InfluxDB line protocol format, which consists of ten 'tags' and
 ten 'measurements' per row.
 
 ```bash
@@ -65,12 +65,12 @@ tsbs_generate_data --scale=100 \
   --use-case="cpu-only" --seed=123 --log-interval="10s" --format="influx"
 ```
 
-If we want to influence cardinality, we can use the `scale` flag which provides
-a value for the number of unique devices we want the test data set to contain.
-As the number of devices increases, so does the number of unique identifiers
-values per data set and the cardinality is directly influenced. Here's some
-example output from the Time Series Benchmark Suite test data with three
-different devices:
+If we want to influence cardinality, we can use the scale flag, which provides a
+value for the number of unique devices we want the test data set to contain. As
+the number of devices increases, so does the number of unique identifiers values
+per data set, and we can control cardinality directly. Here's some example
+output from the Time Series Benchmark Suite test data with three different
+devices:
 
 ```csv
 "hostname","region","datacenter","rack","os","arch","team","service","service_version","service_environment","usage_user","usage_system","usage_idle","usage_nice","usage_iowait","usage_irq","usage_softirq","usage_steal","usage_guest","usage_guest_nice","timestamp"
@@ -136,8 +136,8 @@ different hosts which have the following specifications:
 1. AWS EC2 m5.8xlarge instance, Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
 2. AMD Ryzen 3970X 32-Core, GIGABYTE NVME HD
 
-The following chart compares how ingestion performance is impacted from lowest
-to highest cardinality running on the AWS EC2 instance with four threads:
+The following chart compares ingestion performance from lowest to highest
+cardinality running on the AWS EC2 instance with four threads:
 
 import Screenshot from "@theme/Screenshot"
 
@@ -151,14 +151,14 @@ import Screenshot from "@theme/Screenshot"
 
 Using a dataset with low cardinality of 100 devices, we hit maximum ingestion
 throughput of 904k rows/sec, with ClickHouse performing closest at 548k
-rows/sec. When increasing cardinality to 10 million devices, QuestDB sustains
-640k rows/sec, and ClickHouse ingestion decreases at a similar rate relative to
-the device count with 345k rows/sec.
+rows/sec. However, when increasing cardinality to 10 million devices, QuestDB
+sustains 640k rows/sec, and ClickHouse ingestion decreases at a similar rate
+relative to the device count with 345k rows/sec.
 
 The other systems under test struggled with higher unique device count, with
-InfluxDB ingestion dropping to 38k rows/sec, and TimescaleDB at 50k rows/sec
-with 10M devices. We ran the benchmark suite again on the same AWS EC2 instance,
-and increased the worker count (16 threads) to the systems under test:
+InfluxDB ingestion dropping to 38k rows/sec and TimescaleDB at 50k rows/sec with
+10M devices. We reran the benchmark suite on the same AWS EC2 instance and
+increased the worker count (16 threads) to the systems under test:
 
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads"
@@ -169,15 +169,14 @@ and increased the worker count (16 threads) to the systems under test:
 />
 
 QuestDB showed a mostly constant ingestion rate of 815k rows/sec with all
-degrees of cardinality. ClickHouse was able to ingest 900k rows/sec, but
-requires four times as many threads than QuestDB to achieve this rate.
-ClickHouse ingestion drops to 409k rows/sec on the largest data set. There was
-no major change in performance between four and sixteen threads for TimescaleDB.
-InfluxDB struggled the most, failing to finish successfully on the largest data
-set.
+degrees of cardinality. ClickHouse could ingest 900k rows/sec but requires four
+times as many threads as QuestDB to achieve this rate. ClickHouse ingestion
+drops to 409k rows/sec on the largest data set. There was no significant change
+in performance between four and sixteen threads for TimescaleDB. InfluxDB
+struggled the most, failing to finish successfully on the largest data set.
 
 We ran the same benchmarks on a separate system using the AMD Ryzen 3970X, using
-4, 6 and 16 threads to see if we could observe any changes in ingestion rates:
+4, 6, and 16 threads to see if we could observe any changes in ingestion rates:
 
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB, ClickHouse, TimescaleDB and InfluxDB when using six threads"
@@ -189,16 +188,15 @@ We ran the same benchmarks on a separate system using the AMD Ryzen 3970X, using
 
 QuestDB hits maximum throughput with 1M devices during this run, with other
 systems performing better than on the AWS instance. We can assume that
-TimescaleDB is disk-bound as results change dramatically based on difference
+TimescaleDB is disk-bound as results change dramatically based on the difference
 between the tests run on the EC2 instance. QuestDB performance peaks when using
-four workers and slows down at sixteen, which is likely due to contention
-between the threads.
+four workers and slows down at 16 workers.
 
-One key observation is that QuestDB handles high-cardinality better with 16
-workers. When cardinality is low, using fewer threads leads to an overall higher
-maximum throughput, but a steeper drop in ingestion rates when going from 1M
-devices to 10M. The reason for lower maximum throughput when adding more workers
-is due to increased thread contention:
+One key observation is that QuestDB handles high-cardinality better with more
+workers. Conversely, when cardinality is low, fewer threads lead to an overall
+higher maximum throughput and a steeper drop in ingestion rates when going from
+1M devices to 10M. The reason for lower maximum throughput when adding more
+workers is due to increased thread contention:
 
 <Screenshot
   alt="High-cardinality time series benchmark results showing ingestion performance of QuestDB when using four versus 16 threads"
@@ -210,23 +208,23 @@ is due to increased thread contention:
 
 ## Why QuestDB can easily ingest time series data with high-cardinality
 
-There are several reasons why QuestDB can quickly ingest data of this type, one
+There are several reasons why QuestDB can quickly ingest data of this type; one
 factor is the data model that we use to store and index data. High-cardinality
-data has not been a pain point for our users due to the choices we made when
-designing the system architecture from day one. This storage model was chosen
-for architectural simplicity and quick read and write operations.
+data has not been a pain point for our users due to our choices when designing
+the system architecture from day one. This storage model was chosen for
+architectural simplicity and quick read and write operations.
 
-The main reason why QuestDB can handle high-cardinality data is that hashmap
-operations on indexed columns are massively parallelized. We use SIMD to do a
-lot of heavy lifting across the entire SQL engine, which means that we can
-execute procedures relating to indexes and hashmap lookup in parallel where
-possible.
+The main reason why QuestDB can handle high-cardinality data is that we
+massively parallelize hashmap operations on indexed columns. In addition, we use
+SIMD to do a lot of heavy lifting across the entire SQL engine, which means that
+we can execute procedures relating to indexes and hashmap lookup in parallel
+where possible.
 
 Users who have migrated from other time-series databases told us that degraded
-performance from high-cardinality data manifests early, but their threshold for
-usability is about 300K. After running the benchmark with a large number of
-unique devices, we were pleased with our system stability with up to 10 million
-unique devices without a significant performance drop.
+performance from high-cardinality data manifests with most systems early, but
+their threshold for usability is about 300K. After running the benchmark with
+high-cardinality, we were pleased with our system stability with up to 10
+million devices without a significant performance drop.
 
 ## Configuring parameters to optimize ingestion on high-cardinality data
 
@@ -235,17 +233,17 @@ The ingestion subsystem that
 introduces parameters that users may configure server-wide or specific to a
 table. These parameters specify how long to keep incoming data in memory and how
 often to merge and commit incoming data to disk. The two parameters that are
-relevant for high-cardinality data ingestion are commit `lag` and the maximum
+relevant for high-cardinality data ingestion are commit lag and the maximum
 uncommitted rows.
 
 Lag refers to the expected maximum lateness of incoming data relative to the
 newest timestamp value. When records arrive at the database with timestamp
-values that are out-of-order by the value specified in the commit lag, sort and
-merge commits will be executed. Additionally, the maximum uncommitted rows can
-be set on a table which is a threshold for the maximum number of rows to keep in
-memory before sorting and committing data. The benefit of these parameters is
-that the frequency of commits can be minimized depending on the characteristics
-of the incoming data:
+values out-of-order by the value specified in the commit lag, sort and merge
+commits are executed. Additionally, the maximum uncommitted rows can be set on a
+table which is a threshold for the maximum number of rows to keep in memory
+before sorting and committing data. The benefit of these parameters is we can
+minimize the frequency of commits depending on the characteristics of the
+incoming data:
 
 ```questdb-sql
 alter table cpu set param commitLag=50us;
@@ -254,7 +252,7 @@ alter table cpu set param maxUncommittedRows=10000000;
 
 If we take a look at the type of data that we are generating in the Time Series
 Benchmark Suite, we can see that for 10M devices, the duration of the data set
-is quite short (defined by the timestamp `--timestamp-start` and
+is relatively short (defined by the timestamp `--timestamp-start` and
 `--timestamp-end` flags):
 
 ```bash
@@ -264,18 +262,17 @@ tsbs_generate_data --scale=10000000 \
   --use-case="cpu-only" --seed=123 > /tmp/cpu-10000000
 ```
 
-This generates a data set of 36M rows and spans only 36 seconds of simulated
-activity. With throughput at this degree, the commit lag can be a much smaller
-value, such as 50 or 100 microseconds, and the maximum uncommitted rows can be
-around 10M. The explanation behind these values is that we expect a much
+This command generates a data set of 36M rows and spans only 36 seconds of
+simulated activity. With throughput at this degree, the commit lag can be a much
+smaller value, such as 50 or 100 microseconds, and the maximum uncommitted rows
+can be around 10M. The explanation behind these values is that we expect a much
 narrower band of the lateness of records in terms of out-of-order data, and we
-have an upper-bounds of 10M records in memory before a commit is executed.
+have an upper-bounds of 10M records in memory before a commit occurs.
 
 Planning the schema of a table for high-cardinality data can also have a
-significant performance impact. When creating a table, we can designate
-resources for indexed columns to know how many unique values the symbol column
-will contain. This can be done via the capacity parameter through SQL as
-follows:
+significant performance impact. For example, when creating a table, we can
+designate resources for indexed columns to know how many unique values the
+symbol column will contain, and done via capacity as follows:
 
 ```questdb-sql
 create table cpu (
