@@ -16,7 +16,7 @@ keywords:
   - benchmark
   - timeseries
   - database
-image: /img/blog/2021-06-15/banner.png
+image: /img/blog/2021-06-16/banner.png
 tags: [clickhouse, timescaledb, influxdb, benchmark, cardinality, telegraf]
 ---
 
@@ -106,11 +106,12 @@ scale_val x 3888
 
 ## Exploring high-cardinality in a time series database benchmark
 
-When we released QuestDB version 6.0, we included benchmark results that tested
-the performance of our new ingestion subsystem, but we didn't touch on the
-subject of cardinality at all. We wanted to explore this topic in more detail to
-see how QuestDB can handle different degrees of cardinality. We also thought
-this would be interesting to share with readers as high-cardinality is a
+When we released QuestDB version 6.0,
+[we included benchmark results](/blog/2021/05/10/questdb-release-6-0-tsbs-benchmark/)
+that tested the performance of our new ingestion subsystem, but we didn't touch
+on the subject of cardinality at all. We wanted to explore this topic in more
+detail to see how QuestDB can handle different degrees of cardinality. We also
+thought this would be interesting to share with readers as high-cardinality is a
 well-known topic for developers and users of databases.
 
 The tests we ran for our previous benchmarks all used a scale of 4000, meaning
@@ -143,7 +144,7 @@ import Screenshot from "@theme/Screenshot"
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads"
   height={415}
-  src="/img/blog/2021-06-15/maximum-throughput-by-device-4-threads.png"
+  src="/img/blog/2021-06-16/maximum-throughput-by-device-4-threads.png"
   title="TSBS results using 4 threads on AWS EC2 m5.8xlarge"
   width={650}
 />
@@ -162,7 +163,7 @@ and increased the worker count (16 threads) to the systems under test:
 <Screenshot
   alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads"
   height={415}
-  src="/img/blog/2021-06-15/maximum-throughput-by-device-16-threads.png"
+  src="/img/blog/2021-06-16/maximum-throughput-by-device-16-threads.png"
   title="TSBS results using 16 threads on AWS EC2 m5.8xlarge"
   width={650}
 />
@@ -175,13 +176,13 @@ no major change in performance between four and sixteen threads for TimescaleDB.
 InfluxDB struggled the most, failing to finish successfully on the largest data
 set.
 
-When we ran the same benchmark on a system using the AMD Ryzen 3970X, using 4, 6
-and 16 threads to see if we could observe any changes in ingestion rates:
+We ran the same benchmarks on a separate system using the AMD Ryzen 3970X, using
+4, 6 and 16 threads to see if we could observe any changes in ingestion rates:
 
 <Screenshot
-  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads workers"
+  alt="High-cardinality time series benchmark results showing QuestDB, ClickHouse, TimescaleDB and InfluxDB when using six threads"
   height={415}
-  src="/img/blog/2021-06-15/maximum-throughput-by-device-scale-6-threads-ryzen.png"
+  src="/img/blog/2021-06-16/maximum-throughput-by-device-scale-6-threads-ryzen.png"
   title="TSBS results using 6 threads on AMD Ryzen 3970X"
   width={650}
 />
@@ -193,15 +194,16 @@ between the tests run on the EC2 instance. QuestDB performance peaks when using
 four workers and slows down at sixteen, which is likely due to contention
 between the threads.
 
-One key observation is that QuestDB handles high-cardinality data better with 16
+One key observation is that QuestDB handles high-cardinality better with 16
 workers. When cardinality is low, using fewer threads leads to an overall higher
 maximum throughput, but a steeper drop in ingestion rates when going from 1M
-devices to 10M:
+devices to 10M. The reason for lower maximum throughput when adding more workers
+is due to increased thread contention:
 
 <Screenshot
   alt="High-cardinality time series benchmark results showing ingestion performance of QuestDB when using four versus 16 threads"
   height={415}
-  src="/img/blog/2021-06-15/questdb-max-throughput-by-number-threads.png"
+  src="/img/blog/2021-06-16/questdb-max-throughput-by-number-threads.png"
   title="TSBS results for QuestDB using 4 and 16 threads on AWS EC2 m5.8xlarge"
   width={650}
 />
