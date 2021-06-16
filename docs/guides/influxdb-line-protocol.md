@@ -38,28 +38,65 @@ A single line of text in line protocol format represents one table row QuestDB.
 Consider the following InfluxDB line protocol message:
 
 ```shell title="Basic line protocol message"
-sensors,location=london-1 temperature=22 1465839830100400200
+sensors,location=london-1 temperature=22 1465839830100399000
 ```
 
 This would create a new row in the `sensors` table with the following contents:
 
-| location | temperature | timestamp           |
-| -------- | ----------- | ------------------- |
-| london-1 | 22          | 1465839830100400200 |
+| location | temperature | timestamp                   |
+| -------- | ----------- | --------------------------- |
+| london-1 | 22          | 2016-06-13T17:43:50.100399Z |
 
-### InfluxDB terminology
+### How QuestDB parses InfluxDB line protocol messages
 
 InfluxDB have the following description of the elements of line protocol:
 
 ```shell title="InfluxDB line protocol"
-measurementName,tagKey=tagValue fieldKey="fieldValue" 1465839830100400200
+measurementName,tagKey=tagValue fieldKey="fieldValue" 1465839830100399000
 --------------- --------------- --------------------- -------------------
        |               |                  |                    |
   Measurement         Tags              Fields             Timestamp
 ```
 
-In the context of QuestDB, it should be noted that the `measurementName` element
-equates to a **table name**.
+In the context of QuestDB, the elements of an ILP message are parsed as follows:
+
+```shell title="InfluxDB line protocol in QuestDB"
+table,symbol=symbolValue fieldKey="fieldValue" 1465839830100399000
+----- ------------------ --------------------- -------------------
+  |          |                     |                   |
+Table     Symbols         String/Numeric/Bool      Timestamp
+```
+
+Adding multiple symbol and numeric values to messages is done by a
+comma-separated list:
+
+```shell title="Multiple symbol and numeric values"
+sensors,location=london,version=REV-2.1 temperature=22,humidity=50 1465839830100399000\n
+```
+
+This ILP message would produce an entry in the `sensors` table with the
+following elements:
+
+| Column Name | Type      | Value                         |
+| ----------- | --------- | ----------------------------- |
+| location    | SYMBOL    | `london`                      |
+| version     | SYMBOL    | `REV-2.1`                     |
+| temperature | DOUBLE    | `22`                          |
+| humidity    | DOUBLE    | `50`                          |
+| timestamp   | TIMESTAMP | `2016-06-13T17:43:50.100399Z` |
+
+To omit `symbol` types from tables completely, the comma and symbol values can
+be skipped:
+
+```shell title="Omitting symbol types in ILP messages"
+sensors temperature=22,humidity=50 1465839830100399000\n
+```
+
+| Column Name | Type      | Value                         |
+| ----------- | --------- | ----------------------------- |
+| temperature | DOUBLE    | `22`                          |
+| humidity    | DOUBLE    | `50`                          |
+| timestamp   | TIMESTAMP | `2016-06-13T17:43:50.100399Z` |
 
 ## Naming restrictions
 
@@ -218,12 +255,14 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 try:
   sock.connect(('localhost', 9009))
-  # Single record insert
+  # Inserting a record with a timestamp from the Python time module
   sock.sendall(('trades,name=client_timestamp value=12.4 %d\n' %(time.time_ns())).encode())
   # Omitting the timestamp allows the server to assign one
   sock.sendall(('trades,name=server_timestamp value=12.4\n').encode())
   # Streams of readings must be newline-delimited
   sock.sendall(('trades,name=ilp_stream_1 value=12.4\ntrades,name=ilp_stream_2 value=11.4\n').encode())
+  # Adding multiple symbol and field values
+  sock.sendall(('trades,name=ilp_stream_2,version=TRS-2.1 hi=100,lo=20 16234259780000000\n').encode())
 
 except socket.error as e:
   print("Got error: %s" % (e))
