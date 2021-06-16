@@ -65,12 +65,12 @@ tsbs_generate_data --scale=100 \
   --use-case="cpu-only" --seed=123 --log-interval="10s" --format="influx"
 ```
 
-If we want to influence cardinality, we can use the scale flag, which provides a
-value for the number of unique devices we want the test data set to contain. As
-the number of devices increases, so does the number of unique identifiers values
-per data set, and we can control cardinality directly. Here's some example
-output from the Time Series Benchmark Suite test data with three different
-devices:
+If we want to influence cardinality, we can use the `scale` flag, which provides
+a value for the number of unique devices we want the test data set to contain.
+As the number of devices increases, so does the number of unique identifiers
+values per data set, and we can control cardinality directly. Here's some
+example output from the Time Series Benchmark Suite test data with three
+different devices:
 
 ```csv
 "hostname","region","datacenter","rack","os","arch","team","service","service_version","service_environment","usage_user","usage_system","usage_idle","usage_nice","usage_iowait","usage_irq","usage_softirq","usage_steal","usage_guest","usage_guest_nice","timestamp"
@@ -128,24 +128,24 @@ cardinality:
 | `10000000` | 38,880,000,000 |
 
 We also wanted to see what happens when we rerun the tests and provide more
-workers to each system to observe how a database scales with cardinality based
-on how much work it can perform in parallel. For that reason, we tested each
-database with the scale values the table above using 4, 6, and 16 threads on two
-different hosts which have the following specifications:
+workers (threads) to each system to observe how a database scales with
+cardinality based on how much work it can perform in parallel. For that reason,
+we tested each database with the scale values the table above using 4, 6, and 16
+workers on two different hosts which have the following specifications:
 
 1. AWS EC2 m5.8xlarge instance, Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
 2. AMD Ryzen 3970X 32-Core, GIGABYTE NVME HD
 
 The following chart compares ingestion performance from lowest to highest
-cardinality running on the AWS EC2 instance with four threads:
+cardinality running on the AWS EC2 instance with four workers:
 
 import Screenshot from "@theme/Screenshot"
 
 <Screenshot
-  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six threads"
+  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using six workers"
   height={415}
   src="/img/blog/2021-06-16/maximum-throughput-by-device-4-threads.png"
-  title="TSBS results using 4 threads on AWS EC2 m5.8xlarge"
+  title="TSBS results using 4 workers on AWS EC2 m5.8xlarge"
   width={650}
 />
 
@@ -158,31 +158,31 @@ relative to the device count with 345k rows/sec.
 The other systems under test struggled with higher unique device count, with
 InfluxDB ingestion dropping to 38k rows/sec and TimescaleDB at 50k rows/sec with
 10M devices. We reran the benchmark suite on the same AWS EC2 instance and
-increased the worker count (16 threads) to the systems under test:
+increased the worker count (16 workers) to the systems under test:
 
 <Screenshot
-  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen threads"
+  alt="High-cardinality time series benchmark results showing QuestDB outperforming ClickHouse, TimescaleDB and InfluxDB when using sixteen workers"
   height={415}
   src="/img/blog/2021-06-16/maximum-throughput-by-device-16-threads.png"
-  title="TSBS results using 16 threads on AWS EC2 m5.8xlarge"
+  title="TSBS results using 16 workers on AWS EC2 m5.8xlarge"
   width={650}
 />
 
 QuestDB showed a mostly constant ingestion rate of 815k rows/sec with all
 degrees of cardinality. ClickHouse could ingest 900k rows/sec but requires four
-times as many threads as QuestDB to achieve this rate. ClickHouse ingestion
+times as many workers as QuestDB to achieve this rate. ClickHouse ingestion
 drops to 409k rows/sec on the largest data set. There was no significant change
-in performance between four and sixteen threads for TimescaleDB. InfluxDB
+in performance between four and sixteen workers for TimescaleDB. InfluxDB
 struggled the most, failing to finish successfully on the largest data set.
 
 We ran the same benchmarks on a separate system using the AMD Ryzen 3970X, using
-4, 6, and 16 threads to see if we could observe any changes in ingestion rates:
+4, 6, and 16 workers to see if we could observe any changes in ingestion rates:
 
 <Screenshot
-  alt="High-cardinality time series benchmark results showing QuestDB, ClickHouse, TimescaleDB and InfluxDB when using six threads"
+  alt="High-cardinality time series benchmark results showing QuestDB, ClickHouse, TimescaleDB and InfluxDB when using six workers"
   height={415}
   src="/img/blog/2021-06-16/maximum-throughput-by-device-scale-6-threads-ryzen.png"
-  title="TSBS results using 6 threads on AMD Ryzen 3970X"
+  title="TSBS results using 6 workers on AMD Ryzen 3970X"
   width={650}
 />
 
@@ -193,7 +193,7 @@ between the tests run on the EC2 instance. QuestDB performance peaks when using
 four workers and slows down at 16 workers.
 
 One key observation is that QuestDB handles high-cardinality better with more
-workers. Conversely, when cardinality is low, fewer threads lead to an overall
+workers. Conversely, when cardinality is low, fewer workers lead to an overall
 higher maximum throughput and a steeper drop in ingestion rates when going from
 1M devices to 10M. The reason for lower maximum throughput when adding more
 workers is due to increased thread contention:
@@ -202,7 +202,7 @@ workers is due to increased thread contention:
   alt="High-cardinality time series benchmark results showing ingestion performance of QuestDB when using four versus 16 threads"
   height={415}
   src="/img/blog/2021-06-16/questdb-max-throughput-by-number-threads.png"
-  title="TSBS results for QuestDB using 4 and 16 threads on AWS EC2 m5.8xlarge"
+  title="TSBS results for QuestDB using 4 and 16 workers on AWS EC2 m5.8xlarge"
   width={650}
 />
 
