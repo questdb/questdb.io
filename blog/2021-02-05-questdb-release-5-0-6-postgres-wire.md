@@ -23,7 +23,7 @@ roundup of recent changes that have just landed.
 
 <!--truncate-->
 
-## PostgreSQL wire protocol
+## Improving PostgreSQL wire protocol support
 
 The complete refactoring of PostgreSQL wire protocol, including binary support,
 means improved usability for many popular libraries and languages.
@@ -62,7 +62,7 @@ The documentation pages have more complete code examples which show how to
 [query Data](/docs/develop/query-data#postgres-compatibility) using popular
 tools and frameworks in Node, Go, Rust, Java and Python.
 
-## Grafana alerts
+## Adding Grafana alerting
 
 Support for the RFC339Nano timestamp format enables the use of alerting via
 Grafana. This helps identify unintended changes, minimize disruptions and stay
@@ -70,7 +70,7 @@ on top of your system or infrastructure:
 
 ![Alerts being triggered in Grafana based on data in QuestDB](/img/blog/2021-02-05/grafana-alerts.png)
 
-## Build function
+## Easily showing build details
 
 There's now a function built-in that provides the current server version number
 and commit hash for troubleshooting. It can be run with the following command:
@@ -99,7 +99,7 @@ Even better than good error reporting is error prevention! This fix enhances the
 resilience of the system by preventing data loss in QuestDB instances if disk
 space unexpectedly runs out.
 
-## See the full release
+## See more details on the release
 
 These have been our top picks from the 5.0.6 release which cover what our users
 have been most excited about recently but there are a lot more changes that have

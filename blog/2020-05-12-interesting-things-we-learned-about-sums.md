@@ -16,7 +16,7 @@ keywords:
   - databases
   - simd
   - clickhouse
-tags: [performance, deep-dive]
+tags: [performance, engineering, architecture, algorithms]
 ---
 
 import Banner from "@theme/Banner"
@@ -61,7 +61,7 @@ You can find our repository on [GitHub]({@githubUrl@}). All your
 [pull-requests]({@githubUrl@}/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc) and
 [stars]({@githubUrl@}) are welcome 🙂.
 
-## How did we get there? TL;DR
+## How did we get there?
 
 We used prefetch and co-routines techniques to pull data from RAM to cache in
 parallel with other CPU instructions. Our performance was previously limited by
@@ -87,7 +87,7 @@ developers handling intensive computations with large datasets.
 - A [benchmark versus Clickhouse](#comparison-with-clickhouse) for naive and
   accurate summation methods.
 
-## Inaccurate summation?
+## How inaccurate floating-point operations occur
 
 Before we dig in, some of you might wonder how an addition can be inaccurate as
 opposed to simply right or wrong.
@@ -187,7 +187,7 @@ The main Compensated summation algorithm is the
 
 This works because of addition transitivity rules.
 
-## Implementation with SIMD instructions
+## Kahan implementation with SIMD instructions
 
 Now, the interesting bit! QuestDB implements the same 4-step algorithm as Kahan.
 However, it uses vectorized instructions to make things a lot faster. The idea
@@ -253,7 +253,7 @@ for (; d < lim; d++) {
 }
 ```
 
-## Comparison with Clickhouse
+## Comparing performance versus ClickHouse
 
 We compared how performance behaves when switching from naive (inaccurate) sum
 to Kahan compensated sum.
@@ -322,7 +322,7 @@ naive and Kahan summation, respectively.
 
 ![QuestDB vs Clickhouse benchmark for Kahan's sums with nulls](/img/blog/2020-05-12/kahanNullComparison.png)
 
-## Concluding remarks
+## What we learned
 
 It is useful to stabilize aggregation with compensated sums. We learned that
 vector-based calculation produce different arithmetic errors compared to

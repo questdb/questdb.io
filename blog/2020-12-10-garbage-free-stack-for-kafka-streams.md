@@ -17,20 +17,15 @@ keywords:
   - timeseries
   - database
 image: /img/blog/2020-12-10/banner.jpg
-tags: [postgres, kafka, garbage collection]
+tags: [postgres, kafka, architecture, engineering]
 ---
 
 import Banner from "@theme/Banner"
 
-<Banner
-  alt="Steam network of a Pennsylvania coal power plant"
-  height={433}
-  src="/img/blog/2020-12-10/banner.jpg"
-  width={650}
->
-  Photo by <a href="https://unsplash.com/photos/a_PDPUPuNZ8">Martin Adams</a> on{" "}
-  <a href="https://unsplash.com">Unsplash</a>
-</Banner>
+<Banner alt="Steam network of a Pennsylvania coal power plant" height={433}
+src="/img/blog/2020-12-10/banner.jpg" width={650}> Photo by
+<a href="https://unsplash.com/photos/a_PDPUPuNZ8">Martin Adams</a> on{" "}
+<a href="https://unsplash.com">Unsplash</a> </Banner>
 
 Garbage collection is a type of automatic memory management that's used in many
 modern programming languages. The point of the garbage collector is to free up
@@ -40,7 +35,7 @@ it can be a poisoned chalice that comes with several hard-to-predict downsides.
 
 <!--truncate-->
 
-## When garbage adds up
+## How can garbage collection cause performance issues?
 
 Some garbage collectors completely halt the program's execution to make sure no
 new objects are created while it cleans up. To avoid these unpredictable
@@ -210,7 +205,7 @@ We have a notion of a "synchronized job." It is different from the definition of
 synchronized jobs guarantee that only one thread can execute a job instance at
 any moment in time.
 
-## Introducing QuestDB's IODispatcher
+## Adding an IO notification loop
 
 IODispatcher is QuestDB's implementation of the IO Notification loop. We have
 implemented `epoll`, `kqueue`, and `select`, so this works cross-platform. The
@@ -268,7 +263,7 @@ and have their resources reused by other connections. The worker thread does not
 disconnect the socket by itself because multiple threads may attempt to access a
 data structure that is not thread-safe.
 
-### Configuration
+### Configuring network IO
 
 We disregarded ByteBuffer for not being an interface, so it would only be fair
 for us to have interfaces in key places. One of these places is configuration,

@@ -6,20 +6,15 @@ author_url: https://github.com/patrickSpaceSurfer
 description:
   QuestDB has added authentication for InfluxDB line protocol over TCP
 image: /img/blog/2020-10-20/banner.jpg
-tags: [influxdb line protocol, story]
+tags: [influxdb, story, authentication]
 ---
 
 import Banner from "@theme/Banner"
 
-<Banner
-  alt="An open lock with its key attached to it."
-  height={365}
-  src="/img/blog/2020-10-20/banner.jpg"
-  width={650}
->
-  Photo by <a href="https://unsplash.com/photos/hRXIKdxoaPo">Vanna Phon</a> on{" "}
-  <a href="https://unsplash.com">Unsplash</a>
-</Banner>
+<Banner alt="An open lock with its key attached to it." height={365}
+src="/img/blog/2020-10-20/banner.jpg" width={650}> Photo by
+<a href="https://unsplash.com/photos/hRXIKdxoaPo">Vanna Phon</a> on{" "}
+<a href="https://unsplash.com">Unsplash</a> </Banner>
 
 QuestDB supports ingesting records using InfluxDB line protocol. This means that
 you can benefit from a simple, lightweight, and convenient message format to add
@@ -28,6 +23,8 @@ authentication, so your endpoint is more secure. This post describes how we
 added this functionality and how to enable it via QuestDB configuration.
 
 <!--truncate-->
+
+## Adding InfluxDB line protocol support to QuestDB
 
 [InfluxDB line protocol](/docs/reference/api/influxdb) is popular because it is
 a simple text based format, you simply open a socket and send data points line
@@ -45,6 +42,8 @@ avoid. Our goals when implementing authentication were:
 - Use a secure, future proof, authentication method.
 - Minimise protocol complexity and transport overhead.
 - Configuration solely in QuestDB without the need for storing secret data.
+
+## Adding authentication to InfluxDB line protocol
 
 To these ends we decided to provide authentication for the InfluxDB line
 protocol over TCP with a simple

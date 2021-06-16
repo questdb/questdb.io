@@ -1,5 +1,5 @@
 ---
-title: Contribution from Alex Pelagenko on QuestDB's HTTP server
+title: Community contribution from Alex Pelagenko improving our HTTP server
 author: Alex Pelagenko
 author_title: QuestDB Contributor
 author_url: https://github.com/ideoma
@@ -8,20 +8,15 @@ description:
   One of QuestDB’s major contributors, Alex Pelagenko, shares his experience on
   improving QuestDB’s HTTP server.
 image: /img/blog/2020-11-16/banner.jpg
-tags: [community-written]
+tags: [community, story, architecture]
 ---
 
 import Banner from "@theme/Banner"
 
-<Banner
-  alt="Close-up on a dark computer keyboard."
-  height={391}
-  src="/img/blog/2020-11-26/banner.jpg"
-  width={650}
->
-  Photo by <a href="https://unsplash.com/photos/1osIUArK5oA">Florian Krumm</a>{" "}
-  on <a href="https://unsplash.com">Unsplash</a>
-</Banner>
+<Banner alt="Close-up on a dark computer keyboard." height={391}
+src="/img/blog/2020-11-26/banner.jpg" width={650}> Photo by
+<a href="https://unsplash.com/photos/1osIUArK5oA">Florian Krumm</a>{" "} on
+<a href="https://unsplash.com">Unsplash</a> </Banner>
 
 I have recently made a sizable contribution to QuestDB’s code and wanted to
 share my experience and feedback while it is still fresh in my head. I am not a
@@ -30,7 +25,7 @@ it was voluntary to add a few lines of code to a project I like.
 
 <!--truncate-->
 
-## Introduction of the problem
+## The HTTP server for QuestDB
 
 QuestDB has a custom HTTP stack that uses non-blocking socket IO via a thin
 layer of JNI OS abstraction. Non-blocking IO is handled via two state machines.
@@ -48,21 +43,22 @@ A request to alter the locked table will bounce back with an error. Why is this
 interesting? It is a difficult problem of coordination amongst threads while at
 the same time keeping the whole stack non-blocking.
 
-## What did I do?
+## How I added queuing to QuestDB's HTTP stack
 
 The first hurdle was to understand the stack, which is hard to follow at first
 glance. Control is passed around via both conditional statements and exception
 mechanisms. The thread messaging stack is also unusual. The API is
 non-blocking - the thread must find another task if the outbound queue is full
-or the inbound queue is empty. Instead of rejecting requests due to data
-availability errors, I added a queuing system that catches the state of these
-requests in a priority queue. This queue is then processed by idle threads (idle
-because of IO interruptions) and retried at exponentially increasing intervals.
-For example the first retry will happen in 2ms then in 4ms, 8ms, 16ms … 512ms,
-1s, 1s, 1s. The retry interval is a configuration parameter. Following this
-addition, operations are queued on the server, meaning that the user does not
-have to deal with errors or attempt to do this operation again. This piece of
-code processes priority queue:
+or the inbound queue is empty.
+
+Instead of rejecting requests due to data availability errors, I added a queuing
+system that catches the state of these requests in a priority queue. This queue
+is then processed by idle threads (idle because of IO interruptions) and retried
+at exponentially increasing intervals. For example the first retry will happen
+in 2ms then in 4ms, 8ms, 16ms … 512ms, 1s, 1s, 1s. The retry interval is a
+configuration parameter. Following this addition, operations are queued on the
+server, meaning that the user does not have to deal with errors or attempt to do
+this operation again. This piece of code processes priority queue:
 
 ```java
 private boolean sendToOutQueue() {

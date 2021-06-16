@@ -17,7 +17,7 @@ keywords:
   - timeseries
   - database
 image: /img/blog/2021-05-10/banner.png
-tags: [release, clickhouse, timescaledb, influxdb, benchmark]
+tags: [hackernews, clickhouse, timescaledb, influxdb, benchmark, algorithms]
 ---
 
 The journey to today's version of QuestDB began with the original prototype in

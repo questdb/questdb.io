@@ -10,25 +10,19 @@ description:
   performance.
 keywords:
   - performance
-  - deep-dive
   - questdb
   - database
   - tutorial
 image: /img/blog/2020-08-19/banner.jpg
-tags: [performance, deep-dive]
+tags: [performance, architecture, engineering]
 ---
 
 import Banner from "@theme/Banner"
 
-<Banner
-  alt="Hand holding an analog stopwatch"
-  height={433}
-  src="/img/blog/2020-08-19/banner.jpg"
-  width={650}
->
-  Photo by <a href="https://unsplash.com/photos/p3Pj7jOYvnM">Veri Ivanova</a> on{" "}
-  <a href="https://unsplash.com">Unsplash</a>
-</Banner>
+<Banner alt="Hand holding an analog stopwatch" height={433}
+src="/img/blog/2020-08-19/banner.jpg" width={650}> Photo by
+<a href="https://unsplash.com/photos/p3Pj7jOYvnM">Veri Ivanova</a> on{" "}
+<a href="https://unsplash.com">Unsplash</a> </Banner>
 
 How does QuestDB get the kind of performance it does, and how are we continuing
 to squeeze another 50-60% out of it? This post will look at a code change we
@@ -42,7 +36,7 @@ If you like this content, show it with a star on
 [GitHub](https://github.com/questdb/questdb) or come say hi in our
 [community Slack]({@slackUrl@}) workspace.
 
-## How the performance improvements started
+## How to improve time series performance
 
 QuestDB started out with a single-threaded approach to queries and such. But one
 obvious way to improve performance in a Java application like this is to
@@ -52,7 +46,7 @@ I've written multi-threaded applications, and they are not easy to do. It's hard
 to coordinate the work between multiple threads, and to make sure that there are
 no race conditions, collisions, etc.
 
-## Storage performance
+## How to store time series data more efficiently
 
 So first it's important to understand that QuestDB stores it's data in columnar
 format. We store each column of data in a file. So for every column of data,
@@ -75,7 +69,7 @@ these variable-length values dragged the performance back down.
 
 Which brings us to pages and how data is referenced in memory.
 
-## Pages of data
+## Can memory-mapped pages be more efficient?
 
 QuestDB uses memory-mapped pages to reference data in order to make it really
 fast. If you're dividing up your data into pages, and all data has a fixed
@@ -145,9 +139,9 @@ the OS to just remap the already mapped pages into the newly mapped memory
 region. In many cases, the OS may have already reserved the entire address space
 for you so your new mapping is in the same region as the old, just bigger.
 
-## Kernels are smart
+## How kernels handle pages efficiently
 
-The kernel allocated a full sized address space for your file when you requested
+The kernel allocates a full sized address space for your file when you requested
 the memory-mapped file. And apparently this is true across Linux, macOS and
 Windows. So from that point on, there's really no further copying that needs to
 happen.
@@ -182,7 +176,7 @@ cache all of that for you as you do it, because that's the kernel's job, really.
 But many database developers then take that, and cache it themselves, with their
 own caching scheme.
 
-## Speed
+## How fast can you go with database speed?
 
 When I asked Vlad about this, and how it relates to query speed, he was quite
 explicit in saying that thinking you (a database developer) can beat the kernel
@@ -202,7 +196,7 @@ It comes down to letting the kernel do its job, and us doing ours. And our job
 is to exploit the kernel for every ounce of performance we can get out of it
 without trying to do it's job for it.
 
-## Conclusions
+## Performance benchmark results
 
 When it comes to performance claims, we always try to back them up with actual
 numbers that can be replicated. You can run these tests yourself, and you can

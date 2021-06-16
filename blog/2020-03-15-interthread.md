@@ -8,12 +8,13 @@ description:
   Detailed explanation of QuestDB's thread messaging system. A benchmark also
   shows the capabilities of this system.
 keywords:
-  - deep-dive
+  - performance
+  - opensource
   - inter-thread messaging
   - questdb
   - database
-  - infrastructure
-tags: [deep-dive]
+  - architecture
+tags: [multithreading, engineering, architecture]
 ---
 
 import Banner from "@theme/Banner"

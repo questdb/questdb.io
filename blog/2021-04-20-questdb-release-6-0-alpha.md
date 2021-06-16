@@ -53,7 +53,7 @@ Also included with this version is a massive internal revision of InfluxDB Line
 Protocol (ILP) ingestion which brings significant performance improvements,
 alongside multiple UI fixes for the Web Console and SQL features.
 
-## Features
+## New features
 
 - **O3 support** for ingestion of records which are out-of-order by timestamp
 - **ARM64 support**
@@ -62,7 +62,7 @@ alongside multiple UI fixes for the Web Console and SQL features.
 - UI improvements for results with only one column
 - Notification element does not obscure returned rows
 
-## Fixes
+## Bug fixes
 
 - `LIMIT -1` returns last row as expected
 - Epoch timestamps supported in CSV imports
@@ -87,7 +87,7 @@ docker run -p 9000:9000 -p 8812:8812 -p 9009:9009 \
   questdb/questdb:6.0.0-alpha-linux-amd64
 ```
 
-## Notes on O3 functionality
+## Notes on out-of-order data ingestion
 
 This feature is **enabled by default** for ingestion over InfluxDB Line
 Protocol, PostgreSQL wire protocol and bulk imports via REST API. One
@@ -105,7 +105,7 @@ or reach out with any questions in the meantime. A supplementary guide will
 follow soon which describes why and when to apply these settings to help with
 fine-tuning for your use case.
 
-## Benchmarking version 6.0
+## Benchmarking QuestDB versus InfluxDB, ClickHouse and TimescaleDB
 
 Following the release of this alpha version, we will be running the TSBS
 benchmark suite which allows us to compare the performance of QuestDB on

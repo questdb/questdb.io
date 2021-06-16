@@ -1,19 +1,19 @@
 ---
-title: Aggregating billions of rows per sec with SIMD
+title: Aggregating billions of rows per second with SIMD
 author: Tancrede Collard
 author_title: QuestDB Team
 author_url: https://github.com/TheTanc
 author_image_url: https://avatars.githubusercontent.com/TheTanc
 description:
-  How SIMD instructions made aggregations faster, benchmark and comparison with
-  Postgres.
+  How SIMD instructions makee aggregations faster in QuestDB, including
+  benchmark results and a comparison with Postgres.
 keywords:
   - performance
   - simd
   - parallelization
   - cpu
   - questdb
-tags: [performance, simd]
+tags: [performance, simd, benchmark, release]
 ---
 
 import Banner from "@theme/Banner"
@@ -34,13 +34,13 @@ to achieve.
 
 <!--truncate-->
 
-## About SIMD operations
+## What are SIMD operations?
 
-The parallelisation is synthetic because instead of spreading the work across
-CPU cores, SIMD performs vector operations on multiple items using a **single**
-CPU instruction. In practice, if you were to add 8 numbers together, SIMD does
-that in 1 operation instead of 8. We get compounded performance improvements by
-combining SIMD with actual parallelisation and spanning the work across CPUs.
+Instead of spreading the work across CPU cores, SIMD performs vector operations
+on multiple items using a **single** CPU instruction. In practice, if you were
+to add 8 numbers together, SIMD does that in 1 operation instead of 8. We get
+compounded performance improvements by combining SIMD with actual
+parallelisation and spanning the work across CPUs.
 
 QuestDB 4.2 introduces SIMD instructions, which made our aggregations faster by
 100x! QuestDB is available open source (Apache 2.0) . If you like what we do,
@@ -53,15 +53,13 @@ keyed aggregations, for example `select key, sum(value) from table` (note the
 intentional omission of `GROUP BY`). This will also result in ultrafast
 aggregation for time bucketed queries using `SAMPLE BY`.
 
-## How fast is it?
+## How much faster is SIMD?
 
 We ran performance tests using 2 different CPUs: the
 [Intel 8850H](https://ark.intel.com/content/www/us/en/ark/products/134899/intel-core-i7-8850h-processor-9m-cache-up-to-4-30-ghz.html)
 and the
 [AMD Ryzen 3900X](https://www.amd.com/en/products/cpu/amd-ryzen-9-3900x). Both
 were running on 4 threads.
-
-### Queries
 
 | Test                              | Query                                                                                                   |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -71,7 +69,6 @@ were running on 4 threads.
 | max of 1Bn doubles                | create table zz as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from zz;   |
 | max of 1Bn longs                  | create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from zz;     |
 
-### Results
 
 ![Intel 8850H benchmark](/img/blog/2020-04-02/benchmark8850h.png)
 
@@ -85,13 +82,13 @@ This can be tested by creating the table as follows.
 | ------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | sum of 1Bn doubles <br/>(nulls) | create table zz as (select rnd_double(5) d from long_sequence(1000000000));<br/>select sum(d) from zz; |
 
-### We can improve this performance further
+### How can we improve upon SIMD performance?
 
 Our approach is currently slightly more complicated as we convert each 32-bit
 integer to a 64-bit long to avoid overflow. By removing this overhead and more,
 there is scope left to make our implementation faster in the future.
 
-## Perspectives on performance
+## Benchmarking QuestDB versus Postgres performance
 
 The execution times outlined above become more interesting once put into
 context. This is how QuestDB compares to Postgres when doing a sum of 1 billion
@@ -135,7 +132,7 @@ QuestDB, we'd love to hear the results. You can
 [download QuestDB](/docs/introduction/) and leave a
 [comment on github]({@githubUrl@}/issues/146).
 
-## What is next?
+## How we will improve time series data performance
 
 In further releases, we will roll out this functionality to other parts of our
 SQL implementation. QuestDB implements SIMD in a generic fashion, which will
@@ -147,8 +144,6 @@ exactly how we have achieved this, all of our code is
 [open source]({@githubUrl@})!
 
 ## About the release: QuestDB 4.2
-
-### Summary
 
 We have implemented SIMD-based vector execution of queries, such as
 `select sum(value) from table`. This is ~100x faster than non-vector based

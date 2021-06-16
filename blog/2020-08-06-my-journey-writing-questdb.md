@@ -16,21 +16,17 @@ keywords:
   - timeseries
   - database
   - ycombinator
+  - open source
 image: /img/blog/2020-08-06/banner.jpg
 tags: [hackernews, story]
 ---
 
 import Banner from "@theme/Banner"
 
-<Banner
-  alt="A path going into the morning mist"
-  height={393}
-  src="/img/blog/2020-08-06/banner.jpg"
-  width={650}
->
-  Photo by <a href="https://unsplash.com/photos/ptSJZoEjp3M">Wesley Tingey</a>{" "}
-  on <a href="https://unsplash.com">Unsplash</a>
-</Banner>
+<Banner alt="A path going into the morning mist" height={393}
+src="/img/blog/2020-08-06/banner.jpg" width={650}> Photo by
+<a href="https://unsplash.com/photos/ptSJZoEjp3M">Wesley Tingey</a>on
+<a href="https://unsplash.com">Unsplash</a> </Banner>
 
 A few weeks ago, I posted
 [the story of how I started QuestDB on Hacker News](https://news.ycombinator.com/item?id=23975807).
@@ -42,7 +38,7 @@ relying on production instances of our time-series database.
 
 <!-- truncate -->
 
-## The setup
+## How I started building an open source time series database
 
 It started in 2012 when an energy trading company hired me to rebuild their
 real-time vessel tracking system. Management wanted me to use a well-known XML
@@ -82,7 +78,7 @@ for a promotion, I immediately wanted to go back to the technical side. I became
 obsessed with learning new stuff again, particularly in the high performance
 space.
 
-## Taking the plunge
+## Turning an open source idea into a full-time project
 
 With some money aside, I left my job and started to work on QuestDB solo. I used
 Java and a small C layer to interact directly with the OS API without passing
@@ -101,7 +97,7 @@ while looking after my family. I would do research during the day and implement
 this into QuestDB at night. I was constantly looking for the next thing, which
 would take performance closer to the limits of the hardware.
 
-## Back to the drawing board
+## Learning important lessons from mistakes
 
 A year in, I realised that my initial design was actually flawed and that it had
 to be thrown away. It had no concept of separation between readers and writers
@@ -118,7 +114,7 @@ the data files. This made it possible to commit multiple columns simultaneously
 as a simple update of the last committed row id. I also made storage dense by
 removing overlapping memory pages and writing data byte by byte over page edges.
 
-## It's getting real!
+## Turning goals into a reality
 
 This new approach improved query performance. It made it easy to split data
 across worker threads and to optimise the CPU pipeline with prefetch. It

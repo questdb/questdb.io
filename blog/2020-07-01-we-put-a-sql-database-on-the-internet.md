@@ -1,19 +1,20 @@
 ---
-title: Demo launch on HackerNews postmorterm
+title: Demo launch on HackerNews retrospective
 author: David G Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs
 author_image_url: https://avatars.githubusercontent.com/davidgs
 description:
   What happens when you put a SQL database on the internet? Demo launch on
-  HackerNews postmortem.
+  HackerNews retrospective.
 keywords:
   - hackernews
-  - postmortem
+  - retrospective
   - sql database
   - timeseries database
   - questdb
-tags: [hackernews, postmorterm]
+  - open source
+tags: [hackernews, retrospective, community, demo]
 ---
 
 If you listen to, well, pretty much anyone rational, they will tell you in no
@@ -25,11 +26,10 @@ tried to do with it.
 
 <!-- truncate -->
 
-## The idea
+## Why we built QuestDB
 
-QuestDB has built what we think is the fastest Open Source SQL Database in
-existence. We really do. And we're pretty proud of it, in fact. So much so that
-we wanted to give anyone that wanted the opportunity a chance to take it for a
+We've built the fastest open source SQL Database and we're pretty proud of it.
+We wanted to give anyone that wanted the opportunity a chance to take it for a
 spin. With real data. Doing real queries. Almost anyone can pull together a demo
 that performs great under just the right conditions, with all the parameters
 tightly controlled.
@@ -37,7 +37,7 @@ tightly controlled.
 But what happens if you unleash the hordes on it? What happens if you let anyone
 run queries against it? Well, we can tell you, now.
 
-## What it is
+## What makes QuestDB unique?
 
 First off, it's a SQL-based Time Series database, built from the ground up for
 performance. It's built to store and query very large amounts of data very
@@ -134,7 +134,7 @@ And watched the incoming traffic.
 
 And tried not to panic.
 
-## What happened
+## What happens when you let the public query your database
 
 First off, we made the front page of Hacker News. Then we stayed there. For
 hours.
@@ -167,7 +167,7 @@ We saw only a couple of bad actors try something cute:
 
 But those didn't work. We may be crazy, but we're not naive.
 
-## What we learned
+## What we learned from our HackerNews launch
 
 It turns out that when you do something like this, you learn a lot. You learn
 about your strengths and your weaknesses. And you learn about what users want to
@@ -216,7 +216,7 @@ Yes, the demo did break the Back button on your browser. There's an actual
 reason for that, but it is true, for now. We're definitely addressing that one
 right away.
 
-## Try it yourself
+## Try our live demo yourself
 
 Want to try it yourself? You've read this far, you really should! got to
 [{@demoUrl@}]({@demoUrl@}) to give it a whirl.

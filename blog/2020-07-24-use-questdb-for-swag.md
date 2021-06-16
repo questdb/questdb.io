@@ -1,5 +1,5 @@
 ---
-title: Use QuestDB and get swag!
+title: QuestDB swag for our community members!
 author: David G. Simmons
 author_title: QuestDB Team
 author_url: https://github.com/davidgs
@@ -12,21 +12,16 @@ keywords:
   - community
   - questdb
   - swag
+  - open source
 image: /img/blog/2020-07-24/banner.jpg
-tags: [projects]
+tags: [community, swag]
 ---
 
 import Banner from "@theme/Banner"
 
-<Banner
-  alt="Grey cat wearing mirrored sunglasses"
-  height={483}
-  src="/img/blog/2020-07-24/banner.jpg"
-  width={362}
->
-  Photo by <a href="https://unsplash.com/photos/yMSecCHsIBc">Raoul Droog</a> on{" "}
-  <a href="https://unsplash.com">Unsplash</a>
-</Banner>
+<Banner alt="Grey cat wearing mirrored sunglasses" height={483}
+src="/img/blog/2020-07-24/banner.jpg" width={362}> Photo by
+<a href="https://unsplash.com/photos/yMSecCHsIBc">Raoul Droog</a> </Banner>
 
 We've been upping our SWAG game a lot lately, and we want to share it with you,
 the valuable members of our community! We want to give you the chance to show
@@ -71,7 +66,7 @@ This level's pretty easy to get. Just do the following:
 - [Join]({@slackUrl@}) our Slack community
 - Send us your mailing address!
 
-### Level 3: QuestDB Early Adopter
+### Level 3: QuestDB early adopter
 
 You're a QuestDB Superfan and you want everyone to know it! At this level you
 will get one of our exclusive, _really_ nice custom-embroidered T-Shirts. These
@@ -97,20 +92,17 @@ How do you get this level? Just do the following:
     [@QuestDB](https://twitter.com/intent/follow?screen_name=QuestDB) so we
     don't miss it!
 
-<img
-  alt="Black t-shirt with QuestDB's logo"
-  src="/img/blog/2020-07-24/tShirt.png"
-  style={{
+<img alt="Black t-shirt with QuestDB's logo"
+src="/img/blog/2020-07-24/tShirt.png" style={{
     display: "block",
     maxHeight: "400px",
     margin: "0 auto",
     marginBottom: "2rem",
-  }}
-/>
+  }} />
 
 That's it! Sit back and wait for the SWAG!
 
-### Level 4: QuestDB Implementor Extraordinaire!
+### Level 4: QuestDB implementor extraordinaire!
 
 You think QuestDB is the solution to all your data woes. You don't just think
 it, you _know_ it! So much so that you've already implemented a solution, in

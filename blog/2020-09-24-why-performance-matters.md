@@ -5,9 +5,9 @@ author_title: QuestDB Team
 author_url: https://github.com/tris0laris
 author_image_url: https://avatars.githubusercontent.com/tris0laris
 description:
-  Thoughts on why speed and performance are crucial to time-series databases
-  ingestion and analysis.
-tags: [story]
+  Thoughts on why speed and performance are crucial to time series database
+  ingestion and analytics.
+tags: [story, performance]
 ---
 
 Good data from the past helps us make better decisions in the present. Most of
@@ -64,7 +64,7 @@ managing it effectively are a little specialized. Otherwise, the exploding need
 for processing power and the simultaneously reduced availability of it becomes a
 supply and demand problem.
 
-## The end of Moore’s law is in sight
+## Is the end of Moore’s law in sight?
 
 Improvements in processor power are going to slow down while data continues to
 propagate exponentially. We’re facing a big problem in our quest to process and
