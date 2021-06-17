@@ -2,8 +2,8 @@
 title: Get started with QuestDB from the binaries
 sidebar_label: Binaries
 description:
-  How to use the binaries to install and launch QuestDB. The binaries for the
-  latest version can be download from the Get QuestDB page.
+  Guide showing how to use the binaries to install and launch QuestDB. The
+  binaries can be download from our Get QuestDB page.
 ---
 
 This guide shows how to install and use QuestDB from the binaries.
@@ -14,9 +14,8 @@ QuestDB comes with a script `questdb.sh` for Linux/FreeBSD and an executable
 
 ## Download
 
-You can find binaries for the latest version ({@version@}) on the
-[Get QuestDB](/get-questdb/) page, and release notes are on our
-[GitHub release]({@githubUrl@}/releases) page.
+You can find the latest binaries on the [Get QuestDB](/get-questdb/) page. The
+release notes are on our [GitHub release]({@githubUrl@}/releases) page.
 
 ## Prerequisites
 
