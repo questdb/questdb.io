@@ -15,7 +15,7 @@ QuestDB comes with a script `questdb.sh` for Linux/FreeBSD and an executable
 ## Download
 
 You can find binaries for the latest version ({@version@}) on the
-[Get QuestDB](/get-questdb/) page, and release notes are on our
+[Get QuestDB](/get-questdb/) page, and release notes are included on the
 [GitHub release]({@githubUrl@}/releases) page.
 
 ## Prerequisites
@@ -98,10 +98,10 @@ questdb-{@version@}-rt-windows-amd64.tar.gz
 
 </Tabs>
 
-This binary weights around 20MB, this depends on your operating system.
+This binary size is around 20MB, depending on the operating system.
 
-When using this binary, you do not need anything on your machine, the Java
-runtime is packaged directly with QuestDB.
+When using this binary, you do not need any other dependencies on your machine,
+as a Java runtime is packaged directly with QuestDB.
 
 ## Extract the tarball
 
