@@ -66,7 +66,7 @@ function Navbar(): JSX.Element {
 
   return (
     <nav
-      className={clsx("navbar", "navbar--light", "navbar--fixed-top", {
+      className={clsx("navbar", "navbar--fixed-top", styles.custom_top, {
         "navbar-sidebar--show": sidebarShown,
       })}
     >

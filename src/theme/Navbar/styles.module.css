@@ -7,7 +7,7 @@
   margin-left: 10px;
   background-color: transparent;
   border: 2px solid #7a7a80;
-  color: var(--palette-white);
+  color: var(--ifm-font-color-base);
   text-transform: none;
 }
 
@@ -33,6 +33,10 @@
 .inner {
   margin: 0 auto;
   padding: 0 var(--ifm-spacing-horizontal);
+}
+
+.custom_top {
+  top: -2px;
 }
 
 :global(.navbar__item--slack),
@@ -136,4 +140,8 @@
   .inner {
     max-width: var(--ifm-container-width);
   }
+}
+
+.navbar--fixed-top {
+  top: -2px;
 }

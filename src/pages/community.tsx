@@ -50,26 +50,73 @@ const CustomForm: React.FC<FormProps> = ({
 
 type Contribute = {
   alt: string
-  image: string
+  image: JSX.Element
   title: string
   url: string
 }
 
+const PlugInIcon = () => {
+  return (
+    <svg fill="none" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1.707 18l3.103-3.116a6.183 6.183 0 0 0 3.437 1.056h.906a6.18 6.18 0 0 0 4.372-1.81l3.018-3.017L14.68 9.25 18 5.932l-1.708-1.708-3.32 3.319-2.517-2.516 3.32-3.32L12.067 0l-3.32 3.319L6.89 1.458 3.871 4.475a6.181 6.181 0 0 0-1.81 4.375v.905a6.18 6.18 0 0 0 1.056 3.437L0 16.294zm2.768-9.15A3.741 3.741 0 0 1 5.58 6.186l1.31-1.31 6.244 6.237-1.31 1.309a3.745 3.745 0 0 1-2.671 1.104h-.906c-1 .002-1.96-.396-2.668-1.104a3.761 3.761 0 0 1-1.104-2.667z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+const BugIcon = () => {
+  return (
+    <svg width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12.656 4.769h-.281V3.577C12.375 1.6 10.865 0 9 0 7.136 0 5.625 1.6 5.625 3.577v1.192h-.281a2.183 2.183 0 0 0-1.538.65L0 3.46v2.65l3.094 1.592v1.836H0v2.384h3.108c.021.57.115 1.136.281 1.678L0 15.35V18l4.5-2.32c1.12 1.398 2.76 2.204 4.49 2.204 1.73 0 3.372-.806 4.49-2.203L17.98 18v-2.65L14.6 13.6c.166-.542.26-1.107.28-1.678H18V9.538h-3.094V7.702L18 6.11V3.46l-3.806 1.96a2.183 2.183 0 0 0-1.538-.65zM7.875 15.308c-1.508-.517-2.53-2.004-2.531-3.684v-4.47h2.53v8.154zm0-10.54v-1.19c0-.66.503-1.193 1.125-1.193s1.125.534 1.125 1.193V4.77h-2.25zm4.781 6.856c0 1.68-1.023 3.167-2.531 3.684V7.153h2.531v4.471z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+const DocsIcon = () => {
+  return (
+    <svg fill="none" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0 0v18h18V0zm11.25 14.539h-7.5v-2.077h7.5zm3-4.5H3.75V7.962h10.5zm0-4.5H3.75V3.461h10.5z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+const ArrowIcon = () => {
+  return (
+    <svg fill="none" height="11" width="8" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M1 10l6-4.5L1 1"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  )
+}
+
 const contribution: Contribute[] = [
   {
-    image: "/img/pages/community/plugin.svg",
+    image: <PlugInIcon />,
     title: "Help build a new feature",
     url: "https://github.com/questdb/questdb",
     alt: "A plugin icon",
   },
   {
-    image: "/img/pages/community/bug.svg",
+    image: <BugIcon />,
     title: "Report an issue",
     url: "https://github.com/questdb/questdb/issues",
     alt: "A bug icon",
   },
   {
-    image: "/img/pages/community/docs.svg",
+    image: <DocsIcon />,
     title: "Improve the docs",
     url: "https://github.com/questdb/questdb.io",
     alt: "A document icon",
@@ -253,14 +300,9 @@ const Community = () => {
                 {contribution.map((item: Contribute, index: number) => (
                   <div className={paCss.contribute_Item} key={index}>
                     <div className={paCss.contribute_Inner}>
-                      <img
-                        src={item.image}
-                        alt={item.alt}
-                        className={paCss.main_icon}
-                        width={18}
-                        height={18}
-                      />
-
+                      <span className={paCss.contribute_icon}>
+                        {item.image}
+                      </span>
                       <span className={paCss.contribute_text}>
                         <a
                           className={paCss.contribution_link_item}
@@ -271,12 +313,7 @@ const Community = () => {
                       </span>
                     </div>
                     <a className={paCss.contribution_link_item} href={item.url}>
-                      <img
-                        src="/img/pages/community/arrow.svg"
-                        alt="An arrow icon"
-                        width={8}
-                        height={11}
-                      />
+                      <ArrowIcon />
                     </a>
                   </div>
                 ))}

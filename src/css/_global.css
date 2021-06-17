@@ -93,11 +93,17 @@ html[data-theme="dark"] {
   --ifm-background-color: var(--palette-charade);
   --ifm-color-emphasis-300: var(--palette-pale-blue);
   --ifm-menu-link-sublist-icon: url("/img/infima/arrow.svg");
+  --ifm-font-color-base: white;
+  --custom-card-bg: #21222c;
 }
 
 html[data-theme="light"] {
   --ifm-background-color: white;
   --ifm-font-color-base: #000;
+  --palette-rock: white;
+  --ifm-navbar-background-color: white;
+  --card-border-color: var(--palette-pale-blue);
+  --palette-white-10: var(--palette-pale-blue);
 }
 
 html[data-theme="dark"] .DocSearch {

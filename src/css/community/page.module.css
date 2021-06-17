@@ -28,7 +28,7 @@
 
 .section__title {
   font-size: var(--font-size-big-3);
-  color: var(--palette-white);
+  color: var(--ifm-font-color-base);
 }
 
 .section__subtitle {
@@ -101,7 +101,12 @@
 
 .contribution_link_item {
   text-decoration: none;
-  color: var(--palette-white);
+  color: var(--ifm-font-color-base);
+}
+
+.contribute_icon {
+  margin-right: 10px;
+  height: 16px;
 }
 
 .custom_box {
@@ -143,7 +148,7 @@
 .list__description {
   margin: 0;
   padding-left: 1.5rem;
-  color: var(--palette-white);
+  color: var(--ifm-font-color-base);
   font-size: var(--font-size-normal);
   position: relative;
 }
@@ -170,10 +175,11 @@
 }
 
 .card {
-  background: #21222c;
+  background: var(--custom-card-bg);
   border-radius: 8px;
   padding: 29px;
   max-width: 500px;
+  border: 1px solid var(--palette-pale-blue);
 }
 
 .message__contents {
@@ -220,18 +226,18 @@
 }
 
 .custom_input {
-  background: #ffffff;
+  background: white;
+  color: black;
   border-radius: 3px;
   height: 55px;
-  border: none;
+  border: 1px solid var(--ifm-font-color-base);
   padding: 10px 16px;
   margin-right: 9px;
   min-width: 255px;
   outline: none;
   font-weight: 500;
   font-size: 14px;
-  line-height: 19px;
-  color: #000000;
+  line-height: 19px;  
 }
 
 .section__inner {

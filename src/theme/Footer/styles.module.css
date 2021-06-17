@@ -58,7 +58,7 @@
 .footer__link {
   margin-bottom: 0.6rem;
   flex: 1;
-  color: var(--palette-white);
+  color: var(--ifm-font-color-base);
   font-size: var(--font-size-normal);
 }
 
