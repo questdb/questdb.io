@@ -1,0 +1,251 @@
+---
+title: Tracking multiple cryptocurrency exchanges using a time series database
+author: Yitaek Hwang
+description:
+  Leveraging QuestDB’s data ingestion via InfluxDB line protocol to build a
+  high-throughput cryptocurrency price tracker capable of handling out-of-order
+  records on the fly.
+image: /img/tutorial/shared/og-bitcoin.png
+featured: true
+---
+
+import Banner from "@theme/Banner"
+
+<Banner
+  alt="A candlestick chart showing Bitcoin prices in US Dollars"
+  height={467}
+  src="/img/tutorial/2021-06-18/banner.jpg"
+  width={650}
+>
+  Photo by <a href="https://unsplash.com/@nick604">Nick Chong</a> via{" "}
+  <a href="https://unsplash.com">Unsplash</a>
+</Banner>
+
+This submission comes from one of our community contributors
+[Yitaek Hwang](https://yitaek.medium.com/) who has put together another
+excellent tutorial that shows how to stream blockchain data into QuestDB for
+time series data visualization and analysis.
+
+Thanks for another great contribution, Yitaek!
+
+## Tracking volatility using a Bitcoin ticker
+
+Crypto investors saw 1T USD wiped out of the market in May, as the price of
+Bitcoin and other cryptocurrencies nosedived to their lowest in 2021. Given the
+volatile nature of this asset class, traders looking to navigate the market need
+fast and reliable price data from multiple exchanges. Earlier this year, I
+shared a way to
+[analyze cryptocurrency price trends in real-time](/tutorial/2021/02/18/realtime-crypto-tracker-with-kafka-and-questdb/)
+via Kafka and QuestDB. That project polled the Coinbase API for the latest price
+and calculated moving averages prior to sending it to a time series database for
+further analysis.
+
+Utilizing Kafka, I was able to leverage its scalability and ordering guarantees
+prior to ingesting in QuestDB. However, since I was using the PostgreSQL wire
+protocol interface, it was not optimized for fast ingestion. Also, the price
+feed was limited to a single exchange (i.e. Coinbase Pro), reducing our ability
+to react quickly to volatility such as buying or selling Bitcoin based on best
+price on another exchange.
+
+Fortunately,
+[QuestDB team released an update](https://github.com/questdb/questdb/releases)
+with significant re-write of their InfluxDB Line Protocol for fast ingestion and
+support for out-of-order data. So I decided to modify my previous project to
+test out these features.
+
+**Disclaimer:** This tutorial is not investment or financial advice. All views
+expressed here are my own.
+
+## Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/) with at least 4GB memory
+- [Node.js](https://nodejs.org/en/download/)
+
+**Note:** Memory can be increased on Docker Desktop in **Settings -> Resources
+-> Memory** and increasing the default limit from `2GB` to `4GB`.
+
+## Out-of-order data ingestion
+
+With the release of v6.0.0, QuestDB no longer enforces that timeseries data is
+sent in strict chronological order. This means that QuestDB can deal with
+out-of-order data caused by network delays, hardware jitter, or different
+delivery mechanisms, using the timestamp field instead of relying on the
+received time. As shown in the example below, if a message is received by
+QuestDB after the sample time (delay of 9s, 1s, 2s respectively), QuestDB can
+recognize this lag and re-orders them prior to committing them to the database.
+
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="A diagram illustrating how delays and network jitter can cause records to arrive out-of-order by time at a database"
+  height={278}
+  src="/img/guides/out-of-order-commit-lag/o3-data.jpeg"
+  width={650}
+  title="Data arriving out-of-order due to network delays or jitter"
+/>
+
+This removes the burden from the programmer to design their ingestion mechanism
+to deal with delays or network skew. While Kafka guarantees ordering within a
+partition, it was still my responsibility to send messages in order to the
+broker to consume them chronologically. Since I was polling a single endpoint,
+there was little chance of records being sent out-of-order. But by adding new
+exchanges to poll information from (e.g. Binance, Gemini), API response times
+and network delays come into factor.
+
+## InfluxDB Line Protocol compatibility
+
+QuestDB also recommends using the InfluxDB line protocol as the primary
+ingestion method for highest performance. In fact, QuestDB team
+[achieved write speeds of 1.43M rows/sec using an AMD Ryzen5](/blog/2021/05/10/questdb-release-6-0-tsbs-benchmark/)
+when running the [Time Series Benchmark Suite](/time-series-benchmark-suite/).
+
+InfluxDB line protocol also provides the following benefits over using the
+Postgres client (as used in the Kafka project via Kafka Connect):
+
+- higher-throughput
+- robust ingestion from multiple sources into tables
+- configurable commit-lag for out-of-order data
+- schema-less/-agnostic ingestion (i.e. adding new fields will dynamically
+  create new columns)
+
+The message format for InfluxDB looks as follows:
+
+```pseudo
+table_name,<tag>=<value> <label>=<value>,<label>=<value> timestamp\n
+```
+
+Each line of the InfluxDB record is ingested as a new row in QuestDB. For this
+project, `table_name` was `crypto`, `tag` is the symbol for the cryptocurrency
+(e.g. `BTC`) with other labels including columns for exchange names and prices.
+
+## Writing data from multiple cryptocurrency exchanges
+
+To start, first pull the latest version of QuestDB (v6.0.3 or higher):
+
+```bash
+docker pull questdb/questdb:latest
+```
+
+Run the image with InfluxDB port (`9009`) open:
+
+```bash
+docker run -p 9000:9000 -p 8812:8812 -p 9009:9009 questdb/questdb
+```
+
+Open up the Console UI on port `9000` and create a basic table:
+
+```questdb-sql
+CREATE TABLE crypto(currency STRING,
+                    exchange STRING,
+                    price DOUBLE,
+                    timestamp TIMESTAMP)
+timestamp(timestamp) PARTITION BY DAY;
+```
+
+For the purposes of the demo, I’ve decided to pull the price of Bitcoin from
+Binance and Gemini every second. To test the out-of-order ingestion more
+obvious, I purposely introduced a random delay between 1–5s before sending price
+data from Gemini.
+
+```javascript
+const axios = require("axios")
+const net = require("net")
+
+const influxClient = new net.Socket()
+
+const HOST = "localhost"
+const PORT = 9009
+
+function randomInt(low, high) {
+  return Math.floor(Math.random() * (high - low) + low)
+}
+
+async function main() {
+  await influxClient.connect(PORT, HOST)
+
+  async function getBinanceData() {
+    const { data } = await axios.get(
+      "https://api.binance.us/api/v3/avgPrice?symbol=BTCUSD",
+    )
+    const row = `crypto,currency=BTC exchange="Binance",price=${data.price} ${
+      Date.now() * 1e6
+    }`
+
+    await influxClient.write(`${row}\n`)
+
+    setTimeout(getBinanceData, 1000)
+  }
+
+  async function getGeminiData() {
+    const { data } = await axios.get("https://api.gemini.com/v1/pricefeed")
+    const { price } = data.find((i) => i.pair === "BTCUSD")
+
+    const row = `crypto,currency=BTC exchange="Gemini",price=${price} ${
+      Date.now() * 1e6
+    }`
+
+    setTimeout(async () => {
+      await influxClient.write(`${row}\n`)
+    }, randomInt(1000, 5000))
+
+    setTimeout(getGeminiData, 1000)
+  }
+
+  getBinanceData()
+  getGeminiData()
+}
+
+main()
+```
+
+To check if the data is committed in chronological order, I can run the
+[isOrdered](/docs/reference/function/boolean/) function in a query:
+
+```questdb-sql
+SELECT isOrdered(timestamp) is_ts_ordered FROM crypto
+```
+
+| is_ts_ordered |
+| ------------- |
+| true          |
+
+And despite the fact that I introduced a random network delay on the Gemini
+price feed, you can see that Bitcoin price from the two exchanges are committed
+in order.
+
+## Summary
+
+In a more realistic scenario, we would run different services on the cloud to
+pull data from various exchanges without intentional network delays. Once we
+figure out a pattern in terms of API response times or lags, we can optimize
+this process even further by
+[tweaking the commit lag variables](/docs/guides/out-of-order-commit-lag/) on
+QuestDB.
+
+Specifying this known lag interval can reduce the compute resources QuestDB uses
+to sort out of order data then merging with persisted data to achieve higher
+throughput:
+
+```bash
+# via env variables
+docker run -p 8812:8812 -p 9000:9000 -p 9009:9009 \
+  -e QDB_CAIRO_MAX_UNCOMMITTED_ROWS=1000 \
+  -e QDB_CAIRO_COMMIT_LAG=20000 questdb/questdb
+```
+
+```questdb-sql
+-- via SQL
+ALTER TABLE crypto SET PARAM maxUncommittedRows = 10000
+```
+
+For a project requiring high-throughput and performance needs, QuestDB provides
+nice features to enjoy the best of both worlds: fast ingestion via InfluxDB line
+protocol without worrying about data being out or order with full SQL support to
+analyze and act on that data. As with
+[the Kafka project](/tutorial/2021/02/18/realtime-crypto-tracker-with-kafka-and-questdb/),
+feel free to connect it with your account to execute trades with the price data
+or build out more sophisticated statistical models.
+
+If you like this content, we'd love to know your thoughts! Feel free to share
+your feedback or come and say hello in the
+[QuestDB Community Slack]({@slackUrl@}).
