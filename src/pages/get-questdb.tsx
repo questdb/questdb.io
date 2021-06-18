@@ -353,7 +353,7 @@ brew install questdb`}
         >
           <CodeBlock className="language-shell">
             {`helm repo add questdb https://helm.${siteConfig.customFields.domain}/
-helm install questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
+helm install my-questdb questdb/questdb --version ${siteConfig.customFields.helmVersion}`}
           </CodeBlock>
           <p className={biCss.binary__docs}>
             <a
