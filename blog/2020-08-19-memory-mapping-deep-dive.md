@@ -19,10 +19,17 @@ tags: [performance, architecture, engineering]
 
 import Banner from "@theme/Banner"
 
-<Banner alt="Hand holding an analog stopwatch" height={433}
-src="/img/blog/2020-08-19/banner.jpg" width={650}> Photo by
-<a href="https://unsplash.com/photos/p3Pj7jOYvnM">Veri Ivanova</a> on{" "}
-<a href="https://unsplash.com">Unsplash</a> </Banner>
+<Banner
+  alt="Hand holding an analog stopwatch"
+  height={433}
+  src="/img/blog/2020-08-19/banner.jpg"
+  width={650}
+>
+  {" "}
+  Photo by
+  <a href="https://unsplash.com/photos/p3Pj7jOYvnM">Veri Ivanova</a> on{" "}
+  <a href="https://unsplash.com">Unsplash</a>{" "}
+</Banner>
 
 How does QuestDB get the kind of performance it does, and how are we continuing
 to squeeze another 50-60% out of it? This post will look at a code change we

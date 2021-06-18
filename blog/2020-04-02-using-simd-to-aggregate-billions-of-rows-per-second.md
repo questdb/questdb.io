@@ -5,8 +5,8 @@ author_title: QuestDB Team
 author_url: https://github.com/TheTanc
 author_image_url: https://avatars.githubusercontent.com/TheTanc
 description:
-  How SIMD instructions makee aggregations faster in QuestDB, including
-  benchmark results and a comparison with Postgres.
+  How SIMD instructions make aggregations faster in QuestDB, including benchmark
+  results and a comparison with Postgres.
 keywords:
   - performance
   - simd
@@ -68,7 +68,6 @@ were running on 4 threads.
 | sum of 1Bn longs                  | create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select sum(l) from zz;     |
 | max of 1Bn doubles                | create table zz as (select rnd_double() d from long_sequence(1000000000));<br/>select max(d) from zz;   |
 | max of 1Bn longs                  | create table zz as (select rnd_long() l from long_sequence(1000000000));<br/>select max(l) from zz;     |
-
 
 ![Intel 8850H benchmark](/img/blog/2020-04-02/benchmark8850h.png)
 

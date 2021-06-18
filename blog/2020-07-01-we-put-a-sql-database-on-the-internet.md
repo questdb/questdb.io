@@ -216,7 +216,7 @@ Yes, the demo did break the Back button on your browser. There's an actual
 reason for that, but it is true, for now. We're definitely addressing that one
 right away.
 
-## Try our live demo yourself
+## Try our live demo, query 1.6 billion rows of data
 
 Want to try it yourself? You've read this far, you really should! got to
 [{@demoUrl@}]({@demoUrl@}) to give it a whirl.

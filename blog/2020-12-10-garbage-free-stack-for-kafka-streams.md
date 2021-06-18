@@ -22,10 +22,17 @@ tags: [postgres, kafka, architecture, engineering]
 
 import Banner from "@theme/Banner"
 
-<Banner alt="Steam network of a Pennsylvania coal power plant" height={433}
-src="/img/blog/2020-12-10/banner.jpg" width={650}> Photo by
-<a href="https://unsplash.com/photos/a_PDPUPuNZ8">Martin Adams</a> on{" "}
-<a href="https://unsplash.com">Unsplash</a> </Banner>
+<Banner
+  alt="Steam network of a Pennsylvania coal power plant"
+  height={433}
+  src="/img/blog/2020-12-10/banner.jpg"
+  width={650}
+>
+  {" "}
+  Photo by
+  <a href="https://unsplash.com/photos/a_PDPUPuNZ8">Martin Adams</a> on{" "}
+  <a href="https://unsplash.com">Unsplash</a>{" "}
+</Banner>
 
 Garbage collection is a type of automatic memory management that's used in many
 modern programming languages. The point of the garbage collector is to free up
