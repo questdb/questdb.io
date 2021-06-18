@@ -50,6 +50,12 @@ Before getting started with the tutorial, you will need the following:
 - [Slack workspace](https://slack.com/intl/en-gb/help/articles/206845317-Create-a-Slack-workspace)
   (optional)
 
+The Python example in this tutorial uses
+[real-time price for a stock](https://github.com/questdb/questdb-slack-grafana-alerts/blob/main/python/stock_data_TSLA_example.py#L29),
+using the last trade on IEX. Prices outside of market hours can be retrieved
+from the `extendedPrice` field from the Quote endpoint. For more information,
+see the [IexCloud quote endpoint](https://iexcloud.io/docs/api/#quote)
+
 This tutorial uses Slack as an example notification channel to deliver alerts
 via Grafana, but it's simple to choose another channel you would like alerts
 delivered to, such as your own REST API via webhook, Kafka, email, Pagerduty and
