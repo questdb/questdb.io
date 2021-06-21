@@ -2,8 +2,8 @@
 title: Get started with QuestDB from the binaries
 sidebar_label: Binaries
 description:
-  Guide showing how to use the binaries to install and launch QuestDB. The
-  binaries can be download from our Get QuestDB page.
+  How to install and launch QuestDB from the binaries which are available on the
+  Get QuestDB page.
 ---
 
 This guide shows how to install and use QuestDB from the binaries.
@@ -27,7 +27,7 @@ The file is named:
 questdb-{@version@}-no-jre-bin.tar.gz
 ```
 
-This binary is around or less than 4MB.
+This binary is approximately 4MB.
 
 #### Java 11
 
