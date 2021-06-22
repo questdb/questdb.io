@@ -1,0 +1,69 @@
+
+
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="150">
+  <defs>
+    <style type="text/css">
+      @namespace "http://www.w3.org/2000/svg";
+      .line                 {fill: none; stroke: #636273;}
+      .bold-line            {stroke: #636273; shape-rendering: crispEdges; stroke-width: 2; }
+      .thin-line            {stroke: #636273; shape-rendering: crispEdges}
+      .filled               {fill: #636273; stroke: none;}
+      text.terminal         {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+      font-size: 12px;
+      fill: #ffffff;
+      font-weight: bold;
+      }
+      text.nonterminal      {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+      font-size: 12px;
+      fill: #e289a4;
+      font-weight: normal;
+      }
+      text.regexp           {font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Helvetica, sans-serif;
+      font-size: 12px;
+      fill: #00141F;
+      font-weight: normal;
+      }
+      rect, circle, polygon {fill: none; stroke: none;}
+      rect.terminal         {fill: none; stroke: #be2f5b;}
+      rect.nonterminal      {fill: rgba(255,255,255,0.1); stroke: none;}
+      rect.text             {fill: none; stroke: none;}
+      polygon.regexp        {fill: #C7ECFF; stroke: #038cbc;}
+    </style>
+  </defs>
+  <polygon points="9 17 1 13 1 21"/>
+         <polygon points="17 17 9 13 9 21"/>
+         <rect x="31" y="3" width="64" height="32" rx="10"/>
+         <rect x="29" y="1" width="64" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="39" y="21">ALIGN</text>
+         <rect x="115" y="3" width="38" height="32" rx="10"/>
+         <rect x="113" y="1" width="38" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="123" y="21">TO</text>
+         <rect x="193" y="3" width="60" height="32" rx="10"/>
+         <rect x="191" y="1" width="60" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="201" y="21">FIRST</text>
+         <rect x="273" y="3" width="120" height="32" rx="10"/>
+         <rect x="271" y="1" width="120" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="281" y="21">OBSERVATION</text>
+         <rect x="193" y="47" width="92" height="32" rx="10"/>
+         <rect x="191" y="45" width="92" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="201" y="65">CALENDAR</text>
+         <rect x="325" y="79" width="54" height="32" rx="10"/>
+         <rect x="323" y="77" width="54" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="333" y="97">TIME</text>
+         <rect x="399" y="79" width="58" height="32" rx="10"/>
+         <rect x="397" y="77" width="58" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="407" y="97">ZONE</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#timezone" xlink:title="timezone">
+            <rect x="477" y="79" width="78" height="32"/>
+            <rect x="475" y="77" width="78" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="485" y="97">timezone</text></a><rect x="615" y="79" width="58" height="32" rx="10"/>
+         <rect x="613" y="77" width="58" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="623" y="97">WITH</text>
+         <rect x="693" y="79" width="72" height="32" rx="10"/>
+         <rect x="691" y="77" width="72" height="32" class="terminal" rx="10"/>
+         <text class="terminal" x="701" y="97">OFFSET</text><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#offset" xlink:title="offset">
+            <rect x="785" y="79" width="56" height="32"/>
+            <rect x="783" y="77" width="56" height="32" class="nonterminal"/>
+            <text class="nonterminal" x="793" y="97">offset</text></a><svg:path xmlns:svg="http://www.w3.org/2000/svg" class="line" d="m17 17 h2 m0 0 h10 m64 0 h10 m0 0 h10 m38 0 h10 m20 0 h10 m60 0 h10 m0 0 h10 m120 0 h10 m0 0 h468 m-708 0 h20 m688 0 h20 m-728 0 q10 0 10 10 m708 0 q0 -10 10 -10 m-718 10 v24 m708 0 v-24 m-708 24 q0 10 10 10 m688 0 q10 0 10 -10 m-698 10 h10 m92 0 h10 m20 0 h10 m0 0 h240 m-270 0 h20 m250 0 h20 m-290 0 q10 0 10 10 m270 0 q0 -10 10 -10 m-280 10 v12 m270 0 v-12 m-270 12 q0 10 10 10 m250 0 q10 0 10 -10 m-260 10 h10 m54 0 h10 m0 0 h10 m58 0 h10 m0 0 h10 m78 0 h10 m40 -32 h10 m0 0 h236 m-266 0 h20 m246 0 h20 m-286 0 q10 0 10 10 m266 0 q0 -10 10 -10 m-276 10 v12 m266 0 v-12 m-266 12 q0 10 10 10 m246 0 q10 0 10 -10 m-256 10 h10 m58 0 h10 m0 0 h10 m72 0 h10 m0 0 h10 m56 0 h10 m43 -76 h-3"/>
+         <polygon points="899 17 907 13 907 21"/>
+         <polygon points="899 17 891 13 891 21"/>
+</svg>

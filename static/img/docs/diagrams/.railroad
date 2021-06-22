@@ -55,6 +55,9 @@ dynamicTimestamp
 sampleBy 
   ::= someSelectStatement... 'SAMPLE' 'BY' n ( 'T' | 's' | 'm' | 'h' | 'd' | 'M' | )
 
+alignToCalTimeZone
+  ::= 'ALIGN' 'TO' ( 'FIRST' 'OBSERVATION' | 'CALENDAR' ( 'TIME' 'ZONE' timezone )? ( 'WITH' 'OFFSET' offset )? )
+
 distinct
   ::= 'SELECT' 'DISTINCT' ( columnName (',' columnName)* ) 'FROM' tableName
 
