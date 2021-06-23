@@ -240,10 +240,9 @@ const Customers = () => {
               src="/img/pages/customers/logos/innova.png"
               width={124}
             />
-            “QuestDB allows us to query data while writing millions of records
-            every few minutes. It is an excellent database for time series
-            analysis, calculation of aggregates and can efficiently store our
-            data.”
+            “QuestDB allows us to query data while writing millions of records.
+            It is an excellent database for time series analysis, calculation of
+            aggregates and can efficiently store our data.”
             <em className={caCss.card__author}>
               - <strong>Erdem Aydemir</strong>, Innova
             </em>

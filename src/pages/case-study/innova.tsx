@@ -53,8 +53,8 @@ const Innova = () => {
             )}
           >
             Innova chose QuestDB as part of their big data solution, which
-            requires writing millions of records every few minutes while
-            querying a constantly changing data set for real-time analytics.
+            requires writing millions of records while querying a constantly
+            changing data set for real-time analytics.
           </p>
         </div>
 
@@ -125,8 +125,8 @@ const Innova = () => {
         <p className={caCss.card__title}>
           <span className={caCss.card__quote}>&ldquo;</span>Innova develops big
           data solutions for financial transactions, BI systems, IT
-          infrastructure, security, and network operators. Their services
-          include real-time analytics of network information for the largest
+          infrastructure, security, and network operators. Our services include
+          real-time analytics of the network infrastructure of the largest
           Telecommunications provider in Turkey.
           <span className={caCss.card__quote}>&rdquo;</span>
         </p>
@@ -145,32 +145,32 @@ const Innova = () => {
             seCss["section--column"],
           )}
         >
-          <h3>Why we migrated to QuestDB</h3>
+          <h3>Why Innova migrated to QuestDB</h3>
           <p className="font-size--large">
-            We found QuestDB because we have requirements to store and analyze
-            massive amounts of data, and our customers need to have this
-            available quickly. The data we collect makes sense when our
-            customers see changes over time, so we looked for a database that
-            can display this information in a timeline as fast as possible, and
-            we found QuestDB.
+            Innova found QuestDB because of its requirements to store and
+            analyze massive amounts of data that needs to be served to their
+            customers quickly. The data Innova collects makes sense when
+            customers can instantly understand how it changes over time. The
+            search for a database that can display this kind of information in a
+            timeline as fast as possible led to QuestDB.
           </p>
           <p className="font-size--large">
-            Our client is one of the largest telecommunications providers in
-            Turkey, serving internet connections to over 5 million customers.
+            Innova’s client is one of the largest telecommunications providers
+            in Turkey, serving internet connections to over 5 million customers.
             Infrastructure at this scale uses massive amounts of resources and
-            generates a tremendous volume of data. We use operational data from
-            this provider to show our customers information about their own
-            internet connections, such as the quality of service, download
+            generates a tremendous volume of data. Innova uses operational data
+            from this provider to show their customers information about their
+            own internet connections, such as the quality of service, download
             speed, upload speed, bandwidth, and more.
           </p>
 
-          <h3>How we collect and analyze big data with QuestDB</h3>
+          <h3>How Innova collect and analyze big data with QuestDB</h3>
           <p className="font-size--large">
-            We store the bandwidth data of devices in Fiber To The Home (FTTH)
-            topology from collectors which run on hourly intervals. These
-            collector jobs contain time series for each device in JSON format
-            and based on this metadata, we produce visualizations for our
-            customers to have insights into their network quality. For a
+            Innova store the bandwidth data of devices in Fiber To The Home
+            (FTTH) topology from collectors, which run on hourly intervals.
+            These collector jobs contain time series for each device in JSON
+            format and based on this metadata, Innova produce visualizations for
+            their customers to have insights into their network quality. For a
             customer, this means that they have access to charts, tables, and
             line graphs so they can see the state of their connectivity for the
             last 30 days.
@@ -178,25 +178,27 @@ const Innova = () => {
           <img
             alt="Chart showing the average transaction duration for QuestDB on a given day"
             className={chCss.chart}
-            height={433}
+            height={519}
             src="/img/pages/case-study/innova/chart.png"
-            width={791}
+            width={842}
           />
-          <h3>Why we use a time series database for big data</h3>
+          <h3>Why Innova use a time series database for big data</h3>
           <p className="font-size--large">
-            Our original stack relied on MongoDB to store connectivity
-            information, which was convenient, but in practice, it was very
-            dependent on physical resources and required larger hardware that we
-            were happy with. Moreover, as data sets grew in MongoDB, query
-            speeds degraded below what we saw as acceptable for our customers.
+            The original stack built by Innova relied on MongoDB to store
+            connectivity information, which was convenient at first. However, it
+            soon became apparent that MongoDB was tightly dependent on physical
+            resources and required more powerful hardware that they were happy
+            with allocating. Moreover, as data sets grew in MongoDB, query
+            speeds degraded below what was acceptable for their customers.
           </p>
           <p className="font-size--large">
-            For communicating with QuestDB, we use the Docker deploy for running
-            instances, and we query data via REST API to generate charts and
-            insights. On average, we are writing about 40 million records per
-            day while performing calculations on this changing data set.
-            Usually, we will keep 30 days of data in QuestDB and delete older
-            partitions when they become less useful for actionable insights.
+            For communicating with QuestDB, Innova uses the Docker deploy for
+            running production instances and query data via REST API to generate
+            charts and insights. On average, Innova is writing hundreds of
+            millions of records per day while performing calculations on an
+            ever-changing data set. Usually, Innova will keep 30 days of data in
+            QuestDB and delete older partitions when they become less useful for
+            actionable insights.
           </p>
           <div
             className={clsx(
