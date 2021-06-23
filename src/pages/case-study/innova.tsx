@@ -132,8 +132,9 @@ const Innova = () => {
         </p>
 
         <p className={caCss.card__subtitle}>
-          In this case study, we summarize Innova’s migration experience to
-          QuestDB and the improvements this brought.
+          In this case study, we summarize why Innova chose QuestDB, their
+          migration experience, and the improvements they gained in query speed,
+          maintainability, and compatibility.
         </p>
       </section>
 
@@ -149,8 +150,8 @@ const Innova = () => {
           <p className="font-size--large">
             Innova found QuestDB because of its requirements to store and
             analyze massive amounts of data that needs to be served to their
-            customers quickly. The data Innova collects makes sense when
-            customers can instantly understand how it changes over time. The
+            customers quickly. The data Innova collects needs to be presented to
+            customers so that it’s easy to understand changes over time. The
             search for a database that can display this kind of information in a
             timeline as fast as possible led to QuestDB.
           </p>
@@ -192,8 +193,8 @@ const Innova = () => {
             speeds degraded below what was acceptable for their customers.
           </p>
           <p className="font-size--large">
-            For communicating with QuestDB, Innova uses the Docker deploy for
-            running production instances and query data via REST API to generate
+            For communicating with QuestDB, Innova uses the QuestDB Docker image
+            for running production instances and the REST API to query data for
             charts and insights. On average, Innova is writing hundreds of
             millions of records per day while performing calculations on an
             ever-changing data set. Usually, Innova will keep 30 days of data in
@@ -209,10 +210,9 @@ const Innova = () => {
           >
             <p className={caCss.card__title}>
               <span className={caCss.card__quote}>&ldquo;</span>QuestDB allows
-              us to query data while writing millions of data points every few
-              minutes. It is an excellent database for time-based calculation of
-              records with static columns and can store the data very
-              efficiently. QuestDB’s community is constantly growing and its
+              us to query data while writing millions of records. It is an
+              excellent database for time series analysis and can efficiently
+              store our data. QuestDB’s community is constantly growing and its
               popularity is on the rise.
               <span className={caCss.card__quote}>&rdquo;</span>
             </p>
