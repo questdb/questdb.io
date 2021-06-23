@@ -132,8 +132,8 @@ const Innova = () => {
         </p>
 
         <p className={caCss.card__subtitle}>
-          In this case study, we summarize Innova’s migration experience from
-          and the improvements the migration brought.
+          In this case study, we summarize Innova’s migration experience to
+          QuestDB and the improvements this brought.
         </p>
       </section>
 
