@@ -222,6 +222,37 @@ const Customers = () => {
           </div>
         </div>
       </section>
+      <section className={clsx(seCss.section, seCss["section--inner"])}>
+        <div className={caCss.card}>
+          <div className={caCss.card__illustration}>
+            <img
+              alt="An illustration of a digital landscape"
+              height={360}
+              src="/img/pages/case-study/innova/summary.jpg"
+              width={640}
+            />
+          </div>
+          <p className={caCss.card__summary}>
+            <img
+              alt="Innova logo"
+              className={caCss.card__logo}
+              height={24}
+              src="/img/pages/customers/logos/innova.png"
+              width={124}
+            />
+            “QuestDB allows us to query data while writing millions of records
+            every few minutes. It is an excellent database for time series
+            analysis, calculation of aggregates and can efficiently store our
+            data.”
+            <em className={caCss.card__author}>
+              - <strong>Erdem Aydemir</strong>, Innova
+            </em>
+            <Button className={caCss.card__cta} to="/case-study/innova/">
+              View full case study
+            </Button>
+          </p>
+        </div>
+      </section>
 
       <section
         className={clsx(
