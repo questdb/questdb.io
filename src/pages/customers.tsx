@@ -99,19 +99,6 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://toggle.global/?utm_source=questdb"
-          variant="plain"
-        >
-          <img
-            alt="Toggle.global logo"
-            className="responsive-image"
-            height={20}
-            src="/img/pages/customers/logos/toggle.svg"
-            width={115}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
           href="https://www.innova.com.tr/en"
           variant="plain"
         >
@@ -151,15 +138,15 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.biba.uni-bremen.de/en.html"
+          href="https://fadv.com/"
           variant="plain"
         >
           <img
-            alt="BIBA logo"
+            alt="First Advantage logo"
             className="responsive-image"
-            height={19}
-            src="/img/pages/customers/logos/biba.svg"
-            width={60}
+            height={35}
+            src="/img/pages/customers/logos/fadv.png"
+            width={180}
           />
         </Button>
       </section>

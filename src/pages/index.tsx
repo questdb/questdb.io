@@ -251,14 +251,6 @@ const Customers = () => (
       </div>
       <div className={cuCss.logo__item}>
         <img
-          alt="Toggle logo"
-          height={20}
-          src="/img/pages/customers/logos/toggle.svg"
-          width={115}
-        />
-      </div>
-      <div className={cuCss.logo__item}>
-        <img
           alt="Innova logo"
           height={20}
           src="/img/pages/customers/logos/innova.svg"
@@ -283,10 +275,10 @@ const Customers = () => (
       </div>
       <div className={cuCss.logo__item}>
         <img
-          alt="BIBA logo"
-          height={19}
-          src="/img/pages/customers/logos/biba.svg"
-          width={60}
+          alt="First Advantage logo"
+          height={35}
+          src="/img/pages/customers/logos/fadv.png"
+          width={180}
         />
       </div>
     </div>
