@@ -38,9 +38,9 @@ const Innova = () => {
               <img
                 alt="Innova logo"
                 className={juCss.jumbotron__logo}
-                height={15}
+                height={24}
                 src="/img/pages/customers/logos/innova.png"
-                width={100}
+                width={124}
               />
             </Button>
             <span className={juCss.jumbotron__name}>Case study</span>
