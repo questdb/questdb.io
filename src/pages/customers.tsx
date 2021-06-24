@@ -145,7 +145,7 @@ const Customers = () => {
             alt="First Advantage logo"
             className="responsive-image"
             height={35}
-            src="/img/pages/customers/logos/fadv.png"
+            src="/img/pages/customers/logos/fadv.svg"
             width={180}
           />
         </Button>
