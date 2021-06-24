@@ -269,7 +269,7 @@ const Customers = () => (
         <img
           alt="Insurance Information Institute logo"
           height={41}
-          src="/img/pages/customers/logos/iii.png"
+          src="/img/pages/customers/logos/iii.svg"
           width={140}
         />
       </div>

@@ -132,7 +132,7 @@ const Customers = () => {
             alt="Insurance Information Institute logo"
             className="responsive-image"
             height={41}
-            src="/img/pages/customers/logos/iii.png"
+            src="/img/pages/customers/logos/iii.svg"
             width={140}
           />
         </Button>
