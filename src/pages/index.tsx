@@ -220,7 +220,7 @@ const Customers = () => (
         <img
           alt="DATRON logo"
           height={22}
-          src="/img/pages/customers/logos/datron.png"
+          src="/img/pages/customers/logos/datron.svg"
           width={110}
         />
       </div>
@@ -277,7 +277,7 @@ const Customers = () => (
         <img
           alt="First Advantage logo"
           height={35}
-          src="/img/pages/customers/logos/fadv.png"
+          src="/img/pages/customers/logos/fadv.svg"
           width={180}
         />
       </div>
