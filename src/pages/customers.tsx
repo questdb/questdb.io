@@ -67,7 +67,7 @@ const Customers = () => {
             alt="Kepler logo"
             className="responsive-image"
             height={34}
-            src="/img/pages/customers/logos/kepler.png"
+            src="/img/pages/customers/logos/kepler.svg"
             width={140}
           />
         </Button>
@@ -80,7 +80,7 @@ const Customers = () => {
             alt="Verizon logo"
             className="responsive-image"
             height={22}
-            src="/img/pages/customers/logos/verizon.png"
+            src="/img/pages/customers/logos/verizon.svg"
             width={110}
           />
         </Button>
@@ -119,7 +119,7 @@ const Customers = () => {
             alt="Innova logo"
             className="responsive-image"
             height={20}
-            src="/img/pages/customers/logos/innova.png"
+            src="/img/pages/customers/logos/innova.svg"
             width={100}
           />
         </Button>
@@ -228,9 +228,9 @@ const Customers = () => {
             <img
               alt="Innova logo"
               className={caCss.card__logo}
-              height={24}
-              src="/img/pages/customers/logos/innova.png"
-              width={124}
+              height={30}
+              src="/img/pages/customers/logos/innova.svg"
+              width={100}
             />
             “QuestDB allows us to query data while writing millions of records.
             It is an excellent database for time series analysis, calculation of

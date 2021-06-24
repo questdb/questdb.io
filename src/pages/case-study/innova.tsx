@@ -38,9 +38,9 @@ const Innova = () => {
               <img
                 alt="Innova logo"
                 className={juCss.jumbotron__logo}
-                height={24}
-                src="/img/pages/customers/logos/innova.png"
-                width={124}
+                height={30}
+                src="/img/pages/customers/logos/innova.svg"
+                width={100}
               />
             </Button>
             <span className={juCss.jumbotron__name}>Case study</span>
@@ -61,9 +61,9 @@ const Innova = () => {
         <div className={juCss.jumbotron__banner}>
           <img
             alt="Innova background"
-            height={370}
+            height={400}
             src="/img/pages/case-study/innova/illustration.png"
-            width={800}
+            width={600}
           />
         </div>
       </section>

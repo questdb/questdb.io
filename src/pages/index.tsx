@@ -228,7 +228,7 @@ const Customers = () => (
         <img
           alt="Kepler logo"
           height={34}
-          src="/img/pages/customers/logos/kepler.png"
+          src="/img/pages/customers/logos/kepler.svg"
           width={140}
         />
       </div>
@@ -236,7 +236,7 @@ const Customers = () => (
         <img
           alt="Verizon logo"
           height={25}
-          src="/img/pages/customers/logos/verizon.png"
+          src="/img/pages/customers/logos/verizon.svg"
           width={110}
         />
       </div>
@@ -261,7 +261,7 @@ const Customers = () => (
         <img
           alt="Innova logo"
           height={20}
-          src="/img/pages/customers/logos/innova.png"
+          src="/img/pages/customers/logos/innova.svg"
           width={100}
         />
       </div>
