@@ -62,8 +62,8 @@ const Innova = () => {
           <img
             alt="Innova background"
             height={370}
-            src="/img/pages/case-study/innova/social.jpg"
-            width={1110}
+            src="/img/pages/case-study/innova/illustration.png"
+            width={800}
           />
         </div>
       </section>

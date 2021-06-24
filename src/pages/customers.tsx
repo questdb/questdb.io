@@ -167,26 +167,27 @@ const Customers = () => {
         <div className={caCss.card}>
           <div className={caCss.card__illustration}>
             <img
-              alt="A CNC milling machine built by DATRON"
+              alt="An illustration of a digital landscape"
               height={360}
-              src="/img/pages/case-study/datron/summary.png"
+              src="/img/pages/case-study/innova/summary.png"
               width={640}
             />
           </div>
           <p className={caCss.card__summary}>
             <img
-              alt="Datron logo"
+              alt="Innova logo"
               className={caCss.card__logo}
               height={24}
-              src="/img/pages/customers/logos/datron.png"
+              src="/img/pages/customers/logos/innova.png"
               width={124}
             />
-            “QuestDB offers new possibilities while reducing costs and
-            simplifying data analysis.”
+            “QuestDB allows us to query data while writing millions of records.
+            It is an excellent database for time series analysis, calculation of
+            aggregates and can efficiently store our data.”
             <em className={caCss.card__author}>
-              - <strong>Tim Borowski</strong>, DATRON
+              - <strong>Erdem Aydemir</strong>, Innova
             </em>
-            <Button className={caCss.card__cta} to="/case-study/datron/">
+            <Button className={caCss.card__cta} to="/case-study/innova/">
               View full case study
             </Button>
           </p>
@@ -226,33 +227,31 @@ const Customers = () => {
         <div className={caCss.card}>
           <div className={caCss.card__illustration}>
             <img
-              alt="An illustration of a digital landscape"
+              alt="A CNC milling machine built by DATRON"
               height={360}
-              src="/img/pages/case-study/innova/summary.jpg"
+              src="/img/pages/case-study/datron/summary.png"
               width={640}
             />
           </div>
           <p className={caCss.card__summary}>
             <img
-              alt="Innova logo"
+              alt="Datron logo"
               className={caCss.card__logo}
               height={24}
-              src="/img/pages/customers/logos/innova.png"
+              src="/img/pages/customers/logos/datron.png"
               width={124}
             />
-            “QuestDB allows us to query data while writing millions of records.
-            It is an excellent database for time series analysis, calculation of
-            aggregates and can efficiently store our data.”
+            “QuestDB offers new possibilities while reducing costs and
+            simplifying data analysis.”
             <em className={caCss.card__author}>
-              - <strong>Erdem Aydemir</strong>, Innova
+              - <strong>Tim Borowski</strong>, DATRON
             </em>
-            <Button className={caCss.card__cta} to="/case-study/innova/">
+            <Button className={caCss.card__cta} to="/case-study/datron/">
               View full case study
             </Button>
           </p>
         </div>
       </section>
-
       <section
         className={clsx(
           seCss.section,
