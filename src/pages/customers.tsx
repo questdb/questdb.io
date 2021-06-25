@@ -67,7 +67,7 @@ const Customers = () => {
             alt="Kepler logo"
             className="responsive-image"
             height={34}
-            src="/img/pages/customers/logos/kepler.png"
+            src="/img/pages/customers/logos/kepler.svg"
             width={140}
           />
         </Button>
@@ -80,7 +80,7 @@ const Customers = () => {
             alt="Verizon logo"
             className="responsive-image"
             height={22}
-            src="/img/pages/customers/logos/verizon.png"
+            src="/img/pages/customers/logos/verizon.svg"
             width={110}
           />
         </Button>
@@ -99,19 +99,6 @@ const Customers = () => {
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://toggle.global/?utm_source=questdb"
-          variant="plain"
-        >
-          <img
-            alt="Toggle.global logo"
-            className="responsive-image"
-            height={20}
-            src="/img/pages/customers/logos/toggle.svg"
-            width={115}
-          />
-        </Button>
-        <Button
-          className={loCss.logo__wrapper}
           href="https://www.innova.com.tr/en"
           variant="plain"
         >
@@ -119,7 +106,7 @@ const Customers = () => {
             alt="Innova logo"
             className="responsive-image"
             height={20}
-            src="/img/pages/customers/logos/innova.png"
+            src="/img/pages/customers/logos/innova.svg"
             width={100}
           />
         </Button>
@@ -145,23 +132,53 @@ const Customers = () => {
             alt="Insurance Information Institute logo"
             className="responsive-image"
             height={41}
-            src="/img/pages/customers/logos/iii.png"
+            src="/img/pages/customers/logos/iii.svg"
             width={140}
           />
         </Button>
         <Button
           className={loCss.logo__wrapper}
-          href="https://www.biba.uni-bremen.de/en.html"
+          href="https://fadv.com/"
           variant="plain"
         >
           <img
-            alt="BIBA logo"
+            alt="First Advantage logo"
             className="responsive-image"
-            height={19}
-            src="/img/pages/customers/logos/biba.svg"
-            width={60}
+            height={35}
+            src="/img/pages/customers/logos/fadv.svg"
+            width={180}
           />
         </Button>
+      </section>
+      <section className={clsx(seCss.section, seCss["section--inner"])}>
+        <div className={caCss.card}>
+          <p className={caCss.card__summary}>
+            <img
+              alt="Toggle.global logo"
+              className={caCss.card__logo}
+              height={20}
+              src="/img/pages/customers/logos/toggle.svg"
+              width={137.5}
+            />
+            “We switched from InfluxDB to QuestDB to get queries that are on
+            average 300x faster utilizing 1/4 of the hardware, without ever
+            overtaxing our servers.”
+            <em className={caCss.card__author}>
+              - <strong>Armenak Mayalian</strong>, CTO
+            </em>
+            <Button className={caCss.card__cta} to="/case-study/toggle/">
+              View full case study
+            </Button>
+          </p>
+          <div className={caCss.card__illustration}>
+            <img
+              alt="Comparison of AI and chess to investing"
+              height={453}
+              src="/img/pages/case-study/toggle/summary.png"
+              width={600}
+            />
+          </div>
+        </div>
       </section>
       <section className={clsx(seCss.section, seCss["section--inner"])}>
         <div className={caCss.card}>
@@ -196,33 +213,32 @@ const Customers = () => {
         <div className={caCss.card}>
           <p className={caCss.card__summary}>
             <img
-              alt="Toggle.global logo"
+              alt="Innova logo"
               className={caCss.card__logo}
-              height={20}
-              src="/img/pages/customers/logos/toggle.svg"
-              width={137.5}
+              height={30}
+              src="/img/pages/customers/logos/innova.svg"
+              width={100}
             />
-            “We switched from InfluxDB to QuestDB to get queries that are on
-            average 300x faster utilizing 1/4 of the hardware, without ever
-            overtaxing our servers.”
+            “QuestDB allows us to query data while writing millions of records.
+            It is an excellent database for time series analysis, calculation of
+            aggregates and can efficiently store our data.”
             <em className={caCss.card__author}>
-              - <strong>Armenak Mayalian</strong>, CTO
+              - <strong>Erdem Aydemir</strong>, Innova
             </em>
-            <Button className={caCss.card__cta} to="/case-study/toggle/">
+            <Button className={caCss.card__cta} to="/case-study/innova/">
               View full case study
             </Button>
           </p>
           <div className={caCss.card__illustration}>
             <img
-              alt="Comparison of AI and chess to investing"
-              height={453}
-              src="/img/pages/case-study/toggle/summary.png"
-              width={600}
+              alt="An illustration of a digital landscape"
+              height={360}
+              src="/img/pages/case-study/innova/summary.png"
+              width={640}
             />
           </div>
         </div>
       </section>
-
       <section
         className={clsx(
           seCss.section,

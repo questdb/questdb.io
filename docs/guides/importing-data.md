@@ -12,6 +12,43 @@ and pipe (`|`) delimited inputs with optional headers. Data types and structures
 are detected automatically, but additional configuration can be provided to
 improve automatic detection.
 
+## Specifying a schema during CSV import
+
+A `schema` JSON object can be provided with POST requests to `/imp` while
+creating tables via CSV import. This allows for more control over user-defined
+patterns for timestamps, or for explicitly setting types during column-creation.
+The the following example demonstrates basic usage, in this case, that the
+`ticker_name` column should be parsed as `SYMBOL` type instead of `STRING`:
+
+```bash
+curl -F schema='[{"name":"ticker_name", "type": "SYMBOL"}]' \
+-F data=@trades.csv 'http://localhost:9000/imp'
+```
+
+If a timestamp column (`ts`) in this CSV file has a custom or non-standard
+timestamp format, this may be included with the call as follows:
+
+```bash
+curl -F schema='[
+{"name":"ts", "type": "TIMESTAMP", "pattern": "yyyy-MM-dd - HH:mm:ss"},
+{"name":"ticker_name", "type": "SYMBOL"}
+]' -F data=@trades.csv 'http://localhost:9000/imp'
+```
+
+:::info
+
+The `schema` object must precede the `data` object in calls to this REST
+endpoint. For example:
+
+```bash
+# correct order
+curl -F schema='{my_schema_obj}' -F data=@my_file.csv http://localhost:9000/imp
+# incorrect order
+curl -F data=@my_file.csv -F schema='{my_schema_obj}' http://localhost:9000/imp
+```
+
+:::
+
 ## Text loader configuration
 
 QuestDB uses a `text_loader.json` configuration file which can be placed in the
