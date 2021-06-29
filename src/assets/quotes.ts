@@ -107,7 +107,7 @@ const quotes: Quote[] = [
     },
     text:
       "QuestDB is the most promising open source platform for time series analytics. It's thoughtfully designed to be both wicked fast and easy to use.",
-    author: "Nick Scolum",
+    author: "Nick Slocum",
     role: "Senior Software Engineer",
     company: "Samtec",
   },
