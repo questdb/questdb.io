@@ -17,7 +17,7 @@ const quotes: Quote[] = [
     website: "https://www.verizon.com/",
     logo: {
       alt: "Verizon logo",
-      src: "/img/pages/customers/logos/verizon.png",
+      src: "/img/pages/customers/logos/verizon.svg",
       height: 22,
       width: 100,
     },
@@ -31,7 +31,7 @@ const quotes: Quote[] = [
     website: "https://www.keplercheuvreux.com/en/",
     logo: {
       alt: "Kepler logo",
-      src: "/img/pages/customers/logos/kepler.png",
+      src: "/img/pages/customers/logos/kepler.svg",
       height: 34,
       width: 140,
     },
@@ -45,7 +45,7 @@ const quotes: Quote[] = [
     website: "https://www.datron.com/",
     logo: {
       alt: "Datron logo",
-      src: "/img/pages/customers/logos/datron.png",
+      src: "/img/pages/customers/logos/datron.svg",
       height: 19,
       width: 100,
     },
@@ -87,7 +87,7 @@ const quotes: Quote[] = [
     website: "https://www.innova.com.tr/en/about-us/about-innova",
     logo: {
       alt: "Innova logo",
-      src: "/img/pages/customers/logos/innova.png",
+      src: "/img/pages/customers/logos/innova.svg",
       height: 18,
       width: 88,
     },
@@ -101,7 +101,7 @@ const quotes: Quote[] = [
     website: "https://www.samtec.com/",
     logo: {
       alt: "Samtec logo",
-      src: "/img/pages/customers/logos/samtec.png",
+      src: "/img/pages/customers/logos/samtec.svg",
       height: 24,
       width: 81,
     },
@@ -112,26 +112,26 @@ const quotes: Quote[] = [
     company: "Samtec",
   },
   {
-    website: "https://www.chainslayer.io/",
+    website: "https://www.biba.uni-bremen.de/en/institute/infrastructure.html",
     logo: {
-      alt: "ChainSlayer logo",
-      src: "/img/pages/customers/logos/chainslayer.png",
+      alt: "BIBA logo",
+      src: "/img/pages/customers/logos/biba.svg",
       height: 24,
-      width: 116,
+      width: 81,
     },
     text:
-      "QuestDB is the cornerstone of our offering. The SQL interface with time series functions like ASOF join is brilliant. It’s speed and small footprint make it perfect for containerized environments. And the UI looks absolutely amazing.",
-    author: "Tjerk Stroband",
-    role: "CTO",
-    company: "ChainSlayer",
+      "At BIBA, we leverage QuestDB in IoT and Industrial Automation. Apart from out-of-the-box readiness, the performance is fantastic, and the ease of usage provides us a path to perform faster and better analyses.",
+    author: "Shan Desai",
+    role: "Research Scientist",
+    company: "BIBA",
   },
   {
     website: "https://www.counterflow.ai/",
     logo: {
       alt: "Counterflow AI logo",
-      src: "/img/pages/customers/logos/counterflow.png",
-      height: 34,
-      width: 140,
+      src: "/img/pages/customers/logos/counterflow.svg",
+      height: 57,
+      width: 120,
     },
     text:
       "QuestDB is impressive and stands out as a superior option. Our intent is to integrate it with our SaaS offering and contribute to the project.",
