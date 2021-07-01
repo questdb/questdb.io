@@ -54,7 +54,7 @@ const Customers = () => {
             alt="Datron logo"
             className="responsive-image"
             height={20}
-            src="/img/pages/customers/logos/datron.png"
+            src="/img/pages/customers/logos/datron.svg"
             width={110}
           />
         </Button>
@@ -195,7 +195,7 @@ const Customers = () => {
               alt="Datron logo"
               className={caCss.card__logo}
               height={24}
-              src="/img/pages/customers/logos/datron.png"
+              src="/img/pages/customers/logos/datron.svg"
               width={124}
             />
             “QuestDB offers new possibilities while reducing costs and
