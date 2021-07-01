@@ -74,8 +74,8 @@ const quotes: Quote[] = [
     logo: {
       alt: "Toggle logo",
       src: "/img/pages/customers/logos/toggle.svg",
-      height: 18,
-      width: 88,
+      height: 24,
+      width: 100,
     },
     text:
       "We switched from InfluxDB to QuestDB to get queries that are on average 300x faster utilizing 1/4 of the hardware, without ever overtaxing our servers.",
