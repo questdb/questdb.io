@@ -117,7 +117,7 @@ const quotes: Quote[] = [
       alt: "BIBA logo",
       src: "/img/pages/customers/logos/biba.svg",
       height: 24,
-      width: 81,
+      width: 50,
     },
     text:
       "At BIBA, we leverage QuestDB in IoT and Industrial Automation. Aside from out-of-the-box readiness, the performance is fantastic, and the ease of usage provides us a path to perform faster and better analyses.",
