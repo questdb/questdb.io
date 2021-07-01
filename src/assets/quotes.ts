@@ -120,7 +120,7 @@ const quotes: Quote[] = [
       width: 81,
     },
     text:
-      "At BIBA, we leverage QuestDB in IoT and Industrial Automation. Apart from out-of-the-box readiness, the performance is fantastic, and the ease of usage provides us a path to perform faster and better analyses.",
+      "At BIBA, we leverage QuestDB in IoT and Industrial Automation. Aside from out-of-the-box readiness, the performance is fantastic, and the ease of usage provides us a path to perform faster and better analyses.",
     author: "Shan Desai",
     role: "Research Scientist",
     company: "BIBA",
