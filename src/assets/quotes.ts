@@ -134,7 +134,7 @@ const quotes: Quote[] = [
       width: 120,
     },
     text:
-      "QuestDB is impressive and stands out as a superior option. Our intent is to integrate it with our SaaS offering and contribute to the project.",
+      "QuestDB is impressive and stands out as a superior option. We use it as the basis of our time series analytics.",
     author: "Randy Caldejon",
     role: "CEO",
     company: "Counterflow AI",
