@@ -14,14 +14,14 @@ jobs:
         uses: jakepartusch/wait-for-netlify-action@v1
         id: netlify
         with:
-          site_name: 'unruffled-blackwell-31bfb2'
+          site_name: "unruffled-blackwell-31bfb2"
           max_timeout: 600
       - name: Lighthouse Audit URLs
         id: lighthouse_audit
         uses: treosh/lighthouse-ci-action@v3
         with:
           urls: |
-           https://deploy-preview-$PR_NUMBER--unruffled-blackwell-31bfb2.netlify.app/
+            https://deploy-preview-$PR_NUMBER--unruffled-blackwell-31bfb2.netlify.app/
           configPath: ./.github/workflows/lighthousesrc.json
           uploadArtifacts: true
           temporaryPublicStorage: true
