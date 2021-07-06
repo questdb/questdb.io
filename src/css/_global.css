@@ -38,6 +38,7 @@
     "Segoe UI Emoji", "Android Emoji", EmojiSymbols, "EmojiOne Mozilla",
     "Twemoji Mozilla", "Segoe UI Symbol", "Noto Color Emoji";
 
+  --font-size-xsmall: 13px;
   --font-size-small: 15px;
   --font-size-normal: 16px;
   --font-size-large: 17px;
@@ -87,6 +88,8 @@
   --ifm-pre-background: var(--palette-midnight);
   --ifm-table-cell-padding: 0.15rem 1rem;
   --ifm-toc-border-color: var(--palette-white-10);
+
+  --ifm-container-width-xl: 1750px;
 }
 
 html[data-theme="dark"] {

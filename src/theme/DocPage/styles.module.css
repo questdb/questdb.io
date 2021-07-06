@@ -125,9 +125,9 @@
 }
 
 :global(.table-of-contents) {
-  border-left-width: 3px;
-  font-size: var(--font-size-small);
-  font-weight: var(--ifm-font-weight-semibold);
+  border-left-width: 2px;
+  font-size: var(--font-size-xsmall);
+  font-weight: var(--ifm-font-weight-normal);
 }
 
 :global(.table-of-contents li) {
