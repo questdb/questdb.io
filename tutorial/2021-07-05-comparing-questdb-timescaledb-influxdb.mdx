@@ -89,8 +89,8 @@ enterprise that provide clustering and other production-ready features.
   title="Image Credit: DB-engines"
 />
 
-Prior to the InfluxDB 2.x release in 2019, InfluxDB Platform consisted of the
-TICK stack: Telegraf (agent for collecting and reporting metrics), InfluxDB,
+Prior to the InfluxDB 2.x release in 2019, the InfluxDB Platform consisted of
+the TICK stack: Telegraf (agent for collecting and reporting metrics), InfluxDB,
 Chronograf (interface to query data from InfluxDB), and Kapacitor (real-time
 streaming data processing engine). As seen in the diagram below, InfluxDB 1.x
 primarily focused on timeseries data coming from servers and web applications.
@@ -221,8 +221,6 @@ single, large table for interacting with the data.
   title="Image Credit: TimescaleDB"
 />
 
-
-
 PostgreSQL compatibility is TimescaleDB's biggest selling-point. TimescaleDB
 fully supports all of the SQL features (e.g. joins, secondary and partial
 indexes) as well as popular extensions like [PostGIS](https://postgis.net/).
@@ -251,11 +249,12 @@ data which is often 'bursty', frequently out of order due to network
 unreliability, and characterized by high cardinality:
 
 - **Hypertables:** TimescaleDB
-  [partitions its hypertables into chunks based on a time column as well as other "spatial" values](https://docs.timescale.com/timescaledb/latest/overview/core-concepts/hypertables-and-chunks/#partitioning-in-hypertables-with-chunks)
-  such as a device uid, location identifier, or a stock symbol. These chunks can
-  be configured to hold the most recent data in memory, asynchronously compress
-  and re-order data by the time column to disk (instead of ingestion time), and
-  replicate or migrate transactionally across nodes.
+  [partitions its hypertables into chunks](https://docs.timescale.com/timescaledb/latest/overview/core-concepts/hypertables-and-chunks/#partitioning-in-hypertables-with-chunks)
+  based on a time column as well as other "spatial" values such as a device uid,
+  location identifier, or a stock symbol. These chunks can be configured to hold
+  the most recent data in memory, asynchronously compress and re-order data by
+  the time column to disk (instead of ingestion time), and replicate or migrate
+  transactionally across nodes.
 - **Continuous Aggregation:** TimescaleDB also supports
   [continuous aggregation of data](https://docs.timescale.com/timescaledb/latest/overview/core-concepts/continuous-aggregates/)
   to make computing key metrics like hourly average, minimum, and maximum values
@@ -375,7 +374,7 @@ QuestDB showed over a million rows/sec ingestion throughput.
   width={770}
 />
 
-Again performance benchmarks can be subjective based on the data model and
+Again, performance benchmarks can be subjective based on the data model and
 tuning of the DBs, but it nevertheless paints a compelling comparison point for
 QuestDB. It will be interesting to see how the results shake out with devops or
 iot modes as both InfluxDB and TimescaleDB support those use cases out of the
