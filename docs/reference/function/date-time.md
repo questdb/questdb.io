@@ -146,14 +146,23 @@ Return value type is `timestamp`
 
 **Examples:**
 
-```questdb-sql title="string matches format"
-SELECT to_timestamp('2020-03-01:15:43:21', 'yyyy-MM-dd:HH:mm:ss')
+```questdb-sql title="matching with microsecond precision"
+SELECT to_timestamp('2020-03-01:15:43:21.127329', 'yyyy-MM-dd:HH:mm:ss.SSSUUU')
 FROM long_sequence(1);
 ```
 
 | to_timestamp                |
 | --------------------------- |
-| 2020-03-01T15:43:21.000000Z |
+| 2020-03-01T15:43:21.127329Z |
+
+```questdb-sql title="matching with nanosecond precision"
+SELECT to_timestamp('2020-03-01:15:43:00.000000000Z', 'yyyy-MM-dd:HH:mm:ss.SSSUUUNNNZ')
+FROM long_sequence(1);
+```
+
+| to_timestamp                |
+| --------------------------- |
+| 2020-03-01T15:43:00.000000Z |
 
 ```questdb-sql title="string does not match format"
 SELECT to_timestamp('2020-03-01:15:43:21', 'yyyy')
@@ -888,6 +897,7 @@ prefix)
 | `Z`    | Time zone                                        | RFC 822 time zone  | -0800                                 |
 | `X`    | Time zone                                        | ISO 8601 time zone | -08; -0800; -08:00                    |
 | `U`    | Microsecond                                      | Number             | 698                                   |
+| `N`    | Nanosecond                                       | Number             | 125                                   |
 
 ### See also
 
