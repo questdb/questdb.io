@@ -46,19 +46,21 @@ function TutorialListPage(props: Props) {
       content.frontMatter.featured == null || !content.frontMatter.featured,
   )
   const description =
-    "Resources from our community contributors and the QuestDB Team for learning and mastering QuestDB."
+    "Content from the QuestDB team and community contributors for learning about time series analytics, visualization, integrations, and example applications using QuestDB."
 
   return (
     <PageLayout
       canonical="/tutorial"
       description={description}
-      title="Tutorials"
+      title="Tutorials and community resources for working with time series data"
       wrapperClassName="blog-wrapper"
     >
       <section className={clsx(seCss.section, seCss["section--odd"])}>
         <div className={styles.jumbotron}>
           <div className={styles.jumbotron__left}>
-            <h1 className={seCss.section__title}>Tutorials</h1>
+            <h1 className={seCss.section__title}>
+              Tutorials and community resources
+            </h1>
             <p
               className={clsx(
                 seCss.section__subtitle,
@@ -71,7 +73,7 @@ function TutorialListPage(props: Props) {
               className={styles.jumbotron__cta}
               href="https://github.com/questdb/questdb.io/issues/new?labels=Tutorial&template=submit-a-tutorial.md"
             >
-              Submit a tutorial
+              Submit content
             </Button>
           </div>
         </div>
@@ -80,7 +82,7 @@ function TutorialListPage(props: Props) {
       <div className="container margin-vert--lg">
         {featured.length > 0 && (
           <>
-            <h2 className={styles.cards__title}>Featured tutorials</h2>
+            <h2 className={styles.cards__title}>Featured resources</h2>
             <div className="row">
               <main className={clsx("col", styles.cards__container)}>
                 {renderCards(featured)}
@@ -89,7 +91,7 @@ function TutorialListPage(props: Props) {
           </>
         )}
 
-        <h2 className={styles.cards__title}>All tutorials</h2>
+        <h2 className={styles.cards__title}>All resources</h2>
         <div className="row">
           <main className={clsx("col", styles.cards__container)}>
             {renderCards(cards)}

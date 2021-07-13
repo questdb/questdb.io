@@ -14,3 +14,4 @@
 /docs/reference/client/cli /docs/reference/command-line-options
 /docs/reference/client/web-console /docs/reference/web-console
 /docs/guides/hysteresis /docs/guides/out-of-order-commit-lag
+/tutorial/2021/09/05/telegraf-and-questdb-for-storing-metrics-in-a-timeseries-database /tutorial/2021/07/09/telegraf-and-questdb-for-storing-metrics-in-a-timeseries-database

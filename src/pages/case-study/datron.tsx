@@ -38,7 +38,7 @@ const DATRON = () => {
                 alt="A CNC machine built by DATRON milling aluminium"
                 className={juCss.jumbotron__logo}
                 height={24}
-                src="/img/pages/customers/logos/datron.png"
+                src="/img/pages/customers/logos/datron.svg"
                 width={124}
               />
             </Button>
