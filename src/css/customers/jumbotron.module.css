@@ -31,7 +31,7 @@
 
 @media (max-width: 996px) {
   .jumbotron {
-    min-height: 350px;
+    min-height: 250px;
   }
 
   .jumbotron__illustration {
