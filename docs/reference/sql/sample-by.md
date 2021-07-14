@@ -19,70 +19,255 @@ more in the [designated timestamp](/docs/concept/designated-timestamp/) section.
 
 ## Syntax
 
-![Flow chart showing the syntax of the SAMPLE BY keyword](/img/docs/diagrams/sampleBy.svg)
-
-Where `SAMPLE_SIZE` is the unit of time by which you wish to aggregate your
-results, and `n` is the number of time chunks that will be summarized together.
+![Flow chart showing the syntax of the SAMPLE BY keywords](/img/docs/diagrams/sampleBy.svg)
+![Flow chart showing the syntax of the ALIGN TO keywords](/img/docs/diagrams/alignToCalTimeZone.svg)
 
 ## Sample calculation
 
-The time range of each group sampled by time is an absolute value, in other
-words, sampling by one day is a 24 hour range which is not bound to actual
-calendar dates.
+The default time calculation of sampled groups is an absolute value, in other
+words, sampling by one day is a 24 hour range which is not bound to calendar
+dates. To align sampled groups to calendar dates, the `ALIGN TO` keywords can be
+used and are described in the [ALIGN TO CALENDAR](#align-to-calendar) section
+below.
 
-Considering the following example which samples from a `sensors` table over the
-last 24 hours:
+Consider a table `sensors` with the following data spanning three calendar days:
+
+| ts                          | val |
+| --------------------------- | --- |
+| 2021-05-31T23:10:00.000000Z | 10  |
+| 2021-06-01T01:10:00.000000Z | 80  |
+| 2021-06-01T07:20:00.000000Z | 15  |
+| 2021-06-01T13:20:00.000000Z | 10  |
+| 2021-06-01T19:20:00.000000Z | 40  |
+| 2021-06-02T01:10:00.000000Z | 90  |
+| 2021-06-02T07:20:00.000000Z | 30  |
+
+The following query can be used to sample the table by day. Note that the
+default sample calculation can be made explicit in a query using
+`ALIGN TO FIRST OBSERVATION`:
 
 ```questdb-sql
-SELECT ts, count()
-FROM sensors
-WHERE ts > dateadd('d', -1, now())
+SELECT ts, count() FROM sensors
 SAMPLE BY 1d
+
+-- Equivalent to
+SELECT ts, count() FROM sensors
+SAMPLE BY 1d
+ALIGN TO FIRST OBSERVATION
 ```
 
-The `WHERE` clause has narrowed down results to those which have a timestamp
-greater than 24 hours from now. If the table has rows for sensor readings
-ingested yesterday and today, this query will return two rows. The 24 hour range
-for the sampled group starts at the first-returned timestamp:
+This query will return two rows:
 
 | ts                          | count |
 | --------------------------- | ----- |
-| 2021-02-03T00:32:35.000000Z | 1000  |
-| 2021-02-04T00:32:35.000000Z | 200   |
+| 2021-05-31T23:10:00.000000Z | 5     |
+| 2021-06-01T23:10:00.000000Z | 2     |
+
+The timestamp value for the 24 hour groups start at the first-observed
+timestamp.
+
+### ALIGN TO CALENDAR
+
+Sample calculation may also be aligned to calendar dates using
+`ALIGN TO CALENDAR` keywords:
+
+```questdb-sql
+SELECT ts, count() FROM sensors
+SAMPLE BY 1d
+ALIGN TO CALENDAR
+```
+
+In this case, given the example table above and sampling by 1 day, the 24 hour
+samples begin at `2021-05-31T00:00:00.000000Z`:
+
+| ts                          | count |
+| --------------------------- | ----- |
+| 2021-05-31T00:00:00.000000Z | 1     |
+| 2021-06-01T00:00:00.000000Z | 4     |
+| 2021-06-02T00:00:00.000000Z | 2     |
+
+### ALIGN TO CALENDAR TIME ZONE
+
+A time zone may be provided for sampling with calendar alignment. Details on the
+options for specifying time zones with available formats are provided in the
+guide for
+[working with timestamps and time zones](/docs/guides/working-with-timestamps-timezones/).
+
+```questdb-sql
+SELECT ts, count() FROM sensors
+SAMPLE BY 1d
+ALIGN TO CALENDAR TIME ZONE 'Europe/Berlin'
+```
+
+In this case, the 24 hour samples begin at `2021-05-31T01:00:00.000000Z`:
+
+| ts                          | count |
+| --------------------------- | ----- |
+| 2021-05-31T01:00:00.000000Z | 1     |
+| 2021-06-01T01:00:00.000000Z | 4     |
+| 2021-06-02T01:00:00.000000Z | 2     |
+
+Additionally, an offset may be applied when aligning sample calculation to
+calendar
+
+```questdb-sql
+SELECT ts, count() FROM sensors
+SAMPLE BY 1d
+ALIGN TO CALENDAR TIME ZONE 'Europe/Berlin' WITH OFFSET '00:45'
+```
+
+In this case, the 24 hour samples begin at `2021-05-31T01:45:00.000000Z`:
+
+| ts                          | count |
+| --------------------------- | ----- |
+| 2021-05-31T01:45:00.000000Z | 2     |
+| 2021-06-01T01:45:00.000000Z | 4     |
+| 2021-06-02T01:45:00.000000Z | 1     |
+
+#### Local timezone output
+
+The timestamp values output from `SAMPLE BY` queries is in UTC. To have UTC
+values converted to specific timezones the
+[to_timezone() function](/docs/reference/function/date-time/#to_timezone) should
+be used.
+
+```questdb-sql
+SELECT to_timezone(ts, 'PST') ts, count
+FROM (select ts, count()
+      FROM sensors SAMPLE BY 2h
+      ALIGN TO CALENDAR TIME ZONE 'PST')
+```
+
+#### Time zone transitions
+
+Calendar dates may contain historical time zone transitions or may vary in the
+total number of hours due to daylight savings time. Considering the 31st October
+2021, in the `Europe/London` calendar day which consists of 25 hours:
+
+> - Sunday, 31 October 2021, 02:00:00 clocks are turned backward 1 hour to
+> - Sunday, 31 October 2021, 01:00:00 local standard time
+
+When a `SAMPLE BY` operation crosses time zone transitions in cases such as
+this, the first sampled group which spans a transition will include aggregates
+by full calendar range. Consider a table `sensors` with one data point per hour
+spanning three calendar hours:
+
+| ts                          | val |
+| --------------------------- | --- |
+| 2021-10-31T00:10:00.000000Z | 10  |
+| 2021-10-31T01:10:00.000000Z | 20  |
+| 2021-10-31T02:10:00.000000Z | 30  |
+| 2021-10-31T03:10:00.000000Z | 40  |
+| 2021-10-31T04:10:00.000000Z | 50  |
+
+The following query will sample by hour with the `Europe/London` time zone and
+align to calendar ranges:
+
+```questdb-sql
+SELECT ts, count() FROM sensors
+SAMPLE BY 1h
+ALIGN TO CALENDAR TIME ZONE 'Europe/London'
+```
+
+The record count for the hour which encounters a time zone transition will
+contain two records for both hours at the time zone transition:
+
+| ts                          | count |
+| --------------------------- | ----- |
+| 2021-10-31T00:00:00.000000Z | 2     |
+| 2021-10-31T01:00:00.000000Z | 1     |
+| 2021-10-31T02:00:00.000000Z | 1     |
+| 2021-10-31T03:00:00.000000Z | 1     |
+
+Similarly, given one data point per hour on this table, running `SAMPLE BY 1d`
+will have a count of `25` for this day when aligned to calendar time zone
+'Europe/London'.
+
+### ALIGN TO CALENDAR WITH OFFSET
+
+Aligning sampling calculation can be provided an arbitrary offset in the format
+`'+/-HH:mm'`, for example:
+
+- `'00:30'` plus thirty minutes
+- `'+00:30'` plus thirty minutes
+- `'-00:15'` minus 15 minutes
+
+```questdb-sql
+SELECT ts, count() FROM sensors
+SAMPLE BY 1d
+ALIGN TO CALENDAR WITH OFFSET '02:00'
+```
+
+In this case, the 24 hour samples begin at `2021-05-31T02:00:00.000000Z`:
+
+| ts                          | count |
+| --------------------------- | ----- |
+| 2021-05-31T02:00:00.000000Z | 2     |
+| 2021-06-01T02:00:00.000000Z | 4     |
+| 2021-06-02T02:00:00.000000Z | 1     |
 
 ## Examples
 
-Assume the following table
+Assume the following table `trades`:
 
-| ts  | buysell | quantity | price |
-| --- | ------- | -------- | ----- |
-| ts1 | B       | q1       | p1    |
-| ts2 | S       | q2       | p2    |
-| ts3 | S       | q3       | p3    |
-| ... | ...     | ...      | ...   |
-| tsn | B       | qn       | pn    |
+| ts                          | quantity | price  |
+| --------------------------- | -------- | ------ |
+| 2021-05-31T23:45:10.000000Z | 10       | 100.05 |
+| 2021-06-01T00:01:33.000000Z | 5        | 100.05 |
+| 2021-06-01T00:15:14.000000Z | 200      | 100.15 |
+| 2021-06-01T00:30:40.000000Z | 300      | 100.15 |
+| 2021-06-01T00:45:20.000000Z | 10       | 100    |
+| 2021-06-01T01:00:50.000000Z | 50       | 100.15 |
 
-The following will return the number of trades per hour:
+This query will return the number of trades per hour:
 
 ```questdb-sql title="trades - hourly interval"
-SELECT ts, count()
-FROM TRADES
-SAMPLE BY 1h;
+SELECT ts, count() FROM trades
+SAMPLE BY 1h
 ```
+
+| ts                          | count |
+| --------------------------- | ----- |
+| 2021-05-31T23:45:10.000000Z | 3     |
+| 2021-06-01T00:45:10.000000Z | 1     |
+| 2021-05-31T23:45:10.000000Z | 1     |
+| 2021-06-01T00:45:10.000000Z | 1     |
 
 The following will return the trade volume in 30 minute intervals
 
 ```questdb-sql title="trades - 30 minute interval"
-SELECT ts, sum(quantity*price)
-FROM TRADES
-SAMPLE BY 30m;
+SELECT ts, sum(quantity*price) FROM trades
+SAMPLE BY 30m
 ```
+
+| ts                          | sum    |
+| --------------------------- | ------ |
+| 2021-05-31T23:45:10.000000Z | 1000.5 |
+| 2021-06-01T00:15:10.000000Z | 16024  |
+| 2021-06-01T00:45:10.000000Z | 8000   |
+| 2021-06-01T00:15:10.000000Z | 8012   |
+| 2021-06-01T00:45:10.000000Z | 8000   |
 
 The following will return the average trade notional (where notional is = q \*
 p) by day:
 
 ```questdb-sql title="trades - daily interval"
-SELECT ts, avg(quantity*price)
-FROM TRADES
-SAMPLE BY 1d;
+SELECT ts, avg(quantity*price) FROM trades
+SAMPLE BY 1d
 ```
+
+| ts                          | avg               |
+| --------------------------- | ----------------- |
+| 2021-05-31T23:45:10.000000Z | 6839.416666666667 |
+
+To make this sample align to calendar dates:
+
+```questdb-sql
+SELECT ts, avg(quantity*price) FROM trades
+SAMPLE BY 1d ALIGN TO CALENDAR
+```
+
+| ts                          | avg    |
+| --------------------------- | ------ |
+| 2021-05-31T00:00:00.000000Z | 1000.5 |
+| 2021-06-01T00:00:00.000000Z | 8007.2 |
