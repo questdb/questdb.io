@@ -163,6 +163,42 @@ const CareersPage = () => {
             </a>
           </div>
         </div>
+        <div className={clsx(caCss.card, caCss["card--reverse"])}>
+          <div
+            className={clsx(
+              caCss.card__side,
+              caCss["card__side--illustration"],
+              caCss["card__side--baseline"],
+            )}
+          >
+            <img
+              alt="Illustration of a developer with efficient"
+              height={230}
+              src="/img/pages/careers/timeseriesApplication.svg"
+              width={305}
+            />
+          </div>
+          <div className={caCss.card__side}>
+            <h2 className={caCss.card__title}>About QuestDB</h2>
+            <p className={caCss.card__content}>
+              We have built the fastest open source time series database from
+              the ground up to offer breakthrough performance for real-time
+              analytics using SQL.
+            </p>
+            <p className={caCss.card__content}>
+              We bring experience and technical approaches from low-latency
+              trading to leverage real-time data processing in various use cases
+              and industries.
+            </p>
+            <p className={caCss.card__content}>
+              Our users deploy QuestDB to make time series analysis fast,
+              efficient, and convenient in financial services, IoT, application
+              monitoring, and machine learning. We are a remote-first company
+              based in London and backed by leading venture capital firms and Y
+              Combinator.
+            </p>
+          </div>
+        </div>
       </section>
     </PageLayout>
   )
