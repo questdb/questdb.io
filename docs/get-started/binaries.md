@@ -6,10 +6,9 @@ description:
   Get QuestDB page.
 ---
 
-This guide shows how to install and use QuestDB from the binaries.
-
-QuestDB comes with a script `questdb.sh` for Linux/FreeBSD and an executable
-`questdb.exe` for Windows. If you are looking for macOS, please check our
+This page describes how to install and use QuestDB via binaries. QuestDB comes
+with a script `questdb.sh` for Linux/FreeBSD and an executable `questdb.exe` for
+Windows. If you are looking for macOS, please check our
 [Homebrew](/docs/get-started/homebrew/) section.
 
 ## Download
