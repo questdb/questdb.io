@@ -35,6 +35,20 @@ curl -F schema='[
 ]' -F data=@trades.csv 'http://localhost:9000/imp'
 ```
 
+For **nanosecond-precision** timestamps such as
+`2021-06-22T12:08:41.077338934Z`, a pattern can be provided in the following
+way:
+
+```bash
+curl -F schema='[
+{"name":"ts", "type": "TIMESTAMP", "pattern": "yyyy-MM-ddTHH:mm:ss.SSSUUUNNNZ"}
+]' -F data=@my_file.csv 'http://localhost:9000/imp'
+```
+
+More information on the patterns for timestamps can be found on the
+[date and time functions](/docs/reference/function/date-time/#date-and-timestamp-format)
+page.
+
 :::info
 
 The `schema` object must precede the `data` object in calls to this REST
