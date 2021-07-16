@@ -4,20 +4,21 @@ sidebar_label: CREATE TABLE
 description: CREATE TABLE SQL keyword reference documentation.
 ---
 
-Creates new table in the database.
+To create a new table in the database, the `CREATE TABLE` query followed by
+column definitions can be used:
 
-:::info
+```questdb-sql title="Create a table with a designated timestamp"
+CREATE TABLE my_table(symb SYMBOL, price DOUBLE, ts TIMESTAMP, s STRING)
+  timestamp(ts);
+```
 
-Checking table metadata can be done via the `tables()` and `table_columns()`
-functions which are described in the
+**Hint:** checking table metadata can be done via the `tables()` and
+`table_columns()` functions which are described in the
 [meta functions](/docs/reference/function/meta/) documentation page.
-
-:::
 
 ## Syntax
 
 ![Flow chart showing the syntax of the CREATE TABLE keyword](/img/docs/diagrams/createTable.svg)
-![Flow chart showing the syntax of keyword to specify WITH table commit parameters](/img/docs/diagrams/createTableWithCommitParam.svg)
 
 The following sections describe the keywords and definitions illustrated in this
 diagram.
