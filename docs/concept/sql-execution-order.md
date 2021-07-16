@@ -3,12 +3,13 @@ title: SQL execution order
 sidebar_label: SQL execution order
 description:
   Execution order for SQL clauses in QuestDB. This covers the SQL keywords you
-  are used to as well as QuestDB's extensions to the language.
+  may already be familiar with as well as extensions to the language that are
+  unique to QuestDB.
 ---
 
-QuestDB attempts to implement standard ANSI SQL. We also attempt to be
-PostgreSQL compatible, although some of it is work in progress. QuestDB
-implements the following clauses in this execution order:
+QuestDB attempts to implement standard ANSI SQL. We also try to be compatible
+with PostgreSQL, although parts of this are a work in progress. QuestDB
+implements these clauses which have the following execution order:
 
 1. [FROM](/docs/reference/sql/select/)
 2. [ON](/docs/reference/sql/join/)
@@ -23,7 +24,11 @@ implements the following clauses in this execution order:
 11. [ORDER BY](/docs/reference/sql/order-by/)
 12. [LIMIT](/docs/reference/sql/limit/)
 
-We also implemented sub-queries. They can be used anywhere table name is used.
-Our sub-query implementation adds virtually zero execution cost to SQL. We
-encourage their use as they add flavours of functional language to old-school
-SQL.
+We have also implemented sub-queries that users may execute at any part of a
+query that mentions a table name. The sub-query implementation adds almost zero
+execution cost to SQL. We encourage the use of sub-queries as they add flavors
+of functional language features to traditional SQL.
+
+For more information on the SQL extensions in QuestDB which deviate from ANSI
+SQL and PostgreSQL, see the
+[SQL extensions documentation](/docs/concept/sql-extensions/).
